@@ -6335,7 +6335,7 @@
                 api: 'https://insight.litecore.io/api/'
             }],
             zcash: [{
-                api: 'https://zchain.online/api/'
+                api: 'https://zcash.blockexplorer.com/api/'
             }]
         });
 
@@ -16077,8 +16077,8 @@
             }
         };
         const blockExplorer = exports.blockExplorer = {
-            addressUrl: address => `https://zchain.online/address/${address}/`,
-            txUrl: txId => `https://zchain.online/tx/${txId}/`
+            addressUrl: address => `https://zcash.blockexplorer.com/address/${address}/`,
+            txUrl: txId => `https://zcash.blockexplorer.com/tx/${txId}/`
         };
 
     }, {
