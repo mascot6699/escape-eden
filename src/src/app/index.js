@@ -15849,7 +15849,7 @@
         }
         const name = exports.name = 'monero';
         const properName = exports.properName = 'Monero';
-        const available = exports.available = _appConfig.ENV_DEV;
+        const available = exports.available = true
         const defaultEnabled = exports.defaultEnabled = true;
         const hasMultipleAddresses = exports.hasMultipleAddresses = false;
         const hasUTXO = exports.hasUTXO = true;
