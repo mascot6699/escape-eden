@@ -1,0 +1,50 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+@import "base";
+
+[modal-name] {
+    display: block !important;
+    .w-clearfix {
+        margin-right: 80px;
+        margin-left: 80px;
+        padding: 10px 40px 25px;
+        border-radius: 2px;
+        background-color: white;
+    }
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 991px) {
+	[modal-name] {
+		.w-clearfix {
+			margin-right: 0px;
+			margin-left: 0px;
+		}
+	}
+}
+
+.transaction-page .table-headers .w-row .w-col {
+    cursor: pointer;
+}
+
+.transaction-page, .overview-page {
+    > .received-div > .w-row {
+        cursor: pointer;
+    }
+}
+
+[copy-to-clipboard] i {
+    font-size: 14px;
+    color: #767d85;
+    cursor: pointer;
+}
+
+.account-catchup-alert .w-form-done {
+    background-color: #5093eb;
+    margin-top: 20px;
+}

@@ -1,0 +1,27 @@
+<!-- this is ran from the 'passphrase' process -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no" />
+    <!-- Exodus core CSS -->
+    <link href="css/passphrase.css" rel="stylesheet" media="screen">
+    <script>
+      if (process.env.NODE_ENV === 'development') {
+        setTimeout(function () {
+          var script = document.createElement('script')
+          script.src = "http://localhost:35729/livereload.js"
+          document.getElementsByTagName('head')[0].appendChild(script)
+        }, 2000)
+      }
+    </script>
+  </head>
+  <body>
+    <!-- SHOULD NOT REFERENCE '#app-container' FROM CSS, ONLY FOR REACT -->
+    <div id="app-container">
+      <div class="pass-container"><div class="input-container"><input type="password" placeholder="Type Your Password" value=""/><div class="icon-arrow off"></div></div><div class="line"><div class="progress"></div></div><div class="pass__subtitle">Exodus 1.14.0</div><div class="pass__footer"><div class="pass__nav"><div class="pass__link"><div class="pass__icon help"></div>Help</div><div class="pass__link"><div class="pass__icon power"></div>Quit</div></div></div><div class="spotlight"></div><div class="parallax stars"></div><div class="parallax stars2"></div><div class="parallax stars3"></div></div>
+    </div>
+    <script src="./index.js"></script>
+  </body>
+</html>

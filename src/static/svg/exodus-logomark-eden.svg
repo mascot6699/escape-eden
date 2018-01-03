@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>exodus-logomark-alt</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="exodus-logomark-alt" fill-rule="nonzero">
+            <path d="M78.92,94.92 L107.996,123.996 C107.996,123.996 111.3,128 118,128 L128,128 L80,80 L71,71 L71,128 L77,128 C81.25,128 82,124.356 82,121 L82,98 L78.92,94.92 Z M48,96 L20.004,123.996 C20.004,123.996 16.7,128 10,128 L0,128 L47,81 L55,73 L55,128 L49,128 C44.75,128 44,124.356 44,121 L44,100 L48,96 Z M78.92,33.08 L107.996,4.004 C107.996,4.004 111.3,0 118,0 L128,0 L80,48 L71,57 L71,0 L77,0 C81.25,0 82,3.644 82,7 L82,30 L78.92,33.08 Z M48,32 L20.004,4.004 C20.004,4.004 16.7,0 10,0 L0,0 L47,47 L55,55 L55,0 L49,0 C44.75,0 44,3.644 44,7 L44,28 L48,32 Z" id="Shape" fill="#C8283E"></path>
+            <path d="M87,64 L128,23 L128,32 C128,39.867 123,44 123,44 L103,64 L87,64 Z M41,64 L0,23 L0,32 C0,39.867 5,44 5,44 L25,64 L41,64 Z M87,64 L128,105 L128,96 C128,88.133 123,84 123,84 L103,64 L87,64 Z M41,64 L0,105 L0,96 C0,88.133 5,84 5,84 L25,64 L41,64 Z" id="Shape" fill="#EC4339"></path>
+        </g>
+    </g>
+</svg>

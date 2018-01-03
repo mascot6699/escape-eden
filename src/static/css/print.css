@@ -1,0 +1,35 @@
+#exodus-nav, #wallet-coin-list,
+.large-coin-logo-with-text,
+.exodus-tab-nav,
+#wallet-coin-detail-header,
+#exodus-wallet-transaction-list,
+#backup-welcome,
+#step-by-step-wizard,
+#backup-step-1,
+#backup-step-2,
+.step-x-of-x,
+.backup-title,
+.backup-button-group,
+#backup-step-4,
+.exodus-tip-bottom,
+.notification-banner,
+#backup-complete,
+#exodus-notification-banner
+ {
+    display: none;
+}
+
+#exodus #exodus-wallet-receive-address {
+    font-size: 24px;
+    color: #000000;
+    display: block;
+}
+
+.recovery-phrase-container {
+  font-size: 24px;
+  color: #000000;
+}
+
+.dontprint {
+  display: none;
+}
