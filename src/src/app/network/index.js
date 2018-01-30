@@ -23,6 +23,70 @@
     return s
 })({
     1: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.NEW_VERSION_DATE = exports.AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_DELAY_INIT = exports.WINDOW_PASSPHRASE_PRELOAD = exports.WINDOW_WALLET = exports.WINDOW_PASSPHRASE = exports.WINDOW_NETWORK = exports.WINDOW_MNEMONIC = exports.WINDOW_MAIN = exports.EXODUS_EXCHANGE_SERVER = exports.EXODUS_EXCHANGE_STAGING_SERVER = exports.EXODUS_EXCHANGE_PRODUCTION_SERVER = exports.EXODUS_EXCHANGE_LOCAL_SERVER = exports.EXODUS_SERVER = exports.EXODUS_STAGING_SERVER = exports.EXODUS_PRODUCTION_SERVER = exports.EXODUS_TESTING_SERVER = exports.EXODUS_LOCAL_SERVER = exports.EXODUS_DISPLAY_NAME = exports.COMPANY = exports.PACKAGE = exports.BITCOIN_FEE_LIMIT = exports.DUST_VALUES = exports.ENV_BUILD_EDEN = exports.ENV_BUILD_EXODUS = exports.ENV_BUILD_NAME = exports.ENV_PROD = exports.ENV_DEV = undefined;
+        var _path = require('path');
+        var _path2 = _interopRequireDefault(_path);
+        var _ms = require('ms');
+        var _ms2 = _interopRequireDefault(_ms);
+        var _package = require(55);
+        var _package2 = _interopRequireDefault(_package);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        const ENV_DEV = exports.ENV_DEV = "production" === 'development';
+        const ENV_PROD = exports.ENV_PROD = "production" === 'production';
+        const ENV_BUILD_NAME = exports.ENV_BUILD_NAME = "eden" || '';
+        const ENV_BUILD_EXODUS = exports.ENV_BUILD_EXODUS = ENV_BUILD_NAME === '';
+        const ENV_BUILD_EDEN = exports.ENV_BUILD_EDEN = ENV_BUILD_NAME === 'eden';
+        const DUST_VALUES = exports.DUST_VALUES = {
+            bitcoin: Math.max(6000, 148 * 125),
+            bcash: 6000,
+            bgold: 6000,
+            litecoin: 60000,
+            dash: 5500,
+            decred: 70000,
+            digibyte: 1000,
+            vertcoin: 20000,
+            zcash: 1500
+        };
+        const BITCOIN_FEE_LIMIT = exports.BITCOIN_FEE_LIMIT = 0.2;
+        const PACKAGE = exports.PACKAGE = _package2.default;
+        const COMPANY = exports.COMPANY = 'Exodus Movement, Inc.';
+        const EXODUS_DISPLAY_NAME = exports.EXODUS_DISPLAY_NAME = "eden" === 'eden' ? 'Eden' : 'Exodus';
+        const EXODUS_LOCAL_SERVER = exports.EXODUS_LOCAL_SERVER = 'http://localhost:3020';
+        const EXODUS_TESTING_SERVER = exports.EXODUS_TESTING_SERVER = 'https://exodus-server-testing.azurewebsites.net';
+        const EXODUS_PRODUCTION_SERVER = exports.EXODUS_PRODUCTION_SERVER = 'https://exodus-server.azurewebsites.net';
+        const EXODUS_STAGING_SERVER = exports.EXODUS_STAGING_SERVER = 'https://exodus-server-staging2.azurewebsites.net';
+        const EXODUS_SERVER = exports.EXODUS_SERVER = EXODUS_PRODUCTION_SERVER;
+        const EXODUS_EXCHANGE_LOCAL_SERVER = exports.EXODUS_EXCHANGE_LOCAL_SERVER = 'http://localhost:3021';
+        const EXODUS_EXCHANGE_PRODUCTION_SERVER = exports.EXODUS_EXCHANGE_PRODUCTION_SERVER = 'https://exodus-exchange.azurewebsites.net';
+        const EXODUS_EXCHANGE_STAGING_SERVER = exports.EXODUS_EXCHANGE_STAGING_SERVER = 'https://exodus-exchange-staging.azurewebsites.net';
+        const EXODUS_EXCHANGE_SERVER = exports.EXODUS_EXCHANGE_SERVER = EXODUS_EXCHANGE_PRODUCTION_SERVER;
+        const htmlPath = file => ENV_PROD ? _path2.default.join(__dirname, '..', '..', '..', 'static', file) : _path2.default.join(__dirname, 'static', file) + '?react_perf';
+        const WINDOW_MAIN = exports.WINDOW_MAIN = 'file://' + htmlPath('index.html');
+        const WINDOW_MNEMONIC = exports.WINDOW_MNEMONIC = 'file://' + htmlPath('mnemonic.html');
+        const WINDOW_NETWORK = exports.WINDOW_NETWORK = 'file://' + htmlPath('network.html');
+        const WINDOW_PASSPHRASE = exports.WINDOW_PASSPHRASE = 'file://' + htmlPath('passphrase.html');
+        const WINDOW_WALLET = exports.WINDOW_WALLET = 'file://' + htmlPath('wallet.html');
+        const preloadPath = proc => ENV_PROD ? _path2.default.join(__dirname, '..', proc, 'preload.js') : _path2.default.join(__dirname, proc, 'preload.js');
+        const WINDOW_PASSPHRASE_PRELOAD = exports.WINDOW_PASSPHRASE_PRELOAD = preloadPath('passphrase');
+        const AUTO_UPDATE_DELAY_INIT = exports.AUTO_UPDATE_DELAY_INIT = 10000;
+        const AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_BASE_URL = 'https://exodusbin.azureedge.net';
+        const timeMs = (parseInt(1516750729757) || Date.now()) + (4 * (0, _ms2.default)('168h') + (0, _ms2.default)('82h'));
+        const NEW_VERSION_DATE = exports.NEW_VERSION_DATE = new Date(timeMs);
+
+    }, {
+        "55": 55,
+        "undefined": undefined
+    }],
+    2: [function(require, module, exports) {
         "use strict";
 
         function includes(item) {
@@ -33,11 +97,11 @@
         };
 
     }, {}],
-    2: [function(require, module, exports) {
+    3: [function(require, module, exports) {
         'use strict';
-        var array = require(1);
-        var object = require(3);
-        var string = require(4);
+        var array = require(2);
+        var object = require(4);
+        var string = require(5);
         Object.keys(array).forEach(key => {
             if (Array.prototype[key]) return;
             Object.defineProperty(Array.prototype, key, {
@@ -67,11 +131,11 @@
         });
 
     }, {
-        "1": 1,
-        "3": 3,
-        "4": 4
+        "2": 2,
+        "4": 4,
+        "5": 5
     }],
-    3: [function(require, module, exports) {
+    4: [function(require, module, exports) {
         "use strict";
 
         function values(obj) {
@@ -84,7 +148,7 @@
         };
 
     }, {}],
-    4: [function(require, module, exports) {
+    5: [function(require, module, exports) {
         'use strict';
 
         function padStart(targetLength, padString) {
@@ -105,9 +169,9 @@
         };
 
     }, {}],
-    5: [function(require, module, exports) {
+    6: [function(require, module, exports) {
         'use strict';
-        var _config = require(47);
+        var _config = require(1);
         var config = _interopRequireWildcard(_config);
 
         function _interopRequireWildcard(obj) {
@@ -127,9 +191,9 @@
         module.exports = config;
 
     }, {
-        "47": 47
+        "1": 1
     }],
-    6: [function(require, module, exports) {
+    7: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -150,17 +214,17 @@
     }, {
         "54": 54
     }],
-    7: [function(require, module, exports) {
+    8: [function(require, module, exports) {
         'use strict';
         var bitcore = require('bitcore-lib');
-        bitcore.P2P = require(10);
+        bitcore.P2P = require(11);
         module.exports = bitcore.P2P;
 
     }, {
-        "10": 10,
+        "11": 11,
         "undefined": undefined
     }],
-    8: [function(require, module, exports) {
+    9: [function(require, module, exports) {
         'use strict';
         var bitcore = require('bitcore-lib');
         var BloomFilter = require('bloom-filter');
@@ -195,7 +259,7 @@
     }, {
         "undefined": undefined
     }],
-    9: [function(require, module, exports) {
+    10: [function(require, module, exports) {
         'use strict';
         var Buffers = require('buffers');
         Buffers.prototype.skip = function(i) {
@@ -217,24 +281,24 @@
     }, {
         "undefined": undefined
     }],
-    10: [function(require, module, exports) {
+    11: [function(require, module, exports) {
         'use strict';
         module.exports = {
-            Inventory: require(11),
-            BloomFilter: require(8),
-            Messages: require(34),
-            Peer: require(37),
-            Pool: require(38)
+            Inventory: require(12),
+            BloomFilter: require(9),
+            Messages: require(35),
+            Peer: require(38),
+            Pool: require(39)
         };
 
     }, {
-        "11": 11,
-        "34": 34,
-        "37": 37,
+        "12": 12,
+        "35": 35,
         "38": 38,
-        "8": 8
+        "39": 39,
+        "9": 9
     }],
-    11: [function(require, module, exports) {
+    12: [function(require, module, exports) {
         'use strict';
         var bitcore = require('bitcore-lib');
         var $ = bitcore.util.preconditions;
@@ -305,10 +369,10 @@
     }, {
         "undefined": undefined
     }],
-    12: [function(require, module, exports) {
+    13: [function(require, module, exports) {
         'use strict';
         var bitcore = require('bitcore-lib');
-        var Inventory = require(11);
+        var Inventory = require(12);
         var assert = require('assert');
         const protocolMap = {
             bitcoin: 70012,
@@ -376,27 +440,27 @@
                     return message;
                 };
             };
-            exported.add('version', require(33));
-            exported.add('verack', require(32));
-            exported.add('ping', require(28));
-            exported.add('pong', require(29));
-            exported.add('block', require(15));
-            exported.add('tx', require(31));
-            exported.add('getdata', require(21));
-            exported.add('headers', require(23));
-            exported.add('notfound', require(27));
-            exported.add('inv', require(24));
-            exported.add('addr', require(13));
-            exported.add('alert', require(14));
-            exported.add('reject', require(30));
-            exported.add('merkleblock', require(26));
-            exported.add('filterload', require(18));
-            exported.add('filteradd', require(16));
-            exported.add('filterclear', require(17));
-            exported.add('getblocks', require(20));
-            exported.add('getheaders', require(22));
-            exported.add('mempool', require(25));
-            exported.add('getaddr', require(19));
+            exported.add('version', require(34));
+            exported.add('verack', require(33));
+            exported.add('ping', require(29));
+            exported.add('pong', require(30));
+            exported.add('block', require(16));
+            exported.add('tx', require(32));
+            exported.add('getdata', require(22));
+            exported.add('headers', require(24));
+            exported.add('notfound', require(28));
+            exported.add('inv', require(25));
+            exported.add('addr', require(14));
+            exported.add('alert', require(15));
+            exported.add('reject', require(31));
+            exported.add('merkleblock', require(27));
+            exported.add('filterload', require(19));
+            exported.add('filteradd', require(17));
+            exported.add('filterclear', require(18));
+            exported.add('getblocks', require(21));
+            exported.add('getheaders', require(23));
+            exported.add('mempool', require(26));
+            exported.add('getaddr', require(20));
             exported.inventoryCommands.forEach(function(command) {
                 exported.commands[command].forTransaction = function forTransaction(hash) {
                     return new exported.commands[command]([Inventory.forTransaction(hash)]);
@@ -413,8 +477,7 @@
         module.exports = builder;
 
     }, {
-        "11": 11,
-        "13": 13,
+        "12": 12,
         "14": 14,
         "15": 15,
         "16": 16,
@@ -435,14 +498,15 @@
         "31": 31,
         "32": 32,
         "33": 33,
+        "34": 34,
         "undefined": undefined
     }],
-    13: [function(require, module, exports) {
+    14: [function(require, module, exports) {
         'use strict';
-        var Message = require(35);
+        var Message = require(36);
         var inherits = require('util').inherits;
         var bitcore = require('bitcore-lib');
-        var utils = require(36);
+        var utils = require(37);
         var $ = bitcore.util.preconditions;
         var _ = bitcore.deps._;
         var BufferReader = bitcore.encoding.BufferReader;
@@ -480,16 +544,16 @@
         module.exports = AddrMessage;
 
     }, {
-        "35": 35,
         "36": 36,
+        "37": 37,
         "undefined": undefined
     }],
-    14: [function(require, module, exports) {
+    15: [function(require, module, exports) {
         'use strict';
-        var Message = require(35);
+        var Message = require(36);
         var inherits = require('util').inherits;
         var bitcore = require('bitcore-lib');
-        var utils = require(36);
+        var utils = require(37);
         var BufferReader = bitcore.encoding.BufferReader;
         var BufferWriter = bitcore.encoding.BufferWriter;
 
@@ -520,13 +584,13 @@
         module.exports = AlertMessage;
 
     }, {
-        "35": 35,
         "36": 36,
+        "37": 37,
         "undefined": undefined
     }],
-    15: [function(require, module, exports) {
+    16: [function(require, module, exports) {
         'use strict';
-        var Message = require(35);
+        var Message = require(36);
         var inherits = require('util').inherits;
         var bitcore = require('bitcore-lib');
         var $ = bitcore.util.preconditions;
@@ -549,15 +613,15 @@
         module.exports = BlockMessage;
 
     }, {
-        "35": 35,
+        "36": 36,
         "undefined": undefined
     }],
-    16: [function(require, module, exports) {
+    17: [function(require, module, exports) {
         'use strict';
-        var Message = require(35);
+        var Message = require(36);
         var inherits = require('util').inherits;
         var bitcore = require('bitcore-lib');
-        var utils = require(36);
+        var utils = require(37);
         var BufferUtil = bitcore.util.buffer;
         var BufferWriter = bitcore.encoding.BufferWriter;
         var BufferReader = bitcore.encoding.BufferReader;
@@ -586,13 +650,13 @@
         module.exports = FilteraddMessage;
 
     }, {
-        "35": 35,
         "36": 36,
+        "37": 37,
         "undefined": undefined
     }],
-    17: [function(require, module, exports) {
+    18: [function(require, module, exports) {
         'use strict';
-        var Message = require(35);
+        var Message = require(36);
         var inherits = require('util').inherits;
         var bitcore = require('bitcore-lib');
         var BufferUtil = bitcore.util.buffer;
@@ -609,16 +673,16 @@
         module.exports = FilterclearMessage;
 
     }, {
-        "35": 35,
+        "36": 36,
         "undefined": undefined
     }],
-    18: [function(require, module, exports) {
+    19: [function(require, module, exports) {
         'use strict';
-        var Message = require(35);
+        var Message = require(36);
         var inherits = require('util').inherits;
         var bitcore = require('bitcore-lib');
         var BufferUtil = bitcore.util.buffer;
-        var BloomFilter = require(8);
+        var BloomFilter = require(9);
         var $ = bitcore.util.preconditions;
         var _ = bitcore.deps._;
 
@@ -642,13 +706,13 @@
         module.exports = FilterloadMessage;
 
     }, {
-        "35": 35,
-        "8": 8,
+        "36": 36,
+        "9": 9,
         "undefined": undefined
     }],
-    19: [function(require, module, exports) {
+    20: [function(require, module, exports) {
         'use strict';
-        var Message = require(35);
+        var Message = require(36);
         var inherits = require('util').inherits;
         var bitcore = require('bitcore-lib');
         var BufferUtil = bitcore.util.buffer;
@@ -665,15 +729,15 @@
         module.exports = GetaddrMessage;
 
     }, {
-        "35": 35,
+        "36": 36,
         "undefined": undefined
     }],
-    20: [function(require, module, exports) {
+    21: [function(require, module, exports) {
         'use strict';
-        var Message = require(35);
+        var Message = require(36);
         var inherits = require('util').inherits;
         var bitcore = require('bitcore-lib');
-        var utils = require(36);
+        var utils = require(37);
         var BufferReader = bitcore.encoding.BufferReader;
         var BufferWriter = bitcore.encoding.BufferWriter;
         var $ = bitcore.util.preconditions;
@@ -718,16 +782,16 @@
         module.exports = GetblocksMessage;
 
     }, {
-        "35": 35,
         "36": 36,
+        "37": 37,
         "undefined": undefined
     }],
-    21: [function(require, module, exports) {
+    22: [function(require, module, exports) {
         'use strict';
-        var Message = require(35);
+        var Message = require(36);
         var inherits = require('util').inherits;
         var bitcore = require('bitcore-lib');
-        var utils = require(36);
+        var utils = require(37);
         var BufferReader = bitcore.encoding.BufferReader;
         var BufferWriter = bitcore.encoding.BufferWriter;
 
@@ -760,16 +824,16 @@
         module.exports = GetdataMessage;
 
     }, {
-        "35": 35,
         "36": 36,
+        "37": 37,
         "undefined": undefined
     }],
-    22: [function(require, module, exports) {
+    23: [function(require, module, exports) {
         'use strict';
-        var Message = require(35);
+        var Message = require(36);
         var inherits = require('util').inherits;
         var bitcore = require('bitcore-lib');
-        var utils = require(36);
+        var utils = require(37);
         var BufferReader = bitcore.encoding.BufferReader;
         var BufferWriter = bitcore.encoding.BufferWriter;
         var $ = bitcore.util.preconditions;
@@ -814,16 +878,16 @@
         module.exports = GetheadersMessage;
 
     }, {
-        "35": 35,
         "36": 36,
+        "37": 37,
         "undefined": undefined
     }],
-    23: [function(require, module, exports) {
+    24: [function(require, module, exports) {
         'use strict';
-        var Message = require(35);
+        var Message = require(36);
         var inherits = require('util').inherits;
         var bitcore = require('bitcore-lib');
-        var utils = require(36);
+        var utils = require(37);
         var BufferReader = bitcore.encoding.BufferReader;
         var BufferWriter = bitcore.encoding.BufferWriter;
         var _ = bitcore.deps._;
@@ -863,16 +927,16 @@
         module.exports = HeadersMessage;
 
     }, {
-        "35": 35,
         "36": 36,
+        "37": 37,
         "undefined": undefined
     }],
-    24: [function(require, module, exports) {
+    25: [function(require, module, exports) {
         'use strict';
-        var Message = require(35);
+        var Message = require(36);
         var inherits = require('util').inherits;
         var bitcore = require('bitcore-lib');
-        var utils = require(36);
+        var utils = require(37);
         var BufferReader = bitcore.encoding.BufferReader;
         var BufferWriter = bitcore.encoding.BufferWriter;
 
@@ -905,13 +969,13 @@
         module.exports = InvMessage;
 
     }, {
-        "35": 35,
         "36": 36,
+        "37": 37,
         "undefined": undefined
     }],
-    25: [function(require, module, exports) {
+    26: [function(require, module, exports) {
         'use strict';
-        var Message = require(35);
+        var Message = require(36);
         var inherits = require('util').inherits;
         var bitcore = require('bitcore-lib');
         var BufferUtil = bitcore.util.buffer;
@@ -928,12 +992,12 @@
         module.exports = MempoolMessage;
 
     }, {
-        "35": 35,
+        "36": 36,
         "undefined": undefined
     }],
-    26: [function(require, module, exports) {
+    27: [function(require, module, exports) {
         'use strict';
-        var Message = require(35);
+        var Message = require(36);
         var inherits = require('util').inherits;
         var bitcore = require('bitcore-lib');
         var BufferUtil = bitcore.util.buffer;
@@ -958,15 +1022,15 @@
         module.exports = MerkleblockMessage;
 
     }, {
-        "35": 35,
+        "36": 36,
         "undefined": undefined
     }],
-    27: [function(require, module, exports) {
+    28: [function(require, module, exports) {
         'use strict';
-        var Message = require(35);
+        var Message = require(36);
         var inherits = require('util').inherits;
         var bitcore = require('bitcore-lib');
-        var utils = require(36);
+        var utils = require(37);
         var BufferReader = bitcore.encoding.BufferReader;
         var BufferWriter = bitcore.encoding.BufferWriter;
 
@@ -999,16 +1063,16 @@
         module.exports = NotfoundMessage;
 
     }, {
-        "35": 35,
         "36": 36,
+        "37": 37,
         "undefined": undefined
     }],
-    28: [function(require, module, exports) {
+    29: [function(require, module, exports) {
         'use strict';
-        var Message = require(35);
+        var Message = require(36);
         var inherits = require('util').inherits;
         var bitcore = require('bitcore-lib');
-        var utils = require(36);
+        var utils = require(37);
         var $ = bitcore.util.preconditions;
         var _ = bitcore.deps._;
         var BufferUtil = bitcore.util.buffer;
@@ -1032,16 +1096,16 @@
         module.exports = PingMessage;
 
     }, {
-        "35": 35,
         "36": 36,
+        "37": 37,
         "undefined": undefined
     }],
-    29: [function(require, module, exports) {
+    30: [function(require, module, exports) {
         'use strict';
-        var Message = require(35);
+        var Message = require(36);
         var inherits = require('util').inherits;
         var bitcore = require('bitcore-lib');
-        var utils = require(36);
+        var utils = require(37);
         var $ = bitcore.util.preconditions;
         var _ = bitcore.deps._;
         var BufferUtil = bitcore.util.buffer;
@@ -1065,16 +1129,16 @@
         module.exports = PongMessage;
 
     }, {
-        "35": 35,
         "36": 36,
+        "37": 37,
         "undefined": undefined
     }],
-    30: [function(require, module, exports) {
+    31: [function(require, module, exports) {
         'use strict';
-        var Message = require(35);
+        var Message = require(36);
         var inherits = require('util').inherits;
         var bitcore = require('bitcore-lib');
-        var utils = require(36);
+        var utils = require(37);
         var BufferReader = bitcore.encoding.BufferReader;
         var BufferWriter = bitcore.encoding.BufferWriter;
 
@@ -1121,13 +1185,13 @@
         module.exports = RejectMessage;
 
     }, {
-        "35": 35,
         "36": 36,
+        "37": 37,
         "undefined": undefined
     }],
-    31: [function(require, module, exports) {
+    32: [function(require, module, exports) {
         'use strict';
-        var Message = require(35);
+        var Message = require(36);
         var inherits = require('util').inherits;
         var bitcore = require('bitcore-lib');
         var $ = bitcore.util.preconditions;
@@ -1157,12 +1221,12 @@
         module.exports = TransactionMessage;
 
     }, {
-        "35": 35,
+        "36": 36,
         "undefined": undefined
     }],
-    32: [function(require, module, exports) {
+    33: [function(require, module, exports) {
         'use strict';
-        var Message = require(35);
+        var Message = require(36);
         var inherits = require('util').inherits;
         var bitcore = require('bitcore-lib');
         var BufferUtil = bitcore.util.buffer;
@@ -1179,19 +1243,19 @@
         module.exports = VerackMessage;
 
     }, {
-        "35": 35,
+        "36": 36,
         "undefined": undefined
     }],
-    33: [function(require, module, exports) {
+    34: [function(require, module, exports) {
         'use strict';
-        var Message = require(35);
+        var Message = require(36);
         var inherits = require('util').inherits;
         var bitcore = require('bitcore-lib');
         var BufferWriter = bitcore.encoding.BufferWriter;
         var BufferReader = bitcore.encoding.BufferReader;
         var BN = bitcore.crypto.BN;
-        var utils = require(36);
-        var packageInfo = require(39);
+        var utils = require(37);
+        var packageInfo = require(40);
 
         function VersionMessage(arg, options) {
             if (!arg) {
@@ -1253,12 +1317,12 @@
         module.exports = VersionMessage;
 
     }, {
-        "35": 35,
         "36": 36,
-        "39": 39,
+        "37": 37,
+        "40": 40,
         "undefined": undefined
     }],
-    34: [function(require, module, exports) {
+    35: [function(require, module, exports) {
         'use strict';
         var bitcore = require('bitcore-lib');
         var BufferUtil = bitcore.util.buffer;
@@ -1278,8 +1342,8 @@
         }
         Messages.MINIMUM_LENGTH = 20;
         Messages.PAYLOAD_START = 16;
-        Messages.Message = require(35);
-        Messages.builder = require(12);
+        Messages.Message = require(36);
+        Messages.builder = require(13);
         Messages.prototype.parseBuffer = function(dataBuffer) {
             if (dataBuffer.length < Messages.MINIMUM_LENGTH) {
                 return;
@@ -1338,11 +1402,11 @@
         module.exports = Messages;
 
     }, {
-        "12": 12,
-        "35": 35,
+        "13": 13,
+        "36": 36,
         "undefined": undefined
     }],
-    35: [function(require, module, exports) {
+    36: [function(require, module, exports) {
         'use strict';
         var bitcore = require('bitcore-lib');
         var $ = bitcore.util.preconditions;
@@ -1372,7 +1436,7 @@
     }, {
         "undefined": undefined
     }],
-    36: [function(require, module, exports) {
+    37: [function(require, module, exports) {
         'use strict';
         var bitcore = require('bitcore-lib');
         var BufferUtil = bitcore.util.buffer;
@@ -1481,15 +1545,15 @@
     }, {
         "undefined": undefined
     }],
-    37: [function(require, module, exports) {
+    38: [function(require, module, exports) {
         'use strict';
-        var Buffers = require(9);
+        var Buffers = require(10);
         var EventEmitter = require('events').EventEmitter;
         var Net = require('net');
         var Socks5Client = require('socks5-client');
         var bitcore = require('bitcore-lib');
         var Networks = bitcore.Networks;
-        var Messages = require(34);
+        var Messages = require(35);
         var $ = bitcore.util.preconditions;
         var util = require('util');
 
@@ -1630,17 +1694,17 @@
         module.exports = Peer;
 
     }, {
-        "34": 34,
-        "9": 9,
+        "10": 10,
+        "35": 35,
         "undefined": undefined
     }],
-    38: [function(require, module, exports) {
+    39: [function(require, module, exports) {
         'use strict';
         var dns = require('dns');
         var EventEmitter = require('events').EventEmitter;
         var bitcore = require('bitcore-lib');
         var sha256 = bitcore.crypto.Hash.sha256;
-        var Peer = require(37);
+        var Peer = require(38);
         var Networks = bitcore.Networks;
         var util = require('util');
         var net = require('net');
@@ -1880,25 +1944,25 @@
         module.exports = Pool;
 
     }, {
-        "37": 37,
+        "38": 38,
         "undefined": undefined
     }],
-    39: [function(require, module, exports) {
+    40: [function(require, module, exports) {
         module.exports = {
             "name": "bitcore-p2p",
             "version": "1.1.0",
             "description": "Interface to the bitcoin P2P network for bitcore"
         }
     }, {}],
-    40: [function(require, module, exports) {
+    41: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _crypto = require('crypto');
         var _lodash = require('lodash');
-        var _appConfig = require(5);
-        var _configKeys = require(42);
+        var _appConfig = require(6);
+        var _configKeys = require(43);
         var configKeys = _interopRequireWildcard(_configKeys);
 
         function _interopRequireWildcard(obj) {
@@ -1924,11 +1988,11 @@
         exports.default = defaultConfig;
 
     }, {
-        "42": 42,
-        "5": 5,
+        "43": 43,
+        "6": 6,
         "undefined": undefined
     }],
-    41: [function(require, module, exports) {
+    42: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -1967,13 +2031,13 @@
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
         var _lodash = require('lodash');
-        var _env = require(43);
-        var _appConfig = require(5);
+        var _env = require(44);
+        var _appConfig = require(6);
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
         var _fsExtra = require('fs-extra');
         var _fsExtra2 = _interopRequireDefault(_fsExtra);
-        var _configDefault = require(40);
+        var _configDefault = require(41);
         var _configDefault2 = _interopRequireDefault(_configDefault);
 
         function _interopRequireDefault(obj) {
@@ -2061,12 +2125,12 @@
         }
 
     }, {
-        "40": 40,
-        "43": 43,
-        "5": 5,
+        "41": 41,
+        "44": 44,
+        "6": 6,
         "undefined": undefined
     }],
-    42: [function(require, module, exports) {
+    43: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -2079,7 +2143,7 @@
         const notificationsTxReceivedEnabled = exports.notificationsTxReceivedEnabled = 'notifications.tx.received.enabled';
 
     }, {}],
-    43: [function(require, module, exports) {
+    44: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -2096,7 +2160,7 @@
         var _ospath2 = _interopRequireDefault(_ospath);
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
-        var _paths = require(6);
+        var _paths = require(7);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -2149,24 +2213,24 @@
         }
 
     }, {
-        "6": 6,
+        "7": 7,
         "undefined": undefined
     }],
-    44: [function(require, module, exports) {
+    45: [function(require, module, exports) {
         'use strict';
         hookNodePath();
-        require(2);
+        require(3);
         require('core-js/fn/symbol');
         require('babel' + '-register')({
-            resolveModuleSource: require(45).resolve,
-            only: ['src/app/', 'scripts/', 'tasks/'],
+            resolveModuleSource: require(46).resolve,
+            only: ['./config.js', 'src/app/', 'scripts/', 'tasks/'],
             extensions: ['.js'],
             sourceMaps: 'both'
         });
         (function() {
             const {
                 ENV_PROD
-            } = require(47);
+            } = require(1);
             if (ENV_PROD) return;
             let skip = false;
             if (require('is-electron-renderer')) skip = true;
@@ -2194,12 +2258,12 @@
         }
 
     }, {
-        "2": 2,
-        "45": 45,
-        "47": 47,
+        "1": 1,
+        "3": 3,
+        "46": 46,
         "undefined": undefined
     }],
-    45: [function(require, module, exports) {
+    46: [function(require, module, exports) {
         'use strict';
         var babelResolve = require('babel-resolve');
         var resolver = babelResolve.create('#', './src/app/_local_modules');
@@ -2208,13 +2272,13 @@
     }, {
         "undefined": undefined
     }],
-    46: [function(require, module, exports) {
+    47: [function(require, module, exports) {
         'use strict';
         if ("production" === 'production') {
-            require(2);
+            require(3);
             require('core-js/fn/symbol');
         } else if ("production" === 'development') {
-            require(44);
+            require(45);
         } else {
             const {
                 app,
@@ -2225,64 +2289,8 @@
         }
 
     }, {
-        "2": 2,
-        "44": 44,
-        "undefined": undefined
-    }],
-    47: [function(require, module, exports) {
-        'use strict';
-        Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        exports.NEW_VERSION_DATE = exports.AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_DELAY_INIT = exports.WINDOW_PASSPHRASE_PRELOAD = exports.WINDOW_WALLET = exports.WINDOW_PASSPHRASE = exports.WINDOW_NETWORK = exports.WINDOW_MNEMONIC = exports.WINDOW_MAIN = exports.EXODUS_SERVER = exports.EXODUS_STAGING_SERVER = exports.EXODUS_PRODUCTION_SERVER = exports.EXODUS_TESTING_SERVER = exports.EXODUS_LOCAL_SERVER = exports.COMPANY = exports.PACKAGE = exports.BITCOIN_FEE_LIMIT = exports.DUST_VALUES = exports.ENV_BUILD_EDEN = exports.ENV_BUILD_EXODUS = exports.ENV_BUILD_NAME = exports.ENV_PROD = exports.ENV_DEV = undefined;
-        var _path = require('path');
-        var _path2 = _interopRequireDefault(_path);
-        var _ms = require('ms');
-        var _ms2 = _interopRequireDefault(_ms);
-        var _package = require(55);
-        var _package2 = _interopRequireDefault(_package);
-
-        function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : {
-                default: obj
-            };
-        }
-        const ENV_DEV = exports.ENV_DEV = "production" === 'development';
-        const ENV_PROD = exports.ENV_PROD = "production" === 'production';
-        const ENV_BUILD_NAME = exports.ENV_BUILD_NAME = "eden" || '';
-        const ENV_BUILD_EXODUS = exports.ENV_BUILD_EXODUS = ENV_BUILD_NAME === '';
-        const ENV_BUILD_EDEN = exports.ENV_BUILD_EDEN = ENV_BUILD_NAME === 'eden';
-        const DUST_VALUES = exports.DUST_VALUES = {
-            bitcoin: Math.max(6000, 148 * 125),
-            bcash: 6000,
-            litecoin: 60000,
-            dash: 5500,
-            decred: 70000,
-            zcash: 1500
-        };
-        const BITCOIN_FEE_LIMIT = exports.BITCOIN_FEE_LIMIT = 0.2;
-        const PACKAGE = exports.PACKAGE = _package2.default;
-        const COMPANY = exports.COMPANY = 'Exodus Movement, Inc.';
-        const EXODUS_LOCAL_SERVER = exports.EXODUS_LOCAL_SERVER = 'http://localhost:3020';
-        const EXODUS_TESTING_SERVER = exports.EXODUS_TESTING_SERVER = 'https://exodus-server-testing.azurewebsites.net';
-        const EXODUS_PRODUCTION_SERVER = exports.EXODUS_PRODUCTION_SERVER = 'https://exodus-server.azurewebsites.net';
-        const EXODUS_STAGING_SERVER = exports.EXODUS_STAGING_SERVER = 'https://exodus-server-staging2.azurewebsites.net';
-        const EXODUS_SERVER = exports.EXODUS_SERVER = EXODUS_PRODUCTION_SERVER;
-        const htmlPath = file => ENV_PROD ? _path2.default.join(__dirname, '..', '..', '..', 'static', file) : _path2.default.join(__dirname, '..', '..', 'static', file) + '?react_perf';
-        const WINDOW_MAIN = exports.WINDOW_MAIN = 'file://' + htmlPath('index.html');
-        const WINDOW_MNEMONIC = exports.WINDOW_MNEMONIC = 'file://' + htmlPath('mnemonic.html');
-        const WINDOW_NETWORK = exports.WINDOW_NETWORK = 'file://' + htmlPath('network.html');
-        const WINDOW_PASSPHRASE = exports.WINDOW_PASSPHRASE = 'file://' + htmlPath('passphrase.html');
-        const WINDOW_WALLET = exports.WINDOW_WALLET = 'file://' + htmlPath('wallet.html');
-        const preloadPath = proc => ENV_PROD ? _path2.default.join(__dirname, '..', proc, 'preload.js') : _path2.default.join(__dirname, proc, 'preload.js');
-        const WINDOW_PASSPHRASE_PRELOAD = exports.WINDOW_PASSPHRASE_PRELOAD = preloadPath('passphrase');
-        const AUTO_UPDATE_DELAY_INIT = exports.AUTO_UPDATE_DELAY_INIT = 10000;
-        const AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_BASE_URL = 'https://exodusbin.azureedge.net';
-        const timeMs = (parseInt(1513920460518) || Date.now()) + (4 * (0, _ms2.default)('168h') + (0, _ms2.default)('82h'));
-        const NEW_VERSION_DATE = exports.NEW_VERSION_DATE = new Date(timeMs);
-
-    }, {
-        "55": 55,
+        "3": 3,
+        "45": 45,
         "undefined": undefined
     }],
     48: [function(require, module, exports) {
@@ -2306,12 +2314,12 @@
     }],
     49: [function(require, module, exports) {
         'use strict';
-        require(46);
+        require(47);
         require(48);
         require(53);
 
     }, {
-        "46": 46,
+        "47": 47,
         "48": 48,
         "53": 53
     }],
@@ -2402,7 +2410,7 @@
                 getPeers: () => (0, _lodash.values)(pool._connectedPeers)
             };
         };
-        var _bitcoreP2p = require(7);
+        var _bitcoreP2p = require(8);
         var _bitcoreLib = require('bitcore-lib');
         var _lruCache = require('lru-cache');
         var _lruCache2 = _interopRequireDefault(_lruCache);
@@ -2438,7 +2446,7 @@
 
     }, {
         "52": 52,
-        "7": 7,
+        "8": 8,
         "undefined": undefined
     }],
     51: [function(require, module, exports) {
@@ -2470,11 +2478,11 @@
         exports.default = function(asset) {
             return config.get(`p2p.${asset}.maxNodes`) || 3;
         };
-        var _configFile = require(41);
+        var _configFile = require(42);
         const config = (0, _configFile.readConfigSync)();
 
     }, {
-        "41": 41
+        "42": 42
     }],
     53: [function(require, module, exports) {
         'use strict';
@@ -2644,7 +2652,7 @@
         module.exports = {
             "name": "exodus",
             "productName": "Exodus",
-            "version": "1.41.0",
+            "version": "1.43.4",
             "description": "Secure, manage, and trade blockchain assets."
         }
     }, {}]

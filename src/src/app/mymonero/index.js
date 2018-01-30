@@ -23,6 +23,70 @@
     return s
 })({
     1: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.NEW_VERSION_DATE = exports.AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_DELAY_INIT = exports.WINDOW_PASSPHRASE_PRELOAD = exports.WINDOW_WALLET = exports.WINDOW_PASSPHRASE = exports.WINDOW_NETWORK = exports.WINDOW_MNEMONIC = exports.WINDOW_MAIN = exports.EXODUS_EXCHANGE_SERVER = exports.EXODUS_EXCHANGE_STAGING_SERVER = exports.EXODUS_EXCHANGE_PRODUCTION_SERVER = exports.EXODUS_EXCHANGE_LOCAL_SERVER = exports.EXODUS_SERVER = exports.EXODUS_STAGING_SERVER = exports.EXODUS_PRODUCTION_SERVER = exports.EXODUS_TESTING_SERVER = exports.EXODUS_LOCAL_SERVER = exports.EXODUS_DISPLAY_NAME = exports.COMPANY = exports.PACKAGE = exports.BITCOIN_FEE_LIMIT = exports.DUST_VALUES = exports.ENV_BUILD_EDEN = exports.ENV_BUILD_EXODUS = exports.ENV_BUILD_NAME = exports.ENV_PROD = exports.ENV_DEV = undefined;
+        var _path = require('path');
+        var _path2 = _interopRequireDefault(_path);
+        var _ms = require('ms');
+        var _ms2 = _interopRequireDefault(_ms);
+        var _package = require(13);
+        var _package2 = _interopRequireDefault(_package);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        const ENV_DEV = exports.ENV_DEV = "production" === 'development';
+        const ENV_PROD = exports.ENV_PROD = "production" === 'production';
+        const ENV_BUILD_NAME = exports.ENV_BUILD_NAME = "eden" || '';
+        const ENV_BUILD_EXODUS = exports.ENV_BUILD_EXODUS = ENV_BUILD_NAME === '';
+        const ENV_BUILD_EDEN = exports.ENV_BUILD_EDEN = ENV_BUILD_NAME === 'eden';
+        const DUST_VALUES = exports.DUST_VALUES = {
+            bitcoin: Math.max(6000, 148 * 125),
+            bcash: 6000,
+            bgold: 6000,
+            litecoin: 60000,
+            dash: 5500,
+            decred: 70000,
+            digibyte: 1000,
+            vertcoin: 20000,
+            zcash: 1500
+        };
+        const BITCOIN_FEE_LIMIT = exports.BITCOIN_FEE_LIMIT = 0.2;
+        const PACKAGE = exports.PACKAGE = _package2.default;
+        const COMPANY = exports.COMPANY = 'Exodus Movement, Inc.';
+        const EXODUS_DISPLAY_NAME = exports.EXODUS_DISPLAY_NAME = "eden" === 'eden' ? 'Eden' : 'Exodus';
+        const EXODUS_LOCAL_SERVER = exports.EXODUS_LOCAL_SERVER = 'http://localhost:3020';
+        const EXODUS_TESTING_SERVER = exports.EXODUS_TESTING_SERVER = 'https://exodus-server-testing.azurewebsites.net';
+        const EXODUS_PRODUCTION_SERVER = exports.EXODUS_PRODUCTION_SERVER = 'https://exodus-server.azurewebsites.net';
+        const EXODUS_STAGING_SERVER = exports.EXODUS_STAGING_SERVER = 'https://exodus-server-staging2.azurewebsites.net';
+        const EXODUS_SERVER = exports.EXODUS_SERVER = EXODUS_PRODUCTION_SERVER;
+        const EXODUS_EXCHANGE_LOCAL_SERVER = exports.EXODUS_EXCHANGE_LOCAL_SERVER = 'http://localhost:3021';
+        const EXODUS_EXCHANGE_PRODUCTION_SERVER = exports.EXODUS_EXCHANGE_PRODUCTION_SERVER = 'https://exodus-exchange.azurewebsites.net';
+        const EXODUS_EXCHANGE_STAGING_SERVER = exports.EXODUS_EXCHANGE_STAGING_SERVER = 'https://exodus-exchange-staging.azurewebsites.net';
+        const EXODUS_EXCHANGE_SERVER = exports.EXODUS_EXCHANGE_SERVER = EXODUS_EXCHANGE_PRODUCTION_SERVER;
+        const htmlPath = file => ENV_PROD ? _path2.default.join(__dirname, '..', '..', '..', 'static', file) : _path2.default.join(__dirname, 'static', file) + '?react_perf';
+        const WINDOW_MAIN = exports.WINDOW_MAIN = 'file://' + htmlPath('index.html');
+        const WINDOW_MNEMONIC = exports.WINDOW_MNEMONIC = 'file://' + htmlPath('mnemonic.html');
+        const WINDOW_NETWORK = exports.WINDOW_NETWORK = 'file://' + htmlPath('network.html');
+        const WINDOW_PASSPHRASE = exports.WINDOW_PASSPHRASE = 'file://' + htmlPath('passphrase.html');
+        const WINDOW_WALLET = exports.WINDOW_WALLET = 'file://' + htmlPath('wallet.html');
+        const preloadPath = proc => ENV_PROD ? _path2.default.join(__dirname, '..', proc, 'preload.js') : _path2.default.join(__dirname, proc, 'preload.js');
+        const WINDOW_PASSPHRASE_PRELOAD = exports.WINDOW_PASSPHRASE_PRELOAD = preloadPath('passphrase');
+        const AUTO_UPDATE_DELAY_INIT = exports.AUTO_UPDATE_DELAY_INIT = 10000;
+        const AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_BASE_URL = 'https://exodusbin.azureedge.net';
+        const timeMs = (parseInt(1516750735264) || Date.now()) + (4 * (0, _ms2.default)('168h') + (0, _ms2.default)('82h'));
+        const NEW_VERSION_DATE = exports.NEW_VERSION_DATE = new Date(timeMs);
+
+    }, {
+        "13": 13,
+        "undefined": undefined
+    }],
+    2: [function(require, module, exports) {
         "use strict";
 
         function includes(item) {
@@ -33,11 +97,11 @@
         };
 
     }, {}],
-    2: [function(require, module, exports) {
+    3: [function(require, module, exports) {
         'use strict';
-        var array = require(1);
-        var object = require(3);
-        var string = require(4);
+        var array = require(2);
+        var object = require(4);
+        var string = require(5);
         Object.keys(array).forEach(key => {
             if (Array.prototype[key]) return;
             Object.defineProperty(Array.prototype, key, {
@@ -67,11 +131,11 @@
         });
 
     }, {
-        "1": 1,
-        "3": 3,
-        "4": 4
+        "2": 2,
+        "4": 4,
+        "5": 5
     }],
-    3: [function(require, module, exports) {
+    4: [function(require, module, exports) {
         "use strict";
 
         function values(obj) {
@@ -84,7 +148,7 @@
         };
 
     }, {}],
-    4: [function(require, module, exports) {
+    5: [function(require, module, exports) {
         'use strict';
 
         function padStart(targetLength, padString) {
@@ -105,21 +169,21 @@
         };
 
     }, {}],
-    5: [function(require, module, exports) {
+    6: [function(require, module, exports) {
         'use strict';
         hookNodePath();
-        require(2);
+        require(3);
         require('core-js/fn/symbol');
         require('babel' + '-register')({
-            resolveModuleSource: require(6).resolve,
-            only: ['src/app/', 'scripts/', 'tasks/'],
+            resolveModuleSource: require(7).resolve,
+            only: ['./config.js', 'src/app/', 'scripts/', 'tasks/'],
             extensions: ['.js'],
             sourceMaps: 'both'
         });
         (function() {
             const {
                 ENV_PROD
-            } = require(8);
+            } = require(1);
             if (ENV_PROD) return;
             let skip = false;
             if (require('is-electron-renderer')) skip = true;
@@ -147,12 +211,12 @@
         }
 
     }, {
-        "2": 2,
-        "6": 6,
-        "8": 8,
+        "1": 1,
+        "3": 3,
+        "7": 7,
         "undefined": undefined
     }],
-    6: [function(require, module, exports) {
+    7: [function(require, module, exports) {
         'use strict';
         var babelResolve = require('babel-resolve');
         var resolver = babelResolve.create('#', './src/app/_local_modules');
@@ -161,13 +225,13 @@
     }, {
         "undefined": undefined
     }],
-    7: [function(require, module, exports) {
+    8: [function(require, module, exports) {
         'use strict';
         if ("production" === 'production') {
-            require(2);
+            require(3);
             require('core-js/fn/symbol');
         } else if ("production" === 'development') {
-            require(5);
+            require(6);
         } else {
             const {
                 app,
@@ -178,74 +242,18 @@
         }
 
     }, {
-        "2": 2,
-        "5": 5,
-        "undefined": undefined
-    }],
-    8: [function(require, module, exports) {
-        'use strict';
-        Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        exports.NEW_VERSION_DATE = exports.AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_DELAY_INIT = exports.WINDOW_PASSPHRASE_PRELOAD = exports.WINDOW_WALLET = exports.WINDOW_PASSPHRASE = exports.WINDOW_NETWORK = exports.WINDOW_MNEMONIC = exports.WINDOW_MAIN = exports.EXODUS_SERVER = exports.EXODUS_STAGING_SERVER = exports.EXODUS_PRODUCTION_SERVER = exports.EXODUS_TESTING_SERVER = exports.EXODUS_LOCAL_SERVER = exports.COMPANY = exports.PACKAGE = exports.BITCOIN_FEE_LIMIT = exports.DUST_VALUES = exports.ENV_BUILD_EDEN = exports.ENV_BUILD_EXODUS = exports.ENV_BUILD_NAME = exports.ENV_PROD = exports.ENV_DEV = undefined;
-        var _path = require('path');
-        var _path2 = _interopRequireDefault(_path);
-        var _ms = require('ms');
-        var _ms2 = _interopRequireDefault(_ms);
-        var _package = require(13);
-        var _package2 = _interopRequireDefault(_package);
-
-        function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : {
-                default: obj
-            };
-        }
-        const ENV_DEV = exports.ENV_DEV = "production" === 'development';
-        const ENV_PROD = exports.ENV_PROD = "production" === 'production';
-        const ENV_BUILD_NAME = exports.ENV_BUILD_NAME = "eden" || '';
-        const ENV_BUILD_EXODUS = exports.ENV_BUILD_EXODUS = ENV_BUILD_NAME === '';
-        const ENV_BUILD_EDEN = exports.ENV_BUILD_EDEN = ENV_BUILD_NAME === 'eden';
-        const DUST_VALUES = exports.DUST_VALUES = {
-            bitcoin: Math.max(6000, 148 * 125),
-            bcash: 6000,
-            litecoin: 60000,
-            dash: 5500,
-            decred: 70000,
-            zcash: 1500
-        };
-        const BITCOIN_FEE_LIMIT = exports.BITCOIN_FEE_LIMIT = 0.2;
-        const PACKAGE = exports.PACKAGE = _package2.default;
-        const COMPANY = exports.COMPANY = 'Exodus Movement, Inc.';
-        const EXODUS_LOCAL_SERVER = exports.EXODUS_LOCAL_SERVER = 'http://localhost:3020';
-        const EXODUS_TESTING_SERVER = exports.EXODUS_TESTING_SERVER = 'https://exodus-server-testing.azurewebsites.net';
-        const EXODUS_PRODUCTION_SERVER = exports.EXODUS_PRODUCTION_SERVER = 'https://exodus-server.azurewebsites.net';
-        const EXODUS_STAGING_SERVER = exports.EXODUS_STAGING_SERVER = 'https://exodus-server-staging2.azurewebsites.net';
-        const EXODUS_SERVER = exports.EXODUS_SERVER = EXODUS_PRODUCTION_SERVER;
-        const htmlPath = file => ENV_PROD ? _path2.default.join(__dirname, '..', '..', '..', 'static', file) : _path2.default.join(__dirname, '..', '..', 'static', file) + '?react_perf';
-        const WINDOW_MAIN = exports.WINDOW_MAIN = 'file://' + htmlPath('index.html');
-        const WINDOW_MNEMONIC = exports.WINDOW_MNEMONIC = 'file://' + htmlPath('mnemonic.html');
-        const WINDOW_NETWORK = exports.WINDOW_NETWORK = 'file://' + htmlPath('network.html');
-        const WINDOW_PASSPHRASE = exports.WINDOW_PASSPHRASE = 'file://' + htmlPath('passphrase.html');
-        const WINDOW_WALLET = exports.WINDOW_WALLET = 'file://' + htmlPath('wallet.html');
-        const preloadPath = proc => ENV_PROD ? _path2.default.join(__dirname, '..', proc, 'preload.js') : _path2.default.join(__dirname, proc, 'preload.js');
-        const WINDOW_PASSPHRASE_PRELOAD = exports.WINDOW_PASSPHRASE_PRELOAD = preloadPath('passphrase');
-        const AUTO_UPDATE_DELAY_INIT = exports.AUTO_UPDATE_DELAY_INIT = 10000;
-        const AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_BASE_URL = 'https://exodusbin.azureedge.net';
-        const timeMs = (parseInt(1513920465305) || Date.now()) + (4 * (0, _ms2.default)('168h') + (0, _ms2.default)('82h'));
-        const NEW_VERSION_DATE = exports.NEW_VERSION_DATE = new Date(timeMs);
-
-    }, {
-        "13": 13,
+        "3": 3,
+        "6": 6,
         "undefined": undefined
     }],
     9: [function(require, module, exports) {
         'use strict';
-        require(7);
+        require(8);
         require(12);
 
     }, {
         "12": 12,
-        "7": 7
+        "8": 8
     }],
     10: [function(require, module, exports) {
         'use strict';
@@ -456,7 +464,7 @@
         module.exports = {
             "name": "exodus",
             "productName": "Exodus",
-            "version": "1.41.0",
+            "version": "1.43.4",
             "description": "Secure, manage, and trade blockchain assets."
         }
     }, {}]

@@ -6,37 +6,53 @@
   --color-civic: #3EB13E;
   --color-digix: #EEAF4A;
   --color-district0x: #7CF8FA;
+  --color-edgeless: #764496;
   --color-eos: #99A4EA;
   --color-firstblood: #D0021B;
   --color-funfair: #EB4B6E;
   --color-gnosis: #02D8FF;
   --color-golem: #01D3E0;
+  --color-iexec: #F6CD04;
+  --color-matchpool: #37DCD8;
+  --color-melonport: #F1F1F1;
   --color-metal: #FFFFFF;
+  --color-numeraire: #F1F1F1;
   --color-omisego: #3A79FF;
   --color-qtum: #3EB8F8;
   --color-salt: #18CAD0;
+  --color-singulardtv: #B30C23;
   --color-status: #5D69BD;
   --color-storj: #2683FF;
+  --color-wetrust: #63C6BB;
   --color-wings: #A9D6E6;
   --color-zerox: #FFFFFF;
   --color-flagmoney: #FAFAFA;
-  --color-bcash: #F27E00;
+  --color-bcash: #99c361;
+  --color-bgold: #ebbf09;
   --color-bitcoin: #FF9900;
-  --color-litecoin: #AEAEAE;
-  --color-dogecoin: #F7BF35;
-  --color-ethereum: #D8D8D8;
-  --color-dash: #278EE5;
   --color-blackcoin: #1C1D1D;
   --color-counterparty: #ED1650;
-  --color-nubits: #FFC42C;
+  --color-decred: #2ED8A3;
+  --color-dogecoin: #F7BF35;
+  --color-dash: #278EE5;
+  --color-digibyte: #096BC7;
+  --color-ethereum: #D8D8D8;
+  --color-ethereumclassic: #669073;
   --color-factom: #4B90C1;
+  --color-litecoin: #AEAEAE;
   --color-monero: #FF6600;
   --color-mastercoin: #6DAFDE;
+  --color-nem: #2BBAAD;
+  --color-neo: #79CD03;
+  --color-nubits: #FFC42C;
   --color-omni: #6DAFDE;
-  --color-tether: #FFC20E;
-  --color-decred: #2ED8A3;
-  --color-ethereumclassic: #669073;
+  --color-potcoin: #11762F;
+  --color-reddcoin: #D11E25;
   --color-ripple: #00aae4;
+  --color-siacoin: #00cba0;
+  --color-tether: #FFC20E;
+  --color-waves: #4f77fc;
+  --color-vertcoin: #30AD5E;
   --color-zcash: #FFC20E; }
 
 .exodus-color-aragon {
@@ -60,6 +76,9 @@
 .exodus-color-district0x {
   color: #7CF8FA !important; }
 
+.exodus-color-edgeless {
+  color: #764496 !important; }
+
 .exodus-color-eos {
   color: #99A4EA !important; }
 
@@ -75,8 +94,20 @@
 .exodus-color-golem {
   color: #01D3E0 !important; }
 
+.exodus-color-iexec {
+  color: #F6CD04 !important; }
+
+.exodus-color-matchpool {
+  color: #37DCD8 !important; }
+
+.exodus-color-melonport {
+  color: #F1F1F1 !important; }
+
 .exodus-color-metal {
   color: #FFFFFF !important; }
+
+.exodus-color-numeraire {
+  color: #F1F1F1 !important; }
 
 .exodus-color-omisego {
   color: #3A79FF !important; }
@@ -87,11 +118,17 @@
 .exodus-color-salt {
   color: #18CAD0 !important; }
 
+.exodus-color-singulardtv {
+  color: #B30C23 !important; }
+
 .exodus-color-status {
   color: #5D69BD !important; }
 
 .exodus-color-storj {
   color: #2683FF !important; }
+
+.exodus-color-wetrust {
+  color: #63C6BB !important; }
 
 .exodus-color-wings {
   color: #A9D6E6 !important; }
@@ -103,22 +140,13 @@
   color: #FAFAFA !important; }
 
 .exodus-color-bcash {
-  color: #F27E00 !important; }
+  color: #99c361 !important; }
+
+.exodus-color-bgold {
+  color: #ebbf09 !important; }
 
 .exodus-color-bitcoin {
   color: #FF9900 !important; }
-
-.exodus-color-litecoin {
-  color: #AEAEAE !important; }
-
-.exodus-color-dogecoin {
-  color: #F7BF35 !important; }
-
-.exodus-color-ethereum {
-  color: #D8D8D8 !important; }
-
-.exodus-color-dash {
-  color: #278EE5 !important; }
 
 .exodus-color-blackcoin {
   color: #1C1D1D !important; }
@@ -126,11 +154,29 @@
 .exodus-color-counterparty {
   color: #ED1650 !important; }
 
-.exodus-color-nubits {
-  color: #FFC42C !important; }
+.exodus-color-decred {
+  color: #2ED8A3 !important; }
+
+.exodus-color-dogecoin {
+  color: #F7BF35 !important; }
+
+.exodus-color-dash {
+  color: #278EE5 !important; }
+
+.exodus-color-digibyte {
+  color: #096BC7 !important; }
+
+.exodus-color-ethereum {
+  color: #D8D8D8 !important; }
+
+.exodus-color-ethereumclassic {
+  color: #669073 !important; }
 
 .exodus-color-factom {
   color: #4B90C1 !important; }
+
+.exodus-color-litecoin {
+  color: #AEAEAE !important; }
 
 .exodus-color-monero {
   color: #FF6600 !important; }
@@ -138,20 +184,38 @@
 .exodus-color-mastercoin {
   color: #6DAFDE !important; }
 
+.exodus-color-nem {
+  color: #2BBAAD !important; }
+
+.exodus-color-neo {
+  color: #79CD03 !important; }
+
+.exodus-color-nubits {
+  color: #FFC42C !important; }
+
 .exodus-color-omni {
   color: #6DAFDE !important; }
+
+.exodus-color-potcoin {
+  color: #11762F !important; }
+
+.exodus-color-reddcoin {
+  color: #D11E25 !important; }
+
+.exodus-color-ripple {
+  color: #00aae4 !important; }
+
+.exodus-color-siacoin {
+  color: #00cba0 !important; }
 
 .exodus-color-tether {
   color: #FFC20E !important; }
 
-.exodus-color-decred {
-  color: #2ED8A3 !important; }
+.exodus-color-waves {
+  color: #4f77fc !important; }
 
-.exodus-color-ethereumclassic {
-  color: #669073 !important; }
-
-.exodus-color-ripple {
-  color: #00aae4 !important; }
+.exodus-color-vertcoin {
+  color: #30AD5E !important; }
 
 .exodus-color-zcash {
   color: #FFC20E !important; }
@@ -177,6 +241,9 @@
 .exodus-color-fill-svg-district0x {
   fill: #7CF8FA !important; }
 
+.exodus-color-fill-svg-edgeless {
+  fill: #764496 !important; }
+
 .exodus-color-fill-svg-eos {
   fill: #99A4EA !important; }
 
@@ -192,8 +259,20 @@
 .exodus-color-fill-svg-golem {
   fill: #01D3E0 !important; }
 
+.exodus-color-fill-svg-iexec {
+  fill: #F6CD04 !important; }
+
+.exodus-color-fill-svg-matchpool {
+  fill: #37DCD8 !important; }
+
+.exodus-color-fill-svg-melonport {
+  fill: #F1F1F1 !important; }
+
 .exodus-color-fill-svg-metal {
   fill: #FFFFFF !important; }
+
+.exodus-color-fill-svg-numeraire {
+  fill: #F1F1F1 !important; }
 
 .exodus-color-fill-svg-omisego {
   fill: #3A79FF !important; }
@@ -204,11 +283,17 @@
 .exodus-color-fill-svg-salt {
   fill: #18CAD0 !important; }
 
+.exodus-color-fill-svg-singulardtv {
+  fill: #B30C23 !important; }
+
 .exodus-color-fill-svg-status {
   fill: #5D69BD !important; }
 
 .exodus-color-fill-svg-storj {
   fill: #2683FF !important; }
+
+.exodus-color-fill-svg-wetrust {
+  fill: #63C6BB !important; }
 
 .exodus-color-fill-svg-wings {
   fill: #A9D6E6 !important; }
@@ -220,22 +305,13 @@
   fill: #FAFAFA !important; }
 
 .exodus-color-fill-svg-bcash {
-  fill: #F27E00 !important; }
+  fill: #99c361 !important; }
+
+.exodus-color-fill-svg-bgold {
+  fill: #ebbf09 !important; }
 
 .exodus-color-fill-svg-bitcoin {
   fill: #FF9900 !important; }
-
-.exodus-color-fill-svg-litecoin {
-  fill: #AEAEAE !important; }
-
-.exodus-color-fill-svg-dogecoin {
-  fill: #F7BF35 !important; }
-
-.exodus-color-fill-svg-ethereum {
-  fill: #D8D8D8 !important; }
-
-.exodus-color-fill-svg-dash {
-  fill: #278EE5 !important; }
 
 .exodus-color-fill-svg-blackcoin {
   fill: #1C1D1D !important; }
@@ -243,11 +319,29 @@
 .exodus-color-fill-svg-counterparty {
   fill: #ED1650 !important; }
 
-.exodus-color-fill-svg-nubits {
-  fill: #FFC42C !important; }
+.exodus-color-fill-svg-decred {
+  fill: #2ED8A3 !important; }
+
+.exodus-color-fill-svg-dogecoin {
+  fill: #F7BF35 !important; }
+
+.exodus-color-fill-svg-dash {
+  fill: #278EE5 !important; }
+
+.exodus-color-fill-svg-digibyte {
+  fill: #096BC7 !important; }
+
+.exodus-color-fill-svg-ethereum {
+  fill: #D8D8D8 !important; }
+
+.exodus-color-fill-svg-ethereumclassic {
+  fill: #669073 !important; }
 
 .exodus-color-fill-svg-factom {
   fill: #4B90C1 !important; }
+
+.exodus-color-fill-svg-litecoin {
+  fill: #AEAEAE !important; }
 
 .exodus-color-fill-svg-monero {
   fill: #FF6600 !important; }
@@ -255,20 +349,38 @@
 .exodus-color-fill-svg-mastercoin {
   fill: #6DAFDE !important; }
 
+.exodus-color-fill-svg-nem {
+  fill: #2BBAAD !important; }
+
+.exodus-color-fill-svg-neo {
+  fill: #79CD03 !important; }
+
+.exodus-color-fill-svg-nubits {
+  fill: #FFC42C !important; }
+
 .exodus-color-fill-svg-omni {
   fill: #6DAFDE !important; }
+
+.exodus-color-fill-svg-potcoin {
+  fill: #11762F !important; }
+
+.exodus-color-fill-svg-reddcoin {
+  fill: #D11E25 !important; }
+
+.exodus-color-fill-svg-ripple {
+  fill: #00aae4 !important; }
+
+.exodus-color-fill-svg-siacoin {
+  fill: #00cba0 !important; }
 
 .exodus-color-fill-svg-tether {
   fill: #FFC20E !important; }
 
-.exodus-color-fill-svg-decred {
-  fill: #2ED8A3 !important; }
+.exodus-color-fill-svg-waves {
+  fill: #4f77fc !important; }
 
-.exodus-color-fill-svg-ethereumclassic {
-  fill: #669073 !important; }
-
-.exodus-color-fill-svg-ripple {
-  fill: #00aae4 !important; }
+.exodus-color-fill-svg-vertcoin {
+  fill: #30AD5E !important; }
 
 .exodus-color-fill-svg-zcash {
   fill: #FFC20E !important; }
@@ -294,6 +406,9 @@
 .exodus-bg-color-district0x {
   background-color: #7CF8FA !important; }
 
+.exodus-bg-color-edgeless {
+  background-color: #764496 !important; }
+
 .exodus-bg-color-eos {
   background-color: #99A4EA !important; }
 
@@ -309,8 +424,20 @@
 .exodus-bg-color-golem {
   background-color: #01D3E0 !important; }
 
+.exodus-bg-color-iexec {
+  background-color: #F6CD04 !important; }
+
+.exodus-bg-color-matchpool {
+  background-color: #37DCD8 !important; }
+
+.exodus-bg-color-melonport {
+  background-color: #F1F1F1 !important; }
+
 .exodus-bg-color-metal {
   background-color: #FFFFFF !important; }
+
+.exodus-bg-color-numeraire {
+  background-color: #F1F1F1 !important; }
 
 .exodus-bg-color-omisego {
   background-color: #3A79FF !important; }
@@ -321,11 +448,17 @@
 .exodus-bg-color-salt {
   background-color: #18CAD0 !important; }
 
+.exodus-bg-color-singulardtv {
+  background-color: #B30C23 !important; }
+
 .exodus-bg-color-status {
   background-color: #5D69BD !important; }
 
 .exodus-bg-color-storj {
   background-color: #2683FF !important; }
+
+.exodus-bg-color-wetrust {
+  background-color: #63C6BB !important; }
 
 .exodus-bg-color-wings {
   background-color: #A9D6E6 !important; }
@@ -337,22 +470,13 @@
   background-color: #FAFAFA !important; }
 
 .exodus-bg-color-bcash {
-  background-color: #F27E00 !important; }
+  background-color: #99c361 !important; }
+
+.exodus-bg-color-bgold {
+  background-color: #ebbf09 !important; }
 
 .exodus-bg-color-bitcoin {
   background-color: #FF9900 !important; }
-
-.exodus-bg-color-litecoin {
-  background-color: #AEAEAE !important; }
-
-.exodus-bg-color-dogecoin {
-  background-color: #F7BF35 !important; }
-
-.exodus-bg-color-ethereum {
-  background-color: #D8D8D8 !important; }
-
-.exodus-bg-color-dash {
-  background-color: #278EE5 !important; }
 
 .exodus-bg-color-blackcoin {
   background-color: #1C1D1D !important; }
@@ -360,11 +484,29 @@
 .exodus-bg-color-counterparty {
   background-color: #ED1650 !important; }
 
-.exodus-bg-color-nubits {
-  background-color: #FFC42C !important; }
+.exodus-bg-color-decred {
+  background-color: #2ED8A3 !important; }
+
+.exodus-bg-color-dogecoin {
+  background-color: #F7BF35 !important; }
+
+.exodus-bg-color-dash {
+  background-color: #278EE5 !important; }
+
+.exodus-bg-color-digibyte {
+  background-color: #096BC7 !important; }
+
+.exodus-bg-color-ethereum {
+  background-color: #D8D8D8 !important; }
+
+.exodus-bg-color-ethereumclassic {
+  background-color: #669073 !important; }
 
 .exodus-bg-color-factom {
   background-color: #4B90C1 !important; }
+
+.exodus-bg-color-litecoin {
+  background-color: #AEAEAE !important; }
 
 .exodus-bg-color-monero {
   background-color: #FF6600 !important; }
@@ -372,20 +514,38 @@
 .exodus-bg-color-mastercoin {
   background-color: #6DAFDE !important; }
 
+.exodus-bg-color-nem {
+  background-color: #2BBAAD !important; }
+
+.exodus-bg-color-neo {
+  background-color: #79CD03 !important; }
+
+.exodus-bg-color-nubits {
+  background-color: #FFC42C !important; }
+
 .exodus-bg-color-omni {
   background-color: #6DAFDE !important; }
+
+.exodus-bg-color-potcoin {
+  background-color: #11762F !important; }
+
+.exodus-bg-color-reddcoin {
+  background-color: #D11E25 !important; }
+
+.exodus-bg-color-ripple {
+  background-color: #00aae4 !important; }
+
+.exodus-bg-color-siacoin {
+  background-color: #00cba0 !important; }
 
 .exodus-bg-color-tether {
   background-color: #FFC20E !important; }
 
-.exodus-bg-color-decred {
-  background-color: #2ED8A3 !important; }
+.exodus-bg-color-waves {
+  background-color: #4f77fc !important; }
 
-.exodus-bg-color-ethereumclassic {
-  background-color: #669073 !important; }
-
-.exodus-bg-color-ripple {
-  background-color: #00aae4 !important; }
+.exodus-bg-color-vertcoin {
+  background-color: #30AD5E !important; }
 
 .exodus-bg-color-zcash {
   background-color: #FFC20E !important; }
@@ -411,6 +571,9 @@
 .exodus-border-color-district0x {
   border-color: #7CF8FA !important; }
 
+.exodus-border-color-edgeless {
+  border-color: #764496 !important; }
+
 .exodus-border-color-eos {
   border-color: #99A4EA !important; }
 
@@ -426,8 +589,20 @@
 .exodus-border-color-golem {
   border-color: #01D3E0 !important; }
 
+.exodus-border-color-iexec {
+  border-color: #F6CD04 !important; }
+
+.exodus-border-color-matchpool {
+  border-color: #37DCD8 !important; }
+
+.exodus-border-color-melonport {
+  border-color: #F1F1F1 !important; }
+
 .exodus-border-color-metal {
   border-color: #FFFFFF !important; }
+
+.exodus-border-color-numeraire {
+  border-color: #F1F1F1 !important; }
 
 .exodus-border-color-omisego {
   border-color: #3A79FF !important; }
@@ -438,11 +613,17 @@
 .exodus-border-color-salt {
   border-color: #18CAD0 !important; }
 
+.exodus-border-color-singulardtv {
+  border-color: #B30C23 !important; }
+
 .exodus-border-color-status {
   border-color: #5D69BD !important; }
 
 .exodus-border-color-storj {
   border-color: #2683FF !important; }
+
+.exodus-border-color-wetrust {
+  border-color: #63C6BB !important; }
 
 .exodus-border-color-wings {
   border-color: #A9D6E6 !important; }
@@ -454,22 +635,13 @@
   border-color: #FAFAFA !important; }
 
 .exodus-border-color-bcash {
-  border-color: #F27E00 !important; }
+  border-color: #99c361 !important; }
+
+.exodus-border-color-bgold {
+  border-color: #ebbf09 !important; }
 
 .exodus-border-color-bitcoin {
   border-color: #FF9900 !important; }
-
-.exodus-border-color-litecoin {
-  border-color: #AEAEAE !important; }
-
-.exodus-border-color-dogecoin {
-  border-color: #F7BF35 !important; }
-
-.exodus-border-color-ethereum {
-  border-color: #D8D8D8 !important; }
-
-.exodus-border-color-dash {
-  border-color: #278EE5 !important; }
 
 .exodus-border-color-blackcoin {
   border-color: #1C1D1D !important; }
@@ -477,11 +649,29 @@
 .exodus-border-color-counterparty {
   border-color: #ED1650 !important; }
 
-.exodus-border-color-nubits {
-  border-color: #FFC42C !important; }
+.exodus-border-color-decred {
+  border-color: #2ED8A3 !important; }
+
+.exodus-border-color-dogecoin {
+  border-color: #F7BF35 !important; }
+
+.exodus-border-color-dash {
+  border-color: #278EE5 !important; }
+
+.exodus-border-color-digibyte {
+  border-color: #096BC7 !important; }
+
+.exodus-border-color-ethereum {
+  border-color: #D8D8D8 !important; }
+
+.exodus-border-color-ethereumclassic {
+  border-color: #669073 !important; }
 
 .exodus-border-color-factom {
   border-color: #4B90C1 !important; }
+
+.exodus-border-color-litecoin {
+  border-color: #AEAEAE !important; }
 
 .exodus-border-color-monero {
   border-color: #FF6600 !important; }
@@ -489,20 +679,38 @@
 .exodus-border-color-mastercoin {
   border-color: #6DAFDE !important; }
 
+.exodus-border-color-nem {
+  border-color: #2BBAAD !important; }
+
+.exodus-border-color-neo {
+  border-color: #79CD03 !important; }
+
+.exodus-border-color-nubits {
+  border-color: #FFC42C !important; }
+
 .exodus-border-color-omni {
   border-color: #6DAFDE !important; }
+
+.exodus-border-color-potcoin {
+  border-color: #11762F !important; }
+
+.exodus-border-color-reddcoin {
+  border-color: #D11E25 !important; }
+
+.exodus-border-color-ripple {
+  border-color: #00aae4 !important; }
+
+.exodus-border-color-siacoin {
+  border-color: #00cba0 !important; }
 
 .exodus-border-color-tether {
   border-color: #FFC20E !important; }
 
-.exodus-border-color-decred {
-  border-color: #2ED8A3 !important; }
+.exodus-border-color-waves {
+  border-color: #4f77fc !important; }
 
-.exodus-border-color-ethereumclassic {
-  border-color: #669073 !important; }
-
-.exodus-border-color-ripple {
-  border-color: #00aae4 !important; }
+.exodus-border-color-vertcoin {
+  border-color: #30AD5E !important; }
 
 .exodus-border-color-zcash {
   border-color: #FFC20E !important; }
@@ -528,6 +736,9 @@
 .exodus-button-gradient-left-color-district0x {
   background-color: #7CF8FA !important; }
 
+.exodus-button-gradient-left-color-edgeless {
+  background-color: #764496 !important; }
+
 .exodus-button-gradient-left-color-eos {
   background-color: #99A4EA !important; }
 
@@ -543,8 +754,20 @@
 .exodus-button-gradient-left-color-golem {
   background-color: #01D3E0 !important; }
 
+.exodus-button-gradient-left-color-iexec {
+  background-color: #F6CD04 !important; }
+
+.exodus-button-gradient-left-color-matchpool {
+  background-color: #37DCD8 !important; }
+
+.exodus-button-gradient-left-color-melonport {
+  background-color: #F1F1F1 !important; }
+
 .exodus-button-gradient-left-color-metal {
   background-color: #FFFFFF !important; }
+
+.exodus-button-gradient-left-color-numeraire {
+  background-color: #F1F1F1 !important; }
 
 .exodus-button-gradient-left-color-omisego {
   background-color: #3A79FF !important; }
@@ -555,11 +778,17 @@
 .exodus-button-gradient-left-color-salt {
   background-color: #18CAD0 !important; }
 
+.exodus-button-gradient-left-color-singulardtv {
+  background-color: #B30C23 !important; }
+
 .exodus-button-gradient-left-color-status {
   background-color: #5D69BD !important; }
 
 .exodus-button-gradient-left-color-storj {
   background-color: #2683FF !important; }
+
+.exodus-button-gradient-left-color-wetrust {
+  background-color: #63C6BB !important; }
 
 .exodus-button-gradient-left-color-wings {
   background-color: #A9D6E6 !important; }
@@ -571,22 +800,13 @@
   background-color: #FAFAFA !important; }
 
 .exodus-button-gradient-left-color-bcash {
-  background-color: #F27E00 !important; }
+  background-color: #99c361 !important; }
+
+.exodus-button-gradient-left-color-bgold {
+  background-color: #ebbf09 !important; }
 
 .exodus-button-gradient-left-color-bitcoin {
   background-color: #FF9900 !important; }
-
-.exodus-button-gradient-left-color-litecoin {
-  background-color: #AEAEAE !important; }
-
-.exodus-button-gradient-left-color-dogecoin {
-  background-color: #F7BF35 !important; }
-
-.exodus-button-gradient-left-color-ethereum {
-  background-color: #D8D8D8 !important; }
-
-.exodus-button-gradient-left-color-dash {
-  background-color: #278EE5 !important; }
 
 .exodus-button-gradient-left-color-blackcoin {
   background-color: #1C1D1D !important; }
@@ -594,11 +814,29 @@
 .exodus-button-gradient-left-color-counterparty {
   background-color: #ED1650 !important; }
 
-.exodus-button-gradient-left-color-nubits {
-  background-color: #FFC42C !important; }
+.exodus-button-gradient-left-color-decred {
+  background-color: #2ED8A3 !important; }
+
+.exodus-button-gradient-left-color-dogecoin {
+  background-color: #F7BF35 !important; }
+
+.exodus-button-gradient-left-color-dash {
+  background-color: #278EE5 !important; }
+
+.exodus-button-gradient-left-color-digibyte {
+  background-color: #096BC7 !important; }
+
+.exodus-button-gradient-left-color-ethereum {
+  background-color: #D8D8D8 !important; }
+
+.exodus-button-gradient-left-color-ethereumclassic {
+  background-color: #669073 !important; }
 
 .exodus-button-gradient-left-color-factom {
   background-color: #4B90C1 !important; }
+
+.exodus-button-gradient-left-color-litecoin {
+  background-color: #AEAEAE !important; }
 
 .exodus-button-gradient-left-color-monero {
   background-color: #FF6600 !important; }
@@ -606,20 +844,38 @@
 .exodus-button-gradient-left-color-mastercoin {
   background-color: #6DAFDE !important; }
 
+.exodus-button-gradient-left-color-nem {
+  background-color: #2BBAAD !important; }
+
+.exodus-button-gradient-left-color-neo {
+  background-color: #79CD03 !important; }
+
+.exodus-button-gradient-left-color-nubits {
+  background-color: #FFC42C !important; }
+
 .exodus-button-gradient-left-color-omni {
   background-color: #6DAFDE !important; }
+
+.exodus-button-gradient-left-color-potcoin {
+  background-color: #11762F !important; }
+
+.exodus-button-gradient-left-color-reddcoin {
+  background-color: #D11E25 !important; }
+
+.exodus-button-gradient-left-color-ripple {
+  background-color: #00aae4 !important; }
+
+.exodus-button-gradient-left-color-siacoin {
+  background-color: #00cba0 !important; }
 
 .exodus-button-gradient-left-color-tether {
   background-color: #FFC20E !important; }
 
-.exodus-button-gradient-left-color-decred {
-  background-color: #2ED8A3 !important; }
+.exodus-button-gradient-left-color-waves {
+  background-color: #4f77fc !important; }
 
-.exodus-button-gradient-left-color-ethereumclassic {
-  background-color: #669073 !important; }
-
-.exodus-button-gradient-left-color-ripple {
-  background-color: #00aae4 !important; }
+.exodus-button-gradient-left-color-vertcoin {
+  background-color: #30AD5E !important; }
 
 .exodus-button-gradient-left-color-zcash {
   background-color: #FFC20E !important; }
@@ -645,6 +901,9 @@
 .exodus-button-gradient-right-color-district0x {
   background-image: linear-gradient(90deg, transparent 0%, #7CF8FA 100%); }
 
+.exodus-button-gradient-right-color-edgeless {
+  background-image: linear-gradient(90deg, transparent 0%, #764496 100%); }
+
 .exodus-button-gradient-right-color-eos {
   background-image: linear-gradient(90deg, transparent 0%, #99A4EA 100%); }
 
@@ -660,8 +919,20 @@
 .exodus-button-gradient-right-color-golem {
   background-image: linear-gradient(90deg, transparent 0%, #01D3E0 100%); }
 
+.exodus-button-gradient-right-color-iexec {
+  background-image: linear-gradient(90deg, transparent 0%, #F6CD04 100%); }
+
+.exodus-button-gradient-right-color-matchpool {
+  background-image: linear-gradient(90deg, transparent 0%, #37DCD8 100%); }
+
+.exodus-button-gradient-right-color-melonport {
+  background-image: linear-gradient(90deg, transparent 0%, #F1F1F1 100%); }
+
 .exodus-button-gradient-right-color-metal {
   background-image: linear-gradient(90deg, transparent 0%, #FFFFFF 100%); }
+
+.exodus-button-gradient-right-color-numeraire {
+  background-image: linear-gradient(90deg, transparent 0%, #F1F1F1 100%); }
 
 .exodus-button-gradient-right-color-omisego {
   background-image: linear-gradient(90deg, transparent 0%, #3A79FF 100%); }
@@ -672,11 +943,17 @@
 .exodus-button-gradient-right-color-salt {
   background-image: linear-gradient(90deg, transparent 0%, #18CAD0 100%); }
 
+.exodus-button-gradient-right-color-singulardtv {
+  background-image: linear-gradient(90deg, transparent 0%, #B30C23 100%); }
+
 .exodus-button-gradient-right-color-status {
   background-image: linear-gradient(90deg, transparent 0%, #5D69BD 100%); }
 
 .exodus-button-gradient-right-color-storj {
   background-image: linear-gradient(90deg, transparent 0%, #2683FF 100%); }
+
+.exodus-button-gradient-right-color-wetrust {
+  background-image: linear-gradient(90deg, transparent 0%, #63C6BB 100%); }
 
 .exodus-button-gradient-right-color-wings {
   background-image: linear-gradient(90deg, transparent 0%, #A9D6E6 100%); }
@@ -688,22 +965,13 @@
   background-image: linear-gradient(90deg, transparent 0%, #FAFAFA 100%); }
 
 .exodus-button-gradient-right-color-bcash {
-  background-image: linear-gradient(90deg, transparent 0%, #F27E00 100%); }
+  background-image: linear-gradient(90deg, transparent 0%, #99c361 100%); }
+
+.exodus-button-gradient-right-color-bgold {
+  background-image: linear-gradient(90deg, transparent 0%, #ebbf09 100%); }
 
 .exodus-button-gradient-right-color-bitcoin {
   background-image: linear-gradient(90deg, transparent 0%, #FF9900 100%); }
-
-.exodus-button-gradient-right-color-litecoin {
-  background-image: linear-gradient(90deg, transparent 0%, #AEAEAE 100%); }
-
-.exodus-button-gradient-right-color-dogecoin {
-  background-image: linear-gradient(90deg, transparent 0%, #F7BF35 100%); }
-
-.exodus-button-gradient-right-color-ethereum {
-  background-image: linear-gradient(90deg, transparent 0%, #D8D8D8 100%); }
-
-.exodus-button-gradient-right-color-dash {
-  background-image: linear-gradient(90deg, transparent 0%, #278EE5 100%); }
 
 .exodus-button-gradient-right-color-blackcoin {
   background-image: linear-gradient(90deg, transparent 0%, #1C1D1D 100%); }
@@ -711,11 +979,29 @@
 .exodus-button-gradient-right-color-counterparty {
   background-image: linear-gradient(90deg, transparent 0%, #ED1650 100%); }
 
-.exodus-button-gradient-right-color-nubits {
-  background-image: linear-gradient(90deg, transparent 0%, #FFC42C 100%); }
+.exodus-button-gradient-right-color-decred {
+  background-image: linear-gradient(90deg, transparent 0%, #2ED8A3 100%); }
+
+.exodus-button-gradient-right-color-dogecoin {
+  background-image: linear-gradient(90deg, transparent 0%, #F7BF35 100%); }
+
+.exodus-button-gradient-right-color-dash {
+  background-image: linear-gradient(90deg, transparent 0%, #278EE5 100%); }
+
+.exodus-button-gradient-right-color-digibyte {
+  background-image: linear-gradient(90deg, transparent 0%, #096BC7 100%); }
+
+.exodus-button-gradient-right-color-ethereum {
+  background-image: linear-gradient(90deg, transparent 0%, #D8D8D8 100%); }
+
+.exodus-button-gradient-right-color-ethereumclassic {
+  background-image: linear-gradient(90deg, transparent 0%, #669073 100%); }
 
 .exodus-button-gradient-right-color-factom {
   background-image: linear-gradient(90deg, transparent 0%, #4B90C1 100%); }
+
+.exodus-button-gradient-right-color-litecoin {
+  background-image: linear-gradient(90deg, transparent 0%, #AEAEAE 100%); }
 
 .exodus-button-gradient-right-color-monero {
   background-image: linear-gradient(90deg, transparent 0%, #FF6600 100%); }
@@ -723,20 +1009,38 @@
 .exodus-button-gradient-right-color-mastercoin {
   background-image: linear-gradient(90deg, transparent 0%, #6DAFDE 100%); }
 
+.exodus-button-gradient-right-color-nem {
+  background-image: linear-gradient(90deg, transparent 0%, #2BBAAD 100%); }
+
+.exodus-button-gradient-right-color-neo {
+  background-image: linear-gradient(90deg, transparent 0%, #79CD03 100%); }
+
+.exodus-button-gradient-right-color-nubits {
+  background-image: linear-gradient(90deg, transparent 0%, #FFC42C 100%); }
+
 .exodus-button-gradient-right-color-omni {
   background-image: linear-gradient(90deg, transparent 0%, #6DAFDE 100%); }
+
+.exodus-button-gradient-right-color-potcoin {
+  background-image: linear-gradient(90deg, transparent 0%, #11762F 100%); }
+
+.exodus-button-gradient-right-color-reddcoin {
+  background-image: linear-gradient(90deg, transparent 0%, #D11E25 100%); }
+
+.exodus-button-gradient-right-color-ripple {
+  background-image: linear-gradient(90deg, transparent 0%, #00aae4 100%); }
+
+.exodus-button-gradient-right-color-siacoin {
+  background-image: linear-gradient(90deg, transparent 0%, #00cba0 100%); }
 
 .exodus-button-gradient-right-color-tether {
   background-image: linear-gradient(90deg, transparent 0%, #FFC20E 100%); }
 
-.exodus-button-gradient-right-color-decred {
-  background-image: linear-gradient(90deg, transparent 0%, #2ED8A3 100%); }
+.exodus-button-gradient-right-color-waves {
+  background-image: linear-gradient(90deg, transparent 0%, #4f77fc 100%); }
 
-.exodus-button-gradient-right-color-ethereumclassic {
-  background-image: linear-gradient(90deg, transparent 0%, #669073 100%); }
-
-.exodus-button-gradient-right-color-ripple {
-  background-image: linear-gradient(90deg, transparent 0%, #00aae4 100%); }
+.exodus-button-gradient-right-color-vertcoin {
+  background-image: linear-gradient(90deg, transparent 0%, #30AD5E 100%); }
 
 .exodus-button-gradient-right-color-zcash {
   background-image: linear-gradient(90deg, transparent 0%, #FFC20E 100%); }
@@ -2479,6 +2783,9 @@ body {
   .button-row .button-color-district0x {
     border-color: #7CF8FA !important;
     background: rgba(124, 248, 250, 0.5); }
+  .button-row .button-color-edgeless {
+    border-color: #764496 !important;
+    background: rgba(118, 68, 150, 0.5); }
   .button-row .button-color-eos {
     border-color: #99A4EA !important;
     background: rgba(153, 164, 234, 0.5); }
@@ -2494,9 +2801,21 @@ body {
   .button-row .button-color-golem {
     border-color: #01D3E0 !important;
     background: rgba(1, 211, 224, 0.5); }
+  .button-row .button-color-iexec {
+    border-color: #F6CD04 !important;
+    background: rgba(246, 205, 4, 0.5); }
+  .button-row .button-color-matchpool {
+    border-color: #37DCD8 !important;
+    background: rgba(55, 220, 216, 0.5); }
+  .button-row .button-color-melonport {
+    border-color: #F1F1F1 !important;
+    background: rgba(241, 241, 241, 0.5); }
   .button-row .button-color-metal {
     border-color: #FFFFFF !important;
     background: rgba(255, 255, 255, 0.5); }
+  .button-row .button-color-numeraire {
+    border-color: #F1F1F1 !important;
+    background: rgba(241, 241, 241, 0.5); }
   .button-row .button-color-omisego {
     border-color: #3A79FF !important;
     background: rgba(58, 121, 255, 0.5); }
@@ -2506,12 +2825,18 @@ body {
   .button-row .button-color-salt {
     border-color: #18CAD0 !important;
     background: rgba(24, 202, 208, 0.5); }
+  .button-row .button-color-singulardtv {
+    border-color: #B30C23 !important;
+    background: rgba(179, 12, 35, 0.5); }
   .button-row .button-color-status {
     border-color: #5D69BD !important;
     background: rgba(93, 105, 189, 0.5); }
   .button-row .button-color-storj {
     border-color: #2683FF !important;
     background: rgba(38, 131, 255, 0.5); }
+  .button-row .button-color-wetrust {
+    border-color: #63C6BB !important;
+    background: rgba(99, 198, 187, 0.5); }
   .button-row .button-color-wings {
     border-color: #A9D6E6 !important;
     background: rgba(169, 214, 230, 0.5); }
@@ -2522,56 +2847,83 @@ body {
     border-color: #FAFAFA !important;
     background: rgba(250, 250, 250, 0.5); }
   .button-row .button-color-bcash {
-    border-color: #F27E00 !important;
-    background: rgba(242, 126, 0, 0.5); }
+    border-color: #99c361 !important;
+    background: rgba(153, 195, 97, 0.5); }
+  .button-row .button-color-bgold {
+    border-color: #ebbf09 !important;
+    background: rgba(235, 191, 9, 0.5); }
   .button-row .button-color-bitcoin {
     border-color: #FF9900 !important;
     background: rgba(255, 153, 0, 0.5); }
-  .button-row .button-color-litecoin {
-    border-color: #AEAEAE !important;
-    background: rgba(174, 174, 174, 0.5); }
-  .button-row .button-color-dogecoin {
-    border-color: #F7BF35 !important;
-    background: rgba(247, 191, 53, 0.5); }
-  .button-row .button-color-ethereum {
-    border-color: #D8D8D8 !important;
-    background: rgba(216, 216, 216, 0.5); }
-  .button-row .button-color-dash {
-    border-color: #278EE5 !important;
-    background: rgba(39, 142, 229, 0.5); }
   .button-row .button-color-blackcoin {
     border-color: #1C1D1D !important;
     background: rgba(28, 29, 29, 0.5); }
   .button-row .button-color-counterparty {
     border-color: #ED1650 !important;
     background: rgba(237, 22, 80, 0.5); }
-  .button-row .button-color-nubits {
-    border-color: #FFC42C !important;
-    background: rgba(255, 196, 44, 0.5); }
+  .button-row .button-color-decred {
+    border-color: #2ED8A3 !important;
+    background: rgba(46, 216, 163, 0.5); }
+  .button-row .button-color-dogecoin {
+    border-color: #F7BF35 !important;
+    background: rgba(247, 191, 53, 0.5); }
+  .button-row .button-color-dash {
+    border-color: #278EE5 !important;
+    background: rgba(39, 142, 229, 0.5); }
+  .button-row .button-color-digibyte {
+    border-color: #096BC7 !important;
+    background: rgba(9, 107, 199, 0.5); }
+  .button-row .button-color-ethereum {
+    border-color: #D8D8D8 !important;
+    background: rgba(216, 216, 216, 0.5); }
+  .button-row .button-color-ethereumclassic {
+    border-color: #669073 !important;
+    background: rgba(102, 144, 115, 0.5); }
   .button-row .button-color-factom {
     border-color: #4B90C1 !important;
     background: rgba(75, 144, 193, 0.5); }
+  .button-row .button-color-litecoin {
+    border-color: #AEAEAE !important;
+    background: rgba(174, 174, 174, 0.5); }
   .button-row .button-color-monero {
     border-color: #FF6600 !important;
     background: rgba(255, 102, 0, 0.5); }
   .button-row .button-color-mastercoin {
     border-color: #6DAFDE !important;
     background: rgba(109, 175, 222, 0.5); }
+  .button-row .button-color-nem {
+    border-color: #2BBAAD !important;
+    background: rgba(43, 186, 173, 0.5); }
+  .button-row .button-color-neo {
+    border-color: #79CD03 !important;
+    background: rgba(121, 205, 3, 0.5); }
+  .button-row .button-color-nubits {
+    border-color: #FFC42C !important;
+    background: rgba(255, 196, 44, 0.5); }
   .button-row .button-color-omni {
     border-color: #6DAFDE !important;
     background: rgba(109, 175, 222, 0.5); }
-  .button-row .button-color-tether {
-    border-color: #FFC20E !important;
-    background: rgba(255, 194, 14, 0.5); }
-  .button-row .button-color-decred {
-    border-color: #2ED8A3 !important;
-    background: rgba(46, 216, 163, 0.5); }
-  .button-row .button-color-ethereumclassic {
-    border-color: #669073 !important;
-    background: rgba(102, 144, 115, 0.5); }
+  .button-row .button-color-potcoin {
+    border-color: #11762F !important;
+    background: rgba(17, 118, 47, 0.5); }
+  .button-row .button-color-reddcoin {
+    border-color: #D11E25 !important;
+    background: rgba(209, 30, 37, 0.5); }
   .button-row .button-color-ripple {
     border-color: #00aae4 !important;
     background: rgba(0, 170, 228, 0.5); }
+  .button-row .button-color-siacoin {
+    border-color: #00cba0 !important;
+    background: rgba(0, 203, 160, 0.5); }
+  .button-row .button-color-tether {
+    border-color: #FFC20E !important;
+    background: rgba(255, 194, 14, 0.5); }
+  .button-row .button-color-waves {
+    border-color: #4f77fc !important;
+    background: rgba(79, 119, 252, 0.5); }
+  .button-row .button-color-vertcoin {
+    border-color: #30AD5E !important;
+    background: rgba(48, 173, 94, 0.5); }
   .button-row .button-color-zcash {
     border-color: #FFC20E !important;
     background: rgba(255, 194, 14, 0.5); }
@@ -2598,6 +2950,9 @@ body {
   .button-row .exodus-button-district0x {
     border: 3px solid #7CF8FA !important;
     background: rgba(124, 248, 250, 0.5); }
+  .button-row .exodus-button-edgeless {
+    border: 3px solid #764496 !important;
+    background: rgba(118, 68, 150, 0.5); }
   .button-row .exodus-button-eos {
     border: 3px solid #99A4EA !important;
     background: rgba(153, 164, 234, 0.5); }
@@ -2613,9 +2968,21 @@ body {
   .button-row .exodus-button-golem {
     border: 3px solid #01D3E0 !important;
     background: rgba(1, 211, 224, 0.5); }
+  .button-row .exodus-button-iexec {
+    border: 3px solid #F6CD04 !important;
+    background: rgba(246, 205, 4, 0.5); }
+  .button-row .exodus-button-matchpool {
+    border: 3px solid #37DCD8 !important;
+    background: rgba(55, 220, 216, 0.5); }
+  .button-row .exodus-button-melonport {
+    border: 3px solid #F1F1F1 !important;
+    background: rgba(241, 241, 241, 0.5); }
   .button-row .exodus-button-metal {
     border: 3px solid #FFFFFF !important;
     background: rgba(255, 255, 255, 0.5); }
+  .button-row .exodus-button-numeraire {
+    border: 3px solid #F1F1F1 !important;
+    background: rgba(241, 241, 241, 0.5); }
   .button-row .exodus-button-omisego {
     border: 3px solid #3A79FF !important;
     background: rgba(58, 121, 255, 0.5); }
@@ -2625,12 +2992,18 @@ body {
   .button-row .exodus-button-salt {
     border: 3px solid #18CAD0 !important;
     background: rgba(24, 202, 208, 0.5); }
+  .button-row .exodus-button-singulardtv {
+    border: 3px solid #B30C23 !important;
+    background: rgba(179, 12, 35, 0.5); }
   .button-row .exodus-button-status {
     border: 3px solid #5D69BD !important;
     background: rgba(93, 105, 189, 0.5); }
   .button-row .exodus-button-storj {
     border: 3px solid #2683FF !important;
     background: rgba(38, 131, 255, 0.5); }
+  .button-row .exodus-button-wetrust {
+    border: 3px solid #63C6BB !important;
+    background: rgba(99, 198, 187, 0.5); }
   .button-row .exodus-button-wings {
     border: 3px solid #A9D6E6 !important;
     background: rgba(169, 214, 230, 0.5); }
@@ -2641,56 +3014,83 @@ body {
     border: 3px solid #FAFAFA !important;
     background: rgba(250, 250, 250, 0.5); }
   .button-row .exodus-button-bcash {
-    border: 3px solid #F27E00 !important;
-    background: rgba(242, 126, 0, 0.5); }
+    border: 3px solid #99c361 !important;
+    background: rgba(153, 195, 97, 0.5); }
+  .button-row .exodus-button-bgold {
+    border: 3px solid #ebbf09 !important;
+    background: rgba(235, 191, 9, 0.5); }
   .button-row .exodus-button-bitcoin {
     border: 3px solid #FF9900 !important;
     background: rgba(255, 153, 0, 0.5); }
-  .button-row .exodus-button-litecoin {
-    border: 3px solid #AEAEAE !important;
-    background: rgba(174, 174, 174, 0.5); }
-  .button-row .exodus-button-dogecoin {
-    border: 3px solid #F7BF35 !important;
-    background: rgba(247, 191, 53, 0.5); }
-  .button-row .exodus-button-ethereum {
-    border: 3px solid #D8D8D8 !important;
-    background: rgba(216, 216, 216, 0.5); }
-  .button-row .exodus-button-dash {
-    border: 3px solid #278EE5 !important;
-    background: rgba(39, 142, 229, 0.5); }
   .button-row .exodus-button-blackcoin {
     border: 3px solid #1C1D1D !important;
     background: rgba(28, 29, 29, 0.5); }
   .button-row .exodus-button-counterparty {
     border: 3px solid #ED1650 !important;
     background: rgba(237, 22, 80, 0.5); }
-  .button-row .exodus-button-nubits {
-    border: 3px solid #FFC42C !important;
-    background: rgba(255, 196, 44, 0.5); }
+  .button-row .exodus-button-decred {
+    border: 3px solid #2ED8A3 !important;
+    background: rgba(46, 216, 163, 0.5); }
+  .button-row .exodus-button-dogecoin {
+    border: 3px solid #F7BF35 !important;
+    background: rgba(247, 191, 53, 0.5); }
+  .button-row .exodus-button-dash {
+    border: 3px solid #278EE5 !important;
+    background: rgba(39, 142, 229, 0.5); }
+  .button-row .exodus-button-digibyte {
+    border: 3px solid #096BC7 !important;
+    background: rgba(9, 107, 199, 0.5); }
+  .button-row .exodus-button-ethereum {
+    border: 3px solid #D8D8D8 !important;
+    background: rgba(216, 216, 216, 0.5); }
+  .button-row .exodus-button-ethereumclassic {
+    border: 3px solid #669073 !important;
+    background: rgba(102, 144, 115, 0.5); }
   .button-row .exodus-button-factom {
     border: 3px solid #4B90C1 !important;
     background: rgba(75, 144, 193, 0.5); }
+  .button-row .exodus-button-litecoin {
+    border: 3px solid #AEAEAE !important;
+    background: rgba(174, 174, 174, 0.5); }
   .button-row .exodus-button-monero {
     border: 3px solid #FF6600 !important;
     background: rgba(255, 102, 0, 0.5); }
   .button-row .exodus-button-mastercoin {
     border: 3px solid #6DAFDE !important;
     background: rgba(109, 175, 222, 0.5); }
+  .button-row .exodus-button-nem {
+    border: 3px solid #2BBAAD !important;
+    background: rgba(43, 186, 173, 0.5); }
+  .button-row .exodus-button-neo {
+    border: 3px solid #79CD03 !important;
+    background: rgba(121, 205, 3, 0.5); }
+  .button-row .exodus-button-nubits {
+    border: 3px solid #FFC42C !important;
+    background: rgba(255, 196, 44, 0.5); }
   .button-row .exodus-button-omni {
     border: 3px solid #6DAFDE !important;
     background: rgba(109, 175, 222, 0.5); }
-  .button-row .exodus-button-tether {
-    border: 3px solid #FFC20E !important;
-    background: rgba(255, 194, 14, 0.5); }
-  .button-row .exodus-button-decred {
-    border: 3px solid #2ED8A3 !important;
-    background: rgba(46, 216, 163, 0.5); }
-  .button-row .exodus-button-ethereumclassic {
-    border: 3px solid #669073 !important;
-    background: rgba(102, 144, 115, 0.5); }
+  .button-row .exodus-button-potcoin {
+    border: 3px solid #11762F !important;
+    background: rgba(17, 118, 47, 0.5); }
+  .button-row .exodus-button-reddcoin {
+    border: 3px solid #D11E25 !important;
+    background: rgba(209, 30, 37, 0.5); }
   .button-row .exodus-button-ripple {
     border: 3px solid #00aae4 !important;
     background: rgba(0, 170, 228, 0.5); }
+  .button-row .exodus-button-siacoin {
+    border: 3px solid #00cba0 !important;
+    background: rgba(0, 203, 160, 0.5); }
+  .button-row .exodus-button-tether {
+    border: 3px solid #FFC20E !important;
+    background: rgba(255, 194, 14, 0.5); }
+  .button-row .exodus-button-waves {
+    border: 3px solid #4f77fc !important;
+    background: rgba(79, 119, 252, 0.5); }
+  .button-row .exodus-button-vertcoin {
+    border: 3px solid #30AD5E !important;
+    background: rgba(48, 173, 94, 0.5); }
   .button-row .exodus-button-zcash {
     border: 3px solid #FFC20E !important;
     background: rgba(255, 194, 14, 0.5); }
@@ -2941,6 +3341,8 @@ body {
     font-size: 24px; }
   .EXCOMP--input-address #send-to-input-address.asset-input-district0x {
     font-size: 24px; }
+  .EXCOMP--input-address #send-to-input-address.asset-input-edgeless {
+    font-size: 24px; }
   .EXCOMP--input-address #send-to-input-address.asset-input-eos {
     font-size: 24px; }
   .EXCOMP--input-address #send-to-input-address.asset-input-firstblood {
@@ -2951,7 +3353,15 @@ body {
     font-size: 24px; }
   .EXCOMP--input-address #send-to-input-address.asset-input-golem {
     font-size: 24px; }
+  .EXCOMP--input-address #send-to-input-address.asset-input-iexec {
+    font-size: 24px; }
+  .EXCOMP--input-address #send-to-input-address.asset-input-matchpool {
+    font-size: 24px; }
+  .EXCOMP--input-address #send-to-input-address.asset-input-melonport {
+    font-size: 24px; }
   .EXCOMP--input-address #send-to-input-address.asset-input-metal {
+    font-size: 24px; }
+  .EXCOMP--input-address #send-to-input-address.asset-input-numeraire {
     font-size: 24px; }
   .EXCOMP--input-address #send-to-input-address.asset-input-omisego {
     font-size: 24px; }
@@ -2959,9 +3369,13 @@ body {
     font-size: 24px; }
   .EXCOMP--input-address #send-to-input-address.asset-input-salt {
     font-size: 24px; }
+  .EXCOMP--input-address #send-to-input-address.asset-input-singulardtv {
+    font-size: 24px; }
   .EXCOMP--input-address #send-to-input-address.asset-input-status {
     font-size: 24px; }
   .EXCOMP--input-address #send-to-input-address.asset-input-storj {
+    font-size: 24px; }
+  .EXCOMP--input-address #send-to-input-address.asset-input-wetrust {
     font-size: 24px; }
   .EXCOMP--input-address #send-to-input-address.asset-input-wings {
     font-size: 24px; }
@@ -3080,7 +3494,7 @@ body {
   animation-name: fadeIn;
   animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1); }
 
-.btn-aragon, .btn-augur, .btn-bancor, .btn-bat, .btn-civic, .btn-digix, .btn-district0x, .btn-eos, .btn-firstblood, .btn-funfair, .btn-gnosis, .btn-golem, .btn-metal, .btn-omisego, .btn-qtum, .btn-salt, .btn-status, .btn-storj, .btn-wings, .btn-zerox, .btn-bcash, .btn-bitcoin, .btn-litecoin, .btn-dogecoin, .btn-ethereum, .btn-dash, .btn-factom, .btn-monero, .btn-decred, .btn-ethereumclassic, .btn-ripple, .btn-zcash {
+.btn-aragon, .btn-augur, .btn-bancor, .btn-bat, .btn-bgold, .btn-civic, .btn-digibyte, .btn-digix, .btn-district0x, .btn-edgeless, .btn-eos, .btn-firstblood, .btn-funfair, .btn-gnosis, .btn-golem, .btn-iexec, .btn-matchpool, .btn-melonport, .btn-metal, .btn-numeraire, .btn-omisego, .btn-nem, .btn-neo, .btn-potcoin, .btn-redcoin, .btn-siacoin, .btn-singulardtv, .btn-waves, .btn-qtum, .btn-salt, .btn-status, .btn-storj, .btn-wetrust, .btn-wings, .btn-zerox, .btn-bcash, .btn-bitcoin, .btn-litecoin, .btn-dogecoin, .btn-ethereum, .btn-dash, .btn-factom, .btn-monero, .btn-decred, .btn-ethereumclassic, .btn-ripple, .btn-vertcoin, .btn-zcash {
   margin: 16px;
   width: 180px;
   height: 38px;
@@ -3098,16 +3512,16 @@ body {
   justify-content: center;
   align-items: center;
   border-image-slice: 1; }
-  .disabled.btn-aragon, .disabled.btn-augur, .disabled.btn-bancor, .disabled.btn-bat, .disabled.btn-civic, .disabled.btn-digix, .disabled.btn-district0x, .disabled.btn-eos, .disabled.btn-firstblood, .disabled.btn-funfair, .disabled.btn-gnosis, .disabled.btn-golem, .disabled.btn-metal, .disabled.btn-omisego, .disabled.btn-qtum, .disabled.btn-salt, .disabled.btn-status, .disabled.btn-storj, .disabled.btn-wings, .disabled.btn-zerox, .disabled.btn-bcash, .disabled.btn-bitcoin, .disabled.btn-litecoin, .disabled.btn-dogecoin, .disabled.btn-ethereum, .disabled.btn-dash, .disabled.btn-factom, .disabled.btn-monero, .disabled.btn-decred, .disabled.btn-ethereumclassic, .disabled.btn-ripple, .disabled.btn-zcash {
+  .disabled.btn-aragon, .disabled.btn-augur, .disabled.btn-bancor, .disabled.btn-bat, .disabled.btn-bgold, .disabled.btn-civic, .disabled.btn-digibyte, .disabled.btn-digix, .disabled.btn-district0x, .disabled.btn-edgeless, .disabled.btn-eos, .disabled.btn-firstblood, .disabled.btn-funfair, .disabled.btn-gnosis, .disabled.btn-golem, .disabled.btn-iexec, .disabled.btn-matchpool, .disabled.btn-melonport, .disabled.btn-metal, .disabled.btn-numeraire, .disabled.btn-omisego, .disabled.btn-nem, .disabled.btn-neo, .disabled.btn-potcoin, .disabled.btn-redcoin, .disabled.btn-siacoin, .disabled.btn-singulardtv, .disabled.btn-waves, .disabled.btn-qtum, .disabled.btn-salt, .disabled.btn-status, .disabled.btn-storj, .disabled.btn-wetrust, .disabled.btn-wings, .disabled.btn-zerox, .disabled.btn-bcash, .disabled.btn-bitcoin, .disabled.btn-litecoin, .disabled.btn-dogecoin, .disabled.btn-ethereum, .disabled.btn-dash, .disabled.btn-factom, .disabled.btn-monero, .disabled.btn-decred, .disabled.btn-ethereumclassic, .disabled.btn-ripple, .disabled.btn-vertcoin, .disabled.btn-zcash {
     cursor: not-allowed;
     opacity: 0.4; }
-  .btn-aragon:active, .btn-augur:active, .btn-bancor:active, .btn-bat:active, .btn-civic:active, .btn-digix:active, .btn-district0x:active, .btn-eos:active, .btn-firstblood:active, .btn-funfair:active, .btn-gnosis:active, .btn-golem:active, .btn-metal:active, .btn-omisego:active, .btn-qtum:active, .btn-salt:active, .btn-status:active, .btn-storj:active, .btn-wings:active, .btn-zerox:active, .btn-bcash:active, .btn-bitcoin:active, .btn-litecoin:active, .btn-dogecoin:active, .btn-ethereum:active, .btn-dash:active, .btn-factom:active, .btn-monero:active, .btn-decred:active, .btn-ethereumclassic:active, .btn-ripple:active, .btn-zcash:active {
+  .btn-aragon:active, .btn-augur:active, .btn-bancor:active, .btn-bat:active, .btn-bgold:active, .btn-civic:active, .btn-digibyte:active, .btn-digix:active, .btn-district0x:active, .btn-edgeless:active, .btn-eos:active, .btn-firstblood:active, .btn-funfair:active, .btn-gnosis:active, .btn-golem:active, .btn-iexec:active, .btn-matchpool:active, .btn-melonport:active, .btn-metal:active, .btn-numeraire:active, .btn-omisego:active, .btn-nem:active, .btn-neo:active, .btn-potcoin:active, .btn-redcoin:active, .btn-siacoin:active, .btn-singulardtv:active, .btn-waves:active, .btn-qtum:active, .btn-salt:active, .btn-status:active, .btn-storj:active, .btn-wetrust:active, .btn-wings:active, .btn-zerox:active, .btn-bcash:active, .btn-bitcoin:active, .btn-litecoin:active, .btn-dogecoin:active, .btn-ethereum:active, .btn-dash:active, .btn-factom:active, .btn-monero:active, .btn-decred:active, .btn-ethereumclassic:active, .btn-ripple:active, .btn-vertcoin:active, .btn-zcash:active {
     transform: translateY(1px); }
-  .btn-primary.btn-aragon, .btn-primary.btn-augur, .btn-primary.btn-bancor, .btn-primary.btn-bat, .btn-primary.btn-civic, .btn-primary.btn-digix, .btn-primary.btn-district0x, .btn-primary.btn-eos, .btn-primary.btn-firstblood, .btn-primary.btn-funfair, .btn-primary.btn-gnosis, .btn-primary.btn-golem, .btn-primary.btn-metal, .btn-primary.btn-omisego, .btn-primary.btn-qtum, .btn-primary.btn-salt, .btn-primary.btn-status, .btn-primary.btn-storj, .btn-primary.btn-wings, .btn-primary.btn-zerox, .btn-primary.btn-bcash, .btn-primary.btn-bitcoin, .btn-primary.btn-litecoin, .btn-primary.btn-dogecoin, .btn-primary.btn-ethereum, .btn-primary.btn-dash, .btn-primary.btn-factom, .btn-primary.btn-monero, .btn-primary.btn-decred, .btn-primary.btn-ethereumclassic, .btn-primary.btn-ripple, .btn-primary.btn-zcash {
+  .btn-primary.btn-aragon, .btn-primary.btn-augur, .btn-primary.btn-bancor, .btn-primary.btn-bat, .btn-primary.btn-bgold, .btn-primary.btn-civic, .btn-primary.btn-digibyte, .btn-primary.btn-digix, .btn-primary.btn-district0x, .btn-primary.btn-edgeless, .btn-primary.btn-eos, .btn-primary.btn-firstblood, .btn-primary.btn-funfair, .btn-primary.btn-gnosis, .btn-primary.btn-golem, .btn-primary.btn-iexec, .btn-primary.btn-matchpool, .btn-primary.btn-melonport, .btn-primary.btn-metal, .btn-primary.btn-numeraire, .btn-primary.btn-omisego, .btn-primary.btn-nem, .btn-primary.btn-neo, .btn-primary.btn-potcoin, .btn-primary.btn-redcoin, .btn-primary.btn-siacoin, .btn-primary.btn-singulardtv, .btn-primary.btn-waves, .btn-primary.btn-qtum, .btn-primary.btn-salt, .btn-primary.btn-status, .btn-primary.btn-storj, .btn-primary.btn-wetrust, .btn-primary.btn-wings, .btn-primary.btn-zerox, .btn-primary.btn-bcash, .btn-primary.btn-bitcoin, .btn-primary.btn-litecoin, .btn-primary.btn-dogecoin, .btn-primary.btn-ethereum, .btn-primary.btn-dash, .btn-primary.btn-factom, .btn-primary.btn-monero, .btn-primary.btn-decred, .btn-primary.btn-ethereumclassic, .btn-primary.btn-ripple, .btn-primary.btn-vertcoin, .btn-primary.btn-zcash {
     background-repeat: no-repeat, no-repeat;
     background-position: center right 10px, center;
     background-size: 14px 14px, cover; }
-  .btn-secondary.btn-aragon, .btn-secondary.btn-augur, .btn-secondary.btn-bancor, .btn-secondary.btn-bat, .btn-secondary.btn-civic, .btn-secondary.btn-digix, .btn-secondary.btn-district0x, .btn-secondary.btn-eos, .btn-secondary.btn-firstblood, .btn-secondary.btn-funfair, .btn-secondary.btn-gnosis, .btn-secondary.btn-golem, .btn-secondary.btn-metal, .btn-secondary.btn-omisego, .btn-secondary.btn-qtum, .btn-secondary.btn-salt, .btn-secondary.btn-status, .btn-secondary.btn-storj, .btn-secondary.btn-wings, .btn-secondary.btn-zerox, .btn-secondary.btn-bcash, .btn-secondary.btn-bitcoin, .btn-secondary.btn-litecoin, .btn-secondary.btn-dogecoin, .btn-secondary.btn-ethereum, .btn-secondary.btn-dash, .btn-secondary.btn-factom, .btn-secondary.btn-monero, .btn-secondary.btn-decred, .btn-secondary.btn-ethereumclassic, .btn-secondary.btn-ripple, .btn-secondary.btn-zcash {
+  .btn-secondary.btn-aragon, .btn-secondary.btn-augur, .btn-secondary.btn-bancor, .btn-secondary.btn-bat, .btn-secondary.btn-bgold, .btn-secondary.btn-civic, .btn-secondary.btn-digibyte, .btn-secondary.btn-digix, .btn-secondary.btn-district0x, .btn-secondary.btn-edgeless, .btn-secondary.btn-eos, .btn-secondary.btn-firstblood, .btn-secondary.btn-funfair, .btn-secondary.btn-gnosis, .btn-secondary.btn-golem, .btn-secondary.btn-iexec, .btn-secondary.btn-matchpool, .btn-secondary.btn-melonport, .btn-secondary.btn-metal, .btn-secondary.btn-numeraire, .btn-secondary.btn-omisego, .btn-secondary.btn-nem, .btn-secondary.btn-neo, .btn-secondary.btn-potcoin, .btn-secondary.btn-redcoin, .btn-secondary.btn-siacoin, .btn-secondary.btn-singulardtv, .btn-secondary.btn-waves, .btn-secondary.btn-qtum, .btn-secondary.btn-salt, .btn-secondary.btn-status, .btn-secondary.btn-storj, .btn-secondary.btn-wetrust, .btn-secondary.btn-wings, .btn-secondary.btn-zerox, .btn-secondary.btn-bcash, .btn-secondary.btn-bitcoin, .btn-secondary.btn-litecoin, .btn-secondary.btn-dogecoin, .btn-secondary.btn-ethereum, .btn-secondary.btn-dash, .btn-secondary.btn-factom, .btn-secondary.btn-monero, .btn-secondary.btn-decred, .btn-secondary.btn-ethereumclassic, .btn-secondary.btn-ripple, .btn-secondary.btn-vertcoin, .btn-secondary.btn-zcash {
     background-image: none; }
 
 .btn-aragon {
@@ -3126,9 +3540,17 @@ body {
   background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #ff8800, #e04a05);
   border-color: #ef6803; }
 
+.btn-bgold {
+  background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #ebbf09, #C6A20C);
+  border-color: #ef6803; }
+
 .btn-civic {
   background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #72d972, #2c832c);
   border-color: #4dac4d; }
+
+.btn-digibyte {
+  background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #5e86f0, #18347e);
+  border-color: #096BC7; }
 
 .btn-digix {
   background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #f8d881, #ba8228);
@@ -3137,6 +3559,10 @@ body {
 .btn-district0x {
   background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #b3fcfd, #266567);
   border-color: #6bafb0; }
+
+.btn-edgeless {
+  background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #764496, #533069);
+  border-color: #764496; }
 
 .btn-eos {
   background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #c9d1f6, #444b72);
@@ -3158,13 +3584,57 @@ body {
   background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #02ebf2, #00537d);
   border-color: #0194af; }
 
+.btn-iexec {
+  background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #f8d881, #ba8228);
+  border-color: #d8ab52; }
+
+.btn-matchpool {
+  background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #02ebf2, #00537d);
+  border-color: #0194af; }
+
+.btn-melonport {
+  background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #bfbfbf, #ffffff);
+  border-color: #dddddd; }
+
 .btn-metal {
+  background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #bfbfbf, #ffffff);
+  border-color: #dddddd; }
+
+.btn-numeraire {
   background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #bfbfbf, #ffffff);
   border-color: #dddddd; }
 
 .btn-omisego {
   background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #6cb1ff, #2258ca);
   border-color: #4683e3; }
+
+.btn-nem {
+  background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #35e7ea, #138589);
+  border-color: #47a5ca; }
+
+.btn-neo {
+  background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #79CD03, #99c361);
+  border-color: #89B948; }
+
+.btn-potcoin {
+  background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #30AD5E, #0C7F36);
+  border-color: #4dac4d; }
+
+.btn-redcoin {
+  background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #D11E25, #991419);
+  border-color: #D11E25; }
+
+.btn-siacoin {
+  background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #5beed0, #1a906b);
+  border-color: #40c7a7; }
+
+.btn-singulardtv {
+  background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #ea053a, #920e1e);
+  border-color: #bd0a2c; }
+
+.btn-waves {
+  background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #4f77fc, #2A4AB2);
+  border-color: #4f77fc; }
 
 .btn-qtum {
   background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #72ddfc, #1f709a);
@@ -3182,6 +3652,10 @@ body {
   background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #4eb9ff, #19519c);
   border-color: #3384cd; }
 
+.btn-wetrust {
+  background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #02ebf2, #00537d);
+  border-color: #0194af; }
+
 .btn-wings {
   background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #a9d6e6, #2f515d);
   border-color: #6d95a3; }
@@ -3191,8 +3665,8 @@ body {
   border-color: #c7c7c7; }
 
 .btn-bcash {
-  background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #fcc538, #f7931a);
-  border-color: #e4902a; }
+  background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #99c361, #76A636);
+  border-color: #89B948; }
 
 .btn-bitcoin {
   background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #fcc538, #f7931a);
@@ -3233,6 +3707,10 @@ body {
 .btn-ripple {
   background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #00d4f3, #039ed2);
   border-color: #01d0f1; }
+
+.btn-vertcoin {
+  background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #30AD5E, #0C7F36);
+  border-color: #4dac4d; }
 
 .btn-zcash {
   background-image: url(../svg/icon-send-arrow.svg), linear-gradient(to bottom, #f8d881, #ba8228);
@@ -3591,6 +4069,9 @@ nav.menu--secondary .exodus-color-digix::before {
 nav.menu--secondary .exodus-color-district0x::before {
   background-color: #7CF8FA !important; }
 
+nav.menu--secondary .exodus-color-edgeless::before {
+  background-color: #764496 !important; }
+
 nav.menu--secondary .exodus-color-eos::before {
   background-color: #99A4EA !important; }
 
@@ -3606,8 +4087,20 @@ nav.menu--secondary .exodus-color-gnosis::before {
 nav.menu--secondary .exodus-color-golem::before {
   background-color: #01D3E0 !important; }
 
+nav.menu--secondary .exodus-color-iexec::before {
+  background-color: #F6CD04 !important; }
+
+nav.menu--secondary .exodus-color-matchpool::before {
+  background-color: #37DCD8 !important; }
+
+nav.menu--secondary .exodus-color-melonport::before {
+  background-color: #F1F1F1 !important; }
+
 nav.menu--secondary .exodus-color-metal::before {
   background-color: #FFFFFF !important; }
+
+nav.menu--secondary .exodus-color-numeraire::before {
+  background-color: #F1F1F1 !important; }
 
 nav.menu--secondary .exodus-color-omisego::before {
   background-color: #3A79FF !important; }
@@ -3618,11 +4111,17 @@ nav.menu--secondary .exodus-color-qtum::before {
 nav.menu--secondary .exodus-color-salt::before {
   background-color: #18CAD0 !important; }
 
+nav.menu--secondary .exodus-color-singulardtv::before {
+  background-color: #B30C23 !important; }
+
 nav.menu--secondary .exodus-color-status::before {
   background-color: #5D69BD !important; }
 
 nav.menu--secondary .exodus-color-storj::before {
   background-color: #2683FF !important; }
+
+nav.menu--secondary .exodus-color-wetrust::before {
+  background-color: #63C6BB !important; }
 
 nav.menu--secondary .exodus-color-wings::before {
   background-color: #A9D6E6 !important; }
@@ -3634,22 +4133,13 @@ nav.menu--secondary .exodus-color-flagmoney::before {
   background-color: #FAFAFA !important; }
 
 nav.menu--secondary .exodus-color-bcash::before {
-  background-color: #F27E00 !important; }
+  background-color: #99c361 !important; }
+
+nav.menu--secondary .exodus-color-bgold::before {
+  background-color: #ebbf09 !important; }
 
 nav.menu--secondary .exodus-color-bitcoin::before {
   background-color: #FF9900 !important; }
-
-nav.menu--secondary .exodus-color-litecoin::before {
-  background-color: #AEAEAE !important; }
-
-nav.menu--secondary .exodus-color-dogecoin::before {
-  background-color: #F7BF35 !important; }
-
-nav.menu--secondary .exodus-color-ethereum::before {
-  background-color: #D8D8D8 !important; }
-
-nav.menu--secondary .exodus-color-dash::before {
-  background-color: #278EE5 !important; }
 
 nav.menu--secondary .exodus-color-blackcoin::before {
   background-color: #1C1D1D !important; }
@@ -3657,11 +4147,29 @@ nav.menu--secondary .exodus-color-blackcoin::before {
 nav.menu--secondary .exodus-color-counterparty::before {
   background-color: #ED1650 !important; }
 
-nav.menu--secondary .exodus-color-nubits::before {
-  background-color: #FFC42C !important; }
+nav.menu--secondary .exodus-color-decred::before {
+  background-color: #2ED8A3 !important; }
+
+nav.menu--secondary .exodus-color-dogecoin::before {
+  background-color: #F7BF35 !important; }
+
+nav.menu--secondary .exodus-color-dash::before {
+  background-color: #278EE5 !important; }
+
+nav.menu--secondary .exodus-color-digibyte::before {
+  background-color: #096BC7 !important; }
+
+nav.menu--secondary .exodus-color-ethereum::before {
+  background-color: #D8D8D8 !important; }
+
+nav.menu--secondary .exodus-color-ethereumclassic::before {
+  background-color: #669073 !important; }
 
 nav.menu--secondary .exodus-color-factom::before {
   background-color: #4B90C1 !important; }
+
+nav.menu--secondary .exodus-color-litecoin::before {
+  background-color: #AEAEAE !important; }
 
 nav.menu--secondary .exodus-color-monero::before {
   background-color: #FF6600 !important; }
@@ -3669,20 +4177,38 @@ nav.menu--secondary .exodus-color-monero::before {
 nav.menu--secondary .exodus-color-mastercoin::before {
   background-color: #6DAFDE !important; }
 
+nav.menu--secondary .exodus-color-nem::before {
+  background-color: #2BBAAD !important; }
+
+nav.menu--secondary .exodus-color-neo::before {
+  background-color: #79CD03 !important; }
+
+nav.menu--secondary .exodus-color-nubits::before {
+  background-color: #FFC42C !important; }
+
 nav.menu--secondary .exodus-color-omni::before {
   background-color: #6DAFDE !important; }
+
+nav.menu--secondary .exodus-color-potcoin::before {
+  background-color: #11762F !important; }
+
+nav.menu--secondary .exodus-color-reddcoin::before {
+  background-color: #D11E25 !important; }
+
+nav.menu--secondary .exodus-color-ripple::before {
+  background-color: #00aae4 !important; }
+
+nav.menu--secondary .exodus-color-siacoin::before {
+  background-color: #00cba0 !important; }
 
 nav.menu--secondary .exodus-color-tether::before {
   background-color: #FFC20E !important; }
 
-nav.menu--secondary .exodus-color-decred::before {
-  background-color: #2ED8A3 !important; }
+nav.menu--secondary .exodus-color-waves::before {
+  background-color: #4f77fc !important; }
 
-nav.menu--secondary .exodus-color-ethereumclassic::before {
-  background-color: #669073 !important; }
-
-nav.menu--secondary .exodus-color-ripple::before {
-  background-color: #00aae4 !important; }
+nav.menu--secondary .exodus-color-vertcoin::before {
+  background-color: #30AD5E !important; }
 
 nav.menu--secondary .exodus-color-zcash::before {
   background-color: #FFC20E !important; }
@@ -4078,6 +4604,9 @@ nav.menu--secondary .exodus-color-zcash::before {
         #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-district0x {
           border-color: #7CF8FA !important;
           background: rgba(124, 248, 250, 0.5); }
+        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-edgeless {
+          border-color: #764496 !important;
+          background: rgba(118, 68, 150, 0.5); }
         #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-eos {
           border-color: #99A4EA !important;
           background: rgba(153, 164, 234, 0.5); }
@@ -4093,9 +4622,21 @@ nav.menu--secondary .exodus-color-zcash::before {
         #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-golem {
           border-color: #01D3E0 !important;
           background: rgba(1, 211, 224, 0.5); }
+        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-iexec {
+          border-color: #F6CD04 !important;
+          background: rgba(246, 205, 4, 0.5); }
+        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-matchpool {
+          border-color: #37DCD8 !important;
+          background: rgba(55, 220, 216, 0.5); }
+        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-melonport {
+          border-color: #F1F1F1 !important;
+          background: rgba(241, 241, 241, 0.5); }
         #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-metal {
           border-color: #FFFFFF !important;
           background: rgba(255, 255, 255, 0.5); }
+        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-numeraire {
+          border-color: #F1F1F1 !important;
+          background: rgba(241, 241, 241, 0.5); }
         #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-omisego {
           border-color: #3A79FF !important;
           background: rgba(58, 121, 255, 0.5); }
@@ -4105,12 +4646,18 @@ nav.menu--secondary .exodus-color-zcash::before {
         #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-salt {
           border-color: #18CAD0 !important;
           background: rgba(24, 202, 208, 0.5); }
+        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-singulardtv {
+          border-color: #B30C23 !important;
+          background: rgba(179, 12, 35, 0.5); }
         #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-status {
           border-color: #5D69BD !important;
           background: rgba(93, 105, 189, 0.5); }
         #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-storj {
           border-color: #2683FF !important;
           background: rgba(38, 131, 255, 0.5); }
+        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-wetrust {
+          border-color: #63C6BB !important;
+          background: rgba(99, 198, 187, 0.5); }
         #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-wings {
           border-color: #A9D6E6 !important;
           background: rgba(169, 214, 230, 0.5); }
@@ -4121,56 +4668,83 @@ nav.menu--secondary .exodus-color-zcash::before {
           border-color: #FAFAFA !important;
           background: rgba(250, 250, 250, 0.5); }
         #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-bcash {
-          border-color: #F27E00 !important;
-          background: rgba(242, 126, 0, 0.5); }
+          border-color: #99c361 !important;
+          background: rgba(153, 195, 97, 0.5); }
+        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-bgold {
+          border-color: #ebbf09 !important;
+          background: rgba(235, 191, 9, 0.5); }
         #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-bitcoin {
           border-color: #FF9900 !important;
           background: rgba(255, 153, 0, 0.5); }
-        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-litecoin {
-          border-color: #AEAEAE !important;
-          background: rgba(174, 174, 174, 0.5); }
-        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-dogecoin {
-          border-color: #F7BF35 !important;
-          background: rgba(247, 191, 53, 0.5); }
-        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-ethereum {
-          border-color: #D8D8D8 !important;
-          background: rgba(216, 216, 216, 0.5); }
-        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-dash {
-          border-color: #278EE5 !important;
-          background: rgba(39, 142, 229, 0.5); }
         #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-blackcoin {
           border-color: #1C1D1D !important;
           background: rgba(28, 29, 29, 0.5); }
         #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-counterparty {
           border-color: #ED1650 !important;
           background: rgba(237, 22, 80, 0.5); }
-        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-nubits {
-          border-color: #FFC42C !important;
-          background: rgba(255, 196, 44, 0.5); }
+        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-decred {
+          border-color: #2ED8A3 !important;
+          background: rgba(46, 216, 163, 0.5); }
+        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-dogecoin {
+          border-color: #F7BF35 !important;
+          background: rgba(247, 191, 53, 0.5); }
+        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-dash {
+          border-color: #278EE5 !important;
+          background: rgba(39, 142, 229, 0.5); }
+        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-digibyte {
+          border-color: #096BC7 !important;
+          background: rgba(9, 107, 199, 0.5); }
+        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-ethereum {
+          border-color: #D8D8D8 !important;
+          background: rgba(216, 216, 216, 0.5); }
+        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-ethereumclassic {
+          border-color: #669073 !important;
+          background: rgba(102, 144, 115, 0.5); }
         #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-factom {
           border-color: #4B90C1 !important;
           background: rgba(75, 144, 193, 0.5); }
+        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-litecoin {
+          border-color: #AEAEAE !important;
+          background: rgba(174, 174, 174, 0.5); }
         #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-monero {
           border-color: #FF6600 !important;
           background: rgba(255, 102, 0, 0.5); }
         #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-mastercoin {
           border-color: #6DAFDE !important;
           background: rgba(109, 175, 222, 0.5); }
+        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-nem {
+          border-color: #2BBAAD !important;
+          background: rgba(43, 186, 173, 0.5); }
+        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-neo {
+          border-color: #79CD03 !important;
+          background: rgba(121, 205, 3, 0.5); }
+        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-nubits {
+          border-color: #FFC42C !important;
+          background: rgba(255, 196, 44, 0.5); }
         #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-omni {
           border-color: #6DAFDE !important;
           background: rgba(109, 175, 222, 0.5); }
-        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-tether {
-          border-color: #FFC20E !important;
-          background: rgba(255, 194, 14, 0.5); }
-        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-decred {
-          border-color: #2ED8A3 !important;
-          background: rgba(46, 216, 163, 0.5); }
-        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-ethereumclassic {
-          border-color: #669073 !important;
-          background: rgba(102, 144, 115, 0.5); }
+        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-potcoin {
+          border-color: #11762F !important;
+          background: rgba(17, 118, 47, 0.5); }
+        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-reddcoin {
+          border-color: #D11E25 !important;
+          background: rgba(209, 30, 37, 0.5); }
         #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-ripple {
           border-color: #00aae4 !important;
           background: rgba(0, 170, 228, 0.5); }
+        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-siacoin {
+          border-color: #00cba0 !important;
+          background: rgba(0, 203, 160, 0.5); }
+        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-tether {
+          border-color: #FFC20E !important;
+          background: rgba(255, 194, 14, 0.5); }
+        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-waves {
+          border-color: #4f77fc !important;
+          background: rgba(79, 119, 252, 0.5); }
+        #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-vertcoin {
+          border-color: #30AD5E !important;
+          background: rgba(48, 173, 94, 0.5); }
         #exodus-content-wallet #wallet-coin-detail #wallet-coin-detail-header #wallet-asset-header-logomark .button-color-zcash {
           border-color: #FFC20E !important;
           background: rgba(255, 194, 14, 0.5); }
@@ -6590,6 +7164,9 @@ nav.menu--secondary .exodus-color-zcash::before {
         .modal .ex-window .main form .asset-input-district0x {
           border-color: #7CF8FA !important;
           color: #7CF8FA !important; }
+        .modal .ex-window .main form .asset-input-edgeless {
+          border-color: #764496 !important;
+          color: #764496 !important; }
         .modal .ex-window .main form .asset-input-eos {
           border-color: #99A4EA !important;
           color: #99A4EA !important; }
@@ -6605,9 +7182,21 @@ nav.menu--secondary .exodus-color-zcash::before {
         .modal .ex-window .main form .asset-input-golem {
           border-color: #01D3E0 !important;
           color: #01D3E0 !important; }
+        .modal .ex-window .main form .asset-input-iexec {
+          border-color: #F6CD04 !important;
+          color: #F6CD04 !important; }
+        .modal .ex-window .main form .asset-input-matchpool {
+          border-color: #37DCD8 !important;
+          color: #37DCD8 !important; }
+        .modal .ex-window .main form .asset-input-melonport {
+          border-color: #F1F1F1 !important;
+          color: #F1F1F1 !important; }
         .modal .ex-window .main form .asset-input-metal {
           border-color: #FFFFFF !important;
           color: #FFFFFF !important; }
+        .modal .ex-window .main form .asset-input-numeraire {
+          border-color: #F1F1F1 !important;
+          color: #F1F1F1 !important; }
         .modal .ex-window .main form .asset-input-omisego {
           border-color: #3A79FF !important;
           color: #3A79FF !important; }
@@ -6617,12 +7206,18 @@ nav.menu--secondary .exodus-color-zcash::before {
         .modal .ex-window .main form .asset-input-salt {
           border-color: #18CAD0 !important;
           color: #18CAD0 !important; }
+        .modal .ex-window .main form .asset-input-singulardtv {
+          border-color: #B30C23 !important;
+          color: #B30C23 !important; }
         .modal .ex-window .main form .asset-input-status {
           border-color: #5D69BD !important;
           color: #5D69BD !important; }
         .modal .ex-window .main form .asset-input-storj {
           border-color: #2683FF !important;
           color: #2683FF !important; }
+        .modal .ex-window .main form .asset-input-wetrust {
+          border-color: #63C6BB !important;
+          color: #63C6BB !important; }
         .modal .ex-window .main form .asset-input-wings {
           border-color: #A9D6E6 !important;
           color: #A9D6E6 !important; }
@@ -6633,56 +7228,83 @@ nav.menu--secondary .exodus-color-zcash::before {
           border-color: #FAFAFA !important;
           color: #FAFAFA !important; }
         .modal .ex-window .main form .asset-input-bcash {
-          border-color: #F27E00 !important;
-          color: #F27E00 !important; }
+          border-color: #99c361 !important;
+          color: #99c361 !important; }
+        .modal .ex-window .main form .asset-input-bgold {
+          border-color: #ebbf09 !important;
+          color: #ebbf09 !important; }
         .modal .ex-window .main form .asset-input-bitcoin {
           border-color: #FF9900 !important;
           color: #FF9900 !important; }
-        .modal .ex-window .main form .asset-input-litecoin {
-          border-color: #AEAEAE !important;
-          color: #AEAEAE !important; }
-        .modal .ex-window .main form .asset-input-dogecoin {
-          border-color: #F7BF35 !important;
-          color: #F7BF35 !important; }
-        .modal .ex-window .main form .asset-input-ethereum {
-          border-color: #D8D8D8 !important;
-          color: #D8D8D8 !important; }
-        .modal .ex-window .main form .asset-input-dash {
-          border-color: #278EE5 !important;
-          color: #278EE5 !important; }
         .modal .ex-window .main form .asset-input-blackcoin {
           border-color: #1C1D1D !important;
           color: #1C1D1D !important; }
         .modal .ex-window .main form .asset-input-counterparty {
           border-color: #ED1650 !important;
           color: #ED1650 !important; }
-        .modal .ex-window .main form .asset-input-nubits {
-          border-color: #FFC42C !important;
-          color: #FFC42C !important; }
+        .modal .ex-window .main form .asset-input-decred {
+          border-color: #2ED8A3 !important;
+          color: #2ED8A3 !important; }
+        .modal .ex-window .main form .asset-input-dogecoin {
+          border-color: #F7BF35 !important;
+          color: #F7BF35 !important; }
+        .modal .ex-window .main form .asset-input-dash {
+          border-color: #278EE5 !important;
+          color: #278EE5 !important; }
+        .modal .ex-window .main form .asset-input-digibyte {
+          border-color: #096BC7 !important;
+          color: #096BC7 !important; }
+        .modal .ex-window .main form .asset-input-ethereum {
+          border-color: #D8D8D8 !important;
+          color: #D8D8D8 !important; }
+        .modal .ex-window .main form .asset-input-ethereumclassic {
+          border-color: #669073 !important;
+          color: #669073 !important; }
         .modal .ex-window .main form .asset-input-factom {
           border-color: #4B90C1 !important;
           color: #4B90C1 !important; }
+        .modal .ex-window .main form .asset-input-litecoin {
+          border-color: #AEAEAE !important;
+          color: #AEAEAE !important; }
         .modal .ex-window .main form .asset-input-monero {
           border-color: #FF6600 !important;
           color: #FF6600 !important; }
         .modal .ex-window .main form .asset-input-mastercoin {
           border-color: #6DAFDE !important;
           color: #6DAFDE !important; }
+        .modal .ex-window .main form .asset-input-nem {
+          border-color: #2BBAAD !important;
+          color: #2BBAAD !important; }
+        .modal .ex-window .main form .asset-input-neo {
+          border-color: #79CD03 !important;
+          color: #79CD03 !important; }
+        .modal .ex-window .main form .asset-input-nubits {
+          border-color: #FFC42C !important;
+          color: #FFC42C !important; }
         .modal .ex-window .main form .asset-input-omni {
           border-color: #6DAFDE !important;
           color: #6DAFDE !important; }
-        .modal .ex-window .main form .asset-input-tether {
-          border-color: #FFC20E !important;
-          color: #FFC20E !important; }
-        .modal .ex-window .main form .asset-input-decred {
-          border-color: #2ED8A3 !important;
-          color: #2ED8A3 !important; }
-        .modal .ex-window .main form .asset-input-ethereumclassic {
-          border-color: #669073 !important;
-          color: #669073 !important; }
+        .modal .ex-window .main form .asset-input-potcoin {
+          border-color: #11762F !important;
+          color: #11762F !important; }
+        .modal .ex-window .main form .asset-input-reddcoin {
+          border-color: #D11E25 !important;
+          color: #D11E25 !important; }
         .modal .ex-window .main form .asset-input-ripple {
           border-color: #00aae4 !important;
           color: #00aae4 !important; }
+        .modal .ex-window .main form .asset-input-siacoin {
+          border-color: #00cba0 !important;
+          color: #00cba0 !important; }
+        .modal .ex-window .main form .asset-input-tether {
+          border-color: #FFC20E !important;
+          color: #FFC20E !important; }
+        .modal .ex-window .main form .asset-input-waves {
+          border-color: #4f77fc !important;
+          color: #4f77fc !important; }
+        .modal .ex-window .main form .asset-input-vertcoin {
+          border-color: #30AD5E !important;
+          color: #30AD5E !important; }
         .modal .ex-window .main form .asset-input-zcash {
           border-color: #FFC20E !important;
           color: #FFC20E !important; }
@@ -7019,6 +7641,9 @@ nav.menu--secondary .exodus-color-zcash::before {
   .exodus-card-modal-window .form-color-district0x {
     border-color: #7CF8FA !important;
     color: #7CF8FA !important; }
+  .exodus-card-modal-window .form-color-edgeless {
+    border-color: #764496 !important;
+    color: #764496 !important; }
   .exodus-card-modal-window .form-color-eos {
     border-color: #99A4EA !important;
     color: #99A4EA !important; }
@@ -7034,9 +7659,21 @@ nav.menu--secondary .exodus-color-zcash::before {
   .exodus-card-modal-window .form-color-golem {
     border-color: #01D3E0 !important;
     color: #01D3E0 !important; }
+  .exodus-card-modal-window .form-color-iexec {
+    border-color: #F6CD04 !important;
+    color: #F6CD04 !important; }
+  .exodus-card-modal-window .form-color-matchpool {
+    border-color: #37DCD8 !important;
+    color: #37DCD8 !important; }
+  .exodus-card-modal-window .form-color-melonport {
+    border-color: #F1F1F1 !important;
+    color: #F1F1F1 !important; }
   .exodus-card-modal-window .form-color-metal {
     border-color: #FFFFFF !important;
     color: #FFFFFF !important; }
+  .exodus-card-modal-window .form-color-numeraire {
+    border-color: #F1F1F1 !important;
+    color: #F1F1F1 !important; }
   .exodus-card-modal-window .form-color-omisego {
     border-color: #3A79FF !important;
     color: #3A79FF !important; }
@@ -7046,12 +7683,18 @@ nav.menu--secondary .exodus-color-zcash::before {
   .exodus-card-modal-window .form-color-salt {
     border-color: #18CAD0 !important;
     color: #18CAD0 !important; }
+  .exodus-card-modal-window .form-color-singulardtv {
+    border-color: #B30C23 !important;
+    color: #B30C23 !important; }
   .exodus-card-modal-window .form-color-status {
     border-color: #5D69BD !important;
     color: #5D69BD !important; }
   .exodus-card-modal-window .form-color-storj {
     border-color: #2683FF !important;
     color: #2683FF !important; }
+  .exodus-card-modal-window .form-color-wetrust {
+    border-color: #63C6BB !important;
+    color: #63C6BB !important; }
   .exodus-card-modal-window .form-color-wings {
     border-color: #A9D6E6 !important;
     color: #A9D6E6 !important; }
@@ -7062,56 +7705,83 @@ nav.menu--secondary .exodus-color-zcash::before {
     border-color: #FAFAFA !important;
     color: #FAFAFA !important; }
   .exodus-card-modal-window .form-color-bcash {
-    border-color: #F27E00 !important;
-    color: #F27E00 !important; }
+    border-color: #99c361 !important;
+    color: #99c361 !important; }
+  .exodus-card-modal-window .form-color-bgold {
+    border-color: #ebbf09 !important;
+    color: #ebbf09 !important; }
   .exodus-card-modal-window .form-color-bitcoin {
     border-color: #FF9900 !important;
     color: #FF9900 !important; }
-  .exodus-card-modal-window .form-color-litecoin {
-    border-color: #AEAEAE !important;
-    color: #AEAEAE !important; }
-  .exodus-card-modal-window .form-color-dogecoin {
-    border-color: #F7BF35 !important;
-    color: #F7BF35 !important; }
-  .exodus-card-modal-window .form-color-ethereum {
-    border-color: #D8D8D8 !important;
-    color: #D8D8D8 !important; }
-  .exodus-card-modal-window .form-color-dash {
-    border-color: #278EE5 !important;
-    color: #278EE5 !important; }
   .exodus-card-modal-window .form-color-blackcoin {
     border-color: #1C1D1D !important;
     color: #1C1D1D !important; }
   .exodus-card-modal-window .form-color-counterparty {
     border-color: #ED1650 !important;
     color: #ED1650 !important; }
-  .exodus-card-modal-window .form-color-nubits {
-    border-color: #FFC42C !important;
-    color: #FFC42C !important; }
+  .exodus-card-modal-window .form-color-decred {
+    border-color: #2ED8A3 !important;
+    color: #2ED8A3 !important; }
+  .exodus-card-modal-window .form-color-dogecoin {
+    border-color: #F7BF35 !important;
+    color: #F7BF35 !important; }
+  .exodus-card-modal-window .form-color-dash {
+    border-color: #278EE5 !important;
+    color: #278EE5 !important; }
+  .exodus-card-modal-window .form-color-digibyte {
+    border-color: #096BC7 !important;
+    color: #096BC7 !important; }
+  .exodus-card-modal-window .form-color-ethereum {
+    border-color: #D8D8D8 !important;
+    color: #D8D8D8 !important; }
+  .exodus-card-modal-window .form-color-ethereumclassic {
+    border-color: #669073 !important;
+    color: #669073 !important; }
   .exodus-card-modal-window .form-color-factom {
     border-color: #4B90C1 !important;
     color: #4B90C1 !important; }
+  .exodus-card-modal-window .form-color-litecoin {
+    border-color: #AEAEAE !important;
+    color: #AEAEAE !important; }
   .exodus-card-modal-window .form-color-monero {
     border-color: #FF6600 !important;
     color: #FF6600 !important; }
   .exodus-card-modal-window .form-color-mastercoin {
     border-color: #6DAFDE !important;
     color: #6DAFDE !important; }
+  .exodus-card-modal-window .form-color-nem {
+    border-color: #2BBAAD !important;
+    color: #2BBAAD !important; }
+  .exodus-card-modal-window .form-color-neo {
+    border-color: #79CD03 !important;
+    color: #79CD03 !important; }
+  .exodus-card-modal-window .form-color-nubits {
+    border-color: #FFC42C !important;
+    color: #FFC42C !important; }
   .exodus-card-modal-window .form-color-omni {
     border-color: #6DAFDE !important;
     color: #6DAFDE !important; }
-  .exodus-card-modal-window .form-color-tether {
-    border-color: #FFC20E !important;
-    color: #FFC20E !important; }
-  .exodus-card-modal-window .form-color-decred {
-    border-color: #2ED8A3 !important;
-    color: #2ED8A3 !important; }
-  .exodus-card-modal-window .form-color-ethereumclassic {
-    border-color: #669073 !important;
-    color: #669073 !important; }
+  .exodus-card-modal-window .form-color-potcoin {
+    border-color: #11762F !important;
+    color: #11762F !important; }
+  .exodus-card-modal-window .form-color-reddcoin {
+    border-color: #D11E25 !important;
+    color: #D11E25 !important; }
   .exodus-card-modal-window .form-color-ripple {
     border-color: #00aae4 !important;
     color: #00aae4 !important; }
+  .exodus-card-modal-window .form-color-siacoin {
+    border-color: #00cba0 !important;
+    color: #00cba0 !important; }
+  .exodus-card-modal-window .form-color-tether {
+    border-color: #FFC20E !important;
+    color: #FFC20E !important; }
+  .exodus-card-modal-window .form-color-waves {
+    border-color: #4f77fc !important;
+    color: #4f77fc !important; }
+  .exodus-card-modal-window .form-color-vertcoin {
+    border-color: #30AD5E !important;
+    color: #30AD5E !important; }
   .exodus-card-modal-window .form-color-zcash {
     border-color: #FFC20E !important;
     color: #FFC20E !important; }
@@ -7128,6 +7798,9 @@ nav.menu--secondary .exodus-color-zcash::before {
       .exodus-card-modal-window #receive-action-button-text-info span.hide {
         pointer-events: none;
         display: none; }
+  .exodus-card-modal-window #receive-address-print-info {
+    pointer-events: none;
+    display: none; }
   .exodus-card-modal-window #exodus-wallet-receive-address {
     margin: 0 0 16px 0;
     font-size: 20px;
@@ -7222,6 +7895,9 @@ nav.menu--secondary .exodus-color-zcash::before {
 .icon-district0x {
   background-image: url(../img/logo-district0x@2x.png); }
 
+.icon-edgeless {
+  background-image: url(../img/logo-edgeless@2x.png); }
+
 .icon-eos {
   background-image: url(../img/logo-eos@2x.png); }
 
@@ -7237,8 +7913,20 @@ nav.menu--secondary .exodus-color-zcash::before {
 .icon-golem {
   background-image: url(../img/logo-golem@2x.png); }
 
+.icon-iexec {
+  background-image: url(../img/logo-iexec@2x.png); }
+
+.icon-matchpool {
+  background-image: url(../img/logo-matchpool@2x.png); }
+
+.icon-melonport {
+  background-image: url(../img/logo-melonport@2x.png); }
+
 .icon-metal {
   background-image: url(../img/logo-metal@2x.png); }
+
+.icon-numeraire {
+  background-image: url(../img/logo-numeraire@2x.png); }
 
 .icon-omisego {
   background-image: url(../img/logo-omisego@2x.png); }
@@ -7249,11 +7937,17 @@ nav.menu--secondary .exodus-color-zcash::before {
 .icon-salt {
   background-image: url(../img/logo-salt@2x.png); }
 
+.icon-singulardtv {
+  background-image: url(../img/logo-singulardtv@2x.png); }
+
 .icon-status {
   background-image: url(../img/logo-status@2x.png); }
 
 .icon-storj {
   background-image: url(../img/logo-storj@2x.png); }
+
+.icon-wetrust {
+  background-image: url(../img/logo-wetrust@2x.png); }
 
 .icon-wings {
   background-image: url(../img/logo-wings@2x.png); }
@@ -7267,20 +7961,11 @@ nav.menu--secondary .exodus-color-zcash::before {
 .icon-bcash {
   background-image: url(../img/logo-bcash@2x.png); }
 
+.icon-bgold {
+  background-image: url(../img/logo-bgold@2x.png); }
+
 .icon-bitcoin {
   background-image: url(../img/logo-bitcoin@2x.png); }
-
-.icon-litecoin {
-  background-image: url(../img/logo-litecoin@2x.png); }
-
-.icon-dogecoin {
-  background-image: url(../img/logo-dogecoin@2x.png); }
-
-.icon-ethereum {
-  background-image: url(../img/logo-ethereum@2x.png); }
-
-.icon-dash {
-  background-image: url(../img/logo-dash@2x.png); }
 
 .icon-blackcoin {
   background-image: url(../img/logo-blackcoin@2x.png); }
@@ -7288,11 +7973,29 @@ nav.menu--secondary .exodus-color-zcash::before {
 .icon-counterparty {
   background-image: url(../img/logo-counterparty@2x.png); }
 
-.icon-nubits {
-  background-image: url(../img/logo-nubits@2x.png); }
+.icon-decred {
+  background-image: url(../img/logo-decred@2x.png); }
+
+.icon-dogecoin {
+  background-image: url(../img/logo-dogecoin@2x.png); }
+
+.icon-dash {
+  background-image: url(../img/logo-dash@2x.png); }
+
+.icon-digibyte {
+  background-image: url(../img/logo-digibyte@2x.png); }
+
+.icon-ethereum {
+  background-image: url(../img/logo-ethereum@2x.png); }
+
+.icon-ethereumclassic {
+  background-image: url(../img/logo-ethereumclassic@2x.png); }
 
 .icon-factom {
   background-image: url(../img/logo-factom@2x.png); }
+
+.icon-litecoin {
+  background-image: url(../img/logo-litecoin@2x.png); }
 
 .icon-monero {
   background-image: url(../img/logo-monero@2x.png); }
@@ -7300,20 +8003,38 @@ nav.menu--secondary .exodus-color-zcash::before {
 .icon-mastercoin {
   background-image: url(../img/logo-mastercoin@2x.png); }
 
+.icon-nem {
+  background-image: url(../img/logo-nem@2x.png); }
+
+.icon-neo {
+  background-image: url(../img/logo-neo@2x.png); }
+
+.icon-nubits {
+  background-image: url(../img/logo-nubits@2x.png); }
+
 .icon-omni {
   background-image: url(../img/logo-omni@2x.png); }
+
+.icon-potcoin {
+  background-image: url(../img/logo-potcoin@2x.png); }
+
+.icon-reddcoin {
+  background-image: url(../img/logo-reddcoin@2x.png); }
+
+.icon-ripple {
+  background-image: url(../img/logo-ripple@2x.png); }
+
+.icon-siacoin {
+  background-image: url(../img/logo-siacoin@2x.png); }
 
 .icon-tether {
   background-image: url(../img/logo-tether@2x.png); }
 
-.icon-decred {
-  background-image: url(../img/logo-decred@2x.png); }
+.icon-waves {
+  background-image: url(../img/logo-waves@2x.png); }
 
-.icon-ethereumclassic {
-  background-image: url(../img/logo-ethereumclassic@2x.png); }
-
-.icon-ripple {
-  background-image: url(../img/logo-ripple@2x.png); }
+.icon-vertcoin {
+  background-image: url(../img/logo-vertcoin@2x.png); }
 
 .icon-zcash {
   background-image: url(../img/logo-zcash@2x.png); }
@@ -7339,6 +8060,9 @@ nav.menu--secondary .exodus-color-zcash::before {
 .logo-district0x {
   background-image: url(../img/logo-district0x@2x.png); }
 
+.logo-edgeless {
+  background-image: url(../img/logo-edgeless@2x.png); }
+
 .logo-eos {
   background-image: url(../img/logo-eos@2x.png); }
 
@@ -7354,8 +8078,20 @@ nav.menu--secondary .exodus-color-zcash::before {
 .logo-golem {
   background-image: url(../img/logo-golem@2x.png); }
 
+.logo-iexec {
+  background-image: url(../img/logo-iexec@2x.png); }
+
+.logo-matchpool {
+  background-image: url(../img/logo-matchpool@2x.png); }
+
+.logo-melonport {
+  background-image: url(../img/logo-melonport@2x.png); }
+
 .logo-metal {
   background-image: url(../img/logo-metal@2x.png); }
+
+.logo-numeraire {
+  background-image: url(../img/logo-numeraire@2x.png); }
 
 .logo-omisego {
   background-image: url(../img/logo-omisego@2x.png); }
@@ -7366,11 +8102,17 @@ nav.menu--secondary .exodus-color-zcash::before {
 .logo-salt {
   background-image: url(../img/logo-salt@2x.png); }
 
+.logo-singulardtv {
+  background-image: url(../img/logo-singulardtv@2x.png); }
+
 .logo-status {
   background-image: url(../img/logo-status@2x.png); }
 
 .logo-storj {
   background-image: url(../img/logo-storj@2x.png); }
+
+.logo-wetrust {
+  background-image: url(../img/logo-wetrust@2x.png); }
 
 .logo-wings {
   background-image: url(../img/logo-wings@2x.png); }
@@ -7384,20 +8126,11 @@ nav.menu--secondary .exodus-color-zcash::before {
 .logo-bcash {
   background-image: url(../img/logo-bcash@2x.png); }
 
+.logo-bgold {
+  background-image: url(../img/logo-bgold@2x.png); }
+
 .logo-bitcoin {
   background-image: url(../img/logo-bitcoin@2x.png); }
-
-.logo-litecoin {
-  background-image: url(../img/logo-litecoin@2x.png); }
-
-.logo-dogecoin {
-  background-image: url(../img/logo-dogecoin@2x.png); }
-
-.logo-ethereum {
-  background-image: url(../img/logo-ethereum@2x.png); }
-
-.logo-dash {
-  background-image: url(../img/logo-dash@2x.png); }
 
 .logo-blackcoin {
   background-image: url(../img/logo-blackcoin@2x.png); }
@@ -7405,11 +8138,29 @@ nav.menu--secondary .exodus-color-zcash::before {
 .logo-counterparty {
   background-image: url(../img/logo-counterparty@2x.png); }
 
-.logo-nubits {
-  background-image: url(../img/logo-nubits@2x.png); }
+.logo-decred {
+  background-image: url(../img/logo-decred@2x.png); }
+
+.logo-dogecoin {
+  background-image: url(../img/logo-dogecoin@2x.png); }
+
+.logo-dash {
+  background-image: url(../img/logo-dash@2x.png); }
+
+.logo-digibyte {
+  background-image: url(../img/logo-digibyte@2x.png); }
+
+.logo-ethereum {
+  background-image: url(../img/logo-ethereum@2x.png); }
+
+.logo-ethereumclassic {
+  background-image: url(../img/logo-ethereumclassic@2x.png); }
 
 .logo-factom {
   background-image: url(../img/logo-factom@2x.png); }
+
+.logo-litecoin {
+  background-image: url(../img/logo-litecoin@2x.png); }
 
 .logo-monero {
   background-image: url(../img/logo-monero@2x.png); }
@@ -7417,20 +8168,38 @@ nav.menu--secondary .exodus-color-zcash::before {
 .logo-mastercoin {
   background-image: url(../img/logo-mastercoin@2x.png); }
 
+.logo-nem {
+  background-image: url(../img/logo-nem@2x.png); }
+
+.logo-neo {
+  background-image: url(../img/logo-neo@2x.png); }
+
+.logo-nubits {
+  background-image: url(../img/logo-nubits@2x.png); }
+
 .logo-omni {
   background-image: url(../img/logo-omni@2x.png); }
+
+.logo-potcoin {
+  background-image: url(../img/logo-potcoin@2x.png); }
+
+.logo-reddcoin {
+  background-image: url(../img/logo-reddcoin@2x.png); }
+
+.logo-ripple {
+  background-image: url(../img/logo-ripple@2x.png); }
+
+.logo-siacoin {
+  background-image: url(../img/logo-siacoin@2x.png); }
 
 .logo-tether {
   background-image: url(../img/logo-tether@2x.png); }
 
-.logo-decred {
-  background-image: url(../img/logo-decred@2x.png); }
+.logo-waves {
+  background-image: url(../img/logo-waves@2x.png); }
 
-.logo-ethereumclassic {
-  background-image: url(../img/logo-ethereumclassic@2x.png); }
-
-.logo-ripple {
-  background-image: url(../img/logo-ripple@2x.png); }
+.logo-vertcoin {
+  background-image: url(../img/logo-vertcoin@2x.png); }
 
 .logo-zcash {
   background-image: url(../img/logo-zcash@2x.png); }
@@ -7888,6 +8657,9 @@ nav.menu--secondary .exodus-color-zcash::before {
   display: none; }
 
 .build-eden #exodus-content-help #claim-bch {
+  display: none; }
+
+.build-eden #exodus-content-help #claim-btg {
   display: none; }
 
 .tooltip {

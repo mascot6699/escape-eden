@@ -23,6 +23,70 @@
     return s
 })({
     1: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.NEW_VERSION_DATE = exports.AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_DELAY_INIT = exports.WINDOW_PASSPHRASE_PRELOAD = exports.WINDOW_WALLET = exports.WINDOW_PASSPHRASE = exports.WINDOW_NETWORK = exports.WINDOW_MNEMONIC = exports.WINDOW_MAIN = exports.EXODUS_EXCHANGE_SERVER = exports.EXODUS_EXCHANGE_STAGING_SERVER = exports.EXODUS_EXCHANGE_PRODUCTION_SERVER = exports.EXODUS_EXCHANGE_LOCAL_SERVER = exports.EXODUS_SERVER = exports.EXODUS_STAGING_SERVER = exports.EXODUS_PRODUCTION_SERVER = exports.EXODUS_TESTING_SERVER = exports.EXODUS_LOCAL_SERVER = exports.EXODUS_DISPLAY_NAME = exports.COMPANY = exports.PACKAGE = exports.BITCOIN_FEE_LIMIT = exports.DUST_VALUES = exports.ENV_BUILD_EDEN = exports.ENV_BUILD_EXODUS = exports.ENV_BUILD_NAME = exports.ENV_PROD = exports.ENV_DEV = undefined;
+        var _path = require('path');
+        var _path2 = _interopRequireDefault(_path);
+        var _ms = require('ms');
+        var _ms2 = _interopRequireDefault(_ms);
+        var _package = require(102);
+        var _package2 = _interopRequireDefault(_package);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        const ENV_DEV = exports.ENV_DEV = "production" === 'development';
+        const ENV_PROD = exports.ENV_PROD = "production" === 'production';
+        const ENV_BUILD_NAME = exports.ENV_BUILD_NAME = "eden" || '';
+        const ENV_BUILD_EXODUS = exports.ENV_BUILD_EXODUS = ENV_BUILD_NAME === '';
+        const ENV_BUILD_EDEN = exports.ENV_BUILD_EDEN = ENV_BUILD_NAME === 'eden';
+        const DUST_VALUES = exports.DUST_VALUES = {
+            bitcoin: Math.max(6000, 148 * 125),
+            bcash: 6000,
+            bgold: 6000,
+            litecoin: 60000,
+            dash: 5500,
+            decred: 70000,
+            digibyte: 1000,
+            vertcoin: 20000,
+            zcash: 1500
+        };
+        const BITCOIN_FEE_LIMIT = exports.BITCOIN_FEE_LIMIT = 0.2;
+        const PACKAGE = exports.PACKAGE = _package2.default;
+        const COMPANY = exports.COMPANY = 'Exodus Movement, Inc.';
+        const EXODUS_DISPLAY_NAME = exports.EXODUS_DISPLAY_NAME = "eden" === 'eden' ? 'Eden' : 'Exodus';
+        const EXODUS_LOCAL_SERVER = exports.EXODUS_LOCAL_SERVER = 'http://localhost:3020';
+        const EXODUS_TESTING_SERVER = exports.EXODUS_TESTING_SERVER = 'https://exodus-server-testing.azurewebsites.net';
+        const EXODUS_PRODUCTION_SERVER = exports.EXODUS_PRODUCTION_SERVER = 'https://exodus-server.azurewebsites.net';
+        const EXODUS_STAGING_SERVER = exports.EXODUS_STAGING_SERVER = 'https://exodus-server-staging2.azurewebsites.net';
+        const EXODUS_SERVER = exports.EXODUS_SERVER = EXODUS_PRODUCTION_SERVER;
+        const EXODUS_EXCHANGE_LOCAL_SERVER = exports.EXODUS_EXCHANGE_LOCAL_SERVER = 'http://localhost:3021';
+        const EXODUS_EXCHANGE_PRODUCTION_SERVER = exports.EXODUS_EXCHANGE_PRODUCTION_SERVER = 'https://exodus-exchange.azurewebsites.net';
+        const EXODUS_EXCHANGE_STAGING_SERVER = exports.EXODUS_EXCHANGE_STAGING_SERVER = 'https://exodus-exchange-staging.azurewebsites.net';
+        const EXODUS_EXCHANGE_SERVER = exports.EXODUS_EXCHANGE_SERVER = EXODUS_EXCHANGE_PRODUCTION_SERVER;
+        const htmlPath = file => ENV_PROD ? _path2.default.join(__dirname, '..', '..', '..', 'static', file) : _path2.default.join(__dirname, 'static', file) + '?react_perf';
+        const WINDOW_MAIN = exports.WINDOW_MAIN = 'file://' + htmlPath('index.html');
+        const WINDOW_MNEMONIC = exports.WINDOW_MNEMONIC = 'file://' + htmlPath('mnemonic.html');
+        const WINDOW_NETWORK = exports.WINDOW_NETWORK = 'file://' + htmlPath('network.html');
+        const WINDOW_PASSPHRASE = exports.WINDOW_PASSPHRASE = 'file://' + htmlPath('passphrase.html');
+        const WINDOW_WALLET = exports.WINDOW_WALLET = 'file://' + htmlPath('wallet.html');
+        const preloadPath = proc => ENV_PROD ? _path2.default.join(__dirname, '..', proc, 'preload.js') : _path2.default.join(__dirname, proc, 'preload.js');
+        const WINDOW_PASSPHRASE_PRELOAD = exports.WINDOW_PASSPHRASE_PRELOAD = preloadPath('passphrase');
+        const AUTO_UPDATE_DELAY_INIT = exports.AUTO_UPDATE_DELAY_INIT = 10000;
+        const AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_BASE_URL = 'https://exodusbin.azureedge.net';
+        const timeMs = (parseInt(1516750704853) || Date.now()) + (4 * (0, _ms2.default)('168h') + (0, _ms2.default)('82h'));
+        const NEW_VERSION_DATE = exports.NEW_VERSION_DATE = new Date(timeMs);
+
+    }, {
+        "102": 102,
+        "undefined": undefined
+    }],
+    2: [function(require, module, exports) {
         "use strict";
 
         function includes(item) {
@@ -33,11 +97,11 @@
         };
 
     }, {}],
-    2: [function(require, module, exports) {
+    3: [function(require, module, exports) {
         'use strict';
-        var array = require(1);
-        var object = require(3);
-        var string = require(4);
+        var array = require(2);
+        var object = require(4);
+        var string = require(5);
         Object.keys(array).forEach(key => {
             if (Array.prototype[key]) return;
             Object.defineProperty(Array.prototype, key, {
@@ -67,11 +131,11 @@
         });
 
     }, {
-        "1": 1,
-        "3": 3,
-        "4": 4
+        "2": 2,
+        "4": 4,
+        "5": 5
     }],
-    3: [function(require, module, exports) {
+    4: [function(require, module, exports) {
         "use strict";
 
         function values(obj) {
@@ -84,7 +148,7 @@
         };
 
     }, {}],
-    4: [function(require, module, exports) {
+    5: [function(require, module, exports) {
         'use strict';
 
         function padStart(targetLength, padString) {
@@ -105,9 +169,9 @@
         };
 
     }, {}],
-    5: [function(require, module, exports) {
+    6: [function(require, module, exports) {
         'use strict';
-        var _config = require(75);
+        var _config = require(1);
         var config = _interopRequireWildcard(_config);
 
         function _interopRequireWildcard(obj) {
@@ -127,15 +191,15 @@
         module.exports = config;
 
     }, {
-        "75": 75
+        "1": 1
     }],
-    6: [function(require, module, exports) {
+    7: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.WALLET_DIR = exports.walletDirFromExodusDir = undefined;
-        var _paths = require(97);
+        var _paths = require(101);
         var _paths2 = _interopRequireDefault(_paths);
 
         function _interopRequireDefault(obj) {
@@ -148,9 +212,9 @@
         const WALLET_DIR = exports.WALLET_DIR = _paths.WALLET_DIR;
 
     }, {
-        "97": 97
+        "101": 101
     }],
-    7: [function(require, module, exports) {
+    8: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -165,12 +229,12 @@
         var _wif2 = _interopRequireDefault(_wif);
         var _crypto = require('crypto');
         var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(36);
-        var _aureus = require(25);
-        var _bip44Constants = require(30);
+        var _currencyUnits = require(41);
+        var _aureus = require(30);
+        var _bip44Constants = require(35);
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
         var _events = require('events');
-        var _twoOfTwoMultisig = require(71);
+        var _twoOfTwoMultisig = require(76);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -180,7 +244,7 @@
         const name = exports.name = 'bcash';
         const properName = exports.properName = 'Bitcoin Cash';
         const available = exports.available = true;
-        const defaultEnabled = exports.defaultEnabled = false;
+        const defaultEnabled = exports.defaultEnabled = true;
         const hasMultipleAddresses = exports.hasMultipleAddresses = true;
         const hasUTXO = exports.hasUTXO = true;
         const isAccountBased = exports.isAccountBased = false;
@@ -241,13 +305,13 @@
         });
 
     }, {
-        "25": 25,
         "30": 30,
-        "36": 36,
-        "71": 71,
+        "35": 35,
+        "41": 41,
+        "76": 76,
         "undefined": undefined
     }],
-    8: [function(require, module, exports) {
+    9: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -262,9 +326,9 @@
         var _wif2 = _interopRequireDefault(_wif);
         var _crypto = require('crypto');
         var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(36);
-        var _aureus = require(25);
-        var _bip44Constants = require(30);
+        var _currencyUnits = require(41);
+        var _aureus = require(30);
+        var _bip44Constants = require(35);
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
         var _events = require('events');
 
@@ -333,12 +397,187 @@
         };
 
     }, {
-        "25": 25,
         "30": 30,
-        "36": 36,
+        "35": 35,
+        "41": 41,
         "undefined": undefined
     }],
-    9: [function(require, module, exports) {
+    10: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        var _coininfo = require('coininfo');
+        var _coininfo2 = _interopRequireDefault(_coininfo);
+        var _bs58check = require('bs58check');
+        var _bs58check2 = _interopRequireDefault(_bs58check);
+        var _wif = require('wif');
+        var _wif2 = _interopRequireDefault(_wif);
+        var _crypto = require('crypto');
+        var _crypto2 = _interopRequireDefault(_crypto);
+        var _currencyUnits = require(41);
+        var _aureus = require(30);
+        var _bip44Constants = require(35);
+        var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
+        var _twoOfTwoMultisig = require(76);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        const name = exports.name = 'bgold';
+        const properName = exports.properName = 'Bitcoin Gold';
+        const available = exports.available = true;
+        const defaultEnabled = exports.defaultEnabled = true;
+        const hasMultipleAddresses = exports.hasMultipleAddresses = true;
+        const hasUTXO = exports.hasUTXO = true;
+        const isAccountBased = exports.isAccountBased = false;
+        const isEthereumToken = exports.isEthereumToken = false;
+        const isOmniProperty = exports.isOmniProperty = false;
+        const currency = exports.currency = _aureus.UnitType.create(name, _currencyUnits.cryptoCurrency, {
+            satoshis: 0,
+            BTG: 8
+        }, 'BTG');
+        const displayUnit = exports.displayUnit = 'BTG';
+        const shapeShiftUnit = exports.shapeShiftUnit = 'btg';
+        const units = exports.units = ['BTG'];
+        const feePerKB = exports.feePerKB = currency.satoshis(1000);
+        const address = exports.address = {
+            versions: {
+                p2pkh: (0, _coininfo2.default)(properName).versions.public,
+                p2sh: (0, _coininfo2.default)(properName).versions.scripthash
+            },
+            isP2PKH(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
+            },
+            isP2SH(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
+            },
+            validate(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+            }
+        };
+        const bip44 = exports.bip44 = _bip44Constants2.default[name];
+        const keys = exports.keys = {
+            encodePrivate(privateKey) {
+                const versions = (0, _coininfo2.default)(properName).versions;
+                return _wif2.default.encode(versions.private, privateKey, true);
+            },
+            encodePublic(publicKey) {
+                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
+                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
+                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
+                return _bs58check2.default.encode(payload);
+            }
+        };
+        const blockExplorer = exports.blockExplorer = {
+            addressUrl: address => `https://explorer.bitcoingold.org/insight/address/${address}`,
+            txUrl: txId => `https://explorer.bitcoingold.org/insight/tx/${txId}`
+        };
+        const twoOfTwo = exports.twoOfTwo = (0, _twoOfTwoMultisig.alice)({
+            network: (0, _coininfo2.default)(properName)
+        });
+
+    }, {
+        "30": 30,
+        "35": 35,
+        "41": 41,
+        "76": 76,
+        "undefined": undefined
+    }],
+    11: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        var _coininfo = require('coininfo');
+        var _coininfo2 = _interopRequireDefault(_coininfo);
+        var _bs58check = require('bs58check');
+        var _bs58check2 = _interopRequireDefault(_bs58check);
+        var _wif = require('wif');
+        var _wif2 = _interopRequireDefault(_wif);
+        var _crypto = require('crypto');
+        var _crypto2 = _interopRequireDefault(_crypto);
+        var _currencyUnits = require(41);
+        var _aureus = require(30);
+        var _bip44Constants = require(35);
+        var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
+        var _twoOfTwoMultisig = require(76);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        const name = exports.name = 'bgoldclaim';
+        const properName = exports.properName = 'Bitcoin Gold Claim';
+        const available = exports.available = false;
+        const defaultEnabled = exports.defaultEnabled = true;
+        const hasMultipleAddresses = exports.hasMultipleAddresses = true;
+        const hasUTXO = exports.hasUTXO = true;
+        const isAccountBased = exports.isAccountBased = false;
+        const isEthereumToken = exports.isEthereumToken = false;
+        const isOmniProperty = exports.isOmniProperty = false;
+        const currency = exports.currency = _aureus.UnitType.create(name, _currencyUnits.cryptoCurrency, {
+            satoshis: 0,
+            BTG: 8
+        }, 'BTG');
+        const displayUnit = exports.displayUnit = 'BTG';
+        const units = exports.units = ['BTG'];
+        const feePerKB = exports.feePerKB = currency.satoshis(1000);
+        const address = exports.address = {
+            versions: {
+                p2pkh: (0, _coininfo2.default)('Bitcoin Gold').versions.public,
+                p2sh: (0, _coininfo2.default)('Bitcoin Gold').versions.scripthash
+            },
+            isP2PKH(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
+            },
+            isP2SH(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
+            },
+            validate(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+            }
+        };
+        const bip44 = exports.bip44 = _bip44Constants2.default['bitcoin'];
+        const keys = exports.keys = {
+            encodePrivate(privateKey) {
+                const versions = (0, _coininfo2.default)('bitcoin').versions;
+                return _wif2.default.encode(versions.private, privateKey, true);
+            },
+            encodePublic(publicKey) {
+                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
+                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
+                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
+                return _bs58check2.default.encode(payload);
+            }
+        };
+        const blockExplorer = exports.blockExplorer = {
+            addressUrl: address => `https://explorer.bitcoingold.org/insight/address/${address}`,
+            txUrl: txId => `https://explorer.bitcoingold.org/insight/tx/${txId}`
+        };
+        const twoOfTwo = exports.twoOfTwo = (0, _twoOfTwoMultisig.alice)({
+            network: (0, _coininfo2.default)(properName)
+        });
+
+    }, {
+        "30": 30,
+        "35": 35,
+        "41": 41,
+        "76": 76,
+        "undefined": undefined
+    }],
+    12: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -353,12 +592,12 @@
         var _wif2 = _interopRequireDefault(_wif);
         var _crypto = require('crypto');
         var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(36);
-        var _aureus = require(25);
-        var _bip44Constants = require(30);
+        var _currencyUnits = require(41);
+        var _aureus = require(30);
+        var _bip44Constants = require(35);
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
         var _events = require('events');
-        var _twoOfTwoMultisig = require(71);
+        var _twoOfTwoMultisig = require(76);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -431,13 +670,13 @@
         });
 
     }, {
-        "25": 25,
         "30": 30,
-        "36": 36,
-        "71": 71,
+        "35": 35,
+        "41": 41,
+        "76": 76,
         "undefined": undefined
     }],
-    10: [function(require, module, exports) {
+    13: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -448,8 +687,8 @@
         var bitcore = _interopRequireWildcard(_bitcoreLib);
         var _ethereumjsUtil = require('ethereumjs-util');
         var _ethereumjsUtil2 = _interopRequireDefault(_ethereumjsUtil);
-        var _util = require(37);
-        var _ = require(9);
+        var _util = require(42);
+        var _ = require(12);
         var bitcoin = _interopRequireWildcard(_);
 
         function _interopRequireDefault(obj) {
@@ -518,11 +757,11 @@
         }
 
     }, {
-        "37": 37,
-        "9": 9,
+        "12": 12,
+        "42": 42,
         "undefined": undefined
     }],
-    11: [function(require, module, exports) {
+    14: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -534,13 +773,13 @@
         var _bs58check2 = _interopRequireDefault(_bs58check);
         var _wif = require('wif');
         var _wif2 = _interopRequireDefault(_wif);
-        var _aureus = require(25);
+        var _aureus = require(30);
         var _crypto = require('crypto');
         var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(36);
-        var _bip44Constants = require(30);
+        var _currencyUnits = require(41);
+        var _bip44Constants = require(35);
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
-        var _twoOfTwoMultisig = require(71);
+        var _twoOfTwoMultisig = require(76);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -563,7 +802,7 @@
         const displayUnit = exports.displayUnit = 'DASH';
         const shapeShiftUnit = exports.shapeShiftUnit = 'dash';
         const units = exports.units = ['DASH'];
-        const feePerKB = exports.feePerKB = currency.duffs(10000);
+        const feePerKB = exports.feePerKB = currency.duffs(1000);
         const address = exports.address = {
             versions: {
                 p2pkh: (0, _coininfo2.default)(name).versions.public,
@@ -604,13 +843,13 @@
         });
 
     }, {
-        "25": 25,
         "30": 30,
-        "36": 36,
-        "71": 71,
+        "35": 35,
+        "41": 41,
+        "76": 76,
         "undefined": undefined
     }],
-    12: [function(require, module, exports) {
+    15: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -618,15 +857,15 @@
         exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         var _coininfo = require('coininfo');
         var _coininfo2 = _interopRequireDefault(_coininfo);
-        var _aureus = require(25);
+        var _aureus = require(30);
         var _crypto = require('crypto');
         var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(36);
+        var _currencyUnits = require(41);
         var _blakeHash = require('blake-hash');
         var _blakeHash2 = _interopRequireDefault(_blakeHash);
-        var _bs58checkBlake = require(32);
+        var _bs58checkBlake = require(37);
         var _bs58checkBlake2 = _interopRequireDefault(_bs58checkBlake);
-        var _bip44Constants = require(30);
+        var _bip44Constants = require(35);
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
 
         function _interopRequireDefault(obj) {
@@ -692,13 +931,103 @@
         };
 
     }, {
-        "25": 25,
         "30": 30,
-        "32": 32,
-        "36": 36,
+        "35": 35,
+        "37": 37,
+        "41": 41,
         "undefined": undefined
     }],
-    13: [function(require, module, exports) {
+    16: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        var _appConfig = require(6);
+        var _coininfo = require('coininfo');
+        var _coininfo2 = _interopRequireDefault(_coininfo);
+        var _bs58check = require('bs58check');
+        var _bs58check2 = _interopRequireDefault(_bs58check);
+        var _wif = require('wif');
+        var _wif2 = _interopRequireDefault(_wif);
+        var _aureus = require(30);
+        var _crypto = require('crypto');
+        var _crypto2 = _interopRequireDefault(_crypto);
+        var _currencyUnits = require(41);
+        var _bip44Constants = require(35);
+        var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
+        var _twoOfTwoMultisig = require(76);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        const name = exports.name = 'digibyte';
+        const properName = exports.properName = 'DigiByte';
+        const available = exports.available = _appConfig.ENV_DEV || _appConfig.ENV_BUILD_EDEN;
+        const defaultEnabled = exports.defaultEnabled = false;
+        const hasMultipleAddresses = exports.hasMultipleAddresses = true;
+        const hasUTXO = exports.hasUTXO = true;
+        const isAccountBased = exports.isAccountBased = false;
+        const isEthereumToken = exports.isEthereumToken = false;
+        const isOmniProperty = exports.isOmniProperty = false;
+        const currency = exports.currency = _aureus.UnitType.create(name, _currencyUnits.cryptoCurrency, {
+            satoshis: 0,
+            DGB: 8
+        }, 'DGB');
+        const displayUnit = exports.displayUnit = 'DGB';
+        const shapeShiftUnit = exports.shapeShiftUnit = 'dgb';
+        const units = exports.units = ['DGB'];
+        const feePerKB = exports.feePerKB = currency.satoshis(225000);
+        const address = exports.address = {
+            versions: {
+                p2pkh: (0, _coininfo2.default)(name).versions.public,
+                p2sh: (0, _coininfo2.default)(name).versions.scripthash
+            },
+            isP2PKH(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
+            },
+            isP2SH(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
+            },
+            validate(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+            }
+        };
+        const bip44 = exports.bip44 = _bip44Constants2.default[name];
+        const keys = exports.keys = {
+            encodePrivate(privateKey) {
+                const versions = (0, _coininfo2.default)(name).versions;
+                return _wif2.default.encode(versions.private, privateKey, true);
+            },
+            encodePublic(publicKey) {
+                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
+                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
+                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
+                return _bs58check2.default.encode(payload);
+            }
+        };
+        const blockExplorer = exports.blockExplorer = {
+            addressUrl: address => `https://digiexplorer.info/address/${address}`,
+            txUrl: txId => `https://digiexplorer.info/tx/${txId}`
+        };
+        const twoOfTwo = exports.twoOfTwo = (0, _twoOfTwoMultisig.alice)({
+            network: (0, _coininfo2.default)(name)
+        });
+
+    }, {
+        "30": 30,
+        "35": 35,
+        "41": 41,
+        "6": 6,
+        "76": 76,
+        "undefined": undefined
+    }],
+    17: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -706,19 +1035,19 @@
         exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.gasPriceEvents = exports.fee = exports.gasPrice = exports.gasContract = exports.gasTx = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         exports.getFee = getFee;
         exports.setGasPrice = setGasPrice;
-        var _currencyUnits = require(36);
-        var _aureus = require(25);
-        var _etherscan = require(48);
+        var _currencyUnits = require(41);
+        var _aureus = require(30);
+        var _etherscan = require(53);
         var etherscan = _interopRequireWildcard(_etherscan);
-        var _exodusEthereumServer = require(53);
-        var _bip44Constants = require(30);
+        var _exodusEthereumServer = require(58);
+        var _bip44Constants = require(35);
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
         var _ethereumjsUtil = require('ethereumjs-util');
         var _ethereumjsUtil2 = _interopRequireDefault(_ethereumjsUtil);
         var _events = require('events');
-        var _memoizeLruCache = require(57);
+        var _memoizeLruCache = require(62);
         var _memoizeLruCache2 = _interopRequireDefault(_memoizeLruCache);
-        var _twoOfTwoEcdsaThreshold = require(67);
+        var _twoOfTwoEcdsaThreshold = require(72);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -845,16 +1174,16 @@
         });
 
     }, {
-        "25": 25,
         "30": 30,
-        "36": 36,
-        "48": 48,
+        "35": 35,
+        "41": 41,
         "53": 53,
-        "57": 57,
-        "67": 67,
+        "58": 58,
+        "62": 62,
+        "72": 72,
         "undefined": undefined
     }],
-    14: [function(require, module, exports) {
+    18: [function(require, module, exports) {
         module.exports = [{
                 "name": "aragon",
                 "properName": "Aragon",
@@ -936,6 +1265,17 @@
                 }
             },
             {
+                "name": "edgeless",
+                "properName": "Edgeless",
+                "decimals": 0,
+                "displayUnit": "EDG",
+                "shapeShiftUnit": "edg",
+                "blockExplorer": "Edgeless",
+                "addresses": {
+                    "current": "0x08711D3B02C8758F2FB3ab4e80228418a7F8e39c"
+                }
+            },
+            {
                 "name": "eos",
                 "properName": "EOS",
                 "decimals": 18,
@@ -991,6 +1331,39 @@
                 }
             },
             {
+                "name": "iexec",
+                "properName": "iExec RLC",
+                "decimals": 9,
+                "displayUnit": "RLC",
+                "shapeShiftUnit": "rlc",
+                "blockExplorer": "iExec RLC",
+                "addresses": {
+                    "current": "0x607F4C5BB672230e8672085532f7e901544a7375"
+                }
+            },
+            {
+                "name": "matchpool",
+                "properName": "Matchpool",
+                "decimals": 3,
+                "displayUnit": "GUP",
+                "shapeShiftUnit": "gup",
+                "blockExplorer": "Matchpool",
+                "addresses": {
+                    "current": "0xf7B098298f7C69Fc14610bf71d5e02c60792894C"
+                }
+            },
+            {
+                "name": "melonport",
+                "properName": "Melonport",
+                "decimals": 18,
+                "displayUnit": "MLN",
+                "shapeShiftUnit": "mln",
+                "blockExplorer": "Melonport",
+                "addresses": {
+                    "current": "0xBEB9eF514a379B997e0798FDcC901Ee474B6D9A1"
+                }
+            },
+            {
                 "name": "metal",
                 "properName": "Metal",
                 "decimals": 8,
@@ -999,6 +1372,17 @@
                 "blockExplorer": "Metal",
                 "addresses": {
                     "current": "0xF433089366899D83a9f26A773D59ec7eCF30355e"
+                }
+            },
+            {
+                "name": "numeraire",
+                "properName": "Numeraire",
+                "decimals": 18,
+                "displayUnit": "NMR",
+                "shapeShiftUnit": "nmr",
+                "blockExplorer": "Numeraire",
+                "addresses": {
+                    "current": "0x1776e1F26f98b1A5dF9cD347953a26dd3Cb46671"
                 }
             },
             {
@@ -1035,6 +1419,16 @@
                 }
             },
             {
+                "name": "singulardtv",
+                "properName": "SingularDTV",
+                "decimals": 0,
+                "displayUnit": "SNGLS",
+                "shapeShiftUnit": "sngls",
+                "addresses": {
+                    "current": "0xaeC2E87E0A235266D9C5ADc9DEb4b2E29b54D009"
+                }
+            },
+            {
                 "name": "status",
                 "properName": "Status",
                 "decimals": 18,
@@ -1050,10 +1444,21 @@
                 "properName": "Storj",
                 "decimals": 8,
                 "displayUnit": "STORJ",
-                "shapeShiftUnit": "",
+                "shapeShiftUnit": "storj",
                 "blockExplorer": "Storj",
                 "addresses": {
                     "current": "0xB64ef51C888972c908CFacf59B47C1AfBC0Ab8aC"
+                }
+            },
+            {
+                "name": "wetrust",
+                "properName": "WeTrust",
+                "decimals": 6,
+                "displayUnit": "TRST",
+                "shapeShiftUnit": "trst",
+                "blockExplorer": "WeTrust",
+                "addresses": {
+                    "current": "0xCb94be6f13A1182E4A4B6140cb7bf2025d28e41B"
                 }
             },
             {
@@ -1081,20 +1486,20 @@
         ]
 
     }, {}],
-    15: [function(require, module, exports) {
+    19: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _appConfig = require(5);
-        var _aureus = require(25);
-        var _currencyUnits = require(36);
-        var _util = require(37);
+        var _appConfig = require(6);
+        var _aureus = require(30);
+        var _currencyUnits = require(41);
+        var _util = require(42);
         var _ethereumjsUtil = require('ethereumjs-util');
         var _ethereumjsUtil2 = _interopRequireDefault(_ethereumjsUtil);
-        var _ = require(13);
+        var _ = require(17);
         var ethereum = _interopRequireWildcard(_);
-        var _tokens = require(14);
+        var _tokens = require(18);
         var _tokens2 = _interopRequireDefault(_tokens);
 
         function _interopRequireWildcard(obj) {
@@ -1117,8 +1522,8 @@
                 default: obj
             };
         }
-        const listExodus = ['aragon', 'augur', 'bat', 'civic', 'district0x', 'eos', 'funfair', 'gnosis', 'golem', 'omisego', 'qtum', 'salt'];
-        const listDefaultEnabled = ['aragon', 'augur', 'bat', 'civic', 'district0x', 'eos', 'funfair', 'gnosis', 'golem', 'omisego', 'salt'];
+        const listExodus = ['aragon', 'augur', 'bancor', 'bat', 'civic', 'district0x', 'edgeless', 'eos', 'firstblood', 'funfair', 'gnosis', 'golem', 'iexec', 'matchpool', 'numeraire', 'omisego', 'qtum', 'salt', 'status', 'wetrust', 'wings', 'zerox'];
+        const listDefaultEnabled = ['augur', 'bancor', 'bat', 'civic', 'edgeless', 'eos', 'funfair', 'gnosis', 'golem', 'iexec', 'matchpool', 'omisego', 'salt', 'status', 'zerox'];
         const gasTx = 120e3;
         const tokenTemplate = {
             hasMultipleAddresses: false,
@@ -1191,15 +1596,15 @@
         });
 
     }, {
-        "13": 13,
-        "14": 14,
-        "25": 25,
-        "36": 36,
-        "37": 37,
-        "5": 5,
+        "17": 17,
+        "18": 18,
+        "30": 30,
+        "41": 41,
+        "42": 42,
+        "6": 6,
         "undefined": undefined
     }],
-    16: [function(require, module, exports) {
+    20: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -1207,19 +1612,19 @@
         exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.gasPriceEvents = exports.fee = exports.gasPrice = exports.gasContract = exports.gasTx = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         exports.getFee = getFee;
         exports.setGasPrice = setGasPrice;
-        var _currencyUnits = require(36);
-        var _aureus = require(25);
-        var _etcchain = require(46);
+        var _currencyUnits = require(41);
+        var _aureus = require(30);
+        var _etcchain = require(51);
         var etcchain = _interopRequireWildcard(_etcchain);
-        var _exodusEthereumServer = require(53);
-        var _bip44Constants = require(30);
+        var _exodusEthereumServer = require(58);
+        var _bip44Constants = require(35);
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
         var _events = require('events');
-        var _ethereum = require(13);
+        var _ethereum = require(17);
         var ethereum = _interopRequireWildcard(_ethereum);
-        var _memoizeLruCache = require(57);
+        var _memoizeLruCache = require(62);
         var _memoizeLruCache2 = _interopRequireDefault(_memoizeLruCache);
-        var _twoOfTwoEcdsaThreshold = require(67);
+        var _twoOfTwoEcdsaThreshold = require(72);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -1335,27 +1740,27 @@
         });
 
     }, {
-        "13": 13,
-        "25": 25,
+        "17": 17,
         "30": 30,
-        "36": 36,
-        "46": 46,
-        "53": 53,
-        "57": 57,
-        "67": 67,
+        "35": 35,
+        "41": 41,
+        "51": 51,
+        "58": 58,
+        "62": 62,
+        "72": 72,
         "undefined": undefined
     }],
-    17: [function(require, module, exports) {
+    21: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.fee = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         exports.setNewECRate = setNewECRate;
-        var _appConfig = require(5);
-        var _aureus = require(25);
-        var _currencyUnits = require(36);
-        var _bip44Constants = require(30);
+        var _appConfig = require(6);
+        var _aureus = require(30);
+        var _currencyUnits = require(41);
+        var _bip44Constants = require(35);
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
         var _factomjsLib = require('factomjs-lib');
         var _factomjsLib2 = _interopRequireDefault(_factomjsLib);
@@ -1408,46 +1813,54 @@
         };
 
     }, {
-        "25": 25,
         "30": 30,
-        "36": 36,
-        "5": 5,
+        "35": 35,
+        "41": 41,
+        "6": 6,
         "undefined": undefined
     }],
-    18: [function(require, module, exports) {
+    22: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _bcash = require(7);
+        var _bcash = require(8);
         var bcash = _interopRequireWildcard(_bcash);
-        var _bcashclaim = require(8);
+        var _bcashclaim = require(9);
         var bcashclaim = _interopRequireWildcard(_bcashclaim);
-        var _bitcoin = require(9);
+        var _bgold = require(10);
+        var bgold = _interopRequireWildcard(_bgold);
+        var _bgoldclaim = require(11);
+        var bgoldclaim = _interopRequireWildcard(_bgoldclaim);
+        var _bitcoin = require(12);
         var bitcoin = _interopRequireWildcard(_bitcoin);
-        var _dash = require(11);
+        var _dash = require(14);
         var dash = _interopRequireWildcard(_dash);
-        var _decred = require(12);
+        var _decred = require(15);
         var decred = _interopRequireWildcard(_decred);
-        var _ethereum = require(13);
+        var _digibyte = require(16);
+        var digibyte = _interopRequireWildcard(_digibyte);
+        var _ethereum = require(17);
         var ethereum = _interopRequireWildcard(_ethereum);
-        var _ethereumclassic = require(16);
+        var _ethereumclassic = require(20);
         var ethereumclassic = _interopRequireWildcard(_ethereumclassic);
-        var _factom = require(17);
+        var _factom = require(21);
         var factom = _interopRequireWildcard(_factom);
-        var _litecoin = require(19);
+        var _litecoin = require(23);
         var litecoin = _interopRequireWildcard(_litecoin);
-        var _monero = require(20);
+        var _monero = require(24);
         var monero = _interopRequireWildcard(_monero);
-        var _ripple = require(21);
+        var _ripple = require(25);
         var ripple = _interopRequireWildcard(_ripple);
-        var _zcash = require(23);
+        var _vertcoin = require(27);
+        var vertcoin = _interopRequireWildcard(_vertcoin);
+        var _zcash = require(28);
         var zcash = _interopRequireWildcard(_zcash);
-        var _tokens = require(15);
+        var _tokens = require(19);
         var _tokens2 = _interopRequireDefault(_tokens);
-        var _tether = require(22);
+        var _tether = require(26);
         var tether = _interopRequireWildcard(_tether);
 
         function _interopRequireDefault(obj) {
@@ -1470,33 +1883,37 @@
                 return newObj;
             }
         }
-        const assets = [bcash, bcashclaim, bitcoin, dash, decred, ethereum, ethereumclassic, factom, litecoin, monero, ripple, zcash];
+        const assets = [bcash, bcashclaim, bgold, bgoldclaim, bitcoin, dash, decred, digibyte, ethereum, ethereumclassic, factom, litecoin, monero, ripple, vertcoin, zcash];
         assets.push(..._tokens2.default);
         assets.push(tether);
-        exports.default = lodash.sortBy(assets, 'properName').reduce((obj, asset) => {
+        exports.default = lodash.sortBy(assets, [asset => asset.properName.toLowerCase()]).reduce((obj, asset) => {
             return Object.assign(obj, {
                 [asset.name]: asset
             });
         }, {});
 
     }, {
+        "10": 10,
         "11": 11,
         "12": 12,
-        "13": 13,
+        "14": 14,
         "15": 15,
         "16": 16,
         "17": 17,
         "19": 19,
         "20": 20,
         "21": 21,
-        "22": 22,
         "23": 23,
-        "7": 7,
+        "24": 24,
+        "25": 25,
+        "26": 26,
+        "27": 27,
+        "28": 28,
         "8": 8,
         "9": 9,
         "undefined": undefined
     }],
-    19: [function(require, module, exports) {
+    23: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -1510,11 +1927,11 @@
         var _wif2 = _interopRequireDefault(_wif);
         var _crypto = require('crypto');
         var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(36);
-        var _aureus = require(25);
-        var _bip44Constants = require(30);
+        var _currencyUnits = require(41);
+        var _aureus = require(30);
+        var _bip44Constants = require(35);
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
-        var _twoOfTwoMultisig = require(71);
+        var _twoOfTwoMultisig = require(76);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -1578,24 +1995,24 @@
         });
 
     }, {
-        "25": 25,
         "30": 30,
-        "36": 36,
-        "71": 71,
+        "35": 35,
+        "41": 41,
+        "76": 76,
         "undefined": undefined
     }],
-    20: [function(require, module, exports) {
+    24: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.fee = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
-        var _appConfig = require(5);
-        var _aureus = require(25);
-        var _currencyUnits = require(36);
-        var _bip44Constants = require(30);
+        var _appConfig = require(6);
+        var _aureus = require(30);
+        var _currencyUnits = require(41);
+        var _bip44Constants = require(35);
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
-        var _monerojsUtil = require(61);
+        var _monerojsUtil = require(66);
         var moneroUtil = _interopRequireWildcard(_monerojsUtil);
 
         function _interopRequireWildcard(obj) {
@@ -1620,7 +2037,7 @@
         }
         const name = exports.name = 'monero';
         const properName = exports.properName = 'Monero';
-        const available = exports.available = true;
+        const available = exports.available = _appConfig.ENV_DEV;
         const defaultEnabled = exports.defaultEnabled = true;
         const hasMultipleAddresses = exports.hasMultipleAddresses = false;
         const hasUTXO = exports.hasUTXO = true;
@@ -1660,27 +2077,27 @@
         };
 
     }, {
-        "25": 25,
         "30": 30,
-        "36": 36,
-        "5": 5,
-        "61": 61
+        "35": 35,
+        "41": 41,
+        "6": 6,
+        "66": 66
     }],
-    21: [function(require, module, exports) {
+    25: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.accountReserve = exports.fee = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         exports.setFee = setFee;
-        var _appConfig = require(5);
+        var _appConfig = require(6);
         var _rippleAddressCodec = require('ripple-address-codec');
         var _rippleAddressCodec2 = _interopRequireDefault(_rippleAddressCodec);
-        var _currencyUnits = require(36);
-        var _aureus = require(25);
-        var _bip44Constants = require(30);
+        var _currencyUnits = require(41);
+        var _aureus = require(30);
+        var _bip44Constants = require(35);
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
-        var _address = require(62);
+        var _address = require(67);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -1728,20 +2145,20 @@
         };
 
     }, {
-        "25": 25,
         "30": 30,
-        "36": 36,
-        "5": 5,
-        "62": 62,
+        "35": 35,
+        "41": 41,
+        "6": 6,
+        "67": 67,
         "undefined": undefined
     }],
-    22: [function(require, module, exports) {
+    26: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.simpleSend = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.defaultEnabled = exports.available = exports.omniPropertyId = exports.properName = exports.name = undefined;
-        var _omni = require(10);
+        var _omni = require(13);
         Object.keys(_omni).forEach(function(key) {
             if (key === "default" || key === "__esModule") return;
             Object.defineProperty(exports, key, {
@@ -1751,8 +2168,8 @@
                 }
             });
         });
-        var _aureus = require(25);
-        var _currencyUnits = require(36);
+        var _aureus = require(30);
+        var _currencyUnits = require(41);
         const name = exports.name = 'tether';
         const properName = exports.properName = 'Tether';
         const omniPropertyId = exports.omniPropertyId = 31;
@@ -1768,11 +2185,101 @@
         const simpleSend = exports.simpleSend = (0, _omni._createSimpleSend)(omniPropertyId, currency);
 
     }, {
-        "10": 10,
-        "25": 25,
-        "36": 36
+        "13": 13,
+        "30": 30,
+        "41": 41
     }],
-    23: [function(require, module, exports) {
+    27: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        var _appConfig = require(6);
+        var _coininfo = require('coininfo');
+        var _coininfo2 = _interopRequireDefault(_coininfo);
+        var _bs58check = require('bs58check');
+        var _bs58check2 = _interopRequireDefault(_bs58check);
+        var _wif = require('wif');
+        var _wif2 = _interopRequireDefault(_wif);
+        var _crypto = require('crypto');
+        var _crypto2 = _interopRequireDefault(_crypto);
+        var _currencyUnits = require(41);
+        var _aureus = require(30);
+        var _bip44Constants = require(35);
+        var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
+        var _twoOfTwoMultisig = require(76);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        const name = exports.name = 'vertcoin';
+        const properName = exports.properName = 'Vertcoin';
+        const available = exports.available = _appConfig.ENV_DEV || _appConfig.ENV_BUILD_EDEN;
+        const defaultEnabled = exports.defaultEnabled = false;
+        const hasMultipleAddresses = exports.hasMultipleAddresses = true;
+        const hasUTXO = exports.hasUTXO = true;
+        const isAccountBased = exports.isAccountBased = false;
+        const isEthereumToken = exports.isEthereumToken = false;
+        const isOmniProperty = exports.isOmniProperty = false;
+        const currency = exports.currency = _aureus.UnitType.create(name, _currencyUnits.cryptoCurrency, {
+            satoshis: 0,
+            VTC: 8
+        }, 'VTC');
+        const displayUnit = exports.displayUnit = 'VTC';
+        const shapeShiftUnit = exports.shapeShiftUnit = 'vtc';
+        const units = exports.units = ['VTC'];
+        const feePerKB = exports.feePerKB = currency.satoshis(155000);
+        const address = exports.address = {
+            versions: {
+                p2pkh: (0, _coininfo2.default)(name).versions.public,
+                p2sh: (0, _coininfo2.default)(name).versions.scripthash
+            },
+            isP2PKH(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
+            },
+            isP2SH(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
+            },
+            validate(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+            }
+        };
+        const bip44 = exports.bip44 = _bip44Constants2.default[name];
+        const keys = exports.keys = {
+            encodePrivate(privateKey) {
+                const versions = (0, _coininfo2.default)(name).versions;
+                return _wif2.default.encode(versions.private, privateKey, true);
+            },
+            encodePublic(publicKey) {
+                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
+                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
+                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
+                return _bs58check2.default.encode(payload);
+            }
+        };
+        const blockExplorer = exports.blockExplorer = {
+            addressUrl: address => `https://insight.vertcoin.org/address/${address}`,
+            txUrl: txId => `https://insight.vertcoin.org/tx/${txId}`
+        };
+        const twoOfTwo = exports.twoOfTwo = (0, _twoOfTwoMultisig.alice)({
+            network: (0, _coininfo2.default)(name)
+        });
+
+    }, {
+        "30": 30,
+        "35": 35,
+        "41": 41,
+        "6": 6,
+        "76": 76,
+        "undefined": undefined
+    }],
+    28: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -1786,10 +2293,10 @@
         var _wif2 = _interopRequireDefault(_wif);
         var _crypto = require('crypto');
         var _crypto2 = _interopRequireDefault(_crypto);
-        var _appConfig = require(5);
-        var _currencyUnits = require(36);
-        var _aureus = require(25);
-        var _bip44Constants = require(30);
+        var _appConfig = require(6);
+        var _currencyUnits = require(41);
+        var _aureus = require(30);
+        var _bip44Constants = require(35);
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
 
         function _interopRequireDefault(obj) {
@@ -1848,25 +2355,25 @@
             }
         };
         const blockExplorer = exports.blockExplorer = {
-            addressUrl: address => `https://zcash.blockexplorer.com/address/${address}/`,
-            txUrl: txId => `https://zcash.blockexplorer.com/tx/${txId}/`
+            addressUrl: address => `https://zchain.online/address/${address}/`,
+            txUrl: txId => `https://zchain.online/tx/${txId}/`
         };
 
     }, {
-        "25": 25,
         "30": 30,
-        "36": 36,
-        "5": 5,
+        "35": 35,
+        "41": 41,
+        "6": 6,
         "undefined": undefined
     }],
-    24: [function(require, module, exports) {
+    29: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.default = conversion;
         var _assert = require('assert');
-        var _isNumberUnit = require(26);
+        var _isNumberUnit = require(31);
         var _isNumberUnit2 = _interopRequireDefault(_isNumberUnit);
 
         function _interopRequireDefault(obj) {
@@ -1897,22 +2404,22 @@
         }
 
     }, {
-        "26": 26,
+        "31": 31,
         "undefined": undefined
     }],
-    25: [function(require, module, exports) {
+    30: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.UnitType = exports.conversion = exports.isNumberUnit = undefined;
-        var _numberUnit = require(27);
+        var _numberUnit = require(32);
         var _numberUnit2 = _interopRequireDefault(_numberUnit);
-        var _isNumberUnit2 = require(26);
+        var _isNumberUnit2 = require(31);
         var _isNumberUnit3 = _interopRequireDefault(_isNumberUnit2);
-        var _conversion2 = require(24);
+        var _conversion2 = require(29);
         var _conversion3 = _interopRequireDefault(_conversion2);
-        var _unitType = require(28);
+        var _unitType = require(33);
         var _unitType2 = _interopRequireDefault(_unitType);
 
         function _interopRequireDefault(obj) {
@@ -1926,12 +2433,12 @@
         const UnitType = exports.UnitType = _unitType2.default;
 
     }, {
-        "24": 24,
-        "26": 26,
-        "27": 27,
-        "28": 28
+        "29": 29,
+        "31": 31,
+        "32": 32,
+        "33": 33
     }],
-    26: [function(require, module, exports) {
+    31: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -1944,7 +2451,7 @@
         }
 
     }, {}],
-    27: [function(require, module, exports) {
+    32: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -1954,7 +2461,7 @@
         var _assert = require('assert');
         var _bignumber = require('bignumber.js');
         var _bignumber2 = _interopRequireDefault(_bignumber);
-        var _isNumberUnit2 = require(26);
+        var _isNumberUnit2 = require(31);
         var _isNumberUnit3 = _interopRequireDefault(_isNumberUnit2);
 
         function _interopRequireDefault(obj) {
@@ -2145,10 +2652,10 @@
         exports.default = NumberUnit;
 
     }, {
-        "26": 26,
+        "31": 31,
         "undefined": undefined
     }],
-    28: [function(require, module, exports) {
+    33: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -2156,7 +2663,7 @@
         exports.default = undefined;
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _unit = require(29);
+        var _unit = require(34);
         var Unit = _interopRequireWildcard(_unit);
 
         function _interopRequireWildcard(obj) {
@@ -2227,18 +2734,18 @@
         exports.default = UnitType;
 
     }, {
-        "29": 29,
+        "34": 34,
         "undefined": undefined
     }],
-    29: [function(require, module, exports) {
+    34: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.create = create;
-        var _numberUnit = require(27);
+        var _numberUnit = require(32);
         var _numberUnit2 = _interopRequireDefault(_numberUnit);
-        var _isNumberUnit = require(26);
+        var _isNumberUnit = require(31);
         var _isNumberUnit2 = _interopRequireDefault(_isNumberUnit);
 
         function _interopRequireDefault(obj) {
@@ -2278,10 +2785,10 @@
         }
 
     }, {
-        "26": 26,
-        "27": 27
+        "31": 31,
+        "32": 32
     }],
-    30: [function(require, module, exports) {
+    35: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -2299,12 +2806,14 @@
         let _constants = transformFn(_bip44Constants2.default);
         _constants.ethereum = _constants.ether;
         _constants.ethereumclassic = _constants['ether-classic'];
+        _constants.bgold = _constants['bitcoin-gold'];
+        _constants.digibyte = _constants['digi-byte'];
         exports.default = _constants;
 
     }, {
         "undefined": undefined
     }],
-    31: [function(require, module, exports) {
+    36: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -2323,7 +2832,7 @@
         }
 
     }, {}],
-    32: [function(require, module, exports) {
+    37: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -2348,15 +2857,15 @@
     }, {
         "undefined": undefined
     }],
-    33: [function(require, module, exports) {
+    38: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _crypto = require('crypto');
         var _lodash = require('lodash');
-        var _appConfig = require(5);
-        var _configKeys = require(35);
+        var _appConfig = require(6);
+        var _configKeys = require(40);
         var configKeys = _interopRequireWildcard(_configKeys);
 
         function _interopRequireWildcard(obj) {
@@ -2382,11 +2891,11 @@
         exports.default = defaultConfig;
 
     }, {
-        "35": 35,
-        "5": 5,
+        "40": 40,
+        "6": 6,
         "undefined": undefined
     }],
-    34: [function(require, module, exports) {
+    39: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -2425,13 +2934,13 @@
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
         var _lodash = require('lodash');
-        var _env = require(44);
-        var _appConfig = require(5);
+        var _env = require(49);
+        var _appConfig = require(6);
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
         var _fsExtra = require('fs-extra');
         var _fsExtra2 = _interopRequireDefault(_fsExtra);
-        var _configDefault = require(33);
+        var _configDefault = require(38);
         var _configDefault2 = _interopRequireDefault(_configDefault);
 
         function _interopRequireDefault(obj) {
@@ -2519,12 +3028,12 @@
         }
 
     }, {
-        "33": 33,
-        "44": 44,
-        "5": 5,
+        "38": 38,
+        "49": 49,
+        "6": 6,
         "undefined": undefined
     }],
-    35: [function(require, module, exports) {
+    40: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -2537,21 +3046,21 @@
         const notificationsTxReceivedEnabled = exports.notificationsTxReceivedEnabled = 'notifications.tx.received.enabled';
 
     }, {}],
-    36: [function(require, module, exports) {
+    41: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.fiatCurrency = exports.cryptoCurrency = exports.currency = undefined;
-        var _aureus = require(25);
+        var _aureus = require(30);
         const currency = exports.currency = _aureus.UnitType.create('currency');
         const cryptoCurrency = exports.cryptoCurrency = _aureus.UnitType.create('crypto-currency', currency);
         const fiatCurrency = exports.fiatCurrency = _aureus.UnitType.create('fiat', currency);
 
     }, {
-        "25": 25
+        "30": 30
     }],
-    37: [function(require, module, exports) {
+    42: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -2570,7 +3079,7 @@
     }, {
         "undefined": undefined
     }],
-    38: [function(require, module, exports) {
+    43: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -2627,7 +3136,7 @@
     }, {
         "undefined": undefined
     }],
-    39: [function(require, module, exports) {
+    44: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -2687,7 +3196,7 @@
     }, {
         "undefined": undefined
     }],
-    40: [function(require, module, exports) {
+    45: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -2712,7 +3221,7 @@
     }, {
         "undefined": undefined
     }],
-    41: [function(require, module, exports) {
+    46: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -2848,7 +3357,7 @@
     }, {
         "undefined": undefined
     }],
-    42: [function(require, module, exports) {
+    47: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -2858,8 +3367,8 @@
         var _aw2 = _interopRequireDefault(_aw);
         var _electronIpcBroadcast = require('electron-ipc-broadcast');
         var _electronIpcBroadcast2 = _interopRequireDefault(_electronIpcBroadcast);
-        var _errorToObject = require(45);
-        var _shared = require(43);
+        var _errorToObject = require(50);
+        var _shared = require(48);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -2939,11 +3448,11 @@
         }
 
     }, {
-        "43": 43,
-        "45": 45,
+        "48": 48,
+        "50": 50,
         "undefined": undefined
     }],
-    43: [function(require, module, exports) {
+    48: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -2951,7 +3460,7 @@
         const CHANNEL_PREFIX = exports.CHANNEL_PREFIX = 'electron-rpc-broadcast';
 
     }, {}],
-    44: [function(require, module, exports) {
+    49: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -2968,7 +3477,7 @@
         var _ospath2 = _interopRequireDefault(_ospath);
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
-        var _paths = require(6);
+        var _paths = require(7);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -3021,10 +3530,10 @@
         }
 
     }, {
-        "6": 6,
+        "7": 7,
         "undefined": undefined
     }],
-    45: [function(require, module, exports) {
+    50: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -3078,7 +3587,7 @@
     }, {
         "undefined": undefined
     }],
-    46: [function(require, module, exports) {
+    51: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -3197,7 +3706,7 @@
         var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _memoizeLruCache = require(57);
+        var _memoizeLruCache = require(62);
         var _memoizeLruCache2 = _interopRequireDefault(_memoizeLruCache);
 
         function _interopRequireDefault(obj) {
@@ -3246,10 +3755,10 @@
         });
 
     }, {
-        "57": 57,
+        "62": 62,
         "undefined": undefined
     }],
-    47: [function(require, module, exports) {
+    52: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -3318,7 +3827,7 @@
         })();
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _request2 = require(51);
+        var _request2 = require(56);
         var _request3 = _interopRequireDefault(_request2);
 
         function _interopRequireDefault(obj) {
@@ -3367,10 +3876,10 @@
         })();
 
     }, {
-        "51": 51,
+        "56": 56,
         "undefined": undefined
     }],
-    48: [function(require, module, exports) {
+    53: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -3378,10 +3887,10 @@
         exports.ws = exports.getLogs = exports.gasPrice = exports.getCode = exports.estimateGas = exports.getTransactionCount = exports.sendRawTransaction = exports.tokenBalance = exports.fetchTxlistinternal = exports.fetchTxlist = exports.fetchBalance = undefined;
         exports.filterTxsSent = filterTxsSent;
         exports.filterTxsReceived = filterTxsReceived;
-        var _account = require(47);
-        var _proxy = require(50);
-        var _logs = require(49);
-        var _ws2 = require(52);
+        var _account = require(52);
+        var _proxy = require(55);
+        var _logs = require(54);
+        var _ws2 = require(57);
         var _ws3 = _interopRequireDefault(_ws2);
 
         function _interopRequireDefault(obj) {
@@ -3410,12 +3919,12 @@
         }
 
     }, {
-        "47": 47,
-        "49": 49,
-        "50": 50,
-        "52": 52
+        "52": 52,
+        "54": 54,
+        "55": 55,
+        "57": 57
     }],
-    49: [function(require, module, exports) {
+    54: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -3438,7 +3947,7 @@
         })();
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _request2 = require(51);
+        var _request2 = require(56);
         var _request3 = _interopRequireDefault(_request2);
 
         function _interopRequireDefault(obj) {
@@ -3487,10 +3996,10 @@
         })();
 
     }, {
-        "51": 51,
+        "56": 56,
         "undefined": undefined
     }],
-    50: [function(require, module, exports) {
+    55: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -3551,7 +4060,7 @@
                 return _ref6.apply(this, arguments);
             };
         })();
-        var _request2 = require(51);
+        var _request2 = require(56);
         var _request3 = _interopRequireDefault(_request2);
 
         function _interopRequireDefault(obj) {
@@ -3600,9 +4109,9 @@
         })();
 
     }, {
-        "51": 51
+        "56": 56
     }],
-    51: [function(require, module, exports) {
+    56: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -3615,7 +4124,7 @@
         var _fetchival2 = _interopRequireDefault(_fetchival);
         var _nodeFetch = require('node-fetch');
         var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
-        var _appConfig = require(5);
+        var _appConfig = require(6);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -3678,10 +4187,10 @@
         });
 
     }, {
-        "5": 5,
+        "6": 6,
         "undefined": undefined
     }],
-    52: [function(require, module, exports) {
+    57: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -3789,7 +4298,7 @@
     }, {
         "undefined": undefined
     }],
-    53: [function(require, module, exports) {
+    58: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -3806,7 +4315,7 @@
         var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _ws = require(54);
+        var _ws = require(59);
         var _ws2 = _interopRequireDefault(_ws);
 
         function _interopRequireDefault(obj) {
@@ -3974,10 +4483,10 @@
         }
 
     }, {
-        "54": 54,
+        "59": 59,
         "undefined": undefined
     }],
-    54: [function(require, module, exports) {
+    59: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4086,7 +4595,7 @@
     }, {
         "undefined": undefined
     }],
-    55: [function(require, module, exports) {
+    60: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4115,7 +4624,7 @@
     }, {
         "undefined": undefined
     }],
-    56: [function(require, module, exports) {
+    61: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4146,7 +4655,7 @@
     }, {
         "undefined": undefined
     }],
-    57: [function(require, module, exports) {
+    62: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4173,7 +4682,7 @@
     }, {
         "undefined": undefined
     }],
-    58: [function(require, module, exports) {
+    63: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4182,9 +4691,9 @@
         exports.isValid = isValid;
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _bs = require(59);
+        var _bs = require(64);
         var bs58 = _interopRequireWildcard(_bs);
-        var _crypto = require(60);
+        var _crypto = require(65);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -4228,11 +4737,11 @@
         }
 
     }, {
-        "59": 59,
-        "60": 60,
+        "64": 64,
+        "65": 65,
         "undefined": undefined
     }],
-    59: [function(require, module, exports) {
+    64: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4273,7 +4782,7 @@
     }, {
         "undefined": undefined
     }],
-    60: [function(require, module, exports) {
+    65: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4346,17 +4855,17 @@
     }, {
         "undefined": undefined
     }],
-    61: [function(require, module, exports) {
+    66: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.crypto = exports.bs58 = exports.address = undefined;
-        var _address = require(58);
+        var _address = require(63);
         var address = _interopRequireWildcard(_address);
-        var _bs = require(59);
+        var _bs = require(64);
         var bs58 = _interopRequireWildcard(_bs);
-        var _crypto = require(60);
+        var _crypto = require(65);
         var crypto = _interopRequireWildcard(_crypto);
 
         function _interopRequireWildcard(obj) {
@@ -4378,11 +4887,11 @@
         exports.crypto = crypto;
 
     }, {
-        "58": 58,
-        "59": 59,
-        "60": 60
+        "63": 63,
+        "64": 64,
+        "65": 65
     }],
-    62: [function(require, module, exports) {
+    67: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4390,7 +4899,7 @@
         exports.derive = derive;
         var _rippleAddressCodec = require('ripple-address-codec');
         var _rippleAddressCodec2 = _interopRequireDefault(_rippleAddressCodec);
-        var _crypto = require(63);
+        var _crypto = require(68);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -4403,10 +4912,10 @@
         }
 
     }, {
-        "63": 63,
+        "68": 68,
         "undefined": undefined
     }],
-    63: [function(require, module, exports) {
+    68: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4441,7 +4950,7 @@
     }, {
         "undefined": undefined
     }],
-    64: [function(require, module, exports) {
+    69: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4456,9 +4965,9 @@
                 publicKeys: (0, _publicKeys2.default)(publicKeyEncode)
             };
         };
-        var _pairingData = require(65);
+        var _pairingData = require(70);
         var pairingData = _interopRequireWildcard(_pairingData);
-        var _publicKeys = require(66);
+        var _publicKeys = require(71);
         var _publicKeys2 = _interopRequireDefault(_publicKeys);
 
         function _interopRequireDefault(obj) {
@@ -4483,10 +4992,10 @@
         }
 
     }, {
-        "65": 65,
-        "66": 66
+        "70": 70,
+        "71": 71
     }],
-    65: [function(require, module, exports) {
+    70: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4547,7 +5056,7 @@
     }, {
         "undefined": undefined
     }],
-    66: [function(require, module, exports) {
+    71: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4586,12 +5095,12 @@
     }, {
         "undefined": undefined
     }],
-    67: [function(require, module, exports) {
+    72: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _alice = require(64);
+        var _alice = require(69);
         Object.defineProperty(exports, 'alice', {
             enumerable: true,
             get: function() {
@@ -4606,9 +5115,9 @@
         }
 
     }, {
-        "64": 64
+        "69": 69
     }],
-    68: [function(require, module, exports) {
+    73: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4624,9 +5133,9 @@
                 publicKeys: (0, _publicKeys2.default)(network)
             };
         };
-        var _pairingData = require(69);
+        var _pairingData = require(74);
         var pairingData = _interopRequireWildcard(_pairingData);
-        var _publicKeys = require(70);
+        var _publicKeys = require(75);
         var _publicKeys2 = _interopRequireDefault(_publicKeys);
 
         function _interopRequireDefault(obj) {
@@ -4651,10 +5160,10 @@
         }
 
     }, {
-        "69": 69,
-        "70": 70
+        "74": 74,
+        "75": 75
     }],
-    69: [function(require, module, exports) {
+    74: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4718,7 +5227,7 @@
     }, {
         "undefined": undefined
     }],
-    70: [function(require, module, exports) {
+    75: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4756,27 +5265,27 @@
     }, {
         "undefined": undefined
     }],
-    71: [function(require, module, exports) {
-        arguments[4][67][0].apply(exports, arguments)
+    76: [function(require, module, exports) {
+        arguments[4][72][0].apply(exports, arguments)
     }, {
-        "67": 67,
-        "68": 68
+        "72": 72,
+        "73": 73
     }],
-    72: [function(require, module, exports) {
+    77: [function(require, module, exports) {
         'use strict';
         hookNodePath();
-        require(2);
+        require(3);
         require('core-js/fn/symbol');
         require('babel' + '-register')({
-            resolveModuleSource: require(73).resolve,
-            only: ['src/app/', 'scripts/', 'tasks/'],
+            resolveModuleSource: require(78).resolve,
+            only: ['./config.js', 'src/app/', 'scripts/', 'tasks/'],
             extensions: ['.js'],
             sourceMaps: 'both'
         });
         (function() {
             const {
                 ENV_PROD
-            } = require(75);
+            } = require(1);
             if (ENV_PROD) return;
             let skip = false;
             if (require('is-electron-renderer')) skip = true;
@@ -4804,12 +5313,12 @@
         }
 
     }, {
-        "2": 2,
-        "73": 73,
-        "75": 75,
+        "1": 1,
+        "3": 3,
+        "78": 78,
         "undefined": undefined
     }],
-    73: [function(require, module, exports) {
+    78: [function(require, module, exports) {
         'use strict';
         var babelResolve = require('babel-resolve');
         var resolver = babelResolve.create('#', './src/app/_local_modules');
@@ -4818,13 +5327,13 @@
     }, {
         "undefined": undefined
     }],
-    74: [function(require, module, exports) {
+    79: [function(require, module, exports) {
         'use strict';
         if ("production" === 'production') {
-            require(2);
+            require(3);
             require('core-js/fn/symbol');
         } else if ("production" === 'development') {
-            require(72);
+            require(77);
         } else {
             const {
                 app,
@@ -4835,67 +5344,11 @@
         }
 
     }, {
-        "2": 2,
-        "72": 72,
+        "3": 3,
+        "77": 77,
         "undefined": undefined
     }],
-    75: [function(require, module, exports) {
-        'use strict';
-        Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        exports.NEW_VERSION_DATE = exports.AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_DELAY_INIT = exports.WINDOW_PASSPHRASE_PRELOAD = exports.WINDOW_WALLET = exports.WINDOW_PASSPHRASE = exports.WINDOW_NETWORK = exports.WINDOW_MNEMONIC = exports.WINDOW_MAIN = exports.EXODUS_SERVER = exports.EXODUS_STAGING_SERVER = exports.EXODUS_PRODUCTION_SERVER = exports.EXODUS_TESTING_SERVER = exports.EXODUS_LOCAL_SERVER = exports.COMPANY = exports.PACKAGE = exports.BITCOIN_FEE_LIMIT = exports.DUST_VALUES = exports.ENV_BUILD_EDEN = exports.ENV_BUILD_EXODUS = exports.ENV_BUILD_NAME = exports.ENV_PROD = exports.ENV_DEV = undefined;
-        var _path = require('path');
-        var _path2 = _interopRequireDefault(_path);
-        var _ms = require('ms');
-        var _ms2 = _interopRequireDefault(_ms);
-        var _package = require(98);
-        var _package2 = _interopRequireDefault(_package);
-
-        function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : {
-                default: obj
-            };
-        }
-        const ENV_DEV = exports.ENV_DEV = "production" === 'development';
-        const ENV_PROD = exports.ENV_PROD = "production" === 'production';
-        const ENV_BUILD_NAME = exports.ENV_BUILD_NAME = "eden" || '';
-        const ENV_BUILD_EXODUS = exports.ENV_BUILD_EXODUS = ENV_BUILD_NAME === '';
-        const ENV_BUILD_EDEN = exports.ENV_BUILD_EDEN = ENV_BUILD_NAME === 'eden';
-        const DUST_VALUES = exports.DUST_VALUES = {
-            bitcoin: Math.max(6000, 148 * 125),
-            bcash: 6000,
-            litecoin: 60000,
-            dash: 5500,
-            decred: 70000,
-            zcash: 1500
-        };
-        const BITCOIN_FEE_LIMIT = exports.BITCOIN_FEE_LIMIT = 0.2;
-        const PACKAGE = exports.PACKAGE = _package2.default;
-        const COMPANY = exports.COMPANY = 'Exodus Movement, Inc.';
-        const EXODUS_LOCAL_SERVER = exports.EXODUS_LOCAL_SERVER = 'http://localhost:3020';
-        const EXODUS_TESTING_SERVER = exports.EXODUS_TESTING_SERVER = 'https://exodus-server-testing.azurewebsites.net';
-        const EXODUS_PRODUCTION_SERVER = exports.EXODUS_PRODUCTION_SERVER = 'https://exodus-server.azurewebsites.net';
-        const EXODUS_STAGING_SERVER = exports.EXODUS_STAGING_SERVER = 'https://exodus-server-staging2.azurewebsites.net';
-        const EXODUS_SERVER = exports.EXODUS_SERVER = EXODUS_PRODUCTION_SERVER;
-        const htmlPath = file => ENV_PROD ? _path2.default.join(__dirname, '..', '..', '..', 'static', file) : _path2.default.join(__dirname, '..', '..', 'static', file) + '?react_perf';
-        const WINDOW_MAIN = exports.WINDOW_MAIN = 'file://' + htmlPath('index.html');
-        const WINDOW_MNEMONIC = exports.WINDOW_MNEMONIC = 'file://' + htmlPath('mnemonic.html');
-        const WINDOW_NETWORK = exports.WINDOW_NETWORK = 'file://' + htmlPath('network.html');
-        const WINDOW_PASSPHRASE = exports.WINDOW_PASSPHRASE = 'file://' + htmlPath('passphrase.html');
-        const WINDOW_WALLET = exports.WINDOW_WALLET = 'file://' + htmlPath('wallet.html');
-        const preloadPath = proc => ENV_PROD ? _path2.default.join(__dirname, '..', proc, 'preload.js') : _path2.default.join(__dirname, proc, 'preload.js');
-        const WINDOW_PASSPHRASE_PRELOAD = exports.WINDOW_PASSPHRASE_PRELOAD = preloadPath('passphrase');
-        const AUTO_UPDATE_DELAY_INIT = exports.AUTO_UPDATE_DELAY_INIT = 10000;
-        const AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_BASE_URL = 'https://exodusbin.azureedge.net';
-        const timeMs = (parseInt(1513920439243) || Date.now()) + (4 * (0, _ms2.default)('168h') + (0, _ms2.default)('82h'));
-        const NEW_VERSION_DATE = exports.NEW_VERSION_DATE = new Date(timeMs);
-
-    }, {
-        "98": 98,
-        "undefined": undefined
-    }],
-    76: [function(require, module, exports) {
+    80: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4950,7 +5403,7 @@
         var _path = require('path');
         var _electron = require('electron');
         var _electron2 = _interopRequireDefault(_electron);
-        var _appConfig = require(5);
+        var _appConfig = require(6);
         var _urlJoin = require('url-join');
         var _urlJoin2 = _interopRequireDefault(_urlJoin);
         var _aw = require('aw');
@@ -4963,7 +5416,7 @@
         var _semver2 = _interopRequireDefault(_semver);
         var _lodash = require('lodash');
         var _lodash2 = _interopRequireDefault(_lodash);
-        var _env = require(44);
+        var _env = require(49);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -5002,11 +5455,11 @@
         const ANNOUNCEMENTS_URL = (0, _urlJoin2.default)(_appConfig.EXODUS_SERVER, 'v1/announcements');
 
     }, {
-        "44": 44,
-        "5": 5,
+        "49": 49,
+        "6": 6,
         "undefined": undefined
     }],
-    77: [function(require, module, exports) {
+    81: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -5014,8 +5467,8 @@
         var _electron = require('electron');
         var _electronMenu = require('electron-menu');
         var _electronMenu2 = _interopRequireDefault(_electronMenu);
-        var _appConfig = require(5);
-        var _developer = require(78);
+        var _appConfig = require(6);
+        var _developer = require(82);
         var _developer2 = _interopRequireDefault(_developer);
 
         function _interopRequireDefault(obj) {
@@ -5036,33 +5489,33 @@
         ].filter(i => !!i)]);
 
     }, {
-        "5": 5,
-        "78": 78,
+        "6": 6,
+        "82": 82,
         "undefined": undefined
     }],
-    78: [function(require, module, exports) {
+    82: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _devtools = require(39);
+        var _devtools = require(44);
         var _devtools2 = _interopRequireDefault(_devtools);
         var _electron = require('electron');
-        var _mainWindow = require(56);
+        var _mainWindow = require(61);
         var _mainWindow2 = _interopRequireDefault(_mainWindow);
         var _electronMenu = require('electron-menu');
         var _electronMenu2 = _interopRequireDefault(_electronMenu);
-        var _assets = require(18);
+        var _assets = require(22);
         var _assets2 = _interopRequireDefault(_assets);
-        var _debugFile = require(38);
+        var _debugFile = require(43);
         var debugFile = _interopRequireWildcard(_debugFile);
-        var _electronDialog = require(40);
+        var _electronDialog = require(45);
         var _electronDialog2 = _interopRequireDefault(_electronDialog);
-        var _network = require(94);
-        var _wallet = require(96);
-        var _mymonero = require(93);
+        var _network = require(98);
+        var _wallet = require(100);
+        var _mymonero = require(97);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -5094,11 +5547,11 @@
                 ['Export Address', createJSHandler(`global.Exodus.export.addresses("${asset.name}")`)],
                 ['Export Private Keys', createJSHandler(`global.Exodus.export.privateKeysDialog("${asset.name}")`)]
             ];
-            const xpub = ['bitcoin', 'bcash', 'dash', 'decred', 'litecoin', 'zcash'];
+            const xpub = ['bitcoin', 'bcash', 'bgold', 'dash', 'decred', 'digibyte', 'litecoin', 'vertcoin', 'zcash'];
             if (xpub.includes(asset.name)) {
                 items.push(['Export XPub', createJSHandler(`global.Exodus.export.xpub("${asset.name}")`)]);
             }
-            const wif = ['bitcoin', 'bcash', 'dash', 'decred', 'litecoin', 'zcash'];
+            const wif = ['bitcoin', 'bcash', 'bgold', 'dash', 'decred', 'digibyte', 'litecoin', 'vertcoin', 'zcash'];
             if (wif.includes(asset.name)) {
                 items.push(['Move Funds (WIF)...', createJSHandler(`global.Exodus.import.privateKeyWithDialog("${asset.name}", { wif: true })`)]);
             } else if (asset.name !== 'monero') {
@@ -5118,6 +5571,22 @@
             if (asset.name === 'bcash') {
                 items.push('-');
                 items.push(['Sweep for Bitcoin', createJSHandler(`global.Exodus.sweep('bcash', 'bitcoin')`)]);
+            }
+            if (asset.name === 'ethereum') {
+                items.push('-');
+                items.push(['Sweep for ETH Classic', createJSHandler(`global.Exodus.sweep('ethereum', 'ethereumclassic')`)]);
+            }
+            if (asset.name === 'ethereumclassic') {
+                items.push('-');
+                items.push(['Sweep for Ethereum', createJSHandler(`global.Exodus.sweep('ethereumclassic', 'ethereum')`)]);
+            }
+            if (asset.name === 'bcash') {
+                items.push('-');
+                items.push(['Claim Pre-Fork BCH', createJSHandler(`global.Exodus.bcashClaim()`)]);
+            }
+            if (asset.name === 'bgold') {
+                items.push('-');
+                items.push(['Claim Pre-Fork BTG', createJSHandler(`global.Exodus.bgoldClaim()`)]);
             }
             items.push('-');
             items.push(['Export Transactions', createJSHandler(`global.Exodus.export.transactions("${asset.name}")`)]);
@@ -5213,17 +5682,17 @@
         exports.default = (0, _electronMenu2.default)(['Developer', [assetsMenu, restoreMenu, dataDirMenu, pricesMenu, notifications, windowsMenu, '-', ['Open Developer Tools', () => _devtools2.default.show()], debugMode, '-', ['Export Safe Report Data', createJSHandler('global.Exodus.export.dir.dumpDiagnostics()')]]]);
 
     }, {
-        "18": 18,
-        "38": 38,
-        "39": 39,
-        "40": 40,
-        "56": 56,
-        "93": 93,
-        "94": 94,
-        "96": 96,
+        "100": 100,
+        "22": 22,
+        "43": 43,
+        "44": 44,
+        "45": 45,
+        "61": 61,
+        "97": 97,
+        "98": 98,
         "undefined": undefined
     }],
-    79: [function(require, module, exports) {
+    83: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -5247,7 +5716,7 @@
     }, {
         "undefined": undefined
     }],
-    80: [function(require, module, exports) {
+    84: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -5259,13 +5728,13 @@
         var _delay2 = _interopRequireDefault(_delay);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _configFile = require(34);
-        var _configKeys = require(35);
-        var _app = require(77);
+        var _configFile = require(39);
+        var _configKeys = require(40);
+        var _app = require(81);
         var _app2 = _interopRequireDefault(_app);
-        var _edit = require(79);
+        var _edit = require(83);
         var _edit2 = _interopRequireDefault(_edit);
-        var _window = require(81);
+        var _window = require(85);
         var _window2 = _interopRequireDefault(_window);
 
         function _interopRequireDefault(obj) {
@@ -5317,14 +5786,14 @@
         }));
 
     }, {
-        "34": 34,
-        "35": 35,
-        "77": 77,
-        "79": 79,
+        "39": 39,
+        "40": 40,
         "81": 81,
+        "83": 83,
+        "85": 85,
         "undefined": undefined
     }],
-    81: [function(require, module, exports) {
+    85: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -5344,7 +5813,7 @@
     }, {
         "undefined": undefined
     }],
-    82: [function(require, module, exports) {
+    86: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -5374,7 +5843,7 @@
                             mode: 'bottom'
                         });
                         setTimeout(() => {
-                            require(84)().catch(console.error);
+                            require(88)().catch(console.error);
                         }, 30000);
                     }
                 });
@@ -5486,21 +5955,21 @@
         var _electronWindowState2 = _interopRequireDefault(_electronWindowState);
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
-        var _exodus = require(91);
-        var _mnemonic = require(92);
-        var _network = require(94);
-        var _passphrase = require(95);
-        var _wallet = require(96);
-        var _mymonero = require(93);
-        var _isDebug = require(55);
+        var _exodus = require(95);
+        var _mnemonic = require(96);
+        var _network = require(98);
+        var _passphrase = require(99);
+        var _wallet = require(100);
+        var _mymonero = require(97);
+        var _isDebug = require(60);
         var _isDebug2 = _interopRequireDefault(_isDebug);
-        var _env = require(44);
-        var _appConfig = require(5);
-        var _walletController = require(89);
+        var _env = require(49);
+        var _appConfig = require(6);
+        var _walletController = require(93);
         var _walletController2 = _interopRequireDefault(_walletController);
-        var _paths = require(6);
+        var _paths = require(7);
         var _paths2 = _interopRequireDefault(_paths);
-        var _assets = require(18);
+        var _assets = require(22);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -5570,48 +6039,48 @@
         }
 
     }, {
-        "18": 18,
-        "44": 44,
-        "5": 5,
-        "55": 55,
+        "100": 100,
+        "22": 22,
+        "49": 49,
         "6": 6,
-        "84": 84,
-        "89": 89,
-        "91": 91,
-        "92": 92,
+        "60": 60,
+        "7": 7,
+        "88": 88,
         "93": 93,
-        "94": 94,
         "95": 95,
         "96": 96,
+        "97": 97,
+        "98": 98,
+        "99": 99,
         "undefined": undefined
     }],
-    83: [function(require, module, exports) {
+    87: [function(require, module, exports) {
         'use strict';
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
         var _onetime = require('onetime');
         var _onetime2 = _interopRequireDefault(_onetime);
-        var _appMenu = require(80);
+        var _appMenu = require(84);
         var _appMenu2 = _interopRequireDefault(_appMenu);
         var _electron = require('electron');
         var _electronLocalshortcut = require('electron-localshortcut');
         var _electronLocalshortcut2 = _interopRequireDefault(_electronLocalshortcut);
-        var _appRun = require(82);
-        var _announcements = require(76);
+        var _appRun = require(86);
+        var _announcements = require(80);
         var announcements = _interopRequireWildcard(_announcements);
         var _electronIpcBroadcast = require('electron-ipc-broadcast');
-        var _debugFile = require(38);
+        var _debugFile = require(43);
         var debugFile = _interopRequireWildcard(_debugFile);
-        var _electronExit = require(41);
+        var _electronExit = require(46);
         var _delay = require('delay');
         var _delay2 = _interopRequireDefault(_delay);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
         var _fsExtra = require('fs-extra');
-        var _paths = require(6);
+        var _paths = require(7);
         var _paths2 = _interopRequireDefault(_paths);
-        var _env = require(44);
-        var _appConfig = require(5);
+        var _env = require(49);
+        var _appConfig = require(6);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -5664,6 +6133,10 @@
         _electron.app.commandLine.appendSwitch('disable-renderer-backgrounding');
         process.env.ELECTRON_FORCE_WINDOW_MENU_BAR = true;
         const argv = require('minimist')(process.argv);
+        if (argv['remote-debugging-port']) {
+            console.error('Cannot pass --remote-debugging-port; exiting');
+            _electron.app.exit();
+        }
         if (argv.datadir) {
             _electron.app.setPath('userData', _path2.default.resolve(argv.datadir));
         } else if (!_appConfig.ENV_BUILD_EXODUS) {
@@ -5750,17 +6223,17 @@
         }));
 
     }, {
-        "38": 38,
-        "41": 41,
-        "44": 44,
-        "5": 5,
+        "43": 43,
+        "46": 46,
+        "49": 49,
         "6": 6,
-        "76": 76,
+        "7": 7,
         "80": 80,
-        "82": 82,
+        "84": 84,
+        "86": 86,
         "undefined": undefined
     }],
-    84: [function(require, module, exports) {
+    88: [function(require, module, exports) {
         'use strict';
         let secureRemoveDir = (() => {
             var _ref2 = _asyncToGenerator(function*(dir, opts) {
@@ -5780,7 +6253,7 @@
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
         var _secureRemove = require('secure-remove');
-        var _env = require(44);
+        var _env = require(49);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -5836,27 +6309,27 @@
         });
 
     }, {
-        "44": 44,
+        "49": 49,
         "undefined": undefined
     }],
-    85: [function(require, module, exports) {
+    89: [function(require, module, exports) {
         'use strict';
         if (process.argv.length === 2 && process.argv[1] === '--version') {
-            console.log(require(98).version);
+            console.log(require(102).version);
             require('electron').app.exit(0);
         }
         console.time('main');
         console.log(`ENV: ${"production"}`);
-        require(74);
-        require(88);
+        require(79);
+        require(92);
 
     }, {
-        "74": 74,
-        "88": 88,
-        "98": 98,
+        "102": 102,
+        "79": 79,
+        "92": 92,
         "undefined": undefined
     }],
-    86: [function(require, module, exports) {
+    90: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -5887,14 +6360,14 @@
     }, {
         "undefined": undefined
     }],
-    87: [function(require, module, exports) {
+    91: [function(require, module, exports) {
         'use strict';
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
         var _child_process = require('child_process');
         var _electron = require('electron');
-        var _appConfig = require(5);
-        var _protocols = require(86);
+        var _appConfig = require(6);
+        var _protocols = require(90);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -5949,34 +6422,34 @@
         };
 
     }, {
-        "5": 5,
-        "86": 86,
+        "6": 6,
+        "90": 90,
         "undefined": undefined
     }],
-    88: [function(require, module, exports) {
+    92: [function(require, module, exports) {
         'use strict';
-        var _protocols = require(86);
+        var _protocols = require(90);
         const isAppRequired = (() => {
             if (process.platform === 'win32') {
-                const isSquirrel = require(87).handleCommand(process.argv[1]);
+                const isSquirrel = require(91).handleCommand(process.argv[1]);
                 return !isSquirrel;
             }(0, _protocols.setDefaultProtocols)();
             return true;
         })();
-        if (isAppRequired) require(83);
+        if (isAppRequired) require(87);
 
     }, {
-        "83": 83,
-        "86": 86,
-        "87": 87
+        "87": 87,
+        "90": 90,
+        "91": 91
     }],
-    89: [function(require, module, exports) {
+    93: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _events = require('events');
-        var _server = require(42);
+        var _server = require(47);
         var _electronIpcBroadcast = require('electron-ipc-broadcast');
         var _electronIpcBroadcast2 = _interopRequireDefault(_electronIpcBroadcast);
 
@@ -6073,10 +6546,10 @@
         exports.default = walletController;
 
     }, {
-        "42": 42,
+        "47": 47,
         "undefined": undefined
     }],
-    90: [function(require, module, exports) {
+    94: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -6084,7 +6557,7 @@
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
         var _electron = require('electron');
-        var _appConfig = require(5);
+        var _appConfig = require(6);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -6110,10 +6583,10 @@
         };
 
     }, {
-        "5": 5,
+        "6": 6,
         "undefined": undefined
     }],
-    91: [function(require, module, exports) {
+    95: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -6121,8 +6594,8 @@
         exports.options = undefined;
         var _semver = require('semver');
         var _semver2 = _interopRequireDefault(_semver);
-        var _appConfig = require(5);
-        var _defaultOptions = require(90);
+        var _appConfig = require(6);
+        var _defaultOptions = require(94);
         var _defaultOptions2 = _interopRequireDefault(_defaultOptions);
 
         function _interopRequireDefault(obj) {
@@ -6152,23 +6625,23 @@
         });
 
     }, {
-        "5": 5,
-        "90": 90,
+        "6": 6,
+        "94": 94,
         "undefined": undefined
     }],
-    92: [function(require, module, exports) {
+    96: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.getWindow = exports.options = undefined;
         exports.init = init;
-        var _isDebug = require(55);
+        var _isDebug = require(60);
         var _isDebug2 = _interopRequireDefault(_isDebug);
         var _electron = require('electron');
-        var _defaultOptions = require(90);
+        var _defaultOptions = require(94);
         var _defaultOptions2 = _interopRequireDefault(_defaultOptions);
-        var _appConfig = require(5);
+        var _appConfig = require(6);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -6205,12 +6678,12 @@
         }
 
     }, {
-        "5": 5,
-        "55": 55,
-        "90": 90,
+        "6": 6,
+        "60": 60,
+        "94": 94,
         "undefined": undefined
     }],
-    93: [function(require, module, exports) {
+    97: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -6220,9 +6693,9 @@
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
         var _electron = require('electron');
-        var _isDebug = require(55);
+        var _isDebug = require(60);
         var _isDebug2 = _interopRequireDefault(_isDebug);
-        var _defaultOptions = require(90);
+        var _defaultOptions = require(94);
         var _defaultOptions2 = _interopRequireDefault(_defaultOptions);
 
         function _interopRequireDefault(obj) {
@@ -6270,11 +6743,11 @@
         }
 
     }, {
-        "55": 55,
-        "90": 90,
+        "60": 60,
+        "94": 94,
         "undefined": undefined
     }],
-    94: [function(require, module, exports) {
+    98: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -6282,9 +6755,9 @@
         exports.getWindow = exports.options = undefined;
         exports.init = init;
         var _electron = require('electron');
-        var _defaultOptions = require(90);
+        var _defaultOptions = require(94);
         var _defaultOptions2 = _interopRequireDefault(_defaultOptions);
-        var _appConfig = require(5);
+        var _appConfig = require(6);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -6341,11 +6814,11 @@
         }
 
     }, {
-        "5": 5,
-        "90": 90,
+        "6": 6,
+        "94": 94,
         "undefined": undefined
     }],
-    95: [function(require, module, exports) {
+    99: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -6354,13 +6827,13 @@
         exports.init = init;
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _isDebug = require(55);
+        var _isDebug = require(60);
         var _isDebug2 = _interopRequireDefault(_isDebug);
         var _electron = require('electron');
-        var _defaultOptions = require(90);
+        var _defaultOptions = require(94);
         var _defaultOptions2 = _interopRequireDefault(_defaultOptions);
-        var _appConfig = require(5);
-        var _browserWindowArgs = require(31);
+        var _appConfig = require(6);
+        var _browserWindowArgs = require(36);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -6430,13 +6903,13 @@
         }
 
     }, {
-        "31": 31,
-        "5": 5,
-        "55": 55,
-        "90": 90,
+        "36": 36,
+        "6": 6,
+        "60": 60,
+        "94": 94,
         "undefined": undefined
     }],
-    96: [function(require, module, exports) {
+    100: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -6444,10 +6917,10 @@
         exports.getWindow = exports.options = undefined;
         exports.init = init;
         var _electron = require('electron');
-        var _browserWindowArgs = require(31);
-        var _defaultOptions = require(90);
+        var _browserWindowArgs = require(36);
+        var _defaultOptions = require(94);
         var _defaultOptions2 = _interopRequireDefault(_defaultOptions);
-        var _appConfig = require(5);
+        var _appConfig = require(6);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -6505,12 +6978,12 @@
         }
 
     }, {
-        "31": 31,
-        "5": 5,
-        "90": 90,
+        "36": 36,
+        "6": 6,
+        "94": 94,
         "undefined": undefined
     }],
-    97: [function(require, module, exports) {
+    101: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -6604,12 +7077,12 @@
     }, {
         "undefined": undefined
     }],
-    98: [function(require, module, exports) {
+    102: [function(require, module, exports) {
         module.exports = {
             "name": "exodus",
             "productName": "Exodus",
-            "version": "1.41.0",
+            "version": "1.43.4",
             "description": "Secure, manage, and trade blockchain assets."
         }
     }, {}]
-}, {}, [85]);
+}, {}, [89]);

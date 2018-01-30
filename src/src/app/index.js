@@ -27,12 +27,76 @@
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
+        exports.NEW_VERSION_DATE = exports.AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_DELAY_INIT = exports.WINDOW_PASSPHRASE_PRELOAD = exports.WINDOW_WALLET = exports.WINDOW_PASSPHRASE = exports.WINDOW_NETWORK = exports.WINDOW_MNEMONIC = exports.WINDOW_MAIN = exports.EXODUS_EXCHANGE_SERVER = exports.EXODUS_EXCHANGE_STAGING_SERVER = exports.EXODUS_EXCHANGE_PRODUCTION_SERVER = exports.EXODUS_EXCHANGE_LOCAL_SERVER = exports.EXODUS_SERVER = exports.EXODUS_STAGING_SERVER = exports.EXODUS_PRODUCTION_SERVER = exports.EXODUS_TESTING_SERVER = exports.EXODUS_LOCAL_SERVER = exports.EXODUS_DISPLAY_NAME = exports.COMPANY = exports.PACKAGE = exports.BITCOIN_FEE_LIMIT = exports.DUST_VALUES = exports.ENV_BUILD_EDEN = exports.ENV_BUILD_EXODUS = exports.ENV_BUILD_NAME = exports.ENV_PROD = exports.ENV_DEV = undefined;
+        var _path = require('path');
+        var _path2 = _interopRequireDefault(_path);
+        var _ms = require('ms');
+        var _ms2 = _interopRequireDefault(_ms);
+        var _package = require(422);
+        var _package2 = _interopRequireDefault(_package);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        const ENV_DEV = exports.ENV_DEV = "production" === 'development';
+        const ENV_PROD = exports.ENV_PROD = "production" === 'production';
+        const ENV_BUILD_NAME = exports.ENV_BUILD_NAME = "eden" || '';
+        const ENV_BUILD_EXODUS = exports.ENV_BUILD_EXODUS = ENV_BUILD_NAME === '';
+        const ENV_BUILD_EDEN = exports.ENV_BUILD_EDEN = ENV_BUILD_NAME === 'eden';
+        const DUST_VALUES = exports.DUST_VALUES = {
+            bitcoin: Math.max(6000, 148 * 125),
+            bcash: 6000,
+            bgold: 6000,
+            litecoin: 60000,
+            dash: 5500,
+            decred: 70000,
+            digibyte: 1000,
+            vertcoin: 20000,
+            zcash: 1500
+        };
+        const BITCOIN_FEE_LIMIT = exports.BITCOIN_FEE_LIMIT = 0.2;
+        const PACKAGE = exports.PACKAGE = _package2.default;
+        const COMPANY = exports.COMPANY = 'Exodus Movement, Inc.';
+        const EXODUS_DISPLAY_NAME = exports.EXODUS_DISPLAY_NAME = "eden" === 'eden' ? 'Eden' : 'Exodus';
+        const EXODUS_LOCAL_SERVER = exports.EXODUS_LOCAL_SERVER = 'http://localhost:3020';
+        const EXODUS_TESTING_SERVER = exports.EXODUS_TESTING_SERVER = 'https://exodus-server-testing.azurewebsites.net';
+        const EXODUS_PRODUCTION_SERVER = exports.EXODUS_PRODUCTION_SERVER = 'https://exodus-server.azurewebsites.net';
+        const EXODUS_STAGING_SERVER = exports.EXODUS_STAGING_SERVER = 'https://exodus-server-staging2.azurewebsites.net';
+        const EXODUS_SERVER = exports.EXODUS_SERVER = EXODUS_PRODUCTION_SERVER;
+        const EXODUS_EXCHANGE_LOCAL_SERVER = exports.EXODUS_EXCHANGE_LOCAL_SERVER = 'http://localhost:3021';
+        const EXODUS_EXCHANGE_PRODUCTION_SERVER = exports.EXODUS_EXCHANGE_PRODUCTION_SERVER = 'https://exodus-exchange.azurewebsites.net';
+        const EXODUS_EXCHANGE_STAGING_SERVER = exports.EXODUS_EXCHANGE_STAGING_SERVER = 'https://exodus-exchange-staging.azurewebsites.net';
+        const EXODUS_EXCHANGE_SERVER = exports.EXODUS_EXCHANGE_SERVER = EXODUS_EXCHANGE_PRODUCTION_SERVER;
+        const htmlPath = file => ENV_PROD ? _path2.default.join(__dirname, '..', '..', '..', 'static', file) : _path2.default.join(__dirname, 'static', file) + '?react_perf';
+        const WINDOW_MAIN = exports.WINDOW_MAIN = 'file://' + htmlPath('index.html');
+        const WINDOW_MNEMONIC = exports.WINDOW_MNEMONIC = 'file://' + htmlPath('mnemonic.html');
+        const WINDOW_NETWORK = exports.WINDOW_NETWORK = 'file://' + htmlPath('network.html');
+        const WINDOW_PASSPHRASE = exports.WINDOW_PASSPHRASE = 'file://' + htmlPath('passphrase.html');
+        const WINDOW_WALLET = exports.WINDOW_WALLET = 'file://' + htmlPath('wallet.html');
+        const preloadPath = proc => ENV_PROD ? _path2.default.join(__dirname, '..', proc, 'preload.js') : _path2.default.join(__dirname, proc, 'preload.js');
+        const WINDOW_PASSPHRASE_PRELOAD = exports.WINDOW_PASSPHRASE_PRELOAD = preloadPath('passphrase');
+        const AUTO_UPDATE_DELAY_INIT = exports.AUTO_UPDATE_DELAY_INIT = 10000;
+        const AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_BASE_URL = 'https://exodusbin.azureedge.net';
+        const timeMs = (parseInt(1516750708696) || Date.now()) + (4 * (0, _ms2.default)('168h') + (0, _ms2.default)('82h'));
+        const NEW_VERSION_DATE = exports.NEW_VERSION_DATE = new Date(timeMs);
+
+    }, {
+        "422": 422,
+        "undefined": undefined
+    }],
+    2: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
         var assert = require('assert');
         var path = require('path');
         var proxyquire = require('proxyquire');
         var babelResolve = require('babel-resolve');
         var resolver = babelResolve.create('#', path.join(__dirname, '../../../../', './src/app/_local_modules'));
-        var createMockLogger = require(2);
+        var createMockLogger = require(3);
         const mapKeys = resolver.mapKeys.bind(resolver);
 
         function stubImport(modulePath, stubs) {
@@ -59,10 +123,10 @@
         };
 
     }, {
-        "2": 2,
+        "3": 3,
         "undefined": undefined
     }],
-    2: [function(require, module, exports) {
+    3: [function(require, module, exports) {
         "use strict";
         module.exports = function createMockLogger() {
             return {
@@ -75,7 +139,7 @@
         };
 
     }, {}],
-    3: [function(require, module, exports) {
+    4: [function(require, module, exports) {
         "use strict";
 
         function includes(item) {
@@ -86,11 +150,11 @@
         };
 
     }, {}],
-    4: [function(require, module, exports) {
+    5: [function(require, module, exports) {
         'use strict';
-        var array = require(3);
-        var object = require(5);
-        var string = require(6);
+        var array = require(4);
+        var object = require(6);
+        var string = require(7);
         Object.keys(array).forEach(key => {
             if (Array.prototype[key]) return;
             Object.defineProperty(Array.prototype, key, {
@@ -120,11 +184,11 @@
         });
 
     }, {
-        "3": 3,
-        "5": 5,
-        "6": 6
+        "4": 4,
+        "6": 6,
+        "7": 7
     }],
-    5: [function(require, module, exports) {
+    6: [function(require, module, exports) {
         "use strict";
 
         function values(obj) {
@@ -137,7 +201,7 @@
         };
 
     }, {}],
-    6: [function(require, module, exports) {
+    7: [function(require, module, exports) {
         'use strict';
 
         function padStart(targetLength, padString) {
@@ -158,16 +222,16 @@
         };
 
     }, {}],
-    7: [function(require, module, exports) {
+    8: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.tether = exports.ripple = exports.factom = exports.ethereumclassic = exports.ethereum = undefined;
-        var _aureus = require(192);
+        var _aureus = require(203);
         var _makeConcurrent = require('make-concurrent');
         var _makeConcurrent2 = _interopRequireDefault(_makeConcurrent);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -250,19 +314,19 @@
         const tether = exports.tether = createAccountState(_assets2.default.tether);
 
     }, {
-        "184": 184,
-        "192": 192,
+        "194": 194,
+        "203": 203,
         "undefined": undefined
     }],
-    8: [function(require, module, exports) {
+    9: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.createFromHDKey = createFromHDKey;
-        var _bip = require(200);
+        var _bip = require(211);
         var _bip2 = _interopRequireDefault(_bip);
-        var _util = require(9);
+        var _util = require(10);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -284,21 +348,21 @@
         }
 
     }, {
-        "200": 200,
-        "9": 9
+        "10": 10,
+        "211": 211
     }],
-    9: [function(require, module, exports) {
+    10: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.addressFromChainParams = addressFromChainParams;
-        var _address = require(82);
+        var _address = require(86);
         var _address2 = _interopRequireDefault(_address);
-        var _bip = require(200);
+        var _bip = require(211);
         var _bip2 = _interopRequireDefault(_bip);
-        var _util = require(10);
-        var _withTokens = require(316);
+        var _util = require(11);
+        var _withTokens = require(331);
         var _withTokens2 = _interopRequireDefault(_withTokens);
 
         function _interopRequireDefault(obj) {
@@ -353,20 +417,20 @@
         }
 
     }, {
-        "10": 10,
-        "200": 200,
-        "316": 316,
-        "82": 82
+        "11": 11,
+        "211": 211,
+        "331": 331,
+        "86": 86
     }],
-    10: [function(require, module, exports) {
+    11: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.addressFromChainParams = addressFromChainParams;
-        var _address = require(82);
+        var _address = require(86);
         var _address2 = _interopRequireDefault(_address);
-        var _bip = require(200);
+        var _bip = require(211);
         var _bip2 = _interopRequireDefault(_bip);
 
         function _interopRequireDefault(obj) {
@@ -408,24 +472,24 @@
         }
 
     }, {
-        "200": 200,
-        "82": 82
+        "211": 211,
+        "86": 86
     }],
-    11: [function(require, module, exports) {
+    12: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.tether = exports.ripple = exports.factom = exports.ethereumclassic = exports.ethereum = undefined;
-        var _accountState = require(7);
+        var _accountState = require(8);
         var AccountState = _interopRequireWildcard(_accountState);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _reduxAsyncAction = require(288);
+        var _reduxAsyncAction = require(303);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _instanceShim = require(167);
+        var _instanceShim = require(174);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _keys = require(168);
+        var _keys = require(175);
         var walletKeys = _interopRequireWildcard(_keys);
 
         function _interopRequireDefault(obj) {
@@ -523,13 +587,13 @@
         const tether = exports.tether = createActions(_assets2.default.tether);
 
     }, {
-        "167": 167,
-        "168": 168,
-        "184": 184,
-        "288": 288,
-        "7": 7
+        "174": 174,
+        "175": 175,
+        "194": 194,
+        "303": 303,
+        "8": 8
     }],
-    12: [function(require, module, exports) {
+    13: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -538,17 +602,17 @@
         exports.setHDKeyFromXPub = setHDKeyFromXPub;
         var _lodash = require('lodash');
         var _lodash2 = _interopRequireDefault(_lodash);
-        var _bip = require(200);
+        var _bip = require(211);
         var _bip2 = _interopRequireDefault(_bip);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _instanceShim = require(167);
+        var _instanceShim = require(174);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _keys = require(168);
+        var _keys = require(175);
         var walletKeys = _interopRequireWildcard(_keys);
-        var _reduxAsyncAction = require(288);
+        var _reduxAsyncAction = require(303);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _util = require(264);
+        var _util = require(278);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -652,26 +716,26 @@
         }
 
     }, {
-        "167": 167,
-        "168": 168,
-        "184": 184,
-        "200": 200,
-        "264": 264,
-        "288": 288,
+        "174": 174,
+        "175": 175,
+        "194": 194,
+        "211": 211,
+        "278": 278,
+        "303": 303,
         "undefined": undefined
     }],
-    13: [function(require, module, exports) {
+    14: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _instanceShim = require(167);
+        var _instanceShim = require(174);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _keys = require(168);
+        var _keys = require(175);
         var walletKeys = _interopRequireWildcard(_keys);
-        var _walletHelper = require(170);
+        var _walletHelper = require(177);
         var _walletHelper2 = _interopRequireDefault(_walletHelper);
 
         function _interopRequireDefault(obj) {
@@ -760,12 +824,12 @@
         ];
 
     }, {
-        "167": 167,
-        "168": 168,
-        "170": 170,
+        "174": 174,
+        "175": 175,
+        "177": 177,
         "undefined": undefined
     }],
-    14: [function(require, module, exports) {
+    15: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -881,10 +945,14 @@
                 switch (sAsset) {
                     case 'bcash':
                     case 'bcashclaim':
+                    case 'bgold':
+                    case 'bgoldclaim':
                     case 'bitcoin':
                     case 'dash':
                     case 'decred':
+                    case 'digibyte':
                     case 'litecoin':
+                    case 'vertcoin':
                     case 'zcash':
                         yield* _asyncGeneratorDelegate(_asyncIterator((0, _insight.rescanBlockchainInsight)(asset, state)), _asyncGenerator.await);
                         break;
@@ -935,21 +1003,21 @@
         })();
         exports.refreshAll = refreshAll;
         exports.refreshAckError = refreshAckError;
-        var _available = require(96);
+        var _available = require(100);
         var _available2 = _interopRequireDefault(_available);
         var _delay = require('delay');
         var _delay2 = _interopRequireDefault(_delay);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _util = require(264);
-        var _flux = require(257);
-        var _reduxAsyncAction = require(288);
+        var _util = require(278);
+        var _flux = require(271);
+        var _reduxAsyncAction = require(303);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _exodusApi = require(228);
+        var _exodusApi = require(241);
         var exodusAPI = _interopRequireWildcard(_exodusApi);
-        var _insight = require(15);
+        var _insight = require(16);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -1107,16 +1175,16 @@
         }
 
     }, {
-        "15": 15,
-        "184": 184,
-        "228": 228,
-        "257": 257,
-        "264": 264,
-        "288": 288,
-        "96": 96,
+        "100": 100,
+        "16": 16,
+        "194": 194,
+        "241": 241,
+        "271": 271,
+        "278": 278,
+        "303": 303,
         "undefined": undefined
     }],
-    15: [function(require, module, exports) {
+    16: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -1363,22 +1431,22 @@
                 return _ref2.apply(this, arguments);
             };
         })();
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
         var _delay = require('delay');
         var _delay2 = _interopRequireDefault(_delay);
-        var _insightApiClient = require(265);
+        var _insightApiClient = require(279);
         var _insightApiClient2 = _interopRequireDefault(_insightApiClient);
-        var _utxoCollection = require(89);
+        var _utxoCollection = require(93);
         var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
-        var _util = require(264);
-        var _flux = require(257);
-        var _addressGeneratorTwoOfTwo = require(8);
-        var _pairingData = require(140);
+        var _util = require(278);
+        var _flux = require(271);
+        var _addressGeneratorTwoOfTwo = require(9);
+        var _pairingData = require(147);
         var _pairingData2 = _interopRequireDefault(_pairingData);
-        var _txSet = require(86);
+        var _txSet = require(90);
         var _txSet2 = _interopRequireDefault(_txSet);
-        var _util2 = require(83);
+        var _util2 = require(87);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -1418,32 +1486,32 @@
         };
 
     }, {
-        "140": 140,
-        "184": 184,
-        "257": 257,
-        "264": 264,
-        "265": 265,
-        "8": 8,
-        "83": 83,
-        "86": 86,
-        "89": 89,
+        "147": 147,
+        "194": 194,
+        "271": 271,
+        "278": 278,
+        "279": 279,
+        "87": 87,
+        "9": 9,
+        "90": 90,
+        "93": 93,
         "undefined": undefined
     }],
-    16: [function(require, module, exports) {
+    17: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.loadStatus = exports.loadAuth = exports.createAccount = undefined;
         exports.setStatus = setStatus;
-        var _reduxAsyncAction = require(288);
+        var _reduxAsyncAction = require(303);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _instanceShim = require(167);
+        var _instanceShim = require(174);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _keys = require(168);
+        var _keys = require(175);
         var walletKeys = _interopRequireWildcard(_keys);
-        var _flux = require(257);
-        var _client = require(217);
+        var _flux = require(271);
+        var _client = require(228);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -1556,18 +1624,18 @@
         }), 60 * 1000);
 
     }, {
-        "167": 167,
-        "168": 168,
-        "217": 217,
-        "257": 257,
-        "288": 288
+        "174": 174,
+        "175": 175,
+        "228": 228,
+        "271": 271,
+        "303": 303
     }],
-    17: [function(require, module, exports) {
+    18: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _configFile = require(205);
+        var _configFile = require(216);
 
         function _asyncToGenerator(fn) {
             return function() {
@@ -1614,9 +1682,9 @@
         ];
 
     }, {
-        "205": 205
+        "216": 216
     }],
-    18: [function(require, module, exports) {
+    19: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -1629,8 +1697,8 @@
         exports.setCoinMarketCap = setCoinMarketCap;
         exports.setCryptoCompare = setCryptoCompare;
         exports.setFiatUnit = setFiatUnit;
-        var _configFile = require(205);
-        var _configKeys = require(206);
+        var _configFile = require(216);
+        var _configKeys = require(217);
 
         function _asyncToGenerator(fn) {
             return function() {
@@ -1713,10 +1781,10 @@
         };
 
     }, {
-        "205": 205,
-        "206": 206
+        "216": 216,
+        "217": 217
     }],
-    19: [function(require, module, exports) {
+    20: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -1883,9 +1951,9 @@
                 return _ref4.apply(this, arguments);
             };
         })();
-        var _swal = require(306);
+        var _swal = require(321);
         var _swal2 = _interopRequireDefault(_swal);
-        var _util = require(264);
+        var _util = require(278);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -1921,15 +1989,697 @@
         }
 
     }, {
-        "264": 264,
-        "306": 306
+        "278": 278,
+        "321": 321
     }],
-    20: [function(require, module, exports) {
+    21: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.initExchange = exports.fetchOrders = exports.fetchAssetsAvailable = undefined;
+        exports.legacyExchange = legacyExchange;
+        var _assets = require(194);
+        var _assets2 = _interopRequireDefault(_assets);
+        var _ms = require('ms');
+        var _ms2 = _interopRequireDefault(_ms);
+        var _pairs = require(27);
+        var pairs = _interopRequireWildcard(_pairs);
+        var _txSend = require(79);
+        var _flux = require(271);
+        var _reduxAsyncAction = require(303);
+        var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
+        var _getExchangeAddress = require(95);
+        var _getExchangeAddress2 = _interopRequireDefault(_getExchangeAddress);
+        var _util = require(278);
+        var _getValue = require(126);
+        var _getValue2 = _interopRequireDefault(_getValue);
+        var _getUsdValue = require(125);
+        var _getUsdValue2 = _interopRequireDefault(_getUsdValue);
+        var _instanceShim = require(174);
+        var _instanceShim2 = _interopRequireDefault(_instanceShim);
+        var _delay = require('delay');
+        var _delay2 = _interopRequireDefault(_delay);
+        var _exodus = require(24);
+        var exodusExchange = _interopRequireWildcard(_exodus);
+        var _shapeshift = require(25);
+        var shapeshiftExchange = _interopRequireWildcard(_shapeshift);
+
+        function _interopRequireWildcard(obj) {
+            if (obj && obj.__esModule) {
+                return obj;
+            } else {
+                var newObj = {};
+                if (obj != null) {
+                    for (var key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+                    }
+                }
+                newObj.default = obj;
+                return newObj;
+            }
+        }
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+
+        function _asyncToGenerator(fn) {
+            return function() {
+                var gen = fn.apply(this, arguments);
+                return new Promise(function(resolve, reject) {
+                    function step(key, arg) {
+                        try {
+                            var info = gen[key](arg);
+                            var value = info.value;
+                        } catch (error) {
+                            reject(error);
+                            return;
+                        }
+                        if (info.done) {
+                            resolve(value);
+                        } else {
+                            return Promise.resolve(value).then(function(value) {
+                                step("next", value);
+                            }, function(err) {
+                                step("throw", err);
+                            });
+                        }
+                    }
+                    return step("next");
+                });
+            };
+        }
+        let eid;
+
+        function legacyExchange(_ref) {
+            let {
+                toAmount,
+                fromAmount,
+                fromCoin,
+                toCoin,
+                lastActive,
+                activePopover
+            } = _ref;
+            const initPayload = {
+                fromCoin,
+                toCoin
+            };
+            return (0, _reduxAsyncAction2.default)('EXCHANGE', {}, initPayload, (() => {
+                var _ref3 = _asyncToGenerator(function*(dispatch, getState, _ref2) {
+                    let {
+                        success,
+                        fail
+                    } = _ref2;
+                    let state = getState();
+                    const getExchangeAddress = (0, _getExchangeAddress2.default)(state);
+                    const getFiatValue = (0, _getValue2.default)(state);
+                    const getUSDValue = (0, _getUsdValue2.default)(state);
+                    if (!eid) eid = yield _instanceShim2.default.current.getEID();
+                    let pair = pairs.fromCoins(fromCoin, toCoin);
+                    const returnAddress = String(getExchangeAddress(fromCoin));
+                    let toAddress = String(getExchangeAddress(toCoin));
+                    if (toCoin === 'ethereum' || toCoin === 'ethereumclassic' || _assets2.default[toCoin].isEthereumToken) {
+                        toAddress = toAddress.toLowerCase();
+                    }
+                    let fromCurrency = _assets2.default[fromCoin].currency;
+                    let toCurrency = _assets2.default[toCoin].currency;
+                    let sendAmount = fromAmount;
+                    let depositAmount = sendAmount.toString();
+                    let withdrawalAmount = toAmount.toString();
+                    let active = lastActive === 'from' ? 'deposit' : 'withdrawal';
+                    const fromCoinIsEthErcEtc = fromCoin === 'ethereum' || fromCoin === 'ethereumclassic' || _assets2.default[fromCoin].isEthereumToken;
+                    if (fromCoinIsEthErcEtc && active === 'deposit') {
+                        depositAmount = (Math.floor(sendAmount.toNumber() * 1e8) / 1e8).toFixed(8) + ' ETH';
+                        console.log(depositAmount);
+                    }
+                    let exchOpts = {
+                        withdrawal: toAddress,
+                        pair,
+                        returnAddress,
+                        depositAmount,
+                        withdrawalAmount,
+                        active,
+                        eid,
+                        activePopover,
+                        depositAmountFiat: getFiatValue(sendAmount),
+                        withdrawalAmountFiat: getFiatValue(toAmount)
+                    };
+                    let res = yield exodusExchange.initExchange(exchOpts);
+                    console.log('Exodus ShapeShift response:');
+                    console.dir(res);
+                    let shouldSetError = true;
+                    try {
+                        const orderInfo = yield shapeshiftExchange.fetchOrderInfo(res.orderId);
+                        console.log('ShapeShift OrderInfo:');
+                        console.dir(orderInfo);
+                        let depositAddress = orderInfo.deposit;
+                        let statusAddress = depositAddress;
+                        if (fromCoin === 'monero') depositAddress = res.sAddress;
+                        const oldToAmount = toAmount;
+                        const waddress = orderInfo.withdraw || orderInfo.withdrawal;
+                        if (!waddress) console.warn('No ShapeShift withdrawal address returned.');
+                        if (waddress !== toAddress) {
+                            exodusExchange.setError(eid, res.orderId, `${waddress} does not match`);
+                            shouldSetError = false;
+                            console.warn('ShapeShift withdrawal address does not match.');
+                            console.log(waddress);
+                            console.log(toAddress);
+                            let res2 = yield shapeshiftExchange.initExchange(exchOpts);
+                            console.log('ShapeShift second response:');
+                            console.dir(res2);
+                            res = res2;
+                            depositAddress = res.deposit;
+                            statusAddress = depositAddress;
+                            if (fromCoin === 'monero') depositAddress = res.sAddress;
+                        }
+                        toAmount = toCurrency.defaultUnit(res.withdrawalAmount);
+                        if (res.depositAmount && (active === 'withdrawal' || !fromCoinIsEthErcEtc)) {
+                            const oldSendAmount = sendAmount;
+                            sendAmount = fromCurrency.defaultUnit(res.depositAmount);
+                            const fromDiff = (sendAmount.subtract(oldSendAmount).toNumber() * 100 / oldSendAmount.toNumber()).toFixed(4);
+                            console.log(`DEPOSIT: ${sendAmount.toString()}, diff: ${fromDiff}`);
+                            toAmount = toCurrency.defaultUnit(res.withdrawalAmount);
+                            const toDiff = (toAmount.subtract(oldToAmount).toNumber() * 100 / oldToAmount.toNumber()).toFixed(4);
+                            console.log(`WITHDRAWAL: ${toAmount.toString()}, diff: ${toDiff}`);
+                        }
+                        dispatch({
+                            type: 'EXCHANGE_START',
+                            payload: {
+                                svc: 'ss',
+                                orderId: res.orderId,
+                                fromCoin,
+                                toCoin,
+                                depositAddress,
+                                toAddress,
+                                amount: sendAmount,
+                                fromAmount: sendAmount,
+                                toAmount
+                            }
+                        });
+                        fromCoin = _assets2.default[fromCoin];
+                        toCoin = _assets2.default[toCoin];
+                        let receiver = {
+                            address: depositAddress,
+                            amount: sendAmount
+                        };
+                        if (fromCoin.name === 'monero') receiver.paymentId = statusAddress;
+                        if (fromCoin.name === 'ripple') {
+                            const [address, destTag] = receiver.address.split('?');
+                            Object.assign(receiver, {
+                                address,
+                                destTag: destTag.split('=')[1]
+                            });
+                        }
+                        yield(0, _delay2.default)((0, _ms2.default)('4s'));
+                        dispatch((0, _util.FSA)('EXCHANGE_DISABLE_CANCEL'));
+                        if (getState().exchange.canceled) {
+                            dispatch(_flux.actions.exchange.ackExchange());
+                            if (shouldSetError) exodusExchange.setError(eid, res.orderId, 'canceled');
+                            return;
+                        }
+                        yield(0, _txSend.send)({
+                            coin: fromCoin,
+                            receiver
+                        })(dispatch, getState);
+                        const txSendState = getState().txSend;
+                        if (txSendState.error) {
+                            if (shouldSetError) exodusExchange.setError(eid, res.orderId, String(txSendState.error));
+                            return fail(new Error('Transaction failed to send.'));
+                        }
+                        dispatch((0, _txSend.ackSend)());
+                        const fromExchgData = {
+                            exchange: true,
+                            txId: txSendState.txId,
+                            coinAmount: sendAmount.abs().negate(),
+                            fiatAmount: getFiatValue(sendAmount.abs().negate()),
+                            toCoin: {
+                                coin: toCoin.name,
+                                coinAmount: toAmount.toString(),
+                                fiatAmount: getFiatValue(toAmount).toString()
+                            },
+                            meta: {
+                                shapeshiftOrderId: res.orderId,
+                                shapeshiftDeposit: statusAddress
+                            }
+                        };
+                        _flux.actions.txLog.update(fromCoin.name, fromExchgData);
+                        const orderData = {
+                            orderId: res.orderId,
+                            status: res.status,
+                            fromAsset: fromCoin.name,
+                            fromTxId: txSendState.txId,
+                            toAsset: toCoin.name,
+                            fromAmount: sendAmount,
+                            toAmount,
+                            fromAmountUSD: getUSDValue(sendAmount),
+                            toAmountUSD: getUSDValue(toAmount)
+                        };
+                        _flux.actions.orders.update(orderData);
+                        yield(0, _delay2.default)((0, _ms2.default)('5s'));
+                        dispatch((0, _util.FSA)('EXCHANGE_STATUS', 'complete'));
+                        success();
+                    } catch (err) {
+                        if (shouldSetError) exodusExchange.setError(eid, res.orderId, String(err));
+                        throw err;
+                    }
+                });
+                return function(_x, _x2, _x3) {
+                    return _ref3.apply(this, arguments);
+                };
+            })());
+        }
+
+    }, {
+        "125": 125,
+        "126": 126,
+        "174": 174,
+        "194": 194,
+        "24": 24,
+        "25": 25,
+        "27": 27,
+        "271": 271,
+        "278": 278,
+        "303": 303,
+        "79": 79,
+        "95": 95,
+        "undefined": undefined
+    }],
+    22: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        let checkShapeShift = (() => {
+            var _ref5 = _asyncToGenerator(function*() {
+                let {
+                    orderId,
+                    initExchParams,
+                    initRes,
+                    active,
+                    fromAsset,
+                    toAsset
+                } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+                const orderInfo = yield shapeshiftExchange.fetchOrderInfo(orderId);
+                console.log('ShapeShift OrderInfo:');
+                console.dir(orderInfo);
+                console.log('INIT RES:');
+                console.dir(initRes);
+                const fromCurrency = _assets2.default[fromAsset].currency;
+                const toCurrency = _assets2.default[toAsset].currency;
+                let res = initRes;
+                let depositAddress = orderInfo.deposit;
+                const waddress = orderInfo.withdraw || orderInfo.withdrawal;
+                if (!waddress) console.warn('No ShapeShift withdrawal address returned.');
+                if (waddress !== initExchParams.withdrawal) {
+                    console.warn('ShapeShift withdrawal address does not match.');
+                    console.log(waddress);
+                    console.log(initExchParams.withdrawal);
+                    const res2 = yield shapeshiftExchange.initExchange(initExchParams);
+                    console.log('ShapeShift second response:');
+                    console.dir(res2);
+                    res = res2;
+                }
+                const sendAmount = fromCurrency.defaultUnit(res.depositAmount);
+                const toAmount = toCurrency.defaultUnit(res.withdrawalAmount);
+                let receiver = {
+                    address: depositAddress,
+                    amount: sendAmount
+                };
+                if (fromAsset === 'ripple') {
+                    const [address, destTag] = receiver.address.split('?');
+                    Object.assign(receiver, {
+                        address,
+                        destTag: destTag.split('=')[1]
+                    });
+                }
+                return {
+                    receiver,
+                    toAmount,
+                    toAddress: initExchParams.withdrawal
+                };
+            });
+            return function checkShapeShift() {
+                return _ref5.apply(this, arguments);
+            };
+        })();
+        let checkEvercoin = (() => {
+            var _ref6 = _asyncToGenerator(function*() {
+                let {
+                    orderId,
+                    initExchParams,
+                    initRes,
+                    active,
+                    fromAsset,
+                    toAsset
+                } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+                const orderInfo = yield evercoin.status(orderId);
+                console.log('EVERCOIN:');
+                console.dir(orderInfo);
+                const fromCurrency = _assets2.default[fromAsset].currency;
+                const toCurrency = _assets2.default[toAsset].currency;
+                const {
+                    destinationAddress,
+                    depositAddress,
+                    depositExpectedAmount,
+                    destinationExpectedAmount
+                } = orderInfo;
+                const checkAddress = isAssetEthErcEtc(toAsset) ? destinationAddress.mainAddress.toLowerCase() : destinationAddress.mainAddress;
+                if (checkAddress !== initExchParams.withdrawal) {
+                    throw new Error(`Not matching EC addresses: ${checkAddress} !== ${initExchParams.withdrawal}`);
+                }
+                const toAmount = toCurrency.defaultUnit(destinationExpectedAmount);
+                let receiver = {
+                    address: depositAddress.mainAddress,
+                    amount: fromCurrency.defaultUnit(depositExpectedAmount)
+                };
+                const ret = {
+                    receiver,
+                    toAmount,
+                    toAddress: initExchParams.withdrawal
+                };
+                console.dir(ret);
+                return ret;
+            });
+            return function checkEvercoin() {
+                return _ref6.apply(this, arguments);
+            };
+        })();
+        exports.newExchange = newExchange;
+        var _assets = require(194);
+        var _assets2 = _interopRequireDefault(_assets);
+        var _ms = require('ms');
+        var _ms2 = _interopRequireDefault(_ms);
+        var _pairs = require(27);
+        var pairs = _interopRequireWildcard(_pairs);
+        var _txSend = require(79);
+        var _flux = require(271);
+        var _reduxAsyncAction = require(303);
+        var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
+        var _getExchangeAddress = require(95);
+        var _getExchangeAddress2 = _interopRequireDefault(_getExchangeAddress);
+        var _util = require(278);
+        var _getValue = require(126);
+        var _getValue2 = _interopRequireDefault(_getValue);
+        var _getUsdValue = require(125);
+        var _getUsdValue2 = _interopRequireDefault(_getUsdValue);
+        var _instanceShim = require(174);
+        var _instanceShim2 = _interopRequireDefault(_instanceShim);
+        var _delay = require('delay');
+        var _delay2 = _interopRequireDefault(_delay);
+        var _shapeshift = require(25);
+        var shapeshiftExchange = _interopRequireWildcard(_shapeshift);
+        var _evercoin = require(239);
+        var evercoin = _interopRequireWildcard(_evercoin);
+        var _exchange = require(240);
+        var exodusExchangeAPI = _interopRequireWildcard(_exchange);
+
+        function _interopRequireWildcard(obj) {
+            if (obj && obj.__esModule) {
+                return obj;
+            } else {
+                var newObj = {};
+                if (obj != null) {
+                    for (var key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+                    }
+                }
+                newObj.default = obj;
+                return newObj;
+            }
+        }
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+
+        function _objectWithoutProperties(obj, keys) {
+            var target = {};
+            for (var i in obj) {
+                if (keys.indexOf(i) >= 0) continue;
+                if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+                target[i] = obj[i];
+            }
+            return target;
+        }
+
+        function _asyncToGenerator(fn) {
+            return function() {
+                var gen = fn.apply(this, arguments);
+                return new Promise(function(resolve, reject) {
+                    function step(key, arg) {
+                        try {
+                            var info = gen[key](arg);
+                            var value = info.value;
+                        } catch (error) {
+                            reject(error);
+                            return;
+                        }
+                        if (info.done) {
+                            resolve(value);
+                        } else {
+                            return Promise.resolve(value).then(function(value) {
+                                step("next", value);
+                            }, function(err) {
+                                step("throw", err);
+                            });
+                        }
+                    }
+                    return step("next");
+                });
+            };
+        }
+        let eid;
+
+        function newExchange(_ref) {
+            let {
+                toAmount,
+                fromAmount,
+                fromCoin,
+                toCoin,
+                lastActive,
+                activePopover
+            } = _ref;
+            console.log('NEW EXCHANGE');
+            const initPayload = {
+                fromCoin,
+                toCoin
+            };
+            return (0, _reduxAsyncAction2.default)('EXCHANGE', {}, initPayload, (() => {
+                var _ref3 = _asyncToGenerator(function*(dispatch, getState, _ref2) {
+                    let {
+                        success,
+                        fail
+                    } = _ref2;
+                    let state = getState();
+                    const getExchangeAddress = (0, _getExchangeAddress2.default)(state);
+                    const getFiatValue = (0, _getValue2.default)(state);
+                    const getUSDValue = (0, _getUsdValue2.default)(state);
+                    if (!eid) eid = (yield _instanceShim2.default.current.getEID()).toString('hex');
+                    let pair = pairs.fromCoins(fromCoin, toCoin);
+                    const returnAddress = String(getExchangeAddress(fromCoin));
+                    let withdrawal = String(getExchangeAddress(toCoin));
+                    if (isAssetEthErcEtc(toCoin)) withdrawal = withdrawal.toLowerCase();
+                    let depositAmount = fromAmount.toString();
+                    let withdrawalAmount = toAmount.toString();
+                    let active = lastActive === 'from' ? 'deposit' : 'withdrawal';
+                    if (isAssetEthErcEtc(fromCoin) && active === 'deposit') {
+                        depositAmount = (Math.floor(fromAmount.toNumber() * 1e8) / 1e8).toFixed(8) + ' ETH';
+                        console.log(depositAmount);
+                    }
+                    const initExchParams = {
+                        withdrawal,
+                        pair,
+                        returnAddress,
+                        depositAmount,
+                        withdrawalAmount,
+                        active,
+                        eid,
+                        activePopover,
+                        depositAmountFiat: getFiatValue(fromAmount),
+                        withdrawalAmountFiat: getFiatValue(toAmount)
+                    };
+                    let res = yield exodusExchangeAPI.initExchange(initExchParams);
+                    console.log('Exodus ShapeShift response:');
+                    console.dir(res);
+                    const {
+                        svc,
+                        orderId
+                    } = res;
+                    const {
+                        receiver,
+                        toAmount: actualToAmount,
+                        toAddress
+                    } = yield checkService({
+                        svc,
+                        orderId,
+                        initExchParams,
+                        initRes: res,
+                        active,
+                        fromAsset: fromCoin,
+                        toAsset: toCoin
+                    });
+                    const sendAmount = receiver.amount;
+                    dispatch({
+                        type: 'EXCHANGE_START',
+                        payload: {
+                            svc,
+                            orderId,
+                            fromCoin,
+                            toCoin,
+                            depositAddress: receiver.address,
+                            toAddress,
+                            amount: sendAmount,
+                            fromAmount: sendAmount,
+                            toAmount: actualToAmount
+                        }
+                    });
+                    yield(0, _delay2.default)((0, _ms2.default)('4s'));
+                    dispatch((0, _util.FSA)('EXCHANGE_DISABLE_CANCEL'));
+                    if (getState().exchange.canceled) {
+                        dispatch(_flux.actions.exchange.ackExchange());
+                        return;
+                    }
+                    yield(0, _txSend.send)({
+                        coin: _assets2.default[fromCoin],
+                        receiver
+                    })(dispatch, getState);
+                    const txSendState = getState().txSend;
+                    if (txSendState.error) {
+                        return fail(new Error('Transaction failed to send.'));
+                    }
+                    dispatch((0, _txSend.ackSend)());
+                    const fromExchgData = {
+                        exchange: true,
+                        txId: txSendState.txId,
+                        coinAmount: sendAmount.abs().negate(),
+                        fiatAmount: getFiatValue(sendAmount.abs().negate()),
+                        toCoin: {
+                            coin: toCoin,
+                            coinAmount: actualToAmount.toString(),
+                            fiatAmount: getFiatValue(actualToAmount).toString()
+                        }
+                    };
+                    _flux.actions.txLog.update(fromCoin, fromExchgData);
+                    console.log('TX ID SEND');
+                    console.log(txSendState.txId);
+                    const orderData = {
+                        orderId: res.orderId,
+                        status: res.status,
+                        fromAsset: fromCoin,
+                        fromTxId: txSendState.txId,
+                        toAsset: toCoin,
+                        fromAmount: sendAmount,
+                        toAmount: actualToAmount,
+                        svc,
+                        fromAmountUSD: getUSDValue(sendAmount),
+                        toAmountUSD: getUSDValue(actualToAmount)
+                    };
+                    _flux.actions.orders.update(orderData);
+                    yield(0, _delay2.default)((0, _ms2.default)('5s'));
+                    dispatch((0, _util.FSA)('EXCHANGE_STATUS', 'complete'));
+                    success();
+                });
+                return function(_x, _x2, _x3) {
+                    return _ref3.apply(this, arguments);
+                };
+            })());
+        }
+
+        function checkService(_ref4) {
+            let {
+                svc
+            } = _ref4, params = _objectWithoutProperties(_ref4, ['svc']);
+            console.log(`Exchange serviced by: ${svc}`);
+            if (svc === 'ss') return checkShapeShift(params);
+            else if (svc === 'ec') return checkEvercoin(params);
+            else throw new Error(`Uknown exchange service provider: ${svc}.`);
+        }
+        const isAssetEthErcEtc = asset => asset === 'ethereum' || asset === 'ethereumclassic' || _assets2.default[asset].isEthereumToken;
+
+    }, {
+        "125": 125,
+        "126": 126,
+        "174": 174,
+        "194": 194,
+        "239": 239,
+        "240": 240,
+        "25": 25,
+        "27": 27,
+        "271": 271,
+        "278": 278,
+        "303": 303,
+        "79": 79,
+        "95": 95,
+        "undefined": undefined
+    }],
+    23: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.fetchAssetsAvailable = undefined;
+        let fetchAssetsAvailable = exports.fetchAssetsAvailable = (() => {
+            var _ref = _asyncToGenerator(function*() {
+                const url = `${_appConfig.EXODUS_EXCHANGE_SERVER}/v1/assets`;
+                const res = yield(0, _fetchival2.default)(url).get();
+                if (res.status !== 'success') throw new Error(`${url} response not success.`);
+                return res.data;
+            });
+            return function fetchAssetsAvailable() {
+                return _ref.apply(this, arguments);
+            };
+        })();
+        var _appConfig = require(84);
+        var _fetchival = require('fetchival');
+        var _fetchival2 = _interopRequireDefault(_fetchival);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+
+        function _asyncToGenerator(fn) {
+            return function() {
+                var gen = fn.apply(this, arguments);
+                return new Promise(function(resolve, reject) {
+                    function step(key, arg) {
+                        try {
+                            var info = gen[key](arg);
+                            var value = info.value;
+                        } catch (error) {
+                            reject(error);
+                            return;
+                        }
+                        if (info.done) {
+                            resolve(value);
+                        } else {
+                            return Promise.resolve(value).then(function(value) {
+                                step("next", value);
+                            }, function(err) {
+                                step("throw", err);
+                            });
+                        }
+                    }
+                    return step("next");
+                });
+            };
+        }
+
+    }, {
+        "84": 84,
+        "undefined": undefined
+    }],
+    24: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.setError = exports.initExchange = exports.fetchOrders = exports.fetchAssetsAvailable = undefined;
         let fetchAssetsAvailable = exports.fetchAssetsAvailable = (() => {
             var _ref = _asyncToGenerator(function*() {
                 const url = `${_appConfig.EXODUS_SERVER}/v1/assets`;
@@ -1981,7 +2731,24 @@
                 return _ref3.apply(this, arguments);
             };
         })();
-        var _appConfig = require(80);
+        let setError = exports.setError = (() => {
+            var _ref4 = _asyncToGenerator(function*(eid, oid, error) {
+                const url = `${_appConfig.EXODUS_SERVER}/v1/exchange-error`;
+                try {
+                    yield(0, _fetchival2.default)(url).put({
+                        eid: eid.toString('hex'),
+                        oid,
+                        error
+                    });
+                } catch (err) {
+                    console.error(err);
+                }
+            });
+            return function setError(_x3, _x4, _x5) {
+                return _ref4.apply(this, arguments);
+            };
+        })();
+        var _appConfig = require(84);
         var _fetchival = require('fetchival');
         var _fetchival2 = _interopRequireDefault(_fetchival);
 
@@ -2054,10 +2821,10 @@
         }
 
     }, {
-        "80": 80,
+        "84": 84,
         "undefined": undefined
     }],
-    21: [function(require, module, exports) {
+    25: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -2163,7 +2930,7 @@
     }, {
         "undefined": undefined
     }],
-    22: [function(require, module, exports) {
+    26: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -2175,38 +2942,24 @@
         exports.ackExchange = ackExchange;
         exports.cancelExchange = cancelExchange;
         exports.checkShapeShiftMaintenance = checkShapeShiftMaintenance;
-        exports.checkCoinsOnline = checkCoinsOnline;
+        exports.checkAssetsOnline = checkAssetsOnline;
+        exports.setLastPair = setLastPair;
         var _aw = require('aw');
         var _aw2 = _interopRequireDefault(_aw);
-        var _assets = require(184);
-        var _assets2 = _interopRequireDefault(_assets);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _shapeshift = require(302);
+        var _shapeshift = require(317);
         var _shapeshift2 = _interopRequireDefault(_shapeshift);
-        var _pairs = require(23);
-        var pairs = _interopRequireWildcard(_pairs);
-        var _txSend = require(75);
-        var _flux = require(257);
-        var _reduxAsyncAction = require(288);
+        var _reduxAsyncAction = require(303);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _getExchangeAddress = require(91);
-        var _getExchangeAddress2 = _interopRequireDefault(_getExchangeAddress);
-        var _util = require(264);
-        var _getValue = require(121);
-        var _getValue2 = _interopRequireDefault(_getValue);
-        var _getUsdValue = require(120);
-        var _getUsdValue2 = _interopRequireDefault(_getUsdValue);
-        var _instanceShim = require(167);
-        var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _delay = require('delay');
-        var _delay2 = _interopRequireDefault(_delay);
-        var _exodusApi = require(228);
+        var _util = require(278);
+        var _exodusApi = require(241);
         var exodusAPI = _interopRequireWildcard(_exodusApi);
-        var _exodus = require(20);
-        var exodusExchange = _interopRequireWildcard(_exodus);
-        var _shapeshift3 = require(21);
-        var shapeshiftExchange = _interopRequireWildcard(_shapeshift3);
+        var _appConfig = require(84);
+        var _exodusNew = require(23);
+        var newExodusExchange = _interopRequireWildcard(_exodusNew);
+        var _exchangeLegacy = require(21);
+        var _exchangeNew = require(22);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -2255,7 +3008,6 @@
                 });
             };
         }
-        let eid;
 
         function startMonitorMarket() {
             return (() => {
@@ -2347,165 +3099,22 @@
                 lastActive,
                 activePopover
             } = _ref6;
-            const initPayload = {
+            if (_appConfig.ENV_DEV || _appConfig.ENV_BUILD_EDEN) return (0, _exchangeNew.newExchange)({
+                toAmount,
+                fromAmount,
                 fromCoin,
-                toCoin
-            };
-            return (0, _reduxAsyncAction2.default)('EXCHANGE', {}, initPayload, (() => {
-                var _ref8 = _asyncToGenerator(function*(dispatch, getState, _ref7) {
-                    let {
-                        success,
-                        fail
-                    } = _ref7;
-                    let state = getState();
-                    const getExchangeAddress = (0, _getExchangeAddress2.default)(state);
-                    const getFiatValue = (0, _getValue2.default)(state);
-                    const getUSDValue = (0, _getUsdValue2.default)(state);
-                    if (!eid) eid = yield _instanceShim2.default.current.getEID();
-                    let pair = pairs.fromCoins(fromCoin, toCoin);
-                    const returnAddress = String(getExchangeAddress(fromCoin));
-                    let toAddress = String(getExchangeAddress(toCoin));
-                    if (toCoin === 'ethereum' || toCoin === 'ethereumclassic' || _assets2.default[toCoin].isEthereumToken) {
-                        toAddress = toAddress.toLowerCase();
-                    }
-                    let fromCurrency = _assets2.default[fromCoin].currency;
-                    let toCurrency = _assets2.default[toCoin].currency;
-                    let sendAmount = fromAmount;
-                    let depositAmount = sendAmount.toString();
-                    let withdrawalAmount = toAmount.toString();
-                    let active = lastActive === 'from' ? 'deposit' : 'withdrawal';
-                    const fromCoinIsEthErcEtc = fromCoin === 'ethereum' || fromCoin === 'ethereumclassic' || _assets2.default[fromCoin].isEthereumToken;
-                    if (fromCoinIsEthErcEtc && active === 'deposit') {
-                        depositAmount = (Math.floor(sendAmount.toNumber() * 1e8) / 1e8).toFixed(8) + ' ETH';
-                        console.log(depositAmount);
-                    }
-                    let exchOpts = {
-                        withdrawal: toAddress,
-                        pair,
-                        returnAddress,
-                        depositAmount,
-                        withdrawalAmount,
-                        active,
-                        eid,
-                        activePopover,
-                        depositAmountFiat: getFiatValue(sendAmount),
-                        withdrawalAmountFiat: getFiatValue(toAmount)
-                    };
-                    let res = yield exodusExchange.initExchange(exchOpts);
-                    console.log('Exodus ShapeShift response:');
-                    console.dir(res);
-                    const orderInfo = yield shapeshiftExchange.fetchOrderInfo(res.orderId);
-                    console.log('ShapeShift OrderInfo:');
-                    console.dir(orderInfo);
-                    let depositAddress = orderInfo.deposit;
-                    let statusAddress = depositAddress;
-                    if (fromCoin === 'monero') depositAddress = res.sAddress;
-                    const oldToAmount = toAmount;
-                    const waddress = orderInfo.withdraw || orderInfo.withdrawal;
-                    if (!waddress) console.warn('No ShapeShift withdrawal address returned.');
-                    if (waddress !== toAddress) {
-                        console.warn('ShapeShift withdrawal address does not match.');
-                        console.log(waddress);
-                        console.log(toAddress);
-                        let res2 = yield shapeshiftExchange.initExchange(exchOpts);
-                        console.log('ShapeShift second response:');
-                        console.dir(res2);
-                        res = res2;
-                        depositAddress = res.deposit;
-                        statusAddress = depositAddress;
-                        if (fromCoin === 'monero') depositAddress = res.sAddress;
-                    }
-                    toAmount = toCurrency.defaultUnit(res.withdrawalAmount);
-                    dispatch({
-                        type: 'EXCHANGE_START_SS',
-                        payload: res
-                    });
-                    if (res.depositAmount && (active === 'withdrawal' || !fromCoinIsEthErcEtc)) {
-                        const oldSendAmount = sendAmount;
-                        sendAmount = fromCurrency.defaultUnit(res.depositAmount);
-                        const fromDiff = (sendAmount.subtract(oldSendAmount).toNumber() * 100 / oldSendAmount.toNumber()).toFixed(4);
-                        console.log(`DEPOSIT: ${sendAmount.toString()}, diff: ${fromDiff}`);
-                        toAmount = toCurrency.defaultUnit(res.withdrawalAmount);
-                        const toDiff = (toAmount.subtract(oldToAmount).toNumber() * 100 / oldToAmount.toNumber()).toFixed(4);
-                        console.log(`WITHDRAWAL: ${toAmount.toString()}, diff: ${toDiff}`);
-                    }
-                    dispatch({
-                        type: 'EXCHANGE_START',
-                        payload: {
-                            fromCoin,
-                            toCoin,
-                            depositAddress,
-                            toAddress,
-                            amount: sendAmount,
-                            fromAmount: sendAmount,
-                            toAmount
-                        }
-                    });
-                    fromCoin = _assets2.default[fromCoin];
-                    toCoin = _assets2.default[toCoin];
-                    let receiver = {
-                        address: depositAddress,
-                        amount: sendAmount
-                    };
-                    if (fromCoin.name === 'monero') receiver.paymentId = statusAddress;
-                    if (fromCoin.name === 'ripple') {
-                        const [address, destTag] = receiver.address.split('?');
-                        Object.assign(receiver, {
-                            address,
-                            destTag: destTag.split('=')[1]
-                        });
-                    }
-                    yield(0, _delay2.default)((0, _ms2.default)('4s'));
-                    dispatch((0, _util.FSA)('EXCHANGE_DISABLE_CANCEL'));
-                    if (getState().exchange.canceled) {
-                        dispatch(_flux.actions.exchange.ackExchange());
-                        return;
-                    }
-                    yield(0, _txSend.send)({
-                        coin: fromCoin,
-                        receiver
-                    })(dispatch, getState);
-                    const txSendState = getState().txSend;
-                    if (txSendState.error) {
-                        return fail(new Error('Transaction failed to send.'));
-                    }
-                    dispatch((0, _txSend.ackSend)());
-                    const fromExchgData = {
-                        exchange: true,
-                        txId: txSendState.txId,
-                        coinAmount: sendAmount.abs().negate(),
-                        fiatAmount: getFiatValue(sendAmount.abs().negate()),
-                        toCoin: {
-                            coin: toCoin.name,
-                            coinAmount: toAmount.toString(),
-                            fiatAmount: getFiatValue(toAmount).toString()
-                        },
-                        meta: {
-                            shapeshiftOrderId: res.orderId,
-                            shapeshiftDeposit: statusAddress
-                        }
-                    };
-                    _flux.actions.txLog.update(fromCoin.name, fromExchgData);
-                    const orderData = {
-                        orderId: res.orderId,
-                        status: res.status,
-                        fromAsset: fromCoin.name,
-                        fromTxId: txSendState.txId,
-                        toAsset: toCoin.name,
-                        fromAmount: sendAmount,
-                        toAmount,
-                        fromAmountUSD: getUSDValue(sendAmount),
-                        toAmountUSD: getUSDValue(toAmount)
-                    };
-                    _flux.actions.orders.update(orderData);
-                    yield(0, _delay2.default)((0, _ms2.default)('5s'));
-                    dispatch((0, _util.FSA)('EXCHANGE_STATUS', 'complete'));
-                    success();
-                });
-                return function(_x7, _x8, _x9) {
-                    return _ref8.apply(this, arguments);
-                };
-            })());
+                toCoin,
+                lastActive,
+                activePopover
+            });
+            return (0, _exchangeLegacy.legacyExchange)({
+                toAmount,
+                fromAmount,
+                fromCoin,
+                toCoin,
+                lastActive,
+                activePopover
+            });
         }
 
         function ackExchange() {
@@ -2518,12 +3127,28 @@
 
         function checkShapeShiftMaintenance() {
             return (0, _reduxAsyncAction2.default)('EXCHANGE_MAINTENANCE', {}, (() => {
-                var _ref10 = _asyncToGenerator(function*(dispatch, getState, _ref9) {
+                var _ref8 = _asyncToGenerator(function*(dispatch, getState, _ref7) {
                     let {
                         success
-                    } = _ref9;
+                    } = _ref7;
                     const [err] = yield(0, _aw2.default)(_shapeshift2.default.isDown)();
                     success(!!err);
+                });
+                return function(_x7, _x8, _x9) {
+                    return _ref8.apply(this, arguments);
+                };
+            })());
+        }
+
+        function checkAssetsOnline() {
+            return (0, _reduxAsyncAction2.default)('EXCHANGE_ASSETS_ONLINE', {}, (() => {
+                var _ref10 = _asyncToGenerator(function*(dispatch, getState, _ref9) {
+                    let {
+                        fail,
+                        success
+                    } = _ref9;
+                    const ret = yield newExodusExchange.fetchAssetsAvailable();
+                    success(ret);
                 });
                 return function(_x10, _x11, _x12) {
                     return _ref10.apply(this, arguments);
@@ -2531,40 +3156,22 @@
             })());
         }
 
-        function checkCoinsOnline() {
-            return (0, _reduxAsyncAction2.default)('EXCHANGE_COINS_ONLINE', {}, (() => {
-                var _ref12 = _asyncToGenerator(function*(dispatch, getState, _ref11) {
-                    let {
-                        fail,
-                        success
-                    } = _ref11;
-                    const ret = yield exodusExchange.fetchAssetsAvailable();
-                    success(ret);
-                });
-                return function(_x13, _x14, _x15) {
-                    return _ref12.apply(this, arguments);
-                };
-            })());
+        function setLastPair(data) {
+            return (0, _util.FSA)('EXCHANGE_SET_LAST_PAIR', data);
         }
 
     }, {
-        "120": 120,
-        "121": 121,
-        "167": 167,
-        "184": 184,
-        "20": 20,
         "21": 21,
-        "228": 228,
+        "22": 22,
         "23": 23,
-        "257": 257,
-        "264": 264,
-        "288": 288,
-        "302": 302,
-        "75": 75,
-        "91": 91,
+        "241": 241,
+        "278": 278,
+        "303": 303,
+        "317": 317,
+        "84": 84,
         "undefined": undefined
     }],
-    23: [function(require, module, exports) {
+    27: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -2573,7 +3180,7 @@
         exports.toCoins = toCoins;
         exports.isValid = isValid;
         exports.invert = invert;
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
@@ -2616,29 +3223,29 @@
         }
 
     }, {
-        "184": 184,
+        "194": 194,
         "undefined": undefined
     }],
-    24: [function(require, module, exports) {
+    28: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _hooks = require(17);
+        var _hooks = require(18);
         var _hooks2 = _interopRequireDefault(_hooks);
-        var _hooks3 = require(13);
+        var _hooks3 = require(14);
         var _hooks4 = _interopRequireDefault(_hooks3);
-        var _hooks5 = require(26);
+        var _hooks5 = require(30);
         var _hooks6 = _interopRequireDefault(_hooks5);
-        var _hooks7 = require(62);
+        var _hooks7 = require(66);
         var _hooks8 = _interopRequireDefault(_hooks7);
-        var _hooks9 = require(64);
+        var _hooks9 = require(68);
         var _hooks10 = _interopRequireDefault(_hooks9);
-        var _hooks11 = require(69);
+        var _hooks11 = require(73);
         var _hooks12 = _interopRequireDefault(_hooks11);
-        var _hooks13 = require(74);
+        var _hooks13 = require(78);
         var _hooks14 = _interopRequireDefault(_hooks13);
-        var _hooks15 = require(78);
+        var _hooks15 = require(82);
         var _hooks16 = _interopRequireDefault(_hooks15);
 
         function _interopRequireDefault(obj) {
@@ -2649,58 +3256,58 @@
         exports.default = [_hooks2.default, _hooks6.default, _hooks8.default, _hooks10.default, _hooks4.default, _hooks12.default, _hooks14.default, _hooks16.default];
 
     }, {
-        "13": 13,
-        "17": 17,
-        "26": 26,
-        "62": 62,
-        "64": 64,
-        "69": 69,
-        "74": 74,
-        "78": 78
+        "14": 14,
+        "18": 18,
+        "30": 30,
+        "66": 66,
+        "68": 68,
+        "73": 73,
+        "78": 78,
+        "82": 82
     }],
-    25: [function(require, module, exports) {
+    29: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.bindAllActionCreators = bindAllActionCreators;
-        var _reduxBindActionCreators = require(289);
+        var _reduxBindActionCreators = require(304);
         var _reduxBindActionCreators2 = _interopRequireDefault(_reduxBindActionCreators);
-        var _accounts = require(12);
+        var _accounts = require(13);
         var accounts = _interopRequireWildcard(_accounts);
-        var _accountStates = require(11);
+        var _accountStates = require(12);
         var accountStates = _interopRequireWildcard(_accountStates);
-        var _assetsRefresh = require(14);
+        var _assetsRefresh = require(15);
         var assetsRefresh = _interopRequireWildcard(_assetsRefresh);
-        var _backup = require(16);
+        var _backup = require(17);
         var backup = _interopRequireWildcard(_backup);
-        var _config = require(18);
+        var _config = require(19);
         var config = _interopRequireWildcard(_config);
-        var _dialog = require(19);
+        var _dialog = require(20);
         var dialog = _interopRequireWildcard(_dialog);
-        var _exchange = require(22);
+        var _exchange = require(26);
         var exchange = _interopRequireWildcard(_exchange);
-        var _localStorage = require(27);
+        var _localStorage = require(31);
         var localStorage = _interopRequireWildcard(_localStorage);
-        var _marketHistory = require(28);
+        var _marketHistory = require(32);
         var marketHistory = _interopRequireWildcard(_marketHistory);
-        var _moneroNgMm = require(29);
+        var _moneroNgMm = require(33);
         var moneroMM = _interopRequireWildcard(_moneroNgMm);
-        var _moneroSimplewallet = require(30);
+        var _moneroSimplewallet = require(34);
         var moneroSimplewallet = _interopRequireWildcard(_moneroSimplewallet);
-        var _monitors = require(53);
+        var _monitors = require(54);
         var monitors = _interopRequireWildcard(_monitors);
-        var _orders = require(65);
+        var _orders = require(69);
         var orders = _interopRequireWildcard(_orders);
-        var _networks = require(63);
+        var _networks = require(67);
         var networks = _interopRequireWildcard(_networks);
-        var _twoOfTwo = require(67);
+        var _twoOfTwo = require(71);
         var twoOfTwo = _interopRequireWildcard(_twoOfTwo);
-        var _txLog = require(70);
+        var _txLog = require(74);
         var txLog = _interopRequireWildcard(_txLog);
-        var _txSend = require(75);
+        var _txSend = require(79);
         var txSend = _interopRequireWildcard(_txSend);
-        var _utxos = require(79);
+        var _utxos = require(83);
         var utxos = _interopRequireWildcard(_utxos);
 
         function _interopRequireWildcard(obj) {
@@ -2757,27 +3364,27 @@
         }
 
     }, {
-        "11": 11,
         "12": 12,
-        "14": 14,
-        "16": 16,
-        "18": 18,
+        "13": 13,
+        "15": 15,
+        "17": 17,
         "19": 19,
-        "22": 22,
-        "27": 27,
-        "28": 28,
-        "289": 289,
-        "29": 29,
-        "30": 30,
-        "53": 53,
-        "63": 63,
-        "65": 65,
+        "20": 20,
+        "26": 26,
+        "304": 304,
+        "31": 31,
+        "32": 32,
+        "33": 33,
+        "34": 34,
+        "54": 54,
         "67": 67,
-        "70": 70,
-        "75": 75,
-        "79": 79
+        "69": 69,
+        "71": 71,
+        "74": 74,
+        "79": 79,
+        "83": 83
     }],
-    26: [function(require, module, exports) {
+    30: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -2826,14 +3433,14 @@
         ];
 
     }, {}],
-    27: [function(require, module, exports) {
+    31: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.load = load;
         exports.setItem = setItem;
-        var _util = require(264);
+        var _util = require(278);
         const localStorage = window.localStorage;
 
         function load() {
@@ -2854,9 +3461,9 @@
         }
 
     }, {
-        "264": 264
+        "278": 278
     }],
-    28: [function(require, module, exports) {
+    32: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -3019,19 +3626,19 @@
                 return _ref3.apply(this, arguments);
             };
         })();
-        var _util = require(264);
+        var _util = require(278);
         var _cryptocompare = require('cryptocompare');
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _flux = require(257);
-        var _configKeys = require(206);
+        var _flux = require(271);
+        var _configKeys = require(217);
         var _aw = require('aw');
         var _aw2 = _interopRequireDefault(_aw);
         var _delay = require('delay');
         var _delay2 = _interopRequireDefault(_delay);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _dateUtil = require(214);
+        var _dateUtil = require(225);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -3135,27 +3742,27 @@
         }
 
     }, {
-        "184": 184,
-        "206": 206,
-        "214": 214,
-        "257": 257,
-        "264": 264,
+        "194": 194,
+        "217": 217,
+        "225": 225,
+        "271": 271,
+        "278": 278,
         "undefined": undefined
     }],
-    29: [function(require, module, exports) {
+    33: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.login = login;
-        var _reduxAsyncAction = require(288);
+        var _reduxAsyncAction = require(303);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
         var _electronIpcBroadcast = require('electron-ipc-broadcast');
         var _electronIpcBroadcast2 = _interopRequireDefault(_electronIpcBroadcast);
         var _electron = require('electron');
-        var _monerojsUtil = require(281);
+        var _monerojsUtil = require(295);
         var moneroUtil = _interopRequireWildcard(_monerojsUtil);
-        var _getReceiveAddress = require(92);
+        var _getReceiveAddress = require(96);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
@@ -3263,21 +3870,21 @@
         }
 
     }, {
-        "281": 281,
-        "288": 288,
-        "92": 92,
+        "295": 295,
+        "303": 303,
+        "96": 96,
         "undefined": undefined
     }],
-    30: [function(require, module, exports) {
+    34: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.start = start;
-        var _monerojsUtil = require(281);
+        var _monerojsUtil = require(295);
         var moneroUtil = _interopRequireWildcard(_monerojsUtil);
-        var _moneroSimplewallet = require(274);
-        var _getReceiveAddress = require(92);
+        var _moneroSimplewallet = require(288);
+        var _getReceiveAddress = require(96);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
 
         function _interopRequireDefault(obj) {
@@ -3389,11 +3996,11 @@
         }
 
     }, {
-        "274": 274,
-        "281": 281,
-        "92": 92
+        "288": 288,
+        "295": 295,
+        "96": 96
     }],
-    31: [function(require, module, exports) {
+    35: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -3402,12 +4009,12 @@
         var _fp = require('lodash/fp');
         var _ = _interopRequireWildcard(_fp);
         var _reselect = require('reselect');
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _flux = require(257);
-        var _cryptoTotal = require(100);
+        var _flux = require(271);
+        var _cryptoTotal = require(104);
         var _cryptoTotal2 = _interopRequireDefault(_cryptoTotal);
-        var _assetsDisabled = require(103);
+        var _assetsDisabled = require(108);
         var _assetsDisabled2 = _interopRequireDefault(_assetsDisabled);
 
         function _interopRequireDefault(obj) {
@@ -3449,31 +4056,31 @@
         }
 
     }, {
-        "100": 100,
-        "103": 103,
-        "184": 184,
-        "257": 257,
+        "104": 104,
+        "108": 108,
+        "194": 194,
+        "271": 271,
         "undefined": undefined
     }],
-    32: [function(require, module, exports) {
+    36: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.createMonitor = createMonitor;
         var _events = require('events');
-        var _aureus = require(192);
+        var _aureus = require(203);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
         var _aw = require('aw');
         var _aw2 = _interopRequireDefault(_aw);
         var _makeConcurrent = require('make-concurrent');
         var _makeConcurrent2 = _interopRequireDefault(_makeConcurrent);
-        var _flux = require(257);
-        var _util = require(264);
-        var _accountState = require(7);
+        var _flux = require(271);
+        var _util = require(278);
+        var _accountState = require(8);
         var AccountStates = _interopRequireWildcard(_accountState);
-        var _logger = require(269);
+        var _logger = require(283);
         var _logger2 = _interopRequireDefault(_logger);
 
         function _interopRequireWildcard(obj) {
@@ -3725,14 +4332,149 @@
         }
 
     }, {
-        "192": 192,
-        "257": 257,
-        "264": 264,
-        "269": 269,
-        "7": 7,
+        "203": 203,
+        "271": 271,
+        "278": 278,
+        "283": 283,
+        "8": 8,
         "undefined": undefined
     }],
-    33: [function(require, module, exports) {
+    37: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.default = function(asset) {
+            return {
+                start
+            };
+
+            function start() {
+                return (dispatch, getState) => {
+                    let addressSet = _addressSet2.default.EMPTY;
+                    const w = (0, _reduxWatch2.default)(() => (0, _getRecvExchAddresses2.default)(getState())(asset.name));
+                    _flux.store.subscribe(w(newAddressSet => {
+                        addressSet = newAddressSet;
+                    }));
+                    let insightWS = null;
+                    _flux.store.subscribe(_.pipe([_flux.store.getState, (0, _reselect.createSelector)(_.get('insightServers'), insightServers => {
+                        const url = insightServers[asset.name].ws;
+                        if (insightWS === null || insightWS.url !== url) reconnect(url);
+                    })]));
+
+                    function reconnect(url) {
+                        if (insightWS !== null) insightWS.disconnect();
+                        insightWS = new _ws2.default(url);
+                        let connectOpts;
+                        if (asset.name === 'bcash') connectOpts = {
+                            secure: false,
+                            transports: ['websocket']
+                        };
+                        if (asset.name === 'decred') connectOpts = {
+                            secure: true,
+                            transports: ['websocket']
+                        };
+                        insightWS.connect(connectOpts).on('tx', data => {
+                            const utxosArray = lodash.get(data, 'vout', []).map((vout, index) => {
+                                for (const address of addressSet) {
+                                    if (!vout[address]) continue;
+                                    return {
+                                        txId: data.txid,
+                                        address: addressSet.get(address),
+                                        vout: index,
+                                        script: null,
+                                        value: asset.currency.baseUnit(vout[address])
+                                    };
+                                }
+                            }).filter(lodash.identity);
+                            if (utxosArray.length === 0) return;
+                            const state = getState();
+                            const getFiat = (0, _getValue2.default)(state);
+                            const currentUtxos = state.utxos[asset.name];
+                            console.log(`INS: ${asset.properName} tx detected: ${data.txid}`);
+                            if (state.txLog[asset.name].has(data.txid)) return console.log(`INS: already have: ${data.txid}`);
+                            const utxos = _utxoCollection2.default.fromArray(utxosArray, {
+                                currency: asset.currency
+                            });
+                            const newUtxos = currentUtxos.union(utxos);
+                            if (newUtxos.difference(currentUtxos).isEmpty()) return;
+                            dispatch({
+                                type: 'NETWORK_UTXOS_RECEIVE',
+                                payload: {
+                                    utxos,
+                                    asset: asset.name
+                                }
+                            });
+                            dispatch((0, _util.FSA)('TX_RECEIVE', {
+                                asset,
+                                txs: [{
+                                    coinAmount: utxos.value
+                                }]
+                            }));
+                            const utxoAddrs = utxos.addresses.map(addr => addressSet.get(addr));
+                            _flux.actions.txLog.write(asset, {
+                                txId: data.txid,
+                                coinAmount: utxos.value,
+                                fiatAmount: getFiat(utxos.value),
+                                addresses: utxoAddrs
+                            });
+                        });
+                    }
+                };
+            }
+        };
+        var _fp = require('lodash/fp');
+        var _ = _interopRequireWildcard(_fp);
+        var _reselect = require('reselect');
+        var _lodash = require('lodash');
+        var lodash = _interopRequireWildcard(_lodash);
+        var _flux = require(271);
+        var _util = require(278);
+        var _utxoCollection = require(93);
+        var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
+        var _addressSet = require(85);
+        var _addressSet2 = _interopRequireDefault(_addressSet);
+        var _getValue = require(126);
+        var _getValue2 = _interopRequireDefault(_getValue);
+        var _ws = require(280);
+        var _ws2 = _interopRequireDefault(_ws);
+        var _reduxWatch = require('redux-watch');
+        var _reduxWatch2 = _interopRequireDefault(_reduxWatch);
+        var _getRecvExchAddresses = require(98);
+        var _getRecvExchAddresses2 = _interopRequireDefault(_getRecvExchAddresses);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+
+        function _interopRequireWildcard(obj) {
+            if (obj && obj.__esModule) {
+                return obj;
+            } else {
+                var newObj = {};
+                if (obj != null) {
+                    for (var key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+                    }
+                }
+                newObj.default = obj;
+                return newObj;
+            }
+        }
+
+    }, {
+        "126": 126,
+        "271": 271,
+        "278": 278,
+        "280": 280,
+        "85": 85,
+        "93": 93,
+        "98": 98,
+        "undefined": undefined
+    }],
+    38: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -3750,19 +4492,19 @@
         var _makeConcurrent2 = _interopRequireDefault(_makeConcurrent);
         var _ethereumjsUtil = require('ethereumjs-util');
         var _ethereumjsUtil2 = _interopRequireDefault(_ethereumjsUtil);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _appConfig = require(80);
-        var _etherscan = require(223);
+        var _appConfig = require(84);
+        var _etherscan = require(234);
         var etherscan = _interopRequireWildcard(_etherscan);
-        var _flux = require(257);
-        var _util = require(264);
-        var _accountState = require(7);
+        var _flux = require(271);
+        var _util = require(278);
+        var _accountState = require(8);
         var AccountStates = _interopRequireWildcard(_accountState);
-        var _getReceiveAddress = require(92);
+        var _getReceiveAddress = require(96);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _aureus = require(192);
-        var _logger = require(269);
+        var _aureus = require(203);
+        var _logger = require(283);
         var _logger2 = _interopRequireDefault(_logger);
 
         function _interopRequireDefault(obj) {
@@ -4331,156 +5073,26 @@
         }
 
     }, {
-        "184": 184,
-        "192": 192,
-        "223": 223,
-        "257": 257,
-        "264": 264,
-        "269": 269,
-        "7": 7,
-        "80": 80,
-        "92": 92,
+        "194": 194,
+        "203": 203,
+        "234": 234,
+        "271": 271,
+        "278": 278,
+        "283": 283,
+        "8": 8,
+        "84": 84,
+        "96": 96,
         "undefined": undefined
     }],
-    34: [function(require, module, exports) {
-        'use strict';
-        Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        exports.start = start;
-        var _fp = require('lodash/fp');
-        var _ = _interopRequireWildcard(_fp);
-        var _reselect = require('reselect');
-        var _assets = require(184);
-        var _assets2 = _interopRequireDefault(_assets);
-        var _flux = require(257);
-        var _util = require(264);
-        var _utxoCollection = require(89);
-        var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
-        var _addressSet = require(81);
-        var _addressSet2 = _interopRequireDefault(_addressSet);
-        var _getValue = require(121);
-        var _getValue2 = _interopRequireDefault(_getValue);
-        var _ws = require(266);
-        var _ws2 = _interopRequireDefault(_ws);
-        var _reduxWatch = require('redux-watch');
-        var _reduxWatch2 = _interopRequireDefault(_reduxWatch);
-        var _getRecvExchAddresses = require(94);
-        var _getRecvExchAddresses2 = _interopRequireDefault(_getRecvExchAddresses);
-
-        function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : {
-                default: obj
-            };
-        }
-
-        function _interopRequireWildcard(obj) {
-            if (obj && obj.__esModule) {
-                return obj;
-            } else {
-                var newObj = {};
-                if (obj != null) {
-                    for (var key in obj) {
-                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
-                    }
-                }
-                newObj.default = obj;
-                return newObj;
-            }
-        }
-
-        function start() {
-            return (dispatch, getState) => {
-                console.log('BCASH MONITOR STARTED');
-                let addressSet = _addressSet2.default.EMPTY;
-                const w = (0, _reduxWatch2.default)(() => (0, _getRecvExchAddresses2.default)(getState())('bcash'));
-                _flux.store.subscribe(w(newAddressSet => {
-                    addressSet = newAddressSet;
-                }));
-                let insightWS = null;
-                _flux.store.subscribe(_.pipe([_flux.store.getState, (0, _reselect.createSelector)(_.get('insightServers'), insightServers => {
-                    const url = insightServers.bcash.ws;
-                    if (insightWS === null || insightWS.url !== url) reconnect(url);
-                })]));
-
-                function reconnect(url) {
-                    if (insightWS !== null) insightWS.disconnect();
-                    insightWS = new _ws2.default(url);
-                    insightWS.connect({
-                        secure: false,
-                        transports: ['websocket']
-                    }).on('tx', data => {
-                        if (!data.vout) return;
-                        const txId = data.txid;
-                        const utxoArr = [];
-                        data.vout.forEach((vout, i) => {
-                            for (const address of Array.from(addressSet)) {
-                                if (!vout[address]) continue;
-                                utxoArr.push({
-                                    txId: data.txid,
-                                    address: addressSet.get(address),
-                                    vout: i,
-                                    script: null,
-                                    value: _assets2.default.bcash.currency.baseUnit(vout[address])
-                                });
-                            }
-                        });
-                        if (utxoArr.length === 0) return;
-                        const state = getState();
-                        const getFiat = (0, _getValue2.default)(state);
-                        const currentUtxos = state.utxos.bcash;
-                        console.log(`INS: BCASH tx detected: ${txId}`);
-                        if (state.txLog.bcash.has(txId)) return console.log(`INS: already have: ${txId}`);
-                        const utxos = _utxoCollection2.default.fromArray(utxoArr, {
-                            currency: _assets2.default.bcash.currency
-                        });
-                        const newUtxos = currentUtxos.union(utxos);
-                        if (newUtxos.difference(currentUtxos).isEmpty()) return;
-                        dispatch({
-                            type: 'NETWORK_UTXOS_RECEIVE',
-                            payload: {
-                                utxos,
-                                asset: 'bcash'
-                            }
-                        });
-                        dispatch((0, _util.FSA)('TX_RECEIVE', {
-                            asset: _assets2.default.bcash,
-                            txs: [{
-                                coinAmount: utxos.value
-                            }]
-                        }));
-                        const utxoAddrs = utxos.addresses.map(addr => addressSet.get(addr));
-                        _flux.actions.txLog.write(_assets2.default.bcash, {
-                            txId,
-                            coinAmount: utxos.value,
-                            fiatAmount: getFiat(utxos.value),
-                            addresses: utxoAddrs
-                        });
-                    });
-                }
-            };
-        }
-
-    }, {
-        "121": 121,
-        "184": 184,
-        "257": 257,
-        "264": 264,
-        "266": 266,
-        "81": 81,
-        "89": 89,
-        "94": 94,
-        "undefined": undefined
-    }],
-    35: [function(require, module, exports) {
+    39: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.start = undefined;
-        var _reduxAsyncAction = require(288);
+        var _reduxAsyncAction = require(303);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _insightApiClient = require(265);
+        var _insightApiClient = require(279);
         var _insightApiClient2 = _interopRequireDefault(_insightApiClient);
         var _aw = require('aw');
         var _aw2 = _interopRequireDefault(_aw);
@@ -4489,10 +5101,10 @@
         var _delay2 = _interopRequireDefault(_delay);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _util = require(264);
-        var _flux = require(257);
-        var _util2 = require(87);
-        var _assets = require(184);
+        var _util = require(278);
+        var _flux = require(271);
+        var _util2 = require(91);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -4623,274 +5235,23 @@
         }
 
     }, {
-        "184": 184,
-        "257": 257,
-        "264": 264,
-        "265": 265,
-        "288": 288,
-        "87": 87,
+        "194": 194,
+        "271": 271,
+        "278": 278,
+        "279": 279,
+        "303": 303,
+        "91": 91,
         "undefined": undefined
     }],
-    36: [function(require, module, exports) {
+    40: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.start = undefined;
-        var _fp = require('lodash/fp');
-        var _ = _interopRequireWildcard(_fp);
-        var _reselect = require('reselect');
-        var _reduxAsyncAction = require(288);
-        var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _ws = require(266);
-        var _ws2 = _interopRequireDefault(_ws);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _getRecvExchAddresses = require(94);
-        var _getRecvExchAddresses2 = _interopRequireDefault(_getRecvExchAddresses);
-        var _getValue = require(121);
-        var _getValue2 = _interopRequireDefault(_getValue);
-        var _utxoCollection = require(89);
-        var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
-        var _flux = require(257);
-        var _util = require(264);
-
-        function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : {
-                default: obj
-            };
-        }
-
-        function _interopRequireWildcard(obj) {
-            if (obj && obj.__esModule) {
-                return obj;
-            } else {
-                var newObj = {};
-                if (obj != null) {
-                    for (var key in obj) {
-                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
-                    }
-                }
-                newObj.default = obj;
-                return newObj;
-            }
-        }
-        const start = exports.start = () => (0, _reduxAsyncAction2.default)('MONITOR_DASH_UTXO_START', _start);
-
-        function _start(dispatch, getState) {
-            const state = getState();
-            const addressSet = (0, _getRecvExchAddresses2.default)(state)(_assets2.default.dash.name);
-            const addrs = Array.from(addressSet);
-            let insightWS = null;
-            _flux.store.subscribe(_.pipe([_flux.store.getState, (0, _reselect.createSelector)(_.get('insightServers'), insightServers => {
-                const url = insightServers.dash.ws;
-                if (insightWS === null || insightWS.url !== url) reconnect(url);
-            })]));
-
-            function reconnect(url) {
-                if (insightWS !== null) insightWS.disconnect();
-                insightWS = new _ws2.default(url);
-                insightWS.connect().on('tx', data => {
-                    const txId = data.txid;
-                    const utxoArr = [];
-                    data.vout.forEach((vout, i) => {
-                        addrs.forEach(addr => {
-                            if (!vout[addr]) return;
-                            const value = vout[addr];
-                            utxoArr.push({
-                                txId: data.txid,
-                                address: addressSet.get(addr),
-                                vout: i,
-                                script: null,
-                                value: _assets2.default.dash.currency.baseUnit(value)
-                            });
-                        });
-                    });
-                    if (utxoArr.length === 0) return;
-                    const state = getState();
-                    const getFiat = (0, _getValue2.default)(state);
-                    const currentUtxos = state.utxos.dash;
-                    const currentTxs = state.txLog.dash;
-                    console.log(`INS: DASH tx detected: ${txId}`);
-                    if (currentTxs.has(txId)) return console.log(`INS: already have: ${txId}`);
-                    const utxos = _utxoCollection2.default.fromArray(utxoArr, {
-                        currency: _assets2.default.dash.currency
-                    });
-                    const newUtxos = currentUtxos.union(utxos);
-                    if (newUtxos.difference(currentUtxos).isEmpty()) return;
-                    dispatch({
-                        type: 'NETWORK_UTXOS_RECEIVE',
-                        payload: {
-                            utxos,
-                            asset: 'dash'
-                        }
-                    });
-                    dispatch((0, _util.FSA)('TX_RECEIVE', {
-                        asset: _assets2.default.dash,
-                        txs: [{
-                            coinAmount: utxos.value
-                        }]
-                    }));
-                    const utxoAddrs = utxos.addresses.map(addr => addressSet.get(addr));
-                    _flux.actions.txLog.write(_assets2.default.dash, {
-                        txId,
-                        coinAmount: utxos.value,
-                        fiatAmount: getFiat(utxos.value),
-                        addresses: utxoAddrs
-                    });
-                });
-            }
-        }
-
-    }, {
-        "121": 121,
-        "184": 184,
-        "257": 257,
-        "264": 264,
-        "266": 266,
-        "288": 288,
-        "89": 89,
-        "94": 94,
-        "undefined": undefined
-    }],
-    37: [function(require, module, exports) {
-        'use strict';
-        Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        exports.start = start;
-        var _fp = require('lodash/fp');
-        var _ = _interopRequireWildcard(_fp);
-        var _reselect = require('reselect');
-        var _assets = require(184);
-        var _assets2 = _interopRequireDefault(_assets);
-        var _flux = require(257);
-        var _util = require(264);
-        var _utxoCollection = require(89);
-        var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
-        var _addressSet = require(81);
-        var _addressSet2 = _interopRequireDefault(_addressSet);
-        var _getValue = require(121);
-        var _getValue2 = _interopRequireDefault(_getValue);
-        var _ws = require(266);
-        var _ws2 = _interopRequireDefault(_ws);
-        var _reduxWatch = require('redux-watch');
-        var _reduxWatch2 = _interopRequireDefault(_reduxWatch);
-        var _getRecvExchAddresses = require(94);
-        var _getRecvExchAddresses2 = _interopRequireDefault(_getRecvExchAddresses);
-
-        function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : {
-                default: obj
-            };
-        }
-
-        function _interopRequireWildcard(obj) {
-            if (obj && obj.__esModule) {
-                return obj;
-            } else {
-                var newObj = {};
-                if (obj != null) {
-                    for (var key in obj) {
-                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
-                    }
-                }
-                newObj.default = obj;
-                return newObj;
-            }
-        }
-
-        function start() {
-            return (dispatch, getState) => {
-                let addressSet = _addressSet2.default.EMPTY;
-                const w = (0, _reduxWatch2.default)(() => (0, _getRecvExchAddresses2.default)(getState())('decred'));
-                _flux.store.subscribe(w(newAddressSet => {
-                    addressSet = newAddressSet;
-                }));
-                let insightWS = null;
-                _flux.store.subscribe(_.pipe([_flux.store.getState, (0, _reselect.createSelector)(_.get('insightServers'), insightServers => {
-                    const url = insightServers.decred.ws;
-                    if (insightWS === null || insightWS.url !== url) reconnect(url);
-                })]));
-
-                function reconnect(url) {
-                    if (insightWS !== null) insightWS.disconnect();
-                    insightWS = new _ws2.default(url);
-                    insightWS.connect({
-                        secure: true,
-                        transports: ['websocket']
-                    }).on('tx', data => {
-                        if (!data.vout) return;
-                        const txId = data.txid;
-                        const utxoArr = [];
-                        data.vout.forEach((vout, i) => {
-                            for (const address of Array.from(addressSet)) {
-                                if (!vout[address]) continue;
-                                utxoArr.push({
-                                    txId: data.txid,
-                                    address: addressSet.get(address),
-                                    vout: i,
-                                    script: null,
-                                    value: _assets2.default.decred.currency.baseUnit(vout[address])
-                                });
-                            }
-                        });
-                        if (utxoArr.length === 0) return;
-                        const state = getState();
-                        const getFiat = (0, _getValue2.default)(state);
-                        const currentUtxos = state.utxos.decred;
-                        console.log(`INS: DECRED tx detected: ${txId}`);
-                        if (state.txLog.decred.has(txId)) return console.log(`INS: already have: ${txId}`);
-                        const utxos = _utxoCollection2.default.fromArray(utxoArr, {
-                            currency: _assets2.default.decred.currency
-                        });
-                        const newUtxos = currentUtxos.union(utxos);
-                        if (newUtxos.difference(currentUtxos).isEmpty()) return;
-                        dispatch({
-                            type: 'NETWORK_UTXOS_RECEIVE',
-                            payload: {
-                                utxos,
-                                asset: 'decred'
-                            }
-                        });
-                        dispatch((0, _util.FSA)('TX_RECEIVE', {
-                            asset: _assets2.default.decred,
-                            txs: [{
-                                coinAmount: utxos.value
-                            }]
-                        }));
-                        const utxoAddrs = utxos.addresses.map(addr => addressSet.get(addr));
-                        _flux.actions.txLog.write(_assets2.default.decred, {
-                            txId,
-                            coinAmount: utxos.value,
-                            fiatAmount: getFiat(utxos.value),
-                            addresses: utxoAddrs
-                        });
-                    });
-                }
-            };
-        }
-
-    }, {
-        "121": 121,
-        "184": 184,
-        "257": 257,
-        "264": 264,
-        "266": 266,
-        "81": 81,
-        "89": 89,
-        "94": 94,
-        "undefined": undefined
-    }],
-    38: [function(require, module, exports) {
-        'use strict';
-        Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        var _assets = require(184);
-        var _assets2 = _interopRequireDefault(_assets);
-        var _exodusEthereumServer = require(229);
-        var _base_ethereum = require(33);
+        var _exodusEthereumServer = require(242);
+        var _base_ethereum = require(38);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -4905,19 +5266,19 @@
         });
 
     }, {
-        "184": 184,
-        "229": 229,
-        "33": 33
+        "194": 194,
+        "242": 242,
+        "38": 38
     }],
-    39: [function(require, module, exports) {
+    41: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _exodusEthereumServer = require(229);
-        var _base_ethereum = require(33);
+        var _exodusEthereumServer = require(242);
+        var _base_ethereum = require(38);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -4931,11 +5292,11 @@
         });
 
     }, {
-        "184": 184,
-        "229": 229,
-        "33": 33
+        "194": 194,
+        "242": 242,
+        "38": 38
     }],
-    40: [function(require, module, exports) {
+    42: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -5020,14 +5381,14 @@
         var lodash = _interopRequireWildcard(_lodash);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _flux = require(257);
-        var _assets = require(184);
+        var _flux = require(271);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _exodusFactomServer = require(231);
+        var _exodusFactomServer = require(244);
         var _exodusFactomServer2 = _interopRequireDefault(_exodusFactomServer);
-        var _getReceiveAddress = require(92);
+        var _getReceiveAddress = require(96);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _base = require(32);
+        var _base = require(36);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -5096,42 +5457,36 @@
         });
 
     }, {
-        "184": 184,
-        "231": 231,
-        "257": 257,
-        "32": 32,
-        "92": 92,
+        "194": 194,
+        "244": 244,
+        "271": 271,
+        "36": 36,
+        "96": 96,
         "undefined": undefined
     }],
-    41: [function(require, module, exports) {
+    43: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _bcash2 = require(34);
-        var _bcash = _interopRequireWildcard(_bcash2);
-        var _bitcoin2 = require(35);
+        var _base_bitcoinLike = require(37);
+        var _base_bitcoinLike2 = _interopRequireDefault(_base_bitcoinLike);
+        var _bitcoin2 = require(39);
         var _bitcoin = _interopRequireWildcard(_bitcoin2);
-        var _dash2 = require(36);
-        var _dash = _interopRequireWildcard(_dash2);
-        var _decred2 = require(37);
-        var _decred = _interopRequireWildcard(_decred2);
-        var _ethereum2 = require(38);
+        var _ethereum2 = require(40);
         var _ethereum3 = _interopRequireDefault(_ethereum2);
-        var _ethereumclassic2 = require(39);
+        var _ethereumclassic2 = require(41);
         var _ethereumclassic3 = _interopRequireDefault(_ethereumclassic2);
-        var _factom2 = require(40);
+        var _factom2 = require(42);
         var _factom = _interopRequireWildcard(_factom2);
-        var _monero2 = require(42);
+        var _monero2 = require(44);
         var _monero = _interopRequireWildcard(_monero2);
-        var _omniProperty = require(43);
+        var _omniProperty = require(45);
         var _omniProperty2 = _interopRequireDefault(_omniProperty);
-        var _ripple2 = require(44);
+        var _ripple2 = require(46);
         var _ripple = _interopRequireWildcard(_ripple2);
-        var _zcash2 = require(45);
-        var _zcash = _interopRequireWildcard(_zcash2);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -5154,46 +5509,46 @@
             };
         }
         exports.default = {
-            bcash: _bcash,
+            bcash: (0, _base_bitcoinLike2.default)(_assets2.default.bcash),
+            bgold: (0, _base_bitcoinLike2.default)(_assets2.default.bgold),
             bitcoin: _bitcoin,
-            dash: _dash,
-            decred: _decred,
+            dash: (0, _base_bitcoinLike2.default)(_assets2.default.dash),
+            decred: (0, _base_bitcoinLike2.default)(_assets2.default.decred),
+            digibyte: (0, _base_bitcoinLike2.default)(_assets2.default.digibyte),
             ethereum: _ethereum3.default,
             ethereumclassic: _ethereumclassic3.default,
             factom: _factom,
             monero: _monero,
             ripple: _ripple,
             tether: (0, _omniProperty2.default)(_assets2.default.tether),
-            zcash: _zcash
+            vertcoin: (0, _base_bitcoinLike2.default)(_assets2.default.vertcoin),
+            zcash: (0, _base_bitcoinLike2.default)(_assets2.default.zcash)
         };
 
     }, {
-        "184": 184,
-        "34": 34,
-        "35": 35,
-        "36": 36,
+        "194": 194,
         "37": 37,
-        "38": 38,
         "39": 39,
         "40": 40,
+        "41": 41,
         "42": 42,
-        "43": 43,
         "44": 44,
-        "45": 45
+        "45": 45,
+        "46": 46
     }],
-    42: [function(require, module, exports) {
+    44: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.start = undefined;
-        var _moneroSimplewallet = require(274);
-        var _flux = require(257);
-        var _assets = require(184);
+        var _moneroSimplewallet = require(288);
+        var _flux = require(271);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _reduxAsyncAction = require(288);
+        var _reduxAsyncAction = require(303);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _logger = require(269);
+        var _logger = require(283);
         var _logger2 = _interopRequireDefault(_logger);
 
         function _interopRequireDefault(obj) {
@@ -5282,13 +5637,13 @@
         }
 
     }, {
-        "184": 184,
-        "257": 257,
-        "269": 269,
-        "274": 274,
-        "288": 288
+        "194": 194,
+        "271": 271,
+        "283": 283,
+        "288": 288,
+        "303": 303
     }],
-    43: [function(require, module, exports) {
+    45: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -5357,13 +5712,13 @@
         };
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _omniexplorer = require(284);
+        var _omniexplorer = require(298);
         var omniexplorer = _interopRequireWildcard(_omniexplorer);
-        var _getReceiveAddress = require(92);
+        var _getReceiveAddress = require(96);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _base = require(32);
+        var _base = require(36);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -5414,13 +5769,13 @@
         }
 
     }, {
-        "184": 184,
-        "284": 284,
-        "32": 32,
-        "92": 92,
+        "194": 194,
+        "298": 298,
+        "36": 36,
+        "96": 96,
         "undefined": undefined
     }],
-    44: [function(require, module, exports) {
+    46: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -5503,13 +5858,13 @@
         })();
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _rippleApi = require(290);
-        var _util = require(295);
-        var _getReceiveAddress = require(92);
+        var _rippleApi = require(305);
+        var _util = require(310);
+        var _getReceiveAddress = require(96);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _base = require(32);
+        var _base = require(36);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -5568,139 +5923,14 @@
         const refresh = exports.refresh = monitor.refresh;
 
     }, {
-        "184": 184,
-        "290": 290,
-        "295": 295,
-        "32": 32,
-        "92": 92,
+        "194": 194,
+        "305": 305,
+        "310": 310,
+        "36": 36,
+        "96": 96,
         "undefined": undefined
     }],
-    45: [function(require, module, exports) {
-        'use strict';
-        Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        exports.start = start;
-        var _fp = require('lodash/fp');
-        var _ = _interopRequireWildcard(_fp);
-        var _reselect = require('reselect');
-        var _lodash = require('lodash');
-        var lodash = _interopRequireWildcard(_lodash);
-        var _assets = require(184);
-        var _assets2 = _interopRequireDefault(_assets);
-        var _flux = require(257);
-        var _util = require(264);
-        var _utxoCollection = require(89);
-        var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
-        var _addressSet = require(81);
-        var _addressSet2 = _interopRequireDefault(_addressSet);
-        var _getValue = require(121);
-        var _getValue2 = _interopRequireDefault(_getValue);
-        var _ws = require(266);
-        var _ws2 = _interopRequireDefault(_ws);
-        var _reduxWatch = require('redux-watch');
-        var _reduxWatch2 = _interopRequireDefault(_reduxWatch);
-        var _getRecvExchAddresses = require(94);
-        var _getRecvExchAddresses2 = _interopRequireDefault(_getRecvExchAddresses);
-
-        function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : {
-                default: obj
-            };
-        }
-
-        function _interopRequireWildcard(obj) {
-            if (obj && obj.__esModule) {
-                return obj;
-            } else {
-                var newObj = {};
-                if (obj != null) {
-                    for (var key in obj) {
-                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
-                    }
-                }
-                newObj.default = obj;
-                return newObj;
-            }
-        }
-
-        function start() {
-            return (dispatch, getState) => {
-                let addressSet = _addressSet2.default.EMPTY;
-                const w = (0, _reduxWatch2.default)(() => (0, _getRecvExchAddresses2.default)(getState())('zcash'));
-                _flux.store.subscribe(w(newAddressSet => {
-                    addressSet = newAddressSet;
-                }));
-                let insightWS = null;
-                _flux.store.subscribe(_.pipe([_flux.store.getState, (0, _reselect.createSelector)(_.get('insightServers'), insightServers => {
-                    const url = insightServers.zcash.ws;
-                    if (insightWS === null || insightWS.url !== url) reconnect(url);
-                })]));
-
-                function reconnect(url) {
-                    if (insightWS !== null) insightWS.disconnect();
-                    insightWS = new _ws2.default(url);
-                    insightWS.connect().on('tx', data => {
-                        const utxosArray = lodash.get(data, 'vout', []).map((vout, index) => {
-                            for (const address of addressSet) {
-                                if (!vout[address]) continue;
-                                return {
-                                    txId: data.txid,
-                                    address: addressSet.get(address),
-                                    vout: index,
-                                    script: null,
-                                    value: _assets2.default.zcash.currency.baseUnit(vout[address])
-                                };
-                            }
-                        }).filter(lodash.identity);
-                        if (utxosArray.length === 0) return;
-                        const state = getState();
-                        const getFiat = (0, _getValue2.default)(state);
-                        const currentUtxos = state.utxos.zcash;
-                        console.log(`INS: Zcash tx detected: ${data.txid}`);
-                        if (state.txLog.zcash.has(data.txid)) return console.log(`INS: already have: ${data.txid}`);
-                        const utxos = _utxoCollection2.default.fromArray(utxosArray, {
-                            currency: _assets2.default.zcash.currency
-                        });
-                        const newUtxos = currentUtxos.union(utxos);
-                        if (newUtxos.difference(currentUtxos).isEmpty()) return;
-                        dispatch({
-                            type: 'NETWORK_UTXOS_RECEIVE',
-                            payload: {
-                                utxos,
-                                asset: 'zcash'
-                            }
-                        });
-                        dispatch((0, _util.FSA)('TX_RECEIVE', {
-                            asset: _assets2.default.zcash,
-                            txs: [{
-                                coinAmount: utxos.value
-                            }]
-                        }));
-                        const utxoAddrs = utxos.addresses.map(addr => addressSet.get(addr));
-                        _flux.actions.txLog.write(_assets2.default.zcash, {
-                            txId: data.txid,
-                            coinAmount: utxos.value,
-                            fiatAmount: getFiat(utxos.value),
-                            addresses: utxoAddrs
-                        });
-                    });
-                }
-            };
-        }
-
-    }, {
-        "121": 121,
-        "184": 184,
-        "257": 257,
-        "264": 264,
-        "266": 266,
-        "81": 81,
-        "89": 89,
-        "94": 94,
-        "undefined": undefined
-    }],
-    46: [function(require, module, exports) {
+    47: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -5773,7 +6003,7 @@
         var _makeConcurrent = require('make-concurrent');
         var _makeConcurrent2 = _interopRequireDefault(_makeConcurrent);
         var _reselect = require('reselect');
-        var _flux = require(257);
+        var _flux = require(271);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -5827,19 +6057,19 @@
         const LOOP_INTERVAL_FAIL = (0, _ms2.default)('2m');
 
     }, {
-        "257": 257,
+        "271": 271,
         "undefined": undefined
     }],
-    47: [function(require, module, exports) {
+    48: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _events = require('events');
         var _bitcoinBestFee = require('bitcoin-best-fee');
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _base = require(46);
+        var _base = require(47);
         var _base2 = _interopRequireDefault(_base);
 
         function _interopRequireDefault(obj) {
@@ -5900,23 +6130,23 @@
         });
 
     }, {
-        "184": 184,
-        "46": 46,
+        "194": 194,
+        "47": 47,
         "undefined": undefined
     }],
-    48: [function(require, module, exports) {
+    49: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.createETHMonitor = createETHMonitor;
         var _events = require('events');
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _exodusEthereumServer = require(229);
-        var _etherscan = require(223);
+        var _exodusEthereumServer = require(242);
+        var _etherscan = require(234);
         var etherscan = _interopRequireWildcard(_etherscan);
-        var _base = require(46);
+        var _base = require(47);
         var _base2 = _interopRequireDefault(_base);
 
         function _interopRequireWildcard(obj) {
@@ -6010,23 +6240,23 @@
         }
 
     }, {
-        "184": 184,
-        "223": 223,
-        "229": 229,
-        "46": 46,
+        "194": 194,
+        "234": 234,
+        "242": 242,
+        "47": 47,
         "undefined": undefined
     }],
-    49: [function(require, module, exports) {
+    50: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _exodusEthereumServer = require(229);
-        var _etcchain = require(221);
+        var _exodusEthereumServer = require(242);
+        var _etcchain = require(232);
         var etcchain = _interopRequireWildcard(_etcchain);
-        var _ethereum = require(48);
+        var _ethereum = require(49);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -6054,12 +6284,12 @@
         exports.default = (0, _ethereum.createETHMonitor)(_assets2.default.ethereumclassic, _exodusEthereumServer.etc.ws, getGasPrice, MIN_GASPRICE, MAX_GASPRICE);
 
     }, {
-        "184": 184,
-        "221": 221,
-        "229": 229,
-        "48": 48
+        "194": 194,
+        "232": 232,
+        "242": 242,
+        "49": 49
     }],
-    50: [function(require, module, exports) {
+    51: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -6067,11 +6297,11 @@
         var _events = require('events');
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _exodusFactomServer = require(231);
+        var _exodusFactomServer = require(244);
         var _exodusFactomServer2 = _interopRequireDefault(_exodusFactomServer);
-        var _base = require(46);
+        var _base = require(47);
         var _base2 = _interopRequireDefault(_base);
 
         function _interopRequireDefault(obj) {
@@ -6140,26 +6370,26 @@
         });
 
     }, {
-        "184": 184,
-        "231": 231,
-        "46": 46,
+        "194": 194,
+        "244": 244,
+        "47": 47,
         "undefined": undefined
     }],
-    51: [function(require, module, exports) {
+    52: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.ripple = exports.factom = exports.ethereumclassic = exports.ethereum = exports.bitcoin = undefined;
-        var _bitcoin2 = require(47);
+        var _bitcoin2 = require(48);
         var _bitcoin3 = _interopRequireDefault(_bitcoin2);
-        var _ethereum2 = require(48);
+        var _ethereum2 = require(49);
         var _ethereum3 = _interopRequireDefault(_ethereum2);
-        var _ethereumclassic2 = require(49);
+        var _ethereumclassic2 = require(50);
         var _ethereumclassic3 = _interopRequireDefault(_ethereumclassic2);
-        var _factom2 = require(50);
+        var _factom2 = require(51);
         var _factom3 = _interopRequireDefault(_factom2);
-        var _ripple2 = require(52);
+        var _ripple2 = require(53);
         var _ripple3 = _interopRequireDefault(_ripple2);
 
         function _interopRequireDefault(obj) {
@@ -6174,22 +6404,22 @@
         const ripple = exports.ripple = _ripple3.default;
 
     }, {
-        "47": 47,
         "48": 48,
         "49": 49,
         "50": 50,
-        "52": 52
+        "51": 51,
+        "53": 53
     }],
-    52: [function(require, module, exports) {
+    53: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _events = require('events');
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _rippleApi = require(290);
-        var _base = require(46);
+        var _rippleApi = require(305);
+        var _base = require(47);
         var _base2 = _interopRequireDefault(_base);
 
         function _interopRequireDefault(obj) {
@@ -6208,34 +6438,34 @@
         });
 
     }, {
-        "184": 184,
-        "290": 290,
-        "46": 46,
+        "194": 194,
+        "305": 305,
+        "47": 47,
         "undefined": undefined
     }],
-    53: [function(require, module, exports) {
+    54: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.status = exports.remoteConfig = exports.orders = exports.marketws = exports.market = exports.insightServers = exports.fee = exports.coins = exports.balances = undefined;
-        var _balances2 = require(31);
+        var _balances2 = require(35);
         var _balances = _interopRequireWildcard(_balances2);
-        var _coins2 = require(41);
+        var _coins2 = require(43);
         var _coins3 = _interopRequireDefault(_coins2);
-        var _fee2 = require(51);
+        var _fee2 = require(52);
         var _fee = _interopRequireWildcard(_fee2);
-        var _insightServers2 = require(54);
+        var _insightServers2 = require(55);
         var _insightServers = _interopRequireWildcard(_insightServers2);
-        var _market2 = require(55);
+        var _market2 = require(56);
         var _market = _interopRequireWildcard(_market2);
-        var _marketws2 = require(56);
+        var _marketws2 = require(57);
         var _marketws = _interopRequireWildcard(_marketws2);
-        var _orders2 = require(57);
+        var _orders2 = require(60);
         var _orders = _interopRequireWildcard(_orders2);
-        var _remoteConfig2 = require(58);
+        var _remoteConfig2 = require(62);
         var _remoteConfig = _interopRequireWildcard(_remoteConfig2);
-        var _status2 = require(59);
+        var _status2 = require(63);
         var _status = _interopRequireWildcard(_status2);
 
         function _interopRequireDefault(obj) {
@@ -6269,17 +6499,17 @@
         const status = exports.status = _status;
 
     }, {
-        "31": 31,
-        "41": 41,
-        "51": 51,
-        "54": 54,
+        "35": 35,
+        "43": 43,
+        "52": 52,
         "55": 55,
         "56": 56,
         "57": 57,
-        "58": 58,
-        "59": 59
+        "60": 60,
+        "62": 62,
+        "63": 63
     }],
-    54: [function(require, module, exports) {
+    55: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -6291,8 +6521,8 @@
         var _fp = require('lodash/fp');
         var _ = _interopRequireWildcard(_fp);
         var _reselect = require('reselect');
-        var _flux = require(257);
-        var _util = require(264);
+        var _flux = require(271);
+        var _util = require(278);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -6321,6 +6551,12 @@
             bcash: [{
                 api: 'https://blockdozer.com/insight-api/'
             }],
+            bgold: [{
+                api: 'https://explorer.bitcoingold.org/insight-api/'
+            }],
+            bgoldclaim: [{
+                api: 'https://btgexplorer.com/api/'
+            }],
             bitcoin: [{
                 api: 'https://insight.bitpay.com/api/'
             }],
@@ -6331,11 +6567,17 @@
             decred: [{
                 api: 'https://mainnet.decred.org/api/'
             }],
+            digibyte: [{
+                api: 'https://digiexplorer.info/api/'
+            }],
             litecoin: [{
                 api: 'https://insight.litecore.io/api/'
             }],
+            vertcoin: [{
+                api: 'https://insight.vertcoin.org/insight-vtc-api/'
+            }],
             zcash: [{
-                api: 'https://zcash.blockexplorer.com/api/'
+                api: 'https://zchain.online/api/'
             }]
         });
 
@@ -6374,11 +6616,11 @@
         }
 
     }, {
-        "257": 257,
-        "264": 264,
+        "271": 271,
+        "278": 278,
         "undefined": undefined
     }],
-    55: [function(require, module, exports) {
+    56: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -6418,10 +6660,10 @@
         var _delay2 = _interopRequireDefault(_delay);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _marketApi = require(270);
+        var _marketApi = require(284);
         var _marketApi2 = _interopRequireDefault(_marketApi);
-        var _util = require(264);
-        var _fiat = require(104);
+        var _util = require(278);
+        var _fiat = require(109);
         var _fiat2 = _interopRequireDefault(_fiat);
 
         function _interopRequireDefault(obj) {
@@ -6475,12 +6717,12 @@
         }
 
     }, {
-        "104": 104,
-        "264": 264,
-        "270": 270,
+        "109": 109,
+        "278": 278,
+        "284": 284,
         "undefined": undefined
     }],
-    56: [function(require, module, exports) {
+    57: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -6493,13 +6735,13 @@
         var _ms2 = _interopRequireDefault(_ms);
         var _socket = require('socket.io-client');
         var _socket2 = _interopRequireDefault(_socket);
-        var _flux = require(257);
-        var _util = require(264);
-        var _assets = require(184);
+        var _flux = require(271);
+        var _util = require(278);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _fiat = require(104);
+        var _fiat = require(109);
         var _fiat2 = _interopRequireDefault(_fiat);
-        var _appConfig = require(80);
+        var _appConfig = require(84);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -6582,14 +6824,259 @@
         }
 
     }, {
-        "104": 104,
-        "184": 184,
-        "257": 257,
-        "264": 264,
-        "80": 80,
+        "109": 109,
+        "194": 194,
+        "271": 271,
+        "278": 278,
+        "84": 84,
         "undefined": undefined
     }],
-    57: [function(require, module, exports) {
+    58: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.checkIfHaveToTx = checkIfHaveToTx;
+        var _order = require(89);
+        var _order2 = _interopRequireDefault(_order);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+
+        function checkIfHaveToTx(state, order) {
+            const {
+                orderId,
+                fromAsset,
+                toAsset,
+                fromTxId,
+                toTxId
+            } = order;
+            if (!orderId || !toAsset || !fromAsset || !fromTxId || !toTxId) return null;
+            const fromTxs = state.txLog[fromAsset];
+            const toTxs = state.txLog[toAsset];
+            let fromTx = fromTxs ? fromTxs.get(fromTxId) : null;
+            let toTx = toTxs ? toTxs.get(toTxId) : null;
+            if (!fromTx || !toTx) return null;
+            toTx = toTx.update({
+                exchange: true,
+                fromCoin: {
+                    coin: fromAsset,
+                    coinAmount: fromTx.coinAmount.abs()
+                }
+            });
+            return toTx;
+        }
+
+    }, {
+        "89": 89
+    }],
+    59: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.start = undefined;
+        let _start = (() => {
+            var _ref = _asyncToGenerator(function*(dispatch, getState) {
+                while (true) {
+                    try {
+                        const incompleteOrders = getIncompleteOrders((0, _evercoin2.default)(getState()));
+                        console.log(`RUNNING EC CHECK ORDER ${incompleteOrders.length}:`);
+                        for (let o of incompleteOrders) {
+                            console.log('GONNA RUN STATAUS');
+                            let orderInfo;
+                            try {
+                                orderInfo = yield evercoin.status(o.orderId);
+                            } catch (err) {
+                                if (err) {
+                                    console.error('ORDER CHECK fetch error');
+                                    console.error(err);
+                                    continue;
+                                }
+                            }
+                            console.log(`ORDER CHECK: ${o.inspect()}`);
+                            console.dir(orderInfo);
+                            const updateOrder = {
+                                orderId: o.orderId,
+                                status: orderInfo.exchangeStatus,
+                                svc: 'ec'
+                            };
+                            if (orderInfo.exchangeStatus === 5 || orderInfo.exchangeStatus === 3) {
+                                console.log(`EC ORDER ${o.orderId} is  complete.`);
+                                updateOrder.toTxId = getTxFromOrderInfo(orderInfo);
+                                console.dir(updateOrder);
+                                const toTx = (0, _util.checkIfHaveToTx)(getState(), Object.assign({}, o, updateOrder));
+                                if (toTx) {
+                                    console.log('updated toTx:');
+                                    console.dir(toTx);
+                                    _flux.actions.txLog.update(o.toAsset, toTx);
+                                    updateOrder.status = 'complete-verified';
+                                }
+                            }
+                            _flux.actions.orders.update(updateOrder);
+                            yield(0, _delay2.default)((0, _ms2.default)('5s'));
+                        }
+                        const completeOrders = getCompleteOrders((0, _evercoin2.default)(getState()));
+                        console.log(`COMPLETE ORDERS: ${completeOrders.length}`);
+                        for (let o of completeOrders) {
+                            const toTx = (0, _util.checkIfHaveToTx)(getState(), o);
+                            if (toTx) {
+                                _flux.actions.txLog.update(o.toAsset, toTx);
+                                _flux.actions.orders.update({
+                                    orderId: o.orderId,
+                                    status: 'complete-verified',
+                                    svc: 'ec'
+                                });
+                            }
+                        }
+                    } catch (err) {
+                        console.error('Evercoin Order Check Error');
+                        console.error(err);
+                    }
+                    yield(0, _delay2.default)(TOTAL_TIME);
+                }
+            });
+            return function _start(_x, _x2) {
+                return _ref.apply(this, arguments);
+            };
+        })();
+        var _reduxAsyncAction = require(303);
+        var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
+        var _delay = require('delay');
+        var _delay2 = _interopRequireDefault(_delay);
+        var _ms = require('ms');
+        var _ms2 = _interopRequireDefault(_ms);
+        var _flux = require(271);
+        var _evercoin = require(140);
+        var _evercoin2 = _interopRequireDefault(_evercoin);
+        var _evercoin3 = require(239);
+        var evercoin = _interopRequireWildcard(_evercoin3);
+        var _util = require(58);
+
+        function _interopRequireWildcard(obj) {
+            if (obj && obj.__esModule) {
+                return obj;
+            } else {
+                var newObj = {};
+                if (obj != null) {
+                    for (var key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+                    }
+                }
+                newObj.default = obj;
+                return newObj;
+            }
+        }
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+
+        function _asyncToGenerator(fn) {
+            return function() {
+                var gen = fn.apply(this, arguments);
+                return new Promise(function(resolve, reject) {
+                    function step(key, arg) {
+                        try {
+                            var info = gen[key](arg);
+                            var value = info.value;
+                        } catch (error) {
+                            reject(error);
+                            return;
+                        }
+                        if (info.done) {
+                            resolve(value);
+                        } else {
+                            return Promise.resolve(value).then(function(value) {
+                                step("next", value);
+                            }, function(err) {
+                                step("throw", err);
+                            });
+                        }
+                    }
+                    return step("next");
+                });
+            };
+        }
+        console.dir(evercoin);
+        const TOTAL_TIME = (0, _ms2.default)('30s');
+        const start = exports.start = () => (0, _reduxAsyncAction2.default)('MONITOR_ORDERS_START', _start);
+
+        function getIncompleteOrders(orders) {
+            return Array.from(orders).filter(order => {
+                return order.exodusStatus === 'inprogress';
+            });
+        }
+
+        function getCompleteOrders(orders) {
+            return Array.from(orders).filter(o => o.status === 5 && o.status === 3);
+        }
+
+        function getTxFromOrderInfo(orderInfo) {
+            const extractedTxId = orderInfo && orderInfo.txURL && orderInfo.txURL.match(/[0-9a-fA-F]{64}/) && orderInfo.txURL.match(/[0-9a-fA-F]{64}/)[0];
+            switch (orderInfo.destinationCoin) {
+                case 'DASH':
+                case 'LTC':
+                case 'BTC':
+                case 'BTG':
+                case 'BCH':
+                case 'ZEC':
+                    return extractedTxId;
+                case 'ETC':
+                case 'ETH':
+                case 'GNT':
+                case 'OMG':
+                case 'REP':
+                    return `0x${extractedTxId}`;
+            }
+        }
+
+    }, {
+        "140": 140,
+        "239": 239,
+        "271": 271,
+        "303": 303,
+        "58": 58,
+        "undefined": undefined
+    }],
+    60: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.shapeshift = exports.evercoin = undefined;
+        var _evercoin2 = require(59);
+        var _evercoin = _interopRequireWildcard(_evercoin2);
+        var _shapeshift2 = require(61);
+        var _shapeshift = _interopRequireWildcard(_shapeshift2);
+
+        function _interopRequireWildcard(obj) {
+            if (obj && obj.__esModule) {
+                return obj;
+            } else {
+                var newObj = {};
+                if (obj != null) {
+                    for (var key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+                    }
+                }
+                newObj.default = obj;
+                return newObj;
+            }
+        }
+        const evercoin = exports.evercoin = _evercoin;
+        const shapeshift = exports.shapeshift = _shapeshift;
+
+    }, {
+        "59": 59,
+        "61": 61
+    }],
+    61: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -6605,7 +7092,7 @@
                 return _ref2.apply(this, arguments);
             };
         })();
-        var _reduxAsyncAction = require(288);
+        var _reduxAsyncAction = require(303);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
         var _aw = require('aw');
         var _aw2 = _interopRequireDefault(_aw);
@@ -6615,9 +7102,10 @@
         var _ms2 = _interopRequireDefault(_ms);
         var _fetchival = require('fetchival');
         var _fetchival2 = _interopRequireDefault(_fetchival);
-        var _flux = require(257);
-        var _order = require(85);
-        var _order2 = _interopRequireDefault(_order);
+        var _flux = require(271);
+        var _shapeshift = require(143);
+        var _shapeshift2 = _interopRequireDefault(_shapeshift);
+        var _util = require(58);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -6660,7 +7148,7 @@
                     clearTimeout(checkTimeoutId);
                     if (isRunning) return;
                     isRunning = true;
-                    const incompleteOrders = getIncompleteOrders(getState().orders.data);
+                    const incompleteOrders = getIncompleteOrders((0, _shapeshift2.default)(getState()));
                     console.log(`RUNNING CHECK ORDER ${incompleteOrders.length}:`);
                     for (let o of incompleteOrders) {
                         const [err, orderInfo] = yield(0, _aw2.default)(fetchOrderInfo)(o.orderId);
@@ -6677,7 +7165,7 @@
                         };
                         if (orderInfo.status === 'complete') {
                             updateOrder.toTxId = orderInfo.transaction;
-                            const toTx = checkIfHaveToTx(getState(), Object.assign({}, o, updateOrder));
+                            const toTx = (0, _util.checkIfHaveToTx)(getState(), Object.assign({}, o, updateOrder));
                             if (toTx) {
                                 console.log('updated toTx:');
                                 console.dir(toTx);
@@ -6688,10 +7176,10 @@
                         _flux.actions.orders.update(updateOrder);
                         yield(0, _delay2.default)((0, _ms2.default)('20s'));
                     }
-                    const completeOrders = getCompleteOrders(getState().orders.data);
+                    const completeOrders = getCompleteOrders((0, _shapeshift2.default)(getState()));
                     console.log(`COMPLETE ORDERS: ${completeOrders.length}`);
                     for (let o of completeOrders) {
-                        const toTx = checkIfHaveToTx(getState(), o);
+                        const toTx = (0, _util.checkIfHaveToTx)(getState(), o);
                         if (toTx) {
                             _flux.actions.txLog.update(o.toAsset, toTx);
                             _flux.actions.orders.update({
@@ -6735,40 +7223,14 @@
             return Array.from(orders).filter(o => o.status === 'complete');
         }
 
-        function checkIfHaveToTx(state, order) {
-            const {
-                orderId,
-                fromAsset,
-                toAsset,
-                fromTxId,
-                toTxId
-            } = order;
-            if (!orderId || !toAsset || !fromAsset || !fromTxId || !toTxId) return null;
-            const fromTxs = state.txLog[fromAsset];
-            const toTxs = state.txLog[toAsset];
-            let fromTx = fromTxs ? fromTxs.get(fromTxId) : null;
-            let toTx = toTxs ? toTxs.get(toTxId) : null;
-            if (!fromTx || !toTx) return null;
-            toTx = toTx.update({
-                exchange: true,
-                fromCoin: {
-                    coin: fromAsset,
-                    coinAmount: fromTx.coinAmount.abs()
-                },
-                meta: {
-                    shapeshiftOrderId: orderId
-                }
-            });
-            return toTx;
-        }
-
     }, {
-        "257": 257,
-        "288": 288,
-        "85": 85,
+        "143": 143,
+        "271": 271,
+        "303": 303,
+        "58": 58,
         "undefined": undefined
     }],
-    58: [function(require, module, exports) {
+    62: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -6792,13 +7254,13 @@
                 return _ref3.apply(this, arguments);
             };
         })();
-        var _reduxAsyncAction = require(288);
+        var _reduxAsyncAction = require(303);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
         var _urlJoin = require('url-join');
         var _urlJoin2 = _interopRequireDefault(_urlJoin);
-        var _appConfig = require(80);
+        var _appConfig = require(84);
         var appConfig = _interopRequireWildcard(_appConfig);
         var _fetchival = require('fetchival');
         var _fetchival2 = _interopRequireDefault(_fetchival);
@@ -6864,11 +7326,11 @@
         }));
 
     }, {
-        "288": 288,
-        "80": 80,
+        "303": 303,
+        "84": 84,
         "undefined": undefined
     }],
-    59: [function(require, module, exports) {
+    63: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -6894,13 +7356,13 @@
                 return _ref3.apply(this, arguments);
             };
         })();
-        var _reduxAsyncAction = require(288);
+        var _reduxAsyncAction = require(303);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
         var _urlJoin = require('url-join');
         var _urlJoin2 = _interopRequireDefault(_urlJoin);
-        var _appConfig = require(80);
+        var _appConfig = require(84);
         var _fetchival = require('fetchival');
         var _fetchival2 = _interopRequireDefault(_fetchival);
         var _aw = require('aw');
@@ -6951,11 +7413,11 @@
         }));
 
     }, {
-        "288": 288,
-        "80": 80,
+        "303": 303,
+        "84": 84,
         "undefined": undefined
     }],
-    60: [function(require, module, exports) {
+    64: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -7087,24 +7549,24 @@
         var _bitcoreLib = require('bitcore-lib');
         var _reduxWatch = require('redux-watch');
         var _reduxWatch2 = _interopRequireDefault(_reduxWatch);
-        var _addressSet = require(81);
+        var _addressSet = require(85);
         var _addressSet2 = _interopRequireDefault(_addressSet);
-        var _getRecvExchAddresses = require(94);
+        var _getRecvExchAddresses = require(98);
         var _getRecvExchAddresses2 = _interopRequireDefault(_getRecvExchAddresses);
-        var _getValue = require(121);
+        var _getValue = require(126);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _flux = require(257);
-        var _util = require(264);
+        var _flux = require(271);
+        var _util = require(278);
         var _electron = require('electron');
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
         var _electronIpcBroadcast = require('electron-ipc-broadcast');
         var _electronIpcBroadcast2 = _interopRequireDefault(_electronIpcBroadcast);
-        var _extractUtxosFromTx = require(254);
+        var _extractUtxosFromTx = require(268);
         var _extractUtxosFromTx2 = _interopRequireDefault(_extractUtxosFromTx);
-        var _txLog = require(70);
+        var _txLog = require(74);
         var _bs58check = require('bs58check');
         var _bs58check2 = _interopRequireDefault(_bs58check);
 
@@ -7143,23 +7605,23 @@
         const omniAssets = Object.values(_assets2.default).filter(asset => asset.isOmniProperty);
 
     }, {
-        "121": 121,
-        "184": 184,
-        "254": 254,
-        "257": 257,
-        "264": 264,
-        "70": 70,
-        "81": 81,
-        "94": 94,
+        "126": 126,
+        "194": 194,
+        "268": 268,
+        "271": 271,
+        "278": 278,
+        "74": 74,
+        "85": 85,
+        "98": 98,
         "undefined": undefined
     }],
-    61: [function(require, module, exports) {
+    65: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.litecoin = exports.dash = exports.bitcoin = undefined;
-        var _bitcoinLike = require(60);
+        var _bitcoinLike = require(64);
         var _bitcoinLike2 = _interopRequireDefault(_bitcoinLike);
 
         function _interopRequireDefault(obj) {
@@ -7172,16 +7634,16 @@
         const litecoin = exports.litecoin = (0, _bitcoinLike2.default)('litecoin');
 
     }, {
-        "60": 60
+        "64": 64
     }],
-    62: [function(require, module, exports) {
+    66: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _instanceShim = require(167);
+        var _instanceShim = require(174);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _keys = require(168);
+        var _keys = require(175);
         var walletKeys = _interopRequireWildcard(_keys);
 
         function _interopRequireWildcard(obj) {
@@ -7256,16 +7718,16 @@
         ];
 
     }, {
-        "167": 167,
-        "168": 168
+        "174": 174,
+        "175": 175
     }],
-    63: [function(require, module, exports) {
+    67: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.coins = undefined;
-        var _coins2 = require(61);
+        var _coins2 = require(65);
         var _coins = _interopRequireWildcard(_coins2);
 
         function _interopRequireWildcard(obj) {
@@ -7285,9 +7747,9 @@
         const coins = exports.coins = _coins;
 
     }, {
-        "61": 61
+        "65": 65
     }],
-    64: [function(require, module, exports) {
+    68: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -7315,9 +7777,9 @@
                 return _ref3.apply(this, arguments);
             };
         })();
-        var _instanceShim = require(167);
+        var _instanceShim = require(174);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _walletHelper = require(170);
+        var _walletHelper = require(177);
         var _walletHelper2 = _interopRequireDefault(_walletHelper);
 
         function _interopRequireDefault(obj) {
@@ -7357,10 +7819,10 @@
         ];
 
     }, {
-        "167": 167,
-        "170": 170
+        "174": 174,
+        "177": 177
     }],
-    65: [function(require, module, exports) {
+    69: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -7483,14 +7945,14 @@
             };
         })();
         exports.update = update;
-        var _instanceShim = require(167);
+        var _instanceShim = require(174);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _keys = require(168);
+        var _keys = require(175);
         var walletKeys = _interopRequireWildcard(_keys);
-        var _util = require(264);
-        var _order = require(85);
+        var _util = require(278);
+        var _order = require(89);
         var _order2 = _interopRequireDefault(_order);
-        var _orderSet = require(84);
+        var _orderSet = require(88);
         var _orderSet2 = _interopRequireDefault(_orderSet);
 
         function _interopRequireWildcard(obj) {
@@ -7520,13 +7982,13 @@
         }
 
     }, {
-        "167": 167,
-        "168": 168,
-        "264": 264,
-        "84": 84,
-        "85": 85
+        "174": 174,
+        "175": 175,
+        "278": 278,
+        "88": 88,
+        "89": 89
     }],
-    66: [function(require, module, exports) {
+    70: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -7535,8 +7997,8 @@
         exports.connect = connect;
         exports.disconnect = disconnect;
         exports.send = send;
-        var _util = require(264);
-        var _twoOfTwo = require(319);
+        var _util = require(278);
+        var _twoOfTwo = require(334);
         var _delay = require('delay');
         var _delay2 = _interopRequireDefault(_delay);
         var _ms = require('ms');
@@ -7639,19 +8101,19 @@
         }
 
     }, {
-        "264": 264,
-        "319": 319,
+        "278": 278,
+        "334": 334,
         "undefined": undefined
     }],
-    67: [function(require, module, exports) {
+    71: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.pair = exports.connection = undefined;
-        var _connection = require(66);
+        var _connection = require(70);
         var connection = _interopRequireWildcard(_connection);
-        var _pair = require(68);
+        var _pair = require(72);
         var pair = _interopRequireWildcard(_pair);
 
         function _interopRequireWildcard(obj) {
@@ -7672,10 +8134,10 @@
         exports.pair = pair;
 
     }, {
-        "66": 66,
-        "68": 68
+        "70": 70,
+        "72": 72
     }],
-    68: [function(require, module, exports) {
+    72: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -7704,9 +8166,9 @@
         exports.submitPhoneCode = submitPhoneCode;
         exports.cancel = cancel;
         exports.receiveMessage = receiveMessage;
-        var _util = require(264);
-        var _twoOfTwo = require(67);
-        var _twoOfTwo2 = require(319);
+        var _util = require(278);
+        var _twoOfTwo = require(71);
+        var _twoOfTwo2 = require(334);
 
         function _asyncToGenerator(fn) {
             return function() {
@@ -7850,11 +8312,11 @@
         }
 
     }, {
-        "264": 264,
-        "319": 319,
-        "67": 67
+        "278": 278,
+        "334": 334,
+        "71": 71
     }],
-    69: [function(require, module, exports) {
+    73: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -7883,11 +8345,11 @@
                 return _ref3.apply(this, arguments);
             };
         })();
-        var _instanceShim = require(167);
+        var _instanceShim = require(174);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _walletHelper = require(170);
+        var _walletHelper = require(177);
         var _walletHelper2 = _interopRequireDefault(_walletHelper);
-        var _txSet = require(86);
+        var _txSet = require(90);
         var _txSet2 = _interopRequireDefault(_txSet);
 
         function _interopRequireDefault(obj) {
@@ -7929,11 +8391,11 @@
         ];
 
     }, {
-        "167": 167,
-        "170": 170,
-        "86": 86
+        "174": 174,
+        "177": 177,
+        "90": 90
     }],
-    70: [function(require, module, exports) {
+    74: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -7966,21 +8428,21 @@
         var lodash = _interopRequireWildcard(_lodash);
         var _delay = require('delay');
         var _delay2 = _interopRequireDefault(_delay);
-        var _reduxAsyncAction = require(288);
+        var _reduxAsyncAction = require(303);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _instanceShim = require(167);
+        var _instanceShim = require(174);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _keys = require(168);
+        var _keys = require(175);
         var walletKeys = _interopRequireWildcard(_keys);
-        var _util = require(264);
-        var _txSet = require(86);
+        var _util = require(278);
+        var _txSet = require(90);
         var _txSet2 = _interopRequireDefault(_txSet);
-        var _tx = require(88);
+        var _tx = require(92);
         var _tx2 = _interopRequireDefault(_tx);
-        var _flux = require(257);
-        var _assets = require(184);
+        var _flux = require(271);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _getReceiveAddress = require(92);
+        var _getReceiveAddress = require(96);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
 
         function _interopRequireDefault(obj) {
@@ -8108,18 +8570,18 @@
         }
 
     }, {
-        "167": 167,
-        "168": 168,
-        "184": 184,
-        "257": 257,
-        "264": 264,
-        "288": 288,
-        "86": 86,
-        "88": 88,
+        "174": 174,
+        "175": 175,
+        "194": 194,
+        "271": 271,
+        "278": 278,
+        "303": 303,
+        "90": 90,
         "92": 92,
+        "96": 96,
         "undefined": undefined
     }],
-    71: [function(require, module, exports) {
+    75: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -8234,13 +8696,8 @@
                         console.error(createTxErr);
                         return fail(createTxErr);
                     }
-                    try {
-                        const broadcastTx = (0, _broadcastTx2.default)(state)(asset.name);
-                        yield broadcastTx(rawTx.toString('hex'));
-                    } catch (err) {
-                        console.error(err);
-                        throw new Error('Broadcast transaction error. If this persists, please contact support@exodus.io.');
-                    }
+                    const broadcastTx = (0, _broadcastTx2.default)(state)(asset.name);
+                    yield broadcastTx(rawTx.toString('hex'));
                     update(txId);
                     yield(0, _delay2.default)(500);
                     const changeAddressSet = _addressSet2.default.fromArray([changeAddress]);
@@ -8283,34 +8740,34 @@
         var _delay2 = _interopRequireDefault(_delay);
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _flux = require(257);
-        var _logger = require(269);
+        var _flux = require(271);
+        var _logger = require(283);
         var _logger2 = _interopRequireDefault(_logger);
-        var _addressSet = require(81);
+        var _addressSet = require(85);
         var _addressSet2 = _interopRequireDefault(_addressSet);
-        var _extractUtxosFromTx = require(254);
+        var _extractUtxosFromTx = require(268);
         var _extractUtxosFromTx2 = _interopRequireDefault(_extractUtxosFromTx);
-        var _getChangeAddress = require(90);
+        var _getChangeAddress = require(94);
         var _getChangeAddress2 = _interopRequireDefault(_getChangeAddress);
-        var _getValue = require(121);
+        var _getValue = require(126);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _broadcastTx = require(131);
+        var _broadcastTx = require(136);
         var _broadcastTx2 = _interopRequireDefault(_broadcastTx);
-        var _reduxAsyncAction = require(288);
+        var _reduxAsyncAction = require(303);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _utxoCollection = require(89);
+        var _utxoCollection = require(93);
         var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _aureus = require(192);
+        var _aureus = require(203);
         var _aureus2 = _interopRequireDefault(_aureus);
-        var _aw = require(197);
+        var _aw = require(208);
         var _aw2 = _interopRequireDefault(_aw);
-        var _utxos = require(79);
-        var _feeEstimator = require(255);
+        var _utxos = require(83);
+        var _feeEstimator = require(269);
         var _feeEstimator2 = _interopRequireDefault(_feeEstimator);
-        var _appConfig = require(80);
-        var _instanceShim = require(167);
+        var _appConfig = require(84);
+        var _instanceShim = require(174);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
 
         function _interopRequireWildcard(obj) {
@@ -8363,25 +8820,25 @@
         const logger = (0, _logger2.default)('actions:tx-send');
 
     }, {
-        "121": 121,
-        "131": 131,
-        "167": 167,
-        "184": 184,
-        "192": 192,
-        "197": 197,
-        "254": 254,
-        "255": 255,
-        "257": 257,
+        "126": 126,
+        "136": 136,
+        "174": 174,
+        "194": 194,
+        "203": 203,
+        "208": 208,
+        "268": 268,
         "269": 269,
-        "288": 288,
-        "79": 79,
-        "80": 80,
-        "81": 81,
-        "89": 89,
-        "90": 90,
+        "271": 271,
+        "283": 283,
+        "303": 303,
+        "83": 83,
+        "84": 84,
+        "85": 85,
+        "93": 93,
+        "94": 94,
         "undefined": undefined
     }],
-    72: [function(require, module, exports) {
+    76: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -8581,32 +9038,32 @@
         };
         var _verror = require('verror');
         var _verror2 = _interopRequireDefault(_verror);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _conversions = require(119);
+        var _conversions = require(124);
         var _conversions2 = _interopRequireDefault(_conversions);
-        var _getReceiveAddress = require(92);
+        var _getReceiveAddress = require(96);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _broadcastTx = require(131);
+        var _broadcastTx = require(136);
         var _broadcastTx2 = _interopRequireDefault(_broadcastTx);
         var _bn = require('bn.js');
         var _bn2 = _interopRequireDefault(_bn);
         var _ethereumjsUtil = require('ethereumjs-util');
         var ethUtil = _interopRequireWildcard(_ethereumjsUtil);
-        var _etcchain = require(221);
+        var _etcchain = require(232);
         var etcchain = _interopRequireWildcard(_etcchain);
-        var _etherscan = require(223);
+        var _etherscan = require(234);
         var etherscan = _interopRequireWildcard(_etherscan);
-        var _exodusEthereumServer = require(229);
-        var _flux = require(257);
-        var _reduxAsyncAction = require(288);
+        var _exodusEthereumServer = require(242);
+        var _flux = require(271);
+        var _reduxAsyncAction = require(303);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _accountState = require(7);
+        var _accountState = require(8);
         var AccountState = _interopRequireWildcard(_accountState);
-        var _util = require(213);
-        var _normalizeEthTxid = require(282);
+        var _util = require(224);
+        var _normalizeEthTxid = require(296);
         var _normalizeEthTxid2 = _interopRequireDefault(_normalizeEthTxid);
-        var _instanceShim = require(167);
+        var _instanceShim = require(174);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
 
         function _interopRequireWildcard(obj) {
@@ -8658,22 +9115,22 @@
         }
 
     }, {
-        "119": 119,
-        "131": 131,
-        "167": 167,
-        "184": 184,
-        "213": 213,
-        "221": 221,
-        "223": 223,
-        "229": 229,
-        "257": 257,
-        "282": 282,
-        "288": 288,
-        "7": 7,
-        "92": 92,
+        "124": 124,
+        "136": 136,
+        "174": 174,
+        "194": 194,
+        "224": 224,
+        "232": 232,
+        "234": 234,
+        "242": 242,
+        "271": 271,
+        "296": 296,
+        "303": 303,
+        "8": 8,
+        "96": 96,
         "undefined": undefined
     }],
-    73: [function(require, module, exports) {
+    77: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -8736,18 +9193,18 @@
                 return _accountState.factom.runWithLock(() => send(...args));
             });
         };
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _conversions = require(119);
+        var _conversions = require(124);
         var _conversions2 = _interopRequireDefault(_conversions);
-        var _getReceiveAddress = require(92);
+        var _getReceiveAddress = require(96);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _broadcastTx = require(131);
+        var _broadcastTx = require(136);
         var _broadcastTx2 = _interopRequireDefault(_broadcastTx);
-        var _reduxAsyncAction = require(288);
+        var _reduxAsyncAction = require(303);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _accountState = require(7);
-        var _flux = require(257);
+        var _accountState = require(8);
+        var _flux = require(271);
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
         var _factomjsLib = require('factomjs-lib');
@@ -8787,23 +9244,23 @@
         }
 
     }, {
-        "119": 119,
-        "131": 131,
-        "184": 184,
-        "257": 257,
-        "288": 288,
-        "7": 7,
-        "92": 92,
+        "124": 124,
+        "136": 136,
+        "194": 194,
+        "271": 271,
+        "303": 303,
+        "8": 8,
+        "96": 96,
         "undefined": undefined
     }],
-    74: [function(require, module, exports) {
+    78: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _instanceShim = require(167);
+        var _instanceShim = require(174);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _keys = require(168);
+        var _keys = require(175);
         var walletKeys = _interopRequireWildcard(_keys);
 
         function _interopRequireWildcard(obj) {
@@ -8879,27 +9336,27 @@
         ];
 
     }, {
-        "167": 167,
-        "168": 168
+        "174": 174,
+        "175": 175
     }],
-    75: [function(require, module, exports) {
+    79: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.send = send;
         exports.ackSend = ackSend;
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _bitcoinLike = require(71);
+        var _bitcoinLike = require(75);
         var _bitcoinLike2 = _interopRequireDefault(_bitcoinLike);
-        var _ethereum = require(72);
+        var _ethereum = require(76);
         var _ethereum2 = _interopRequireDefault(_ethereum);
-        var _factom = require(73);
+        var _factom = require(77);
         var _factom2 = _interopRequireDefault(_factom);
-        var _monero = require(76);
+        var _monero = require(80);
         var _monero2 = _interopRequireDefault(_monero);
-        var _ripple = require(77);
+        var _ripple = require(81);
         var _ripple2 = _interopRequireDefault(_ripple);
 
         function _interopRequireDefault(obj) {
@@ -8926,10 +9383,14 @@
             switch (baseAsset.name) {
                 case 'bcash':
                 case 'bcashclaim':
+                case 'bgold':
+                case 'bgoldclaim':
                 case 'bitcoin':
                 case 'dash':
                 case 'decred':
+                case 'digibyte':
                 case 'litecoin':
+                case 'vertcoin':
                 case 'zcash':
                     return (0, _bitcoinLike2.default)(Object.assign({
                         asset
@@ -8957,14 +9418,14 @@
         }
 
     }, {
-        "184": 184,
-        "71": 71,
-        "72": 72,
-        "73": 73,
+        "194": 194,
+        "75": 75,
         "76": 76,
-        "77": 77
+        "77": 77,
+        "80": 80,
+        "81": 81
     }],
-    76: [function(require, module, exports) {
+    80: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -9026,7 +9487,7 @@
         };
         var _verror = require('verror');
         var _verror2 = _interopRequireDefault(_verror);
-        var _logger = require(269);
+        var _logger = require(283);
         var _logger2 = _interopRequireDefault(_logger);
         var _electron = require('electron');
         var _electronIpcBroadcast = require('electron-ipc-broadcast');
@@ -9067,10 +9528,10 @@
         const logger = (0, _logger2.default)('actions:tx-send');
 
     }, {
-        "269": 269,
+        "283": 283,
         "undefined": undefined
     }],
-    77: [function(require, module, exports) {
+    81: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -9176,20 +9637,20 @@
         };
         var _secp256k = require('secp256k1');
         var secp256k1 = _interopRequireWildcard(_secp256k);
-        var _flux = require(257);
-        var _assets = require(184);
+        var _flux = require(271);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _conversions = require(119);
+        var _conversions = require(124);
         var _conversions2 = _interopRequireDefault(_conversions);
-        var _broadcastTx = require(131);
+        var _broadcastTx = require(136);
         var _broadcastTx2 = _interopRequireDefault(_broadcastTx);
-        var _reduxAsyncAction = require(288);
+        var _reduxAsyncAction = require(303);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _accountState = require(7);
-        var _tx = require(294);
-        var _keypairs = require(293);
+        var _accountState = require(8);
+        var _tx = require(309);
+        var _keypairs = require(308);
         var keypairs = _interopRequireWildcard(_keypairs);
-        var _rippleApi = require(290);
+        var _rippleApi = require(305);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -9240,18 +9701,18 @@
         }
 
     }, {
-        "119": 119,
-        "131": 131,
-        "184": 184,
-        "257": 257,
-        "288": 288,
-        "290": 290,
-        "293": 293,
-        "294": 294,
-        "7": 7,
+        "124": 124,
+        "136": 136,
+        "194": 194,
+        "271": 271,
+        "303": 303,
+        "305": 305,
+        "308": 308,
+        "309": 309,
+        "8": 8,
         "undefined": undefined
     }],
-    78: [function(require, module, exports) {
+    82: [function(require, module, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -9259,7 +9720,7 @@
         exports.default = [];
 
     }, {}],
-    79: [function(require, module, exports) {
+    83: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -9296,33 +9757,33 @@
         exports.updateFromBlockchain = updateFromBlockchain;
         var _aw = require('aw');
         var _aw2 = _interopRequireDefault(_aw);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _utxoCollection = require(89);
+        var _utxoCollection = require(93);
         var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
-        var _txLog = require(70);
-        var _conversions = require(119);
+        var _txLog = require(74);
+        var _conversions = require(124);
         var _conversions2 = _interopRequireDefault(_conversions);
-        var _reduxAsyncAction = require(288);
+        var _reduxAsyncAction = require(303);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
         var _delay = require('delay');
         var _delay2 = _interopRequireDefault(_delay);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _util = require(264);
-        var _addressSet = require(81);
+        var _util = require(278);
+        var _addressSet = require(85);
         var _addressSet2 = _interopRequireDefault(_addressSet);
-        var _instanceShim = require(167);
+        var _instanceShim = require(174);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _keys = require(168);
+        var _keys = require(175);
         var walletKeys = _interopRequireWildcard(_keys);
-        var _getReceiveAddresses = require(93);
+        var _getReceiveAddresses = require(97);
         var _getReceiveAddresses2 = _interopRequireDefault(_getReceiveAddresses);
-        var _getReceiveAddress = require(92);
+        var _getReceiveAddress = require(96);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _getExchangeAddress = require(91);
+        var _getExchangeAddress = require(95);
         var _getExchangeAddress2 = _interopRequireDefault(_getExchangeAddress);
-        var _utxoFetcher = require(132);
+        var _utxoFetcher = require(137);
         var _utxoFetcher2 = _interopRequireDefault(_utxoFetcher);
 
         function _interopRequireWildcard(obj) {
@@ -9515,24 +9976,24 @@
         })());
 
     }, {
-        "119": 119,
-        "132": 132,
-        "167": 167,
-        "168": 168,
-        "184": 184,
-        "264": 264,
-        "288": 288,
-        "70": 70,
-        "81": 81,
-        "89": 89,
-        "91": 91,
-        "92": 92,
+        "124": 124,
+        "137": 137,
+        "174": 174,
+        "175": 175,
+        "194": 194,
+        "278": 278,
+        "303": 303,
+        "74": 74,
+        "85": 85,
         "93": 93,
+        "95": 95,
+        "96": 96,
+        "97": 97,
         "undefined": undefined
     }],
-    80: [function(require, module, exports) {
+    84: [function(require, module, exports) {
         'use strict';
-        var _config = require(341);
+        var _config = require(1);
         var config = _interopRequireWildcard(_config);
 
         function _interopRequireWildcard(obj) {
@@ -9552,9 +10013,9 @@
         module.exports = config;
 
     }, {
-        "341": 341
+        "1": 1
     }],
-    81: [function(require, module, exports) {
+    85: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -9562,7 +10023,7 @@
         exports.PATH_SORTER = exports.default = undefined;
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _address = require(82);
+        var _address = require(86);
         var _address2 = _interopRequireDefault(_address);
 
         function _interopRequireDefault(obj) {
@@ -9657,10 +10118,10 @@
         };
 
     }, {
-        "82": 82,
+        "86": 86,
         "undefined": undefined
     }],
-    82: [function(require, module, exports) {
+    86: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -9700,7 +10161,7 @@
     }, {
         "undefined": undefined
     }],
-    83: [function(require, module, exports) {
+    87: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -9710,7 +10171,7 @@
         exports.isReceiveAddress = isReceiveAddress;
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _ = require(82);
+        var _ = require(86);
         var _2 = _interopRequireDefault(_);
 
         function _interopRequireDefault(obj) {
@@ -9743,16 +10204,16 @@
         }
 
     }, {
-        "82": 82,
+        "86": 86,
         "undefined": undefined
     }],
-    84: [function(require, module, exports) {
+    88: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.default = undefined;
-        var _order = require(85);
+        var _order = require(89);
         var _order2 = _interopRequireDefault(_order);
 
         function _interopRequireDefault(obj) {
@@ -9763,6 +10224,7 @@
         let OrderSet = class OrderSet {
             constructor() {
                 this._items = new Map();
+                this._txMap = new Map();
                 this._order = [];
             }
             static fromArray(arr) {
@@ -9772,6 +10234,8 @@
                 const set = new OrderSet();
                 for (let item of arr) {
                     set._items.set(String(item), item);
+                    if (item.fromTxId) set._txMap.set(item.fromTxId, item);
+                    if (item.toTxId) set._txMap.set(item.toTxId, item);
                 }
                 set._order = Array.from(set._items.keys());
                 return set;
@@ -9782,8 +10246,11 @@
                 arrItems.sort((a, b) => b.date - a.date);
                 let set = new OrderSet();
                 set._items = new Map();
+                set._txMap = new Map();
                 for (let item of arrItems) {
                     set._items.set(String(item), item);
+                    if (item.fromTxId) set._txMap.set(item.fromTxId, item);
+                    if (item.toTxId) set._txMap.set(item.toTxId, item);
                 }
                 set._order = Array.from(set._items.keys());
                 return set;
@@ -9792,6 +10259,7 @@
                 let set = new OrderSet();
                 set._items = new Map(this._items);
                 set._order = Array.from(set._items.keys());
+                set._txMap = new Map(this._txMap);
                 return set;
             }
             delete(item) {
@@ -9801,6 +10269,9 @@
                 set._items = new Map(this._items);
                 set._items.delete(String(item));
                 set._order = Array.from(set._items.keys());
+                set._txMap = new Map(this._txMap);
+                set._txMap.delete(itemObj.fromTxId);
+                set._txMap.delete(itemObj.toTxId);
                 return set;
             }
             equals(otherSet) {
@@ -9816,6 +10287,9 @@
             }
             getAt(index) {
                 return this.get(this._order[index]);
+            }
+            getByTxId(txId) {
+                return this._txMap.get(txId);
             }
             has(item) {
                 return this._items.has(String(item));
@@ -9836,6 +10310,8 @@
                     if (thisItem === undefined) continue;
                     const newItem = thisItem.update(item);
                     set._items.set(String(newItem), newItem);
+                    if (item.fromTxId) set._txMap.set(item.fromTxId, item);
+                    if (item.toTxId) set._txMap.set(item.toTxId, item);
                 }
                 return set;
             }[Symbol.iterator]() {
@@ -9854,9 +10330,9 @@
         }
 
     }, {
-        "85": 85
+        "89": 89
     }],
-    85: [function(require, module, exports) {
+    89: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -9864,10 +10340,10 @@
         exports.default = undefined;
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _aureus = require(192);
-        var _currencyFiat = require(208);
+        var _aureus = require(203);
+        var _currencyFiat = require(219);
         var _currencyFiat2 = _interopRequireDefault(_currencyFiat);
 
         function _interopRequireDefault(obj) {
@@ -9878,6 +10354,8 @@
         const USD = _currencyFiat2.default.USD;
         const STATUS_SS_INPROGRESS = ['no_deposits', 'received', 'complete'];
         const STATUS_SS_FAILED = ['resolved', 'contact_support', 'failed', 'expired'];
+        const STATUS_EC_INPROGRESS = [1, 2, 3, 5];
+        const STATUS_EC_FAILED = [4, 6, 7, 8, 9, 10];
         let Order = class Order {
             constructor() {
                 let props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -9908,6 +10386,8 @@
                 if (props.toAmountUSD) {
                     this.toAmountUSD = (0, _aureus.isNumberUnit)(props.toAmountUSD) ? props.toAmountUSD : USD.parse(props.toAmountUSD);
                 }
+                if (!props.svc) console.warn(`${props.orderId} has no 'svc' field set.`);
+                this.svc = props.svc || 'ss';
             }
             static fromJSON(json) {
                 if (typeof json === 'string') json = JSON.parse(json);
@@ -9934,9 +10414,15 @@
                 return Order.fromJSON(Object.assign({}, this, fields));
             }
             get exodusStatus() {
-                if (this.status === 'complete-verified') return 'success';
-                if (STATUS_SS_FAILED.includes(this.status)) return 'failed';
-                if (STATUS_SS_INPROGRESS.includes(this.status)) return 'inprogress';
+                if (this.svc === 'ss') {
+                    if (this.status === 'complete-verified') return 'success';
+                    if (STATUS_SS_FAILED.includes(this.status)) return 'failed';
+                    if (STATUS_SS_INPROGRESS.includes(this.status)) return 'inprogress';
+                } else if (this.svc === 'ec') {
+                    if (this.status === 'complete-verified') return 'success';
+                    if (STATUS_EC_FAILED.includes(this.status)) return 'failed';
+                    if (STATUS_EC_INPROGRESS.includes(this.status)) return 'inprogress';
+                }
                 console.warn(`Unknown order state: ${this.status}`);
                 return 'inprogress';
             }
@@ -9944,21 +10430,21 @@
         exports.default = Order;
 
     }, {
-        "184": 184,
-        "192": 192,
-        "208": 208,
+        "194": 194,
+        "203": 203,
+        "219": 219,
         "undefined": undefined
     }],
-    86: [function(require, module, exports) {
+    90: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.default = undefined;
-        var _tx = require(88);
+        var _tx = require(92);
         var _tx2 = _interopRequireDefault(_tx);
         var _lodash = require('lodash');
-        var _addressSet = require(81);
+        var _addressSet = require(85);
         var _addressSet2 = _interopRequireDefault(_addressSet);
         var _clone = require('clone');
         var _clone2 = _interopRequireDefault(_clone);
@@ -10110,18 +10596,18 @@
         }
 
     }, {
-        "81": 81,
-        "88": 88,
+        "85": 85,
+        "92": 92,
         "undefined": undefined
     }],
-    87: [function(require, module, exports) {
+    91: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.sortByAsc = sortByAsc;
         exports.sortByDesc = sortByDesc;
-        var _ = require(86);
+        var _ = require(90);
         var _2 = _interopRequireDefault(_);
 
         function _interopRequireDefault(obj) {
@@ -10149,9 +10635,9 @@
         }
 
     }, {
-        "86": 86
+        "90": 90
     }],
-    88: [function(require, module, exports) {
+    92: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -10161,12 +10647,12 @@
         var _assert2 = _interopRequireDefault(_assert);
         var _proxyFreeze = require('proxy-freeze');
         var _proxyFreeze2 = _interopRequireDefault(_proxyFreeze);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
         var _isEqual = require('is-equal');
         var _isEqual2 = _interopRequireDefault(_isEqual);
-        var _aureus = require(192);
-        var _addressSet = require(81);
+        var _aureus = require(203);
+        var _addressSet = require(85);
         var _addressSet2 = _interopRequireDefault(_addressSet);
 
         function _interopRequireDefault(obj) {
@@ -10292,12 +10778,12 @@
         }
 
     }, {
-        "184": 184,
-        "192": 192,
-        "81": 81,
+        "194": 194,
+        "203": 203,
+        "85": 85,
         "undefined": undefined
     }],
-    89: [function(require, module, exports) {
+    93: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -10305,11 +10791,11 @@
         exports.default = undefined;
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _address = require(82);
+        var _address = require(86);
         var _address2 = _interopRequireDefault(_address);
-        var _addressSet = require(81);
+        var _addressSet = require(85);
         var _addressSet2 = _interopRequireDefault(_addressSet);
-        var _aureus = require(192);
+        var _aureus = require(203);
         var _aureus2 = _interopRequireDefault(_aureus);
         var _lodash = require('lodash');
         var _isEqual = require('is-equal');
@@ -10592,21 +11078,21 @@
         }
 
     }, {
-        "192": 192,
-        "81": 81,
-        "82": 82,
+        "203": 203,
+        "85": 85,
+        "86": 86,
         "undefined": undefined
     }],
-    90: [function(require, module, exports) {
+    94: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _address = require(82);
+        var _address = require(86);
         var _address2 = _interopRequireDefault(_address);
         var _reselect = require('reselect');
-        var _util = require(9);
-        var _pairingData = require(140);
+        var _util = require(10);
+        var _pairingData = require(147);
         var _pairingData2 = _interopRequireDefault(_pairingData);
 
         function _interopRequireDefault(obj) {
@@ -10628,20 +11114,20 @@
         });
 
     }, {
-        "140": 140,
-        "82": 82,
-        "9": 9,
+        "10": 10,
+        "147": 147,
+        "86": 86,
         "undefined": undefined
     }],
-    91: [function(require, module, exports) {
+    95: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _getReceiveAddress = require(92);
+        var _getReceiveAddress = require(96);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _address = require(82);
+        var _address = require(86);
         var _address2 = _interopRequireDefault(_address);
 
         function _interopRequireDefault(obj) {
@@ -10656,22 +11142,22 @@
         });
 
     }, {
-        "82": 82,
-        "92": 92,
+        "86": 86,
+        "96": 96,
         "undefined": undefined
     }],
-    92: [function(require, module, exports) {
+    96: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _address = require(82);
+        var _address = require(86);
         var _address2 = _interopRequireDefault(_address);
         var _reselect = require('reselect');
-        var _util = require(9);
-        var _pairingData = require(140);
+        var _util = require(10);
+        var _pairingData = require(147);
         var _pairingData2 = _interopRequireDefault(_pairingData);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -10696,23 +11182,23 @@
         });
 
     }, {
-        "140": 140,
-        "184": 184,
-        "82": 82,
-        "9": 9,
+        "10": 10,
+        "147": 147,
+        "194": 194,
+        "86": 86,
         "undefined": undefined
     }],
-    93: [function(require, module, exports) {
+    97: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _addressSet = require(81);
+        var _addressSet = require(85);
         var _addressSet2 = _interopRequireDefault(_addressSet);
         var _reselect = require('reselect');
-        var _getReceiveAddress = require(92);
+        var _getReceiveAddress = require(96);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _getExchangeAddress = require(91);
+        var _getExchangeAddress = require(95);
         var _getExchangeAddress2 = _interopRequireDefault(_getExchangeAddress);
 
         function _interopRequireDefault(obj) {
@@ -10737,22 +11223,22 @@
         });
 
     }, {
-        "81": 81,
-        "91": 91,
-        "92": 92,
+        "85": 85,
+        "95": 95,
+        "96": 96,
         "undefined": undefined
     }],
-    94: [function(require, module, exports) {
+    98: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _addressSet = require(81);
+        var _addressSet = require(85);
         var _addressSet2 = _interopRequireDefault(_addressSet);
         var _reselect = require('reselect');
-        var _getExchangeAddress = require(91);
+        var _getExchangeAddress = require(95);
         var _getExchangeAddress2 = _interopRequireDefault(_getExchangeAddress);
-        var _getReceiveAddresses = require(93);
+        var _getReceiveAddresses = require(97);
         var _getReceiveAddresses2 = _interopRequireDefault(_getReceiveAddresses);
 
         function _interopRequireDefault(obj) {
@@ -10771,20 +11257,20 @@
         });
 
     }, {
-        "81": 81,
-        "91": 91,
-        "93": 93,
+        "85": 85,
+        "95": 95,
+        "97": 97,
         "undefined": undefined
     }],
-    95: [function(require, module, exports) {
+    99: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _available = require(96);
+        var _available = require(100);
         var _available2 = _interopRequireDefault(_available);
 
         function _interopRequireDefault(obj) {
@@ -10796,11 +11282,11 @@
         exports.default = (0, _reselect.createSelector)(_available2.default, availableAssets => Object.keys(availableAssets).length < availableAssetsCount);
 
     }, {
-        "184": 184,
-        "96": 96,
+        "100": 100,
+        "194": 194,
         "undefined": undefined
     }],
-    96: [function(require, module, exports) {
+    100: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -10808,9 +11294,9 @@
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
         var _reselect = require('reselect');
-        var _assetsDisabled = require(103);
+        var _assetsDisabled = require(108);
         var _assetsDisabled2 = _interopRequireDefault(_assetsDisabled);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -10841,11 +11327,11 @@
         });
 
     }, {
-        "103": 103,
-        "184": 184,
+        "108": 108,
+        "194": 194,
         "undefined": undefined
     }],
-    97: [function(require, module, exports) {
+    101: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -10855,7 +11341,7 @@
         var lodash = _interopRequireWildcard(_lodash);
         var _semver = require('semver');
         var _semver2 = _interopRequireDefault(_semver);
-        var _appConfig = require(80);
+        var _appConfig = require(84);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -10884,10 +11370,10 @@
         });
 
     }, {
-        "80": 80,
+        "84": 84,
         "undefined": undefined
     }],
-    98: [function(require, module, exports) {
+    102: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -10895,7 +11381,7 @@
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
         var _reselect = require('reselect');
-        var _available = require(96);
+        var _available = require(100);
         var _available2 = _interopRequireDefault(_available);
 
         function _interopRequireDefault(obj) {
@@ -10923,18 +11409,18 @@
         });
 
     }, {
-        "96": 96,
+        "100": 100,
         "undefined": undefined
     }],
-    99: [function(require, module, exports) {
+    103: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _cryptoTotal = require(100);
+        var _cryptoTotal = require(104);
         var _cryptoTotal2 = _interopRequireDefault(_cryptoTotal);
 
         function _interopRequireDefault(obj) {
@@ -10948,11 +11434,11 @@
         });
 
     }, {
-        "100": 100,
-        "184": 184,
+        "104": 104,
+        "194": 194,
         "undefined": undefined
     }],
-    100: [function(require, module, exports) {
+    104: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -10960,11 +11446,11 @@
         var _lodash = require('lodash');
         var _lodash2 = _interopRequireDefault(_lodash);
         var _reselect = require('reselect');
-        var _getReceiveAddress = require(92);
+        var _getReceiveAddress = require(96);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _txSet = require(86);
+        var _txSet = require(90);
         var _txSet2 = _interopRequireDefault(_txSet);
 
         function _interopRequireDefault(obj) {
@@ -11028,12 +11514,65 @@
         });
 
     }, {
-        "184": 184,
-        "86": 86,
-        "92": 92,
+        "194": 194,
+        "90": 90,
+        "96": 96,
         "undefined": undefined
     }],
-    101: [function(require, module, exports) {
+    105: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        var _reselect = require('reselect');
+        var _assets = require(194);
+        var _assets2 = _interopRequireDefault(_assets);
+        var _lodash = require('lodash');
+        var lodash = _interopRequireWildcard(_lodash);
+        var _util = require('util');
+
+        function _interopRequireWildcard(obj) {
+            if (obj && obj.__esModule) {
+                return obj;
+            } else {
+                var newObj = {};
+                if (obj != null) {
+                    for (var key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+                    }
+                }
+                newObj.default = obj;
+                return newObj;
+            }
+        }
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        exports.default = (0, _reselect.createSelector)(state => state.remoteConfig, remoteConfig => {
+            return asset => {
+                const assetName = typeof asset === 'string' ? asset : asset.name;
+                const blockExplorer = lodash.get(remoteConfig, ['assets', assetName, 'blockExplorer'], {});
+                return {
+                    addressUrl(address) {
+                        if (blockExplorer.addressUrl) return (0, _util.format)(blockExplorer.addressUrl, address);
+                        return _assets2.default[assetName].blockExplorer.addressUrl(address);
+                    },
+                    txUrl(tx) {
+                        if (blockExplorer.txUrl) return (0, _util.format)(blockExplorer.txUrl, tx);
+                        return _assets2.default[assetName].blockExplorer.txUrl(tx);
+                    }
+                };
+            };
+        });
+
+    }, {
+        "194": 194,
+        "undefined": undefined
+    }],
+    106: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -11041,13 +11580,13 @@
         var _reselect = require('reselect');
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _coinTotalAmounts = require(102);
+        var _coinTotalAmounts = require(107);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _feeEstimator = require(255);
+        var _feeEstimator = require(269);
         var _feeEstimator2 = _interopRequireDefault(_feeEstimator);
-        var _utxoCollection = require(89);
+        var _utxoCollection = require(93);
         var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
 
         function _interopRequireDefault(obj) {
@@ -11094,18 +11633,18 @@
         });
 
     }, {
-        "102": 102,
-        "184": 184,
-        "255": 255,
-        "89": 89,
+        "107": 107,
+        "194": 194,
+        "269": 269,
+        "93": 93,
         "undefined": undefined
     }],
-    102: [function(require, module, exports) {
+    107: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _cryptoTotal = require(100);
+        var _cryptoTotal = require(104);
         var _cryptoTotal2 = _interopRequireDefault(_cryptoTotal);
 
         function _interopRequireDefault(obj) {
@@ -11116,17 +11655,17 @@
         exports.default = _cryptoTotal2.default;
 
     }, {
-        "100": 100
+        "104": 104
     }],
-    103: [function(require, module, exports) {
+    108: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _configKeys = require(206);
+        var _configKeys = require(217);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -11142,19 +11681,19 @@
         });
 
     }, {
-        "184": 184,
-        "206": 206,
+        "194": 194,
+        "217": 217,
         "undefined": undefined
     }],
-    104: [function(require, module, exports) {
+    109: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _currencyFiat = require(208);
+        var _currencyFiat = require(219);
         var _currencyFiat2 = _interopRequireDefault(_currencyFiat);
         var _reselect = require('reselect');
-        var _configKeys = require(206);
+        var _configKeys = require(217);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -11167,20 +11706,20 @@
         });
 
     }, {
-        "206": 206,
-        "208": 208,
+        "217": 217,
+        "219": 219,
         "undefined": undefined
     }],
-    105: [function(require, module, exports) {
+    110: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _configKeys = require(206);
+        var _configKeys = require(217);
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _configDefault = require(204);
+        var _configDefault = require(215);
         var _configDefault2 = _interopRequireDefault(_configDefault);
 
         function _interopRequireDefault(obj) {
@@ -11212,48 +11751,48 @@
         });
 
     }, {
-        "204": 204,
-        "206": 206,
+        "215": 215,
+        "217": 217,
         "undefined": undefined
     }],
-    106: [function(require, module, exports) {
+    111: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.txReceivedEnabled = undefined;
         var _reselect = require('reselect');
-        var _configKeys = require(206);
+        var _configKeys = require(217);
         const txReceivedEnabled = exports.txReceivedEnabled = (0, _reselect.createSelector)(state => state.config, config => config.get(_configKeys.notificationsTxReceivedEnabled));
 
     }, {
-        "206": 206,
+        "217": 217,
         "undefined": undefined
     }],
-    107: [function(require, module, exports) {
+    112: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _configKeys = require(206);
+        var _configKeys = require(217);
         exports.default = (0, _reselect.createSelector)(state => state.config, config => config.get(_configKeys.themeName));
 
     }, {
-        "206": 206,
+        "217": 217,
         "undefined": undefined
     }],
-    108: [function(require, module, exports) {
+    113: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.threshold = undefined;
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _coinTotalAmounts = require(102);
+        var _coinTotalAmounts = require(107);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
-        var _hasTokens = require(126);
+        var _hasTokens = require(131);
         var _hasTokens2 = _interopRequireDefault(_hasTokens);
         var _reselect = require('reselect');
 
@@ -11270,12 +11809,12 @@
         });
 
     }, {
-        "102": 102,
-        "126": 126,
-        "184": 184,
+        "107": 107,
+        "131": 131,
+        "194": 194,
         "undefined": undefined
     }],
-    109: [function(require, module, exports) {
+    114: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -11283,15 +11822,15 @@
         var _reselect = require('reselect');
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _marketInfoKeys = require(113);
+        var _marketInfoKeys = require(118);
         var _marketInfoKeys2 = _interopRequireDefault(_marketInfoKeys);
-        var _minimums = require(116);
+        var _minimums = require(121);
         var _minimums2 = _interopRequireDefault(_minimums);
-        var _maximums = require(115);
+        var _maximums = require(120);
         var _maximums2 = _interopRequireDefault(_maximums);
-        var _available = require(96);
+        var _available = require(100);
         var _available2 = _interopRequireDefault(_available);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -11314,39 +11853,34 @@
                 return newObj;
             }
         }
-        exports.default = (0, _reselect.createSelector)(_available2.default, _marketInfoKeys2.default, _minimums2.default, _maximums2.default, state => state.exchange.coinsOnline, (coinsInExodus, marketInfo, minimums, maximums, coinsOnline) => {
+        exports.default = (0, _reselect.createSelector)(_available2.default, _marketInfoKeys2.default, _minimums2.default, _maximums2.default, state => state.exchange.assetsOnline, (coinsInExodus, marketInfo, minimums, maximums, assetsOnline) => {
             return function getPairOnline(fromCoin, toCoin) {
-                if (!coinsInExodus[fromCoin] || shapeShiftAvailability(coinsOnline, fromCoin) !== 'available') return false;
-                if (!coinsInExodus[toCoin] || shapeShiftAvailability(coinsOnline, toCoin) !== 'available') return false;
+                if (!coinsInExodus[fromCoin] || !lodash.get(assetsOnline, [_assets2.default[fromCoin].displayUnit, 'fromAvailable']) || !coinsInExodus[toCoin] || !lodash.get(assetsOnline, [_assets2.default[toCoin].displayUnit, 'toAvailable'])) {
+                    return false;
+                }
                 const pair = lodash.get(marketInfo, `${fromCoin}.${toCoin}`);
                 const minmaxOK = minimums[fromCoin][toCoin] < maximums[fromCoin][toCoin];
                 return pair && pair.limit > 0 && pair.maxLimit > 0 && minmaxOK;
             };
         });
 
-        function shapeShiftAvailability(assetsOnline, asset) {
-            if (typeof assetsOnline[asset] === 'string') return assetsOnline[asset];
-            const assetObj = _assets2.default[asset];
-            return assetsOnline[assetObj.properName.toLowerCase()];
-        }
-
     }, {
-        "113": 113,
-        "115": 115,
-        "116": 116,
-        "184": 184,
-        "96": 96,
+        "100": 100,
+        "118": 118,
+        "120": 120,
+        "121": 121,
+        "194": 194,
         "undefined": undefined
     }],
-    110: [function(require, module, exports) {
+    115: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _getRate = require(111);
+        var _getRate = require(116);
         var _getRate2 = _interopRequireDefault(_getRate);
 
         function _interopRequireDefault(obj) {
@@ -11363,11 +11897,11 @@
         });
 
     }, {
-        "111": 111,
-        "184": 184,
+        "116": 116,
+        "194": 194,
         "undefined": undefined
     }],
-    111: [function(require, module, exports) {
+    116: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -11375,13 +11909,13 @@
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
         var _reselect = require('reselect');
-        var _marketInfoConversions = require(112);
+        var _marketInfoConversions = require(117);
         var _marketInfoConversions2 = _interopRequireDefault(_marketInfoConversions);
-        var _minimums = require(116);
+        var _minimums = require(121);
         var _minimums2 = _interopRequireDefault(_minimums);
-        var _maximums = require(115);
+        var _maximums = require(120);
         var _maximums2 = _interopRequireDefault(_maximums);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -11419,23 +11953,23 @@
         });
 
     }, {
-        "112": 112,
-        "115": 115,
-        "116": 116,
-        "184": 184,
+        "117": 117,
+        "120": 120,
+        "121": 121,
+        "194": 194,
         "undefined": undefined
     }],
-    112: [function(require, module, exports) {
+    117: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _marketInfoNumbers = require(114);
+        var _marketInfoNumbers = require(119);
         var _marketInfoNumbers2 = _interopRequireDefault(_marketInfoNumbers);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _aureus = require(192);
+        var _aureus = require(203);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -11472,12 +12006,12 @@
         });
 
     }, {
-        "114": 114,
-        "184": 184,
-        "192": 192,
+        "119": 119,
+        "194": 194,
+        "203": 203,
         "undefined": undefined
     }],
-    113: [function(require, module, exports) {
+    118: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -11485,7 +12019,7 @@
         var _reselect = require('reselect');
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _pairs = require(23);
+        var _pairs = require(27);
         var pairs = _interopRequireWildcard(_pairs);
 
         function _interopRequireWildcard(obj) {
@@ -11514,18 +12048,18 @@
         });
 
     }, {
-        "23": 23,
+        "27": 27,
         "undefined": undefined
     }],
-    114: [function(require, module, exports) {
+    119: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _marketInfoKeys = require(113);
+        var _marketInfoKeys = require(118);
         var _marketInfoKeys2 = _interopRequireDefault(_marketInfoKeys);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -11566,19 +12100,19 @@
         }
 
     }, {
-        "113": 113,
-        "184": 184,
+        "118": 118,
+        "194": 194,
         "undefined": undefined
     }],
-    115: [function(require, module, exports) {
+    120: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _marketInfoNumbers = require(114);
+        var _marketInfoNumbers = require(119);
         var _marketInfoNumbers2 = _interopRequireDefault(_marketInfoNumbers);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -11610,27 +12144,29 @@
         });
 
     }, {
-        "114": 114,
-        "184": 184,
+        "119": 119,
+        "194": 194,
         "undefined": undefined
     }],
-    116: [function(require, module, exports) {
+    121: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
+        exports.ASSET_MIN_NOT_BTC = exports.ASSET_MIN_BTC = undefined;
         exports.getRandomDecreaseFactor = getRandomDecreaseFactor;
         var _lodash = require('lodash');
         var _lodash2 = _interopRequireDefault(_lodash);
         var _reselect = require('reselect');
-        var _marketInfoNumbers = require(114);
+        var _marketInfoNumbers = require(119);
         var _marketInfoNumbers2 = _interopRequireDefault(_marketInfoNumbers);
-        var _conversionsUsd = require(118);
+        var _conversionsUsd = require(123);
         var _conversionsUsd2 = _interopRequireDefault(_conversionsUsd);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _currencyFiat = require(208);
+        var _currencyFiat = require(219);
         var _currencyFiat2 = _interopRequireDefault(_currencyFiat);
+        var _appConfig = require(84);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -11638,8 +12174,9 @@
             };
         }
         const INCREASE = 1.05;
-        const ASSET_MIN_BTC = 39.5;
-        const ASSET_MIN_NOT_BTC = 18;
+        const TESTING_EVERCOIN = _appConfig.ENV_DEV || _appConfig.ENV_BUILD_EDEN;
+        const ASSET_MIN_BTC = exports.ASSET_MIN_BTC = TESTING_EVERCOIN ? 69.5 : 39.5;
+        const ASSET_MIN_NOT_BTC = exports.ASSET_MIN_NOT_BTC = TESTING_EVERCOIN ? 52.5 : 18;
         exports.default = (0, _reselect.createSelector)(_marketInfoNumbers2.default, state => state.remoteConfig, _conversionsUsd2.default, (marketInfo, remoteConfig, fiatConversionsUSD) => {
             const minimums = _lodash2.default.mapValues(_assets2.default, () => ({}));
             Object.keys(_assets2.default).forEach(fromCoin => {
@@ -11671,13 +12208,14 @@
         }
 
     }, {
-        "114": 114,
-        "118": 118,
-        "184": 184,
-        "208": 208,
+        "119": 119,
+        "123": 123,
+        "194": 194,
+        "219": 219,
+        "84": 84,
         "undefined": undefined
     }],
-    117: [function(require, module, exports) {
+    122: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -11702,7 +12240,7 @@
     }, {
         "undefined": undefined
     }],
-    118: [function(require, module, exports) {
+    123: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -11710,11 +12248,11 @@
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
         var _reselect = require('reselect');
-        var _currencyFiat = require(208);
+        var _currencyFiat = require(219);
         var _currencyFiat2 = _interopRequireDefault(_currencyFiat);
-        var _prices = require(130);
+        var _prices = require(135);
         var _prices2 = _interopRequireDefault(_prices);
-        var _conversions = require(119);
+        var _conversions = require(124);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -11739,12 +12277,12 @@
         exports.default = (0, _reselect.createSelector)(_prices2.default, lodash.partial(_conversions.createConversions, _currencyFiat2.default.USD));
 
     }, {
-        "119": 119,
-        "130": 130,
-        "208": 208,
+        "124": 124,
+        "135": 135,
+        "219": 219,
         "undefined": undefined
     }],
-    119: [function(require, module, exports) {
+    124: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -11753,13 +12291,13 @@
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
         var _reselect = require('reselect');
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _prices = require(130);
+        var _prices = require(135);
         var _prices2 = _interopRequireDefault(_prices);
-        var _fiat = require(104);
+        var _fiat = require(109);
         var _fiat2 = _interopRequireDefault(_fiat);
-        var _aureus = require(192);
+        var _aureus = require(203);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -11798,21 +12336,21 @@
         }
 
     }, {
-        "104": 104,
-        "130": 130,
-        "184": 184,
-        "192": 192,
+        "109": 109,
+        "135": 135,
+        "194": 194,
+        "203": 203,
         "undefined": undefined
     }],
-    120: [function(require, module, exports) {
+    125: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _currencyFiat = require(208);
+        var _currencyFiat = require(219);
         var _currencyFiat2 = _interopRequireDefault(_currencyFiat);
-        var _conversionsUsd = require(118);
+        var _conversionsUsd = require(123);
         var _conversionsUsd2 = _interopRequireDefault(_conversionsUsd);
 
         function _interopRequireDefault(obj) {
@@ -11831,19 +12369,19 @@
         });
 
     }, {
-        "118": 118,
-        "208": 208,
+        "123": 123,
+        "219": 219,
         "undefined": undefined
     }],
-    121: [function(require, module, exports) {
+    126: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _fiat = require(104);
+        var _fiat = require(109);
         var _fiat2 = _interopRequireDefault(_fiat);
-        var _conversions = require(119);
+        var _conversions = require(124);
         var _conversions2 = _interopRequireDefault(_conversions);
 
         function _interopRequireDefault(obj) {
@@ -11861,11 +12399,11 @@
         });
 
     }, {
-        "104": 104,
-        "119": 119,
+        "109": 109,
+        "124": 124,
         "undefined": undefined
     }],
-    122: [function(require, module, exports) {
+    127: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -11873,13 +12411,13 @@
         var _fp = require('lodash/fp');
         var _ = _interopRequireWildcard(_fp);
         var _reselect = require('reselect');
-        var _available = require(96);
+        var _available = require(100);
         var _available2 = _interopRequireDefault(_available);
-        var _coinTotalAmounts = require(102);
+        var _coinTotalAmounts = require(107);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
-        var _total = require(123);
+        var _total = require(128);
         var _total2 = _interopRequireDefault(_total);
-        var _getValue = require(121);
+        var _getValue = require(126);
         var _getValue2 = _interopRequireDefault(_getValue);
 
         function _interopRequireDefault(obj) {
@@ -11917,13 +12455,13 @@
         });
 
     }, {
-        "102": 102,
-        "121": 121,
-        "123": 123,
-        "96": 96,
+        "100": 100,
+        "107": 107,
+        "126": 126,
+        "128": 128,
         "undefined": undefined
     }],
-    123: [function(require, module, exports) {
+    128: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -11931,13 +12469,13 @@
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
         var _reselect = require('reselect');
-        var _available = require(96);
+        var _available = require(100);
         var _available2 = _interopRequireDefault(_available);
-        var _coinTotalAmounts = require(102);
+        var _coinTotalAmounts = require(107);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
-        var _fiat = require(104);
+        var _fiat = require(109);
         var _fiat2 = _interopRequireDefault(_fiat);
-        var _getValue = require(121);
+        var _getValue = require(126);
         var _getValue2 = _interopRequireDefault(_getValue);
 
         function _interopRequireDefault(obj) {
@@ -11968,23 +12506,23 @@
         });
 
     }, {
-        "102": 102,
-        "104": 104,
-        "121": 121,
-        "96": 96,
+        "100": 100,
+        "107": 107,
+        "109": 109,
+        "126": 126,
         "undefined": undefined
     }],
-    124: [function(require, module, exports) {
+    129: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _feeEstimator = require(255);
+        var _feeEstimator = require(269);
         var _feeEstimator2 = _interopRequireDefault(_feeEstimator);
-        var _utxoCollection = require(89);
+        var _utxoCollection = require(93);
         var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
 
         function _interopRequireDefault(obj) {
@@ -12026,18 +12564,18 @@
         });
 
     }, {
-        "184": 184,
-        "255": 255,
-        "89": 89,
+        "194": 194,
+        "269": 269,
+        "93": 93,
         "undefined": undefined
     }],
-    125: [function(require, module, exports) {
+    130: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _coinTotalAmounts = require(102);
+        var _coinTotalAmounts = require(107);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
 
         function _interopRequireDefault(obj) {
@@ -12048,17 +12586,17 @@
         exports.default = (0, _reselect.createSelector)(_coinTotalAmounts2.default, coinTotals => Object.values(coinTotals).some(total => !total.isZero()));
 
     }, {
-        "102": 102,
+        "107": 107,
         "undefined": undefined
     }],
-    126: [function(require, module, exports) {
+    131: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _coinTotalAmounts = require(102);
+        var _coinTotalAmounts = require(107);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
         var _reselect = require('reselect');
 
@@ -12073,21 +12611,21 @@
         });
 
     }, {
-        "102": 102,
-        "184": 184,
+        "107": 107,
+        "194": 194,
         "undefined": undefined
     }],
-    127: [function(require, module, exports) {
+    132: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _fiat = require(104);
+        var _fiat = require(109);
         var _fiat2 = _interopRequireDefault(_fiat);
         var _reselect = require('reselect');
-        var _cryptocompareUtil = require(207);
+        var _cryptocompareUtil = require(218);
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
 
@@ -12126,12 +12664,12 @@
         });
 
     }, {
-        "104": 104,
-        "184": 184,
-        "207": 207,
+        "109": 109,
+        "194": 194,
+        "218": 218,
         "undefined": undefined
     }],
-    128: [function(require, module, exports) {
+    133: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -12139,9 +12677,9 @@
         var _reselect = require('reselect');
         var _lodash = require('lodash');
         var _lodash2 = _interopRequireDefault(_lodash);
-        var _prices = require(130);
+        var _prices = require(135);
         var _prices2 = _interopRequireDefault(_prices);
-        var _fiat = require(104);
+        var _fiat = require(109);
         var _fiat2 = _interopRequireDefault(_fiat);
 
         function _interopRequireDefault(obj) {
@@ -12157,19 +12695,19 @@
         });
 
     }, {
-        "104": 104,
-        "130": 130,
+        "109": 109,
+        "135": 135,
         "undefined": undefined
     }],
-    129: [function(require, module, exports) {
+    134: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _prices = require(130);
+        var _prices = require(135);
         var _prices2 = _interopRequireDefault(_prices);
-        var _available = require(96);
+        var _available = require(100);
         var _available2 = _interopRequireDefault(_available);
 
         function _interopRequireDefault(obj) {
@@ -12182,11 +12720,11 @@
         });
 
     }, {
-        "130": 130,
-        "96": 96,
+        "100": 100,
+        "135": 135,
         "undefined": undefined
     }],
-    130: [function(require, module, exports) {
+    135: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -12194,9 +12732,9 @@
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
         var _reselect = require('reselect');
-        var _marketPrices = require(105);
+        var _marketPrices = require(110);
         var _marketPrices2 = _interopRequireDefault(_marketPrices);
-        var _fiat = require(104);
+        var _fiat = require(109);
         var _fiat2 = _interopRequireDefault(_fiat);
 
         function _interopRequireDefault(obj) {
@@ -12227,28 +12765,28 @@
         });
 
     }, {
-        "104": 104,
-        "105": 105,
+        "109": 109,
+        "110": 110,
         "undefined": undefined
     }],
-    131: [function(require, module, exports) {
+    136: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _insightApiClient = require(265);
+        var _insightApiClient = require(279);
         var _insightApiClient2 = _interopRequireDefault(_insightApiClient);
-        var _etherscan = require(223);
+        var _etherscan = require(234);
         var etherscan = _interopRequireWildcard(_etherscan);
-        var _etcchain = require(221);
+        var _etcchain = require(232);
         var etcchain = _interopRequireWildcard(_etcchain);
-        var _exodusEthereumServer = require(229);
-        var _exodusFactomServer = require(231);
+        var _exodusEthereumServer = require(242);
+        var _exodusFactomServer = require(244);
         var _exodusFactomServer2 = _interopRequireDefault(_exodusFactomServer);
-        var _rippleApi = require(290);
+        var _rippleApi = require(305);
         var rippleAPI = _interopRequireWildcard(_rippleApi);
 
         function _interopRequireWildcard(obj) {
@@ -12297,16 +12835,16 @@
         });
 
     }, {
-        "184": 184,
-        "221": 221,
-        "223": 223,
-        "229": 229,
-        "231": 231,
-        "265": 265,
-        "290": 290,
+        "194": 194,
+        "232": 232,
+        "234": 234,
+        "242": 242,
+        "244": 244,
+        "279": 279,
+        "305": 305,
         "undefined": undefined
     }],
-    132: [function(require, module, exports) {
+    137: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -12316,13 +12854,13 @@
         var _assert2 = _interopRequireDefault(_assert);
         var _fp = require('lodash/fp');
         var _ = _interopRequireWildcard(_fp);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _insightApiClient = require(265);
+        var _insightApiClient = require(279);
         var _insightApiClient2 = _interopRequireDefault(_insightApiClient);
-        var _utxoCollection = require(89);
+        var _utxoCollection = require(93);
         var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
-        var _addressSet = require(81);
+        var _addressSet = require(85);
         var _addressSet2 = _interopRequireDefault(_addressSet);
 
         function _interopRequireWildcard(obj) {
@@ -12397,19 +12935,19 @@
         });
 
     }, {
-        "184": 184,
-        "265": 265,
-        "81": 81,
-        "89": 89,
+        "194": 194,
+        "279": 279,
+        "85": 85,
+        "93": 93,
         "undefined": undefined
     }],
-    133: [function(require, module, exports) {
+    138: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -12426,16 +12964,16 @@
         });
 
     }, {
-        "184": 184,
+        "194": 194,
         "undefined": undefined
     }],
-    134: [function(require, module, exports) {
+    139: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _orderSet = require(84);
+        var _orderSet = require(88);
         var _orderSet2 = _interopRequireDefault(_orderSet);
 
         function _interopRequireDefault(obj) {
@@ -12448,16 +12986,41 @@
         });
 
     }, {
-        "84": 84,
+        "88": 88,
         "undefined": undefined
     }],
-    135: [function(require, module, exports) {
+    140: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _orderSet = require(84);
+        var _orderSet = require(88);
+        var _orderSet2 = _interopRequireDefault(_orderSet);
+        var _all = require(139);
+        var _all2 = _interopRequireDefault(_all);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        exports.default = (0, _reselect.createSelector)(_all2.default, orders => {
+            return _orderSet2.default.fromArray(Array.from(orders).filter(order => order.svc === 'ec'));
+        });
+
+    }, {
+        "139": 139,
+        "88": 88,
+        "undefined": undefined
+    }],
+    141: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        var _reselect = require('reselect');
+        var _orderSet = require(88);
         var _orderSet2 = _interopRequireDefault(_orderSet);
 
         function _interopRequireDefault(obj) {
@@ -12471,22 +13034,22 @@
         });
 
     }, {
-        "84": 84,
+        "88": 88,
         "undefined": undefined
     }],
-    136: [function(require, module, exports) {
+    142: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _marketInfoConversions = require(112);
+        var _marketInfoConversions = require(117);
         var _marketInfoConversions2 = _interopRequireDefault(_marketInfoConversions);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
         var _lodash = require('lodash');
         var _lodash2 = _interopRequireDefault(_lodash);
-        var _all = require(134);
+        var _all = require(139);
         var _all2 = _interopRequireDefault(_all);
 
         function _interopRequireDefault(obj) {
@@ -12535,22 +13098,47 @@
         });
 
     }, {
-        "112": 112,
-        "134": 134,
-        "184": 184,
+        "117": 117,
+        "139": 139,
+        "194": 194,
         "undefined": undefined
     }],
-    137: [function(require, module, exports) {
+    143: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _getFee = require(124);
+        var _orderSet = require(88);
+        var _orderSet2 = _interopRequireDefault(_orderSet);
+        var _all = require(139);
+        var _all2 = _interopRequireDefault(_all);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        exports.default = (0, _reselect.createSelector)(_all2.default, orders => {
+            return _orderSet2.default.fromArray(Array.from(orders).filter(order => order.svc === 'ss'));
+        });
+
+    }, {
+        "139": 139,
+        "88": 88,
+        "undefined": undefined
+    }],
+    144: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        var _reselect = require('reselect');
+        var _getFee = require(129);
         var _getFee2 = _interopRequireDefault(_getFee);
-        var _coinTotalAmounts = require(102);
+        var _coinTotalAmounts = require(107);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -12584,20 +13172,20 @@
         });
 
     }, {
-        "102": 102,
-        "124": 124,
-        "184": 184,
+        "107": 107,
+        "129": 129,
+        "194": 194,
         "undefined": undefined
     }],
-    138: [function(require, module, exports) {
+    145: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
         exports.default = (0, _reselect.createSelector)(state => state.status, status => {
-            if (status.code == null) return 'normal';
-            switch (status.code) {
+            if (status.code143 == null) return 'normal';
+            switch (status.code143) {
                 case 0:
                     return 'normal';
                 case 1:
@@ -12614,7 +13202,7 @@
     }, {
         "undefined": undefined
     }],
-    139: [function(require, module, exports) {
+    146: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -12635,15 +13223,15 @@
     }, {
         "undefined": undefined
     }],
-    140: [function(require, module, exports) {
+    147: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _withTokens = require(316);
+        var _withTokens = require(331);
         var _withTokens2 = _interopRequireDefault(_withTokens);
-        var _paired = require(139);
+        var _paired = require(146);
         var _paired2 = _interopRequireDefault(_paired);
         var _lodash = require('lodash');
         var _lodash2 = _interopRequireDefault(_lodash);
@@ -12663,19 +13251,19 @@
         });
 
     }, {
-        "139": 139,
-        "316": 316,
+        "146": 146,
+        "331": 331,
         "undefined": undefined
     }],
-    141: [function(require, module, exports) {
+    148: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _getFee = require(124);
+        var _getFee = require(129);
         var _getFee2 = _interopRequireDefault(_getFee);
-        var _getValue = require(121);
+        var _getValue = require(126);
         var _getValue2 = _interopRequireDefault(_getValue);
 
         function _interopRequireDefault(obj) {
@@ -12697,17 +13285,17 @@
         });
 
     }, {
-        "121": 121,
-        "124": 124,
+        "126": 126,
+        "129": 129,
         "undefined": undefined
     }],
-    142: [function(require, module, exports) {
+    149: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _redux = require('redux');
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -12838,10 +13426,10 @@
         });
 
     }, {
-        "184": 184,
+        "194": 194,
         "undefined": undefined
     }],
-    143: [function(require, module, exports) {
+    150: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -12914,7 +13502,7 @@
         }
 
     }, {}],
-    144: [function(require, module, exports) {
+    151: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -12946,14 +13534,14 @@
         }
 
     }, {}],
-    145: [function(require, module, exports) {
+    152: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.initialState = undefined;
         exports.default = assetRefreshReducer;
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -13015,9 +13603,9 @@
         }
 
     }, {
-        "184": 184
+        "194": 194
     }],
-    146: [function(require, module, exports) {
+    153: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -13075,14 +13663,14 @@
         }
 
     }, {}],
-    147: [function(require, module, exports) {
+    154: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.initialState = undefined;
         exports.default = configReducer;
-        var _configFile = require(205);
+        var _configFile = require(216);
         var _configFile2 = _interopRequireDefault(_configFile);
 
         function _interopRequireDefault(obj) {
@@ -13111,9 +13699,9 @@
         }
 
     }, {
-        "205": 205
+        "216": 216
     }],
-    148: [function(require, module, exports) {
+    155: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -13145,14 +13733,13 @@
         }
 
     }, {}],
-    149: [function(require, module, exports) {
+    156: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.default = exchangeReducer;
         const initialState = exports.initialState = {
-            pair: '',
             status: 'none',
             error: null,
             shift: {},
@@ -13163,8 +13750,12 @@
             current: null,
             isExchanging: false,
             isShapeShiftMaintenance: false,
-            coinsOnline: {},
-            canCancel: false
+            assetsOnline: {},
+            canCancel: false,
+            lastPair: {
+                fromCoin: 'bitcoin',
+                toCoin: 'ethereum'
+            }
         };
 
         function exchangeReducer() {
@@ -13235,7 +13826,6 @@
                         status: 'none',
                         shift: {},
                         current: null,
-                        ssOrder: null,
                         isExchanging: false,
                         canCancel: false,
                         canceled: true
@@ -13246,7 +13836,6 @@
                         status: 'none',
                         shift: {},
                         current: null,
-                        ssOrder: null,
                         isExchanging: false,
                         canCancel: false,
                         canceled: false
@@ -13260,17 +13849,17 @@
                         error: null,
                         current: payload
                     });
-                case 'EXCHANGE_COINS_ONLINE_SUCCESS':
+                case 'EXCHANGE_ASSETS_ONLINE_SUCCESS':
                     return Object.assign({}, state, {
-                        coinsOnline: payload
+                        assetsOnline: payload
                     });
                 case 'EXCHANGE_ORDERS_GET':
                     return Object.assign({}, state, {
                         orders: payload
                     });
-                case 'EXCHANGE_START_SS':
+                case 'EXCHANGE_SET_LAST_PAIR':
                     return Object.assign({}, state, {
-                        ssOrder: payload
+                        lastPair: Object.assign({}, state.lastPair, payload)
                     });
                 default:
                     return state;
@@ -13278,55 +13867,55 @@
         }
 
     }, {}],
-    150: [function(require, module, exports) {
+    157: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _redux = require('redux');
-        var _reducer = require(143);
+        var _reducer = require(150);
         var _reducer2 = _interopRequireDefault(_reducer);
-        var _reducer3 = require(142);
+        var _reducer3 = require(149);
         var _reducer4 = _interopRequireDefault(_reducer3);
-        var _reducer5 = require(144);
+        var _reducer5 = require(151);
         var _reducer6 = _interopRequireDefault(_reducer5);
-        var _reducer7 = require(145);
+        var _reducer7 = require(152);
         var _reducer8 = _interopRequireDefault(_reducer7);
-        var _reducer9 = require(146);
+        var _reducer9 = require(153);
         var _reducer10 = _interopRequireDefault(_reducer9);
-        var _reducer11 = require(147);
+        var _reducer11 = require(154);
         var _reducer12 = _interopRequireDefault(_reducer11);
-        var _reducer13 = require(148);
+        var _reducer13 = require(155);
         var _reducer14 = _interopRequireDefault(_reducer13);
-        var _reducer15 = require(149);
+        var _reducer15 = require(156);
         var _reducer16 = _interopRequireDefault(_reducer15);
-        var _reducer17 = require(151);
+        var _reducer17 = require(158);
         var _reducer18 = _interopRequireDefault(_reducer17);
-        var _reducer19 = require(152);
+        var _reducer19 = require(159);
         var _reducer20 = _interopRequireDefault(_reducer19);
-        var _reducer21 = require(153);
+        var _reducer21 = require(160);
         var _reducer22 = _interopRequireDefault(_reducer21);
-        var _reducer23 = require(155);
+        var _reducer23 = require(162);
         var _reducer24 = _interopRequireDefault(_reducer23);
-        var _reducer25 = require(154);
+        var _reducer25 = require(161);
         var _reducer26 = _interopRequireDefault(_reducer25);
-        var _reducer27 = require(156);
+        var _reducer27 = require(163);
         var _reducer28 = _interopRequireDefault(_reducer27);
-        var _reducer29 = require(157);
+        var _reducer29 = require(164);
         var _reducer30 = _interopRequireDefault(_reducer29);
-        var _reducer31 = require(158);
+        var _reducer31 = require(165);
         var _reducer32 = _interopRequireDefault(_reducer31);
-        var _reducer33 = require(159);
+        var _reducer33 = require(166);
         var _reducer34 = _interopRequireDefault(_reducer33);
-        var _reducer35 = require(160);
+        var _reducer35 = require(167);
         var _reducer36 = _interopRequireDefault(_reducer35);
-        var _reducer37 = require(163);
+        var _reducer37 = require(170);
         var _reducer38 = _interopRequireDefault(_reducer37);
-        var _reducer39 = require(164);
+        var _reducer39 = require(171);
         var _reducer40 = _interopRequireDefault(_reducer39);
-        var _reducer41 = require(165);
+        var _reducer41 = require(172);
         var _reducer42 = _interopRequireDefault(_reducer41);
-        var _reducer43 = require(166);
+        var _reducer43 = require(173);
         var _reducer44 = _interopRequireDefault(_reducer43);
 
         function _interopRequireDefault(obj) {
@@ -13360,31 +13949,31 @@
         });
 
     }, {
-        "142": 142,
-        "143": 143,
-        "144": 144,
-        "145": 145,
-        "146": 146,
-        "147": 147,
-        "148": 148,
         "149": 149,
+        "150": 150,
         "151": 151,
         "152": 152,
         "153": 153,
         "154": 154,
         "155": 155,
         "156": 156,
-        "157": 157,
         "158": 158,
         "159": 159,
         "160": 160,
+        "161": 161,
+        "162": 162,
         "163": 163,
         "164": 164,
         "165": 165,
         "166": 166,
+        "167": 167,
+        "170": 170,
+        "171": 171,
+        "172": 172,
+        "173": 173,
         "undefined": undefined
     }],
-    151: [function(require, module, exports) {
+    158: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -13393,7 +13982,7 @@
         exports.default = statusReducer;
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _insightServers = require(54);
+        var _insightServers = require(55);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -13434,10 +14023,10 @@
         }
 
     }, {
-        "54": 54,
+        "55": 55,
         "undefined": undefined
     }],
-    152: [function(require, module, exports) {
+    159: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -13464,7 +14053,7 @@
         }
 
     }, {}],
-    153: [function(require, module, exports) {
+    160: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -13489,7 +14078,7 @@
         }
 
     }, {}],
-    154: [function(require, module, exports) {
+    161: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -13534,7 +14123,7 @@
         }
 
     }, {}],
-    155: [function(require, module, exports) {
+    162: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -13584,7 +14173,7 @@
     }, {
         "undefined": undefined
     }],
-    156: [function(require, module, exports) {
+    163: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -13621,14 +14210,14 @@
         };
 
     }, {}],
-    157: [function(require, module, exports) {
+    164: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _redux = require('redux');
         var _lodash = require('lodash');
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -13677,19 +14266,19 @@
         exports.default = (0, _redux.combineReducers)(networks);
 
     }, {
-        "184": 184,
+        "194": 194,
         "undefined": undefined
     }],
-    158: [function(require, module, exports) {
+    165: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.initialState = undefined;
         exports.default = orderReducer;
-        var _orderSet = require(84);
+        var _orderSet = require(88);
         var _orderSet2 = _interopRequireDefault(_orderSet);
-        var _order = require(85);
+        var _order = require(89);
         var _order2 = _interopRequireDefault(_order);
 
         function _interopRequireDefault(obj) {
@@ -13747,10 +14336,10 @@
         }
 
     }, {
-        "84": 84,
-        "85": 85
+        "88": 88,
+        "89": 89
     }],
-    159: [function(require, module, exports) {
+    166: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -13779,7 +14368,7 @@
         }
 
     }, {}],
-    160: [function(require, module, exports) {
+    167: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -13810,13 +14399,13 @@
         }
 
     }, {}],
-    161: [function(require, module, exports) {
+    168: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.default = connectionReducer;
-        var _twoOfTwo = require(319);
+        var _twoOfTwo = require(334);
         const initialState = {
             status: 'disconnected',
             presence: false
@@ -13859,9 +14448,9 @@
         }
 
     }, {
-        "319": 319
+        "334": 334
     }],
-    162: [function(require, module, exports) {
+    169: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -13922,15 +14511,15 @@
         }
 
     }, {}],
-    163: [function(require, module, exports) {
+    170: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _redux = require('redux');
-        var _reducer = require(161);
+        var _reducer = require(168);
         var _reducer2 = _interopRequireDefault(_reducer);
-        var _reducer3 = require(162);
+        var _reducer3 = require(169);
         var _reducer4 = _interopRequireDefault(_reducer3);
 
         function _interopRequireDefault(obj) {
@@ -13944,22 +14533,22 @@
         });
 
     }, {
-        "161": 161,
-        "162": 162,
+        "168": 168,
+        "169": 169,
         "undefined": undefined
     }],
-    164: [function(require, module, exports) {
+    171: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.initialState = undefined;
         exports.default = txLogReducer;
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _txSet = require(86);
+        var _txSet = require(90);
         var _txSet2 = _interopRequireDefault(_txSet);
-        var _tx = require(88);
+        var _tx = require(92);
         var _tx2 = _interopRequireDefault(_tx);
 
         function _interopRequireDefault(obj) {
@@ -14063,11 +14652,11 @@
         }
 
     }, {
-        "184": 184,
-        "86": 86,
-        "88": 88
+        "194": 194,
+        "90": 90,
+        "92": 92
     }],
-    165: [function(require, module, exports) {
+    172: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -14120,7 +14709,7 @@
         }
 
     }, {}],
-    166: [function(require, module, exports) {
+    173: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -14194,7 +14783,7 @@
         }
 
     }, {}],
-    167: [function(require, module, exports) {
+    174: [function(require, module, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -14211,12 +14800,12 @@
         exports.default = walletInstance;
 
     }, {}],
-    168: [function(require, module, exports) {
+    175: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _keys = require(407);
+        var _keys = require(420);
         Object.keys(_keys).forEach(function(key) {
             if (key === "default" || key === "__esModule") return;
             Object.defineProperty(exports, key, {
@@ -14228,15 +14817,15 @@
         });
 
     }, {
-        "407": 407
+        "420": 420
     }],
-    169: [function(require, module, exports) {
+    176: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.WALLET_DIR = exports.walletDirFromExodusDir = undefined;
-        var _paths = require(408);
+        var _paths = require(421);
         var _paths2 = _interopRequireDefault(_paths);
 
         function _interopRequireDefault(obj) {
@@ -14249,19 +14838,19 @@
         const WALLET_DIR = exports.WALLET_DIR = _paths.WALLET_DIR;
 
     }, {
-        "408": 408
+        "421": 421
     }],
-    170: [function(require, module, exports) {
+    177: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.default = createWalletHelper;
-        var _orderSet = require(84);
+        var _orderSet = require(88);
         var _orderSet2 = _interopRequireDefault(_orderSet);
-        var _txSet = require(86);
+        var _txSet = require(90);
         var _txSet2 = _interopRequireDefault(_txSet);
-        var _keys = require(168);
+        var _keys = require(175);
         var keys = _interopRequireWildcard(_keys);
 
         function _interopRequireWildcard(obj) {
@@ -14334,17 +14923,17 @@
         }
 
     }, {
-        "168": 168,
-        "84": 84,
-        "86": 86
+        "175": 175,
+        "88": 88,
+        "90": 90
     }],
-    171: [function(require, module, exports) {
+    178: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.create = create;
-        var _client = require(217);
+        var _client = require(228);
 
         function create() {
             const wallet = {
@@ -14361,9 +14950,9 @@
         }
 
     }, {
-        "217": 217
+        "228": 228
     }],
-    172: [function(require, module, exports) {
+    179: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -14378,12 +14967,12 @@
         var _wif2 = _interopRequireDefault(_wif);
         var _crypto = require('crypto');
         var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(212);
-        var _aureus = require(192);
-        var _bip44Constants = require(201);
+        var _currencyUnits = require(223);
+        var _aureus = require(203);
+        var _bip44Constants = require(212);
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
         var _events = require('events');
-        var _twoOfTwoMultisig = require(314);
+        var _twoOfTwoMultisig = require(329);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -14393,7 +14982,7 @@
         const name = exports.name = 'bcash';
         const properName = exports.properName = 'Bitcoin Cash';
         const available = exports.available = true;
-        const defaultEnabled = exports.defaultEnabled = false;
+        const defaultEnabled = exports.defaultEnabled = true;
         const hasMultipleAddresses = exports.hasMultipleAddresses = true;
         const hasUTXO = exports.hasUTXO = true;
         const isAccountBased = exports.isAccountBased = false;
@@ -14454,13 +15043,13 @@
         });
 
     }, {
-        "192": 192,
-        "201": 201,
+        "203": 203,
         "212": 212,
-        "314": 314,
+        "223": 223,
+        "329": 329,
         "undefined": undefined
     }],
-    173: [function(require, module, exports) {
+    180: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -14475,9 +15064,9 @@
         var _wif2 = _interopRequireDefault(_wif);
         var _crypto = require('crypto');
         var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(212);
-        var _aureus = require(192);
-        var _bip44Constants = require(201);
+        var _currencyUnits = require(223);
+        var _aureus = require(203);
+        var _bip44Constants = require(212);
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
         var _events = require('events');
 
@@ -14546,12 +15135,187 @@
         };
 
     }, {
-        "192": 192,
-        "201": 201,
+        "203": 203,
         "212": 212,
+        "223": 223,
         "undefined": undefined
     }],
-    174: [function(require, module, exports) {
+    181: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        var _coininfo = require('coininfo');
+        var _coininfo2 = _interopRequireDefault(_coininfo);
+        var _bs58check = require('bs58check');
+        var _bs58check2 = _interopRequireDefault(_bs58check);
+        var _wif = require('wif');
+        var _wif2 = _interopRequireDefault(_wif);
+        var _crypto = require('crypto');
+        var _crypto2 = _interopRequireDefault(_crypto);
+        var _currencyUnits = require(223);
+        var _aureus = require(203);
+        var _bip44Constants = require(212);
+        var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
+        var _twoOfTwoMultisig = require(329);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        const name = exports.name = 'bgold';
+        const properName = exports.properName = 'Bitcoin Gold';
+        const available = exports.available = true;
+        const defaultEnabled = exports.defaultEnabled = true;
+        const hasMultipleAddresses = exports.hasMultipleAddresses = true;
+        const hasUTXO = exports.hasUTXO = true;
+        const isAccountBased = exports.isAccountBased = false;
+        const isEthereumToken = exports.isEthereumToken = false;
+        const isOmniProperty = exports.isOmniProperty = false;
+        const currency = exports.currency = _aureus.UnitType.create(name, _currencyUnits.cryptoCurrency, {
+            satoshis: 0,
+            BTG: 8
+        }, 'BTG');
+        const displayUnit = exports.displayUnit = 'BTG';
+        const shapeShiftUnit = exports.shapeShiftUnit = 'btg';
+        const units = exports.units = ['BTG'];
+        const feePerKB = exports.feePerKB = currency.satoshis(1000);
+        const address = exports.address = {
+            versions: {
+                p2pkh: (0, _coininfo2.default)(properName).versions.public,
+                p2sh: (0, _coininfo2.default)(properName).versions.scripthash
+            },
+            isP2PKH(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
+            },
+            isP2SH(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
+            },
+            validate(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+            }
+        };
+        const bip44 = exports.bip44 = _bip44Constants2.default[name];
+        const keys = exports.keys = {
+            encodePrivate(privateKey) {
+                const versions = (0, _coininfo2.default)(properName).versions;
+                return _wif2.default.encode(versions.private, privateKey, true);
+            },
+            encodePublic(publicKey) {
+                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
+                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
+                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
+                return _bs58check2.default.encode(payload);
+            }
+        };
+        const blockExplorer = exports.blockExplorer = {
+            addressUrl: address => `https://explorer.bitcoingold.org/insight/address/${address}`,
+            txUrl: txId => `https://explorer.bitcoingold.org/insight/tx/${txId}`
+        };
+        const twoOfTwo = exports.twoOfTwo = (0, _twoOfTwoMultisig.alice)({
+            network: (0, _coininfo2.default)(properName)
+        });
+
+    }, {
+        "203": 203,
+        "212": 212,
+        "223": 223,
+        "329": 329,
+        "undefined": undefined
+    }],
+    182: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        var _coininfo = require('coininfo');
+        var _coininfo2 = _interopRequireDefault(_coininfo);
+        var _bs58check = require('bs58check');
+        var _bs58check2 = _interopRequireDefault(_bs58check);
+        var _wif = require('wif');
+        var _wif2 = _interopRequireDefault(_wif);
+        var _crypto = require('crypto');
+        var _crypto2 = _interopRequireDefault(_crypto);
+        var _currencyUnits = require(223);
+        var _aureus = require(203);
+        var _bip44Constants = require(212);
+        var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
+        var _twoOfTwoMultisig = require(329);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        const name = exports.name = 'bgoldclaim';
+        const properName = exports.properName = 'Bitcoin Gold Claim';
+        const available = exports.available = false;
+        const defaultEnabled = exports.defaultEnabled = true;
+        const hasMultipleAddresses = exports.hasMultipleAddresses = true;
+        const hasUTXO = exports.hasUTXO = true;
+        const isAccountBased = exports.isAccountBased = false;
+        const isEthereumToken = exports.isEthereumToken = false;
+        const isOmniProperty = exports.isOmniProperty = false;
+        const currency = exports.currency = _aureus.UnitType.create(name, _currencyUnits.cryptoCurrency, {
+            satoshis: 0,
+            BTG: 8
+        }, 'BTG');
+        const displayUnit = exports.displayUnit = 'BTG';
+        const units = exports.units = ['BTG'];
+        const feePerKB = exports.feePerKB = currency.satoshis(1000);
+        const address = exports.address = {
+            versions: {
+                p2pkh: (0, _coininfo2.default)('Bitcoin Gold').versions.public,
+                p2sh: (0, _coininfo2.default)('Bitcoin Gold').versions.scripthash
+            },
+            isP2PKH(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
+            },
+            isP2SH(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
+            },
+            validate(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+            }
+        };
+        const bip44 = exports.bip44 = _bip44Constants2.default['bitcoin'];
+        const keys = exports.keys = {
+            encodePrivate(privateKey) {
+                const versions = (0, _coininfo2.default)('bitcoin').versions;
+                return _wif2.default.encode(versions.private, privateKey, true);
+            },
+            encodePublic(publicKey) {
+                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
+                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
+                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
+                return _bs58check2.default.encode(payload);
+            }
+        };
+        const blockExplorer = exports.blockExplorer = {
+            addressUrl: address => `https://explorer.bitcoingold.org/insight/address/${address}`,
+            txUrl: txId => `https://explorer.bitcoingold.org/insight/tx/${txId}`
+        };
+        const twoOfTwo = exports.twoOfTwo = (0, _twoOfTwoMultisig.alice)({
+            network: (0, _coininfo2.default)(properName)
+        });
+
+    }, {
+        "203": 203,
+        "212": 212,
+        "223": 223,
+        "329": 329,
+        "undefined": undefined
+    }],
+    183: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -14566,12 +15330,12 @@
         var _wif2 = _interopRequireDefault(_wif);
         var _crypto = require('crypto');
         var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(212);
-        var _aureus = require(192);
-        var _bip44Constants = require(201);
+        var _currencyUnits = require(223);
+        var _aureus = require(203);
+        var _bip44Constants = require(212);
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
         var _events = require('events');
-        var _twoOfTwoMultisig = require(314);
+        var _twoOfTwoMultisig = require(329);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -14644,13 +15408,13 @@
         });
 
     }, {
-        "192": 192,
-        "201": 201,
+        "203": 203,
         "212": 212,
-        "314": 314,
+        "223": 223,
+        "329": 329,
         "undefined": undefined
     }],
-    175: [function(require, module, exports) {
+    184: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -14661,8 +15425,8 @@
         var bitcore = _interopRequireWildcard(_bitcoreLib);
         var _ethereumjsUtil = require('ethereumjs-util');
         var _ethereumjsUtil2 = _interopRequireDefault(_ethereumjsUtil);
-        var _util = require(213);
-        var _ = require(174);
+        var _util = require(224);
+        var _ = require(183);
         var bitcoin = _interopRequireWildcard(_);
 
         function _interopRequireDefault(obj) {
@@ -14731,11 +15495,11 @@
         }
 
     }, {
-        "174": 174,
-        "213": 213,
+        "183": 183,
+        "224": 224,
         "undefined": undefined
     }],
-    176: [function(require, module, exports) {
+    185: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -14747,13 +15511,13 @@
         var _bs58check2 = _interopRequireDefault(_bs58check);
         var _wif = require('wif');
         var _wif2 = _interopRequireDefault(_wif);
-        var _aureus = require(192);
+        var _aureus = require(203);
         var _crypto = require('crypto');
         var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(212);
-        var _bip44Constants = require(201);
+        var _currencyUnits = require(223);
+        var _bip44Constants = require(212);
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
-        var _twoOfTwoMultisig = require(314);
+        var _twoOfTwoMultisig = require(329);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -14776,7 +15540,7 @@
         const displayUnit = exports.displayUnit = 'DASH';
         const shapeShiftUnit = exports.shapeShiftUnit = 'dash';
         const units = exports.units = ['DASH'];
-        const feePerKB = exports.feePerKB = currency.duffs(10000);
+        const feePerKB = exports.feePerKB = currency.duffs(1000);
         const address = exports.address = {
             versions: {
                 p2pkh: (0, _coininfo2.default)(name).versions.public,
@@ -14817,13 +15581,13 @@
         });
 
     }, {
-        "192": 192,
-        "201": 201,
+        "203": 203,
         "212": 212,
-        "314": 314,
+        "223": 223,
+        "329": 329,
         "undefined": undefined
     }],
-    177: [function(require, module, exports) {
+    186: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -14831,15 +15595,15 @@
         exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         var _coininfo = require('coininfo');
         var _coininfo2 = _interopRequireDefault(_coininfo);
-        var _aureus = require(192);
+        var _aureus = require(203);
         var _crypto = require('crypto');
         var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(212);
+        var _currencyUnits = require(223);
         var _blakeHash = require('blake-hash');
         var _blakeHash2 = _interopRequireDefault(_blakeHash);
-        var _bs58checkBlake = require(203);
+        var _bs58checkBlake = require(214);
         var _bs58checkBlake2 = _interopRequireDefault(_bs58checkBlake);
-        var _bip44Constants = require(201);
+        var _bip44Constants = require(212);
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
 
         function _interopRequireDefault(obj) {
@@ -14905,13 +15669,103 @@
         };
 
     }, {
-        "192": 192,
-        "201": 201,
         "203": 203,
         "212": 212,
+        "214": 214,
+        "223": 223,
         "undefined": undefined
     }],
-    178: [function(require, module, exports) {
+    187: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        var _appConfig = require(84);
+        var _coininfo = require('coininfo');
+        var _coininfo2 = _interopRequireDefault(_coininfo);
+        var _bs58check = require('bs58check');
+        var _bs58check2 = _interopRequireDefault(_bs58check);
+        var _wif = require('wif');
+        var _wif2 = _interopRequireDefault(_wif);
+        var _aureus = require(203);
+        var _crypto = require('crypto');
+        var _crypto2 = _interopRequireDefault(_crypto);
+        var _currencyUnits = require(223);
+        var _bip44Constants = require(212);
+        var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
+        var _twoOfTwoMultisig = require(329);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        const name = exports.name = 'digibyte';
+        const properName = exports.properName = 'DigiByte';
+        const available = exports.available = _appConfig.ENV_DEV || _appConfig.ENV_BUILD_EDEN;
+        const defaultEnabled = exports.defaultEnabled = false;
+        const hasMultipleAddresses = exports.hasMultipleAddresses = true;
+        const hasUTXO = exports.hasUTXO = true;
+        const isAccountBased = exports.isAccountBased = false;
+        const isEthereumToken = exports.isEthereumToken = false;
+        const isOmniProperty = exports.isOmniProperty = false;
+        const currency = exports.currency = _aureus.UnitType.create(name, _currencyUnits.cryptoCurrency, {
+            satoshis: 0,
+            DGB: 8
+        }, 'DGB');
+        const displayUnit = exports.displayUnit = 'DGB';
+        const shapeShiftUnit = exports.shapeShiftUnit = 'dgb';
+        const units = exports.units = ['DGB'];
+        const feePerKB = exports.feePerKB = currency.satoshis(225000);
+        const address = exports.address = {
+            versions: {
+                p2pkh: (0, _coininfo2.default)(name).versions.public,
+                p2sh: (0, _coininfo2.default)(name).versions.scripthash
+            },
+            isP2PKH(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
+            },
+            isP2SH(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
+            },
+            validate(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+            }
+        };
+        const bip44 = exports.bip44 = _bip44Constants2.default[name];
+        const keys = exports.keys = {
+            encodePrivate(privateKey) {
+                const versions = (0, _coininfo2.default)(name).versions;
+                return _wif2.default.encode(versions.private, privateKey, true);
+            },
+            encodePublic(publicKey) {
+                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
+                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
+                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
+                return _bs58check2.default.encode(payload);
+            }
+        };
+        const blockExplorer = exports.blockExplorer = {
+            addressUrl: address => `https://digiexplorer.info/address/${address}`,
+            txUrl: txId => `https://digiexplorer.info/tx/${txId}`
+        };
+        const twoOfTwo = exports.twoOfTwo = (0, _twoOfTwoMultisig.alice)({
+            network: (0, _coininfo2.default)(name)
+        });
+
+    }, {
+        "203": 203,
+        "212": 212,
+        "223": 223,
+        "329": 329,
+        "84": 84,
+        "undefined": undefined
+    }],
+    188: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -14919,19 +15773,19 @@
         exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.gasPriceEvents = exports.fee = exports.gasPrice = exports.gasContract = exports.gasTx = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         exports.getFee = getFee;
         exports.setGasPrice = setGasPrice;
-        var _currencyUnits = require(212);
-        var _aureus = require(192);
-        var _etherscan = require(223);
+        var _currencyUnits = require(223);
+        var _aureus = require(203);
+        var _etherscan = require(234);
         var etherscan = _interopRequireWildcard(_etherscan);
-        var _exodusEthereumServer = require(229);
-        var _bip44Constants = require(201);
+        var _exodusEthereumServer = require(242);
+        var _bip44Constants = require(212);
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
         var _ethereumjsUtil = require('ethereumjs-util');
         var _ethereumjsUtil2 = _interopRequireDefault(_ethereumjsUtil);
         var _events = require('events');
-        var _memoizeLruCache = require(273);
+        var _memoizeLruCache = require(287);
         var _memoizeLruCache2 = _interopRequireDefault(_memoizeLruCache);
-        var _twoOfTwoEcdsaThreshold = require(310);
+        var _twoOfTwoEcdsaThreshold = require(325);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -15058,16 +15912,16 @@
         });
 
     }, {
-        "192": 192,
-        "201": 201,
+        "203": 203,
         "212": 212,
         "223": 223,
-        "229": 229,
-        "273": 273,
-        "310": 310,
+        "234": 234,
+        "242": 242,
+        "287": 287,
+        "325": 325,
         "undefined": undefined
     }],
-    179: [function(require, module, exports) {
+    189: [function(require, module, exports) {
         module.exports = [{
                 "name": "aragon",
                 "properName": "Aragon",
@@ -15149,6 +16003,17 @@
                 }
             },
             {
+                "name": "edgeless",
+                "properName": "Edgeless",
+                "decimals": 0,
+                "displayUnit": "EDG",
+                "shapeShiftUnit": "edg",
+                "blockExplorer": "Edgeless",
+                "addresses": {
+                    "current": "0x08711D3B02C8758F2FB3ab4e80228418a7F8e39c"
+                }
+            },
+            {
                 "name": "eos",
                 "properName": "EOS",
                 "decimals": 18,
@@ -15204,6 +16069,39 @@
                 }
             },
             {
+                "name": "iexec",
+                "properName": "iExec RLC",
+                "decimals": 9,
+                "displayUnit": "RLC",
+                "shapeShiftUnit": "rlc",
+                "blockExplorer": "iExec RLC",
+                "addresses": {
+                    "current": "0x607F4C5BB672230e8672085532f7e901544a7375"
+                }
+            },
+            {
+                "name": "matchpool",
+                "properName": "Matchpool",
+                "decimals": 3,
+                "displayUnit": "GUP",
+                "shapeShiftUnit": "gup",
+                "blockExplorer": "Matchpool",
+                "addresses": {
+                    "current": "0xf7B098298f7C69Fc14610bf71d5e02c60792894C"
+                }
+            },
+            {
+                "name": "melonport",
+                "properName": "Melonport",
+                "decimals": 18,
+                "displayUnit": "MLN",
+                "shapeShiftUnit": "mln",
+                "blockExplorer": "Melonport",
+                "addresses": {
+                    "current": "0xBEB9eF514a379B997e0798FDcC901Ee474B6D9A1"
+                }
+            },
+            {
                 "name": "metal",
                 "properName": "Metal",
                 "decimals": 8,
@@ -15212,6 +16110,17 @@
                 "blockExplorer": "Metal",
                 "addresses": {
                     "current": "0xF433089366899D83a9f26A773D59ec7eCF30355e"
+                }
+            },
+            {
+                "name": "numeraire",
+                "properName": "Numeraire",
+                "decimals": 18,
+                "displayUnit": "NMR",
+                "shapeShiftUnit": "nmr",
+                "blockExplorer": "Numeraire",
+                "addresses": {
+                    "current": "0x1776e1F26f98b1A5dF9cD347953a26dd3Cb46671"
                 }
             },
             {
@@ -15248,6 +16157,16 @@
                 }
             },
             {
+                "name": "singulardtv",
+                "properName": "SingularDTV",
+                "decimals": 0,
+                "displayUnit": "SNGLS",
+                "shapeShiftUnit": "sngls",
+                "addresses": {
+                    "current": "0xaeC2E87E0A235266D9C5ADc9DEb4b2E29b54D009"
+                }
+            },
+            {
                 "name": "status",
                 "properName": "Status",
                 "decimals": 18,
@@ -15263,10 +16182,21 @@
                 "properName": "Storj",
                 "decimals": 8,
                 "displayUnit": "STORJ",
-                "shapeShiftUnit": "",
+                "shapeShiftUnit": "storj",
                 "blockExplorer": "Storj",
                 "addresses": {
                     "current": "0xB64ef51C888972c908CFacf59B47C1AfBC0Ab8aC"
+                }
+            },
+            {
+                "name": "wetrust",
+                "properName": "WeTrust",
+                "decimals": 6,
+                "displayUnit": "TRST",
+                "shapeShiftUnit": "trst",
+                "blockExplorer": "WeTrust",
+                "addresses": {
+                    "current": "0xCb94be6f13A1182E4A4B6140cb7bf2025d28e41B"
                 }
             },
             {
@@ -15294,20 +16224,20 @@
         ]
 
     }, {}],
-    180: [function(require, module, exports) {
+    190: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _appConfig = require(80);
-        var _aureus = require(192);
-        var _currencyUnits = require(212);
-        var _util = require(213);
+        var _appConfig = require(84);
+        var _aureus = require(203);
+        var _currencyUnits = require(223);
+        var _util = require(224);
         var _ethereumjsUtil = require('ethereumjs-util');
         var _ethereumjsUtil2 = _interopRequireDefault(_ethereumjsUtil);
-        var _ = require(178);
+        var _ = require(188);
         var ethereum = _interopRequireWildcard(_);
-        var _tokens = require(179);
+        var _tokens = require(189);
         var _tokens2 = _interopRequireDefault(_tokens);
 
         function _interopRequireWildcard(obj) {
@@ -15330,8 +16260,8 @@
                 default: obj
             };
         }
-        const listExodus = ['aragon', 'augur', 'bat', 'civic', 'district0x', 'eos', 'funfair', 'gnosis', 'golem', 'omisego', 'qtum', 'salt'];
-        const listDefaultEnabled = ['aragon', 'augur', 'bat', 'civic', 'district0x', 'eos', 'funfair', 'gnosis', 'golem', 'omisego', 'salt'];
+        const listExodus = ['aragon', 'augur', 'bancor', 'bat', 'civic', 'district0x', 'edgeless', 'eos', 'firstblood', 'funfair', 'gnosis', 'golem', 'iexec', 'matchpool', 'numeraire', 'omisego', 'qtum', 'salt', 'status', 'wetrust', 'wings', 'zerox'];
+        const listDefaultEnabled = ['augur', 'bancor', 'bat', 'civic', 'edgeless', 'eos', 'funfair', 'gnosis', 'golem', 'iexec', 'matchpool', 'omisego', 'salt', 'status', 'zerox'];
         const gasTx = 120e3;
         const tokenTemplate = {
             hasMultipleAddresses: false,
@@ -15404,15 +16334,15 @@
         });
 
     }, {
-        "178": 178,
-        "179": 179,
-        "192": 192,
-        "212": 212,
-        "213": 213,
-        "80": 80,
+        "188": 188,
+        "189": 189,
+        "203": 203,
+        "223": 223,
+        "224": 224,
+        "84": 84,
         "undefined": undefined
     }],
-    181: [function(require, module, exports) {
+    191: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -15420,19 +16350,19 @@
         exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.gasPriceEvents = exports.fee = exports.gasPrice = exports.gasContract = exports.gasTx = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         exports.getFee = getFee;
         exports.setGasPrice = setGasPrice;
-        var _currencyUnits = require(212);
-        var _aureus = require(192);
-        var _etcchain = require(221);
+        var _currencyUnits = require(223);
+        var _aureus = require(203);
+        var _etcchain = require(232);
         var etcchain = _interopRequireWildcard(_etcchain);
-        var _exodusEthereumServer = require(229);
-        var _bip44Constants = require(201);
+        var _exodusEthereumServer = require(242);
+        var _bip44Constants = require(212);
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
         var _events = require('events');
-        var _ethereum = require(178);
+        var _ethereum = require(188);
         var ethereum = _interopRequireWildcard(_ethereum);
-        var _memoizeLruCache = require(273);
+        var _memoizeLruCache = require(287);
         var _memoizeLruCache2 = _interopRequireDefault(_memoizeLruCache);
-        var _twoOfTwoEcdsaThreshold = require(310);
+        var _twoOfTwoEcdsaThreshold = require(325);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -15548,27 +16478,27 @@
         });
 
     }, {
-        "178": 178,
-        "192": 192,
-        "201": 201,
+        "188": 188,
+        "203": 203,
         "212": 212,
-        "221": 221,
-        "229": 229,
-        "273": 273,
-        "310": 310,
+        "223": 223,
+        "232": 232,
+        "242": 242,
+        "287": 287,
+        "325": 325,
         "undefined": undefined
     }],
-    182: [function(require, module, exports) {
+    192: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.fee = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         exports.setNewECRate = setNewECRate;
-        var _appConfig = require(80);
-        var _aureus = require(192);
-        var _currencyUnits = require(212);
-        var _bip44Constants = require(201);
+        var _appConfig = require(84);
+        var _aureus = require(203);
+        var _currencyUnits = require(223);
+        var _bip44Constants = require(212);
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
         var _factomjsLib = require('factomjs-lib');
         var _factomjsLib2 = _interopRequireDefault(_factomjsLib);
@@ -15621,13 +16551,13 @@
         };
 
     }, {
-        "192": 192,
-        "201": 201,
+        "203": 203,
         "212": 212,
-        "80": 80,
+        "223": 223,
+        "84": 84,
         "undefined": undefined
     }],
-    183: [function(require, module, exports) {
+    193: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -15643,40 +16573,48 @@
         const cache = {};
 
     }, {}],
-    184: [function(require, module, exports) {
+    194: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _bcash = require(172);
+        var _bcash = require(179);
         var bcash = _interopRequireWildcard(_bcash);
-        var _bcashclaim = require(173);
+        var _bcashclaim = require(180);
         var bcashclaim = _interopRequireWildcard(_bcashclaim);
-        var _bitcoin = require(174);
+        var _bgold = require(181);
+        var bgold = _interopRequireWildcard(_bgold);
+        var _bgoldclaim = require(182);
+        var bgoldclaim = _interopRequireWildcard(_bgoldclaim);
+        var _bitcoin = require(183);
         var bitcoin = _interopRequireWildcard(_bitcoin);
-        var _dash = require(176);
+        var _dash = require(185);
         var dash = _interopRequireWildcard(_dash);
-        var _decred = require(177);
+        var _decred = require(186);
         var decred = _interopRequireWildcard(_decred);
-        var _ethereum = require(178);
+        var _digibyte = require(187);
+        var digibyte = _interopRequireWildcard(_digibyte);
+        var _ethereum = require(188);
         var ethereum = _interopRequireWildcard(_ethereum);
-        var _ethereumclassic = require(181);
+        var _ethereumclassic = require(191);
         var ethereumclassic = _interopRequireWildcard(_ethereumclassic);
-        var _factom = require(182);
+        var _factom = require(192);
         var factom = _interopRequireWildcard(_factom);
-        var _litecoin = require(185);
+        var _litecoin = require(195);
         var litecoin = _interopRequireWildcard(_litecoin);
-        var _monero = require(186);
+        var _monero = require(196);
         var monero = _interopRequireWildcard(_monero);
-        var _ripple = require(187);
+        var _ripple = require(197);
         var ripple = _interopRequireWildcard(_ripple);
-        var _zcash = require(189);
+        var _vertcoin = require(199);
+        var vertcoin = _interopRequireWildcard(_vertcoin);
+        var _zcash = require(200);
         var zcash = _interopRequireWildcard(_zcash);
-        var _tokens = require(180);
+        var _tokens = require(190);
         var _tokens2 = _interopRequireDefault(_tokens);
-        var _tether = require(188);
+        var _tether = require(198);
         var tether = _interopRequireWildcard(_tether);
 
         function _interopRequireDefault(obj) {
@@ -15699,33 +16637,37 @@
                 return newObj;
             }
         }
-        const assets = [bcash, bcashclaim, bitcoin, dash, decred, ethereum, ethereumclassic, factom, litecoin, monero, ripple, zcash];
+        const assets = [bcash, bcashclaim, bgold, bgoldclaim, bitcoin, dash, decred, digibyte, ethereum, ethereumclassic, factom, litecoin, monero, ripple, vertcoin, zcash];
         assets.push(..._tokens2.default);
         assets.push(tether);
-        exports.default = lodash.sortBy(assets, 'properName').reduce((obj, asset) => {
+        exports.default = lodash.sortBy(assets, [asset => asset.properName.toLowerCase()]).reduce((obj, asset) => {
             return Object.assign(obj, {
                 [asset.name]: asset
             });
         }, {});
 
     }, {
-        "172": 172,
-        "173": 173,
-        "174": 174,
-        "176": 176,
-        "177": 177,
-        "178": 178,
+        "179": 179,
         "180": 180,
         "181": 181,
         "182": 182,
+        "183": 183,
         "185": 185,
         "186": 186,
         "187": 187,
         "188": 188,
-        "189": 189,
+        "190": 190,
+        "191": 191,
+        "192": 192,
+        "195": 195,
+        "196": 196,
+        "197": 197,
+        "198": 198,
+        "199": 199,
+        "200": 200,
         "undefined": undefined
     }],
-    185: [function(require, module, exports) {
+    195: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -15739,11 +16681,11 @@
         var _wif2 = _interopRequireDefault(_wif);
         var _crypto = require('crypto');
         var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(212);
-        var _aureus = require(192);
-        var _bip44Constants = require(201);
+        var _currencyUnits = require(223);
+        var _aureus = require(203);
+        var _bip44Constants = require(212);
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
-        var _twoOfTwoMultisig = require(314);
+        var _twoOfTwoMultisig = require(329);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -15807,24 +16749,24 @@
         });
 
     }, {
-        "192": 192,
-        "201": 201,
+        "203": 203,
         "212": 212,
-        "314": 314,
+        "223": 223,
+        "329": 329,
         "undefined": undefined
     }],
-    186: [function(require, module, exports) {
+    196: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.fee = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
-        var _appConfig = require(80);
-        var _aureus = require(192);
-        var _currencyUnits = require(212);
-        var _bip44Constants = require(201);
+        var _appConfig = require(84);
+        var _aureus = require(203);
+        var _currencyUnits = require(223);
+        var _bip44Constants = require(212);
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
-        var _monerojsUtil = require(281);
+        var _monerojsUtil = require(295);
         var moneroUtil = _interopRequireWildcard(_monerojsUtil);
 
         function _interopRequireWildcard(obj) {
@@ -15849,7 +16791,7 @@
         }
         const name = exports.name = 'monero';
         const properName = exports.properName = 'Monero';
-        const available = exports.available = true
+        const available = exports.available = _appConfig.ENV_DEV;
         const defaultEnabled = exports.defaultEnabled = true;
         const hasMultipleAddresses = exports.hasMultipleAddresses = false;
         const hasUTXO = exports.hasUTXO = true;
@@ -15889,27 +16831,27 @@
         };
 
     }, {
-        "192": 192,
-        "201": 201,
+        "203": 203,
         "212": 212,
-        "281": 281,
-        "80": 80
+        "223": 223,
+        "295": 295,
+        "84": 84
     }],
-    187: [function(require, module, exports) {
+    197: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.accountReserve = exports.fee = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         exports.setFee = setFee;
-        var _appConfig = require(80);
+        var _appConfig = require(84);
         var _rippleAddressCodec = require('ripple-address-codec');
         var _rippleAddressCodec2 = _interopRequireDefault(_rippleAddressCodec);
-        var _currencyUnits = require(212);
-        var _aureus = require(192);
-        var _bip44Constants = require(201);
+        var _currencyUnits = require(223);
+        var _aureus = require(203);
+        var _bip44Constants = require(212);
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
-        var _address = require(291);
+        var _address = require(306);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -15957,20 +16899,20 @@
         };
 
     }, {
-        "192": 192,
-        "201": 201,
+        "203": 203,
         "212": 212,
-        "291": 291,
-        "80": 80,
+        "223": 223,
+        "306": 306,
+        "84": 84,
         "undefined": undefined
     }],
-    188: [function(require, module, exports) {
+    198: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.simpleSend = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.defaultEnabled = exports.available = exports.omniPropertyId = exports.properName = exports.name = undefined;
-        var _omni = require(175);
+        var _omni = require(184);
         Object.keys(_omni).forEach(function(key) {
             if (key === "default" || key === "__esModule") return;
             Object.defineProperty(exports, key, {
@@ -15980,8 +16922,8 @@
                 }
             });
         });
-        var _aureus = require(192);
-        var _currencyUnits = require(212);
+        var _aureus = require(203);
+        var _currencyUnits = require(223);
         const name = exports.name = 'tether';
         const properName = exports.properName = 'Tether';
         const omniPropertyId = exports.omniPropertyId = 31;
@@ -15997,11 +16939,101 @@
         const simpleSend = exports.simpleSend = (0, _omni._createSimpleSend)(omniPropertyId, currency);
 
     }, {
-        "175": 175,
-        "192": 192,
-        "212": 212
+        "184": 184,
+        "203": 203,
+        "223": 223
     }],
-    189: [function(require, module, exports) {
+    199: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        var _appConfig = require(84);
+        var _coininfo = require('coininfo');
+        var _coininfo2 = _interopRequireDefault(_coininfo);
+        var _bs58check = require('bs58check');
+        var _bs58check2 = _interopRequireDefault(_bs58check);
+        var _wif = require('wif');
+        var _wif2 = _interopRequireDefault(_wif);
+        var _crypto = require('crypto');
+        var _crypto2 = _interopRequireDefault(_crypto);
+        var _currencyUnits = require(223);
+        var _aureus = require(203);
+        var _bip44Constants = require(212);
+        var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
+        var _twoOfTwoMultisig = require(329);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        const name = exports.name = 'vertcoin';
+        const properName = exports.properName = 'Vertcoin';
+        const available = exports.available = _appConfig.ENV_DEV || _appConfig.ENV_BUILD_EDEN;
+        const defaultEnabled = exports.defaultEnabled = false;
+        const hasMultipleAddresses = exports.hasMultipleAddresses = true;
+        const hasUTXO = exports.hasUTXO = true;
+        const isAccountBased = exports.isAccountBased = false;
+        const isEthereumToken = exports.isEthereumToken = false;
+        const isOmniProperty = exports.isOmniProperty = false;
+        const currency = exports.currency = _aureus.UnitType.create(name, _currencyUnits.cryptoCurrency, {
+            satoshis: 0,
+            VTC: 8
+        }, 'VTC');
+        const displayUnit = exports.displayUnit = 'VTC';
+        const shapeShiftUnit = exports.shapeShiftUnit = 'vtc';
+        const units = exports.units = ['VTC'];
+        const feePerKB = exports.feePerKB = currency.satoshis(155000);
+        const address = exports.address = {
+            versions: {
+                p2pkh: (0, _coininfo2.default)(name).versions.public,
+                p2sh: (0, _coininfo2.default)(name).versions.scripthash
+            },
+            isP2PKH(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
+            },
+            isP2SH(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
+            },
+            validate(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+            }
+        };
+        const bip44 = exports.bip44 = _bip44Constants2.default[name];
+        const keys = exports.keys = {
+            encodePrivate(privateKey) {
+                const versions = (0, _coininfo2.default)(name).versions;
+                return _wif2.default.encode(versions.private, privateKey, true);
+            },
+            encodePublic(publicKey) {
+                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
+                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
+                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
+                return _bs58check2.default.encode(payload);
+            }
+        };
+        const blockExplorer = exports.blockExplorer = {
+            addressUrl: address => `https://insight.vertcoin.org/address/${address}`,
+            txUrl: txId => `https://insight.vertcoin.org/tx/${txId}`
+        };
+        const twoOfTwo = exports.twoOfTwo = (0, _twoOfTwoMultisig.alice)({
+            network: (0, _coininfo2.default)(name)
+        });
+
+    }, {
+        "203": 203,
+        "212": 212,
+        "223": 223,
+        "329": 329,
+        "84": 84,
+        "undefined": undefined
+    }],
+    200: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -16015,10 +17047,10 @@
         var _wif2 = _interopRequireDefault(_wif);
         var _crypto = require('crypto');
         var _crypto2 = _interopRequireDefault(_crypto);
-        var _appConfig = require(80);
-        var _currencyUnits = require(212);
-        var _aureus = require(192);
-        var _bip44Constants = require(201);
+        var _appConfig = require(84);
+        var _currencyUnits = require(223);
+        var _aureus = require(203);
+        var _bip44Constants = require(212);
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
 
         function _interopRequireDefault(obj) {
@@ -16077,18 +17109,18 @@
             }
         };
         const blockExplorer = exports.blockExplorer = {
-            addressUrl: address => `https://zcash.blockexplorer.com/address/${address}/`,
-            txUrl: txId => `https://zcash.blockexplorer.com/tx/${txId}/`
+            addressUrl: address => `https://zchain.online/address/${address}/`,
+            txUrl: txId => `https://zchain.online/tx/${txId}/`
         };
 
     }, {
-        "192": 192,
-        "201": 201,
+        "203": 203,
         "212": 212,
-        "80": 80,
+        "223": 223,
+        "84": 84,
         "undefined": undefined
     }],
-    190: [function(require, module, exports) {
+    201: [function(require, module, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -16101,14 +17133,14 @@
         }
 
     }, {}],
-    191: [function(require, module, exports) {
+    202: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.default = conversion;
         var _assert = require('assert');
-        var _isNumberUnit = require(193);
+        var _isNumberUnit = require(204);
         var _isNumberUnit2 = _interopRequireDefault(_isNumberUnit);
 
         function _interopRequireDefault(obj) {
@@ -16139,22 +17171,22 @@
         }
 
     }, {
-        "193": 193,
+        "204": 204,
         "undefined": undefined
     }],
-    192: [function(require, module, exports) {
+    203: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.UnitType = exports.conversion = exports.isNumberUnit = undefined;
-        var _numberUnit = require(194);
+        var _numberUnit = require(205);
         var _numberUnit2 = _interopRequireDefault(_numberUnit);
-        var _isNumberUnit2 = require(193);
+        var _isNumberUnit2 = require(204);
         var _isNumberUnit3 = _interopRequireDefault(_isNumberUnit2);
-        var _conversion2 = require(191);
+        var _conversion2 = require(202);
         var _conversion3 = _interopRequireDefault(_conversion2);
-        var _unitType = require(195);
+        var _unitType = require(206);
         var _unitType2 = _interopRequireDefault(_unitType);
 
         function _interopRequireDefault(obj) {
@@ -16168,12 +17200,12 @@
         const UnitType = exports.UnitType = _unitType2.default;
 
     }, {
-        "191": 191,
-        "193": 193,
-        "194": 194,
-        "195": 195
+        "202": 202,
+        "204": 204,
+        "205": 205,
+        "206": 206
     }],
-    193: [function(require, module, exports) {
+    204: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -16186,7 +17218,7 @@
         }
 
     }, {}],
-    194: [function(require, module, exports) {
+    205: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -16196,7 +17228,7 @@
         var _assert = require('assert');
         var _bignumber = require('bignumber.js');
         var _bignumber2 = _interopRequireDefault(_bignumber);
-        var _isNumberUnit2 = require(193);
+        var _isNumberUnit2 = require(204);
         var _isNumberUnit3 = _interopRequireDefault(_isNumberUnit2);
 
         function _interopRequireDefault(obj) {
@@ -16387,10 +17419,10 @@
         exports.default = NumberUnit;
 
     }, {
-        "193": 193,
+        "204": 204,
         "undefined": undefined
     }],
-    195: [function(require, module, exports) {
+    206: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -16398,7 +17430,7 @@
         exports.default = undefined;
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _unit = require(196);
+        var _unit = require(207);
         var Unit = _interopRequireWildcard(_unit);
 
         function _interopRequireWildcard(obj) {
@@ -16469,18 +17501,18 @@
         exports.default = UnitType;
 
     }, {
-        "196": 196,
+        "207": 207,
         "undefined": undefined
     }],
-    196: [function(require, module, exports) {
+    207: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.create = create;
-        var _numberUnit = require(194);
+        var _numberUnit = require(205);
         var _numberUnit2 = _interopRequireDefault(_numberUnit);
-        var _isNumberUnit = require(193);
+        var _isNumberUnit = require(204);
         var _isNumberUnit2 = _interopRequireDefault(_isNumberUnit);
 
         function _interopRequireDefault(obj) {
@@ -16520,10 +17552,10 @@
         }
 
     }, {
-        "193": 193,
-        "194": 194
+        "204": 204,
+        "205": 205
     }],
-    197: [function(require, module, exports) {
+    208: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -16577,7 +17609,7 @@
     }, {
         "undefined": undefined
     }],
-    198: [function(require, module, exports) {
+    209: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -16585,7 +17617,7 @@
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
         var _lodash = require('lodash');
-        var _window = require(336);
+        var _window = require(351);
         var _window2 = _interopRequireDefault(_window);
 
         function _interopRequireDefault(obj) {
@@ -16626,10 +17658,10 @@
         }
 
     }, {
-        "336": 336,
+        "351": 351,
         "undefined": undefined
     }],
-    199: [function(require, module, exports) {
+    210: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -16669,7 +17701,7 @@
     }, {
         "undefined": undefined
     }],
-    200: [function(require, module, exports) {
+    211: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -16680,7 +17712,7 @@
         var _assert2 = _interopRequireDefault(_assert);
         var _hdkey = require('hdkey');
         var _hdkey2 = _interopRequireDefault(_hdkey);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -16808,10 +17840,10 @@
         exports.default = BIP32;
 
     }, {
-        "184": 184,
+        "194": 194,
         "undefined": undefined
     }],
-    201: [function(require, module, exports) {
+    212: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -16829,12 +17861,14 @@
         let _constants = transformFn(_bip44Constants2.default);
         _constants.ethereum = _constants.ether;
         _constants.ethereumclassic = _constants['ether-classic'];
+        _constants.bgold = _constants['bitcoin-gold'];
+        _constants.digibyte = _constants['digi-byte'];
         exports.default = _constants;
 
     }, {
         "undefined": undefined
     }],
-    202: [function(require, module, exports) {
+    213: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -16873,7 +17907,7 @@
     }, {
         "undefined": undefined
     }],
-    203: [function(require, module, exports) {
+    214: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -16898,15 +17932,15 @@
     }, {
         "undefined": undefined
     }],
-    204: [function(require, module, exports) {
+    215: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _crypto = require('crypto');
         var _lodash = require('lodash');
-        var _appConfig = require(80);
-        var _configKeys = require(206);
+        var _appConfig = require(84);
+        var _configKeys = require(217);
         var configKeys = _interopRequireWildcard(_configKeys);
 
         function _interopRequireWildcard(obj) {
@@ -16932,11 +17966,11 @@
         exports.default = defaultConfig;
 
     }, {
-        "206": 206,
-        "80": 80,
+        "217": 217,
+        "84": 84,
         "undefined": undefined
     }],
-    205: [function(require, module, exports) {
+    216: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -16975,13 +18009,13 @@
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
         var _lodash = require('lodash');
-        var _env = require(219);
-        var _appConfig = require(80);
+        var _env = require(230);
+        var _appConfig = require(84);
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
         var _fsExtra = require('fs-extra');
         var _fsExtra2 = _interopRequireDefault(_fsExtra);
-        var _configDefault = require(204);
+        var _configDefault = require(215);
         var _configDefault2 = _interopRequireDefault(_configDefault);
 
         function _interopRequireDefault(obj) {
@@ -17069,12 +18103,12 @@
         }
 
     }, {
-        "204": 204,
-        "219": 219,
-        "80": 80,
+        "215": 215,
+        "230": 230,
+        "84": 84,
         "undefined": undefined
     }],
-    206: [function(require, module, exports) {
+    217: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -17087,14 +18121,14 @@
         const notificationsTxReceivedEnabled = exports.notificationsTxReceivedEnabled = 'notifications.tx.received.enabled';
 
     }, {}],
-    207: [function(require, module, exports) {
+    218: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.getPrice = getPrice;
         exports.getPriceFromOHLC = getPriceFromOHLC;
-        var _dateUtil = require(214);
+        var _dateUtil = require(225);
 
         function getPrice(prices, time) {
             const priceData = prices.get((0, _dateUtil.startOfDay)(time).valueOf());
@@ -17115,18 +18149,18 @@
         }
 
     }, {
-        "214": 214
+        "225": 225
     }],
-    208: [function(require, module, exports) {
+    219: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _aureus = require(192);
-        var _currencyUnits = require(212);
-        var _units = require(210);
+        var _aureus = require(203);
+        var _currencyUnits = require(223);
+        var _units = require(221);
         var _units2 = _interopRequireDefault(_units);
 
         function _interopRequireDefault(obj) {
@@ -17157,12 +18191,12 @@
         });
 
     }, {
-        "192": 192,
-        "210": 210,
-        "212": 212,
+        "203": 203,
+        "221": 221,
+        "223": 223,
         "undefined": undefined
     }],
-    209: [function(require, module, exports) {
+    220: [function(require, module, exports) {
         module.exports = {
             "AUD": {
                 "label": "AUD - Australian dollar",
@@ -17295,14 +18329,14 @@
         }
 
     }, {}],
-    210: [function(require, module, exports) {
+    221: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _units = require(209);
+        var _units = require(220);
         var _units2 = _interopRequireDefault(_units);
 
         function _interopRequireDefault(obj) {
@@ -17334,10 +18368,10 @@
         });
 
     }, {
-        "209": 209,
+        "220": 220,
         "undefined": undefined
     }],
-    211: [function(require, module, exports) {
+    222: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -17348,12 +18382,12 @@
         var _assert2 = _interopRequireDefault(_assert);
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _aureus = require(192);
+        var _aureus = require(203);
         var _formatCurrency = require('format-currency');
         var _formatCurrency2 = _interopRequireDefault(_formatCurrency);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _units = require(210);
+        var _units = require(221);
         var _units2 = _interopRequireDefault(_units);
 
         function _interopRequireWildcard(obj) {
@@ -17412,8 +18446,10 @@
         }, {});
         const lookupCrypto = Object.values(_assets2.default).reduce((obj, asset) => {
             const multiplier = Math.log10(Math.max(...Object.values(asset.currency.units).map(x => x.multiplier)));
+            let minFraction = 2;
+            if (multiplier < minFraction) minFraction = multiplier;
             return Object.assign(obj, {
-                [asset.displayUnit]: createCryptoLookup(2, multiplier)
+                [asset.displayUnit]: createCryptoLookup(minFraction, multiplier)
             });
         }, {});
         const lookup = Object.assign(lookupFiat, lookupCrypto, {
@@ -17459,26 +18495,26 @@
         }
 
     }, {
-        "184": 184,
-        "192": 192,
-        "210": 210,
+        "194": 194,
+        "203": 203,
+        "221": 221,
         "undefined": undefined
     }],
-    212: [function(require, module, exports) {
+    223: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.fiatCurrency = exports.cryptoCurrency = exports.currency = undefined;
-        var _aureus = require(192);
+        var _aureus = require(203);
         const currency = exports.currency = _aureus.UnitType.create('currency');
         const cryptoCurrency = exports.cryptoCurrency = _aureus.UnitType.create('crypto-currency', currency);
         const fiatCurrency = exports.fiatCurrency = _aureus.UnitType.create('fiat', currency);
 
     }, {
-        "192": 192
+        "203": 203
     }],
-    213: [function(require, module, exports) {
+    224: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -17497,7 +18533,7 @@
     }, {
         "undefined": undefined
     }],
-    214: [function(require, module, exports) {
+    225: [function(require, module, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -17554,7 +18590,7 @@
         }
 
     }, {}],
-    215: [function(require, module, exports) {
+    226: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -17579,7 +18615,7 @@
     }, {
         "undefined": undefined
     }],
-    216: [function(require, module, exports) {
+    227: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -17715,7 +18751,7 @@
     }, {
         "undefined": undefined
     }],
-    217: [function(require, module, exports) {
+    228: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -17724,8 +18760,8 @@
         exports.createClientMethod = createClientMethod;
         var _electronIpcBroadcast = require('electron-ipc-broadcast');
         var _electronIpcBroadcast2 = _interopRequireDefault(_electronIpcBroadcast);
-        var _errorToObject = require(220);
-        var _shared = require(218);
+        var _errorToObject = require(231);
+        var _shared = require(229);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -17777,11 +18813,11 @@
         }
 
     }, {
-        "218": 218,
-        "220": 220,
+        "229": 229,
+        "231": 231,
         "undefined": undefined
     }],
-    218: [function(require, module, exports) {
+    229: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -17789,7 +18825,7 @@
         const CHANNEL_PREFIX = exports.CHANNEL_PREFIX = 'electron-rpc-broadcast';
 
     }, {}],
-    219: [function(require, module, exports) {
+    230: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -17806,7 +18842,7 @@
         var _ospath2 = _interopRequireDefault(_ospath);
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
-        var _paths = require(169);
+        var _paths = require(176);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -17859,10 +18895,10 @@
         }
 
     }, {
-        "169": 169,
+        "176": 176,
         "undefined": undefined
     }],
-    220: [function(require, module, exports) {
+    231: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -17916,7 +18952,7 @@
     }, {
         "undefined": undefined
     }],
-    221: [function(require, module, exports) {
+    232: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -18035,7 +19071,7 @@
         var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _memoizeLruCache = require(273);
+        var _memoizeLruCache = require(287);
         var _memoizeLruCache2 = _interopRequireDefault(_memoizeLruCache);
 
         function _interopRequireDefault(obj) {
@@ -18084,10 +19120,10 @@
         });
 
     }, {
-        "273": 273,
+        "287": 287,
         "undefined": undefined
     }],
-    222: [function(require, module, exports) {
+    233: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -18156,7 +19192,7 @@
         })();
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _request2 = require(226);
+        var _request2 = require(237);
         var _request3 = _interopRequireDefault(_request2);
 
         function _interopRequireDefault(obj) {
@@ -18205,10 +19241,10 @@
         })();
 
     }, {
-        "226": 226,
+        "237": 237,
         "undefined": undefined
     }],
-    223: [function(require, module, exports) {
+    234: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -18216,10 +19252,10 @@
         exports.ws = exports.getLogs = exports.gasPrice = exports.getCode = exports.estimateGas = exports.getTransactionCount = exports.sendRawTransaction = exports.tokenBalance = exports.fetchTxlistinternal = exports.fetchTxlist = exports.fetchBalance = undefined;
         exports.filterTxsSent = filterTxsSent;
         exports.filterTxsReceived = filterTxsReceived;
-        var _account = require(222);
-        var _proxy = require(225);
-        var _logs = require(224);
-        var _ws2 = require(227);
+        var _account = require(233);
+        var _proxy = require(236);
+        var _logs = require(235);
+        var _ws2 = require(238);
         var _ws3 = _interopRequireDefault(_ws2);
 
         function _interopRequireDefault(obj) {
@@ -18248,12 +19284,12 @@
         }
 
     }, {
-        "222": 222,
-        "224": 224,
-        "225": 225,
-        "227": 227
+        "233": 233,
+        "235": 235,
+        "236": 236,
+        "238": 238
     }],
-    224: [function(require, module, exports) {
+    235: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -18276,7 +19312,7 @@
         })();
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _request2 = require(226);
+        var _request2 = require(237);
         var _request3 = _interopRequireDefault(_request2);
 
         function _interopRequireDefault(obj) {
@@ -18325,10 +19361,10 @@
         })();
 
     }, {
-        "226": 226,
+        "237": 237,
         "undefined": undefined
     }],
-    225: [function(require, module, exports) {
+    236: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -18389,7 +19425,7 @@
                 return _ref6.apply(this, arguments);
             };
         })();
-        var _request2 = require(226);
+        var _request2 = require(237);
         var _request3 = _interopRequireDefault(_request2);
 
         function _interopRequireDefault(obj) {
@@ -18438,9 +19474,9 @@
         })();
 
     }, {
-        "226": 226
+        "237": 237
     }],
-    226: [function(require, module, exports) {
+    237: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -18453,7 +19489,7 @@
         var _fetchival2 = _interopRequireDefault(_fetchival);
         var _nodeFetch = require('node-fetch');
         var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
-        var _appConfig = require(80);
+        var _appConfig = require(84);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -18516,10 +19552,10 @@
         });
 
     }, {
-        "80": 80,
+        "84": 84,
         "undefined": undefined
     }],
-    227: [function(require, module, exports) {
+    238: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -18627,7 +19663,263 @@
     }, {
         "undefined": undefined
     }],
-    228: [function(require, module, exports) {
+    239: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.status = exports.createOrder = exports.prices = exports.coins = exports.limit = undefined;
+        let limit = exports.limit = (() => {
+            var _ref = _asyncToGenerator(function*(fromSym, toSym) {
+                const url = (0, _urlJoin2.default)(EVERCOIN_SERVER, `/v1/limit/${fromSym}-${toSym}`);
+                return _fetchGET(url);
+            });
+            return function limit(_x, _x2) {
+                return _ref.apply(this, arguments);
+            };
+        })();
+        let coins = exports.coins = (() => {
+            var _ref2 = _asyncToGenerator(function*() {
+                const url = (0, _urlJoin2.default)(EVERCOIN_SERVER, `/v1/coins`);
+                return _fetchGET(url);
+            });
+            return function coins() {
+                return _ref2.apply(this, arguments);
+            };
+        })();
+        let prices = exports.prices = (() => {
+            var _ref3 = _asyncToGenerator(function*(prs) {
+                const url = (0, _urlJoin2.default)(EVERCOIN_SERVER, '/v1/price');
+                if (!prs) {
+                    const assets = (yield coins()).filter(function(a) {
+                        return a.fromAvailable && a.toAvailable;
+                    }).map(function(a) {
+                        return a.symbol;
+                    });
+                    prs = (0, _pairs2.default)(assets).map(function(pair) {
+                        return {
+                            depositCoin: pair[0],
+                            destinationCoin: pair[1],
+                            depositAmount: '1'
+                        };
+                    });
+                }
+                return _fetchPOST(url, prs);
+            });
+            return function prices(_x3) {
+                return _ref3.apply(this, arguments);
+            };
+        })();
+        let createOrder = exports.createOrder = (() => {
+            var _ref4 = _asyncToGenerator(function*(or) {
+                const url = (0, _urlJoin2.default)(EVERCOIN_SERVER, '/v1/order');
+                return _fetchPOST(url, or);
+            });
+            return function createOrder(_x4) {
+                return _ref4.apply(this, arguments);
+            };
+        })();
+        let status = exports.status = (() => {
+            var _ref5 = _asyncToGenerator(function*(orderId) {
+                const url = (0, _urlJoin2.default)(EVERCOIN_SERVER, `/v1/status/${orderId}`);
+                return _fetchGET(url);
+            });
+            return function status(_x5) {
+                return _ref5.apply(this, arguments);
+            };
+        })();
+        let _fetchGET = (() => {
+            var _ref6 = _asyncToGenerator(function*(url) {
+                const {
+                    error,
+                    result
+                } = yield(0, _fetchival2.default)(url, {
+                    headers: HEADERS
+                }).get();
+                if (error) throw new Error(`Fetch Error ${url} (${error.message})`);
+                return result;
+            });
+            return function _fetchGET(_x6) {
+                return _ref6.apply(this, arguments);
+            };
+        })();
+        let _fetchPOST = (() => {
+            var _ref7 = _asyncToGenerator(function*(url, body) {
+                const {
+                    error,
+                    result
+                } = yield(0, _fetchival2.default)(url, {
+                    headers: HEADERS
+                }).post(body);
+                if (error) throw new Error(`Fetch Error ${url} (${error.message})`);
+                return result;
+            });
+            return function _fetchPOST(_x7, _x8) {
+                return _ref7.apply(this, arguments);
+            };
+        })();
+        var _urlJoin = require('url-join');
+        var _urlJoin2 = _interopRequireDefault(_urlJoin);
+        var _fetchival = require('fetchival');
+        var _fetchival2 = _interopRequireDefault(_fetchival);
+        var _pairs = require(299);
+        var _pairs2 = _interopRequireDefault(_pairs);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+
+        function _asyncToGenerator(fn) {
+            return function() {
+                var gen = fn.apply(this, arguments);
+                return new Promise(function(resolve, reject) {
+                    function step(key, arg) {
+                        try {
+                            var info = gen[key](arg);
+                            var value = info.value;
+                        } catch (error) {
+                            reject(error);
+                            return;
+                        }
+                        if (info.done) {
+                            resolve(value);
+                        } else {
+                            return Promise.resolve(value).then(function(value) {
+                                step("next", value);
+                            }, function(err) {
+                                step("throw", err);
+                            });
+                        }
+                    }
+                    return step("next");
+                });
+            };
+        }
+        const EVERCOIN_PROD_SERVER = 'https://api.evercoin.com';
+        const EVERCOIN_TEST_SERVER = 'https://test.evercoin.com';
+        const EVERCOIN_SERVER = EVERCOIN_PROD_SERVER;
+        const KEY = '89063c95c37b47798f2f85ece062b0ad';
+        const HEADERS = {
+            'EVERCOIN-API-KEY': KEY
+        };
+
+    }, {
+        "299": 299,
+        "undefined": undefined
+    }],
+    240: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.initExchange = exports.fetchRates = exports.fetchAssetsAvailable = undefined;
+        let fetchAssetsAvailable = exports.fetchAssetsAvailable = (() => {
+            var _ref = _asyncToGenerator(function*() {
+                const url = (0, _urlJoin2.default)(_appConfig.EXODUS_EXCHANGE_SERVER, '/v1/assets');
+                const res = yield(0, _fetchival2.default)(url).get();
+                if (res.status !== 'success') throw new Error(`${url} response not success.`);
+                return res.data;
+            });
+            return function fetchAssetsAvailable() {
+                return _ref.apply(this, arguments);
+            };
+        })();
+        let fetchRates = exports.fetchRates = (() => {
+            var _ref2 = _asyncToGenerator(function*() {
+                const url = (0, _urlJoin2.default)(_appConfig.EXODUS_EXCHANGE_SERVER, '/v1/rates');
+                const res = yield(0, _fetchival2.default)(url).get();
+                if (res.status !== 'success') throw new Error(`${url} response not success.`);
+                return res.data;
+            });
+            return function fetchRates() {
+                return _ref2.apply(this, arguments);
+            };
+        })();
+        let initExchange = exports.initExchange = (() => {
+            var _ref3 = _asyncToGenerator(function*(payload) {
+                const url = (0, _urlJoin2.default)(_appConfig.EXODUS_EXCHANGE_SERVER, '/v1/exchange');
+                const res = yield(0, _fetchival2.default)(url).put(payload);
+                if (res.status !== 'success') throw new Error(`${url} response not success.`);
+                return res.data;
+            });
+            return function initExchange(_x) {
+                return _ref3.apply(this, arguments);
+            };
+        })();
+        exports.openOrderId = openOrderId;
+        exports.openShapeShiftOrderId = openShapeShiftOrderId;
+        exports.openEvercoinOrderId = openEvercoinOrderId;
+        var _urlJoin = require('url-join');
+        var _urlJoin2 = _interopRequireDefault(_urlJoin);
+        var _appConfig = require(84);
+        var _fetchival = require('fetchival');
+        var _fetchival2 = _interopRequireDefault(_fetchival);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+
+        function _asyncToGenerator(fn) {
+            return function() {
+                var gen = fn.apply(this, arguments);
+                return new Promise(function(resolve, reject) {
+                    function step(key, arg) {
+                        try {
+                            var info = gen[key](arg);
+                            var value = info.value;
+                        } catch (error) {
+                            reject(error);
+                            return;
+                        }
+                        if (info.done) {
+                            resolve(value);
+                        } else {
+                            return Promise.resolve(value).then(function(value) {
+                                step("next", value);
+                            }, function(err) {
+                                step("throw", err);
+                            });
+                        }
+                    }
+                    return step("next");
+                });
+            };
+        }
+
+        function openOrderId() {
+            let {
+                svc,
+                orderId
+            } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+            switch (svc) {
+                case 'ss':
+                    openShapeShiftOrderId(orderId);
+                    break;
+                case 'ec':
+                    openEvercoinOrderId(orderId);
+                    break;
+                default:
+                    console.warn(`openOrderId(): No matching handler for ${svc}:${orderId}.`);
+            }
+        }
+
+        function openShapeShiftOrderId(orderId) {
+            require('electron').shell.openExternal(`https://shapeshift.io/#/status/${orderId}`);
+        }
+
+        function openEvercoinOrderId(orderId) {
+            require('electron').shell.openExternal(`https://evercoin.com/status/${orderId}`);
+        }
+
+    }, {
+        "84": 84,
+        "undefined": undefined
+    }],
+    241: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -18650,7 +19942,7 @@
         exports.logRescan = logRescan;
         var _urlJoin = require('url-join');
         var _urlJoin2 = _interopRequireDefault(_urlJoin);
-        var _appConfig = require(80);
+        var _appConfig = require(84);
         var _fetchival = require('fetchival');
         var _fetchival2 = _interopRequireDefault(_fetchival);
 
@@ -18695,10 +19987,10 @@
         }
 
     }, {
-        "80": 80,
+        "84": 84,
         "undefined": undefined
     }],
-    229: [function(require, module, exports) {
+    242: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -18715,7 +20007,7 @@
         var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _ws = require(230);
+        var _ws = require(243);
         var _ws2 = _interopRequireDefault(_ws);
 
         function _interopRequireDefault(obj) {
@@ -18883,10 +20175,10 @@
         }
 
     }, {
-        "230": 230,
+        "243": 243,
         "undefined": undefined
     }],
-    230: [function(require, module, exports) {
+    243: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -18995,7 +20287,7 @@
     }, {
         "undefined": undefined
     }],
-    231: [function(require, module, exports) {
+    244: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -19008,7 +20300,7 @@
         var _fetchival2 = _interopRequireDefault(_fetchival);
         var _nodeFetch = require('node-fetch');
         var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
-        var _ws = require(232);
+        var _ws = require(245);
         var _ws2 = _interopRequireDefault(_ws);
 
         function _interopRequireDefault(obj) {
@@ -19108,10 +20400,10 @@
         exports.default = create('https://factom.exodus.io/v3/');
 
     }, {
-        "232": 232,
+        "245": 245,
         "undefined": undefined
     }],
-    232: [function(require, module, exports) {
+    245: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -19209,7 +20501,7 @@
     }, {
         "undefined": undefined
     }],
-    233: [function(require, module, exports) {
+    246: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -19382,11 +20674,11 @@
                 return _ref7.apply(this, arguments);
             };
         })();
-        var _swal2 = require(306);
+        var _swal2 = require(321);
         var _swal3 = _interopRequireDefault(_swal2);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _flux = require(257);
+        var _flux = require(271);
         var flux = _interopRequireWildcard(_flux);
         var _delay = require('delay');
         var _delay2 = _interopRequireDefault(_delay);
@@ -19397,14 +20689,16 @@
         var _sweetalert2 = _interopRequireDefault(_sweetalert);
         var _reduxWatch = require('redux-watch');
         var _reduxWatch2 = _interopRequireDefault(_reduxWatch);
-        var _utxoCollection = require(89);
+        var _utxoCollection = require(93);
         var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
-        var _feeEstimator = require(255);
+        var _feeEstimator = require(269);
         var _feeEstimator2 = _interopRequireDefault(_feeEstimator);
-        var _getRecvExchAddresses = require(94);
+        var _getRecvExchAddresses = require(98);
         var _getRecvExchAddresses2 = _interopRequireDefault(_getRecvExchAddresses);
-        var _getReceiveAddress = require(92);
+        var _getReceiveAddress = require(96);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
+        var _blockExplorer = require(105);
+        var _blockExplorer2 = _interopRequireDefault(_blockExplorer);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -19486,7 +20780,7 @@
                         text: `<p style="font-size: 11px;">Successfully sent your Bitcoin Cash! TX ID: ${txId}</p>`,
                         confirmButtonText: 'View TX'
                     }, function() {
-                        _electron.shell.openExternal(_assets2.default.bcashclaim.blockExplorer.txUrl(txId));
+                        _electron.shell.openExternal((0, _blockExplorer2.default)(flux.store.getState())('bcash').txUrl(txId));
                     });
                 }
                 flux.actions.localStorage.setItem('bcashclaimed', 'true');
@@ -19501,16 +20795,318 @@
         })();
 
     }, {
-        "184": 184,
-        "255": 255,
-        "257": 257,
-        "306": 306,
-        "89": 89,
-        "92": 92,
-        "94": 94,
+        "105": 105,
+        "194": 194,
+        "269": 269,
+        "271": 271,
+        "321": 321,
+        "93": 93,
+        "96": 96,
+        "98": 98,
         "undefined": undefined
     }],
-    234: [function(require, module, exports) {
+    247: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports._sendBcash = undefined;
+        let _sendBcash = exports._sendBcash = (() => {
+            var _ref2 = _asyncToGenerator(function*(address, utxos) {
+                return new Promise(function(resolve) {
+                    utxos = utxos || _utxoCollection2.default.createEmpty({
+                        currency: _assets2.default.bgoldclaim.currency
+                    });
+                    const fee = (0, _feeEstimator2.default)(_assets2.default.bgoldclaim)({
+                        inputs: utxos,
+                        outputs: [address]
+                    }).toDefault();
+                    const amount = utxos.value.subtract(fee).clampLowerZero().toDefault();
+                    _swal3.default.warn({
+                        title: 'Send Bitcoin Gold?',
+                        text: `You are about to send ${amount.toString()} with a fee of ${fee.toString()}. Are you sure you want to send this to address ${address}?\n\nThis process is not reversible and may take 1-2 hours to confirm.`,
+                        showCancelButton: true,
+                        cancelButtonText: 'Cancel',
+                        closeOnConfirm: false,
+                        closeOnCancel: false,
+                        confirmButtonColor: '#FF0000',
+                        confirmButtonText: 'Send',
+                        showLoaderOnConfirm: true
+                    }, function(shouldContinue) {
+                        if (!shouldContinue) {
+                            _sweetalert2.default.close();
+                            return resolve(null);
+                        }
+                        const w = (0, _reduxWatch2.default)(flux.store.getState, 'txSend');
+                        const stopWatching = flux.store.subscribe(w((() => {
+                            var _ref4 = _asyncToGenerator(function*(_ref3) {
+                                let {
+                                    isSending,
+                                    error,
+                                    txId
+                                } = _ref3;
+                                if (error) {
+                                    stopWatching();
+                                    _sweetalert2.default.close();
+                                    yield(0, _delay2.default)((0, _ms2.default)('1s'));
+                                    _swal3.default.error({
+                                        text: error.message
+                                    });
+                                    resolve(null);
+                                    return;
+                                }
+                                if (isSending === true) return;
+                                stopWatching();
+                                _sweetalert2.default.close();
+                                resolve(txId);
+                            });
+                            return function(_x3) {
+                                return _ref4.apply(this, arguments);
+                            };
+                        })()));
+                        const sendOpts = {
+                            coin: _assets2.default.bgoldclaim,
+                            receiver: {
+                                address,
+                                amount,
+                                fee
+                            },
+                            shouldLog: false
+                        };
+                        flux.actions.txSend.send(sendOpts);
+                    });
+                });
+            });
+            return function _sendBcash(_x, _x2) {
+                return _ref2.apply(this, arguments);
+            };
+        })();
+        let getAddress = (() => {
+            var _ref5 = _asyncToGenerator(function*() {
+                const address = (0, _getReceiveAddress2.default)(flux.store.getState())('bgold').toString();
+                return new Promise(function(resolve, reject) {
+                    _swal3.default.prompt({
+                        title: 'Bitcoin Gold Address?',
+                        text: `Paste the address where Exodus will send your Bitcoin Gold (BTG) below. Your Exodus BTG address is pre-filled for you. After you click "Continue", you'll be given a chance to cancel.`,
+                        animation: false,
+                        inputType: 'text',
+                        inputValue: address,
+                        closeOnCancel: true,
+                        closeOnConfirm: true,
+                        confirmButtonText: 'Continue'
+                    }, function(address) {
+                        resolve(String(address).trim());
+                    });
+                });
+            });
+            return function getAddress() {
+                return _ref5.apply(this, arguments);
+            };
+        })();
+        let showInfo = (() => {
+            var _ref6 = _asyncToGenerator(function*() {
+                const text = ['You are about to claim your Bitcoin Gold (BTG). This process will keep your private keys safe ', "and will not send your regular Bitcoin. Please ensure that you're sending your ", 'Bitcoin Gold (BTG) to a reputable source.\n\n', 'Click "Learn More" to cancel and read more details about this process.'].join('');
+                return new Promise(function(resolve, reject) {
+                    _swal3.default.success({
+                        title: 'Claim Bitcoin Gold',
+                        text,
+                        type: 'info',
+                        cancelButtonText: 'Learn More',
+                        showCancelButton: true,
+                        confirmButtonText: 'Continue'
+                    }, function(shouldContinue) {
+                        if (shouldContinue) return window.requestIdleCallback(function() {
+                            return resolve(true);
+                        });
+                        _electron.shell.openExternal('http://support.exodus.io/article/214-how-do-i-claim-bitcoin-gold');
+                        resolve(false);
+                    });
+                });
+            });
+            return function showInfo() {
+                return _ref6.apply(this, arguments);
+            };
+        })();
+        let fetchUTXOs = (() => {
+            var _ref7 = _asyncToGenerator(function*() {
+                return new Promise(function(resolve) {
+                    _swal3.default.warn({
+                        title: 'Look For Bitcoin Gold',
+                        text: 'Exodus will now check your wallet to find how much Bitcoin Gold you have. This process takes about 10 minutes - please do not quit while this is in progress.',
+                        showCancelButton: true,
+                        cancelButtonText: 'Cancel',
+                        closeOnConfirm: false,
+                        closeOnCancel: false,
+                        confirmButtonText: 'Check My Wallet Now',
+                        showLoaderOnConfirm: true
+                    }, function(shouldContinue) {
+                        if (!shouldContinue) {
+                            _sweetalert2.default.close();
+                            return resolve(null);
+                        }
+                        const w = (0, _reduxWatch2.default)(flux.store.getState, 'assetsRefresh');
+                        const stopWatching = flux.store.subscribe(w((() => {
+                            var _ref9 = _asyncToGenerator(function*(_ref8) {
+                                let {
+                                    bgoldclaim,
+                                    error
+                                } = _ref8;
+                                if (error) {
+                                    stopWatching();
+                                    _sweetalert2.default.close();
+                                    yield(0, _delay2.default)((0, _ms2.default)('1s'));
+                                    _swal3.default.error({
+                                        text: error.message
+                                    });
+                                    resolve(null);
+                                    return;
+                                }
+                                if (bgoldclaim === true) return;
+                                stopWatching();
+                                _sweetalert2.default.close();
+                                resolve(flux.store.getState().utxos.bgoldclaim);
+                            });
+                            return function(_x4) {
+                                return _ref9.apply(this, arguments);
+                            };
+                        })()));
+                        flux.actions.assetsRefresh.refresh('bgoldclaim');
+                    });
+                });
+            });
+            return function fetchUTXOs() {
+                return _ref7.apply(this, arguments);
+            };
+        })();
+        var _swal2 = require(321);
+        var _swal3 = _interopRequireDefault(_swal2);
+        var _assets = require(194);
+        var _assets2 = _interopRequireDefault(_assets);
+        var _flux = require(271);
+        var flux = _interopRequireWildcard(_flux);
+        var _delay = require('delay');
+        var _delay2 = _interopRequireDefault(_delay);
+        var _ms = require('ms');
+        var _ms2 = _interopRequireDefault(_ms);
+        var _electron = require('electron');
+        var _sweetalert = require('sweetalert');
+        var _sweetalert2 = _interopRequireDefault(_sweetalert);
+        var _reduxWatch = require('redux-watch');
+        var _reduxWatch2 = _interopRequireDefault(_reduxWatch);
+        var _utxoCollection = require(93);
+        var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
+        var _feeEstimator = require(269);
+        var _feeEstimator2 = _interopRequireDefault(_feeEstimator);
+        var _getRecvExchAddresses = require(98);
+        var _getRecvExchAddresses2 = _interopRequireDefault(_getRecvExchAddresses);
+        var _getReceiveAddress = require(96);
+        var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
+
+        function _interopRequireWildcard(obj) {
+            if (obj && obj.__esModule) {
+                return obj;
+            } else {
+                var newObj = {};
+                if (obj != null) {
+                    for (var key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+                    }
+                }
+                newObj.default = obj;
+                return newObj;
+            }
+        }
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+
+        function _asyncToGenerator(fn) {
+            return function() {
+                var gen = fn.apply(this, arguments);
+                return new Promise(function(resolve, reject) {
+                    function step(key, arg) {
+                        try {
+                            var info = gen[key](arg);
+                            var value = info.value;
+                        } catch (error) {
+                            reject(error);
+                            return;
+                        }
+                        if (info.done) {
+                            resolve(value);
+                        } else {
+                            return Promise.resolve(value).then(function(value) {
+                                step("next", value);
+                            }, function(err) {
+                                step("throw", err);
+                            });
+                        }
+                    }
+                    return step("next");
+                });
+            };
+        }
+        exports.default = (() => {
+            var _ref = _asyncToGenerator(function*() {
+                console.warn('STARTING BGOLD CLAIM');
+                const shouldContinue = yield showInfo();
+                if (!shouldContinue) return;
+                yield(0, _delay2.default)(250);
+                const address = yield getAddress();
+                if (!_assets2.default.bgoldclaim.address.validate(address)) return flux.actions.dialog.error(`${address} is an invalid Bitcoin Gold address.`);
+                const myAddrs = (0, _getRecvExchAddresses2.default)(flux.store.getState())('bitcoin');
+                if (myAddrs.has(address)) return flux.actions.dialog.error(`Can't send to yourself.`);
+                console.log('GOT BGOLD ADDRESS:');
+                console.log(address);
+                yield(0, _delay2.default)(150);
+                const utxos = yield fetchUTXOs();
+                if (!utxos) return;
+                console.log('GOT BGOLD UTXOS:');
+                console.dir(utxos);
+                yield(0, _delay2.default)(250);
+                if (utxos.value.isZero()) {
+                    _swal3.default.success({
+                        html: true,
+                        text: `<p style="font-size: 11px;">Unfortunately you do not have any Bitcoin Gold.</p>`,
+                        confirmButtonText: 'OK'
+                    }, function() {});
+                } else {
+                    const txId = yield _sendBcash(address, utxos);
+                    if (!txId) return;
+                    yield(0, _delay2.default)(200);
+                    _swal3.default.success({
+                        html: true,
+                        text: `<p style="font-size: 11px;">Successfully sent your Bitcoin Gold! TX ID: ${txId}</p>`,
+                        confirmButtonText: 'View TX'
+                    }, function() {
+                        _electron.shell.openExternal(_assets2.default.bgoldclaim.blockExplorer.txUrl(txId));
+                    });
+                }
+                flux.actions.localStorage.setItem('bgoldclaimed', 'true');
+                flux.actions.txSend.ackSend();
+                console.warn('BGOLD CLAIM COMPLETE');
+            });
+
+            function bgoldClaim() {
+                return _ref.apply(this, arguments);
+            }
+            return bgoldClaim;
+        })();
+
+    }, {
+        "194": 194,
+        "269": 269,
+        "271": 271,
+        "321": 321,
+        "93": 93,
+        "96": 96,
+        "98": 98,
+        "undefined": undefined
+    }],
+    248: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -19528,9 +21124,9 @@
             };
         })();
         exports.xpub = xpub;
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _get = require(242);
+        var _get = require(256);
         var get = _interopRequireWildcard(_get);
 
         function _interopRequireWildcard(obj) {
@@ -19586,10 +21182,10 @@
         }
 
     }, {
-        "184": 184,
-        "242": 242
+        "194": 194,
+        "256": 256
     }],
-    235: [function(require, module, exports) {
+    249: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -19600,16 +21196,16 @@
         exports.setRippleAddress = setRippleAddress;
         exports.setHDKeyFromXPub = setHDKeyFromXPub;
         exports.eraseState = eraseState;
-        var _address = require(82);
+        var _address = require(86);
         var _address2 = _interopRequireDefault(_address);
-        var _flux = require(257);
+        var _flux = require(271);
         var flux = _interopRequireWildcard(_flux);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _util = require(264);
-        var _utxoCollection = require(89);
+        var _util = require(278);
+        var _utxoCollection = require(93);
         var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
-        var _utxos = require(79);
+        var _utxos = require(83);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -19676,14 +21272,14 @@
         }
 
     }, {
-        "184": 184,
-        "257": 257,
-        "264": 264,
-        "79": 79,
-        "82": 82,
-        "89": 89
+        "194": 194,
+        "271": 271,
+        "278": 278,
+        "83": 83,
+        "86": 86,
+        "93": 93
     }],
-    236: [function(require, module, exports) {
+    250: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -19711,7 +21307,7 @@
             };
         })();
         exports.exportPrivateKeysDialog = exportPrivateKeysDialog;
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
         var _fsExtra = require('fs-extra');
         var _fsExtra2 = _interopRequireDefault(_fsExtra);
@@ -19719,10 +21315,10 @@
         var _moment2 = _interopRequireDefault(_moment);
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
-        var _env = require(219);
-        var _swal = require(306);
+        var _env = require(230);
+        var _swal = require(321);
         var _swal2 = _interopRequireDefault(_swal);
-        var _get = require(242);
+        var _get = require(256);
         var get = _interopRequireWildcard(_get);
 
         function _interopRequireWildcard(obj) {
@@ -19791,13 +21387,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "184": 184,
-        "219": 219,
-        "242": 242,
-        "306": 306,
+        "194": 194,
+        "230": 230,
+        "256": 256,
+        "321": 321,
         "undefined": undefined
     }],
-    237: [function(require, module, exports) {
+    251: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -19932,17 +21528,17 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _moment2 = _interopRequireDefault(_moment);
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
-        var _env = require(219);
+        var _env = require(230);
         var _crossZip = require('cross-zip');
         var _crossZip2 = _interopRequireDefault(_crossZip);
-        var _swal = require(306);
+        var _swal = require(321);
         var _swal2 = _interopRequireDefault(_swal);
         var _aw = require('aw');
         var _aw2 = _interopRequireDefault(_aw);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _flux = require(257);
-        var _get = require(242);
+        var _flux = require(271);
+        var _get = require(256);
         var get = _interopRequireWildcard(_get);
 
         function _interopRequireWildcard(obj) {
@@ -20006,25 +21602,25 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "184": 184,
-        "219": 219,
-        "242": 242,
-        "257": 257,
-        "306": 306,
+        "194": 194,
+        "230": 230,
+        "256": 256,
+        "271": 271,
+        "321": 321,
         "undefined": undefined
     }],
-    238: [function(require, module, exports) {
+    252: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.xpub = exports.transactions = exports.dir = exports.privateKeysDialog = exports.addresses = undefined;
-        var _addresses = require(236);
-        var _dir2 = require(237);
+        var _addresses = require(250);
+        var _dir2 = require(251);
         var _dir = _interopRequireWildcard(_dir2);
-        var _transactions2 = require(239);
+        var _transactions2 = require(253);
         var _transactions3 = _interopRequireDefault(_transactions2);
-        var _xpub2 = require(240);
+        var _xpub2 = require(254);
         var _xpub3 = _interopRequireDefault(_xpub2);
 
         function _interopRequireDefault(obj) {
@@ -20054,17 +21650,17 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         const xpub = exports.xpub = _xpub3.default;
 
     }, {
-        "236": 236,
-        "237": 237,
-        "239": 239,
-        "240": 240
+        "250": 250,
+        "251": 251,
+        "253": 253,
+        "254": 254
     }],
-    239: [function(require, module, exports) {
+    253: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _swal = require(306);
+        var _swal = require(321);
         var _swal2 = _interopRequireDefault(_swal);
         var _fsExtra = require('fs-extra');
         var _fsExtra2 = _interopRequireDefault(_fsExtra);
@@ -20072,8 +21668,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _moment2 = _interopRequireDefault(_moment);
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
-        var _env = require(219);
-        var _get = require(242);
+        var _env = require(230);
+        var _get = require(256);
         var get = _interopRequireWildcard(_get);
 
         function _interopRequireWildcard(obj) {
@@ -20156,12 +21752,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         })();
 
     }, {
-        "219": 219,
-        "242": 242,
-        "306": 306,
+        "230": 230,
+        "256": 256,
+        "321": 321,
         "undefined": undefined
     }],
-    240: [function(require, module, exports) {
+    254: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -20170,10 +21766,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _fsExtra2 = _interopRequireDefault(_fsExtra);
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
-        var _env = require(219);
-        var _swal = require(306);
+        var _env = require(230);
+        var _swal = require(321);
         var _swal2 = _interopRequireDefault(_swal);
-        var _get = require(242);
+        var _get = require(256);
         var get = _interopRequireWildcard(_get);
 
         function _interopRequireWildcard(obj) {
@@ -20237,12 +21833,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         })();
 
     }, {
-        "219": 219,
-        "242": 242,
-        "306": 306,
+        "230": 230,
+        "256": 256,
+        "321": 321,
         "undefined": undefined
     }],
-    241: [function(require, module, exports) {
+    255: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -20394,18 +21990,18 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         })();
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _flux = require(257);
+        var _flux = require(271);
         var flux = _interopRequireWildcard(_flux);
-        var _addressSet = require(81);
+        var _addressSet = require(85);
         var _addressSet2 = _interopRequireDefault(_addressSet);
-        var _util = require(10);
-        var _assets = require(184);
+        var _util = require(11);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _coinTotalAmounts = require(102);
+        var _coinTotalAmounts = require(107);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
-        var _instanceShim = require(167);
+        var _instanceShim = require(174);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _bip = require(200);
+        var _bip = require(211);
         var _bip2 = _interopRequireDefault(_bip);
 
         function _interopRequireWildcard(obj) {
@@ -20457,16 +22053,16 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "10": 10,
-        "102": 102,
-        "167": 167,
-        "184": 184,
-        "200": 200,
-        "257": 257,
-        "81": 81,
+        "107": 107,
+        "11": 11,
+        "174": 174,
+        "194": 194,
+        "211": 211,
+        "271": 271,
+        "85": 85,
         "undefined": undefined
     }],
-    242: [function(require, module, exports) {
+    256: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -20530,7 +22126,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 return _ref2.apply(this, arguments);
             };
         })();
-        var _addresses = require(241);
+        var _addresses = require(255);
         Object.defineProperty(exports, 'addresses', {
             enumerable: true,
             get: function() {
@@ -20544,7 +22140,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             }
         });
         exports.xpub = xpub;
-        var _flux = require(257);
+        var _flux = require(271);
         var flux = _interopRequireWildcard(_flux);
         var _cryptocompare = require('cryptocompare');
         var _start_of_hour = require('date-fns/start_of_hour');
@@ -20553,7 +22149,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _simdb2 = _interopRequireDefault(_simdb);
         var _delay = require('delay');
         var _delay2 = _interopRequireDefault(_delay);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -20610,12 +22206,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         let sdb = null;
 
     }, {
-        "184": 184,
-        "241": 241,
-        "257": 257,
+        "194": 194,
+        "255": 255,
+        "271": 271,
         "undefined": undefined
     }],
-    243: [function(require, module, exports) {
+    257: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -20668,6 +22264,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 return {
                     address,
                     amount,
+                    fee,
                     rawtx: rawTx
                 };
             });
@@ -20675,25 +22272,25 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 return _ref.apply(this, arguments);
             };
         })();
-        var _flux = require(257);
-        var _assets = require(184);
+        var _flux = require(271);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _address = require(82);
+        var _address = require(86);
         var _address2 = _interopRequireDefault(_address);
-        var _bitcoinLike = require(71);
+        var _bitcoinLike = require(75);
         var _coininfo = require('coininfo');
         var _coininfo2 = _interopRequireDefault(_coininfo);
         var _wif = require('wif');
         var _wif2 = _interopRequireDefault(_wif);
         var _secp256k = require('secp256k1');
         var _secp256k2 = _interopRequireDefault(_secp256k);
-        var _getReceiveAddress = require(92);
+        var _getReceiveAddress = require(96);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _getRecvExchAddresses = require(94);
+        var _getRecvExchAddresses = require(98);
         var _getRecvExchAddresses2 = _interopRequireDefault(_getRecvExchAddresses);
-        var _utxoFetcher = require(132);
+        var _utxoFetcher = require(137);
         var _utxoFetcher2 = _interopRequireDefault(_utxoFetcher);
-        var _feeEstimator = require(255);
+        var _feeEstimator = require(269);
         var _feeEstimator2 = _interopRequireDefault(_feeEstimator);
 
         function _interopRequireDefault(obj) {
@@ -20730,17 +22327,17 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "132": 132,
-        "184": 184,
-        "255": 255,
-        "257": 257,
-        "71": 71,
-        "82": 82,
-        "92": 92,
-        "94": 94,
+        "137": 137,
+        "194": 194,
+        "269": 269,
+        "271": 271,
+        "75": 75,
+        "86": 86,
+        "96": 96,
+        "98": 98,
         "undefined": undefined
     }],
-    244: [function(require, module, exports) {
+    258: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -20795,6 +22392,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 return {
                     address,
                     amount,
+                    fee,
                     rawtx: rawTx
                 };
             });
@@ -20802,25 +22400,25 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 return _ref.apply(this, arguments);
             };
         })();
-        var _flux = require(257);
-        var _assets = require(184);
+        var _flux = require(271);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _address = require(82);
+        var _address = require(86);
         var _address2 = _interopRequireDefault(_address);
-        var _bitcoinLike = require(71);
+        var _bitcoinLike = require(75);
         var _coininfo = require('coininfo');
         var _coininfo2 = _interopRequireDefault(_coininfo);
         var _wif = require('wif');
         var _wif2 = _interopRequireDefault(_wif);
         var _secp256k = require('secp256k1');
         var _secp256k2 = _interopRequireDefault(_secp256k);
-        var _getReceiveAddress = require(92);
+        var _getReceiveAddress = require(96);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _getRecvExchAddresses = require(94);
+        var _getRecvExchAddresses = require(98);
         var _getRecvExchAddresses2 = _interopRequireDefault(_getRecvExchAddresses);
-        var _utxoFetcher = require(132);
+        var _utxoFetcher = require(137);
         var _utxoFetcher2 = _interopRequireDefault(_utxoFetcher);
-        var _feeEstimator = require(255);
+        var _feeEstimator = require(269);
         var _feeEstimator2 = _interopRequireDefault(_feeEstimator);
 
         function _interopRequireDefault(obj) {
@@ -20857,17 +22455,17 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "132": 132,
-        "184": 184,
-        "255": 255,
-        "257": 257,
-        "71": 71,
-        "82": 82,
-        "92": 92,
-        "94": 94,
+        "137": 137,
+        "194": 194,
+        "269": 269,
+        "271": 271,
+        "75": 75,
+        "86": 86,
+        "96": 96,
+        "98": 98,
         "undefined": undefined
     }],
-    245: [function(require, module, exports) {
+    259: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -20913,6 +22511,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 return {
                     address,
                     amount,
+                    fee,
                     rawtx: rawTx
                 };
             });
@@ -20922,19 +22521,19 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         })();
         var _dcrcoreLib = require('dcrcore-lib');
         var _dcrcoreLib2 = _interopRequireDefault(_dcrcoreLib);
-        var _flux = require(257);
-        var _assets = require(184);
+        var _flux = require(271);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _address = require(82);
+        var _address = require(86);
         var _address2 = _interopRequireDefault(_address);
-        var _bitcoinLike = require(71);
-        var _getReceiveAddress = require(92);
+        var _bitcoinLike = require(75);
+        var _getReceiveAddress = require(96);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _getRecvExchAddresses = require(94);
+        var _getRecvExchAddresses = require(98);
         var _getRecvExchAddresses2 = _interopRequireDefault(_getRecvExchAddresses);
-        var _utxoFetcher = require(132);
+        var _utxoFetcher = require(137);
         var _utxoFetcher2 = _interopRequireDefault(_utxoFetcher);
-        var _feeEstimator = require(255);
+        var _feeEstimator = require(269);
         var _feeEstimator2 = _interopRequireDefault(_feeEstimator);
 
         function _interopRequireDefault(obj) {
@@ -20971,17 +22570,17 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "132": 132,
-        "184": 184,
-        "255": 255,
-        "257": 257,
-        "71": 71,
-        "82": 82,
-        "92": 92,
-        "94": 94,
+        "137": 137,
+        "194": 194,
+        "269": 269,
+        "271": 271,
+        "75": 75,
+        "86": 86,
+        "96": 96,
+        "98": 98,
         "undefined": undefined
     }],
-    246: [function(require, module, exports) {
+    260: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -21043,17 +22642,17 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         })();
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _flux = require(257);
-        var _etcchain = require(221);
+        var _flux = require(271);
+        var _etcchain = require(232);
         var etcchain = _interopRequireWildcard(_etcchain);
-        var _etherscan = require(223);
+        var _etherscan = require(234);
         var etherscan = _interopRequireWildcard(_etherscan);
-        var _exodusEthereumServer = require(229);
-        var _assets = require(184);
+        var _exodusEthereumServer = require(242);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _getReceiveAddress = require(92);
+        var _getReceiveAddress = require(96);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _ethereum = require(72);
+        var _ethereum = require(76);
         var _ethereumjsUtil = require('ethereumjs-util');
         var _ethereumjsUtil2 = _interopRequireDefault(_ethereumjsUtil);
 
@@ -21133,16 +22732,16 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         })(), etherscan.tokenBalance);
 
     }, {
-        "184": 184,
-        "221": 221,
-        "223": 223,
-        "229": 229,
-        "257": 257,
-        "72": 72,
-        "92": 92,
+        "194": 194,
+        "232": 232,
+        "234": 234,
+        "242": 242,
+        "271": 271,
+        "76": 76,
+        "96": 96,
         "undefined": undefined
     }],
-    247: [function(require, module, exports) {
+    261: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -21207,12 +22806,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 return _ref.apply(this, arguments);
             };
         })();
-        var _flux = require(257);
-        var _assets = require(184);
+        var _flux = require(271);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _getReceiveAddress = require(92);
+        var _getReceiveAddress = require(96);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _getRecvExchAddresses = require(94);
+        var _getRecvExchAddresses = require(98);
         var _getRecvExchAddresses2 = _interopRequireDefault(_getRecvExchAddresses);
         var _factomjsLib = require('factomjs-lib');
         var _factomjsLib2 = _interopRequireDefault(_factomjsLib);
@@ -21220,7 +22819,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _bip2 = _interopRequireDefault(_bip);
         var _hdkey = require('hdkey');
         var _hdkey2 = _interopRequireDefault(_hdkey);
-        var _exodusFactomServer = require(231);
+        var _exodusFactomServer = require(244);
         var _exodusFactomServer2 = _interopRequireDefault(_exodusFactomServer);
 
         function _interopRequireDefault(obj) {
@@ -21257,14 +22856,14 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "184": 184,
-        "231": 231,
-        "257": 257,
-        "92": 92,
-        "94": 94,
+        "194": 194,
+        "244": 244,
+        "271": 271,
+        "96": 96,
+        "98": 98,
         "undefined": undefined
     }],
-    248: [function(require, module, exports) {
+    262: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -21332,8 +22931,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     });
                 }
                 const confirmed = yield new Promise(function(resolve) {
+                    let text = `Are you sure you want to move ${ret.amount.toDefault().toString()} from ${ret.address} to this wallet?`;
+                    if (ret.fee) text += ` ${ret.fee.toDefault().toString()} will be used for fees.`;
                     _swal2.default.confirm({
-                        text: `Are you sure you want to move ${ret.amount.toDefault().toString()} from ${ret.address} to this wallet?`,
+                        text,
                         title: 'Move Funds?',
                         showCancelButton: true
                     }, function(val) {
@@ -21376,10 +22977,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 let baseName = asset;
                 if (_assets2.default[asset].isEthereumToken) baseName = 'ethereum';
                 switch (baseName) {
-                    case 'dash':
                     case 'bitcoin':
+                    case 'dash':
+                    case 'digibyte':
                     case 'litecoin':
                     case 'tether':
+                    case 'vertcoin':
                     case 'zcash':
                         importPrivateKey = _bitcoinLike.privateKey;
                         break;
@@ -21428,27 +23031,27 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 return _ref4.apply(this, arguments);
             };
         })();
-        var _flux = require(257);
-        var _assets = require(184);
+        var _flux = require(271);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _swal = require(306);
+        var _swal = require(321);
         var _swal2 = _interopRequireDefault(_swal);
         var _delay = require('delay');
         var _delay2 = _interopRequireDefault(_delay);
-        var _util = require(264);
-        var _broadcastTx = require(131);
+        var _util = require(278);
+        var _broadcastTx = require(136);
         var _broadcastTx2 = _interopRequireDefault(_broadcastTx);
-        var _bitcoinLike2 = require(244);
+        var _bitcoinLike2 = require(258);
         var _bitcoinLike = _interopRequireWildcard(_bitcoinLike2);
-        var _decred2 = require(245);
+        var _decred2 = require(259);
         var _decred = _interopRequireWildcard(_decred2);
-        var _bcash2 = require(243);
+        var _bcash2 = require(257);
         var _bcash = _interopRequireWildcard(_bcash2);
-        var _ethereum2 = require(246);
+        var _ethereum2 = require(260);
         var _ethereum = _interopRequireWildcard(_ethereum2);
-        var _factom2 = require(247);
+        var _factom2 = require(261);
         var _factom = _interopRequireWildcard(_factom2);
-        var _ripple2 = require(249);
+        var _ripple2 = require(263);
         var _ripple = _interopRequireWildcard(_ripple2);
 
         function _interopRequireWildcard(obj) {
@@ -21500,20 +23103,20 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "131": 131,
-        "184": 184,
-        "243": 243,
-        "244": 244,
-        "245": 245,
-        "246": 246,
-        "247": 247,
-        "249": 249,
+        "136": 136,
+        "194": 194,
         "257": 257,
-        "264": 264,
-        "306": 306,
+        "258": 258,
+        "259": 259,
+        "260": 260,
+        "261": 261,
+        "263": 263,
+        "271": 271,
+        "278": 278,
+        "321": 321,
         "undefined": undefined
     }],
-    249: [function(require, module, exports) {
+    263: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -21561,15 +23164,15 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         })();
         var _secp256k = require('secp256k1');
         var secp256k1 = _interopRequireWildcard(_secp256k);
-        var _flux = require(257);
-        var _assets = require(184);
+        var _flux = require(271);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _getReceiveAddress = require(92);
+        var _getReceiveAddress = require(96);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _rippleApi = require(290);
-        var _keypairs = require(293);
+        var _rippleApi = require(305);
+        var _keypairs = require(308);
         var keypairs = _interopRequireWildcard(_keypairs);
-        var _ripple = require(77);
+        var _ripple = require(81);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -21620,34 +23223,36 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "184": 184,
-        "257": 257,
-        "290": 290,
-        "293": 293,
-        "77": 77,
-        "92": 92,
+        "194": 194,
+        "271": 271,
+        "305": 305,
+        "308": 308,
+        "81": 81,
+        "96": 96,
         "undefined": undefined
     }],
-    250: [function(require, module, exports) {
+    264: [function(require, module, exports) {
         'use strict';
-        var _console2 = require(234);
+        var _console2 = require(248);
         var _console = _interopRequireWildcard(_console2);
-        var _debug2 = require(235);
+        var _debug2 = require(249);
         var _debug = _interopRequireWildcard(_debug2);
-        var _export2 = require(238);
+        var _export2 = require(252);
         var _export = _interopRequireWildcard(_export2);
-        var _get2 = require(242);
+        var _get2 = require(256);
         var _get = _interopRequireWildcard(_get2);
-        var _import2 = require(248);
+        var _import2 = require(262);
         var _import = _interopRequireWildcard(_import2);
-        var _p2p2 = require(251);
+        var _p2p2 = require(265);
         var _p2p = _interopRequireWildcard(_p2p2);
-        var _restore2 = require(252);
+        var _restore2 = require(266);
         var _restore = _interopRequireWildcard(_restore2);
-        var _sweep2 = require(253);
+        var _sweep2 = require(267);
         var _sweep3 = _interopRequireDefault(_sweep2);
-        var _bcashClaim2 = require(233);
+        var _bcashClaim2 = require(246);
         var _bcashClaim3 = _interopRequireDefault(_bcashClaim2);
+        var _bgoldClaim2 = require(247);
+        var _bgoldClaim3 = _interopRequireDefault(_bgoldClaim2);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -21678,25 +23283,27 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.restore = _restore;
         exports.sweep = _sweep3.default;
         exports.bcashClaim = _bcashClaim3.default;
+        exports.bgoldClaim = _bgoldClaim3.default;
 
     }, {
-        "233": 233,
-        "234": 234,
-        "235": 235,
-        "238": 238,
-        "242": 242,
+        "246": 246,
+        "247": 247,
         "248": 248,
-        "251": 251,
+        "249": 249,
         "252": 252,
-        "253": 253
+        "256": 256,
+        "262": 262,
+        "265": 265,
+        "266": 266,
+        "267": 267
     }],
-    251: [function(require, module, exports) {
+    265: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.setMaxNodes = setMaxNodes;
-        var _flux = require(257);
+        var _flux = require(271);
         var flux = _interopRequireWildcard(_flux);
 
         function _interopRequireWildcard(obj) {
@@ -21719,9 +23326,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "257": 257
+        "271": 271
     }],
-    252: [function(require, module, exports) {
+    266: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -21729,10 +23336,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.fromRecoveryLink = fromRecoveryLink;
         exports.fromRecoveryPhrase = fromRecoveryPhrase;
         var _electron = require('electron');
-        var _electronDialog = require(215);
+        var _electronDialog = require(226);
         var _electronDialog2 = _interopRequireDefault(_electronDialog);
-        var _electronExit = require(216);
-        var _swal = require(306);
+        var _electronExit = require(227);
+        var _swal = require(321);
         var _swal2 = _interopRequireDefault(_swal);
 
         function _interopRequireDefault(obj) {
@@ -21749,6 +23356,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 inputType: 'text',
                 closeOnConfirm: true
             }, link => {
+                link = link.trim();
                 if (!link.includes('#')) {
                     return _electronDialog2.default.showErrorBox('Invalid Link', 'Invalid recovery link.');
                 }
@@ -21781,12 +23389,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "215": 215,
-        "216": 216,
-        "306": 306,
+        "226": 226,
+        "227": 227,
+        "321": 321,
         "undefined": undefined
     }],
-    253: [function(require, module, exports) {
+    267: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -21807,14 +23415,14 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 return _ref2.apply(this, arguments);
             };
         })();
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _swal = require(306);
+        var _swal = require(321);
         var _swal2 = _interopRequireDefault(_swal);
-        var _aureus = require(192);
+        var _aureus = require(203);
         var _aureus2 = _interopRequireDefault(_aureus);
-        var _import = require(248);
-        var _get = require(242);
+        var _import = require(262);
+        var _get = require(256);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -21880,13 +23488,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         })();
 
     }, {
-        "184": 184,
-        "192": 192,
-        "242": 242,
-        "248": 248,
-        "306": 306
+        "194": 194,
+        "203": 203,
+        "256": 256,
+        "262": 262,
+        "321": 321
     }],
-    254: [function(require, module, exports) {
+    268: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -21895,19 +23503,19 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.pubKeyHashFromScript = pubKeyHashFromScript;
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _addressSet = require(81);
+        var _addressSet = require(85);
         var _addressSet2 = _interopRequireDefault(_addressSet);
         var _bitcoreLib = require('bitcore-lib');
         var _bitcoreLib2 = _interopRequireDefault(_bitcoreLib);
         var _dcrcoreLib = require('dcrcore-lib');
         var _dcrcoreLib2 = _interopRequireDefault(_dcrcoreLib);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _utxoCollection = require(89);
+        var _utxoCollection = require(93);
         var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
         var _bs58check = require('bs58check');
         var _bs58check2 = _interopRequireDefault(_bs58check);
-        var _bs58checkBlake = require(203);
+        var _bs58checkBlake = require(214);
         var _bs58checkBlake2 = _interopRequireDefault(_bs58checkBlake);
 
         function _interopRequireDefault(obj) {
@@ -21966,13 +23574,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "184": 184,
-        "203": 203,
-        "81": 81,
-        "89": 89,
+        "194": 194,
+        "214": 214,
+        "85": 85,
+        "93": 93,
         "undefined": undefined
     }],
-    255: [function(require, module, exports) {
+    269: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -21983,11 +23591,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _assert2 = _interopRequireDefault(_assert);
         var _varuintBitcoin = require('varuint-bitcoin');
         var varuint = _interopRequireWildcard(_varuintBitcoin);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _aureus = require(192);
+        var _aureus = require(203);
         var _aureus2 = _interopRequireDefault(_aureus);
-        var _utxoCollection = require(89);
+        var _utxoCollection = require(93);
         var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
 
         function _interopRequireWildcard(obj) {
@@ -22060,20 +23668,20 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "184": 184,
-        "192": 192,
-        "89": 89,
+        "194": 194,
+        "203": 203,
+        "93": 93,
         "undefined": undefined
     }],
-    256: [function(require, module, exports) {
+    270: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.default = soundfxStoreEnhancer;
-        var _static = require(305);
-        var _audio = require(190);
-        var _soundfx = require(303);
+        var _static = require(320);
+        var _audio = require(201);
+        var _soundfx = require(318);
         var _reduxWatch = require('redux-watch');
         var _reduxWatch2 = _interopRequireDefault(_reduxWatch);
 
@@ -22107,19 +23715,19 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "190": 190,
-        "303": 303,
-        "305": 305,
+        "201": 201,
+        "318": 318,
+        "320": 320,
         "undefined": undefined
     }],
-    257: [function(require, module, exports) {
+    271: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.actions = exports.store = undefined;
-        var _appActions = require(25);
-        var _store2 = require(263);
+        var _appActions = require(29);
+        var _store2 = require(277);
         var _store3 = _interopRequireDefault(_store2);
 
         function _interopRequireDefault(obj) {
@@ -22131,10 +23739,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         const actions = exports.actions = (0, _appActions.bindAllActionCreators)(store);
 
     }, {
-        "25": 25,
-        "263": 263
+        "277": 277,
+        "29": 29
     }],
-    258: [function(require, module, exports) {
+    272: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -22195,7 +23803,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {}],
-    259: [function(require, module, exports) {
+    273: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -22234,12 +23842,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {}],
-    260: [function(require, module, exports) {
+    274: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _logger = require(269);
+        var _logger = require(283);
         var _logger2 = _interopRequireDefault(_logger);
 
         function _interopRequireDefault(obj) {
@@ -22258,19 +23866,19 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {
-        "269": 269
+        "283": 283
     }],
-    261: [function(require, module, exports) {
+    275: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _notifications = require(283);
+        var _notifications = require(297);
         var _notifications2 = _interopRequireDefault(_notifications);
-        var _currencyFormatters = require(211);
-        var _notifications3 = require(106);
+        var _currencyFormatters = require(222);
+        var _notifications3 = require(111);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -22362,19 +23970,19 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {
-        "106": 106,
-        "211": 211,
-        "283": 283,
+        "111": 111,
+        "222": 222,
+        "297": 297,
         "undefined": undefined
     }],
-    262: [function(require, module, exports) {
+    276: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _static = require(305);
-        var _audio = require(190);
-        var _soundfx = require(303);
+        var _static = require(320);
+        var _audio = require(201);
+        var _soundfx = require(318);
         exports.default = (_ref) => {
             let {
                 dispatch,
@@ -22391,33 +23999,33 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {
-        "190": 190,
-        "303": 303,
-        "305": 305
+        "201": 201,
+        "318": 318,
+        "320": 320
     }],
-    263: [function(require, module, exports) {
+    277: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.initialState = undefined;
         var _redux = require('redux');
-        var _appState = require(150);
+        var _appState = require(157);
         var _appState2 = _interopRequireDefault(_appState);
-        var _asyncGenerator = require(259);
+        var _asyncGenerator = require(273);
         var _asyncGenerator2 = _interopRequireDefault(_asyncGenerator);
-        var _actionHooks = require(258);
-        var _logger = require(260);
+        var _actionHooks = require(272);
+        var _logger = require(274);
         var _logger2 = _interopRequireDefault(_logger);
-        var _notifications = require(261);
+        var _notifications = require(275);
         var _notifications2 = _interopRequireDefault(_notifications);
-        var _soundfx = require(262);
+        var _soundfx = require(276);
         var _soundfx2 = _interopRequireDefault(_soundfx);
-        var _soundfx3 = require(256);
+        var _soundfx3 = require(270);
         var _soundfx4 = _interopRequireDefault(_soundfx3);
         var _reduxThunk = require('redux-thunk');
         var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
-        var _hooks = require(24);
+        var _hooks = require(28);
         var _hooks2 = _interopRequireDefault(_hooks);
 
         function _interopRequireDefault(obj) {
@@ -22429,17 +24037,17 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = (0, _redux.createStore)(_appState2.default, initialState, (0, _redux.compose)((0, _redux.applyMiddleware)(_asyncGenerator2.default, _reduxThunk2.default, _logger2.default, _notifications2.default, _soundfx2.default, (0, _actionHooks.createActionHookMiddleware)(_hooks2.default)), (0, _soundfx4.default)()));
 
     }, {
-        "150": 150,
-        "24": 24,
-        "256": 256,
-        "258": 258,
-        "259": 259,
-        "260": 260,
-        "261": 261,
-        "262": 262,
+        "157": 157,
+        "270": 270,
+        "272": 272,
+        "273": 273,
+        "274": 274,
+        "275": 275,
+        "276": 276,
+        "28": 28,
         "undefined": undefined
     }],
-    264: [function(require, module, exports) {
+    278: [function(require, module, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -22477,12 +24085,46 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {}],
-    265: [function(require, module, exports) {
+    279: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.default = undefined;
+        let fetchJsonRetry = (() => {
+            var _ref = _asyncToGenerator(function*(url, fetchOptions) {
+                let fetchJson = (() => {
+                    var _ref2 = _asyncToGenerator(function*(url, fetchOptions) {
+                        const response = yield(0, _nodeFetch2.default)(url, fetchOptions);
+                        if (!response.ok) throw new Error(`${url} returned ${response.status}: ${response.statusText}`);
+                        return response.json();
+                    });
+                    return function fetchJson(_x5, _x6) {
+                        return _ref2.apply(this, arguments);
+                    };
+                })();
+                const waitTimes = [5, 10, 20, 30].map(function(t) {
+                    return t * 1000;
+                });
+                let i = 0;
+                while (true) {
+                    try {
+                        const data = yield fetchJson(url, fetchOptions);
+                        return data;
+                    } catch (e) {
+                        if (i < waitTimes.length) {
+                            yield(0, _delay2.default)(waitTimes[i]);
+                            i++;
+                        } else {
+                            throw e;
+                        }
+                    }
+                }
+            });
+            return function fetchJsonRetry(_x3, _x4) {
+                return _ref.apply(this, arguments);
+            };
+        })();
         exports.orderTxs = orderTxs;
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
@@ -22495,6 +24137,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _lodash = require('lodash');
         var _verror = require('verror');
         var _verror2 = _interopRequireDefault(_verror);
+        var _delay = require('delay');
+        var _delay2 = _interopRequireDefault(_delay);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -22609,9 +24253,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                             addrs: addresses.join(',')
                         })
                     };
-                    const response = yield(0, _nodeFetch2.default)(url, fetchOptions);
-                    const data = yield response.json();
-                    return data;
+                    return fetchJsonRetry(url, fetchOptions);
                 })();
             }
             broadcastTx(rawTx) {
@@ -22692,7 +24334,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    266: [function(require, module, exports) {
+    280: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -22732,7 +24374,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    267: [function(require, module, exports) {
+    281: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -22761,7 +24403,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    268: [function(require, module, exports) {
+    282: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -22792,7 +24434,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         runIsOnlineCheck();
 
     }, {}],
-    269: [function(require, module, exports) {
+    283: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -22801,16 +24443,16 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.createBaseLogger = createBaseLogger;
         var _cfs = require('cfs');
         var _cfs2 = _interopRequireDefault(_cfs);
-        var _env = require(219);
+        var _env = require(230);
         var _fastJsonParse = require('fast-json-parse');
         var _fastJsonParse2 = _interopRequireDefault(_fastJsonParse);
         var _isElectronRenderer = require('is-electron-renderer');
         var _isElectronRenderer2 = _interopRequireDefault(_isElectronRenderer);
-        var _isDebug = require(267);
+        var _isDebug = require(281);
         var _isDebug2 = _interopRequireDefault(_isDebug);
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
-        var _appConfig = require(80);
+        var _appConfig = require(84);
         var _pino = require('pino');
         var _pino2 = _interopRequireDefault(_pino);
         var _stackUtils = require('stack-utils');
@@ -22981,20 +24623,20 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "219": 219,
-        "267": 267,
-        "80": 80,
+        "230": 230,
+        "281": 281,
+        "84": 84,
         "undefined": undefined
     }],
-    270: [function(require, module, exports) {
+    284: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.MARKET_PROVIDERS = undefined;
-        var _coinmarketcap = require(271);
+        var _coinmarketcap = require(285);
         var _coinmarketcap2 = _interopRequireDefault(_coinmarketcap);
-        var _cryptocompare = require(272);
+        var _cryptocompare = require(286);
         var _cryptocompare2 = _interopRequireDefault(_cryptocompare);
 
         function _interopRequireDefault(obj) {
@@ -23043,10 +24685,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         })();
 
     }, {
-        "271": 271,
-        "272": 272
+        "285": 285,
+        "286": 286
     }],
-    271: [function(require, module, exports) {
+    285: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -23055,7 +24697,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var lodash = _interopRequireWildcard(_lodash);
         var _coinmarketcap = require('coinmarketcap');
         var coinmarketcap = _interopRequireWildcard(_coinmarketcap);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -23110,9 +24752,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             var _ref = _asyncToGenerator(function*(fiat) {
                 const data = yield coinmarketcap.ticker({
                     convert: fiat,
-                    limit: 200
+                    limit: 1000
                 });
                 const prices = data.reduce(function(obj, item) {
+                    if (item.symbol === 'BTG' && item.name !== 'Bitcoin Gold') return obj;
                     const asset = assetBySymbol[item.symbol];
                     if (asset) {
                         obj[asset.name] = {
@@ -23123,6 +24766,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     return obj;
                 }, {});
                 prices.bcash = prices.bcashclaim = prices.bcash || prices.bcashclaim;
+                prices.bgold = prices.bgoldclaim = prices.bgold || prices.bgoldclaim;
                 return prices;
             });
             return function(_x) {
@@ -23131,10 +24775,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         })();
 
     }, {
-        "184": 184,
+        "194": 194,
         "undefined": undefined
     }],
-    272: [function(require, module, exports) {
+    286: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -23142,7 +24786,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
         var _cryptocompare = require('cryptocompare');
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -23206,6 +24850,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     });
                 }, {});
                 prices.bcash = prices.bcashclaim;
+                prices.bgold = prices.bgoldclaim = prices.bgold || prices.bgoldclaim;
                 return prices;
             });
             return function(_x) {
@@ -23214,10 +24859,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         })();
 
     }, {
-        "184": 184,
+        "194": 194,
         "undefined": undefined
     }],
-    273: [function(require, module, exports) {
+    287: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -23244,19 +24889,19 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    274: [function(require, module, exports) {
+    288: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _location = require(275);
+        var _location = require(289);
         Object.defineProperty(exports, 'getWalletPath', {
             enumerable: true,
             get: function() {
                 return _location.getWalletPath;
             }
         });
-        var _wallet = require(277);
+        var _wallet = require(291);
         Object.defineProperty(exports, 'ensureWallet', {
             enumerable: true,
             get: function() {
@@ -23275,7 +24920,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 return _wallet.startRPC;
             }
         });
-        var _rpc = require(276);
+        var _rpc = require(290);
         Object.defineProperty(exports, 'walletRPC', {
             enumerable: true,
             get: function() {
@@ -23284,11 +24929,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         });
 
     }, {
-        "275": 275,
-        "276": 276,
-        "277": 277
+        "289": 289,
+        "290": 290,
+        "291": 291
     }],
-    275: [function(require, module, exports) {
+    289: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -23338,7 +24983,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _fs2 = _interopRequireDefault(_fs);
         var _fsExtra = require('fs-extra');
         var _fsExtra2 = _interopRequireDefault(_fsExtra);
-        var _env = require(219);
+        var _env = require(230);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -23393,10 +25038,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "219": 219,
+        "230": 230,
         "undefined": undefined
     }],
-    276: [function(require, module, exports) {
+    290: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -23455,7 +25100,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    277: [function(require, module, exports) {
+    291: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -23546,10 +25191,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _events = require('events');
         var _suppose = require('suppose');
         var _suppose2 = _interopRequireDefault(_suppose);
-        var _monerojsUtil = require(281);
+        var _monerojsUtil = require(295);
         var moneroUtil = _interopRequireWildcard(_monerojsUtil);
-        var _location = require(275);
-        var _rpc = require(276);
+        var _location = require(289);
+        var _rpc = require(290);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -23705,12 +25350,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "275": 275,
-        "276": 276,
-        "281": 281,
+        "289": 289,
+        "290": 290,
+        "295": 295,
         "undefined": undefined
     }],
-    278: [function(require, module, exports) {
+    292: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -23719,9 +25364,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.isValid = isValid;
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _bs = require(279);
+        var _bs = require(293);
         var bs58 = _interopRequireWildcard(_bs);
-        var _crypto = require(280);
+        var _crypto = require(294);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -23765,11 +25410,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "279": 279,
-        "280": 280,
+        "293": 293,
+        "294": 294,
         "undefined": undefined
     }],
-    279: [function(require, module, exports) {
+    293: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -23810,7 +25455,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    280: [function(require, module, exports) {
+    294: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -23883,17 +25528,17 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    281: [function(require, module, exports) {
+    295: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.crypto = exports.bs58 = exports.address = undefined;
-        var _address = require(278);
+        var _address = require(292);
         var address = _interopRequireWildcard(_address);
-        var _bs = require(279);
+        var _bs = require(293);
         var bs58 = _interopRequireWildcard(_bs);
-        var _crypto = require(280);
+        var _crypto = require(294);
         var crypto = _interopRequireWildcard(_crypto);
 
         function _interopRequireWildcard(obj) {
@@ -23915,11 +25560,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.crypto = crypto;
 
     }, {
-        "278": 278,
-        "279": 279,
-        "280": 280
+        "292": 292,
+        "293": 293,
+        "294": 294
     }],
-    282: [function(require, module, exports) {
+    296: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -23932,7 +25577,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {}],
-    283: [function(require, module, exports) {
+    297: [function(require, module, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -23950,7 +25595,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {}],
-    284: [function(require, module, exports) {
+    298: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -24067,7 +25712,25 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    285: [function(require, module, exports) {
+    299: [function(require, module, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.default = function(items, field) {
+            const getKey = o => field ? o[field] : o;
+            const pairs = new Map();
+            for (const a1 of items) {
+                for (const a2 of items) {
+                    const [k1, k2] = [getKey(a1), getKey(a2)];
+                    if (k1 !== k2) pairs.set(`${k1}_${k2}`, [a1, a2]);
+                }
+            }
+            return Array.from(pairs.values());
+        };
+
+    }, {}],
+    300: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -24239,7 +25902,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    286: [function(require, module, exports) {
+    301: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -24278,22 +25941,22 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    287: [function(require, module, exports) {
+    302: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.isNumberUnitOrUndefined = exports.isNumberUnit = undefined;
-        var _aureus = require(192);
+        var _aureus = require(203);
         const isNumberUnit = exports.isNumberUnit = (props, propName) => (0, _aureus.isNumberUnit)(props[propName]) ? null : new Error(`${propName} must be a NumberUnit.`);
         const isNumberUnitOrUndefined = exports.isNumberUnitOrUndefined = (props, propName) => {
             return (0, _aureus.isNumberUnit)(props[propName]) ? null : typeof props[propName] === 'undefined' ? null : new Error(`${propName} must be a NumberUnit or undefined.`);
         };
 
     }, {
-        "192": 192
+        "203": 203
     }],
-    288: [function(require, module, exports) {
+    303: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -24301,7 +25964,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = createAction;
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _util = require(264);
+        var _util = require(278);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -24377,10 +26040,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "264": 264,
+        "278": 278,
         "undefined": undefined
     }],
-    289: [function(require, module, exports) {
+    304: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -24415,7 +26078,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {}],
-    290: [function(require, module, exports) {
+    305: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -24537,8 +26200,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _makeConcurrent2 = _interopRequireDefault(_makeConcurrent);
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _tx = require(294);
-        var _assets = require(184);
+        var _tx = require(309);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
         var _fetchival = require('fetchival');
         var _fetchival2 = _interopRequireDefault(_fetchival);
@@ -24607,11 +26270,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         });
 
     }, {
-        "184": 184,
-        "294": 294,
+        "194": 194,
+        "309": 309,
         "undefined": undefined
     }],
-    291: [function(require, module, exports) {
+    306: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -24619,7 +26282,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.derive = derive;
         var _rippleAddressCodec = require('ripple-address-codec');
         var _rippleAddressCodec2 = _interopRequireDefault(_rippleAddressCodec);
-        var _crypto = require(292);
+        var _crypto = require(307);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -24632,10 +26295,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "292": 292,
+        "307": 307,
         "undefined": undefined
     }],
-    292: [function(require, module, exports) {
+    307: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -24670,7 +26333,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    293: [function(require, module, exports) {
+    308: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -24683,7 +26346,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _elliptic2 = _interopRequireDefault(_elliptic);
         var _bn = require('bn.js');
         var _bn2 = _interopRequireDefault(_bn);
-        var _crypto = require(292);
+        var _crypto = require(307);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -24749,10 +26412,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "292": 292,
+        "307": 307,
         "undefined": undefined
     }],
-    294: [function(require, module, exports) {
+    309: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -24763,7 +26426,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _bn2 = _interopRequireDefault(_bn);
         var _rippleAddressCodec = require('ripple-address-codec');
         var _rippleAddressCodec2 = _interopRequireDefault(_rippleAddressCodec);
-        var _crypto = require(292);
+        var _crypto = require(307);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -24826,10 +26489,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "292": 292,
+        "307": 307,
         "undefined": undefined
     }],
-    295: [function(require, module, exports) {
+    310: [function(require, module, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -24841,7 +26504,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {}],
-    296: [function(require, module, exports) {
+    311: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -24850,19 +26513,19 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         const name = exports.name = 'assets';
 
     }, {}],
-    297: [function(require, module, exports) {
+    312: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _appConfig = require(80);
-        var _assets = require(296);
+        var _appConfig = require(84);
+        var _assets = require(311);
         var assets = _interopRequireWildcard(_assets);
-        var _localization = require(298);
+        var _localization = require(313);
         var localization = _interopRequireWildcard(_localization);
-        var _skins = require(300);
+        var _skins = require(315);
         var skins = _interopRequireWildcard(_skins);
-        var _security = require(299);
+        var _security = require(314);
         var security = _interopRequireWildcard(_security);
 
         function _interopRequireWildcard(obj) {
@@ -24888,13 +26551,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = settings;
 
     }, {
-        "296": 296,
-        "298": 298,
-        "299": 299,
-        "300": 300,
-        "80": 80
+        "311": 311,
+        "313": 313,
+        "314": 314,
+        "315": 315,
+        "84": 84
     }],
-    298: [function(require, module, exports) {
+    313: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -24903,7 +26566,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         const name = exports.name = 'localization';
 
     }, {}],
-    299: [function(require, module, exports) {
+    314: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -24912,7 +26575,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         const name = exports.name = 'security';
 
     }, {}],
-    300: [function(require, module, exports) {
+    315: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -24921,7 +26584,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         const name = exports.name = 'skins';
 
     }, {}],
-    301: [function(require, module, exports) {
+    316: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -24958,14 +26621,14 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    302: [function(require, module, exports) {
+    317: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _shapeshift2 = require('shapeshift.io');
         var _shapeshift3 = _interopRequireDefault(_shapeshift2);
-        var _http = require(301);
+        var _http = require(316);
         var _http2 = _interopRequireDefault(_http);
 
         function _interopRequireDefault(obj) {
@@ -24985,16 +26648,16 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = shapeshift;
 
     }, {
-        "301": 301,
+        "316": 316,
         "undefined": undefined
     }],
-    303: [function(require, module, exports) {
+    318: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.stateTransitions = exports.actions = undefined;
-        var _steps = require(117);
+        var _steps = require(122);
         var _steps2 = _interopRequireDefault(_steps);
 
         function _interopRequireDefault(obj) {
@@ -25011,9 +26674,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         ];
 
     }, {
-        "117": 117
+        "122": 122
     }],
-    304: [function(require, module, exports) {
+    319: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25026,7 +26689,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {}],
-    305: [function(require, module, exports) {
+    320: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25035,7 +26698,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.getAudioPaths = getAudioPaths;
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
-        var _audio = require(304);
+        var _audio = require(319);
         var _audio2 = _interopRequireDefault(_audio);
 
         function _interopRequireDefault(obj) {
@@ -25064,10 +26727,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "304": 304,
+        "319": 319,
         "undefined": undefined
     }],
-    306: [function(require, module, exports) {
+    321: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25150,7 +26813,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    307: [function(require, module, exports) {
+    322: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25165,9 +26828,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 publicKeys: (0, _publicKeys2.default)(publicKeyEncode)
             };
         };
-        var _pairingData = require(308);
+        var _pairingData = require(323);
         var pairingData = _interopRequireWildcard(_pairingData);
-        var _publicKeys = require(309);
+        var _publicKeys = require(324);
         var _publicKeys2 = _interopRequireDefault(_publicKeys);
 
         function _interopRequireDefault(obj) {
@@ -25192,10 +26855,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "308": 308,
-        "309": 309
+        "323": 323,
+        "324": 324
     }],
-    308: [function(require, module, exports) {
+    323: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25256,7 +26919,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    309: [function(require, module, exports) {
+    324: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25295,12 +26958,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    310: [function(require, module, exports) {
+    325: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _alice = require(307);
+        var _alice = require(322);
         Object.defineProperty(exports, 'alice', {
             enumerable: true,
             get: function() {
@@ -25315,9 +26978,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "307": 307
+        "322": 322
     }],
-    311: [function(require, module, exports) {
+    326: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25333,9 +26996,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 publicKeys: (0, _publicKeys2.default)(network)
             };
         };
-        var _pairingData = require(312);
+        var _pairingData = require(327);
         var pairingData = _interopRequireWildcard(_pairingData);
-        var _publicKeys = require(313);
+        var _publicKeys = require(328);
         var _publicKeys2 = _interopRequireDefault(_publicKeys);
 
         function _interopRequireDefault(obj) {
@@ -25360,10 +27023,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "312": 312,
-        "313": 313
+        "327": 327,
+        "328": 328
     }],
-    312: [function(require, module, exports) {
+    327: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25427,7 +27090,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    313: [function(require, module, exports) {
+    328: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25465,13 +27128,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    314: [function(require, module, exports) {
-        arguments[4][310][0].apply(exports, arguments)
+    329: [function(require, module, exports) {
+        arguments[4][325][0].apply(exports, arguments)
     }, {
-        "310": 310,
-        "311": 311
+        "325": 325,
+        "326": 326
     }],
-    315: [function(require, module, exports) {
+    330: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25479,7 +27142,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.isECDSAThreshold = isECDSAThreshold;
         var _lodash = require('lodash');
         var _lodash2 = _interopRequireDefault(_lodash);
-        var _withTokens = require(316);
+        var _withTokens = require(331);
         var _withTokens2 = _interopRequireDefault(_withTokens);
 
         function _interopRequireDefault(obj) {
@@ -25493,15 +27156,15 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "316": 316,
+        "331": 331,
         "undefined": undefined
     }],
-    316: [function(require, module, exports) {
+    331: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -25523,14 +27186,14 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = filtered;
 
     }, {
-        "184": 184
+        "194": 194
     }],
-    317: [function(require, module, exports) {
+    332: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _withTokens = require(316);
+        var _withTokens = require(331);
         var _withTokens2 = _interopRequireDefault(_withTokens);
 
         function _interopRequireDefault(obj) {
@@ -25547,9 +27210,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = filtered;
 
     }, {
-        "316": 316
+        "331": 331
     }],
-    318: [function(require, module, exports) {
+    333: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25572,7 +27235,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _delay2 = _interopRequireDefault(_delay);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _twoOfTwo = require(67);
+        var _twoOfTwo = require(71);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -25624,20 +27287,20 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "67": 67,
+        "71": 71,
         "undefined": undefined
     }],
-    319: [function(require, module, exports) {
+    334: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.QR = exports.pairingData = exports.connection = undefined;
-        var _connection = require(318);
+        var _connection = require(333);
         var connection = _interopRequireWildcard(_connection);
-        var _pairingData = require(320);
+        var _pairingData = require(335);
         var pairingData = _interopRequireWildcard(_pairingData);
-        var _qr = require(322);
+        var _qr = require(337);
         var QR = _interopRequireWildcard(_qr);
 
         function _interopRequireWildcard(obj) {
@@ -25659,11 +27322,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.QR = QR;
 
     }, {
-        "318": 318,
-        "320": 320,
-        "322": 322
+        "333": 333,
+        "335": 335,
+        "337": 337
     }],
-    320: [function(require, module, exports) {
+    335: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25728,14 +27391,14 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             };
         })();
         exports.validate = validate;
-        var _withoutTokens = require(317);
+        var _withoutTokens = require(332);
         var _withoutTokens2 = _interopRequireDefault(_withoutTokens);
-        var _typeCheckers = require(315);
+        var _typeCheckers = require(330);
         var _hdkey = require('hdkey');
         var _hdkey2 = _interopRequireDefault(_hdkey);
-        var _instanceShim = require(167);
+        var _instanceShim = require(174);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _keys = require(168);
+        var _keys = require(175);
         var walletKeys = _interopRequireWildcard(_keys);
 
         function _interopRequireWildcard(obj) {
@@ -25800,13 +27463,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "167": 167,
-        "168": 168,
-        "315": 315,
-        "317": 317,
+        "174": 174,
+        "175": 175,
+        "330": 330,
+        "332": 332,
         "undefined": undefined
     }],
-    321: [function(require, module, exports) {
+    336: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25835,7 +27498,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    322: [function(require, module, exports) {
+    337: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25844,8 +27507,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.parse = parse;
         var _crypto = require('crypto');
         var _crypto2 = _interopRequireDefault(_crypto);
-        var _connection = require(318);
-        var _checksum = require(321);
+        var _connection = require(333);
+        var _checksum = require(336);
         var checksum = _interopRequireWildcard(_checksum);
 
         function _interopRequireWildcard(obj) {
@@ -25901,11 +27564,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "318": 318,
-        "321": 321,
+        "333": 333,
+        "336": 336,
         "undefined": undefined
     }],
-    323: [function(require, module, exports) {
+    338: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25920,9 +27583,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _propTypes2 = _interopRequireDefault(_propTypes);
         var _reactSelect = require('react-select');
         var _reactSelect2 = _interopRequireDefault(_reactSelect);
-        var _value = require(325);
+        var _value = require(340);
         var _value2 = _interopRequireDefault(_value);
-        var _option = require(324);
+        var _option = require(339);
         var _option2 = _interopRequireDefault(_option);
 
         function _interopRequireDefault(obj) {
@@ -25999,11 +27662,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         const optionFromName = (name, options) => options.find(option => option.name === name);
 
     }, {
-        "324": 324,
-        "325": 325,
+        "339": 339,
+        "340": 340,
         "undefined": undefined
     }],
-    324: [function(require, module, exports) {
+    339: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26081,7 +27744,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    325: [function(require, module, exports) {
+    340: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26137,7 +27800,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    326: [function(require, module, exports) {
+    341: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26207,7 +27870,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    327: [function(require, module, exports) {
+    342: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26284,7 +27947,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    328: [function(require, module, exports) {
+    343: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26336,7 +27999,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    329: [function(require, module, exports) {
+    344: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26600,7 +28263,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    330: [function(require, module, exports) {
+    345: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26613,10 +28276,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _reactUtils = require(287);
-        var _units = require(210);
+        var _reactUtils = require(302);
+        var _units = require(221);
         var _units2 = _interopRequireDefault(_units);
-        var _currencyFormatters = require(211);
+        var _currencyFormatters = require(222);
         var _countup = require('countup.js');
         var _countup2 = _interopRequireDefault(_countup);
 
@@ -26695,12 +28358,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = CounterCurrencyText;
 
     }, {
-        "210": 210,
-        "211": 211,
-        "287": 287,
+        "221": 221,
+        "222": 222,
+        "302": 302,
         "undefined": undefined
     }],
-    331: [function(require, module, exports) {
+    346: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26817,7 +28480,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    332: [function(require, module, exports) {
+    347: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26878,61 +28541,61 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    333: [function(require, module, exports) {
+    348: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _accountSelect = require(323);
+        var _accountSelect = require(338);
         Object.defineProperty(exports, 'AccountSelect', {
             enumerable: true,
             get: function() {
                 return _interopRequireDefault(_accountSelect).default;
             }
         });
-        var _addressInput = require(326);
+        var _addressInput = require(341);
         Object.defineProperty(exports, 'AddressInput', {
             enumerable: true,
             get: function() {
                 return _interopRequireDefault(_addressInput).default;
             }
         });
-        var _currencyInput = require(331);
+        var _currencyInput = require(346);
         Object.defineProperty(exports, 'CurrencyInput', {
             enumerable: true,
             get: function() {
                 return _interopRequireDefault(_currencyInput).default;
             }
         });
-        var _dateTime = require(332);
+        var _dateTime = require(347);
         Object.defineProperty(exports, 'DateTime', {
             enumerable: true,
             get: function() {
                 return _interopRequireDefault(_dateTime).default;
             }
         });
-        var _nuCurrencyText = require(334);
+        var _nuCurrencyText = require(349);
         Object.defineProperty(exports, 'NUCurrencyText', {
             enumerable: true,
             get: function() {
                 return _interopRequireDefault(_nuCurrencyText).default;
             }
         });
-        var _percentageText = require(335);
+        var _percentageText = require(350);
         Object.defineProperty(exports, 'PercentageText', {
             enumerable: true,
             get: function() {
                 return _interopRequireDefault(_percentageText).default;
             }
         });
-        var _counterCurrencyText = require(330);
+        var _counterCurrencyText = require(345);
         Object.defineProperty(exports, 'CounterCurrencyText', {
             enumerable: true,
             get: function() {
                 return _interopRequireDefault(_counterCurrencyText).default;
             }
         });
-        var _collectionView = require(329);
+        var _collectionView = require(344);
         Object.defineProperty(exports, 'CollectionView', {
             enumerable: true,
             get: function() {
@@ -26947,16 +28610,16 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "323": 323,
-        "326": 326,
-        "329": 329,
-        "330": 330,
-        "331": 331,
-        "332": 332,
-        "334": 334,
-        "335": 335
+        "338": 338,
+        "341": 341,
+        "344": 344,
+        "345": 345,
+        "346": 346,
+        "347": 347,
+        "349": 349,
+        "350": 350
     }],
-    334: [function(require, module, exports) {
+    349: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26979,10 +28642,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _reactUtils = require(287);
-        var _units = require(210);
+        var _reactUtils = require(302);
+        var _units = require(221);
         var _units2 = _interopRequireDefault(_units);
-        var _currencyFormatters = require(211);
+        var _currencyFormatters = require(222);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -27056,12 +28719,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {
-        "210": 210,
-        "211": 211,
-        "287": 287,
+        "221": 221,
+        "222": 222,
+        "302": 302,
         "undefined": undefined
     }],
-    335: [function(require, module, exports) {
+    350: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -27128,7 +28791,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    336: [function(require, module, exports) {
+    351: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -27147,7 +28810,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    337: [function(require, module, exports) {
+    352: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -27162,21 +28825,21 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {}],
-    338: [function(require, module, exports) {
+    353: [function(require, module, exports) {
         'use strict';
         hookNodePath();
-        require(4);
+        require(5);
         require('core-js/fn/symbol');
         require('babel' + '-register')({
-            resolveModuleSource: require(339).resolve,
-            only: ['src/app/', 'scripts/', 'tasks/'],
+            resolveModuleSource: require(354).resolve,
+            only: ['./config.js', 'src/app/', 'scripts/', 'tasks/'],
             extensions: ['.js'],
             sourceMaps: 'both'
         });
         (function() {
             const {
                 ENV_PROD
-            } = require(341);
+            } = require(1);
             if (ENV_PROD) return;
             let skip = false;
             if (require('is-electron-renderer')) skip = true;
@@ -27204,12 +28867,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "339": 339,
-        "341": 341,
-        "4": 4,
+        "1": 1,
+        "354": 354,
+        "5": 5,
         "undefined": undefined
     }],
-    339: [function(require, module, exports) {
+    354: [function(require, module, exports) {
         'use strict';
         var babelResolve = require('babel-resolve');
         var resolver = babelResolve.create('#', './src/app/_local_modules');
@@ -27218,13 +28881,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    340: [function(require, module, exports) {
+    355: [function(require, module, exports) {
         'use strict';
         if ("production" === 'production') {
-            require(4);
+            require(5);
             require('core-js/fn/symbol');
         } else if ("production" === 'development') {
-            require(338);
+            require(353);
         } else {
             const {
                 app,
@@ -27235,87 +28898,31 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "338": 338,
-        "4": 4,
+        "353": 353,
+        "5": 5,
         "undefined": undefined
     }],
-    341: [function(require, module, exports) {
-        'use strict';
-        Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        exports.NEW_VERSION_DATE = exports.AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_DELAY_INIT = exports.WINDOW_PASSPHRASE_PRELOAD = exports.WINDOW_WALLET = exports.WINDOW_PASSPHRASE = exports.WINDOW_NETWORK = exports.WINDOW_MNEMONIC = exports.WINDOW_MAIN = exports.EXODUS_SERVER = exports.EXODUS_STAGING_SERVER = exports.EXODUS_PRODUCTION_SERVER = exports.EXODUS_TESTING_SERVER = exports.EXODUS_LOCAL_SERVER = exports.COMPANY = exports.PACKAGE = exports.BITCOIN_FEE_LIMIT = exports.DUST_VALUES = exports.ENV_BUILD_EDEN = exports.ENV_BUILD_EXODUS = exports.ENV_BUILD_NAME = exports.ENV_PROD = exports.ENV_DEV = undefined;
-        var _path = require('path');
-        var _path2 = _interopRequireDefault(_path);
-        var _ms = require('ms');
-        var _ms2 = _interopRequireDefault(_ms);
-        var _package = require(409);
-        var _package2 = _interopRequireDefault(_package);
-
-        function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : {
-                default: obj
-            };
-        }
-        const ENV_DEV = exports.ENV_DEV = "production" === 'development';
-        const ENV_PROD = exports.ENV_PROD = "production" === 'production';
-        const ENV_BUILD_NAME = exports.ENV_BUILD_NAME = "eden" || '';
-        const ENV_BUILD_EXODUS = exports.ENV_BUILD_EXODUS = ENV_BUILD_NAME === '';
-        const ENV_BUILD_EDEN = exports.ENV_BUILD_EDEN = ENV_BUILD_NAME === 'eden';
-        const DUST_VALUES = exports.DUST_VALUES = {
-            bitcoin: Math.max(6000, 148 * 125),
-            bcash: 6000,
-            litecoin: 60000,
-            dash: 5500,
-            decred: 70000,
-            zcash: 1500
-        };
-        const BITCOIN_FEE_LIMIT = exports.BITCOIN_FEE_LIMIT = 0.2;
-        const PACKAGE = exports.PACKAGE = _package2.default;
-        const COMPANY = exports.COMPANY = 'Exodus Movement, Inc.';
-        const EXODUS_LOCAL_SERVER = exports.EXODUS_LOCAL_SERVER = 'http://localhost:3020';
-        const EXODUS_TESTING_SERVER = exports.EXODUS_TESTING_SERVER = 'https://exodus-server-testing.azurewebsites.net';
-        const EXODUS_PRODUCTION_SERVER = exports.EXODUS_PRODUCTION_SERVER = 'https://exodus-server.azurewebsites.net';
-        const EXODUS_STAGING_SERVER = exports.EXODUS_STAGING_SERVER = 'https://exodus-server-staging2.azurewebsites.net';
-        const EXODUS_SERVER = exports.EXODUS_SERVER = EXODUS_PRODUCTION_SERVER;
-        const htmlPath = file => ENV_PROD ? _path2.default.join(__dirname, '..', '..', '..', 'static', file) : _path2.default.join(__dirname, '..', '..', 'static', file) + '?react_perf';
-        const WINDOW_MAIN = exports.WINDOW_MAIN = 'file://' + htmlPath('index.html');
-        const WINDOW_MNEMONIC = exports.WINDOW_MNEMONIC = 'file://' + htmlPath('mnemonic.html');
-        const WINDOW_NETWORK = exports.WINDOW_NETWORK = 'file://' + htmlPath('network.html');
-        const WINDOW_PASSPHRASE = exports.WINDOW_PASSPHRASE = 'file://' + htmlPath('passphrase.html');
-        const WINDOW_WALLET = exports.WINDOW_WALLET = 'file://' + htmlPath('wallet.html');
-        const preloadPath = proc => ENV_PROD ? _path2.default.join(__dirname, '..', proc, 'preload.js') : _path2.default.join(__dirname, proc, 'preload.js');
-        const WINDOW_PASSPHRASE_PRELOAD = exports.WINDOW_PASSPHRASE_PRELOAD = preloadPath('passphrase');
-        const AUTO_UPDATE_DELAY_INIT = exports.AUTO_UPDATE_DELAY_INIT = 10000;
-        const AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_BASE_URL = 'https://exodusbin.azureedge.net';
-        const timeMs = (parseInt(1513920442129) || Date.now()) + (4 * (0, _ms2.default)('168h') + (0, _ms2.default)('82h'));
-        const NEW_VERSION_DATE = exports.NEW_VERSION_DATE = new Date(timeMs);
-
-    }, {
-        "409": 409,
-        "undefined": undefined
-    }],
-    342: [function(require, module, exports) {
+    356: [function(require, module, exports) {
         'use strict';
         console.time('renderer-main-window');
         const start = new Date();
-        require(340);
+        require(355);
         const {
             remote
         } = require('electron');
-        require(192).strict = true;
-        require(363).renderApp();
+        require(203).strict = true;
+        require(377).renderApp();
         document.addEventListener('DOMContentLoaded', () => {
             console.log('EXOWIN-DCL: ' + (new Date() - start));
             window.requestAnimationFrame(bootstrap);
         });
 
         function bootstrap() {
-            require(344).bootstrapWallet().then(() => {
+            require(358).bootstrapWallet().then(() => {
                 require('electron').webFrame.setZoomLevelLimits(1, 1);
-                require(364);
+                require(378);
             }).catch(err => {
-                const swal = require(306).default;
+                const swal = require(321).default;
                 console.error(err);
                 setTimeout(() => {
                     if (err && err.message && err.message.includes('authenticate data')) {
@@ -27339,25 +28946,25 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "192": 192,
-        "306": 306,
-        "340": 340,
-        "344": 344,
-        "363": 363,
-        "364": 364,
+        "203": 203,
+        "321": 321,
+        "355": 355,
+        "358": 358,
+        "377": 377,
+        "378": 378,
         "undefined": undefined
     }],
-    343: [function(require, module, exports) {
+    357: [function(require, module, exports) {
         'use strict';
-        var _babel = require(1);
+        var _babel = require(2);
         var _babel2 = _interopRequireDefault(_babel);
-        var _flux = require(257);
+        var _flux = require(271);
         var flux = _interopRequireWildcard(_flux);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _swal = require(306);
+        var _swal = require(321);
         var _swal2 = _interopRequireDefault(_swal);
-        var _exodus = require(250);
+        var _exodus = require(264);
         var _exodus2 = _interopRequireDefault(_exodus);
 
         function _interopRequireWildcard(obj) {
@@ -27391,30 +28998,30 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {
-        "1": 1,
-        "184": 184,
-        "250": 250,
-        "257": 257,
-        "306": 306
+        "194": 194,
+        "2": 2,
+        "264": 264,
+        "271": 271,
+        "321": 321
     }],
-    344: [function(require, module, exports) {
+    358: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.bootstrapWallet = undefined;
-        var _instanceShim = require(167);
+        var _instanceShim = require(174);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _walletShim = require(171);
-        var _logger = require(269);
+        var _walletShim = require(178);
+        var _logger = require(283);
         var _logger2 = _interopRequireDefault(_logger);
         var _electron = require('electron');
-        var _backupAuth = require(198);
+        var _backupAuth = require(209);
         var _backupAuth2 = _interopRequireDefault(_backupAuth);
-        var _client = require(217);
-        var _swal = require(306);
+        var _client = require(228);
+        var _swal = require(321);
         var _swal2 = _interopRequireDefault(_swal);
-        var _flux = require(257);
+        var _flux = require(271);
         var _reduxWatch = require('redux-watch');
         var _reduxWatch2 = _interopRequireDefault(_reduxWatch);
         var _minimist = require('minimist');
@@ -27479,7 +29086,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                             });
                         }
                         console.log('wallet loaded and set');
-                        yield require(345).run();
+                        yield require(359).run();
                         _electron.ipcRenderer.on('wallet:refreshAll', function() {
                             return refreshAll();
                         });
@@ -27553,17 +29160,17 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "167": 167,
-        "171": 171,
-        "198": 198,
-        "217": 217,
-        "257": 257,
-        "269": 269,
-        "306": 306,
-        "345": 345,
+        "174": 174,
+        "178": 178,
+        "209": 209,
+        "228": 228,
+        "271": 271,
+        "283": 283,
+        "321": 321,
+        "359": 359,
         "undefined": undefined
     }],
-    345: [function(require, module, exports) {
+    359: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -27597,9 +29204,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     });
                 }
                 _flux.actions.exchange.checkShapeShiftMaintenance();
-                _flux.actions.exchange.checkCoinsOnline();
+                _flux.actions.exchange.checkAssetsOnline();
                 setInterval(function() {
-                    return _flux.actions.exchange.checkCoinsOnline();
+                    return _flux.actions.exchange.checkAssetsOnline();
                 }, 60 * 1000);
                 _flux.actions.exchange.startMonitorMarket();
                 const stopWatching = _flux.store.subscribe((0, _reduxWatch2.default)(_flux.store.getState, 'accounts')(function(accounts) {
@@ -27621,7 +29228,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     setTimeout(function() {
                         _flux.actions.orders.load();
                         window.requestIdleCallback(function() {
-                            return _flux.actions.monitors.orders.start();
+                            _flux.actions.monitors.orders.shapeshift.start();
+                            _flux.actions.monitors.orders.evercoin.start();
                         }, {
                             timeout: (0, _ms2.default)('5s')
                         });
@@ -27646,7 +29254,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     if (coin.available && _flux.actions.accountStates[coin.name]) _flux.actions.accountStates[coin.name].load();
                 }
                 window.requestIdleCallback(function() {
-                    require(343);
+                    require(357);
                 }, {
                     timeout: 25000
                 });
@@ -27656,10 +29264,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 return _ref.apply(this, arguments);
             };
         })();
-        var _flux = require(257);
+        var _flux = require(271);
         var _electronIpcBroadcast = require('electron-ipc-broadcast');
         var _electronIpcBroadcast2 = _interopRequireDefault(_electronIpcBroadcast);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
         var _reduxWatch = require('redux-watch');
         var _reduxWatch2 = _interopRequireDefault(_reduxWatch);
@@ -27667,7 +29275,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _ms2 = _interopRequireDefault(_ms);
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _logger = require(269);
+        var _logger = require(283);
         var _logger2 = _interopRequireDefault(_logger);
 
         function _interopRequireWildcard(obj) {
@@ -27720,13 +29328,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         const logger = (0, _logger2.default)('startup:run');
 
     }, {
-        "184": 184,
-        "257": 257,
-        "269": 269,
-        "343": 343,
+        "194": 194,
+        "271": 271,
+        "283": 283,
+        "357": 357,
         "undefined": undefined
     }],
-    346: [function(require, module, exports) {
+    360: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -27734,8 +29342,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _reactRedux = require('react-redux');
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
-        var _flux = require(257);
-        var _exodusWindow = require(360);
+        var _flux = require(271);
+        var _exodusWindow = require(374);
         var _exodusWindow2 = _interopRequireDefault(_exodusWindow);
 
         function _interopRequireDefault(obj) {
@@ -27753,11 +29361,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = App;
 
     }, {
-        "257": 257,
-        "360": 360,
+        "271": 271,
+        "374": 374,
         "undefined": undefined
     }],
-    347: [function(require, module, exports) {
+    361: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -27772,24 +29380,24 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _classnames = require('classnames');
         var _classnames2 = _interopRequireDefault(_classnames);
         var _lodash = require('lodash');
-        var _hasFunds = require(125);
+        var _hasFunds = require(130);
         var _hasFunds2 = _interopRequireDefault(_hasFunds);
-        var _loaded = require(98);
+        var _loaded = require(102);
         var _loaded2 = _interopRequireDefault(_loaded);
-        var _instanceShim = require(167);
+        var _instanceShim = require(174);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _mnemonic = require(348);
+        var _mnemonic = require(362);
         var _mnemonic2 = _interopRequireDefault(_mnemonic);
-        var _flux = require(257);
-        var _ui = require(333);
-        var _swal = require(306);
+        var _flux = require(271);
+        var _ui = require(348);
+        var _swal = require(321);
         var _swal2 = _interopRequireDefault(_swal);
         var _delay = require('delay');
         var _delay2 = _interopRequireDefault(_delay);
         var _moment = require('moment');
         var _moment2 = _interopRequireDefault(_moment);
-        var _electronExit = require(216);
-        var _client = require(217);
+        var _electronExit = require(227);
+        var _client = require(228);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -28337,18 +29945,18 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         });
 
     }, {
-        "125": 125,
-        "167": 167,
-        "216": 216,
-        "217": 217,
-        "257": 257,
-        "306": 306,
-        "333": 333,
+        "102": 102,
+        "130": 130,
+        "174": 174,
+        "227": 227,
+        "228": 228,
+        "271": 271,
+        "321": 321,
         "348": 348,
-        "98": 98,
+        "362": 362,
         "undefined": undefined
     }],
-    348: [function(require, module, exports) {
+    362: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -28356,7 +29964,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = undefined;
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
-        var _instanceShim = require(167);
+        var _instanceShim = require(174);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
 
         function _interopRequireDefault(obj) {
@@ -28425,19 +30033,19 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = Mnemonic;
 
     }, {
-        "167": 167,
+        "174": 174,
         "undefined": undefined
     }],
-    349: [function(require, module, exports) {
+    363: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
-        var _ui = require(333);
+        var _ui = require(348);
         var _reactRedux = require('react-redux');
-        var _getValue = require(121);
+        var _getValue = require(126);
         var _getValue2 = _interopRequireDefault(_getValue);
 
         function _interopRequireDefault(obj) {
@@ -28514,31 +30122,31 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "121": 121,
-        "333": 333,
+        "126": 126,
+        "348": 348,
         "undefined": undefined
     }],
-    350: [function(require, module, exports) {
+    364: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.default = undefined;
         var _dec, _class, _class2, _temp;
-        var _ui = require(333);
+        var _ui = require(348);
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _reactUtils = require(287);
-        var _conversions = require(119);
+        var _reactUtils = require(302);
+        var _conversions = require(124);
         var _conversions2 = _interopRequireDefault(_conversions);
-        var _fiat = require(104);
+        var _fiat = require(109);
         var _fiat2 = _interopRequireDefault(_fiat);
-        var _getValue = require(121);
+        var _getValue = require(126);
         var _getValue2 = _interopRequireDefault(_getValue);
         var _reactRedux = require('react-redux');
-        var _currencyFormatters = require(211);
+        var _currencyFormatters = require(222);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -28755,15 +30363,15 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "104": 104,
-        "119": 119,
-        "121": 121,
-        "211": 211,
-        "287": 287,
-        "333": 333,
+        "109": 109,
+        "124": 124,
+        "126": 126,
+        "222": 222,
+        "302": 302,
+        "348": 348,
         "undefined": undefined
     }],
-    351: [function(require, module, exports) {
+    365: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -28777,16 +30385,16 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _classnames = require('classnames');
         var _classnames2 = _interopRequireDefault(_classnames);
         var _reactRedux = require('react-redux');
-        var _minimums = require(116);
+        var _minimums = require(121);
         var _minimums2 = _interopRequireDefault(_minimums);
-        var _maximums = require(115);
+        var _maximums = require(120);
         var _maximums2 = _interopRequireDefault(_maximums);
-        var _coinAvailableAmounts = require(101);
+        var _coinAvailableAmounts = require(106);
         var _coinAvailableAmounts2 = _interopRequireDefault(_coinAvailableAmounts);
-        var _reactUtils = require(287);
-        var _assets = require(184);
+        var _reactUtils = require(302);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _currencyFormatters = require(211);
+        var _currencyFormatters = require(222);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -28881,15 +30489,15 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = ErrorMessage;
 
     }, {
-        "101": 101,
-        "115": 115,
-        "116": 116,
-        "184": 184,
-        "211": 211,
-        "287": 287,
+        "106": 106,
+        "120": 120,
+        "121": 121,
+        "194": 194,
+        "222": 222,
+        "302": 302,
         "undefined": undefined
     }],
-    352: [function(require, module, exports) {
+    366: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -28928,7 +30536,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    353: [function(require, module, exports) {
+    367: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -28946,31 +30554,30 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             return target;
         };
         var _dec, _class, _class2, _temp, _class3, _temp2;
-        exports.openBlockExplorerTxId = openBlockExplorerTxId;
-        exports.openShapeShiftOrderId = openShapeShiftOrderId;
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
         var _reactRedux = require('react-redux');
         var _electron = require('electron');
-        var _assets = require(184);
-        var _assets2 = _interopRequireDefault(_assets);
-        var _orderTxs = require(136);
+        var _orderTxs = require(142);
         var _orderTxs2 = _interopRequireDefault(_orderTxs);
-        var _haveLoaded = require(135);
+        var _haveLoaded = require(141);
         var _haveLoaded2 = _interopRequireDefault(_haveLoaded);
+        var _blockExplorer = require(105);
+        var _blockExplorer2 = _interopRequireDefault(_blockExplorer);
         var _moment = require('moment');
         var _moment2 = _interopRequireDefault(_moment);
-        var _nuCurrencyText = require(334);
+        var _nuCurrencyText = require(349);
         var _nuCurrencyText2 = _interopRequireDefault(_nuCurrencyText);
         var _classnames = require('classnames');
         var _classnames2 = _interopRequireDefault(_classnames);
-        var _appConfig = require(80);
+        var _appConfig = require(84);
         var _os = require('os');
         var _os2 = _interopRequireDefault(_os);
         var _bytes = require('bytes');
         var _bytes2 = _interopRequireDefault(_bytes);
+        var _exchange = require(240);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -28994,19 +30601,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         })[es];
         const exodusStatusToText = es => ({
             inprogress: 'Exchange in progress...',
-            failed: 'Error: Contact Exodus',
+            failed: _appConfig.ENV_BUILD_EDEN ? '' : 'Error: Contact Exodus',
             success: 'Complete'
         })[es];
         const gainToClassName = gain => !Number.isFinite(gain) ? '' : gain === 0 ? '' : gain < 0 ? 'down' : 'up';
-
-        function openBlockExplorerTxId(asset, txId) {
-            const a = typeof asset === 'string' ? _assets2.default[asset] : asset;
-            return () => _electron.shell.openExternal(a.blockExplorer.txUrl(txId));
-        }
-
-        function openShapeShiftOrderId(orderId) {
-            return () => _electron.shell.openExternal(`https://shapeshift.io/#/status/${orderId}`);
-        }
 
         function openMailClient(order, fromAsset, toAsset) {
             const exoVersion = _appConfig.PACKAGE.version;
@@ -29028,7 +30626,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
         let ExchangeHistory = (_dec = (0, _reactRedux.connect)(state => ({
             orderTxs: (0, _orderTxs2.default)(state),
-            ordersLoaded: (0, _haveLoaded2.default)(state)
+            ordersLoaded: (0, _haveLoaded2.default)(state),
+            blockExplorer: (0, _blockExplorer2.default)(state)
         })), _dec(_class = (_temp = _class2 = class ExchangeHistory extends _react2.default.PureComponent {
             handleToggleDrawer() {
                 var element = document.getElementById('exch-drawer');
@@ -29037,7 +30636,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             render() {
                 const {
                     orderTxs,
-                    ordersLoaded
+                    ordersLoaded,
+                    blockExplorer
                 } = this.props;
                 return _react2.default.createElement('div', {
                     id: 'exch-drawer'
@@ -29063,7 +30663,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 }, 'Error loading exchange history') : orderTxs.size === 0 ? _react2.default.createElement('div', {
                     id: 'exch-loading'
                 }, 'No exchanges') : Array.from(orderTxs.values()).map(vals => _react2.default.createElement(ExchangeEntry, _extends({}, vals, {
-                    key: vals.order.orderId
+                    key: vals.order.orderId,
+                    blockExplorer: blockExplorer
                 })))));
             }
         }, _class2.propTypes = {
@@ -29155,8 +30756,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 toTx,
                 fromAmount,
                 toAmount,
-                gain
+                gain,
+                blockExplorer
             } = _ref4;
+
+            function openBlockExplorerTxId(asset, txId) {
+                return () => _electron.shell.openExternal(blockExplorer(asset).txUrl(txId));
+            }
             return _react2.default.createElement('div', {
                 className: 'exch-entry--body'
             }, _react2.default.createElement(BodyItem, {
@@ -29173,7 +30779,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             }, (0, _moment2.default)(order.date).format('dddd, MMM Do YYYY, h:mm:ss A')), _react2.default.createElement(BodyItem, {
                 className: 'body-item--order-id',
                 title: 'Order ID',
-                onClick: openShapeShiftOrderId(order.orderId)
+                onClick: () => (0, _exchange.openOrderId)(order)
             }, order.orderId), !_appConfig.ENV_BUILD_EDEN && _react2.default.createElement(BodyButton, {
                 content: 'Contact Exodus About This Exchange',
                 onClick: openMailClient(order, fromAsset, toAsset)
@@ -29213,14 +30819,15 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }, _temp2);
 
     }, {
-        "135": 135,
-        "136": 136,
-        "184": 184,
-        "334": 334,
-        "80": 80,
+        "105": 105,
+        "141": 141,
+        "142": 142,
+        "240": 240,
+        "349": 349,
+        "84": 84,
         "undefined": undefined
     }],
-    354: [function(require, module, exports) {
+    368: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -29235,47 +30842,47 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _electron = require('electron');
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _flux = require(257);
-        var _coinAvailableAmounts = require(101);
+        var _flux = require(271);
+        var _coinAvailableAmounts = require(106);
         var _coinAvailableAmounts2 = _interopRequireDefault(_coinAvailableAmounts);
-        var _coinTotalAmounts = require(102);
+        var _coinTotalAmounts = require(107);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
-        var _getPairOnline = require(109);
+        var _getPairOnline = require(114);
         var _getPairOnline2 = _interopRequireDefault(_getPairOnline);
-        var _marketInfoConversions = require(112);
+        var _marketInfoConversions = require(117);
         var _marketInfoConversions2 = _interopRequireDefault(_marketInfoConversions);
-        var _ethereumTokensEnoughFuel = require(108);
+        var _ethereumTokensEnoughFuel = require(113);
         var _ethereumTokensEnoughFuel2 = _interopRequireDefault(_ethereumTokensEnoughFuel);
-        var _getValue = require(121);
+        var _getValue = require(126);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _available = require(96);
+        var _available = require(100);
         var _available2 = _interopRequireDefault(_available);
-        var _btcDisabled = require(97);
+        var _btcDisabled = require(101);
         var _btcDisabled2 = _interopRequireDefault(_btcDisabled);
-        var _getRateString = require(110);
+        var _getRateString = require(115);
         var _getRateString2 = _interopRequireDefault(_getRateString);
-        var _ui = require(333);
-        var _currencyInputSwap = require(350);
+        var _ui = require(348);
+        var _currencyInputSwap = require(364);
         var _currencyInputSwap2 = _interopRequireDefault(_currencyInputSwap);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _selectOptionsReact = require(357);
+        var _selectOptionsReact = require(371);
         var _selectOptionsReact2 = _interopRequireDefault(_selectOptionsReact);
-        var _status = require(358);
+        var _status = require(372);
         var _status2 = _interopRequireDefault(_status);
-        var _errorMessage = require(351);
+        var _errorMessage = require(365);
         var _errorMessage2 = _interopRequireDefault(_errorMessage);
-        var _confirmationDetails = require(349);
+        var _confirmationDetails = require(363);
         var _confirmationDetails2 = _interopRequireDefault(_confirmationDetails);
-        var _swapArrow = require(359);
+        var _swapArrow = require(373);
         var _swapArrow2 = _interopRequireDefault(_swapArrow);
-        var _exchangeButton = require(352);
+        var _exchangeButton = require(366);
         var _exchangeButton2 = _interopRequireDefault(_exchangeButton);
-        var _rateDetails = require(356);
+        var _rateDetails = require(370);
         var _rateDetails2 = _interopRequireDefault(_rateDetails);
-        var _popoverButtons = require(355);
+        var _popoverButtons = require(369);
         var _popoverButtons2 = _interopRequireDefault(_popoverButtons);
-        var _exchangeHistory = require(353);
+        var _exchangeHistory = require(367);
         var _exchangeHistory2 = _interopRequireDefault(_exchangeHistory);
 
         function _interopRequireWildcard(obj) {
@@ -29314,8 +30921,6 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 super(props);
                 const [fromCoin, toCoin] = this._getAvailablePair();
                 this.state = {
-                    fromCoin,
-                    toCoin,
                     lastActive: 'from'
                 };
                 this.state.fromOptions = (0, _selectOptionsReact2.default)(this, 'left');
@@ -29339,17 +30944,32 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 this.handleClickExchange = this.handleClickExchange.bind(this);
             }
             _getAvailablePair() {
+                let defaultFrom = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'bitcoin';
+                let defaultTo = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'ethereum';
                 const assets = Object.keys(this.props.availableAssets);
                 if (assets.length < 2) return [];
-                const fromCoin = assets.includes('bitcoin') ? 'bitcoin' : assets[0];
+                const fromCoin = assets.includes(defaultFrom) ? defaultFrom : assets[0];
                 lodash.pull(assets, fromCoin);
-                const toCoin = assets.includes('ethereum') ? 'ethereum' : assets[0];
+                const toCoin = assets.includes(defaultTo) ? defaultTo : assets[0];
                 return [fromCoin, toCoin];
             }
             componentDidMount() {
                 _flux.actions.exchange.startMonitorMarket();
+                const {
+                    fromCoin: defaultFrom,
+                    toCoin: defaultTo
+                } = this.props.exchange.lastPair;
+                const [fromCoin, toCoin] = this._getAvailablePair(defaultFrom, defaultTo);
+                _flux.actions.exchange.setLastPair({
+                    fromCoin,
+                    toCoin
+                });
             }
             componentWillReceiveProps(nextProps) {
+                const {
+                    fromCoin,
+                    toCoin
+                } = this.props.exchange.lastPair;
                 this.setState({
                     fromOptions: (0, _selectOptionsReact2.default)(this, 'left'),
                     toOptions: (0, _selectOptionsReact2.default)(this, 'right')
@@ -29360,22 +30980,22 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                         availableAssets,
                         getPairOnline
                     } = this.props;
-                    if (!getPairOnline(this.state.fromCoin, this.state.toCoin)) {
-                        const otherAssets = lodash.without(Object.keys(availableAssets), this.state.fromCoin, this.state.toCoin);
+                    if (!getPairOnline(fromCoin, toCoin)) {
+                        const otherAssets = lodash.without(Object.keys(availableAssets), fromCoin, toCoin);
                         for (const toCoin of otherAssets) {
-                            if (getPairOnline(this.state.fromCoin, toCoin)) return this.setState({
+                            if (getPairOnline(fromCoin, toCoin)) return _flux.actions.exchange.setLastPair({
                                 toCoin
                             });
                         }
                         for (const fromCoin of otherAssets) {
-                            if (getPairOnline(fromCoin, this.state.toCoin)) return this.setState({
+                            if (getPairOnline(fromCoin, toCoin)) return _flux.actions.exchange.setLastPair({
                                 fromCoin
                             });
                         }
                         for (const fromCoin of Object.keys(availableAssets)) {
                             for (const toCoin of Object.keys(availableAssets)) {
                                 if (fromCoin === toCoin) continue;
-                                if (getPairOnline(fromCoin, toCoin)) return this.setState({
+                                if (getPairOnline(fromCoin, toCoin)) return _flux.actions.exchange.setLastPair({
                                     fromCoin,
                                     toCoin
                                 });
@@ -29408,32 +31028,38 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 });
             }
             handleChangeFrom(fromCoin) {
-                if (fromCoin === this.state.toCoin) {
+                if (fromCoin === this.props.exchange.lastPair.toCoin) {
                     this.handleClickSwap();
                 } else {
                     this.setState({
-                        fromCoin,
                         activePopover: ''
+                    });
+                    _flux.actions.exchange.setLastPair({
+                        fromCoin
                     });
                 }
             }
             handleChangeTo(toCoin) {
-                if (toCoin === this.state.fromCoin) {
+                if (toCoin === this.props.exchange.lastPair.fromCoin) {
                     this.handleClickSwap();
                 } else {
                     this.setState({
-                        toCoin,
                         activePopover: ''
+                    });
+                    _flux.actions.exchange.setLastPair({
+                        toCoin
                     });
                 }
             }
             handleChangeFromAmount(amt) {
                 let {
-                    fromCoin,
-                    toCoin,
                     toAmountEx,
                     lastActive
                 } = this.state;
+                let {
+                    fromCoin,
+                    toCoin
+                } = this.props.exchange.lastPair;
                 if (amt.unitType !== _assets2.default[fromCoin].currency) return;
                 if (lastActive === 'to') {
                     return window.requestAnimationFrame(() => this.handleChangeToAmount(toAmountEx));
@@ -29463,11 +31089,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             }
             handleChangeToAmount(amt) {
                 let {
-                    fromCoin,
-                    toCoin,
                     lastActive,
                     fromAmountEx
                 } = this.state;
+                let {
+                    fromCoin,
+                    toCoin
+                } = this.props.exchange.lastPair;
                 if (amt.unitType !== _assets2.default[toCoin].currency) return;
                 if (lastActive === 'from') {
                     return window.requestAnimationFrame(() => this.handleChangeFromAmount(fromAmountEx));
@@ -29496,22 +31124,34 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 }), 1000);
             }
             handleClickFinishAck() {
-                const [fromCoin, toCoin] = this._getAvailablePair();
+                const {
+                    fromCoin: defaultFrom,
+                    toCoin: defaultTo
+                } = this.props.exchange.lastPair;
+                const [fromCoin, toCoin] = this._getAvailablePair(defaultFrom, defaultTo);
                 const fromAmountEx = fromCoin ? _assets2.default[fromCoin].currency.ZERO.to(_assets2.default[fromCoin].displayUnit) : null;
                 const toAmountEx = toCoin ? _assets2.default[toCoin].currency.ZERO.to(_assets2.default[toCoin].displayUnit) : null;
-                setTimeout(() => this.setState({
-                    fromCoin,
-                    toCoin,
-                    fromAmount: fromAmountEx,
-                    fromAmountEx,
-                    activePopover: ''
-                }), 100);
-                setTimeout(() => this.setState({
-                    fromCoin,
-                    toCoin,
-                    toAmount: toAmountEx,
-                    toAmountEx
-                }), 250);
+                setTimeout(() => {
+                    this.setState({
+                        fromAmount: fromAmountEx,
+                        fromAmountEx,
+                        activePopover: ''
+                    });
+                    _flux.actions.exchange.setLastPair({
+                        fromCoin,
+                        toCoin
+                    });
+                }, 100);
+                setTimeout(() => {
+                    this.setState({
+                        toAmount: toAmountEx,
+                        toAmountEx
+                    });
+                    _flux.actions.exchange.setLastPair({
+                        fromCoin,
+                        toCoin
+                    });
+                }, 250);
                 setTimeout(() => {
                     this.shouldPickAvaliable = true;
                     this.setState({
@@ -29540,13 +31180,15 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 }, 50);
             }
             handleClickSwap() {
-                let toCoin = this.state.fromCoin;
-                let fromCoin = this.state.toCoin;
-                let fromAmount = _assets2.default[this.state.toCoin].currency.ZERO.to(_assets2.default[this.state.toCoin].displayUnit);
-                let toAmount = _assets2.default[this.state.fromCoin].currency.ZERO.to(_assets2.default[this.state.fromCoin].displayUnit);
-                this.setState({
+                let toCoin = this.props.exchange.lastPair.fromCoin;
+                let fromCoin = this.props.exchange.lastPair.toCoin;
+                let fromAmount = _assets2.default[toCoin].currency.ZERO.to(_assets2.default[toCoin].displayUnit);
+                let toAmount = _assets2.default[fromCoin].currency.ZERO.to(_assets2.default[fromCoin].displayUnit);
+                _flux.actions.exchange.setLastPair({
                     fromCoin,
-                    toCoin,
+                    toCoin
+                });
+                this.setState({
                     lastActive: ''
                 }, () => {
                     this.setState({
@@ -29571,11 +31213,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             }
             handleClickExchange() {
                 const {
+                    fromCoin,
+                    toCoin
+                } = this.props.exchange.lastPair;
+                const {
                     activePopover,
                     fromAmountEx,
                     toAmountEx,
-                    fromCoin,
-                    toCoin,
                     lastActive
                 } = this.state;
                 _flux.actions.exchange.exchange({
@@ -29588,10 +31232,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 });
             }
             render() {
+                const {
+                    fromCoin,
+                    toCoin
+                } = this.props.exchange.lastPair;
                 let {
                     activePopover,
-                    fromCoin,
-                    toCoin,
                     fromOptions,
                     toOptions,
                     fromAmountEx,
@@ -29760,31 +31406,31 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {
+        "100": 100,
         "101": 101,
-        "102": 102,
-        "108": 108,
-        "109": 109,
-        "110": 110,
-        "112": 112,
-        "121": 121,
-        "184": 184,
-        "257": 257,
-        "333": 333,
-        "349": 349,
-        "350": 350,
-        "351": 351,
-        "352": 352,
-        "353": 353,
-        "355": 355,
-        "356": 356,
-        "357": 357,
-        "358": 358,
-        "359": 359,
-        "96": 96,
-        "97": 97,
+        "106": 106,
+        "107": 107,
+        "113": 113,
+        "114": 114,
+        "115": 115,
+        "117": 117,
+        "126": 126,
+        "194": 194,
+        "271": 271,
+        "348": 348,
+        "363": 363,
+        "364": 364,
+        "365": 365,
+        "366": 366,
+        "367": 367,
+        "369": 369,
+        "370": 370,
+        "371": 371,
+        "372": 372,
+        "373": 373,
         "undefined": undefined
     }],
-    355: [function(require, module, exports) {
+    369: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -29795,16 +31441,16 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
         var _reactRedux = require('react-redux');
         var _classnames = require('classnames');
         var _classnames2 = _interopRequireDefault(_classnames);
-        var _coinAvailableAmounts = require(101);
+        var _coinAvailableAmounts = require(106);
         var _coinAvailableAmounts2 = _interopRequireDefault(_coinAvailableAmounts);
-        var _minimums = require(116);
+        var _minimums = require(121);
         var _minimums2 = _interopRequireDefault(_minimums);
-        var _maximums = require(115);
+        var _maximums = require(120);
         var _maximums2 = _interopRequireDefault(_maximums);
 
         function _interopRequireDefault(obj) {
@@ -29944,13 +31590,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "101": 101,
-        "115": 115,
-        "116": 116,
-        "184": 184,
+        "106": 106,
+        "120": 120,
+        "121": 121,
+        "194": 194,
         "undefined": undefined
     }],
-    356: [function(require, module, exports) {
+    370: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -29961,9 +31607,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _getRateString = require(110);
+        var _getRateString = require(115);
         var _getRateString2 = _interopRequireDefault(_getRateString);
-        var _reactUtils = require(287);
+        var _reactUtils = require(302);
         var _reactRedux = require('react-redux');
 
         function _interopRequireDefault(obj) {
@@ -30016,11 +31662,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = RateDetails;
 
     }, {
-        "110": 110,
-        "287": 287,
+        "115": 115,
+        "302": 302,
         "undefined": undefined
     }],
-    357: [function(require, module, exports) {
+    371: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -30028,7 +31674,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = computeSelectOptions;
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
-        var _ui = require(333);
+        var _ui = require(348);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -30045,8 +31691,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
 
             function isDisabledCheck(coinName) {
                 if (side === 'left' && coinName === 'bitcoin' && props.btcDisabled && !global.BTC_ENABLED) return true;
-                let [fromCoin, toCoin] = side === 'left' ? [coinName, state.toCoin] : [state.fromCoin, coinName];
-                if (fromCoin === toCoin)[fromCoin, toCoin] = side === 'left' ? [fromCoin, state.fromCoin] : [state.toCoin, toCoin];
+                let [fromCoin, toCoin] = side === 'left' ? [coinName, props.exchange.lastPair.toCoin] : [props.exchange.lastPair.fromCoin, coinName];
+                if (fromCoin === toCoin)[fromCoin, toCoin] = side === 'left' ? [fromCoin, props.exchange.lastPair.fromCoin] : [props.exchange.lastPair.toCoin, toCoin];
                 return !props.getPairOnline(fromCoin, toCoin);
             }
             return Object.values(props.availableAssets).map(asset => {
@@ -30065,8 +31711,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     }), ')'));
                 } else {
                     let rateStr = '';
-                    if (state.fromCoin && state.fromCoin !== asset.name) {
-                        rateStr = props.getRateString(state.fromCoin, asset.name, state.fromAmountEx);
+                    if (props.exchange.lastPair.fromCoin && props.exchange.lastPair.fromCoin !== asset.name) {
+                        rateStr = props.getRateString(props.exchange.lastPair.fromCoin, asset.name, state.fromAmountEx);
                     }
                     content = _react2.default.createElement('span', null, rateStr);
                 }
@@ -30082,27 +31728,30 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "333": 333,
+        "348": 348,
         "undefined": undefined
     }],
-    358: [function(require, module, exports) {
+    372: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _nuCurrencyText = require(334);
+        var _nuCurrencyText = require(349);
         var _nuCurrencyText2 = _interopRequireDefault(_nuCurrencyText);
         var _electron = require('electron');
         var _reactRedux = require('react-redux');
-        var _steps = require(117);
+        var _steps = require(122);
         var _steps2 = _interopRequireDefault(_steps);
-        var _all = require(134);
+        var _all = require(139);
         var _all2 = _interopRequireDefault(_all);
-        var _flux = require(257);
+        var _blockExplorer = require(105);
+        var _blockExplorer2 = _interopRequireDefault(_blockExplorer);
+        var _exchange = require(240);
+        var _flux = require(271);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -30113,7 +31762,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             exchange: state.exchange,
             step: (0, _steps2.default)(state),
             txSend: state.txSend,
-            allOrders: (0, _all2.default)(state)
+            allOrders: (0, _all2.default)(state),
+            blockExplorer: (0, _blockExplorer2.default)(state)
         }))(ExchangeStatus);
 
         function ExchangeStatus(_ref) {
@@ -30122,7 +31772,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 exchange,
                 txSend,
                 onClickFinishAck,
-                allOrders
+                allOrders,
+                blockExplorer
             } = _ref;
             let {
                 current,
@@ -30138,8 +31789,6 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 fromAmount,
                 toAmount
             } = current;
-            let fromBE = _assets2.default[fromCoin].blockExplorer;
-            let toBE = _assets2.default[toCoin].blockExplorer;
             let step1 = step === 1;
             let step2 = step === 2;
             let error = exchange.error;
@@ -30148,7 +31797,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             const toAsset = _assets2.default[toCoin];
 
             function handleClickWatchProgress() {
-                _electron.shell.openExternal(`https://shapeshift.io/#/status/${exchange.ssOrder.orderId}`);
+                (0, _exchange.openOrderId)(current);
             }
 
             function handleClickFinishAck() {
@@ -30160,7 +31809,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 _flux.actions.exchange.cancelExchange();
                 onClickFinishAck();
             }
-            let orderId = exchange.ssOrder ? exchange.ssOrder.orderId : '';
+            let {
+                orderId
+            } = current;
             if (allOrders.has(orderId)) {
                 const o = allOrders.get(orderId);
                 if (o.status === 'complete-verified') window.requestIdleCallback(handleClickFinishAck);
@@ -30223,7 +31874,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 id: 'exchange-deposit-address',
                 className: 'exchange-address',
                 onClick: () => {
-                    _electron.shell.openExternal(fromBE.addressUrl(current.depositAddress));
+                    _electron.shell.openExternal(blockExplorer(fromAsset).addressUrl(current.depositAddress));
                 }
             }, current.depositAddress) : null), _react2.default.createElement('div', {
                 id: 'coin-logo-left',
@@ -30246,7 +31897,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 id: 'exchange-receive-address',
                 className: 'exchange-address',
                 onClick: () => {
-                    _electron.shell.openExternal(toBE.addressUrl(current.toAddress));
+                    _electron.shell.openExternal(blockExplorer(toAsset).addressUrl(current.toAddress));
                 }
             }, current.toAddress) : null), _react2.default.createElement('div', {
                 id: 'coin-logo-right',
@@ -30340,21 +31991,23 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {
-        "117": 117,
-        "134": 134,
-        "184": 184,
-        "257": 257,
-        "334": 334,
+        "105": 105,
+        "122": 122,
+        "139": 139,
+        "194": 194,
+        "240": 240,
+        "271": 271,
+        "349": 349,
         "undefined": undefined
     }],
-    359: [function(require, module, exports) {
+    373: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
-        var _getAssetColor = require(183);
+        var _getAssetColor = require(193);
         var _getAssetColor2 = _interopRequireDefault(_getAssetColor);
 
         function _interopRequireDefault(obj) {
@@ -30401,10 +32054,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {
-        "183": 183,
+        "193": 193,
         "undefined": undefined
     }],
-    360: [function(require, module, exports) {
+    374: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -30415,34 +32068,34 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _index = require(365);
+        var _index = require(379);
         var _index2 = _interopRequireDefault(_index);
-        var _theme = require(107);
+        var _theme = require(112);
         var _theme2 = _interopRequireDefault(_theme);
-        var _p2pOffline = require(133);
+        var _p2pOffline = require(138);
         var _p2pOffline2 = _interopRequireDefault(_p2pOffline);
-        var _btcMiningPayouts = require(141);
+        var _btcMiningPayouts = require(148);
         var _btcMiningPayouts2 = _interopRequireDefault(_btcMiningPayouts);
-        var _pricesLoaded = require(129);
+        var _pricesLoaded = require(134);
         var _pricesLoaded2 = _interopRequireDefault(_pricesLoaded);
         var _reactRedux = require('react-redux');
         var _classnames = require('classnames');
         var _classnames2 = _interopRequireDefault(_classnames);
-        var _isOnline = require(268);
+        var _isOnline = require(282);
         var isOnline = _interopRequireWildcard(_isOnline);
-        var _appConfig = require(80);
+        var _appConfig = require(84);
         var _electron = require('electron');
         var _reactElectronWebView = require('react-electron-web-view');
         var _reactElectronWebView2 = _interopRequireDefault(_reactElectronWebView);
-        var _exodusWindow_nav = require(361);
-        var _assets = require(184);
+        var _exodusWindow_nav = require(375);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _flux = require(257);
+        var _flux = require(271);
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
-        var _swal = require(306);
+        var _swal = require(321);
         var _swal2 = _interopRequireDefault(_swal);
-        var _currencyFormatters = require(211);
+        var _currencyFormatters = require(222);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -30598,7 +32251,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                         'hidden': online,
                         'active': !online
                     })
-                }, 'Exodus is not connected to the internet. Please check your network connection.'), _react2.default.createElement('div', {
+                }, _appConfig.EXODUS_DISPLAY_NAME, ' is not connected to the internet. Please check your network connection.'), _react2.default.createElement('div', {
                     id: 'notification-banner-p2p',
                     className: (0, _classnames2.default)('notification-banner status top', {
                         'hidden': !p2pOfflineShow,
@@ -30612,7 +32265,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                         'hidden': !upgradeTime,
                         'active': upgradeTime
                     })
-                }, 'A new version of Exodus is available\u2026', _react2.default.createElement('span', {
+                }, 'A new version of ', _appConfig.EXODUS_DISPLAY_NAME, ' is available\u2026', _react2.default.createElement('span', {
                     className: 'banner-button',
                     onClick: () => this.setState({
                         upgradeTime: false
@@ -30691,39 +32344,39 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "107": 107,
-        "129": 129,
-        "133": 133,
-        "141": 141,
-        "184": 184,
-        "211": 211,
-        "257": 257,
-        "268": 268,
-        "306": 306,
-        "361": 361,
-        "365": 365,
-        "80": 80,
+        "112": 112,
+        "134": 134,
+        "138": 138,
+        "148": 148,
+        "194": 194,
+        "222": 222,
+        "271": 271,
+        "282": 282,
+        "321": 321,
+        "375": 375,
+        "379": 379,
+        "84": 84,
         "undefined": undefined
     }],
-    361: [function(require, module, exports) {
+    375: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.nav = undefined;
         exports.getNav = getNav;
-        var _flux = require(257);
-        var _index = require(347);
+        var _flux = require(271);
+        var _index = require(361);
         var _index2 = _interopRequireDefault(_index);
-        var _index3 = require(354);
+        var _index3 = require(368);
         var _index4 = _interopRequireDefault(_index3);
-        var _index5 = require(362);
+        var _index5 = require(376);
         var _index6 = _interopRequireDefault(_index5);
-        var _index7 = require(367);
+        var _index7 = require(381);
         var _index8 = _interopRequireDefault(_index7);
-        var _index9 = require(375);
+        var _index9 = require(389);
         var _index10 = _interopRequireDefault(_index9);
-        var _index11 = require(370);
+        var _index11 = require(384);
         var _index12 = _interopRequireDefault(_index11);
 
         function _interopRequireDefault(obj) {
@@ -30790,15 +32443,15 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "257": 257,
-        "347": 347,
-        "354": 354,
-        "362": 362,
-        "367": 367,
-        "370": 370,
-        "375": 375
+        "271": 271,
+        "361": 361,
+        "368": 368,
+        "376": 376,
+        "381": 381,
+        "384": 384,
+        "389": 389
     }],
-    362: [function(require, module, exports) {
+    376: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -30811,7 +32464,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
         var _electron = require('electron');
-        var _appConfig = require(80);
+        var _appConfig = require(84);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -30819,12 +32472,14 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             };
         }
         let ReleaseNotes = (_dec = (0, _reactRedux.connect)((state, props) => ({
-            bcashClaimed: state.localStorage['bcashclaimed']
+            bcashClaimed: state.localStorage['bcashclaimed'],
+            bgoldClaimed: state.localStorage['bgoldclaimed']
         })), _dec(_class = (_temp = _class2 = class ReleaseNotes extends _react2.default.Component {
             render() {
                 const {
                     version,
-                    bcashClaimed
+                    bcashClaimed,
+                    bgoldClaimed
                 } = this.props;
                 return _react2.default.createElement('div', {
                     id: 'exodus-content-help'
@@ -31148,7 +32803,32 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 }, _react2.default.createElement('div', {
                     id: 'exodus-button-help-slack',
                     className: 'exodus-button exodus-button-extra-wide exodus-button-civic primary-button exodus-animate-all'
-                }, 'Claim My Bitcoin Cash Now!'))))));
+                }, 'Claim My Bitcoin Cash Now!'))))), _react2.default.createElement('div', {
+                    id: 'claim-btg',
+                    className: 'accordion-group'
+                }, _react2.default.createElement('label', {
+                    htmlFor: 'question17',
+                    className: 'title'
+                }, 'How do I claim my Bitcoin Gold (BTG)?'), _react2.default.createElement('input', {
+                    type: 'checkbox',
+                    id: 'question17',
+                    className: 'control-checkbox'
+                }), _react2.default.createElement('div', {
+                    className: 'disclosure'
+                }), bgoldClaimed === 'true' ? _react2.default.createElement('div', {
+                    className: 'content'
+                }, _react2.default.createElement('p', null, 'You have already claimed your Bitcoin Gold.')) : _react2.default.createElement('div', {
+                    className: 'content'
+                }, _react2.default.createElement('p', null, 'If you had Bitcoin in Exodus before October 24th, 2017 you may be entitled to claim the same amount of Bitcoin Gold (BTG). We have created an easy way for you to check your Exodus wallet and send out any Bitcoin Gold to a supporting wallet, exchange or to your Exodus Bitcoin Gold wallet.'), _react2.default.createElement('p', null, 'This process takes about 10 minutes to scan your Bitcoin wallet and count up all your available Bitcoin Gold. Once the process is complete Exodus will send all your Bitcoin Gold to the address of your choice.'), _react2.default.createElement('p', null, 'To begin the step-by-step process press the button below.'), _react2.default.createElement('div', {
+                    className: 'button-row'
+                }, _react2.default.createElement('a', {
+                    onClick: () => {
+                        global.Exodus.bgoldClaim();
+                    }
+                }, _react2.default.createElement('div', {
+                    id: 'exodus-button-help-slack',
+                    className: 'exodus-button exodus-button-extra-wide exodus-button-civic primary-button exodus-animate-all'
+                }, 'Claim My Bitcoin Gold Now!'))))));
             }
         }, _class2.propTypes = {
             version: _propTypes2.default.string.isRequired,
@@ -31164,10 +32844,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = HelpView;
 
     }, {
-        "80": 80,
+        "84": 84,
         "undefined": undefined
     }],
-    363: [function(require, module, exports) {
+    377: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -31177,7 +32857,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _reactDom = require('react-dom');
         var _reactDom2 = _interopRequireDefault(_reactDom);
-        var _app = require(346);
+        var _app = require(360);
         var _app2 = _interopRequireDefault(_app);
 
         function _interopRequireDefault(obj) {
@@ -31191,10 +32871,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "346": 346,
+        "360": 360,
         "undefined": undefined
     }],
-    364: [function(require, module, exports) {
+    378: [function(require, module, exports) {
         'use strict';
         const electron = require('electron');
         const remote = electron.remote;
@@ -31238,7 +32918,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    365: [function(require, module, exports) {
+    379: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -31250,22 +32930,22 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
         var _reactRedux = require('react-redux');
-        var _conversions = require(119);
+        var _conversions = require(124);
         var _conversions2 = _interopRequireDefault(_conversions);
-        var _indicator = require(138);
+        var _indicator = require(145);
         var _indicator2 = _interopRequireDefault(_indicator);
-        var _total = require(123);
+        var _total = require(128);
         var _total2 = _interopRequireDefault(_total);
-        var _hasFunds = require(125);
+        var _hasFunds = require(130);
         var _hasFunds2 = _interopRequireDefault(_hasFunds);
-        var _pricesLoaded = require(129);
+        var _pricesLoaded = require(134);
         var _pricesLoaded2 = _interopRequireDefault(_pricesLoaded);
-        var _navigationButton = require(366);
+        var _navigationButton = require(380);
         var _navigationButton2 = _interopRequireDefault(_navigationButton);
         var _electron = require('electron');
         var _classnames = require('classnames');
         var _classnames2 = _interopRequireDefault(_classnames);
-        var _ui = require(333);
+        var _ui = require(348);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -31346,7 +33026,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 })), _react2.default.createElement('div', {
                     id: 'nav-status',
                     className: (0, _classnames2.default)('nav-button', {
-                        'show': status.code > 0
+                        'show': status.code143 > 0
                     }),
                     onClick: () => _electron.shell.openExternal('https://www.exodus.io/status')
                 }, _react2.default.createElement('div', {
@@ -31371,16 +33051,16 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = NavigationView;
 
     }, {
-        "119": 119,
-        "123": 123,
-        "125": 125,
-        "129": 129,
-        "138": 138,
-        "333": 333,
-        "366": 366,
+        "124": 124,
+        "128": 128,
+        "130": 130,
+        "134": 134,
+        "145": 145,
+        "348": 348,
+        "380": 380,
         "undefined": undefined
     }],
-    366: [function(require, module, exports) {
+    380: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -31423,7 +33103,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    367: [function(require, module, exports) {
+    381: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -31435,33 +33115,33 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _ui = require(333);
-        var _portfolio = require(327);
+        var _ui = require(348);
+        var _portfolio = require(342);
         var _portfolio2 = _interopRequireDefault(_portfolio);
-        var _currencyFormatters = require(211);
-        var _coinTotalAmounts = require(102);
+        var _currencyFormatters = require(222);
+        var _coinTotalAmounts = require(107);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
-        var _available = require(96);
+        var _available = require(100);
         var _available2 = _interopRequireDefault(_available);
-        var _addButton = require(95);
+        var _addButton = require(99);
         var _addButton2 = _interopRequireDefault(_addButton);
-        var _total = require(123);
+        var _total = require(128);
         var _total2 = _interopRequireDefault(_total);
-        var _getValue = require(121);
+        var _getValue = require(126);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _percentage = require(122);
+        var _percentage = require(127);
         var _percentage2 = _interopRequireDefault(_percentage);
-        var _loaded = require(98);
+        var _loaded = require(102);
         var _loaded2 = _interopRequireDefault(_loaded);
-        var _pricesLoaded = require(129);
+        var _pricesLoaded = require(134);
         var _pricesLoaded2 = _interopRequireDefault(_pricesLoaded);
-        var _pricesAvailable = require(128);
+        var _pricesAvailable = require(133);
         var _pricesAvailable2 = _interopRequireDefault(_pricesAvailable);
-        var _hasFunds = require(125);
+        var _hasFunds = require(130);
         var _hasFunds2 = _interopRequireDefault(_hasFunds);
-        var _electronDialog = require(215);
+        var _electronDialog = require(226);
         var _electronDialog2 = _interopRequireDefault(_electronDialog);
-        var _getAssetColor = require(183);
+        var _getAssetColor = require(193);
         var _getAssetColor2 = _interopRequireDefault(_getAssetColor);
 
         function _interopRequireDefault(obj) {
@@ -31636,24 +33316,24 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = Portfolio;
 
     }, {
+        "100": 100,
         "102": 102,
-        "121": 121,
-        "122": 122,
-        "123": 123,
-        "125": 125,
+        "107": 107,
+        "126": 126,
+        "127": 127,
         "128": 128,
-        "129": 129,
-        "183": 183,
-        "211": 211,
-        "215": 215,
-        "327": 327,
-        "333": 333,
-        "95": 95,
-        "96": 96,
-        "98": 98,
+        "130": 130,
+        "133": 133,
+        "134": 134,
+        "193": 193,
+        "222": 222,
+        "226": 226,
+        "342": 342,
+        "348": 348,
+        "99": 99,
         "undefined": undefined
     }],
-    368: [function(require, module, exports) {
+    382: [function(require, module, exports) {
         module.exports = {
             "aragon": {
                 "description": "Allows users to manage organizations and companies on the Ethereum blockchain.",
@@ -31684,10 +33364,15 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 "reddit": "https://www.reddit.com/r/Bitcoincash/",
                 "website": "https://www.bitcoincash.org/"
             },
+            "bgold": {
+                "description": "Bitcoin Gold is a fork of the Bitcoin blockchain that occurred at block # 491407 on October 24, 2017. It uses the Equihash PoW mining algorithm (first used by Zcash) to make mining of Bitcoin Gold resistant to costly and powerful ASIC hardware – one can only mine Bitcoin Gold from GPU mining rigs.",
+                "reddit": "https://www.reddit.com/r/BitcoinGoldHQ/",
+                "twitter": "https://twitter.com/bitcoingold",
+                "website": "https://bitcoingold.org/"
+            },
             "bitcoin": {
                 "description": "Bitcoin uses peer-to-peer technology to operate with no central authority or banks; managing transactions and the issuing of bitcoins is carried out collectively by the network.",
                 "reddit": "https://www.reddit.com/r/Bitcoin/",
-                "twitter": "https://twitter.com/bitcoin",
                 "website": "https://www.bitcoin.org/"
             },
             "civic": {
@@ -31708,6 +33393,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 "twitter": "https://twitter.com/decredproject",
                 "website": "https://decred.org/"
             },
+            "digibyte": {
+                "description": "DigiByte provides a UTXO blockchain which focuses on secure digital payments. It aims to be a platform for decentralized applications.",
+                "reddit": "https://www.reddit.com/r/Digibyte/",
+                "twitter": "https://twitter.com/DigiByteCoin",
+                "website": "https://www.digibyte.co/"
+            },
             "digix": {
                 "description": "Digix DAO is an Ethereum-based Decentralised Autonomous Organization or DAO. Digix gives users the right to profits which own the right to gold stored in vault in Singapore.",
                 "reddit": "https://www.reddit.com/r/digix/",
@@ -31719,6 +33410,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 "reddit": "https://www.reddit.com/r/district0x/",
                 "twitter": "https://twitter.com/district0x",
                 "website": "https://district0x.io/"
+            },
+            "edgeless": {
+                "description": "Edgeless is the first Ethereum based Casino which offers Black Jack, Dice, Poker and Sports Betting utilizing Ethereum’s smart contracts platform. All games are solely based on skill and luck – there is no way to influence the outcomes.",
+                "reddit": "https://www.reddit.com/r/Edgeless",
+                "twitter": "https://twitter.com/edgelessproject",
+                "website": "https://edgeless.io"
             },
             "eos": {
                 "description": "EOS is an architecture to enable scaling of decentralized applications providing accounts, authentication, databases, asynchronous communication and scheduling of applications across multiple CPU cores.",
@@ -31767,11 +33464,35 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 "twitter": "https://twitter.com/golemproject",
                 "website": "https://golem.network/"
             },
+            "iexec": {
+                "description": "iExec aims to provide secure, scalable and easy to access services, data-sets, and computing resources for distributed applications running on the Ethereum blockchain (DApps). RLC is the native token of the iExec cloud platform, and it enables users to rent servers, data and applications provided on the network.",
+                "reddit": "https://www.reddit.com/r/iexec",
+                "twitter": "https://twitter.com/iEx_ec",
+                "website": "https://iex.ec"
+            },
+            "komodo": {
+                "description": "The Komodo Platform aims to provide simple and customizable blockchain solutions for developers of differing backgrounds which are easy to deploy and configure.",
+                "reddit": "https://www.reddit.com/r/komodoplatform/",
+                "twitter": "https://twitter.com/komodoplatform",
+                "website": "https://www.komodoplatform.com"
+            },
             "litecoin": {
                 "description": "Litecoin provides fast, 2.5 minute transaction confirmations and uses scrypt-based proof-of-work to target everyday computers. Litecoin, created by an ex-Google employee, Charlie Lee, is often considered the silver to Bitcoin's gold.",
                 "reddit": "https://www.reddit.com/r/litecoin/",
                 "twitter": "https://twitter.com/LitecoinProject",
                 "website": "https://litecoin.com/"
+            },
+            "matchpool": {
+                "description": "Matchpool is an Ethereum based platform offering matchmaking tools which aim to incentivise community-based connections between people. Matchpool use cases include content creation, dating, membership clubs, recruitment, education, health care, etc..",
+                "reddit": "https://www.reddit.com/r/Matchpool",
+                "twitter": "https://twitter.com/matchpool",
+                "website": "https://www.matchpool.com"
+            },
+            "melonport": {
+                "description": "The Melon protocol is built on Ethereum platform which seeks to enable participants to set up, manage and invest in technology regulated digital investment funds. The fund managers and participants automatically adhere to all the network rules due to the nature of blockchain technology. The Melon team also plans to build on other blockchain platforms in future.",
+                "reddit": "https://www.reddit.com/r/melonproject",
+                "twitter": "https://twitter.com/melonport",
+                "website": "https://melonport.com"
             },
             "metal": {
                 "description": "Metal is an Ethereum-based token that gives rewards for spending.",
@@ -31785,17 +33506,47 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 "twitter": "https://twitter.com/monerocurrency/",
                 "website": "https://getmonero.org/"
             },
+            "neo": {
+                "description": "Placeholder text needs updating…",
+                "reddit": "https://www.reddit.com/r/NEO/",
+                "twitter": "https://twitter.com/neo_blockchain",
+                "website": "https://neo.org/"
+            },
+            "nem": {
+                "description": "Placeholder text needs updating…",
+                "reddit": "https://www.reddit.com/r/nem/",
+                "twitter": "https://twitter.com/nemofficial/",
+                "website": "https://nem.io/"
+            },
+            "numeraire": {
+                "description": "Numeraire is the first Ethereum based hedge fund that gives its data away for free with structure-preserving encryption and allows open participation by data scientists around the world. Users contribute prediction sets for financial markets to improve the machine learning abilities of this platform.",
+                "reddit": "https://www.reddit.com/r/numerai",
+                "twitter": "https://twitter.com/Numerai",
+                "website": "https://numer.ai"
+            },
             "omisego": {
                 "description": "OmiseGO is building a decentralized exchange, messaging network, and asset-backed blockchain gateway. It uses the mechanism of a protocol token to create a proof-of-stake blockchain to enable enforcement of market activity amongst participants.",
                 "reddit": "https://www.reddit.com/r/omise_go/",
                 "twitter": "https://twitter.com/omise_go",
                 "website": "https://omg.omise.co/"
             },
+            "potcoin": {
+                "description": "Placeholder text needs updating.",
+                "reddit": "https://www.reddit.com/r/potcoin/",
+                "twitter": "https://twitter.com/potcoin",
+                "website": "http://www.potcoin.com/"
+            },
             "qtum": {
                 "description": "Qtum is a smart contract platform similar to Ethereum while still mantaining an Unspent Transaction Output (UTXO) transaction model similar to Bitcoin. Qtum employs a Proof of Stake consensus mechanism.",
                 "reddit": "https://www.reddit.com/r/Qtum/",
                 "twitter": "https://twitter.com/QtumOfficial",
                 "website": "https://www.qtum.org/"
+            },
+            "reddcoin": {
+                "description": "Placeholder text needs updating.",
+                "reddit": "https://www.reddit.com/r/reddCoin/",
+                "twitter": "https://twitter.com/reddcoin",
+                "website": "https://www.reddcoin.com/"
             },
             "ripple": {
                 "description": "Real-time peer-to-peer settlement network. Ripples (XRP) aren't mined and each transaction destroys a small amount of XRP - the net effect is a deflationary asset.",
@@ -31808,6 +33559,18 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 "reddit": "https://www.reddit.com/r/SALTLending/",
                 "twitter": "https://twitter.com/SALTLending",
                 "website": "https://www.saltlending.com/"
+            },
+            "siacoin": {
+                "description": "Placeholder text needs updating.",
+                "reddit": "https://www.reddit.com/r/siacoin/",
+                "twitter": "https://twitter.com/SiaTechHQ",
+                "website": "https://sia.tech/"
+            },
+            "singulardtv": {
+                "description": "SingularDTV is an Ethereum based token laying the foundation for a decentralized entertainment industry. It aims to build the future of rights management, project funding, and peer-to-peer distribution by empowering artists and creators with powerful tools to manage projects from development to distribution.",
+                "reddit": "https://www.reddit.com/r/SingularDTV",
+                "twitter": "https://twitter.com/SingularDTV",
+                "website": "https://singulardtv.com"
             },
             "status": {
                 "description": "Status is an Ethereum-based open source messaging platform and mobile browser that allows users to interact with decentralized applications (dApps) that run on the Ethereum Network.",
@@ -31827,11 +33590,35 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 "twitter": "https://twitter.com/tether_to",
                 "website": "https://tether.to/"
             },
+            "vertcoin": {
+                "description": "Vertcoin was forked from Litecoin to create a level playing field for mining; the aim is to make mining as affordable as possible through ASIC-resistance. The Vertcoin team is actively working on implementing Stealth Addresses, Lightning Network and Atomic Swaps on its blockchain.",
+                "reddit": "https://www.reddit.com/r/vertcoin/",
+                "twitter": "https://twitter.com/Vertcoin",
+                "website": "https://vertcoin.org/"
+            },
+            "waves": {
+                "description": "Placeholder text needs updating.",
+                "reddit": "https://www.reddit.com/r/Wavesplatform/",
+                "twitter": "https://twitter.com/wavesplatform",
+                "website": "https://wavesplatform.com/"
+            },
+            "wetrust": {
+                "description": "WeTrust is an Ethereum based platform providing decentralized financial services which create a more inclusive financial system. This means anyone can have access to fair and equitable financial services without an expensive trusted third party. WeTrust platform SDK will allow developers to build new financial DApps with access to public user data and tools library.",
+                "reddit": "https://www.reddit.com/r/WeTrustPlatform",
+                "twitter": "https://twitter.com/wetrustplatform",
+                "website": "https://www.wetrust.io"
+            },
             "wings": {
                 "description": "Wings enables users to create Decentralized Autonomous Organizations (DAOs). Wings Ethereum-based DAO tokens, represent shares and allow users to vote on developments and receive dividends.",
                 "reddit": "https://www.reddit.com/r/WingsDAO/",
                 "twitter": "https://twitter.com/wingsplatform",
                 "website": "https://www.wings.ai/#!/home/discover"
+            },
+            "zcash": {
+                "description": "Zcash is an open-source, permission-less cryptocurrency that can fully protect the privacy of transactions using zero-knowledge cryptography (zk-SNARKS). This zero-knowledge cryptographic technology brings fungibility to all coins in distribution; every coin is guaranteed to be equally usable.",
+                "reddit": "https://www.reddit.com/r/zec/",
+                "twitter": "https://twitter.com/zcashco",
+                "website": "https://z.cash/"
             },
             "zerox": {
                 "description": "0x is an Ethereum-based protocol for a decentralized exchange for other Ethereum-based assets. Developers can use 0x to build their own custom exchange apps.",
@@ -31842,7 +33629,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {}],
-    369: [function(require, module, exports) {
+    383: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -31851,16 +33638,16 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _dec, _class;
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _flux = require(257);
+        var _flux = require(271);
         var _reactRedux = require('react-redux');
-        var _appConfig = require(80);
-        var _available = require(96);
+        var _appConfig = require(84);
+        var _available = require(100);
         var _available2 = _interopRequireDefault(_available);
-        var _coinTotalAmounts = require(102);
+        var _coinTotalAmounts = require(107);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
-        var _assetData = require(368);
+        var _assetData = require(382);
         var _assetData2 = _interopRequireDefault(_assetData);
         var _electron = require('electron');
 
@@ -31970,15 +33757,15 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "102": 102,
-        "184": 184,
-        "257": 257,
-        "368": 368,
-        "80": 80,
-        "96": 96,
+        "100": 100,
+        "107": 107,
+        "194": 194,
+        "271": 271,
+        "382": 382,
+        "84": 84,
         "undefined": undefined
     }],
-    370: [function(require, module, exports) {
+    384: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -31988,18 +33775,18 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
         var _reactRedux = require('react-redux');
-        var _flux = require(257);
-        var _settingsNav = require(373);
+        var _flux = require(271);
+        var _settingsNav = require(387);
         var _settingsNav2 = _interopRequireDefault(_settingsNav);
-        var _settings = require(297);
+        var _settings = require(312);
         var _settings2 = _interopRequireDefault(_settings);
-        var _assets = require(369);
+        var _assets = require(383);
         var _assets2 = _interopRequireDefault(_assets);
-        var _localization = require(371);
+        var _localization = require(385);
         var _localization2 = _interopRequireDefault(_localization);
-        var _skins = require(374);
+        var _skins = require(388);
         var _skins2 = _interopRequireDefault(_skins);
-        var _security = require(372);
+        var _security = require(386);
         var _security2 = _interopRequireDefault(_security);
 
         function _interopRequireDefault(obj) {
@@ -32047,16 +33834,16 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = SettingsView;
 
     }, {
-        "257": 257,
-        "297": 297,
-        "369": 369,
-        "371": 371,
-        "372": 372,
-        "373": 373,
-        "374": 374,
+        "271": 271,
+        "312": 312,
+        "383": 383,
+        "385": 385,
+        "386": 386,
+        "387": 387,
+        "388": 388,
         "undefined": undefined
     }],
-    371: [function(require, module, exports) {
+    385: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -32070,10 +33857,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _reactRedux = require('react-redux');
         var _reactSelect = require('react-select');
         var _reactSelect2 = _interopRequireDefault(_reactSelect);
-        var _flux = require(257);
-        var _fiat = require(104);
+        var _flux = require(271);
+        var _fiat = require(109);
         var _fiat2 = _interopRequireDefault(_fiat);
-        var _units = require(210);
+        var _units = require(221);
         var _units2 = _interopRequireDefault(_units);
 
         function _interopRequireDefault(obj) {
@@ -32136,12 +33923,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = Localization;
 
     }, {
-        "104": 104,
-        "210": 210,
-        "257": 257,
+        "109": 109,
+        "221": 221,
+        "271": 271,
         "undefined": undefined
     }],
-    372: [function(require, module, exports) {
+    386: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -32153,13 +33940,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _reactRedux = require('react-redux');
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _hasFunds = require(125);
+        var _hasFunds = require(130);
         var _hasFunds2 = _interopRequireDefault(_hasFunds);
-        var _twoOfTwo = require(319);
-        var _reactQr = require(286);
+        var _twoOfTwo = require(334);
+        var _reactQr = require(301);
         var _reactQr2 = _interopRequireDefault(_reactQr);
-        var _flux = require(257);
-        var _paired = require(139);
+        var _flux = require(271);
+        var _paired = require(146);
         var _paired2 = _interopRequireDefault(_paired);
 
         function _interopRequireDefault(obj) {
@@ -32304,21 +34091,21 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = Security;
 
     }, {
-        "125": 125,
-        "139": 139,
-        "257": 257,
-        "286": 286,
-        "319": 319,
+        "130": 130,
+        "146": 146,
+        "271": 271,
+        "301": 301,
+        "334": 334,
         "undefined": undefined
     }],
-    373: [function(require, module, exports) {
+    387: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
-        var _settings = require(297);
+        var _settings = require(312);
         var _settings2 = _interopRequireDefault(_settings);
 
         function _interopRequireDefault(obj) {
@@ -32346,10 +34133,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {
-        "297": 297,
+        "312": 312,
         "undefined": undefined
     }],
-    374: [function(require, module, exports) {
+    388: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -32357,8 +34144,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = undefined;
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
-        var _flux = require(257);
-        var _configKeys = require(206);
+        var _flux = require(271);
+        var _configKeys = require(217);
         var _electron = require('electron');
 
         function _interopRequireDefault(obj) {
@@ -32624,11 +34411,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = Skins;
 
     }, {
-        "206": 206,
-        "257": 257,
+        "217": 217,
+        "271": 271,
         "undefined": undefined
     }],
-    375: [function(require, module, exports) {
+    389: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -32640,16 +34427,16 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
         var _reactRedux = require('react-redux');
-        var _flux = require(257);
-        var _walletDetail = require(405);
+        var _flux = require(271);
+        var _walletDetail = require(418);
         var _walletDetail2 = _interopRequireDefault(_walletDetail);
-        var _walletNavigation = require(406);
+        var _walletNavigation = require(419);
         var _walletNavigation2 = _interopRequireDefault(_walletNavigation);
-        var _swal = require(306);
+        var _swal = require(321);
         var _swal2 = _interopRequireDefault(_swal);
-        var _available = require(96);
+        var _available = require(100);
         var _available2 = _interopRequireDefault(_available);
-        var _lowBalance = require(99);
+        var _lowBalance = require(103);
         var _lowBalance2 = _interopRequireDefault(_lowBalance);
         var _electron = require('electron');
 
@@ -32722,15 +34509,15 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = WalletView;
 
     }, {
-        "257": 257,
-        "306": 306,
-        "405": 405,
-        "406": 406,
-        "96": 96,
-        "99": 99,
+        "100": 100,
+        "103": 103,
+        "271": 271,
+        "321": 321,
+        "418": 418,
+        "419": 419,
         "undefined": undefined
     }],
-    376: [function(require, module, exports) {
+    390: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -32741,18 +34528,20 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _reactQr = require(286);
+        var _reactQr = require(301);
         var _reactQr2 = _interopRequireDefault(_reactQr);
         var _reactRedux = require('react-redux');
-        var _coinLogo = require(328);
+        var _coinLogo = require(343);
         var _coinLogo2 = _interopRequireDefault(_coinLogo);
-        var _getReceiveAddresses = require(93);
+        var _getReceiveAddresses = require(97);
         var _getReceiveAddresses2 = _interopRequireDefault(_getReceiveAddresses);
         var _classnames = require('classnames');
         var _classnames2 = _interopRequireDefault(_classnames);
         var _electron = require('electron');
-        var _lowBalance = require(99);
+        var _lowBalance = require(103);
         var _lowBalance2 = _interopRequireDefault(_lowBalance);
+        var _blockExplorer = require(105);
+        var _blockExplorer2 = _interopRequireDefault(_blockExplorer);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -32764,7 +34553,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             account: state.accounts[props.coin.name],
             getReceiveAddresses: (0, _getReceiveAddresses2.default)(state),
             txLog: state.txLog[props.coin.name],
-            rippleLowBalance: (0, _lowBalance2.default)(state)
+            rippleLowBalance: (0, _lowBalance2.default)(state),
+            blockExplorer: (0, _blockExplorer2.default)(state)
         })), _dec(_class = (_temp = _class2 = class ReceiveModal extends _react2.default.PureComponent {
             constructor(props) {
                 super(props);
@@ -32814,13 +34604,14 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             }
             handleClickBlockExplorer() {
                 const {
-                    coin
+                    coin,
+                    blockExplorer
                 } = this.props;
                 const {
                     addresses,
                     index
                 } = this.state;
-                _electron.shell.openExternal(coin.blockExplorer.addressUrl(String(addresses[index])));
+                _electron.shell.openExternal(blockExplorer(coin).addressUrl(String(addresses[index])));
             }
             handleClickCopy() {
                 const {
@@ -32918,6 +34709,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     id: 'receive-action-button-text-info',
                     className: 'dim'
                 }, status), _react2.default.createElement('p', {
+                    id: 'receive-address-print-info'
+                }, 'Your Exodus ', coin.properName, ' Address'), _react2.default.createElement('p', {
                     id: 'exodus-wallet-receive-address',
                     className: `exodus-border-color-${coin.name}`
                 }, _react2.default.createElement('span', {
@@ -33010,13 +34803,14 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {
-        "286": 286,
-        "328": 328,
-        "93": 93,
-        "99": 99,
+        "103": 103,
+        "105": 105,
+        "301": 301,
+        "343": 343,
+        "97": 97,
         "undefined": undefined
     }],
-    377: [function(require, module, exports) {
+    391: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -33027,13 +34821,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _reactQrReader = require(285);
+        var _reactQrReader = require(300);
         var _reactQrReader2 = _interopRequireDefault(_reactQrReader);
         var _classnames = require('classnames');
         var _classnames2 = _interopRequireDefault(_classnames);
-        var _ui = require(333);
-        var _bip = require(199);
-        var _swal = require(306);
+        var _ui = require(348);
+        var _bip = require(210);
+        var _swal = require(321);
         var _swal2 = _interopRequireDefault(_swal);
         var _electron = require('electron');
 
@@ -33184,37 +34978,37 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = AddressInputGroup;
 
     }, {
-        "199": 199,
-        "285": 285,
-        "306": 306,
-        "333": 333,
+        "210": 210,
+        "300": 300,
+        "321": 321,
+        "348": 348,
         "undefined": undefined
     }],
-    378: [function(require, module, exports) {
+    392: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.default = undefined;
         var _dec, _class, _class2, _temp;
-        var _ui = require(333);
+        var _ui = require(348);
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _reactUtils = require(287);
-        var _conversions = require(119);
+        var _reactUtils = require(302);
+        var _conversions = require(124);
         var _conversions2 = _interopRequireDefault(_conversions);
-        var _fiat = require(104);
+        var _fiat = require(109);
         var _fiat2 = _interopRequireDefault(_fiat);
-        var _getValue = require(121);
+        var _getValue = require(126);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _coinTotalAmounts = require(102);
+        var _coinTotalAmounts = require(107);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
-        var _coinAvailableAmounts = require(101);
+        var _coinAvailableAmounts = require(106);
         var _coinAvailableAmounts2 = _interopRequireDefault(_coinAvailableAmounts);
         var _reactRedux = require('react-redux');
-        var _currencyFormatters = require(211);
+        var _currencyFormatters = require(222);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -33499,17 +35293,17 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "101": 101,
-        "102": 102,
-        "104": 104,
-        "119": 119,
-        "121": 121,
-        "211": 211,
-        "287": 287,
-        "333": 333,
+        "106": 106,
+        "107": 107,
+        "109": 109,
+        "124": 124,
+        "126": 126,
+        "222": 222,
+        "302": 302,
+        "348": 348,
         "undefined": undefined
     }],
-    379: [function(require, module, exports) {
+    393: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -33520,13 +35314,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _fieldDesc = require(383);
+        var _fieldDesc = require(397);
         var _fieldDesc2 = _interopRequireDefault(_fieldDesc);
-        var _fieldData = require(382);
+        var _fieldData = require(396);
         var _fieldData2 = _interopRequireDefault(_fieldData);
-        var _fieldGasPrice = require(385);
+        var _fieldGasPrice = require(399);
         var _fieldGasPrice2 = _interopRequireDefault(_fieldGasPrice);
-        var _fieldGasLimit = require(384);
+        var _fieldGasLimit = require(398);
         var _fieldGasLimit2 = _interopRequireDefault(_fieldGasLimit);
 
         function _interopRequireDefault(obj) {
@@ -33593,22 +35387,22 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = DrawerEthLike;
 
     }, {
-        "382": 382,
-        "383": 383,
-        "384": 384,
-        "385": 385,
+        "396": 396,
+        "397": 397,
+        "398": 398,
+        "399": 399,
         "undefined": undefined
     }],
-    380: [function(require, module, exports) {
+    394: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
-        var _ethLike = require(379);
+        var _ethLike = require(393);
         var _ethLike2 = _interopRequireDefault(_ethLike);
-        var _ripple = require(381);
+        var _ripple = require(395);
         var _ripple2 = _interopRequireDefault(_ripple);
 
         function _interopRequireDefault(obj) {
@@ -33638,11 +35432,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {
-        "379": 379,
-        "381": 381,
+        "393": 393,
+        "395": 395,
         "undefined": undefined
     }],
-    381: [function(require, module, exports) {
+    395: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -33653,7 +35447,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _field = require(386);
+        var _field = require(400);
         var _field2 = _interopRequireDefault(_field);
 
         function _interopRequireDefault(obj) {
@@ -33701,10 +35495,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = DrawerRipple;
 
     }, {
-        "386": 386,
+        "400": 400,
         "undefined": undefined
     }],
-    382: [function(require, module, exports) {
+    396: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -33715,7 +35509,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _field = require(386);
+        var _field = require(400);
         var _field2 = _interopRequireDefault(_field);
 
         function _interopRequireDefault(obj) {
@@ -33760,10 +35554,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = DrawerFieldData;
 
     }, {
-        "386": 386,
+        "400": 400,
         "undefined": undefined
     }],
-    383: [function(require, module, exports) {
+    397: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -33774,7 +35568,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _field = require(386);
+        var _field = require(400);
         var _field2 = _interopRequireDefault(_field);
 
         function _interopRequireDefault(obj) {
@@ -33819,10 +35613,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = DrawerFieldDesc;
 
     }, {
-        "386": 386,
+        "400": 400,
         "undefined": undefined
     }],
-    384: [function(require, module, exports) {
+    398: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -33833,7 +35627,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _field = require(386);
+        var _field = require(400);
         var _field2 = _interopRequireDefault(_field);
 
         function _interopRequireDefault(obj) {
@@ -33880,10 +35674,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = DrawerFieldDesc;
 
     }, {
-        "386": 386,
+        "400": 400,
         "undefined": undefined
     }],
-    385: [function(require, module, exports) {
+    399: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -33894,7 +35688,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _field = require(386);
+        var _field = require(400);
         var _field2 = _interopRequireDefault(_field);
 
         function _interopRequireDefault(obj) {
@@ -33939,10 +35733,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = DrawerFieldDesc;
 
     }, {
-        "386": 386,
+        "400": 400,
         "undefined": undefined
     }],
-    386: [function(require, module, exports) {
+    400: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -33980,7 +35774,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    387: [function(require, module, exports) {
+    401: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -33988,12 +35782,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
         var _reactRedux = require('react-redux');
-        var _getFee = require(124);
+        var _getFee = require(129);
         var _getFee2 = _interopRequireDefault(_getFee);
-        var _getValue = require(121);
+        var _getValue = require(126);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _ui = require(333);
-        var _assets = require(184);
+        var _ui = require(348);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
         var _electron = require('electron');
 
@@ -34059,13 +35853,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         });
 
     }, {
-        "121": 121,
-        "124": 124,
-        "184": 184,
-        "333": 333,
+        "126": 126,
+        "129": 129,
+        "194": 194,
+        "348": 348,
         "undefined": undefined
     }],
-    388: [function(require, module, exports) {
+    402: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -34093,7 +35887,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    389: [function(require, module, exports) {
+    403: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -34101,12 +35895,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
         var _reactRedux = require('react-redux');
-        var _ui = require(333);
-        var _remaining = require(137);
+        var _ui = require(348);
+        var _remaining = require(144);
         var _remaining2 = _interopRequireDefault(_remaining);
-        var _getValue = require(121);
+        var _getValue = require(126);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _fee = require(387);
+        var _fee = require(401);
         var _fee2 = _interopRequireDefault(_fee);
         var _electron = require('electron');
 
@@ -34158,13 +35952,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         });
 
     }, {
-        "121": 121,
-        "137": 137,
-        "333": 333,
-        "387": 387,
+        "126": 126,
+        "144": 144,
+        "348": 348,
+        "401": 401,
         "undefined": undefined
     }],
-    390: [function(require, module, exports) {
+    404: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -34180,54 +35974,54 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _reactRedux = require('react-redux');
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _flux = require(257);
-        var _coinLogo = require(328);
+        var _flux = require(271);
+        var _coinLogo = require(343);
         var _coinLogo2 = _interopRequireDefault(_coinLogo);
-        var _swal = require(306);
+        var _swal = require(321);
         var _swal2 = _interopRequireDefault(_swal);
-        var _util = require(213);
+        var _util = require(224);
         var _bn = require('bn.js');
         var _bn2 = _interopRequireDefault(_bn);
         var _ethereumjsUtil = require('ethereumjs-util');
         var ethUtil = _interopRequireWildcard(_ethereumjsUtil);
-        var _etcchain = require(221);
+        var _etcchain = require(232);
         var etcchain = _interopRequireWildcard(_etcchain);
-        var _etherscan = require(223);
+        var _etherscan = require(234);
         var etherscan = _interopRequireWildcard(_etherscan);
-        var _exodusEthereumServer = require(229);
-        var _bitpay2bcash = require(202);
+        var _exodusEthereumServer = require(242);
+        var _bitpay2bcash = require(213);
         var _bitpay2bcash2 = _interopRequireDefault(_bitpay2bcash);
-        var _sending = require(392);
+        var _sending = require(406);
         var _sending2 = _interopRequireDefault(_sending);
-        var _remainingBalance = require(389);
+        var _remainingBalance = require(403);
         var _remainingBalance2 = _interopRequireDefault(_remainingBalance);
-        var _addressInputGroup = require(377);
+        var _addressInputGroup = require(391);
         var _addressInputGroup2 = _interopRequireDefault(_addressInputGroup);
-        var _status = require(393);
+        var _status = require(407);
         var _status2 = _interopRequireDefault(_status);
-        var _currencyInputSwap = require(378);
+        var _currencyInputSwap = require(392);
         var _currencyInputSwap2 = _interopRequireDefault(_currencyInputSwap);
-        var _fiat = require(104);
+        var _fiat = require(109);
         var _fiat2 = _interopRequireDefault(_fiat);
-        var _remaining = require(137);
+        var _remaining = require(144);
         var _remaining2 = _interopRequireDefault(_remaining);
-        var _getReceiveAddress = require(92);
+        var _getReceiveAddress = require(96);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _getRecvExchAddresses = require(94);
+        var _getRecvExchAddresses = require(98);
         var _getRecvExchAddresses2 = _interopRequireDefault(_getRecvExchAddresses);
-        var _pricesAvailable = require(128);
+        var _pricesAvailable = require(133);
         var _pricesAvailable2 = _interopRequireDefault(_pricesAvailable);
-        var _ethereumTokensEnoughFuel = require(108);
-        var _hasTokens = require(126);
+        var _ethereumTokensEnoughFuel = require(113);
+        var _hasTokens = require(131);
         var _hasTokens2 = _interopRequireDefault(_hasTokens);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _index = require(380);
+        var _index = require(394);
         var _index2 = _interopRequireDefault(_index);
-        var _sendingConfirm = require(391);
+        var _sendingConfirm = require(405);
         var _sendingConfirm2 = _interopRequireDefault(_sendingConfirm);
         var _electron = require('electron');
-        var _appConfig = require(80);
+        var _appConfig = require(84);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -34697,33 +36491,33 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = SendModal;
 
     }, {
-        "104": 104,
-        "108": 108,
-        "126": 126,
-        "128": 128,
-        "137": 137,
-        "184": 184,
-        "202": 202,
+        "109": 109,
+        "113": 113,
+        "131": 131,
+        "133": 133,
+        "144": 144,
+        "194": 194,
         "213": 213,
-        "221": 221,
-        "223": 223,
-        "229": 229,
-        "257": 257,
-        "306": 306,
-        "328": 328,
-        "377": 377,
-        "378": 378,
-        "380": 380,
-        "389": 389,
+        "224": 224,
+        "232": 232,
+        "234": 234,
+        "242": 242,
+        "271": 271,
+        "321": 321,
+        "343": 343,
         "391": 391,
         "392": 392,
-        "393": 393,
-        "80": 80,
-        "92": 92,
-        "94": 94,
+        "394": 394,
+        "403": 403,
+        "405": 405,
+        "406": 406,
+        "407": 407,
+        "84": 84,
+        "96": 96,
+        "98": 98,
         "undefined": undefined
     }],
-    391: [function(require, module, exports) {
+    405: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -34734,10 +36528,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _ui = require(333);
+        var _ui = require(348);
         var _reactRedux = require('react-redux');
-        var _fiat = require(104);
+        var _fiat = require(109);
         var _fiat2 = _interopRequireDefault(_fiat);
+        var _blockExplorer = require(105);
+        var _blockExplorer2 = _interopRequireDefault(_blockExplorer);
         var _electron = require('electron');
 
         function _interopRequireDefault(obj) {
@@ -34746,7 +36542,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             };
         }
         let SendingConfirm = (_dec = (0, _reactRedux.connect)((state, props) => ({
-            fiat: (0, _fiat2.default)(state)
+            fiat: (0, _fiat2.default)(state),
+            blockExplorer: (0, _blockExplorer2.default)(state)
         })), _dec(_class = (_temp = _class2 = class SendingConfirm extends _react2.default.Component {
             render() {
                 const {
@@ -34755,7 +36552,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     onSend,
                     amountCrypto,
                     amountFiat,
-                    address
+                    address,
+                    blockExplorer
                 } = this.props;
                 const crypto = amountCrypto || asset.currency.ZERO;
                 const fiat = amountFiat || this.props.fiat.ZERO;
@@ -34792,7 +36590,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     className: 'title'
                 }, 'Address:'), _react2.default.createElement('td', {
                     className: 'item address-link exodus-color-' + asset.name,
-                    onClick: () => _electron.shell.openExternal(asset.blockExplorer.addressUrl(address))
+                    onClick: () => _electron.shell.openExternal(blockExplorer(asset).addressUrl(address))
                 }, address)))), _react2.default.createElement('div', {
                     className: 'confirm-tx--buttons'
                 }, _react2.default.createElement('div', {
@@ -34814,20 +36612,21 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = SendingConfirm;
 
     }, {
-        "104": 104,
-        "333": 333,
+        "105": 105,
+        "109": 109,
+        "348": 348,
         "undefined": undefined
     }],
-    392: [function(require, module, exports) {
+    406: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
-        var _progressLoader = require(388);
+        var _progressLoader = require(402);
         var _progressLoader2 = _interopRequireDefault(_progressLoader);
-        var _ui = require(333);
+        var _ui = require(348);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -34857,26 +36656,26 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {
-        "333": 333,
-        "388": 388,
+        "348": 348,
+        "402": 402,
         "undefined": undefined
     }],
-    393: [function(require, module, exports) {
+    407: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
-        var _ui = require(333);
+        var _ui = require(348);
         var _reactRedux = require('react-redux');
-        var _pricesAvailable = require(128);
+        var _pricesAvailable = require(133);
         var _pricesAvailable2 = _interopRequireDefault(_pricesAvailable);
-        var _remaining = require(137);
+        var _remaining = require(144);
         var _remaining2 = _interopRequireDefault(_remaining);
-        var _getFee = require(124);
+        var _getFee = require(129);
         var _getFee2 = _interopRequireDefault(_getFee);
-        var _coinTotalAmounts = require(102);
+        var _coinTotalAmounts = require(107);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
 
         function _interopRequireDefault(obj) {
@@ -34951,14 +36750,14 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         });
 
     }, {
-        "102": 102,
-        "124": 124,
-        "128": 128,
-        "137": 137,
-        "333": 333,
+        "107": 107,
+        "129": 129,
+        "133": 133,
+        "144": 144,
+        "348": 348,
         "undefined": undefined
     }],
-    394: [function(require, module, exports) {
+    408: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -35001,7 +36800,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    395: [function(require, module, exports) {
+    409: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -35009,8 +36808,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
         var _reactRedux = require('react-redux');
-        var _util = require(403);
-        var _detailsItem = require(394);
+        var _all = require(139);
+        var _all2 = _interopRequireDefault(_all);
+        var _exchange = require(240);
+        var _detailsItem = require(408);
         var _detailsItem2 = _interopRequireDefault(_detailsItem);
 
         function _interopRequireDefault(obj) {
@@ -35018,16 +36819,21 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 default: obj
             };
         }
-        exports.default = (0, _reactRedux.connect)((state, props) => ({
-            onClick: createOnClick(props.tx)
-        }))(TxDetailsOrderId);
+        exports.default = (0, _reactRedux.connect)((state, props) => {
+            const orders = (0, _all2.default)(state);
+            const order = orders.getByTxId(String(props.tx));
+            return {
+                order,
+                onClick: createOnClick(order, props.tx)
+            };
+        })(TxDetailsOrderId);
 
         function TxDetailsOrderId(_ref) {
             let {
-                onClick,
-                tx
+                order,
+                onClick
             } = _ref;
-            if (tx.meta.shapeshiftOrderId) {
+            if (order && order.svc === 'ss') {
                 return _react2.default.createElement(_detailsItem2.default, {
                     title: 'ShapeShift Order',
                     layout: 'col-4',
@@ -35035,9 +36841,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 }, _react2.default.createElement('div', {
                     className: 'content link',
                     onClick: onClick
-                }, tx.meta.shapeshiftOrderId));
+                }, order.orderId));
             }
-            if (tx.meta.evercoinOrderId) {
+            if (order && order.svc === 'ec') {
                 return _react2.default.createElement(_detailsItem2.default, {
                     title: 'Evercoin Order',
                     layout: 'col-4',
@@ -35045,36 +36851,27 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 }, _react2.default.createElement('div', {
                     className: 'content link',
                     onClick: onClick
-                }, tx.meta.evercoinOrderId));
+                }, order.orderId));
             }
-            console.dir(tx);
-            return null;
+            return _react2.default.createElement(_detailsItem2.default, {
+                title: 'Order ID',
+                layout: 'col-4',
+                name: 'tx-details__duration'
+            }, 'Loading...');
         }
 
-        function createOnClick(tx) {
-            if (!tx.meta) return () => {};
-            switch (exchangeDetect(tx)) {
-                case 'shapeshift':
-                    return (0, _util.openShapeShiftOrderId)(tx.meta.shapeshiftOrderId);
-                case 'evercoin':
-                    return (0, _util.openEvercoinOrderId)(tx.meta.evercoinOrderId);
-                default:
-                    return () => {};
-            }
-        }
-
-        function exchangeDetect(tx) {
-            if (tx.meta.shapeshiftOrderId) return 'shapeshift';
-            if (tx.meta.evercoinOrderId) return 'evercoin';
-            return '';
+        function createOnClick(order, tx) {
+            if (!order) return () => {};
+            return () => (0, _exchange.openOrderId)(order);
         }
 
     }, {
-        "394": 394,
-        "403": 403,
+        "139": 139,
+        "240": 240,
+        "408": 408,
         "undefined": undefined
     }],
-    396: [function(require, module, exports) {
+    410: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -35082,8 +36879,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
         var _reactRedux = require('react-redux');
-        var _util = require(403);
-        var _detailsItem = require(394);
+        var _electron = require('electron');
+        var _blockExplorer = require(105);
+        var _blockExplorer2 = _interopRequireDefault(_blockExplorer);
+        var _detailsItem = require(408);
         var _detailsItem2 = _interopRequireDefault(_detailsItem);
 
         function _interopRequireDefault(obj) {
@@ -35091,30 +36890,32 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 default: obj
             };
         }
-        exports.default = (0, _reactRedux.connect)((state, props) => ({
-            onClick: (0, _util.openBlockExplorerTxId)(props.asset, props.txId)
+        exports.default = (0, _reactRedux.connect)(state => ({
+            blockExplorer: (0, _blockExplorer2.default)(state)
         }))(TxDetailsTxId);
 
         function TxDetailsTxId(_ref) {
             let {
                 onClick,
-                txId
+                txId,
+                asset,
+                blockExplorer
             } = _ref;
             return _react2.default.createElement(_detailsItem2.default, {
                 title: 'Transaction ID',
                 layout: 'col-4'
             }, _react2.default.createElement('div', {
                 className: 'content link',
-                onClick: onClick
+                onClick: () => _electron.shell.openExternal(blockExplorer(asset).txUrl(txId))
             }, txId));
         }
 
     }, {
-        "394": 394,
-        "403": 403,
+        "105": 105,
+        "408": 408,
         "undefined": undefined
     }],
-    397: [function(require, module, exports) {
+    411: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -35123,24 +36924,24 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
         var _reactRedux = require('react-redux');
-        var _getValue = require(121);
+        var _getValue = require(126);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _pricesAvailable = require(128);
+        var _pricesAvailable = require(133);
         var _pricesAvailable2 = _interopRequireDefault(_pricesAvailable);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
         var _moment = require('moment');
         var _moment2 = _interopRequireDefault(_moment);
-        var _ui = require(333);
-        var _detailsItem = require(394);
+        var _ui = require(348);
+        var _detailsItem = require(408);
         var _detailsItem2 = _interopRequireDefault(_detailsItem);
-        var _detailsTxid = require(396);
+        var _detailsTxid = require(410);
         var _detailsTxid2 = _interopRequireDefault(_detailsTxid);
-        var _detailsOrderid = require(395);
+        var _detailsOrderid = require(409);
         var _detailsOrderid2 = _interopRequireDefault(_detailsOrderid);
-        var _historicalPrice = require(399);
+        var _historicalPrice = require(413);
         var _historicalPrice2 = _interopRequireDefault(_historicalPrice);
-        var _ymd = require(337);
+        var _ymd = require(352);
         var _ymd2 = _interopRequireDefault(_ymd);
 
         function _interopRequireDefault(obj) {
@@ -35250,18 +37051,18 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         });
 
     }, {
-        "121": 121,
-        "128": 128,
-        "184": 184,
-        "333": 333,
-        "337": 337,
-        "394": 394,
-        "395": 395,
-        "396": 396,
-        "399": 399,
+        "126": 126,
+        "133": 133,
+        "194": 194,
+        "348": 348,
+        "352": 352,
+        "408": 408,
+        "409": 409,
+        "410": 410,
+        "413": 413,
         "undefined": undefined
     }],
-    398: [function(require, module, exports) {
+    412: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -35270,36 +37071,30 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
         var _reactRedux = require('react-redux');
-        var _getValue = require(121);
+        var _getValue = require(126);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _pricesAvailable = require(128);
+        var _pricesAvailable = require(133);
         var _pricesAvailable2 = _interopRequireDefault(_pricesAvailable);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
         var _moment = require('moment');
         var _moment2 = _interopRequireDefault(_moment);
-        var _ui = require(333);
-        var _electron = require('electron');
-        var _detailsItem = require(394);
+        var _ui = require(348);
+        var _detailsItem = require(408);
         var _detailsItem2 = _interopRequireDefault(_detailsItem);
-        var _detailsTxid = require(396);
+        var _detailsTxid = require(410);
         var _detailsTxid2 = _interopRequireDefault(_detailsTxid);
-        var _detailsOrderid = require(395);
+        var _detailsOrderid = require(409);
         var _detailsOrderid2 = _interopRequireDefault(_detailsOrderid);
-        var _historicalPrice = require(399);
+        var _historicalPrice = require(413);
         var _historicalPrice2 = _interopRequireDefault(_historicalPrice);
-        var _ymd = require(337);
+        var _ymd = require(352);
         var _ymd2 = _interopRequireDefault(_ymd);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
                 default: obj
             };
-        }
-
-        function handleTxOrderIdClick(event, tx) {
-            console.log('txId + orderId copied to clipboard');
-            _electron.clipboard.writeText(`${tx.txId}: ${tx.meta.shapeshiftOrderId}`);
         }
         const Header = exports.Header = (_ref) => {
             let {
@@ -35362,8 +37157,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 title: 'Date',
                 layout: 'col-4',
                 name: 'tx-details__date',
-                content: (0, _moment2.default)(tx.date).format('dddd, MMM Do YYYY, h:mm:ss A'),
-                onClick: event => handleTxOrderIdClick(event, tx)
+                content: (0, _moment2.default)(tx.date).format('dddd, MMM Do YYYY, h:mm:ss A')
             }), _react2.default.createElement('div', {
                 className: 'tx-details__item col-4 tx-details__exchange-amounts'
             }, _react2.default.createElement('div', {
@@ -35402,18 +37196,18 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         });
 
     }, {
-        "121": 121,
-        "128": 128,
-        "184": 184,
-        "333": 333,
-        "337": 337,
-        "394": 394,
-        "395": 395,
-        "396": 396,
-        "399": 399,
+        "126": 126,
+        "133": 133,
+        "194": 194,
+        "348": 348,
+        "352": 352,
+        "408": 408,
+        "409": 409,
+        "410": 410,
+        "413": 413,
         "undefined": undefined
     }],
-    399: [function(require, module, exports) {
+    413: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -35425,9 +37219,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _reactRedux = require('react-redux');
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _getHistoricalFiatValue = require(127);
+        var _getHistoricalFiatValue = require(132);
         var _getHistoricalFiatValue2 = _interopRequireDefault(_getHistoricalFiatValue);
-        var _ui = require(333);
+        var _ui = require(348);
         var _moment = require('moment');
         var _moment2 = _interopRequireDefault(_moment);
 
@@ -35466,11 +37260,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = HistoricalPrice;
 
     }, {
-        "127": 127,
-        "333": 333,
+        "132": 132,
+        "348": 348,
         "undefined": undefined
     }],
-    400: [function(require, module, exports) {
+    414: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -35483,10 +37277,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _propTypes2 = _interopRequireDefault(_propTypes);
         var _classnames = require('classnames');
         var _classnames2 = _interopRequireDefault(_classnames);
-        var _exchRecv = require(397);
-        var _exchSent = require(398);
-        var _recv = require(401);
-        var _sent = require(402);
+        var _exchRecv = require(411);
+        var _exchSent = require(412);
+        var _recv = require(415);
+        var _sent = require(416);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -35621,13 +37415,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "397": 397,
-        "398": 398,
-        "401": 401,
-        "402": 402,
+        "411": 411,
+        "412": 412,
+        "415": 415,
+        "416": 416,
         "undefined": undefined
     }],
-    401: [function(require, module, exports) {
+    415: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -35638,21 +37432,21 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _reactRedux = require('react-redux');
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _getValue = require(121);
+        var _getValue = require(126);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _pricesAvailable = require(128);
+        var _pricesAvailable = require(133);
         var _pricesAvailable2 = _interopRequireDefault(_pricesAvailable);
-        var _ui = require(333);
+        var _ui = require(348);
         var _moment = require('moment');
         var _moment2 = _interopRequireDefault(_moment);
-        var _detailsItem = require(394);
+        var _detailsItem = require(408);
         var _detailsItem2 = _interopRequireDefault(_detailsItem);
-        var _historicalPrice = require(399);
+        var _historicalPrice = require(413);
         var _historicalPrice2 = _interopRequireDefault(_historicalPrice);
-        var _detailsTxid = require(396);
+        var _detailsTxid = require(410);
         var _detailsTxid2 = _interopRequireDefault(_detailsTxid);
         var _electron = require('electron');
-        var _ymd = require(337);
+        var _ymd = require(352);
         var _ymd2 = _interopRequireDefault(_ymd);
 
         function _interopRequireDefault(obj) {
@@ -35752,16 +37546,16 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         });
 
     }, {
-        "121": 121,
-        "128": 128,
-        "333": 333,
-        "337": 337,
-        "394": 394,
-        "396": 396,
-        "399": 399,
+        "126": 126,
+        "133": 133,
+        "348": 348,
+        "352": 352,
+        "408": 408,
+        "410": 410,
+        "413": 413,
         "undefined": undefined
     }],
-    402: [function(require, module, exports) {
+    416: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -35770,22 +37564,22 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
         var _reactRedux = require('react-redux');
-        var _getValue = require(121);
+        var _getValue = require(126);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _pricesAvailable = require(128);
+        var _pricesAvailable = require(133);
         var _pricesAvailable2 = _interopRequireDefault(_pricesAvailable);
-        var _ui = require(333);
+        var _ui = require(348);
         var _moment = require('moment');
         var _moment2 = _interopRequireDefault(_moment);
-        var _assets = require(184);
+        var _assets = require(194);
         var _assets2 = _interopRequireDefault(_assets);
-        var _detailsItem = require(394);
+        var _detailsItem = require(408);
         var _detailsItem2 = _interopRequireDefault(_detailsItem);
-        var _detailsTxid = require(396);
+        var _detailsTxid = require(410);
         var _detailsTxid2 = _interopRequireDefault(_detailsTxid);
-        var _historicalPrice = require(399);
+        var _historicalPrice = require(413);
         var _historicalPrice2 = _interopRequireDefault(_historicalPrice);
-        var _ymd = require(337);
+        var _ymd = require(352);
         var _ymd2 = _interopRequireDefault(_ymd);
 
         function _interopRequireDefault(obj) {
@@ -35889,52 +37683,17 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         });
 
     }, {
-        "121": 121,
-        "128": 128,
-        "184": 184,
-        "333": 333,
-        "337": 337,
-        "394": 394,
-        "396": 396,
-        "399": 399,
+        "126": 126,
+        "133": 133,
+        "194": 194,
+        "348": 348,
+        "352": 352,
+        "408": 408,
+        "410": 410,
+        "413": 413,
         "undefined": undefined
     }],
-    403: [function(require, module, exports) {
-        'use strict';
-        Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        exports.openBlockExplorerTxId = openBlockExplorerTxId;
-        exports.openShapeShiftOrderId = openShapeShiftOrderId;
-        exports.openEvercoinOrderId = openEvercoinOrderId;
-        var _electron = require('electron');
-        var _assets = require(184);
-        var _assets2 = _interopRequireDefault(_assets);
-
-        function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : {
-                default: obj
-            };
-        }
-
-        function openBlockExplorerTxId(asset, txId) {
-            const a = typeof asset === 'string' ? _assets2.default[asset] : asset;
-            return () => _electron.shell.openExternal(a.blockExplorer.txUrl(txId));
-        }
-
-        function openShapeShiftOrderId(orderId) {
-            return () => _electron.shell.openExternal(`https://shapeshift.io/#/status/${orderId}`);
-        }
-
-        function openEvercoinOrderId(orderId) {
-            return () => _electron.shell.openExternal(`https://evercoin.com/status/${orderId}`);
-        }
-
-    }, {
-        "184": 184,
-        "undefined": undefined
-    }],
-    404: [function(require, module, exports) {
+    417: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -35944,7 +37703,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _classnames = require('classnames');
         var _classnames2 = _interopRequireDefault(_classnames);
-        var _ui = require(333);
+        var _ui = require(348);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -36028,10 +37787,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = WalletDetailHeader;
 
     }, {
-        "333": 333,
+        "348": 348,
         "undefined": undefined
     }],
-    405: [function(require, module, exports) {
+    418: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -36054,32 +37813,32 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
         var _reactRedux = require('react-redux');
-        var _coinTotalAmounts = require(102);
+        var _coinTotalAmounts = require(107);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
-        var _ethereumTokensEnoughFuel = require(108);
+        var _ethereumTokensEnoughFuel = require(113);
         var _ethereumTokensEnoughFuel2 = _interopRequireDefault(_ethereumTokensEnoughFuel);
-        var _getValue = require(121);
+        var _getValue = require(126);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _pricesLoaded = require(129);
+        var _pricesLoaded = require(134);
         var _pricesLoaded2 = _interopRequireDefault(_pricesLoaded);
-        var _pricesAvailable = require(128);
+        var _pricesAvailable = require(133);
         var _pricesAvailable2 = _interopRequireDefault(_pricesAvailable);
-        var _loaded = require(98);
+        var _loaded = require(102);
         var _loaded2 = _interopRequireDefault(_loaded);
-        var _btcDisabled = require(97);
+        var _btcDisabled = require(101);
         var _btcDisabled2 = _interopRequireDefault(_btcDisabled);
-        var _flux = require(257);
-        var _receiveModal = require(376);
+        var _flux = require(271);
+        var _receiveModal = require(390);
         var _receiveModal2 = _interopRequireDefault(_receiveModal);
-        var _sendModal = require(390);
+        var _sendModal = require(404);
         var _sendModal2 = _interopRequireDefault(_sendModal);
-        var _ui = require(333);
+        var _ui = require(348);
         var _electron = require('electron');
-        var _swal = require(306);
+        var _swal = require(321);
         var _swal2 = _interopRequireDefault(_swal);
-        var _index = require(400);
+        var _index = require(414);
         var _index2 = _interopRequireDefault(_index);
-        var _walletDetailHeader = require(404);
+        var _walletDetailHeader = require(417);
         var _walletDetailHeader2 = _interopRequireDefault(_walletDetailHeader);
 
         function _interopRequireDefault(obj) {
@@ -36265,23 +38024,23 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = WalletDetail;
 
     }, {
+        "101": 101,
         "102": 102,
-        "108": 108,
-        "121": 121,
-        "128": 128,
-        "129": 129,
-        "257": 257,
-        "306": 306,
-        "333": 333,
-        "376": 376,
+        "107": 107,
+        "113": 113,
+        "126": 126,
+        "133": 133,
+        "134": 134,
+        "271": 271,
+        "321": 321,
+        "348": 348,
         "390": 390,
-        "400": 400,
         "404": 404,
-        "97": 97,
-        "98": 98,
+        "414": 414,
+        "417": 417,
         "undefined": undefined
     }],
-    406: [function(require, module, exports) {
+    419: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -36289,9 +38048,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
         var _reactRedux = require('react-redux');
-        var _available = require(96);
+        var _available = require(100);
         var _available2 = _interopRequireDefault(_available);
-        var _addButton = require(95);
+        var _addButton = require(99);
         var _addButton2 = _interopRequireDefault(_addButton);
 
         function _interopRequireDefault(obj) {
@@ -36331,11 +38090,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         });
 
     }, {
-        "95": 95,
-        "96": 96,
+        "100": 100,
+        "99": 99,
         "undefined": undefined
     }],
-    407: [function(require, module, exports) {
+    420: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -36357,7 +38116,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         const twoOfTwo = exports.twoOfTwo = label => `twoOfTwo.${label}`;
 
     }, {}],
-    408: [function(require, module, exports) {
+    421: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -36451,12 +38210,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    409: [function(require, module, exports) {
+    422: [function(require, module, exports) {
         module.exports = {
             "name": "exodus",
             "productName": "Exodus",
-            "version": "1.41.0",
+            "version": "1.43.4",
             "description": "Secure, manage, and trade blockchain assets."
         }
     }, {}]
-}, {}, [342]);
+}, {}, [356]);

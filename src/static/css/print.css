@@ -13,13 +13,16 @@
 #backup-step-4,
 .exodus-tip-bottom,
 .notification-banner,
+.balance-warning,
 #backup-complete,
+#receive-action-button-text-info,
 #exodus-notification-banner
  {
     display: none;
 }
 
-#exodus #exodus-wallet-receive-address {
+
+#receive-address-print-info, #exodus #exodus-wallet-receive-address {
     font-size: 24px;
     color: #000000;
     display: block;
