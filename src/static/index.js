@@ -19,7 +19,8 @@ switch (os) {
 
 // load up proper process/BrowserWindow JS file
 switch (path.basename(window.location.pathname)) {
-  case 'index.html': require('../src/app/index.js'); break
+  case 'exodus-dev.html': require('../src/app/index.js'); break
+  case 'exodus-prod.html': require('../src/app/index.js'); break
   case 'mnemonic.html': require('../src/app/mnemonic/index.js'); break
   case 'network.html': require('../src/app/network/index.js'); break
   case 'passphrase.html': require('../src/app/passphrase/index.js'); break

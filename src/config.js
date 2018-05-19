@@ -11,10 +11,12 @@ export const ENV_BUILD_EDEN = ENV_BUILD_NAME === 'eden'
 export const DUST_VALUES = {
   // it's actually 546, but in practical testing, some miners won't pick it up
   // if it's less than 5460, so we choose 6000 to be safe
-  // bitcoin dust increased,
-  //   because user spent more for sent this outputs than receive from them
-  //   1 input increase tx size on ~148 bytes, with 125 sat/byte it will 18500 satoshis
-  bitcoin: Math.max(6000, 148 * 125),
+  // bitcoin dust was increased because user can spend more to create a change
+  // output than what the output is actually worth
+  // 1 output will increase tx size by ~148 bytes, so dust is 148 * FEE_SAT/B
+  // if 6000 is higher than 148 * FEE_SAT/B; use that instead
+  // 2018-04-10 set fee to 20 sat/B here
+  bitcoin: Math.max(6000, 148 * 20),
   bcash: 6000,
 
   // https://github.com/BTCGPU/BTCGPU/blob/d5522ed66a924a2d505fe45ed2487e741c6c0917/src/policy/policy.cpp#L18
@@ -29,6 +31,10 @@ export const DUST_VALUES = {
 
   // https://github.com/digibyte/digibyte/blob/3593b858681e61270a4a8a2539627926bca0ef3b/src/policy/policy.h#L49
   digibyte: 1000,
+
+  // FIXME: use proper value...is it DUST_RELAY_TX_FEE?
+  // https://github.com/qtumproject/qtum/blob/d78dd1b1d5412ec3dd52a721469e03f6af565efb/src/policy/policy.h#L48
+  qtumignition: 400000,
 
   // Actual is 546; but we set higher to take into account fees for adding a change output
   vertcoin: 20000,
@@ -66,7 +72,7 @@ export const EXODUS_SERVER = EXODUS_PRODUCTION_SERVER
 export const EXODUS_EXCHANGE_LOCAL_SERVER = 'http://localhost:3021'
 export const EXODUS_EXCHANGE_PRODUCTION_SERVER = 'https://exodus-exchange.azurewebsites.net'
 export const EXODUS_EXCHANGE_STAGING_SERVER = 'https://exodus-exchange-staging.azurewebsites.net'
-export const EXODUS_EXCHANGE_SERVER = EXODUS_EXCHANGE_PRODUCTION_SERVER
+export const EXODUS_EXCHANGE_SERVER = 'https://exodus-exchange-eden.azurewebsites.net' // EXODUS_EXCHANGE_PRODUCTION_SERVER
 // export const EXODUS_EXCHANGE_SERVER = EXODUS_EXCHANGE_STAGING_SERVER
 // export const EXODUS_EXCHANGE_SERVER = EXODUS_EXCHANGE_LOCAL_SERVER
 
@@ -76,7 +82,10 @@ const htmlPath = (file) => ENV_PROD
   ? path.join(__dirname, '..', '..', '..', 'static', file)
   : path.join(__dirname, 'static', file) + '?react_perf'
 
-export const WINDOW_MAIN = 'file://' + htmlPath('index.html')
+export const WINDOW_EXODUS = process.env.NODE_ENV === 'production'
+  ? 'file://' + htmlPath('exodus-prod.html')
+  : 'file://' + htmlPath('exodus-dev.html')
+
 export const WINDOW_MNEMONIC = 'file://' + htmlPath('mnemonic.html')
 export const WINDOW_NETWORK = 'file://' + htmlPath('network.html')
 export const WINDOW_PASSPHRASE = 'file://' + htmlPath('passphrase.html')
@@ -89,7 +98,7 @@ const preloadPath = (proc: string) => ENV_PROD
 export const WINDOW_PASSPHRASE_PRELOAD = preloadPath('passphrase')
 
 export const AUTO_UPDATE_DELAY_INIT = 10000
-export const AUTO_UPDATE_BASE_URL = 'https://exodusbin.azureedge.net'
+export const AUTO_UPDATE_BASE_URL = ENV_BUILD_EDEN ? 'https://exodusbin.azureedge.net/releases/eden' : 'https://exodusbin.azureedge.net/releases'
 
 // temporarily set for each release. Will remove when we have auto-updates
 // always current release date (a Thursday, 10 PM PDT + 4 weeks + 82 hours)

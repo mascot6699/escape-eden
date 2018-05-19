@@ -27,12 +27,12 @@
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.NEW_VERSION_DATE = exports.AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_DELAY_INIT = exports.WINDOW_PASSPHRASE_PRELOAD = exports.WINDOW_WALLET = exports.WINDOW_PASSPHRASE = exports.WINDOW_NETWORK = exports.WINDOW_MNEMONIC = exports.WINDOW_MAIN = exports.EXODUS_EXCHANGE_SERVER = exports.EXODUS_EXCHANGE_STAGING_SERVER = exports.EXODUS_EXCHANGE_PRODUCTION_SERVER = exports.EXODUS_EXCHANGE_LOCAL_SERVER = exports.EXODUS_SERVER = exports.EXODUS_STAGING_SERVER = exports.EXODUS_PRODUCTION_SERVER = exports.EXODUS_TESTING_SERVER = exports.EXODUS_LOCAL_SERVER = exports.EXODUS_DISPLAY_NAME = exports.COMPANY = exports.PACKAGE = exports.BITCOIN_FEE_LIMIT = exports.DUST_VALUES = exports.ENV_BUILD_EDEN = exports.ENV_BUILD_EXODUS = exports.ENV_BUILD_NAME = exports.ENV_PROD = exports.ENV_DEV = undefined;
+        exports.NEW_VERSION_DATE = exports.AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_DELAY_INIT = exports.WINDOW_PASSPHRASE_PRELOAD = exports.WINDOW_WALLET = exports.WINDOW_PASSPHRASE = exports.WINDOW_NETWORK = exports.WINDOW_MNEMONIC = exports.WINDOW_EXODUS = exports.EXODUS_EXCHANGE_SERVER = exports.EXODUS_EXCHANGE_STAGING_SERVER = exports.EXODUS_EXCHANGE_PRODUCTION_SERVER = exports.EXODUS_EXCHANGE_LOCAL_SERVER = exports.EXODUS_SERVER = exports.EXODUS_STAGING_SERVER = exports.EXODUS_PRODUCTION_SERVER = exports.EXODUS_TESTING_SERVER = exports.EXODUS_LOCAL_SERVER = exports.EXODUS_DISPLAY_NAME = exports.COMPANY = exports.PACKAGE = exports.BITCOIN_FEE_LIMIT = exports.DUST_VALUES = exports.ENV_BUILD_EDEN = exports.ENV_BUILD_EXODUS = exports.ENV_BUILD_NAME = exports.ENV_PROD = exports.ENV_DEV = undefined;
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _package = require(422);
+        var _package = require(447);
         var _package2 = _interopRequireDefault(_package);
 
         function _interopRequireDefault(obj) {
@@ -46,13 +46,14 @@
         const ENV_BUILD_EXODUS = exports.ENV_BUILD_EXODUS = ENV_BUILD_NAME === '';
         const ENV_BUILD_EDEN = exports.ENV_BUILD_EDEN = ENV_BUILD_NAME === 'eden';
         const DUST_VALUES = exports.DUST_VALUES = {
-            bitcoin: Math.max(6000, 148 * 125),
+            bitcoin: Math.max(6000, 148 * 20),
             bcash: 6000,
             bgold: 6000,
             litecoin: 60000,
             dash: 5500,
             decred: 70000,
             digibyte: 1000,
+            qtumignition: 400000,
             vertcoin: 20000,
             zcash: 1500
         };
@@ -68,9 +69,9 @@
         const EXODUS_EXCHANGE_LOCAL_SERVER = exports.EXODUS_EXCHANGE_LOCAL_SERVER = 'http://localhost:3021';
         const EXODUS_EXCHANGE_PRODUCTION_SERVER = exports.EXODUS_EXCHANGE_PRODUCTION_SERVER = 'https://exodus-exchange.azurewebsites.net';
         const EXODUS_EXCHANGE_STAGING_SERVER = exports.EXODUS_EXCHANGE_STAGING_SERVER = 'https://exodus-exchange-staging.azurewebsites.net';
-        const EXODUS_EXCHANGE_SERVER = exports.EXODUS_EXCHANGE_SERVER = EXODUS_EXCHANGE_PRODUCTION_SERVER;
+        const EXODUS_EXCHANGE_SERVER = exports.EXODUS_EXCHANGE_SERVER = 'https://exodus-exchange-eden.azurewebsites.net';
         const htmlPath = file => ENV_PROD ? _path2.default.join(__dirname, '..', '..', '..', 'static', file) : _path2.default.join(__dirname, 'static', file) + '?react_perf';
-        const WINDOW_MAIN = exports.WINDOW_MAIN = 'file://' + htmlPath('index.html');
+        const WINDOW_EXODUS = exports.WINDOW_EXODUS = "production" === 'production' ? 'file://' + htmlPath('exodus-prod.html') : 'file://' + htmlPath('exodus-dev.html');
         const WINDOW_MNEMONIC = exports.WINDOW_MNEMONIC = 'file://' + htmlPath('mnemonic.html');
         const WINDOW_NETWORK = exports.WINDOW_NETWORK = 'file://' + htmlPath('network.html');
         const WINDOW_PASSPHRASE = exports.WINDOW_PASSPHRASE = 'file://' + htmlPath('passphrase.html');
@@ -78,12 +79,12 @@
         const preloadPath = proc => ENV_PROD ? _path2.default.join(__dirname, '..', proc, 'preload.js') : _path2.default.join(__dirname, proc, 'preload.js');
         const WINDOW_PASSPHRASE_PRELOAD = exports.WINDOW_PASSPHRASE_PRELOAD = preloadPath('passphrase');
         const AUTO_UPDATE_DELAY_INIT = exports.AUTO_UPDATE_DELAY_INIT = 10000;
-        const AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_BASE_URL = 'https://exodusbin.azureedge.net';
-        const timeMs = (parseInt(1516750708696) || Date.now()) + (4 * (0, _ms2.default)('168h') + (0, _ms2.default)('82h'));
+        const AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_BASE_URL = ENV_BUILD_EDEN ? 'https://exodusbin.azureedge.net/releases/eden' : 'https://exodusbin.azureedge.net/releases';
+        const timeMs = (parseInt(1526488859626) || Date.now()) + (4 * (0, _ms2.default)('168h') + (0, _ms2.default)('82h'));
         const NEW_VERSION_DATE = exports.NEW_VERSION_DATE = new Date(timeMs);
 
     }, {
-        "422": 422,
+        "447": 447,
         "undefined": undefined
     }],
     2: [function(require, module, exports) {
@@ -140,39 +141,8 @@
 
     }, {}],
     4: [function(require, module, exports) {
-        "use strict";
-
-        function includes(item) {
-            return this.indexOf(item) >= 0;
-        }
-        module.exports = {
-            includes
-        };
-
-    }, {}],
-    5: [function(require, module, exports) {
         'use strict';
-        var array = require(4);
-        var object = require(6);
-        var string = require(7);
-        Object.keys(array).forEach(key => {
-            if (Array.prototype[key]) return;
-            Object.defineProperty(Array.prototype, key, {
-                enumerable: false,
-                configurable: true,
-                writable: true,
-                value: array[key]
-            });
-        });
-        Object.keys(object).forEach(key => {
-            if (Object.prototype[key]) return;
-            Object.defineProperty(Object.prototype, key, {
-                enumerable: false,
-                configurable: true,
-                writable: true,
-                value: object[key]
-            });
-        });
+        var string = require(5);
         Object.keys(string).forEach(key => {
             if (String.prototype[key]) return;
             Object.defineProperty(String.prototype, key, {
@@ -184,24 +154,9 @@
         });
 
     }, {
-        "4": 4,
-        "6": 6,
-        "7": 7
+        "5": 5
     }],
-    6: [function(require, module, exports) {
-        "use strict";
-
-        function values(obj) {
-            return Object.keys(obj).map(key => {
-                return obj[key];
-            });
-        }
-        module.exports = {
-            values
-        };
-
-    }, {}],
-    7: [function(require, module, exports) {
+    5: [function(require, module, exports) {
         'use strict';
 
         function padStart(targetLength, padString) {
@@ -222,16 +177,16 @@
         };
 
     }, {}],
-    8: [function(require, module, exports) {
+    6: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.tether = exports.ripple = exports.factom = exports.ethereumclassic = exports.ethereum = undefined;
-        var _aureus = require(203);
+        var _aureus = require(220);
         var _makeConcurrent = require('make-concurrent');
         var _makeConcurrent2 = _interopRequireDefault(_makeConcurrent);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -314,19 +269,19 @@
         const tether = exports.tether = createAccountState(_assets2.default.tether);
 
     }, {
-        "194": 194,
-        "203": 203,
+        "210": 210,
+        "220": 220,
         "undefined": undefined
     }],
-    9: [function(require, module, exports) {
+    7: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.createFromHDKey = createFromHDKey;
-        var _bip = require(211);
+        var _bip = require(227);
         var _bip2 = _interopRequireDefault(_bip);
-        var _util = require(10);
+        var _util = require(8);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -348,21 +303,21 @@
         }
 
     }, {
-        "10": 10,
-        "211": 211
+        "227": 227,
+        "8": 8
     }],
-    10: [function(require, module, exports) {
+    8: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.addressFromChainParams = addressFromChainParams;
-        var _address = require(86);
+        var _address = require(87);
         var _address2 = _interopRequireDefault(_address);
-        var _bip = require(211);
+        var _bip = require(227);
         var _bip2 = _interopRequireDefault(_bip);
-        var _util = require(11);
-        var _withTokens = require(331);
+        var _util = require(9);
+        var _withTokens = require(353);
         var _withTokens2 = _interopRequireDefault(_withTokens);
 
         function _interopRequireDefault(obj) {
@@ -417,20 +372,20 @@
         }
 
     }, {
-        "11": 11,
-        "211": 211,
-        "331": 331,
-        "86": 86
+        "227": 227,
+        "353": 353,
+        "87": 87,
+        "9": 9
     }],
-    11: [function(require, module, exports) {
+    9: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.addressFromChainParams = addressFromChainParams;
-        var _address = require(86);
+        var _address = require(87);
         var _address2 = _interopRequireDefault(_address);
-        var _bip = require(211);
+        var _bip = require(227);
         var _bip2 = _interopRequireDefault(_bip);
 
         function _interopRequireDefault(obj) {
@@ -472,24 +427,36 @@
         }
 
     }, {
-        "211": 211,
-        "86": 86
+        "227": 227,
+        "87": 87
     }],
-    12: [function(require, module, exports) {
+    10: [function(require, module, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        const rethrowWithAsset = exports.rethrowWithAsset = assetName => err => {
+            throw Object.assign(err, {
+                asset: assetName
+            });
+        };
+
+    }, {}],
+    11: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.tether = exports.ripple = exports.factom = exports.ethereumclassic = exports.ethereum = undefined;
-        var _accountState = require(8);
+        var _accountState = require(6);
         var AccountState = _interopRequireWildcard(_accountState);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _reduxAsyncAction = require(303);
+        var _reduxAsyncAction = require(323);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _instanceShim = require(174);
+        var _instanceShim = require(186);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _keys = require(175);
+        var _keys = require(187);
         var walletKeys = _interopRequireWildcard(_keys);
 
         function _interopRequireDefault(obj) {
@@ -587,13 +554,13 @@
         const tether = exports.tether = createActions(_assets2.default.tether);
 
     }, {
-        "174": 174,
-        "175": 175,
-        "194": 194,
-        "303": 303,
-        "8": 8
+        "186": 186,
+        "187": 187,
+        "210": 210,
+        "323": 323,
+        "6": 6
     }],
-    13: [function(require, module, exports) {
+    12: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -602,17 +569,17 @@
         exports.setHDKeyFromXPub = setHDKeyFromXPub;
         var _lodash = require('lodash');
         var _lodash2 = _interopRequireDefault(_lodash);
-        var _bip = require(211);
+        var _bip = require(227);
         var _bip2 = _interopRequireDefault(_bip);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _instanceShim = require(174);
+        var _instanceShim = require(186);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _keys = require(175);
+        var _keys = require(187);
         var walletKeys = _interopRequireWildcard(_keys);
-        var _reduxAsyncAction = require(303);
+        var _reduxAsyncAction = require(323);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _util = require(278);
+        var _util = require(296);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -670,23 +637,22 @@
                     } = _ref;
                     const data = yield Promise.all(Object.values(_assets2.default).map((() => {
                         var _ref3 = _asyncToGenerator(function*(asset) {
-                            const uiSigned = ['factom', 'monero', 'ripple'];
-                            let hdkey;
-                            if (uiSigned.includes(asset.name)) {
-                                const jsonHDKey = yield _instanceShim2.default.current.getHDKey(asset.name);
-                                hdkey = _bip2.default.fromJSON(jsonHDKey);
+                            const account = {};
+                            const key = walletKeys.accountStateChain(asset.name, 'account0');
+                            const chainDataPromise = _instanceShim2.default.current.fetchKeyData(key);
+                            if (asset.name === 'monero') {
+                                const jsonHDKey = yield _instanceShim2.default.current.getMoneroHDKey();
+                                account.hdkey = _bip2.default.fromJSON(jsonHDKey);
+                            } else if (asset.name === 'factom') {
+                                account.publicKey = yield _instanceShim2.default.current.getFactomPublicKey();
                             } else {
                                 const xpub = yield _instanceShim2.default.current.getXPub(asset.name);
-                                hdkey = _bip2.default.fromXPub(xpub, {
+                                account.hdkey = _bip2.default.fromXPub(xpub, {
                                     coin: asset.name
                                 });
                             }
-                            const key = walletKeys.accountStateChain(asset.name, 'account0');
-                            const chainData = yield _instanceShim2.default.current.fetchKeyData(key);
-                            return [asset.name, {
-                                chain: chainData || [0, 0, 0],
-                                hdkey
-                            }];
+                            account.chain = (yield chainDataPromise) || [0, 0, 0];
+                            return [asset.name, account];
                         });
                         return function(_x4) {
                             return _ref3.apply(this, arguments);
@@ -716,26 +682,26 @@
         }
 
     }, {
-        "174": 174,
-        "175": 175,
-        "194": 194,
-        "211": 211,
-        "278": 278,
-        "303": 303,
+        "186": 186,
+        "187": 187,
+        "210": 210,
+        "227": 227,
+        "296": 296,
+        "323": 323,
         "undefined": undefined
     }],
-    14: [function(require, module, exports) {
+    13: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _instanceShim = require(174);
+        var _instanceShim = require(186);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _keys = require(175);
+        var _keys = require(187);
         var walletKeys = _interopRequireWildcard(_keys);
-        var _walletHelper = require(177);
+        var _walletHelper = require(189);
         var _walletHelper2 = _interopRequireDefault(_walletHelper);
 
         function _interopRequireDefault(obj) {
@@ -824,12 +790,12 @@
         ];
 
     }, {
-        "174": 174,
-        "175": 175,
-        "177": 177,
+        "186": 186,
+        "187": 187,
+        "189": 189,
         "undefined": undefined
     }],
-    15: [function(require, module, exports) {
+    14: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -952,6 +918,7 @@
                     case 'decred':
                     case 'digibyte':
                     case 'litecoin':
+                    case 'qtumignition':
                     case 'vertcoin':
                     case 'zcash':
                         yield* _asyncGeneratorDelegate(_asyncIterator((0, _insight.rescanBlockchainInsight)(asset, state)), _asyncGenerator.await);
@@ -1003,21 +970,21 @@
         })();
         exports.refreshAll = refreshAll;
         exports.refreshAckError = refreshAckError;
-        var _available = require(100);
+        var _available = require(104);
         var _available2 = _interopRequireDefault(_available);
         var _delay = require('delay');
         var _delay2 = _interopRequireDefault(_delay);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _util = require(278);
-        var _flux = require(271);
-        var _reduxAsyncAction = require(303);
+        var _util = require(296);
+        var _flux = require(289);
+        var _reduxAsyncAction = require(323);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _exodusApi = require(241);
+        var _exodusApi = require(257);
         var exodusAPI = _interopRequireWildcard(_exodusApi);
-        var _insight = require(16);
+        var _insight = require(15);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -1141,7 +1108,12 @@
                         return new Promise(function(resolve, reject) {
                             iterateAsyncGenerator(refresh(asset.name), {
                                 success: resolve,
-                                fail: reject,
+                                fail: function(err) {
+                                    return dispatch({
+                                        type: 'RESCAN_BLOCKCHAIN_FAIL',
+                                        payload: err
+                                    });
+                                },
                                 update: dispatch
                             });
                         });
@@ -1175,16 +1147,16 @@
         }
 
     }, {
-        "100": 100,
-        "16": 16,
-        "194": 194,
-        "241": 241,
-        "271": 271,
-        "278": 278,
-        "303": 303,
+        "104": 104,
+        "15": 15,
+        "210": 210,
+        "257": 257,
+        "289": 289,
+        "296": 296,
+        "323": 323,
         "undefined": undefined
     }],
-    16: [function(require, module, exports) {
+    15: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -1290,24 +1262,22 @@
             };
         }();
         let fetchAllTxData = (() => {
-            var _ref = _asyncToGenerator(function*(insight, addrs, n, httpDelay) {
-                console.log(`fetching: ${addrs.join(',')}`);
-                let txs = [];
-                let total = 100000;
-                let i = 0;
-                while (i < total) {
-                    const txData = yield insight.fetchTxData(addrs, {
-                        from: i,
-                        to: i + n
-                    });
-                    txs = txs.concat(txData.items);
-                    total = txData.totalItems || 0;
-                    i += txData.items ? txData.items.length : 0;
+            var _ref = _asyncToGenerator(function*(insight, asset, addrs, n, httpDelay) {
+                console.log(`fetching ${asset}: ${addrs.join(',')}`);
+                const txs = [];
+                while (true) {
+                    const data = yield insight.fetchTxData(addrs, {
+                        from: txs.length,
+                        to: txs.length + n
+                    }).catch((0, _util3.rethrowWithAsset)(asset));
+                    if (!Array.isArray(data.items) || data.items.length === 0) break;
+                    txs.push(...data.items);
+                    if (data.totalItems && data.totalItems <= txs.length) break;
                     yield(0, _delay2.default)(httpDelay);
                 }
                 return txs;
             });
-            return function fetchAllTxData(_x, _x2, _x3, _x4) {
+            return function fetchAllTxData(_x, _x2, _x3, _x4, _x5) {
                 return _ref.apply(this, arguments);
             };
         })();
@@ -1349,7 +1319,7 @@
                             addrs.push(String(addr));
                         }
                         i += gapLimit;
-                        txs = yield _asyncGenerator.await(fetchAllTxData(insight, addrs, opts.ntxs, opts.httpDelay));
+                        txs = yield _asyncGenerator.await(fetchAllTxData(insight, asset, addrs, opts.ntxs, opts.httpDelay));
                         allTxs = allTxs.concat(txs);
                     } while (txs.length > 0);
                 }
@@ -1385,7 +1355,7 @@
                         if (!addrMap[vout.scriptPubKey.addresses[0]]) return;
                         const address = addrMap[vout.scriptPubKey.addresses[0]];
                         addrsRecv.push(address);
-                        if ((0, _util2.isExchangeAddress)(address) || (0, _util2.isReceiveAddress)(address)) txLogItem.addresses.push(address);
+                        if ((0, _util2.isReceiveAddress)(address)) txLogItem.addresses.push(address);
                         let val = currency.defaultUnit(vout.value);
                         txLogItem.coinAmount = txLogItem.coinAmount.add(val);
                         if (vout.spentTxId) return;
@@ -1427,26 +1397,27 @@
                     utxos: utxoCol
                 });
             });
-            return function rescanBlockchainInsight(_x6, _x7) {
+            return function rescanBlockchainInsight(_x7, _x8) {
                 return _ref2.apply(this, arguments);
             };
         })();
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
         var _delay = require('delay');
         var _delay2 = _interopRequireDefault(_delay);
-        var _insightApiClient = require(279);
+        var _insightApiClient = require(299);
         var _insightApiClient2 = _interopRequireDefault(_insightApiClient);
-        var _utxoCollection = require(93);
+        var _utxoCollection = require(94);
         var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
-        var _util = require(278);
-        var _flux = require(271);
-        var _addressGeneratorTwoOfTwo = require(9);
-        var _pairingData = require(147);
+        var _util = require(296);
+        var _flux = require(289);
+        var _addressGeneratorTwoOfTwo = require(7);
+        var _pairingData = require(158);
         var _pairingData2 = _interopRequireDefault(_pairingData);
-        var _txSet = require(90);
+        var _txSet = require(91);
         var _txSet2 = _interopRequireDefault(_txSet);
-        var _util2 = require(87);
+        var _util2 = require(88);
+        var _util3 = require(10);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -1486,32 +1457,33 @@
         };
 
     }, {
-        "147": 147,
-        "194": 194,
-        "271": 271,
-        "278": 278,
-        "279": 279,
-        "87": 87,
-        "9": 9,
-        "90": 90,
-        "93": 93,
+        "10": 10,
+        "158": 158,
+        "210": 210,
+        "289": 289,
+        "296": 296,
+        "299": 299,
+        "7": 7,
+        "88": 88,
+        "91": 91,
+        "94": 94,
         "undefined": undefined
     }],
-    17: [function(require, module, exports) {
+    16: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.loadStatus = exports.loadAuth = exports.createAccount = undefined;
+        exports.loadStatus = exports.createAccount = undefined;
         exports.setStatus = setStatus;
-        var _reduxAsyncAction = require(303);
+        var _reduxAsyncAction = require(323);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _instanceShim = require(174);
+        var _instanceShim = require(186);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _keys = require(175);
+        var _keys = require(187);
         var walletKeys = _interopRequireWildcard(_keys);
-        var _flux = require(271);
-        var _client = require(228);
+        var _flux = require(289);
+        var _client = require(244);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -1560,7 +1532,6 @@
                 });
             };
         }
-        const backupAuthClient = (0, _client.createClient)('backup-auth');
         const createAccount = exports.createAccount = (passphrase, email) => (0, _reduxAsyncAction2.default)('BACKUP_CREATE_ACCOUNT', (() => {
             var _ref2 = _asyncToGenerator(function*(dispatch, getState, _ref) {
                 let {
@@ -1568,44 +1539,25 @@
                     fail
                 } = _ref;
                 const account = (0, _client.createClient)('account');
-                const {
-                    auth,
-                    status
-                } = yield account.create(passphrase, email);
-                success({
-                    auth,
-                    status
-                });
+                const status = yield account.create(passphrase, email);
+                success(status);
             });
             return function(_x, _x2, _x3) {
                 return _ref2.apply(this, arguments);
             };
         })());
-        const loadAuth = exports.loadAuth = () => (0, _reduxAsyncAction2.default)('BACKUP_LOAD_AUTH', (() => {
+        const loadStatus = exports.loadStatus = () => (0, _reduxAsyncAction2.default)('BACKUP_LOAD_STATUS', (() => {
             var _ref4 = _asyncToGenerator(function*(dispatch, getState, _ref3) {
                 let {
                     success,
                     fail
                 } = _ref3;
-                const auth = yield backupAuthClient.current();
-                success(auth);
-            });
-            return function(_x4, _x5, _x6) {
-                return _ref4.apply(this, arguments);
-            };
-        })());
-        const loadStatus = exports.loadStatus = () => (0, _reduxAsyncAction2.default)('BACKUP_LOAD_STATUS', (() => {
-            var _ref6 = _asyncToGenerator(function*(dispatch, getState, _ref5) {
-                let {
-                    success,
-                    fail
-                } = _ref5;
                 const backupKey = walletKeys.backup();
                 const status = yield _instanceShim2.default.current.fetchKeyData(backupKey);
                 success(status);
             });
-            return function(_x7, _x8, _x9) {
-                return _ref6.apply(this, arguments);
+            return function(_x4, _x5, _x6) {
+                return _ref4.apply(this, arguments);
             };
         })());
 
@@ -1624,18 +1576,116 @@
         }), 60 * 1000);
 
     }, {
-        "174": 174,
-        "175": 175,
-        "228": 228,
-        "271": 271,
-        "303": 303
+        "186": 186,
+        "187": 187,
+        "244": 244,
+        "289": 289,
+        "323": 323
+    }],
+    17: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.openAddress = openAddress;
+        exports.openTransaction = openTransaction;
+        var _reduxAsyncAction = require(323);
+        var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
+        var _blockExplorer = require(111);
+        var _blockExplorer2 = _interopRequireDefault(_blockExplorer);
+        var _electron = require('electron');
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+
+        function _asyncToGenerator(fn) {
+            return function() {
+                var gen = fn.apply(this, arguments);
+                return new Promise(function(resolve, reject) {
+                    function step(key, arg) {
+                        try {
+                            var info = gen[key](arg);
+                            var value = info.value;
+                        } catch (error) {
+                            reject(error);
+                            return;
+                        }
+                        if (info.done) {
+                            resolve(value);
+                        } else {
+                            return Promise.resolve(value).then(function(value) {
+                                step("next", value);
+                            }, function(err) {
+                                step("throw", err);
+                            });
+                        }
+                    }
+                    return step("next");
+                });
+            };
+        }
+
+        function openAddress(asset, address) {
+            let options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+            return (0, _reduxAsyncAction2.default)('BLOCK_EXPLORER_OPEN_ADDRESS', {}, (() => {
+                var _ref2 = _asyncToGenerator(function*(dispatch, getState, _ref) {
+                    let {
+                        success,
+                        fail
+                    } = _ref;
+                    const addressUrl = (0, _blockExplorer2.default)(getState())(asset).addressUrl(address);
+                    yield shellOpen(addressUrl, options);
+                    success();
+                });
+                return function(_x2, _x3, _x4) {
+                    return _ref2.apply(this, arguments);
+                };
+            })());
+        }
+
+        function openTransaction(asset, txId) {
+            let options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+            return (0, _reduxAsyncAction2.default)('BLOCK_EXPLORER_OPEN_TRANSACTION', {}, (() => {
+                var _ref4 = _asyncToGenerator(function*(dispatch, getState, _ref3) {
+                    let {
+                        success,
+                        fail
+                    } = _ref3;
+                    const txUrl = (0, _blockExplorer2.default)(getState())(asset).txUrl(txId);
+                    yield shellOpen(txUrl, options);
+                    success();
+                });
+                return function(_x6, _x7, _x8) {
+                    return _ref4.apply(this, arguments);
+                };
+            })());
+        }
+
+        function shellOpen(url, options) {
+            return new Promise((resolve, reject) => {
+                _electron.shell.openExternal(url, Object.assign({
+                    activate: true
+                }, options), err => {
+                    if (err) return reject(err);
+                    else resolve();
+                });
+            });
+        }
+
+    }, {
+        "111": 111,
+        "323": 323,
+        "undefined": undefined
     }],
     18: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _configFile = require(216);
+        var _configFile = require(232);
 
         function _asyncToGenerator(fn) {
             return function() {
@@ -1682,7 +1732,7 @@
         ];
 
     }, {
-        "216": 216
+        "232": 232
     }],
     19: [function(require, module, exports) {
         'use strict';
@@ -1697,8 +1747,8 @@
         exports.setCoinMarketCap = setCoinMarketCap;
         exports.setCryptoCompare = setCryptoCompare;
         exports.setFiatUnit = setFiatUnit;
-        var _configFile = require(216);
-        var _configKeys = require(217);
+        exports.setPortfolioSortOrder = setPortfolioSortOrder;
+        var _configFile = require(232);
 
         function _asyncToGenerator(fn) {
             return function() {
@@ -1753,36 +1803,39 @@
         }
 
         function enableAsset(asset) {
-            return update(`${_configKeys.assets}.${asset}.disabled`, false);
+            return update(`${_configFile.keys.assets}.${asset}.disabled`, false);
         }
 
         function disableAsset(asset) {
-            return update(`${_configKeys.assets}.${asset}.disabled`, true);
+            return update(`${_configFile.keys.assets}.${asset}.disabled`, true);
         }
 
         function setCoinMarketCap() {
-            return update(_configKeys.marketPrices, ['coinmarketcap', 'cryptocompare']);
+            return update(_configFile.keys.marketPrices, ['coinmarketcap', 'cryptocompare']);
         }
 
         function setCryptoCompare() {
-            return update(_configKeys.marketPrices, ['cryptocompare', 'coinmarketcap']);
+            return update(_configFile.keys.marketPrices, ['cryptocompare', 'coinmarketcap']);
         }
 
         function setFiatUnit(unit) {
-            return update(_configKeys.fiatUnit, unit);
+            return update(_configFile.keys.fiatUnit, unit);
+        }
+
+        function setPortfolioSortOrder(sortOrder) {
+            return update(_configFile.keys.portfolioSortOrder, sortOrder);
         }
         const notifications = exports.notifications = {
             tx: {
                 receive: {
-                    disable: () => update(_configKeys.notificationsTxReceivedEnabled, false),
-                    enable: () => update(_configKeys.notificationsTxReceivedEnabled, true)
+                    disable: () => update(_configFile.keys.notificationsTxReceivedEnabled, false),
+                    enable: () => update(_configFile.keys.notificationsTxReceivedEnabled, true)
                 }
             }
         };
 
     }, {
-        "216": 216,
-        "217": 217
+        "232": 232
     }],
     20: [function(require, module, exports) {
         'use strict';
@@ -1951,9 +2004,9 @@
                 return _ref4.apply(this, arguments);
             };
         })();
-        var _swal = require(321);
+        var _swal = require(343);
         var _swal2 = _interopRequireDefault(_swal);
-        var _util = require(278);
+        var _util = require(296);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -1989,33 +2042,102 @@
         }
 
     }, {
-        "278": 278,
-        "321": 321
+        "296": 296,
+        "343": 343
     }],
     21: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
+        exports.checkRegisteredAddress = checkRegisteredAddress;
+        var _reduxAsyncAction = require(323);
+        var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
+        var _getReceiveAddress = require(97);
+        var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
+        var _assets = require(210);
+        var _assets2 = _interopRequireDefault(_assets);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+
+        function _asyncToGenerator(fn) {
+            return function() {
+                var gen = fn.apply(this, arguments);
+                return new Promise(function(resolve, reject) {
+                    function step(key, arg) {
+                        try {
+                            var info = gen[key](arg);
+                            var value = info.value;
+                        } catch (error) {
+                            reject(error);
+                            return;
+                        }
+                        if (info.done) {
+                            resolve(value);
+                        } else {
+                            return Promise.resolve(value).then(function(value) {
+                                step("next", value);
+                            }, function(err) {
+                                step("throw", err);
+                            });
+                        }
+                    }
+                    return step("next");
+                });
+            };
+        }
+
+        function checkRegisteredAddress() {
+            return (0, _reduxAsyncAction2.default)('EOS_CHECK_REGISTERED_ADDRESS', {}, (() => {
+                var _ref2 = _asyncToGenerator(function*(dispatch, getState, _ref) {
+                    let {
+                        success,
+                        fail
+                    } = _ref;
+                    const addresses = (0, _getReceiveAddress2.default)(getState());
+                    const ethAddress = String(addresses('ethereum'));
+                    const registeredAddress = yield _assets2.default.eosio.registration.getRegisteredAddress(ethAddress);
+                    success(registeredAddress);
+                });
+                return function(_x, _x2, _x3) {
+                    return _ref2.apply(this, arguments);
+                };
+            })());
+        }
+
+    }, {
+        "210": 210,
+        "323": 323,
+        "97": 97
+    }],
+    22: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
         exports.legacyExchange = legacyExchange;
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
         var _pairs = require(27);
         var pairs = _interopRequireWildcard(_pairs);
-        var _txSend = require(79);
-        var _flux = require(271);
-        var _reduxAsyncAction = require(303);
+        var _txSend = require(80);
+        var _flux = require(289);
+        var _reduxAsyncAction = require(323);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _getExchangeAddress = require(95);
+        var _getExchangeAddress = require(96);
         var _getExchangeAddress2 = _interopRequireDefault(_getExchangeAddress);
-        var _util = require(278);
-        var _getValue = require(126);
+        var _util = require(296);
+        var _getValue = require(135);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _getUsdValue = require(125);
+        var _getUsdValue = require(134);
         var _getUsdValue2 = _interopRequireDefault(_getUsdValue);
-        var _instanceShim = require(174);
+        var _instanceShim = require(186);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
         var _delay = require('delay');
         var _delay2 = _interopRequireDefault(_delay);
@@ -2252,21 +2374,21 @@
         }
 
     }, {
-        "125": 125,
-        "126": 126,
-        "174": 174,
-        "194": 194,
+        "134": 134,
+        "135": 135,
+        "186": 186,
+        "210": 210,
         "24": 24,
         "25": 25,
         "27": 27,
-        "271": 271,
-        "278": 278,
-        "303": 303,
-        "79": 79,
-        "95": 95,
+        "289": 289,
+        "296": 296,
+        "323": 323,
+        "80": 80,
+        "96": 96,
         "undefined": undefined
     }],
-    22: [function(require, module, exports) {
+    23: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -2366,33 +2488,79 @@
                 return _ref6.apply(this, arguments);
             };
         })();
+        let checkChangelly = (() => {
+            var _ref7 = _asyncToGenerator(function*() {
+                let {
+                    orderId,
+                    initExchParams,
+                    initRes,
+                    active,
+                    fromAsset,
+                    toAsset
+                } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+                const orders = yield changelly.fetch(initRes.statusRequestParams);
+                const orderInfo = orders[0];
+                console.log('CHANGELLY:');
+                console.dir(orderInfo);
+                const fromCurrency = _assets2.default[fromAsset].currency;
+                const toCurrency = _assets2.default[toAsset].currency;
+                const {
+                    payoutAddress,
+                    payinAddress
+                } = orderInfo;
+                const checkAddress = isAssetEthErcEtc(toAsset) ? payoutAddress.toLowerCase() : payoutAddress;
+                if (checkAddress !== initExchParams.withdrawal) {
+                    throw new Error(`Not matching CH addresses: ${checkAddress} !== ${initExchParams.withdrawal}`);
+                }
+                const toAmount = toCurrency.defaultUnit(initRes.withdrawalAmount);
+                let receiver = {
+                    address: payinAddress,
+                    amount: fromCurrency.defaultUnit(initRes.depositAmount)
+                };
+                const ret = {
+                    receiver,
+                    toAmount,
+                    toAddress: initExchParams.withdrawal,
+                    options: {
+                        statusRequestParams: initRes.statusRequestParams
+                    }
+                };
+                console.dir(ret);
+                return ret;
+            });
+            return function checkChangelly() {
+                return _ref7.apply(this, arguments);
+            };
+        })();
         exports.newExchange = newExchange;
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
         var _pairs = require(27);
         var pairs = _interopRequireWildcard(_pairs);
-        var _txSend = require(79);
-        var _flux = require(271);
-        var _reduxAsyncAction = require(303);
+        var _txSend = require(80);
+        var _flux = require(289);
+        var _reduxAsyncAction = require(323);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _getExchangeAddress = require(95);
+        var _getExchangeAddress = require(96);
         var _getExchangeAddress2 = _interopRequireDefault(_getExchangeAddress);
-        var _util = require(278);
-        var _getValue = require(126);
+        var _util = require(296);
+        var _getValue = require(135);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _getUsdValue = require(125);
+        var _getUsdValue = require(134);
         var _getUsdValue2 = _interopRequireDefault(_getUsdValue);
-        var _instanceShim = require(174);
+        var _instanceShim = require(186);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
         var _delay = require('delay');
         var _delay2 = _interopRequireDefault(_delay);
         var _shapeshift = require(25);
         var shapeshiftExchange = _interopRequireWildcard(_shapeshift);
-        var _evercoin = require(239);
+        var _evercoin = require(255);
         var evercoin = _interopRequireWildcard(_evercoin);
-        var _exchange = require(240);
+        var _changelly = require(230);
+        var changelly = _interopRequireWildcard(_changelly);
+        var _exchange = require(256);
         var exodusExchangeAPI = _interopRequireWildcard(_exchange);
 
         function _interopRequireWildcard(obj) {
@@ -2461,7 +2629,8 @@
                 fromCoin,
                 toCoin,
                 lastActive,
-                activePopover
+                activePopover,
+                svc: desiredSvc
             } = _ref;
             console.log('NEW EXCHANGE');
             const initPayload = {
@@ -2497,10 +2666,11 @@
                         depositAmount,
                         withdrawalAmount,
                         active,
-                        eid,
+                        eid: '',
                         activePopover,
                         depositAmountFiat: getFiatValue(fromAmount),
-                        withdrawalAmountFiat: getFiatValue(toAmount)
+                        withdrawalAmountFiat: getFiatValue(toAmount),
+                        svc: desiredSvc
                     };
                     let res = yield exodusExchangeAPI.initExchange(initExchParams);
                     console.log('Exodus ShapeShift response:');
@@ -2512,7 +2682,8 @@
                     const {
                         receiver,
                         toAmount: actualToAmount,
-                        toAddress
+                        toAddress,
+                        options: svcOptions
                     } = yield checkService({
                         svc,
                         orderId,
@@ -2558,6 +2729,7 @@
                         coinAmount: sendAmount.abs().negate(),
                         fiatAmount: getFiatValue(sendAmount.abs().negate()),
                         toCoin: {
+                            floatingRate: exodusExchangeAPI.isFloatingRateExchange(svc),
                             coin: toCoin,
                             coinAmount: actualToAmount.toString(),
                             fiatAmount: getFiatValue(actualToAmount).toString()
@@ -2575,8 +2747,10 @@
                         fromAmount: sendAmount,
                         toAmount: actualToAmount,
                         svc,
+                        svcOptions,
                         fromAmountUSD: getUSDValue(sendAmount),
-                        toAmountUSD: getUSDValue(actualToAmount)
+                        toAmountUSD: getUSDValue(actualToAmount),
+                        floatingRate: exodusExchangeAPI.isFloatingRateExchange(svc)
                     };
                     _flux.actions.orders.update(orderData);
                     yield(0, _delay2.default)((0, _ms2.default)('5s'));
@@ -2596,82 +2770,26 @@
             console.log(`Exchange serviced by: ${svc}`);
             if (svc === 'ss') return checkShapeShift(params);
             else if (svc === 'ec') return checkEvercoin(params);
+            else if (svc === 'ch') return checkChangelly(params);
             else throw new Error(`Uknown exchange service provider: ${svc}.`);
         }
         const isAssetEthErcEtc = asset => asset === 'ethereum' || asset === 'ethereumclassic' || _assets2.default[asset].isEthereumToken;
 
     }, {
-        "125": 125,
-        "126": 126,
-        "174": 174,
-        "194": 194,
-        "239": 239,
-        "240": 240,
+        "134": 134,
+        "135": 135,
+        "186": 186,
+        "210": 210,
+        "230": 230,
         "25": 25,
+        "255": 255,
+        "256": 256,
         "27": 27,
-        "271": 271,
-        "278": 278,
-        "303": 303,
-        "79": 79,
-        "95": 95,
-        "undefined": undefined
-    }],
-    23: [function(require, module, exports) {
-        'use strict';
-        Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        exports.fetchAssetsAvailable = undefined;
-        let fetchAssetsAvailable = exports.fetchAssetsAvailable = (() => {
-            var _ref = _asyncToGenerator(function*() {
-                const url = `${_appConfig.EXODUS_EXCHANGE_SERVER}/v1/assets`;
-                const res = yield(0, _fetchival2.default)(url).get();
-                if (res.status !== 'success') throw new Error(`${url} response not success.`);
-                return res.data;
-            });
-            return function fetchAssetsAvailable() {
-                return _ref.apply(this, arguments);
-            };
-        })();
-        var _appConfig = require(84);
-        var _fetchival = require('fetchival');
-        var _fetchival2 = _interopRequireDefault(_fetchival);
-
-        function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : {
-                default: obj
-            };
-        }
-
-        function _asyncToGenerator(fn) {
-            return function() {
-                var gen = fn.apply(this, arguments);
-                return new Promise(function(resolve, reject) {
-                    function step(key, arg) {
-                        try {
-                            var info = gen[key](arg);
-                            var value = info.value;
-                        } catch (error) {
-                            reject(error);
-                            return;
-                        }
-                        if (info.done) {
-                            resolve(value);
-                        } else {
-                            return Promise.resolve(value).then(function(value) {
-                                step("next", value);
-                            }, function(err) {
-                                step("throw", err);
-                            });
-                        }
-                    }
-                    return step("next");
-                });
-            };
-        }
-
-    }, {
-        "84": 84,
+        "289": 289,
+        "296": 296,
+        "323": 323,
+        "80": 80,
+        "96": 96,
         "undefined": undefined
     }],
     24: [function(require, module, exports) {
@@ -2748,7 +2866,7 @@
                 return _ref4.apply(this, arguments);
             };
         })();
-        var _appConfig = require(84);
+        var _appConfig = require(85);
         var _fetchival = require('fetchival');
         var _fetchival2 = _interopRequireDefault(_fetchival);
 
@@ -2821,7 +2939,7 @@
         }
 
     }, {
-        "84": 84,
+        "85": 85,
         "undefined": undefined
     }],
     25: [function(require, module, exports) {
@@ -2948,18 +3066,17 @@
         var _aw2 = _interopRequireDefault(_aw);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _shapeshift = require(317);
+        var _shapeshift = require(338);
         var _shapeshift2 = _interopRequireDefault(_shapeshift);
-        var _reduxAsyncAction = require(303);
+        var _reduxAsyncAction = require(323);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _util = require(278);
-        var _exodusApi = require(241);
+        var _util = require(296);
+        var _exodusApi = require(257);
         var exodusAPI = _interopRequireWildcard(_exodusApi);
-        var _appConfig = require(84);
-        var _exodusNew = require(23);
-        var newExodusExchange = _interopRequireWildcard(_exodusNew);
-        var _exchangeLegacy = require(21);
-        var _exchangeNew = require(22);
+        var _appConfig = require(85);
+        var _exchange = require(256);
+        var _exchangeLegacy = require(22);
+        var _exchangeNew = require(23);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -3023,7 +3140,8 @@
                                     [err, marketInfo] = yield(0, _aw2.default)(_shapeshift2.default.marketInfo)();
                                     break;
                                 default:
-                                    [err, marketInfo] = yield(0, _aw2.default)(exodusAPI.marketInfo, {
+                                    const marketInfoFunc = _appConfig.ENV_DEV || _appConfig.ENV_BUILD_EDEN ? _exchange.fetchRates : exodusAPI.marketInfo;
+                                    [err, marketInfo] = yield(0, _aw2.default)(marketInfoFunc, {
                                         injectCallback: false
                                     })();
                                     break;
@@ -3097,7 +3215,8 @@
                 fromCoin,
                 toCoin,
                 lastActive,
-                activePopover
+                activePopover,
+                svc
             } = _ref6;
             if (_appConfig.ENV_DEV || _appConfig.ENV_BUILD_EDEN) return (0, _exchangeNew.newExchange)({
                 toAmount,
@@ -3105,7 +3224,8 @@
                 fromCoin,
                 toCoin,
                 lastActive,
-                activePopover
+                activePopover,
+                svc
             });
             return (0, _exchangeLegacy.legacyExchange)({
                 toAmount,
@@ -3147,7 +3267,14 @@
                         fail,
                         success
                     } = _ref9;
-                    const ret = yield newExodusExchange.fetchAssetsAvailable();
+                    const ret = yield(0, _exchange.fetchAssetsAvailable)();
+                    if (global.FORCE_SVC) {
+                        Object.keys(ret).forEach(function(asset) {
+                            ret[asset].svc = global.FORCE_SVC;
+                            ret[asset].fromAvailable = true;
+                            ret[asset].toAvailable = true;
+                        });
+                    }
                     success(ret);
                 });
                 return function(_x10, _x11, _x12) {
@@ -3161,14 +3288,14 @@
         }
 
     }, {
-        "21": 21,
         "22": 22,
         "23": 23,
-        "241": 241,
-        "278": 278,
-        "303": 303,
-        "317": 317,
-        "84": 84,
+        "256": 256,
+        "257": 257,
+        "296": 296,
+        "323": 323,
+        "338": 338,
+        "85": 85,
         "undefined": undefined
     }],
     27: [function(require, module, exports) {
@@ -3180,7 +3307,7 @@
         exports.toCoins = toCoins;
         exports.isValid = isValid;
         exports.invert = invert;
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
@@ -3190,14 +3317,14 @@
                 default: obj
             };
         }
-        const units = Object.values(_assets2.default).reduce((map, asset) => Object.assign(map, {
-            [asset.shapeShiftUnit]: asset.name
+        const units = Object.values(_assets2.default).filter(asset => !asset.name.endsWith('claim')).reduce((map, asset) => Object.assign(map, {
+            [asset.displayUnit]: asset.name
         }), {});
 
         function fromCoins(fromCoin, toCoin) {
-            const fromSS = _assets2.default[fromCoin.toLowerCase()].shapeShiftUnit;
+            const fromSS = _assets2.default[fromCoin.toLowerCase()].displayUnit;
             (0, _assert2.default)(fromSS, `${fromCoin} not supported`);
-            const toSS = _assets2.default[toCoin.toLowerCase()].shapeShiftUnit;
+            const toSS = _assets2.default[toCoin.toLowerCase()].displayUnit;
             (0, _assert2.default)(toSS, `${toCoin} not supported`);
             return `${fromSS}_${toSS}`;
         }
@@ -3205,16 +3332,16 @@
         function toCoins(pair) {
             const items = pair.split('_');
             (0, _assert2.default)(items.length === 2, `${pair} is an invalid pair`);
-            const fromCoin = units[items[0].toLowerCase()];
+            const fromCoin = units[items[0].toUpperCase()];
             (0, _assert2.default)(fromCoin, `from ${items[0]} is an invalid coin`);
-            const toCoin = units[items[1].toLowerCase()];
+            const toCoin = units[items[1].toUpperCase()];
             (0, _assert2.default)(toCoin, `to ${items[1]} is an invalid coin`);
             return [fromCoin, toCoin];
         }
 
         function isValid(pair) {
             const items = pair.split('_');
-            return items.length === 2 && units[items[0].toLowerCase()] && units[items[1].toLowerCase()];
+            return items.length === 2 && units[items[0].toUpperCase()] && units[items[1].toUpperCase()];
         }
 
         function invert(pair) {
@@ -3223,7 +3350,7 @@
         }
 
     }, {
-        "194": 194,
+        "210": 210,
         "undefined": undefined
     }],
     28: [function(require, module, exports) {
@@ -3233,19 +3360,19 @@
         });
         var _hooks = require(18);
         var _hooks2 = _interopRequireDefault(_hooks);
-        var _hooks3 = require(14);
+        var _hooks3 = require(13);
         var _hooks4 = _interopRequireDefault(_hooks3);
         var _hooks5 = require(30);
         var _hooks6 = _interopRequireDefault(_hooks5);
-        var _hooks7 = require(66);
+        var _hooks7 = require(67);
         var _hooks8 = _interopRequireDefault(_hooks7);
-        var _hooks9 = require(68);
+        var _hooks9 = require(69);
         var _hooks10 = _interopRequireDefault(_hooks9);
-        var _hooks11 = require(73);
+        var _hooks11 = require(74);
         var _hooks12 = _interopRequireDefault(_hooks11);
-        var _hooks13 = require(78);
+        var _hooks13 = require(79);
         var _hooks14 = _interopRequireDefault(_hooks13);
-        var _hooks15 = require(82);
+        var _hooks15 = require(83);
         var _hooks16 = _interopRequireDefault(_hooks15);
 
         function _interopRequireDefault(obj) {
@@ -3256,14 +3383,14 @@
         exports.default = [_hooks2.default, _hooks6.default, _hooks8.default, _hooks10.default, _hooks4.default, _hooks12.default, _hooks14.default, _hooks16.default];
 
     }, {
-        "14": 14,
+        "13": 13,
         "18": 18,
         "30": 30,
-        "66": 66,
-        "68": 68,
-        "73": 73,
-        "78": 78,
-        "82": 82
+        "67": 67,
+        "69": 69,
+        "74": 74,
+        "79": 79,
+        "83": 83
     }],
     29: [function(require, module, exports) {
         'use strict';
@@ -3271,20 +3398,24 @@
             value: true
         });
         exports.bindAllActionCreators = bindAllActionCreators;
-        var _reduxBindActionCreators = require(304);
+        var _reduxBindActionCreators = require(324);
         var _reduxBindActionCreators2 = _interopRequireDefault(_reduxBindActionCreators);
-        var _accounts = require(13);
+        var _accounts = require(12);
         var accounts = _interopRequireWildcard(_accounts);
-        var _accountStates = require(12);
+        var _accountStates = require(11);
         var accountStates = _interopRequireWildcard(_accountStates);
-        var _assetsRefresh = require(15);
+        var _assetsRefresh = require(14);
         var assetsRefresh = _interopRequireWildcard(_assetsRefresh);
-        var _backup = require(17);
+        var _backup = require(16);
         var backup = _interopRequireWildcard(_backup);
+        var _blockExplorer = require(17);
+        var blockExplorer = _interopRequireWildcard(_blockExplorer);
         var _config = require(19);
         var config = _interopRequireWildcard(_config);
         var _dialog = require(20);
         var dialog = _interopRequireWildcard(_dialog);
+        var _eos = require(21);
+        var eos = _interopRequireWildcard(_eos);
         var _exchange = require(26);
         var exchange = _interopRequireWildcard(_exchange);
         var _localStorage = require(31);
@@ -3297,17 +3428,17 @@
         var moneroSimplewallet = _interopRequireWildcard(_moneroSimplewallet);
         var _monitors = require(54);
         var monitors = _interopRequireWildcard(_monitors);
-        var _orders = require(69);
+        var _orders = require(70);
         var orders = _interopRequireWildcard(_orders);
-        var _networks = require(67);
+        var _networks = require(68);
         var networks = _interopRequireWildcard(_networks);
-        var _twoOfTwo = require(71);
+        var _twoOfTwo = require(72);
         var twoOfTwo = _interopRequireWildcard(_twoOfTwo);
-        var _txLog = require(74);
+        var _txLog = require(75);
         var txLog = _interopRequireWildcard(_txLog);
-        var _txSend = require(79);
+        var _txSend = require(80);
         var txSend = _interopRequireWildcard(_txSend);
-        var _utxos = require(83);
+        var _utxos = require(84);
         var utxos = _interopRequireWildcard(_utxos);
 
         function _interopRequireWildcard(obj) {
@@ -3335,8 +3466,10 @@
             accountStates,
             assetsRefresh,
             backup,
+            blockExplorer,
             config,
             dialog,
+            eos,
             exchange,
             localStorage,
             marketHistory,
@@ -3364,25 +3497,27 @@
         }
 
     }, {
+        "11": 11,
         "12": 12,
-        "13": 13,
-        "15": 15,
+        "14": 14,
+        "16": 16,
         "17": 17,
         "19": 19,
         "20": 20,
+        "21": 21,
         "26": 26,
-        "304": 304,
         "31": 31,
         "32": 32,
+        "324": 324,
         "33": 33,
         "34": 34,
         "54": 54,
-        "67": 67,
-        "69": 69,
-        "71": 71,
-        "74": 74,
-        "79": 79,
-        "83": 83
+        "68": 68,
+        "70": 70,
+        "72": 72,
+        "75": 75,
+        "80": 80,
+        "84": 84
     }],
     30: [function(require, module, exports) {
         'use strict';
@@ -3440,7 +3575,7 @@
         });
         exports.load = load;
         exports.setItem = setItem;
-        var _util = require(278);
+        var _util = require(296);
         const localStorage = window.localStorage;
 
         function load() {
@@ -3461,7 +3596,7 @@
         }
 
     }, {
-        "278": 278
+        "296": 296
     }],
     32: [function(require, module, exports) {
         'use strict';
@@ -3583,7 +3718,7 @@
         })();
         let load = exports.load = (() => {
             var _ref2 = _asyncGenerator.wrap(function*(getState, asset) {
-                const fiat = getState().config.get(_configKeys.fiatUnit);
+                const fiat = getState().config.get(_keys.fiatUnit);
                 yield(0, _util.FSA)('MARKET_HISTORY_LOAD_INIT', {
                     asset,
                     fiat
@@ -3626,19 +3761,19 @@
                 return _ref3.apply(this, arguments);
             };
         })();
-        var _util = require(278);
+        var _util = require(296);
         var _cryptocompare = require('cryptocompare');
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _flux = require(271);
-        var _configKeys = require(217);
+        var _flux = require(289);
+        var _keys = require(233);
         var _aw = require('aw');
         var _aw2 = _interopRequireDefault(_aw);
         var _delay = require('delay');
         var _delay2 = _interopRequireDefault(_delay);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _dateUtil = require(225);
+        var _dateUtil = require(241);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -3742,11 +3877,11 @@
         }
 
     }, {
-        "194": 194,
-        "217": 217,
-        "225": 225,
-        "271": 271,
-        "278": 278,
+        "210": 210,
+        "233": 233,
+        "241": 241,
+        "289": 289,
+        "296": 296,
         "undefined": undefined
     }],
     33: [function(require, module, exports) {
@@ -3755,14 +3890,14 @@
             value: true
         });
         exports.login = login;
-        var _reduxAsyncAction = require(303);
+        var _reduxAsyncAction = require(323);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
         var _electronIpcBroadcast = require('electron-ipc-broadcast');
         var _electronIpcBroadcast2 = _interopRequireDefault(_electronIpcBroadcast);
         var _electron = require('electron');
-        var _monerojsUtil = require(295);
+        var _monerojsUtil = require(315);
         var moneroUtil = _interopRequireWildcard(_monerojsUtil);
-        var _getReceiveAddress = require(96);
+        var _getReceiveAddress = require(97);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
@@ -3870,9 +4005,9 @@
         }
 
     }, {
-        "295": 295,
-        "303": 303,
-        "96": 96,
+        "315": 315,
+        "323": 323,
+        "97": 97,
         "undefined": undefined
     }],
     34: [function(require, module, exports) {
@@ -3881,10 +4016,10 @@
             value: true
         });
         exports.start = start;
-        var _monerojsUtil = require(295);
+        var _monerojsUtil = require(315);
         var moneroUtil = _interopRequireWildcard(_monerojsUtil);
-        var _moneroSimplewallet = require(288);
-        var _getReceiveAddress = require(96);
+        var _moneroSimplewallet = require(308);
+        var _getReceiveAddress = require(97);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
 
         function _interopRequireDefault(obj) {
@@ -3996,9 +4131,9 @@
         }
 
     }, {
-        "288": 288,
-        "295": 295,
-        "96": 96
+        "308": 308,
+        "315": 315,
+        "97": 97
     }],
     35: [function(require, module, exports) {
         'use strict';
@@ -4009,12 +4144,12 @@
         var _fp = require('lodash/fp');
         var _ = _interopRequireWildcard(_fp);
         var _reselect = require('reselect');
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _flux = require(271);
-        var _cryptoTotal = require(104);
+        var _flux = require(289);
+        var _cryptoTotal = require(110);
         var _cryptoTotal2 = _interopRequireDefault(_cryptoTotal);
-        var _assetsDisabled = require(108);
+        var _assetsDisabled = require(114);
         var _assetsDisabled2 = _interopRequireDefault(_assetsDisabled);
 
         function _interopRequireDefault(obj) {
@@ -4056,10 +4191,10 @@
         }
 
     }, {
-        "104": 104,
-        "108": 108,
-        "194": 194,
-        "271": 271,
+        "110": 110,
+        "114": 114,
+        "210": 210,
+        "289": 289,
         "undefined": undefined
     }],
     36: [function(require, module, exports) {
@@ -4069,18 +4204,18 @@
         });
         exports.createMonitor = createMonitor;
         var _events = require('events');
-        var _aureus = require(203);
+        var _aureus = require(220);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
         var _aw = require('aw');
         var _aw2 = _interopRequireDefault(_aw);
         var _makeConcurrent = require('make-concurrent');
         var _makeConcurrent2 = _interopRequireDefault(_makeConcurrent);
-        var _flux = require(271);
-        var _util = require(278);
-        var _accountState = require(8);
+        var _flux = require(289);
+        var _util = require(296);
+        var _accountState = require(6);
         var AccountStates = _interopRequireWildcard(_accountState);
-        var _logger = require(283);
+        var _logger = require(303);
         var _logger2 = _interopRequireDefault(_logger);
 
         function _interopRequireWildcard(obj) {
@@ -4332,11 +4467,11 @@
         }
 
     }, {
-        "203": 203,
-        "271": 271,
-        "278": 278,
-        "283": 283,
-        "8": 8,
+        "220": 220,
+        "289": 289,
+        "296": 296,
+        "303": 303,
+        "6": 6,
         "undefined": undefined
     }],
     37: [function(require, module, exports) {
@@ -4367,12 +4502,10 @@
                         insightWS = new _ws2.default(url);
                         let connectOpts;
                         if (asset.name === 'bcash') connectOpts = {
-                            secure: false,
-                            transports: ['websocket']
+                            secure: false
                         };
                         if (asset.name === 'decred') connectOpts = {
-                            secure: true,
-                            transports: ['websocket']
+                            secure: true
                         };
                         insightWS.connect(connectOpts).on('tx', data => {
                             const utxosArray = lodash.get(data, 'vout', []).map((vout, index) => {
@@ -4428,19 +4561,19 @@
         var _reselect = require('reselect');
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _flux = require(271);
-        var _util = require(278);
-        var _utxoCollection = require(93);
+        var _flux = require(289);
+        var _util = require(296);
+        var _utxoCollection = require(94);
         var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
-        var _addressSet = require(85);
+        var _addressSet = require(86);
         var _addressSet2 = _interopRequireDefault(_addressSet);
-        var _getValue = require(126);
+        var _getValue = require(135);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _ws = require(280);
+        var _ws = require(300);
         var _ws2 = _interopRequireDefault(_ws);
         var _reduxWatch = require('redux-watch');
         var _reduxWatch2 = _interopRequireDefault(_reduxWatch);
-        var _getRecvExchAddresses = require(98);
+        var _getRecvExchAddresses = require(99);
         var _getRecvExchAddresses2 = _interopRequireDefault(_getRecvExchAddresses);
 
         function _interopRequireDefault(obj) {
@@ -4465,13 +4598,13 @@
         }
 
     }, {
-        "126": 126,
-        "271": 271,
-        "278": 278,
-        "280": 280,
-        "85": 85,
-        "93": 93,
-        "98": 98,
+        "135": 135,
+        "289": 289,
+        "296": 296,
+        "300": 300,
+        "86": 86,
+        "94": 94,
+        "99": 99,
         "undefined": undefined
     }],
     38: [function(require, module, exports) {
@@ -4492,20 +4625,21 @@
         var _makeConcurrent2 = _interopRequireDefault(_makeConcurrent);
         var _ethereumjsUtil = require('ethereumjs-util');
         var _ethereumjsUtil2 = _interopRequireDefault(_ethereumjsUtil);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _appConfig = require(84);
-        var _etherscan = require(234);
+        var _appConfig = require(85);
+        var _etherscan = require(250);
         var etherscan = _interopRequireWildcard(_etherscan);
-        var _flux = require(271);
-        var _util = require(278);
-        var _accountState = require(8);
+        var _flux = require(289);
+        var _util = require(296);
+        var _accountState = require(6);
         var AccountStates = _interopRequireWildcard(_accountState);
-        var _getReceiveAddress = require(96);
+        var _getReceiveAddress = require(97);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _aureus = require(203);
-        var _logger = require(283);
+        var _aureus = require(220);
+        var _logger = require(303);
         var _logger2 = _interopRequireDefault(_logger);
+        var _util2 = require(10);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -4575,16 +4709,17 @@
                     const txlist = [];
                     while (true) {
                         const limit = 1000;
+                        const startblockCurrent = startblock;
                         const txs = yield server.getHistory(address, {
                             startblock: startblock + 1,
                             limit
-                        });
+                        }).catch((0, _util2.rethrowWithAsset)(asset.name));
                         for (const tx of txs) {
                             const blockNumber = parseInt(tx.blockNumber, 16);
                             if (blockNumber > startblock) startblock = blockNumber;
                             txlist.push(tx);
                         }
-                        if (txs.length < limit) break;
+                        if (startblock === startblockCurrent) break;
                         yield(0, _delay3.default)(1050);
                     }
                     for (const tx of txlist) {
@@ -4699,7 +4834,7 @@
                                 if ((0, _aureus.isNumberUnit)(value)) return value;
                                 return asset.currency.baseUnit(value).to(asset.displayUnit);
                             }
-                            const history = yield getHistory();
+                            const history = yield getHistory().catch((0, _util2.rethrowWithAsset)(asset.name));
                             for (const item of history) {
                                 const logItem = state.txLog[asset.name].get(item.txId);
                                 if (logItem && !refresh) {
@@ -5073,15 +5208,16 @@
         }
 
     }, {
-        "194": 194,
-        "203": 203,
-        "234": 234,
-        "271": 271,
-        "278": 278,
-        "283": 283,
-        "8": 8,
-        "84": 84,
-        "96": 96,
+        "10": 10,
+        "210": 210,
+        "220": 220,
+        "250": 250,
+        "289": 289,
+        "296": 296,
+        "303": 303,
+        "6": 6,
+        "85": 85,
+        "97": 97,
         "undefined": undefined
     }],
     39: [function(require, module, exports) {
@@ -5090,9 +5226,9 @@
             value: true
         });
         exports.start = undefined;
-        var _reduxAsyncAction = require(303);
+        var _reduxAsyncAction = require(323);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _insightApiClient = require(279);
+        var _insightApiClient = require(299);
         var _insightApiClient2 = _interopRequireDefault(_insightApiClient);
         var _aw = require('aw');
         var _aw2 = _interopRequireDefault(_aw);
@@ -5101,10 +5237,10 @@
         var _delay2 = _interopRequireDefault(_delay);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _util = require(278);
-        var _flux = require(271);
-        var _util2 = require(91);
-        var _assets = require(194);
+        var _util = require(296);
+        var _flux = require(289);
+        var _util2 = require(92);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -5235,12 +5371,12 @@
         }
 
     }, {
-        "194": 194,
-        "271": 271,
-        "278": 278,
-        "279": 279,
-        "303": 303,
-        "91": 91,
+        "210": 210,
+        "289": 289,
+        "296": 296,
+        "299": 299,
+        "323": 323,
+        "92": 92,
         "undefined": undefined
     }],
     40: [function(require, module, exports) {
@@ -5248,9 +5384,9 @@
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _exodusEthereumServer = require(242);
+        var _exodusEthereumServer = require(258);
         var _base_ethereum = require(38);
 
         function _interopRequireDefault(obj) {
@@ -5266,8 +5402,8 @@
         });
 
     }, {
-        "194": 194,
-        "242": 242,
+        "210": 210,
+        "258": 258,
         "38": 38
     }],
     41: [function(require, module, exports) {
@@ -5275,9 +5411,9 @@
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _exodusEthereumServer = require(242);
+        var _exodusEthereumServer = require(258);
         var _base_ethereum = require(38);
 
         function _interopRequireDefault(obj) {
@@ -5292,8 +5428,8 @@
         });
 
     }, {
-        "194": 194,
-        "242": 242,
+        "210": 210,
+        "258": 258,
         "38": 38
     }],
     42: [function(require, module, exports) {
@@ -5313,7 +5449,7 @@
                 let startblock = refresh ? 0 : state.accountStates.factom.startblock;
                 const txlist = yield _exodusFactomServer2.default.getHistory(address, {
                     startblock
-                });
+                }).catch((0, _util.rethrowWithAsset)('factom'));
                 const history = txlist.map(function(_ref3) {
                     let {
                         blockNumber,
@@ -5381,14 +5517,15 @@
         var lodash = _interopRequireWildcard(_lodash);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _flux = require(271);
-        var _assets = require(194);
+        var _flux = require(289);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _exodusFactomServer = require(244);
+        var _exodusFactomServer = require(260);
         var _exodusFactomServer2 = _interopRequireDefault(_exodusFactomServer);
-        var _getReceiveAddress = require(96);
+        var _getReceiveAddress = require(97);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
         var _base = require(36);
+        var _util = require(10);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -5457,11 +5594,12 @@
         });
 
     }, {
-        "194": 194,
-        "244": 244,
-        "271": 271,
+        "10": 10,
+        "210": 210,
+        "260": 260,
+        "289": 289,
         "36": 36,
-        "96": 96,
+        "97": 97,
         "undefined": undefined
     }],
     43: [function(require, module, exports) {
@@ -5469,7 +5607,7 @@
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
         var _base_bitcoinLike = require(37);
         var _base_bitcoinLike2 = _interopRequireDefault(_base_bitcoinLike);
@@ -5519,6 +5657,7 @@
             ethereumclassic: _ethereumclassic3.default,
             factom: _factom,
             monero: _monero,
+            qtumignition: (0, _base_bitcoinLike2.default)(_assets2.default.qtumignition),
             ripple: _ripple,
             tether: (0, _omniProperty2.default)(_assets2.default.tether),
             vertcoin: (0, _base_bitcoinLike2.default)(_assets2.default.vertcoin),
@@ -5526,7 +5665,7 @@
         };
 
     }, {
-        "194": 194,
+        "210": 210,
         "37": 37,
         "39": 39,
         "40": 40,
@@ -5542,13 +5681,13 @@
             value: true
         });
         exports.start = undefined;
-        var _moneroSimplewallet = require(288);
-        var _flux = require(271);
-        var _assets = require(194);
+        var _moneroSimplewallet = require(308);
+        var _flux = require(289);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _reduxAsyncAction = require(303);
+        var _reduxAsyncAction = require(323);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _logger = require(283);
+        var _logger = require(303);
         var _logger2 = _interopRequireDefault(_logger);
 
         function _interopRequireDefault(obj) {
@@ -5637,11 +5776,11 @@
         }
 
     }, {
-        "194": 194,
-        "271": 271,
-        "283": 283,
-        "288": 288,
-        "303": 303
+        "210": 210,
+        "289": 289,
+        "303": 303,
+        "308": 308,
+        "323": 323
     }],
     45: [function(require, module, exports) {
         'use strict';
@@ -5712,11 +5851,11 @@
         };
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _omniexplorer = require(298);
+        var _omniexplorer = require(318);
         var omniexplorer = _interopRequireWildcard(_omniexplorer);
-        var _getReceiveAddress = require(96);
+        var _getReceiveAddress = require(97);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
         var _base = require(36);
 
@@ -5769,10 +5908,10 @@
         }
 
     }, {
-        "194": 194,
-        "298": 298,
+        "210": 210,
+        "318": 318,
         "36": 36,
-        "96": 96,
+        "97": 97,
         "undefined": undefined
     }],
     46: [function(require, module, exports) {
@@ -5793,7 +5932,7 @@
                 let fromLedger = refresh ? 0 : state.accountStates.ripple.startblock;
                 const txlist = yield(0, _rippleApi.getTransactions)(address, {
                     fromLedger
-                });
+                }).catch((0, _util2.rethrowWithAsset)('ripple'));
                 for (const _ref3 of txlist) {
                     const {
                         tx,
@@ -5858,13 +5997,14 @@
         })();
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _rippleApi = require(305);
-        var _util = require(310);
-        var _getReceiveAddress = require(96);
+        var _rippleApi = require(325);
+        var _util = require(330);
+        var _getReceiveAddress = require(97);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
         var _base = require(36);
+        var _util2 = require(10);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -5923,11 +6063,12 @@
         const refresh = exports.refresh = monitor.refresh;
 
     }, {
-        "194": 194,
-        "305": 305,
-        "310": 310,
+        "10": 10,
+        "210": 210,
+        "325": 325,
+        "330": 330,
         "36": 36,
-        "96": 96,
+        "97": 97,
         "undefined": undefined
     }],
     47: [function(require, module, exports) {
@@ -6003,7 +6144,7 @@
         var _makeConcurrent = require('make-concurrent');
         var _makeConcurrent2 = _interopRequireDefault(_makeConcurrent);
         var _reselect = require('reselect');
-        var _flux = require(271);
+        var _flux = require(289);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -6057,7 +6198,7 @@
         const LOOP_INTERVAL_FAIL = (0, _ms2.default)('2m');
 
     }, {
-        "271": 271,
+        "289": 289,
         "undefined": undefined
     }],
     48: [function(require, module, exports) {
@@ -6066,8 +6207,11 @@
             value: true
         });
         var _events = require('events');
+        var _assert = require('assert');
+        var _assert2 = _interopRequireDefault(_assert);
         var _bitcoinBestFee = require('bitcoin-best-fee');
-        var _assets = require(194);
+        var _bitcoinFee = require('bitcoin-fee');
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
         var _base = require(47);
         var _base2 = _interopRequireDefault(_base);
@@ -6104,7 +6248,7 @@
                 });
             };
         }
-        const MIN_FEE = 1e2;
+        const MIN_FEE = 1e1;
         const MAX_FEE = 2e3;
         exports.default = (0, _base2.default)({
             asset: _assets2.default.bitcoin,
@@ -6114,9 +6258,15 @@
             },
             getFee() {
                 return _asyncToGenerator(function*() {
-                    const fee = yield(0, _bitcoinBestFee.fetchMean)();
-                    const isValid = Number.isFinite(fee);
-                    if (!isValid) throw new Error(`Invalid fee: ${fee}`);
+                    let fee;
+                    try {
+                        fee = yield(0, _bitcoinFee.fetchFee)('21.co');
+                        (0, _assert2.default)(Number.isFinite(fee), `Invalid fee: ${fee}`);
+                    } catch (error) {
+                        console.error('Error encountered fetching fees from 21.co; falling back to aggregated fees');
+                        console.error(error);
+                        fee = yield(0, _bitcoinBestFee.fetchMean)();
+                    }(0, _assert2.default)(Number.isFinite(fee), `Invalid fee: ${fee}`);
                     if (fee < MIN_FEE) return MIN_FEE;
                     if (fee > MAX_FEE) return MAX_FEE;
                     return fee;
@@ -6130,7 +6280,7 @@
         });
 
     }, {
-        "194": 194,
+        "210": 210,
         "47": 47,
         "undefined": undefined
     }],
@@ -6141,10 +6291,10 @@
         });
         exports.createETHMonitor = createETHMonitor;
         var _events = require('events');
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _exodusEthereumServer = require(242);
-        var _etherscan = require(234);
+        var _exodusEthereumServer = require(258);
+        var _etherscan = require(250);
         var etherscan = _interopRequireWildcard(_etherscan);
         var _base = require(47);
         var _base2 = _interopRequireDefault(_base);
@@ -6240,9 +6390,9 @@
         }
 
     }, {
-        "194": 194,
-        "234": 234,
-        "242": 242,
+        "210": 210,
+        "250": 250,
+        "258": 258,
         "47": 47,
         "undefined": undefined
     }],
@@ -6251,10 +6401,10 @@
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _exodusEthereumServer = require(242);
-        var _etcchain = require(232);
+        var _exodusEthereumServer = require(258);
+        var _etcchain = require(248);
         var etcchain = _interopRequireWildcard(_etcchain);
         var _ethereum = require(49);
 
@@ -6284,9 +6434,9 @@
         exports.default = (0, _ethereum.createETHMonitor)(_assets2.default.ethereumclassic, _exodusEthereumServer.etc.ws, getGasPrice, MIN_GASPRICE, MAX_GASPRICE);
 
     }, {
-        "194": 194,
-        "232": 232,
-        "242": 242,
+        "210": 210,
+        "248": 248,
+        "258": 258,
         "49": 49
     }],
     51: [function(require, module, exports) {
@@ -6297,9 +6447,9 @@
         var _events = require('events');
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _exodusFactomServer = require(244);
+        var _exodusFactomServer = require(260);
         var _exodusFactomServer2 = _interopRequireDefault(_exodusFactomServer);
         var _base = require(47);
         var _base2 = _interopRequireDefault(_base);
@@ -6370,8 +6520,8 @@
         });
 
     }, {
-        "194": 194,
-        "244": 244,
+        "210": 210,
+        "260": 260,
         "47": 47,
         "undefined": undefined
     }],
@@ -6416,9 +6566,9 @@
             value: true
         });
         var _events = require('events');
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _rippleApi = require(305);
+        var _rippleApi = require(325);
         var _base = require(47);
         var _base2 = _interopRequireDefault(_base);
 
@@ -6438,8 +6588,8 @@
         });
 
     }, {
-        "194": 194,
-        "305": 305,
+        "210": 210,
+        "325": 325,
         "47": 47,
         "undefined": undefined
     }],
@@ -6461,11 +6611,11 @@
         var _market = _interopRequireWildcard(_market2);
         var _marketws2 = require(57);
         var _marketws = _interopRequireWildcard(_marketws2);
-        var _orders2 = require(60);
+        var _orders2 = require(61);
         var _orders = _interopRequireWildcard(_orders2);
-        var _remoteConfig2 = require(62);
+        var _remoteConfig2 = require(63);
         var _remoteConfig = _interopRequireWildcard(_remoteConfig2);
-        var _status2 = require(63);
+        var _status2 = require(64);
         var _status = _interopRequireWildcard(_status2);
 
         function _interopRequireDefault(obj) {
@@ -6505,9 +6655,9 @@
         "55": 55,
         "56": 56,
         "57": 57,
-        "60": 60,
-        "62": 62,
-        "63": 63
+        "61": 61,
+        "63": 63,
+        "64": 64
     }],
     55: [function(require, module, exports) {
         'use strict';
@@ -6521,8 +6671,8 @@
         var _fp = require('lodash/fp');
         var _ = _interopRequireWildcard(_fp);
         var _reselect = require('reselect');
-        var _flux = require(271);
-        var _util = require(278);
+        var _flux = require(289);
+        var _util = require(296);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -6573,11 +6723,14 @@
             litecoin: [{
                 api: 'https://insight.litecore.io/api/'
             }],
+            qtumignition: [{
+                api: 'https://explorer.qtum.org/insight-api/'
+            }],
             vertcoin: [{
                 api: 'https://insight.vertcoin.org/insight-vtc-api/'
             }],
             zcash: [{
-                api: 'https://zchain.online/api/'
+                api: 'https://zcashnetwork.info/api/'
             }]
         });
 
@@ -6616,8 +6769,8 @@
         }
 
     }, {
-        "271": 271,
-        "278": 278,
+        "289": 289,
+        "296": 296,
         "undefined": undefined
     }],
     56: [function(require, module, exports) {
@@ -6660,10 +6813,10 @@
         var _delay2 = _interopRequireDefault(_delay);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _marketApi = require(284);
+        var _marketApi = require(304);
         var _marketApi2 = _interopRequireDefault(_marketApi);
-        var _util = require(278);
-        var _fiat = require(109);
+        var _util = require(296);
+        var _fiat = require(115);
         var _fiat2 = _interopRequireDefault(_fiat);
 
         function _interopRequireDefault(obj) {
@@ -6717,9 +6870,9 @@
         }
 
     }, {
-        "109": 109,
-        "278": 278,
-        "284": 284,
+        "115": 115,
+        "296": 296,
+        "304": 304,
         "undefined": undefined
     }],
     57: [function(require, module, exports) {
@@ -6735,13 +6888,13 @@
         var _ms2 = _interopRequireDefault(_ms);
         var _socket = require('socket.io-client');
         var _socket2 = _interopRequireDefault(_socket);
-        var _flux = require(271);
-        var _util = require(278);
-        var _assets = require(194);
+        var _flux = require(289);
+        var _util = require(296);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _fiat = require(109);
+        var _fiat = require(115);
         var _fiat2 = _interopRequireDefault(_fiat);
-        var _appConfig = require(84);
+        var _appConfig = require(85);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -6824,11 +6977,11 @@
         }
 
     }, {
-        "109": 109,
-        "194": 194,
-        "271": 271,
-        "278": 278,
-        "84": 84,
+        "115": 115,
+        "210": 210,
+        "289": 289,
+        "296": 296,
+        "85": 85,
         "undefined": undefined
     }],
     58: [function(require, module, exports) {
@@ -6837,7 +6990,7 @@
             value: true
         });
         exports.checkIfHaveToTx = checkIfHaveToTx;
-        var _order = require(89);
+        var _order = require(90);
         var _order2 = _interopRequireDefault(_order);
 
         function _interopRequireDefault(obj) {
@@ -6854,12 +7007,19 @@
                 fromTxId,
                 toTxId
             } = order;
-            if (!orderId || !toAsset || !fromAsset || !fromTxId || !toTxId) return null;
+            if (!orderId || !toAsset || !fromAsset || !fromTxId || !toTxId) return {};
             const fromTxs = state.txLog[fromAsset];
             const toTxs = state.txLog[toAsset];
             let fromTx = fromTxs ? fromTxs.get(fromTxId) : null;
             let toTx = toTxs ? toTxs.get(toTxId) : null;
-            if (!fromTx || !toTx) return null;
+            if (!fromTx || !toTx) return {};
+            fromTx = fromTx.update({
+                toCoin: {
+                    coin: toAsset,
+                    coinAmount: toTx.coinAmount.abs(),
+                    floatingRate: false
+                }
+            });
             toTx = toTx.update({
                 exchange: true,
                 fromCoin: {
@@ -6867,13 +7027,181 @@
                     coinAmount: fromTx.coinAmount.abs()
                 }
             });
-            return toTx;
+            return {
+                fromTx,
+                toTx
+            };
         }
 
     }, {
-        "89": 89
+        "90": 90
     }],
     59: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.start = undefined;
+        let _start = (() => {
+            var _ref = _asyncToGenerator(function*(dispatch, getState) {
+                while (true) {
+                    try {
+                        const incompleteOrders = getIncompleteOrders((0, _changelly2.default)(getState()));
+                        console.log(`RUNNING CH CHECK ORDER ${incompleteOrders.length}:`);
+                        for (let o of incompleteOrders) {
+                            console.log('GONNA RUN STATAUS');
+                            let orderInfo;
+                            try {
+                                orderInfo = (yield changelly.fetch(o.svcOptions.statusRequestParams))[0];
+                            } catch (err) {
+                                if (err) {
+                                    console.error('ORDER CHECK fetch error');
+                                    console.error(err);
+                                    continue;
+                                }
+                            }
+                            console.log(`ORDER CHECK: ${o.inspect()}`);
+                            console.dir(orderInfo);
+                            const updateOrder = {
+                                orderId: o.orderId,
+                                status: orderInfo.status,
+                                svc: 'ch'
+                            };
+                            if (orderInfo.status === 'finished') {
+                                console.log(`CH ORDER ${o.orderId} is  complete.`);
+                                updateOrder.toTxId = orderInfo.payoutHash;
+                                console.dir(updateOrder);
+                                const {
+                                    fromTx,
+                                    toTx
+                                } = (0, _util.checkIfHaveToTx)(getState(), Object.assign({}, o, updateOrder));
+                                if (toTx) {
+                                    _flux.actions.txLog.update(o.fromAsset, fromTx);
+                                    console.log('updated toTx:');
+                                    console.dir(toTx);
+                                    _flux.actions.txLog.update(o.toAsset, toTx);
+                                    updateOrder.status = 'complete-verified';
+                                    updateOrder.toAsset = o.toAsset;
+                                    updateOrder.toAmount = toTx.coinAmount.abs();
+                                    updateOrder.floatingRate = false;
+                                }
+                            }
+                            _flux.actions.orders.update(updateOrder);
+                            yield(0, _delay2.default)((0, _ms2.default)('5s'));
+                        }
+                        const completeOrders = getCompleteOrders((0, _changelly2.default)(getState()));
+                        console.log(`COMPLETE ORDERS: ${completeOrders.length}`);
+                        for (let o of completeOrders) {
+                            const {
+                                fromTx,
+                                toTx
+                            } = (0, _util.checkIfHaveToTx)(getState(), o);
+                            if (toTx) {
+                                _flux.actions.txLog.update(o.fromAsset, fromTx);
+                                _flux.actions.txLog.update(o.toAsset, toTx);
+                                _flux.actions.orders.update({
+                                    orderId: o.orderId,
+                                    status: 'complete-verified',
+                                    svc: 'ch',
+                                    toAsset: o.toAsset,
+                                    toAmount: toTx.coinAmount.abs(),
+                                    floatingRate: false
+                                });
+                            }
+                        }
+                    } catch (err) {
+                        console.error('Changelly Order Check Error');
+                        console.error(err);
+                    }
+                    yield(0, _delay2.default)(TOTAL_TIME);
+                }
+            });
+            return function _start(_x, _x2) {
+                return _ref.apply(this, arguments);
+            };
+        })();
+        var _reduxAsyncAction = require(323);
+        var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
+        var _delay = require('delay');
+        var _delay2 = _interopRequireDefault(_delay);
+        var _ms = require('ms');
+        var _ms2 = _interopRequireDefault(_ms);
+        var _flux = require(289);
+        var _changelly = require(150);
+        var _changelly2 = _interopRequireDefault(_changelly);
+        var _changelly3 = require(230);
+        var changelly = _interopRequireWildcard(_changelly3);
+        var _util = require(58);
+
+        function _interopRequireWildcard(obj) {
+            if (obj && obj.__esModule) {
+                return obj;
+            } else {
+                var newObj = {};
+                if (obj != null) {
+                    for (var key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+                    }
+                }
+                newObj.default = obj;
+                return newObj;
+            }
+        }
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+
+        function _asyncToGenerator(fn) {
+            return function() {
+                var gen = fn.apply(this, arguments);
+                return new Promise(function(resolve, reject) {
+                    function step(key, arg) {
+                        try {
+                            var info = gen[key](arg);
+                            var value = info.value;
+                        } catch (error) {
+                            reject(error);
+                            return;
+                        }
+                        if (info.done) {
+                            resolve(value);
+                        } else {
+                            return Promise.resolve(value).then(function(value) {
+                                step("next", value);
+                            }, function(err) {
+                                step("throw", err);
+                            });
+                        }
+                    }
+                    return step("next");
+                });
+            };
+        }
+        const TOTAL_TIME = (0, _ms2.default)('30s');
+        const start = exports.start = () => (0, _reduxAsyncAction2.default)('MONITOR_ORDERS_START', _start);
+
+        function getIncompleteOrders(orders) {
+            return Array.from(orders).filter(order => {
+                return order.exodusStatus === 'inprogress';
+            });
+        }
+
+        function getCompleteOrders(orders) {
+            return Array.from(orders).filter(o => o.status === 'finished' || o.status === 'sending');
+        }
+
+    }, {
+        "150": 150,
+        "230": 230,
+        "289": 289,
+        "323": 323,
+        "58": 58,
+        "undefined": undefined
+    }],
+    60: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -6908,7 +7236,9 @@
                                 console.log(`EC ORDER ${o.orderId} is  complete.`);
                                 updateOrder.toTxId = getTxFromOrderInfo(orderInfo);
                                 console.dir(updateOrder);
-                                const toTx = (0, _util.checkIfHaveToTx)(getState(), Object.assign({}, o, updateOrder));
+                                const {
+                                    toTx
+                                } = (0, _util.checkIfHaveToTx)(getState(), Object.assign({}, o, updateOrder));
                                 if (toTx) {
                                     console.log('updated toTx:');
                                     console.dir(toTx);
@@ -6922,7 +7252,9 @@
                         const completeOrders = getCompleteOrders((0, _evercoin2.default)(getState()));
                         console.log(`COMPLETE ORDERS: ${completeOrders.length}`);
                         for (let o of completeOrders) {
-                            const toTx = (0, _util.checkIfHaveToTx)(getState(), o);
+                            const {
+                                toTx
+                            } = (0, _util.checkIfHaveToTx)(getState(), o);
                             if (toTx) {
                                 _flux.actions.txLog.update(o.toAsset, toTx);
                                 _flux.actions.orders.update({
@@ -6943,16 +7275,16 @@
                 return _ref.apply(this, arguments);
             };
         })();
-        var _reduxAsyncAction = require(303);
+        var _reduxAsyncAction = require(323);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
         var _delay = require('delay');
         var _delay2 = _interopRequireDefault(_delay);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _flux = require(271);
-        var _evercoin = require(140);
+        var _flux = require(289);
+        var _evercoin = require(151);
         var _evercoin2 = _interopRequireDefault(_evercoin);
-        var _evercoin3 = require(239);
+        var _evercoin3 = require(255);
         var evercoin = _interopRequireWildcard(_evercoin3);
         var _util = require(58);
 
@@ -7037,22 +7369,24 @@
         }
 
     }, {
-        "140": 140,
-        "239": 239,
-        "271": 271,
-        "303": 303,
+        "151": 151,
+        "255": 255,
+        "289": 289,
+        "323": 323,
         "58": 58,
         "undefined": undefined
     }],
-    60: [function(require, module, exports) {
+    61: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.shapeshift = exports.evercoin = undefined;
-        var _evercoin2 = require(59);
+        exports.shapeshift = exports.evercoin = exports.changelly = undefined;
+        var _changelly2 = require(59);
+        var _changelly = _interopRequireWildcard(_changelly2);
+        var _evercoin2 = require(60);
         var _evercoin = _interopRequireWildcard(_evercoin2);
-        var _shapeshift2 = require(61);
+        var _shapeshift2 = require(62);
         var _shapeshift = _interopRequireWildcard(_shapeshift2);
 
         function _interopRequireWildcard(obj) {
@@ -7069,14 +7403,16 @@
                 return newObj;
             }
         }
+        const changelly = exports.changelly = _changelly;
         const evercoin = exports.evercoin = _evercoin;
         const shapeshift = exports.shapeshift = _shapeshift;
 
     }, {
         "59": 59,
-        "61": 61
+        "60": 60,
+        "62": 62
     }],
-    61: [function(require, module, exports) {
+    62: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -7092,7 +7428,7 @@
                 return _ref2.apply(this, arguments);
             };
         })();
-        var _reduxAsyncAction = require(303);
+        var _reduxAsyncAction = require(323);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
         var _aw = require('aw');
         var _aw2 = _interopRequireDefault(_aw);
@@ -7102,8 +7438,8 @@
         var _ms2 = _interopRequireDefault(_ms);
         var _fetchival = require('fetchival');
         var _fetchival2 = _interopRequireDefault(_fetchival);
-        var _flux = require(271);
-        var _shapeshift = require(143);
+        var _flux = require(289);
+        var _shapeshift = require(154);
         var _shapeshift2 = _interopRequireDefault(_shapeshift);
         var _util = require(58);
 
@@ -7165,7 +7501,9 @@
                         };
                         if (orderInfo.status === 'complete') {
                             updateOrder.toTxId = orderInfo.transaction;
-                            const toTx = (0, _util.checkIfHaveToTx)(getState(), Object.assign({}, o, updateOrder));
+                            const {
+                                toTx
+                            } = (0, _util.checkIfHaveToTx)(getState(), Object.assign({}, o, updateOrder));
                             if (toTx) {
                                 console.log('updated toTx:');
                                 console.dir(toTx);
@@ -7179,7 +7517,9 @@
                     const completeOrders = getCompleteOrders((0, _shapeshift2.default)(getState()));
                     console.log(`COMPLETE ORDERS: ${completeOrders.length}`);
                     for (let o of completeOrders) {
-                        const toTx = (0, _util.checkIfHaveToTx)(getState(), o);
+                        const {
+                            toTx
+                        } = (0, _util.checkIfHaveToTx)(getState(), o);
                         if (toTx) {
                             _flux.actions.txLog.update(o.toAsset, toTx);
                             _flux.actions.orders.update({
@@ -7224,13 +7564,13 @@
         }
 
     }, {
-        "143": 143,
-        "271": 271,
-        "303": 303,
+        "154": 154,
+        "289": 289,
+        "323": 323,
         "58": 58,
         "undefined": undefined
     }],
-    62: [function(require, module, exports) {
+    63: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -7254,13 +7594,13 @@
                 return _ref3.apply(this, arguments);
             };
         })();
-        var _reduxAsyncAction = require(303);
+        var _reduxAsyncAction = require(323);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
         var _urlJoin = require('url-join');
         var _urlJoin2 = _interopRequireDefault(_urlJoin);
-        var _appConfig = require(84);
+        var _appConfig = require(85);
         var appConfig = _interopRequireWildcard(_appConfig);
         var _fetchival = require('fetchival');
         var _fetchival2 = _interopRequireDefault(_fetchival);
@@ -7326,11 +7666,11 @@
         }));
 
     }, {
-        "303": 303,
-        "84": 84,
+        "323": 323,
+        "85": 85,
         "undefined": undefined
     }],
-    63: [function(require, module, exports) {
+    64: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -7356,13 +7696,13 @@
                 return _ref3.apply(this, arguments);
             };
         })();
-        var _reduxAsyncAction = require(303);
+        var _reduxAsyncAction = require(323);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
         var _urlJoin = require('url-join');
         var _urlJoin2 = _interopRequireDefault(_urlJoin);
-        var _appConfig = require(84);
+        var _appConfig = require(85);
         var _fetchival = require('fetchival');
         var _fetchival2 = _interopRequireDefault(_fetchival);
         var _aw = require('aw');
@@ -7413,11 +7753,11 @@
         }));
 
     }, {
-        "303": 303,
-        "84": 84,
+        "323": 323,
+        "85": 85,
         "undefined": undefined
     }],
-    64: [function(require, module, exports) {
+    65: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -7549,24 +7889,24 @@
         var _bitcoreLib = require('bitcore-lib');
         var _reduxWatch = require('redux-watch');
         var _reduxWatch2 = _interopRequireDefault(_reduxWatch);
-        var _addressSet = require(85);
+        var _addressSet = require(86);
         var _addressSet2 = _interopRequireDefault(_addressSet);
-        var _getRecvExchAddresses = require(98);
+        var _getRecvExchAddresses = require(99);
         var _getRecvExchAddresses2 = _interopRequireDefault(_getRecvExchAddresses);
-        var _getValue = require(126);
+        var _getValue = require(135);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _flux = require(271);
-        var _util = require(278);
+        var _flux = require(289);
+        var _util = require(296);
         var _electron = require('electron');
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
         var _electronIpcBroadcast = require('electron-ipc-broadcast');
         var _electronIpcBroadcast2 = _interopRequireDefault(_electronIpcBroadcast);
-        var _extractUtxosFromTx = require(268);
+        var _extractUtxosFromTx = require(286);
         var _extractUtxosFromTx2 = _interopRequireDefault(_extractUtxosFromTx);
-        var _txLog = require(74);
+        var _txLog = require(75);
         var _bs58check = require('bs58check');
         var _bs58check2 = _interopRequireDefault(_bs58check);
 
@@ -7605,23 +7945,23 @@
         const omniAssets = Object.values(_assets2.default).filter(asset => asset.isOmniProperty);
 
     }, {
-        "126": 126,
-        "194": 194,
-        "268": 268,
-        "271": 271,
-        "278": 278,
-        "74": 74,
-        "85": 85,
-        "98": 98,
+        "135": 135,
+        "210": 210,
+        "286": 286,
+        "289": 289,
+        "296": 296,
+        "75": 75,
+        "86": 86,
+        "99": 99,
         "undefined": undefined
     }],
-    65: [function(require, module, exports) {
+    66: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.litecoin = exports.dash = exports.bitcoin = undefined;
-        var _bitcoinLike = require(64);
+        var _bitcoinLike = require(65);
         var _bitcoinLike2 = _interopRequireDefault(_bitcoinLike);
 
         function _interopRequireDefault(obj) {
@@ -7634,16 +7974,16 @@
         const litecoin = exports.litecoin = (0, _bitcoinLike2.default)('litecoin');
 
     }, {
-        "64": 64
+        "65": 65
     }],
-    66: [function(require, module, exports) {
+    67: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _instanceShim = require(174);
+        var _instanceShim = require(186);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _keys = require(175);
+        var _keys = require(187);
         var walletKeys = _interopRequireWildcard(_keys);
 
         function _interopRequireWildcard(obj) {
@@ -7718,16 +8058,16 @@
         ];
 
     }, {
-        "174": 174,
-        "175": 175
+        "186": 186,
+        "187": 187
     }],
-    67: [function(require, module, exports) {
+    68: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.coins = undefined;
-        var _coins2 = require(65);
+        var _coins2 = require(66);
         var _coins = _interopRequireWildcard(_coins2);
 
         function _interopRequireWildcard(obj) {
@@ -7747,9 +8087,9 @@
         const coins = exports.coins = _coins;
 
     }, {
-        "65": 65
+        "66": 66
     }],
-    68: [function(require, module, exports) {
+    69: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -7777,9 +8117,9 @@
                 return _ref3.apply(this, arguments);
             };
         })();
-        var _instanceShim = require(174);
+        var _instanceShim = require(186);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _walletHelper = require(177);
+        var _walletHelper = require(189);
         var _walletHelper2 = _interopRequireDefault(_walletHelper);
 
         function _interopRequireDefault(obj) {
@@ -7819,10 +8159,10 @@
         ];
 
     }, {
-        "174": 174,
-        "177": 177
+        "186": 186,
+        "189": 189
     }],
-    69: [function(require, module, exports) {
+    70: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -7945,14 +8285,14 @@
             };
         })();
         exports.update = update;
-        var _instanceShim = require(174);
+        var _instanceShim = require(186);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _keys = require(175);
+        var _keys = require(187);
         var walletKeys = _interopRequireWildcard(_keys);
-        var _util = require(278);
-        var _order = require(89);
+        var _util = require(296);
+        var _order = require(90);
         var _order2 = _interopRequireDefault(_order);
-        var _orderSet = require(88);
+        var _orderSet = require(89);
         var _orderSet2 = _interopRequireDefault(_orderSet);
 
         function _interopRequireWildcard(obj) {
@@ -7982,13 +8322,13 @@
         }
 
     }, {
-        "174": 174,
-        "175": 175,
-        "278": 278,
-        "88": 88,
-        "89": 89
+        "186": 186,
+        "187": 187,
+        "296": 296,
+        "89": 89,
+        "90": 90
     }],
-    70: [function(require, module, exports) {
+    71: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -7997,8 +8337,8 @@
         exports.connect = connect;
         exports.disconnect = disconnect;
         exports.send = send;
-        var _util = require(278);
-        var _twoOfTwo = require(334);
+        var _util = require(296);
+        var _twoOfTwo = require(356);
         var _delay = require('delay');
         var _delay2 = _interopRequireDefault(_delay);
         var _ms = require('ms');
@@ -8101,19 +8441,19 @@
         }
 
     }, {
-        "278": 278,
-        "334": 334,
+        "296": 296,
+        "356": 356,
         "undefined": undefined
     }],
-    71: [function(require, module, exports) {
+    72: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.pair = exports.connection = undefined;
-        var _connection = require(70);
+        var _connection = require(71);
         var connection = _interopRequireWildcard(_connection);
-        var _pair = require(72);
+        var _pair = require(73);
         var pair = _interopRequireWildcard(_pair);
 
         function _interopRequireWildcard(obj) {
@@ -8134,10 +8474,10 @@
         exports.pair = pair;
 
     }, {
-        "70": 70,
-        "72": 72
+        "71": 71,
+        "73": 73
     }],
-    72: [function(require, module, exports) {
+    73: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -8166,9 +8506,9 @@
         exports.submitPhoneCode = submitPhoneCode;
         exports.cancel = cancel;
         exports.receiveMessage = receiveMessage;
-        var _util = require(278);
-        var _twoOfTwo = require(71);
-        var _twoOfTwo2 = require(334);
+        var _util = require(296);
+        var _twoOfTwo = require(72);
+        var _twoOfTwo2 = require(356);
 
         function _asyncToGenerator(fn) {
             return function() {
@@ -8312,11 +8652,11 @@
         }
 
     }, {
-        "278": 278,
-        "334": 334,
-        "71": 71
+        "296": 296,
+        "356": 356,
+        "72": 72
     }],
-    73: [function(require, module, exports) {
+    74: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -8345,11 +8685,11 @@
                 return _ref3.apply(this, arguments);
             };
         })();
-        var _instanceShim = require(174);
+        var _instanceShim = require(186);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _walletHelper = require(177);
+        var _walletHelper = require(189);
         var _walletHelper2 = _interopRequireDefault(_walletHelper);
-        var _txSet = require(90);
+        var _txSet = require(91);
         var _txSet2 = _interopRequireDefault(_txSet);
 
         function _interopRequireDefault(obj) {
@@ -8391,11 +8731,11 @@
         ];
 
     }, {
-        "174": 174,
-        "177": 177,
-        "90": 90
+        "186": 186,
+        "189": 189,
+        "91": 91
     }],
-    74: [function(require, module, exports) {
+    75: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -8428,21 +8768,21 @@
         var lodash = _interopRequireWildcard(_lodash);
         var _delay = require('delay');
         var _delay2 = _interopRequireDefault(_delay);
-        var _reduxAsyncAction = require(303);
+        var _reduxAsyncAction = require(323);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _instanceShim = require(174);
+        var _instanceShim = require(186);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _keys = require(175);
+        var _keys = require(187);
         var walletKeys = _interopRequireWildcard(_keys);
-        var _util = require(278);
-        var _txSet = require(90);
+        var _util = require(296);
+        var _txSet = require(91);
         var _txSet2 = _interopRequireDefault(_txSet);
-        var _tx = require(92);
+        var _tx = require(93);
         var _tx2 = _interopRequireDefault(_tx);
-        var _flux = require(271);
-        var _assets = require(194);
+        var _flux = require(289);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _getReceiveAddress = require(96);
+        var _getReceiveAddress = require(97);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
 
         function _interopRequireDefault(obj) {
@@ -8570,18 +8910,18 @@
         }
 
     }, {
-        "174": 174,
-        "175": 175,
-        "194": 194,
-        "271": 271,
-        "278": 278,
-        "303": 303,
-        "90": 90,
-        "92": 92,
-        "96": 96,
+        "186": 186,
+        "187": 187,
+        "210": 210,
+        "289": 289,
+        "296": 296,
+        "323": 323,
+        "91": 91,
+        "93": 93,
+        "97": 97,
         "undefined": undefined
     }],
-    75: [function(require, module, exports) {
+    76: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -8740,34 +9080,34 @@
         var _delay2 = _interopRequireDefault(_delay);
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _flux = require(271);
-        var _logger = require(283);
+        var _flux = require(289);
+        var _logger = require(303);
         var _logger2 = _interopRequireDefault(_logger);
-        var _addressSet = require(85);
+        var _addressSet = require(86);
         var _addressSet2 = _interopRequireDefault(_addressSet);
-        var _extractUtxosFromTx = require(268);
+        var _extractUtxosFromTx = require(286);
         var _extractUtxosFromTx2 = _interopRequireDefault(_extractUtxosFromTx);
-        var _getChangeAddress = require(94);
+        var _getChangeAddress = require(95);
         var _getChangeAddress2 = _interopRequireDefault(_getChangeAddress);
-        var _getValue = require(126);
+        var _getValue = require(135);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _broadcastTx = require(136);
+        var _broadcastTx = require(146);
         var _broadcastTx2 = _interopRequireDefault(_broadcastTx);
-        var _reduxAsyncAction = require(303);
+        var _reduxAsyncAction = require(323);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _utxoCollection = require(93);
+        var _utxoCollection = require(94);
         var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _aureus = require(203);
+        var _aureus = require(220);
         var _aureus2 = _interopRequireDefault(_aureus);
-        var _aw = require(208);
+        var _aw = require(225);
         var _aw2 = _interopRequireDefault(_aw);
-        var _utxos = require(83);
-        var _feeEstimator = require(269);
+        var _utxos = require(84);
+        var _feeEstimator = require(287);
         var _feeEstimator2 = _interopRequireDefault(_feeEstimator);
-        var _appConfig = require(84);
-        var _instanceShim = require(174);
+        var _appConfig = require(85);
+        var _instanceShim = require(186);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
 
         function _interopRequireWildcard(obj) {
@@ -8820,32 +9160,52 @@
         const logger = (0, _logger2.default)('actions:tx-send');
 
     }, {
-        "126": 126,
-        "136": 136,
-        "174": 174,
-        "194": 194,
-        "203": 203,
-        "208": 208,
-        "268": 268,
-        "269": 269,
-        "271": 271,
-        "283": 283,
+        "135": 135,
+        "146": 146,
+        "186": 186,
+        "210": 210,
+        "220": 220,
+        "225": 225,
+        "286": 286,
+        "287": 287,
+        "289": 289,
         "303": 303,
-        "83": 83,
+        "323": 323,
         "84": 84,
         "85": 85,
-        "93": 93,
+        "86": 86,
         "94": 94,
+        "95": 95,
         "undefined": undefined
     }],
-    76: [function(require, module, exports) {
+    77: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.getNonce = exports.createTx = undefined;
+        exports.getNonce = exports.createTx = exports.estimateGas = undefined;
+        let estimateGas = exports.estimateGas = (() => {
+            var _ref4 = _asyncToGenerator(function*(asset, fromAddress, toAddress, amount, data) {
+                let extraPercentage = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 20;
+                const useEthServer = asset.name === 'ethereum' || asset.isEthereumToken;
+                const _estimateGas = useEthServer ? (0, _exodusEthereumServer.withFallback)(_exodusEthereumServer.eth.estimateGas, etherscan.estimateGas) : (0, _exodusEthereumServer.withFallback)(_exodusEthereumServer.etc.estimateGas, etcchain.estimateGas);
+                if (!Buffer.isBuffer(amount)) {
+                    amount = (0, _util.currency2buffer)(amount);
+                }
+                const estimatedGas = yield _estimateGas({
+                    from: fromAddress,
+                    to: toAddress,
+                    value: ethUtil.bufferToHex(amount),
+                    data: Buffer.isBuffer(data) ? ethUtil.bufferToHex(data) : data
+                });
+                return new _bn2.default(estimatedGas.slice(2), 16).imuln(100 + extraPercentage).idivn(100).toNumber();
+            });
+            return function estimateGas(_x5, _x6, _x7, _x8, _x9) {
+                return _ref4.apply(this, arguments);
+            };
+        })();
         let createTx = exports.createTx = (() => {
-            var _ref5 = _asyncToGenerator(function*(_ref4) {
+            var _ref6 = _asyncToGenerator(function*(_ref5) {
                 let {
                     baseAsset,
                     asset,
@@ -8854,11 +9214,13 @@
                     nonce,
                     txInput,
                     gasLimit,
+                    gasPrice,
                     privateKey,
                     fromAddress
-                } = _ref4;
+                } = _ref5;
                 if (txInput && asset.isEthereumToken) throw new Error(`Additional data for Ethereum Token (${asset.name}) is not allowed`);
                 txInput = asset.isEthereumToken ? asset.contract.transfer.build(address, amount) : ethUtil.toBuffer(txInput);
+                if (!gasPrice) gasPrice = baseAsset.gasPrice;
                 const to = asset.isEthereumToken ? asset.contract.addresses.current : address;
                 const value = (0, _util.currency2buffer)(asset.isEthereumToken ? _assets2.default.ethereum.currency.ZERO : amount);
                 if (!asset.isEthereumToken && !gasLimit) {
@@ -8870,14 +9232,7 @@
                     else throw new Error('createTx: Must pass fromAddress or privateKey in options');
                 }
                 if (!gasLimit) {
-                    const _estimateGas = baseAsset.name === 'ethereum' ? (0, _exodusEthereumServer.withFallback)(_exodusEthereumServer.eth.estimateGas, etherscan.estimateGas) : (0, _exodusEthereumServer.withFallback)(_exodusEthereumServer.etc.estimateGas, etcchain.estimateGas);
-                    const estimatedGas = yield _estimateGas({
-                        from: fromAddress,
-                        to,
-                        value: ethUtil.bufferToHex(value),
-                        data: ethUtil.bufferToHex(txInput)
-                    });
-                    gasLimit = new _bn2.default(estimatedGas.slice(2), 16).imuln(6).idivn(5).toNumber();
+                    gasLimit = yield estimateGas(asset, fromAddress, to, value, txInput);
                 }
                 console.log(`gasLimit: ${gasLimit}`);
                 const {
@@ -8885,7 +9240,7 @@
                     txId
                 } = yield _instanceShim2.default.current.createTx(baseAsset.name, {
                     nonce: ethUtil.intToBuffer(nonce),
-                    gasPrice: (0, _util.currency2buffer)(baseAsset.gasPrice),
+                    gasPrice: (0, _util.currency2buffer)(gasPrice),
                     gasLimit: ethUtil.intToBuffer(gasLimit),
                     to,
                     value,
@@ -8896,30 +9251,30 @@
                     }[baseAsset.name],
                     privateKey
                 });
-                const feeRaw = baseAsset.gasPrice.toNumber() * gasLimit;
+                const feeRaw = gasPrice.toNumber() * gasLimit;
                 return {
                     rawTx,
                     txId,
                     fee: baseAsset.currency.baseUnit(feeRaw)
                 };
             });
-            return function createTx(_x4) {
-                return _ref5.apply(this, arguments);
+            return function createTx(_x10) {
+                return _ref6.apply(this, arguments);
             };
         })();
         let getNonce = exports.getNonce = (() => {
-            var _ref7 = _asyncToGenerator(function*(_ref6) {
+            var _ref8 = _asyncToGenerator(function*(_ref7) {
                 let {
                     asset,
                     address
-                } = _ref6;
+                } = _ref7;
                 if (!['ethereum', 'ethereumclassic'].includes(asset.name)) return;
                 const _getNonce = asset.name === 'ethereum' ? (0, _exodusEthereumServer.withFallback)(_exodusEthereumServer.eth.getTransactionCount, etherscan.getTransactionCount) : (0, _exodusEthereumServer.withFallback)(_exodusEthereumServer.etc.getTransactionCount, etcchain.getTransactionCount);
                 const nonce = yield _getNonce(address);
                 return parseInt(nonce, 16);
             });
-            return function getNonce(_x5) {
-                return _ref7.apply(this, arguments);
+            return function getNonce(_x11) {
+                return _ref8.apply(this, arguments);
             };
         })();
         exports.default = function(_ref) {
@@ -8951,6 +9306,7 @@
                             nonce,
                             txInput,
                             gasLimit,
+                            gasPrice,
                             fromAddress
                         }));
                         yield broadcastTx(rawTx.toString('hex'));
@@ -8978,6 +9334,7 @@
                                 nonce,
                                 txInput,
                                 gasLimit,
+                                gasPrice,
                                 fromAddress
                             }));
                             yield broadcastTx(rawTx.toString('hex'));
@@ -9026,7 +9383,8 @@
                 shouldLog = true,
                 memo,
                 txInput,
-                gasLimit
+                gasLimit,
+                gasPrice
             } = _ref;
             const baseAsset = asset.isEthereumToken ? _assets2.default.ethereum : asset;
             return (0, _reduxAsyncAction2.default)('TX_SEND', function() {
@@ -9036,35 +9394,41 @@
                 return AccountState[baseAsset.name].runWithLock(() => send(...args));
             });
         };
-        var _verror = require('verror');
-        var _verror2 = _interopRequireDefault(_verror);
-        var _assets = require(194);
+        var _accountState = require(6);
+        var AccountState = _interopRequireWildcard(_accountState);
+        var _instanceShim = require(186);
+        var _instanceShim2 = _interopRequireDefault(_instanceShim);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _conversions = require(124);
+        var _conversions = require(133);
         var _conversions2 = _interopRequireDefault(_conversions);
-        var _getReceiveAddress = require(96);
+        var _getReceiveAddress = require(97);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _broadcastTx = require(136);
+        var _broadcastTx = require(146);
         var _broadcastTx2 = _interopRequireDefault(_broadcastTx);
+        var _util = require(240);
         var _bn = require('bn.js');
         var _bn2 = _interopRequireDefault(_bn);
         var _ethereumjsUtil = require('ethereumjs-util');
         var ethUtil = _interopRequireWildcard(_ethereumjsUtil);
-        var _etcchain = require(232);
+        var _etcchain = require(248);
         var etcchain = _interopRequireWildcard(_etcchain);
-        var _etherscan = require(234);
+        var _etherscan = require(250);
         var etherscan = _interopRequireWildcard(_etherscan);
-        var _exodusEthereumServer = require(242);
-        var _flux = require(271);
-        var _reduxAsyncAction = require(303);
-        var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _accountState = require(8);
-        var AccountState = _interopRequireWildcard(_accountState);
-        var _util = require(224);
-        var _normalizeEthTxid = require(296);
+        var _exodusEthereumServer = require(258);
+        var _flux = require(289);
+        var _normalizeEthTxid = require(316);
         var _normalizeEthTxid2 = _interopRequireDefault(_normalizeEthTxid);
-        var _instanceShim = require(174);
-        var _instanceShim2 = _interopRequireDefault(_instanceShim);
+        var _reduxAsyncAction = require(323);
+        var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
+        var _verror = require('verror');
+        var _verror2 = _interopRequireDefault(_verror);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -9079,12 +9443,6 @@
                 newObj.default = obj;
                 return newObj;
             }
-        }
-
-        function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : {
-                default: obj
-            };
         }
 
         function _asyncToGenerator(fn) {
@@ -9115,22 +9473,22 @@
         }
 
     }, {
-        "124": 124,
-        "136": 136,
-        "174": 174,
-        "194": 194,
-        "224": 224,
-        "232": 232,
-        "234": 234,
-        "242": 242,
-        "271": 271,
-        "296": 296,
-        "303": 303,
-        "8": 8,
-        "96": 96,
+        "133": 133,
+        "146": 146,
+        "186": 186,
+        "210": 210,
+        "240": 240,
+        "248": 248,
+        "250": 250,
+        "258": 258,
+        "289": 289,
+        "316": 316,
+        "323": 323,
+        "6": 6,
+        "97": 97,
         "undefined": undefined
     }],
-    77: [function(require, module, exports) {
+    78: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -9146,22 +9504,21 @@
                     const getReceveAddress = (0, _getReceiveAddress2.default)(state);
                     const accounts = state.accounts.factom;
                     const fromAddress = String(getReceveAddress('factom'));
-                    const sk = accounts.hdkey.derive('m/0/0', 'tag-does-not-matter', {
-                        spendable: true
-                    });
-                    const privateKey = sk.privateKey;
-                    const publicKey = _factomjsLib2.default.crypto.publicKeyCreate(privateKey);
-                    _assert2.default.strictEqual(fromAddress, _assets2.default.factom.keys.encodePublic(null, privateKey), 'verify addresses are the same');
+                    const publicKey = accounts.publicKey;
+                    _assert2.default.strictEqual(fromAddress, _assets2.default.factom.keys.encodePublic(publicKey), 'verify addresses are the same');
                     const receiverAddress = receiver.address;
                     const amount = receiver.amount;
                     const rawAmount = amount.to('factoshis').toNumber();
                     const tx = _factomjsLib2.default.transaction.create();
                     _factomjsLib2.default.transaction.addInput(tx, publicKey, rawAmount + _assets2.default.factom.fee.toNumber());
                     _factomjsLib2.default.transaction.addOutput(tx, receiverAddress, rawAmount);
-                    _factomjsLib2.default.transaction.signInput(tx, 0, privateKey);
-                    const txHex = _factomjsLib2.default.encoding.Transaction.encode(tx).toString('hex');
-                    yield(0, _broadcastTx2.default)(state)('factom')(txHex);
-                    const txId = _factomjsLib2.default.transaction.getSigHash(tx).toString('hex');
+                    const {
+                        rawTx,
+                        txId
+                    } = yield _instanceShim2.default.current.createTx('factom', {
+                        tx
+                    });
+                    yield(0, _broadcastTx2.default)(state)('factom')(rawTx.toString('hex'));
                     update(txId);
                     if (shouldLog) {
                         const sentAmount = amount.abs().negate();
@@ -9193,22 +9550,24 @@
                 return _accountState.factom.runWithLock(() => send(...args));
             });
         };
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _conversions = require(124);
+        var _conversions = require(133);
         var _conversions2 = _interopRequireDefault(_conversions);
-        var _getReceiveAddress = require(96);
+        var _getReceiveAddress = require(97);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _broadcastTx = require(136);
+        var _broadcastTx = require(146);
         var _broadcastTx2 = _interopRequireDefault(_broadcastTx);
-        var _reduxAsyncAction = require(303);
+        var _reduxAsyncAction = require(323);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _accountState = require(8);
-        var _flux = require(271);
+        var _accountState = require(6);
+        var _flux = require(289);
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
         var _factomjsLib = require('factomjs-lib');
         var _factomjsLib2 = _interopRequireDefault(_factomjsLib);
+        var _instanceShim = require(186);
+        var _instanceShim2 = _interopRequireDefault(_instanceShim);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -9244,23 +9603,24 @@
         }
 
     }, {
-        "124": 124,
-        "136": 136,
-        "194": 194,
-        "271": 271,
-        "303": 303,
-        "8": 8,
-        "96": 96,
+        "133": 133,
+        "146": 146,
+        "186": 186,
+        "210": 210,
+        "289": 289,
+        "323": 323,
+        "6": 6,
+        "97": 97,
         "undefined": undefined
     }],
-    78: [function(require, module, exports) {
+    79: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _instanceShim = require(174);
+        var _instanceShim = require(186);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _keys = require(175);
+        var _keys = require(187);
         var walletKeys = _interopRequireWildcard(_keys);
 
         function _interopRequireWildcard(obj) {
@@ -9336,27 +9696,27 @@
         ];
 
     }, {
-        "174": 174,
-        "175": 175
+        "186": 186,
+        "187": 187
     }],
-    79: [function(require, module, exports) {
+    80: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.send = send;
         exports.ackSend = ackSend;
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _bitcoinLike = require(75);
+        var _bitcoinLike = require(76);
         var _bitcoinLike2 = _interopRequireDefault(_bitcoinLike);
-        var _ethereum = require(76);
+        var _ethereum = require(77);
         var _ethereum2 = _interopRequireDefault(_ethereum);
-        var _factom = require(77);
+        var _factom = require(78);
         var _factom2 = _interopRequireDefault(_factom);
-        var _monero = require(80);
+        var _monero = require(81);
         var _monero2 = _interopRequireDefault(_monero);
-        var _ripple = require(81);
+        var _ripple = require(82);
         var _ripple2 = _interopRequireDefault(_ripple);
 
         function _interopRequireDefault(obj) {
@@ -9390,6 +9750,7 @@
                 case 'decred':
                 case 'digibyte':
                 case 'litecoin':
+                case 'qtumignition':
                 case 'vertcoin':
                 case 'zcash':
                     return (0, _bitcoinLike2.default)(Object.assign({
@@ -9418,14 +9779,14 @@
         }
 
     }, {
-        "194": 194,
-        "75": 75,
+        "210": 210,
         "76": 76,
         "77": 77,
-        "80": 80,
-        "81": 81
+        "78": 78,
+        "81": 81,
+        "82": 82
     }],
-    80: [function(require, module, exports) {
+    81: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -9487,7 +9848,7 @@
         };
         var _verror = require('verror');
         var _verror2 = _interopRequireDefault(_verror);
-        var _logger = require(283);
+        var _logger = require(303);
         var _logger2 = _interopRequireDefault(_logger);
         var _electron = require('electron');
         var _electronIpcBroadcast = require('electron-ipc-broadcast');
@@ -9528,55 +9889,14 @@
         const logger = (0, _logger2.default)('actions:tx-send');
 
     }, {
-        "283": 283,
+        "303": 303,
         "undefined": undefined
     }],
-    81: [function(require, module, exports) {
+    82: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.createTx = undefined;
-        let createTx = exports.createTx = (() => {
-            var _ref5 = _asyncToGenerator(function*(_ref4) {
-                let {
-                    to,
-                    destTag,
-                    amount,
-                    sequence,
-                    privateKey
-                } = _ref4;
-                const publicKey = secp256k1.publicKeyCreate(privateKey);
-                const ledgerCurrentIndex = yield(0, _rippleApi.getLedgerCurrentIndex)();
-                const tx = {
-                    Account: _assets2.default.ripple.keys.encodePublic(publicKey),
-                    Amount: amount.toBase().toString({
-                        unit: false
-                    }),
-                    Destination: to,
-                    DestinationTag: destTag,
-                    Fee: _assets2.default.ripple.fee.toBase().toString({
-                        unit: false
-                    }),
-                    Flags: 0x80000000,
-                    LastLedgerSequence: ledgerCurrentIndex + 3,
-                    Sequence: sequence,
-                    TransactionType: 'Payment',
-                    SigningPubKey: publicKey.toString('hex').toUpperCase()
-                };
-                tx.TxnSignature = keypairs.sign((0, _tx.toBuffer)(tx, {
-                    sign: true
-                }), privateKey);
-                const serialized = (0, _tx.toBuffer)(tx);
-                return {
-                    hex: serialized.toString('hex'),
-                    id: (0, _tx.getHash)(serialized)
-                };
-            });
-            return function createTx(_x4) {
-                return _ref5.apply(this, arguments);
-            };
-        })();
         exports.default = function(_ref) {
             let {
                 receiver,
@@ -9591,27 +9911,31 @@
                     } = _ref2;
                     const state = getState();
                     const {
-                        privateKey
-                    } = state.accounts.ripple.hdkey.derive('m/0/0', 'tag-does-not-matter', {
-                        spendable: true
-                    });
-                    const {
                         sequence
                     } = state.accountStates.ripple;
-                    const tx = yield createTx({
+                    const ledgerCurrentIndex = yield(0, _rippleApi.getLedgerCurrentIndex)();
+                    const {
+                        rawTx,
+                        txId
+                    } = yield _instanceShim2.default.current.createTx('ripple', {
                         to: receiver.address,
                         destTag: receiver.destTag,
-                        amount: receiver.amount,
+                        amount: receiver.amount.toBase().toString({
+                            unit: false
+                        }),
+                        fee: _assets2.default.ripple.fee.toBase().toString({
+                            unit: false
+                        }),
                         sequence,
-                        privateKey
+                        ledgerCurrentIndex
                     });
-                    yield(0, _broadcastTx2.default)(state)('ripple')(tx.hex);
-                    update(tx.id);
+                    yield(0, _broadcastTx2.default)(state)('ripple')(rawTx.toString('hex'));
+                    update(txId);
                     if (shouldLog) {
                         const sentAmount = receiver.amount.abs().negate();
                         const fiatConversions = (0, _conversions2.default)(getState()).ripple;
                         _flux.actions.txLog.write(_assets2.default.ripple, {
-                            txId: tx.id,
+                            txId,
                             coinAmount: sentAmount,
                             feeAmount: _assets2.default.ripple.fee.to(_assets2.default.ripple.displayUnit),
                             fiatAmount: fiatConversions(sentAmount),
@@ -9635,42 +9959,24 @@
                 return _accountState.ripple.runWithLock(() => send(...args));
             };
         };
-        var _secp256k = require('secp256k1');
-        var secp256k1 = _interopRequireWildcard(_secp256k);
-        var _flux = require(271);
-        var _assets = require(194);
+        var _flux = require(289);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _conversions = require(124);
+        var _conversions = require(133);
         var _conversions2 = _interopRequireDefault(_conversions);
-        var _broadcastTx = require(136);
+        var _broadcastTx = require(146);
         var _broadcastTx2 = _interopRequireDefault(_broadcastTx);
-        var _reduxAsyncAction = require(303);
+        var _reduxAsyncAction = require(323);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _accountState = require(8);
-        var _tx = require(309);
-        var _keypairs = require(308);
-        var keypairs = _interopRequireWildcard(_keypairs);
-        var _rippleApi = require(305);
+        var _accountState = require(6);
+        var _rippleApi = require(325);
+        var _instanceShim = require(186);
+        var _instanceShim2 = _interopRequireDefault(_instanceShim);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
                 default: obj
             };
-        }
-
-        function _interopRequireWildcard(obj) {
-            if (obj && obj.__esModule) {
-                return obj;
-            } else {
-                var newObj = {};
-                if (obj != null) {
-                    for (var key in obj) {
-                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
-                    }
-                }
-                newObj.default = obj;
-                return newObj;
-            }
         }
 
         function _asyncToGenerator(fn) {
@@ -9701,18 +10007,16 @@
         }
 
     }, {
-        "124": 124,
-        "136": 136,
-        "194": 194,
-        "271": 271,
-        "303": 303,
-        "305": 305,
-        "308": 308,
-        "309": 309,
-        "8": 8,
-        "undefined": undefined
+        "133": 133,
+        "146": 146,
+        "186": 186,
+        "210": 210,
+        "289": 289,
+        "323": 323,
+        "325": 325,
+        "6": 6
     }],
-    82: [function(require, module, exports) {
+    83: [function(require, module, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -9720,7 +10024,7 @@
         exports.default = [];
 
     }, {}],
-    83: [function(require, module, exports) {
+    84: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -9730,20 +10034,24 @@
             var _ref7 = _asyncToGenerator(function*(accountName) {
                 accountName = 'account0';
                 let coinUtxos = {};
-                for (const coinName in _assets2.default) {
-                    const asset = _assets2.default[coinName];
-                    let key = walletKeys.accountStateMutations(coinName, accountName);
-                    const utxoRaw = yield _instanceShim2.default.current.fetchKeyData(key);
-                    let utxos = _utxoCollection2.default.createEmpty({
-                        currency: asset.currency
-                    });
-                    if (!_assets2.default[coinName].isAccountBased && utxoRaw) {
-                        utxos = _utxoCollection2.default.fromJSON(utxoRaw, {
+                yield Promise.all(Object.values(_assets2.default).map((() => {
+                    var _ref8 = _asyncToGenerator(function*(asset) {
+                        const key = walletKeys.accountStateMutations(asset.name, accountName);
+                        const utxoRaw = yield _instanceShim2.default.current.fetchKeyData(key);
+                        let utxos = _utxoCollection2.default.createEmpty({
                             currency: asset.currency
                         });
-                    }
-                    coinUtxos[coinName] = utxos;
-                }
+                        if (!asset.isAccountBased && utxoRaw) {
+                            utxos = _utxoCollection2.default.fromJSON(utxoRaw, {
+                                currency: asset.currency
+                            });
+                        }
+                        coinUtxos[asset.name] = utxos;
+                    });
+                    return function(_x11) {
+                        return _ref8.apply(this, arguments);
+                    };
+                })()));
                 return coinUtxos;
             });
             return function loadUtxos(_x10) {
@@ -9757,33 +10065,29 @@
         exports.updateFromBlockchain = updateFromBlockchain;
         var _aw = require('aw');
         var _aw2 = _interopRequireDefault(_aw);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _utxoCollection = require(93);
+        var _utxoCollection = require(94);
         var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
-        var _txLog = require(74);
-        var _conversions = require(124);
+        var _txLog = require(75);
+        var _conversions = require(133);
         var _conversions2 = _interopRequireDefault(_conversions);
-        var _reduxAsyncAction = require(303);
+        var _reduxAsyncAction = require(323);
         var _reduxAsyncAction2 = _interopRequireDefault(_reduxAsyncAction);
-        var _delay = require('delay');
-        var _delay2 = _interopRequireDefault(_delay);
-        var _ms = require('ms');
-        var _ms2 = _interopRequireDefault(_ms);
-        var _util = require(278);
-        var _addressSet = require(85);
+        var _util = require(296);
+        var _addressSet = require(86);
         var _addressSet2 = _interopRequireDefault(_addressSet);
-        var _instanceShim = require(174);
+        var _instanceShim = require(186);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _keys = require(175);
+        var _keys = require(187);
         var walletKeys = _interopRequireWildcard(_keys);
-        var _getReceiveAddresses = require(97);
+        var _getReceiveAddresses = require(98);
         var _getReceiveAddresses2 = _interopRequireDefault(_getReceiveAddresses);
-        var _getReceiveAddress = require(96);
+        var _getReceiveAddress = require(97);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _getExchangeAddress = require(95);
+        var _getExchangeAddress = require(96);
         var _getExchangeAddress2 = _interopRequireDefault(_getExchangeAddress);
-        var _utxoFetcher = require(137);
+        var _utxoFetcher = require(147);
         var _utxoFetcher2 = _interopRequireDefault(_utxoFetcher);
 
         function _interopRequireWildcard(obj) {
@@ -9876,13 +10180,13 @@
                     const getReceiveAddress = (0, _getReceiveAddress2.default)(state);
                     const getReceiveAddresses = (0, _getReceiveAddresses2.default)(state);
                     const getExchangeAddress = (0, _getExchangeAddress2.default)(state);
-                    for (const coin of Object.values(_assets2.default)) {
-                        if (coin.available && coin.hasUTXO && coin.name !== 'monero') {
-                            const addrs = coin.name === 'bitcoin' ? getReceiveAddresses(coin.name).add(getExchangeAddress(coin.name)) : _addressSet2.default.fromArray([getReceiveAddress(coin.name), getExchangeAddress(coin.name)]);
-                            yield updateFromBlockchain(coin.name, addrs)(dispatch, getState);
-                            yield(0, _delay2.default)((0, _ms2.default)('2s'));
+                    yield Promise.all(Object.values(_assets2.default).map(function(asset) {
+                        if (asset.available && asset.hasUTXO && asset.name !== 'monero') {
+                            const addrs = asset.name === 'bitcoin' ? getReceiveAddresses(asset.name).add(getExchangeAddress(asset.name)) : _addressSet2.default.fromArray([getReceiveAddress(asset.name), getExchangeAddress(asset.name)]);
+                            return updateFromBlockchain(asset.name, addrs)(dispatch, getState);
                         }
-                    }
+                    }));
+                    console.log('utxo scan complete');
                     success();
                 });
                 return function(_x4, _x5, _x6) {
@@ -9960,7 +10264,7 @@
             }));
         }
         const writeUtxos = exports.writeUtxos = (0, _aw2.default)((() => {
-            var _ref8 = _asyncToGenerator(function*(coinName, utxos) {
+            var _ref9 = _asyncToGenerator(function*(coinName, utxos) {
                 let {
                     accountName = 'account0'
                 } = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
@@ -9969,29 +10273,29 @@
                 yield _instanceShim2.default.current.updateKeyData(key, utxos.toJSON());
             });
 
-            function writeUtxos(_x12, _x13) {
-                return _ref8.apply(this, arguments);
+            function writeUtxos(_x13, _x14) {
+                return _ref9.apply(this, arguments);
             }
             return writeUtxos;
         })());
 
     }, {
-        "124": 124,
-        "137": 137,
-        "174": 174,
-        "175": 175,
-        "194": 194,
-        "278": 278,
-        "303": 303,
-        "74": 74,
-        "85": 85,
-        "93": 93,
-        "95": 95,
+        "133": 133,
+        "147": 147,
+        "186": 186,
+        "187": 187,
+        "210": 210,
+        "296": 296,
+        "323": 323,
+        "75": 75,
+        "86": 86,
+        "94": 94,
         "96": 96,
         "97": 97,
+        "98": 98,
         "undefined": undefined
     }],
-    84: [function(require, module, exports) {
+    85: [function(require, module, exports) {
         'use strict';
         var _config = require(1);
         var config = _interopRequireWildcard(_config);
@@ -10015,7 +10319,7 @@
     }, {
         "1": 1
     }],
-    85: [function(require, module, exports) {
+    86: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -10023,7 +10327,7 @@
         exports.PATH_SORTER = exports.default = undefined;
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _address = require(86);
+        var _address = require(87);
         var _address2 = _interopRequireDefault(_address);
 
         function _interopRequireDefault(obj) {
@@ -10118,10 +10422,10 @@
         };
 
     }, {
-        "86": 86,
+        "87": 87,
         "undefined": undefined
     }],
-    86: [function(require, module, exports) {
+    87: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -10161,7 +10465,7 @@
     }, {
         "undefined": undefined
     }],
-    87: [function(require, module, exports) {
+    88: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -10171,7 +10475,7 @@
         exports.isReceiveAddress = isReceiveAddress;
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _ = require(86);
+        var _ = require(87);
         var _2 = _interopRequireDefault(_);
 
         function _interopRequireDefault(obj) {
@@ -10204,16 +10508,16 @@
         }
 
     }, {
-        "86": 86,
+        "87": 87,
         "undefined": undefined
     }],
-    88: [function(require, module, exports) {
+    89: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.default = undefined;
-        var _order = require(89);
+        var _order = require(90);
         var _order2 = _interopRequireDefault(_order);
 
         function _interopRequireDefault(obj) {
@@ -10330,9 +10634,9 @@
         }
 
     }, {
-        "89": 89
+        "90": 90
     }],
-    89: [function(require, module, exports) {
+    90: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -10340,10 +10644,10 @@
         exports.default = undefined;
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _aureus = require(203);
-        var _currencyFiat = require(219);
+        var _aureus = require(220);
+        var _currencyFiat = require(235);
         var _currencyFiat2 = _interopRequireDefault(_currencyFiat);
 
         function _interopRequireDefault(obj) {
@@ -10356,6 +10660,8 @@
         const STATUS_SS_FAILED = ['resolved', 'contact_support', 'failed', 'expired'];
         const STATUS_EC_INPROGRESS = [1, 2, 3, 5];
         const STATUS_EC_FAILED = [4, 6, 7, 8, 9, 10];
+        const STATUS_CH_INPROGRESS = ['new', 'waiting', 'confirming', 'exchanging', 'sending'];
+        const STATUS_CH_FAILED = ['failed', 'refunded', 'overdue'];
         let Order = class Order {
             constructor() {
                 let props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -10380,6 +10686,9 @@
                         this.toAmount = (0, _aureus.isNumberUnit)(props.toAmount) ? props.toAmount : _assets2.default[this.toAsset].currency.parse(props.toAmount);
                     }
                 }
+                if (props.floatingRate !== undefined) {
+                    this.floatingRate = props.floatingRate;
+                }
                 if (props.fromAmountUSD) {
                     this.fromAmountUSD = (0, _aureus.isNumberUnit)(props.fromAmountUSD) ? props.fromAmountUSD : USD.parse(props.fromAmountUSD);
                 }
@@ -10388,6 +10697,9 @@
                 }
                 if (!props.svc) console.warn(`${props.orderId} has no 'svc' field set.`);
                 this.svc = props.svc || 'ss';
+                if (props.svcOptions) {
+                    this.svcOptions = props.svcOptions;
+                }
             }
             static fromJSON(json) {
                 if (typeof json === 'string') json = JSON.parse(json);
@@ -10422,6 +10734,10 @@
                     if (this.status === 'complete-verified') return 'success';
                     if (STATUS_EC_FAILED.includes(this.status)) return 'failed';
                     if (STATUS_EC_INPROGRESS.includes(this.status)) return 'inprogress';
+                } else if (this.svc === 'ch') {
+                    if (this.status === 'complete-verified') return 'success';
+                    if (STATUS_CH_FAILED.includes(this.status)) return 'failed';
+                    if (STATUS_CH_INPROGRESS.includes(this.status)) return 'inprogress';
                 }
                 console.warn(`Unknown order state: ${this.status}`);
                 return 'inprogress';
@@ -10430,21 +10746,21 @@
         exports.default = Order;
 
     }, {
-        "194": 194,
-        "203": 203,
-        "219": 219,
+        "210": 210,
+        "220": 220,
+        "235": 235,
         "undefined": undefined
     }],
-    90: [function(require, module, exports) {
+    91: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.default = undefined;
-        var _tx = require(92);
+        var _tx = require(93);
         var _tx2 = _interopRequireDefault(_tx);
         var _lodash = require('lodash');
-        var _addressSet = require(85);
+        var _addressSet = require(86);
         var _addressSet2 = _interopRequireDefault(_addressSet);
         var _clone = require('clone');
         var _clone2 = _interopRequireDefault(_clone);
@@ -10459,12 +10775,11 @@
                 this._txs = new Map();
                 this._order = [];
                 this.addresses = _addressSet2.default.EMPTY;
-                this._balance = null;
             }
             static fromArray(arr) {
                 if (arr == null) return TxSet.EMPTY;
                 arr = arr.map(isTxOrConvert);
-                arr.sort((a, b) => a.date - b.date);
+                arr.sort(sorter);
                 let addrs = [];
                 arr.forEach(tx => {
                     addrs = addrs.concat(Array.from(tx.addresses));
@@ -10480,7 +10795,7 @@
             add(tx) {
                 let arrTxs = Array.from(this._txs.values());
                 arrTxs.push(tx);
-                arrTxs.sort((a, b) => a.date - b.date);
+                arrTxs.sort(sorter);
                 let txset = new TxSet();
                 txset._txs = new Map();
                 for (let tx of arrTxs) {
@@ -10509,19 +10824,12 @@
             }
             equals(otherSet) {
                 if (this._order.length !== otherSet._order.length) return false;
-                let len = this._order.length;
-                for (let i = 0; i < len; ++i) {
-                    if (this._order[i] !== otherSet._order[i]) return false;
-                }
-                return true;
+                return this._order.every((item, i) => item === otherSet._order[i]);
             }
             get(tx) {
                 return this._txs.get(String(tx));
             }
             getAt(order) {
-                return this.get(this._order[order]);
-            }
-            getByOrder(order) {
                 return this.get(this._order[order]);
             }
             has(tx) {
@@ -10537,8 +10845,22 @@
                 return TxSet.fromArray(both);
             }
             update(otherSet) {
-                let newArr = legacyMergeTxs(Array.from(this), Array.from(otherSet));
-                return TxSet.fromArray(newArr);
+                const newTxObj = (0, _lodash.keyBy)(Array.from(otherSet), 'txId');
+                const txs = [];
+                Object.keys(newTxObj).forEach(txId => {
+                    const oldTx = this._txs.get(txId);
+                    const tx = Object.assign({}, oldTx, newTxObj[txId]);
+                    if (oldTx) {
+                        if (Math.sign(tx.coinAmount.toNumber()) === Math.sign(oldTx.coinAmount.toNumber())) {
+                            if (!tx.feeAmount) tx.coinAmount = oldTx.coinAmount;
+                        }
+                        if (oldTx.meta) {
+                            tx.meta = (0, _clone2.default)(oldTx.meta);
+                        }
+                    }
+                    txs.push(_tx2.default.fromJSON(tx));
+                });
+                return TxSet.fromArray(txs);
             }
             updateTxsProperties(items) {
                 const txset = this.clone();
@@ -10555,7 +10877,7 @@
                 return Array.from(this).map(tx => {
                     if (balance === undefined) balance = tx.coinAmount.unitType.ZERO;
                     balance = balance.add(tx.coinAmount);
-                    if (tx.feeAmount && tx.feeAmount.unitType === tx.coinAmount.unitType) balance = balance.subtract(tx.feeAmount);
+                    if (tx.sent && tx.feeAmount && tx.feeAmount.unitType === tx.coinAmount.unitType) balance = balance.subtract(tx.feeAmount);
                     return {
                         tx,
                         balance
@@ -10576,38 +10898,25 @@
             else return _tx2.default.fromJSON(tx);
         }
 
-        function legacyMergeTxs(oldTxs, newTxs) {
-            const oldTxObj = (0, _lodash.keyBy)(Array.from(oldTxs), 'txId');
-            const newTxObj = (0, _lodash.keyBy)(Array.from(newTxs), 'txId');
-            const txs = [];
-            Object.keys(newTxObj).forEach(txId => {
-                const tx = Object.assign({}, oldTxObj[txId], newTxObj[txId]);
-                if (oldTxObj[txId]) {
-                    if (Math.sign(tx.coinAmount.toNumber()) === Math.sign(oldTxObj[txId].coinAmount.toNumber())) {
-                        if (!tx.feeAmount) tx.coinAmount = oldTxObj[txId].coinAmount;
-                    }
-                    if (oldTxObj[txId].meta) {
-                        tx.meta = (0, _clone2.default)(oldTxObj[txId].meta);
-                    }
-                }
-                txs.push(_tx2.default.fromJSON(tx));
-            });
-            return txs;
+        function sorter(a, b) {
+            let diff = a.date - b.date;
+            if (diff === 0) diff = a.txId.localeCompare(b.txId);
+            return diff;
         }
 
     }, {
-        "85": 85,
-        "92": 92,
+        "86": 86,
+        "93": 93,
         "undefined": undefined
     }],
-    91: [function(require, module, exports) {
+    92: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.sortByAsc = sortByAsc;
         exports.sortByDesc = sortByDesc;
-        var _ = require(90);
+        var _ = require(91);
         var _2 = _interopRequireDefault(_);
 
         function _interopRequireDefault(obj) {
@@ -10635,9 +10944,9 @@
         }
 
     }, {
-        "90": 90
+        "91": 91
     }],
-    92: [function(require, module, exports) {
+    93: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -10647,12 +10956,12 @@
         var _assert2 = _interopRequireDefault(_assert);
         var _proxyFreeze = require('proxy-freeze');
         var _proxyFreeze2 = _interopRequireDefault(_proxyFreeze);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
         var _isEqual = require('is-equal');
         var _isEqual2 = _interopRequireDefault(_isEqual);
-        var _aureus = require(203);
-        var _addressSet = require(85);
+        var _aureus = require(220);
+        var _addressSet = require(86);
         var _addressSet2 = _interopRequireDefault(_addressSet);
 
         function _interopRequireDefault(obj) {
@@ -10778,12 +11087,12 @@
         }
 
     }, {
-        "194": 194,
-        "203": 203,
-        "85": 85,
+        "210": 210,
+        "220": 220,
+        "86": 86,
         "undefined": undefined
     }],
-    93: [function(require, module, exports) {
+    94: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -10791,11 +11100,11 @@
         exports.default = undefined;
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _address = require(86);
+        var _address = require(87);
         var _address2 = _interopRequireDefault(_address);
-        var _addressSet = require(85);
+        var _addressSet = require(86);
         var _addressSet2 = _interopRequireDefault(_addressSet);
-        var _aureus = require(203);
+        var _aureus = require(220);
         var _aureus2 = _interopRequireDefault(_aureus);
         var _lodash = require('lodash');
         var _isEqual = require('is-equal');
@@ -10914,16 +11223,6 @@
                 let arrAddrs = arrUtxos.map(utxo => utxo.address);
                 return _addressSet2.default.fromArray(arrAddrs);
             }
-            getWifMap(accountHDKey) {
-                let map = {};
-                this.addresses.forEach(function(addr) {
-                    let privWif = accountHDKey.derive(addr.meta.path, 'spendable', {
-                        spendable: true
-                    }).privateEncoded;
-                    map[addr.toString()] = privWif;
-                });
-                return map;
-            }
             getAddressPathsMap() {
                 return this.addresses.reduce((obj, addr) => {
                     return Object.assign(obj, {
@@ -11032,7 +11331,7 @@
             toJSON() {
                 let jsonMap = {};
                 this.addresses.forEach(addr => {
-                    let address = addr.toString();
+                    const address = addr.toString();
                     let addrUtxoObj = {};
                     addrUtxoObj.address = address;
                     addrUtxoObj.path = addr.meta.path;
@@ -11078,21 +11377,21 @@
         }
 
     }, {
-        "203": 203,
-        "85": 85,
+        "220": 220,
         "86": 86,
+        "87": 87,
         "undefined": undefined
     }],
-    94: [function(require, module, exports) {
+    95: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _address = require(86);
+        var _address = require(87);
         var _address2 = _interopRequireDefault(_address);
         var _reselect = require('reselect');
-        var _util = require(10);
-        var _pairingData = require(147);
+        var _util = require(8);
+        var _pairingData = require(158);
         var _pairingData2 = _interopRequireDefault(_pairingData);
 
         function _interopRequireDefault(obj) {
@@ -11114,20 +11413,20 @@
         });
 
     }, {
-        "10": 10,
-        "147": 147,
-        "86": 86,
+        "158": 158,
+        "8": 8,
+        "87": 87,
         "undefined": undefined
     }],
-    95: [function(require, module, exports) {
+    96: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _getReceiveAddress = require(96);
+        var _getReceiveAddress = require(97);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _address = require(86);
+        var _address = require(87);
         var _address2 = _interopRequireDefault(_address);
 
         function _interopRequireDefault(obj) {
@@ -11142,22 +11441,22 @@
         });
 
     }, {
-        "86": 86,
-        "96": 96,
+        "87": 87,
+        "97": 97,
         "undefined": undefined
     }],
-    96: [function(require, module, exports) {
+    97: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _address = require(86);
+        var _address = require(87);
         var _address2 = _interopRequireDefault(_address);
         var _reselect = require('reselect');
-        var _util = require(10);
-        var _pairingData = require(147);
+        var _util = require(8);
+        var _pairingData = require(158);
         var _pairingData2 = _interopRequireDefault(_pairingData);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -11170,6 +11469,7 @@
                 if (global.DEBUG_ETH_ADDRESS && (asset === 'ethereum' || _assets2.default[asset].isEthereumToken)) return global.DEBUG_ETH_ADDRESS;
                 if (global.DEBUG_RIPPLE_ADDRESS && asset === 'ripple') return global.DEBUG_RIPPLE_ADDRESS;
                 const acct = accounts[asset];
+                if (asset === 'factom') return _address2.default.create(_assets2.default.factom.keys.encodePublic(acct.publicKey));
                 const {
                     chain,
                     hdkey
@@ -11182,23 +11482,27 @@
         });
 
     }, {
-        "10": 10,
-        "147": 147,
-        "194": 194,
-        "86": 86,
+        "158": 158,
+        "210": 210,
+        "8": 8,
+        "87": 87,
         "undefined": undefined
     }],
-    97: [function(require, module, exports) {
+    98: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _addressSet = require(85);
+        var _address = require(87);
+        var _address2 = _interopRequireDefault(_address);
+        var _addressSet = require(86);
         var _addressSet2 = _interopRequireDefault(_addressSet);
+        var _assets = require(210);
+        var _assets2 = _interopRequireDefault(_assets);
         var _reselect = require('reselect');
-        var _getReceiveAddress = require(96);
+        var _getReceiveAddress = require(97);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _getExchangeAddress = require(95);
+        var _getExchangeAddress = require(96);
         var _getExchangeAddress2 = _interopRequireDefault(_getExchangeAddress);
 
         function _interopRequireDefault(obj) {
@@ -11207,15 +11511,24 @@
             };
         }
         exports.default = (0, _reselect.createSelector)(state => state.txLog, _getReceiveAddress2.default, _getExchangeAddress2.default, (txLog, getReceiveAddress, getExchangeAddress) => {
-            return function getReceiveAddresses(asset) {
-                const txSet = txLog[asset];
+            return function getReceiveAddresses(assetName) {
+                const txSet = txLog[assetName];
                 if (!txSet) return _addressSet2.default.EMPTY;
-                const firstRecvAddr = getReceiveAddress(asset, 0);
-                const exchAddr = getExchangeAddress(asset);
+                if (assetName === 'bcash') {
+                    const asset = _assets2.default[assetName];
+                    const legacyAddr = getReceiveAddress(assetName, 0);
+                    const cashAddr = new _address2.default(asset.address.toCashAddress(legacyAddr.toString()));
+                    let addressList = new _addressSet2.default();
+                    addressList = addressList.add(cashAddr);
+                    addressList = addressList.add(legacyAddr);
+                    return addressList;
+                }
+                const firstRecvAddr = getReceiveAddress(assetName, 0);
+                const exchAddr = getExchangeAddress(assetName);
                 let addressesUsed = txSet.addresses;
                 if (String(firstRecvAddr) !== String(exchAddr)) addressesUsed = addressesUsed.delete(exchAddr);
                 addressesUsed = addressesUsed.add(firstRecvAddr);
-                const newAddress = getReceiveAddress(asset, addressesUsed.size);
+                const newAddress = getReceiveAddress(assetName, addressesUsed.size);
                 let ac = addressesUsed.add(newAddress);
                 ac = ac.sort(_addressSet.PATH_SORTER);
                 return ac;
@@ -11223,22 +11536,24 @@
         });
 
     }, {
-        "85": 85,
-        "95": 95,
+        "210": 210,
+        "86": 86,
+        "87": 87,
         "96": 96,
+        "97": 97,
         "undefined": undefined
     }],
-    98: [function(require, module, exports) {
+    99: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _addressSet = require(85);
+        var _addressSet = require(86);
         var _addressSet2 = _interopRequireDefault(_addressSet);
         var _reselect = require('reselect');
-        var _getExchangeAddress = require(95);
+        var _getExchangeAddress = require(96);
         var _getExchangeAddress2 = _interopRequireDefault(_getExchangeAddress);
-        var _getReceiveAddresses = require(97);
+        var _getReceiveAddresses = require(98);
         var _getReceiveAddresses2 = _interopRequireDefault(_getReceiveAddresses);
 
         function _interopRequireDefault(obj) {
@@ -11257,33 +11572,9 @@
         });
 
     }, {
-        "85": 85,
-        "95": 95,
-        "97": 97,
-        "undefined": undefined
-    }],
-    99: [function(require, module, exports) {
-        'use strict';
-        Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        var _reselect = require('reselect');
-        var _assets = require(194);
-        var _assets2 = _interopRequireDefault(_assets);
-        var _available = require(100);
-        var _available2 = _interopRequireDefault(_available);
-
-        function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : {
-                default: obj
-            };
-        }
-        const availableAssetsCount = Object.values(_assets2.default).filter(asset => asset.available).length;
-        exports.default = (0, _reselect.createSelector)(_available2.default, availableAssets => Object.keys(availableAssets).length < availableAssetsCount);
-
-    }, {
-        "100": 100,
-        "194": 194,
+        "86": 86,
+        "96": 96,
+        "98": 98,
         "undefined": undefined
     }],
     100: [function(require, module, exports) {
@@ -11291,12 +11582,139 @@
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
+        var _reselect = require('reselect');
+        var _assets = require(210);
+        var _assets2 = _interopRequireDefault(_assets);
+        var _available = require(104);
+        var _available2 = _interopRequireDefault(_available);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        const availableAssetsCount = Object.values(_assets2.default).filter(asset => asset.available && asset.name !== 'qtum').length;
+        exports.default = (0, _reselect.createSelector)(_available2.default, availableAssets => {
+            return Object.keys(availableAssets).filter(assetName => assetName !== 'qtum').length < availableAssetsCount;
+        });
+
+    }, {
+        "104": 104,
+        "210": 210,
+        "undefined": undefined
+    }],
+    101: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        var _reselect = require('reselect');
+        var _loaded = require(108);
+        var _loaded2 = _interopRequireDefault(_loaded);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        exports.default = (0, _reselect.createSelector)(_loaded2.default, assetsLoaded => {
+            return Object.values(assetsLoaded).every(i => i);
+        });
+
+    }, {
+        "108": 108,
+        "undefined": undefined
+    }],
+    102: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        var _reselect = require('reselect');
+        var _portfolioSortOrder = require(118);
+        var _portfolioSortOrder2 = _interopRequireDefault(_portfolioSortOrder);
+        var _available = require(104);
+        var _available2 = _interopRequireDefault(_available);
+        var _availableSortedByBalance = require(103);
+        var _availableSortedByBalance2 = _interopRequireDefault(_availableSortedByBalance);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        exports.default = (0, _reselect.createSelector)(_available2.default, _availableSortedByBalance2.default, _portfolioSortOrder2.default, (sortedByAlphabetical, sortedByBalance, sortOrder) => sortOrder === 'balance' ? sortedByBalance : sortedByAlphabetical);
+
+    }, {
+        "103": 103,
+        "104": 104,
+        "118": 118,
+        "undefined": undefined
+    }],
+    103: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        var _reselect = require('reselect');
+        var _available = require(104);
+        var _available2 = _interopRequireDefault(_available);
+        var _coinTotalAmounts = require(113);
+        var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
+        var _getValue = require(135);
+        var _getValue2 = _interopRequireDefault(_getValue);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        exports.default = (0, _reselect.createSelector)(_available2.default, _coinTotalAmounts2.default, _getValue2.default, (assets, balances, getFiatValue) => {
+            const assetsWithBalance = [];
+            const assetsWithoutBalance = [];
+            Object.values(assets).map(asset => {
+                const item = {
+                    asset,
+                    balance: getFiatValue(balances[asset.name]).toNumber()
+                };
+                if (item.balance > 0) assetsWithBalance.push(item);
+                else assetsWithoutBalance.push(item);
+            });
+            assetsWithBalance.sort((a, b) => b.balance - a.balance);
+            assetsWithoutBalance.sort((a, b) => a.asset.properName.localeCompare(b.asset.properName));
+            const sortedAssets = {};
+            assetsWithBalance.forEach((_ref) => {
+                let {
+                    asset
+                } = _ref;
+                sortedAssets[asset.name] = asset;
+            });
+            assetsWithoutBalance.forEach((_ref2) => {
+                let {
+                    asset
+                } = _ref2;
+                sortedAssets[asset.name] = asset;
+            });
+            return sortedAssets;
+        });
+
+    }, {
+        "104": 104,
+        "113": 113,
+        "135": 135,
+        "undefined": undefined
+    }],
+    104: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
         var _reselect = require('reselect');
-        var _assetsDisabled = require(108);
+        var _assetsDisabled = require(114);
         var _assetsDisabled2 = _interopRequireDefault(_assetsDisabled);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -11327,11 +11745,11 @@
         });
 
     }, {
-        "108": 108,
-        "194": 194,
+        "114": 114,
+        "210": 210,
         "undefined": undefined
     }],
-    101: [function(require, module, exports) {
+    105: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -11341,7 +11759,7 @@
         var lodash = _interopRequireWildcard(_lodash);
         var _semver = require('semver');
         var _semver2 = _interopRequireDefault(_semver);
-        var _appConfig = require(84);
+        var _appConfig = require(85);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -11370,10 +11788,37 @@
         });
 
     }, {
-        "84": 84,
+        "85": 85,
         "undefined": undefined
     }],
-    102: [function(require, module, exports) {
+    106: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        var _reselect = require('reselect');
+        var _getReceiveAddress = require(97);
+        var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        exports.default = (0, _reselect.createSelector)(state => state.localStorage, state => state.eos, _getReceiveAddress2.default, (localStorage, eos, getReceiveAddress) => {
+            let eosAddress = null;
+            try {
+                eosAddress = String(getReceiveAddress('eosio'));
+            } catch (v) {}
+            const eosRegisteredOnChain = eosAddress && eos.registeredAddress === eosAddress;
+            return Boolean(localStorage.eosregistered) || eosRegisteredOnChain;
+        });
+
+    }, {
+        "97": 97,
+        "undefined": undefined
+    }],
+    107: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -11381,7 +11826,7 @@
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
         var _reselect = require('reselect');
-        var _available = require(100);
+        var _available = require(104);
         var _available2 = _interopRequireDefault(_available);
 
         function _interopRequireDefault(obj) {
@@ -11404,23 +11849,71 @@
                 return newObj;
             }
         }
-        exports.default = (0, _reselect.createSelector)(_available2.default, state => state.txLog, (assets, txLog) => {
-            return lodash.mapValues(assets, asset => !!txLog[`${asset.name}Loaded`] || asset.name === 'monero');
+        exports.default = (0, _reselect.createSelector)(state => state.exchange.assetsOnline, _available2.default, (assetsOnline, assets) => {
+            return lodash.pickBy(assets, asset => {
+                return assetsOnline[asset.displayUnit] || ['bitcoin', 'ethereum'].includes(asset.name);
+            });
         });
 
     }, {
-        "100": 100,
+        "104": 104,
         "undefined": undefined
     }],
-    103: [function(require, module, exports) {
+    108: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        var _lodash = require('lodash');
+        var lodash = _interopRequireWildcard(_lodash);
+        var _reselect = require('reselect');
+        var _available = require(104);
+        var _available2 = _interopRequireDefault(_available);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+
+        function _interopRequireWildcard(obj) {
+            if (obj && obj.__esModule) {
+                return obj;
+            } else {
+                var newObj = {};
+                if (obj != null) {
+                    for (var key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+                    }
+                }
+                newObj.default = obj;
+                return newObj;
+            }
+        }
+        exports.default = (0, _reselect.createSelector)(_available2.default, state => state.txLog, state => state.utxos, state => state.accountStates, (assets, txLog, utxos, accountStates) => {
+            return lodash.mapValues(assets, asset => {
+                if (!txLog[`${asset.name}Loaded`] && asset.name !== 'monero') return false;
+                if (asset.hasUTXO && !utxos[asset.name]) return false;
+                if (asset.isAccountBased && !asset.isEthereumToken) {
+                    return !!accountStates[asset.name] && accountStates[asset.name].loaded;
+                }
+                return true;
+            });
+        });
+
+    }, {
+        "104": 104,
+        "undefined": undefined
+    }],
+    109: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _cryptoTotal = require(104);
+        var _cryptoTotal = require(110);
         var _cryptoTotal2 = _interopRequireDefault(_cryptoTotal);
 
         function _interopRequireDefault(obj) {
@@ -11434,11 +11927,11 @@
         });
 
     }, {
-        "104": 104,
-        "194": 194,
+        "110": 110,
+        "210": 210,
         "undefined": undefined
     }],
-    104: [function(require, module, exports) {
+    110: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -11446,11 +11939,11 @@
         var _lodash = require('lodash');
         var _lodash2 = _interopRequireDefault(_lodash);
         var _reselect = require('reselect');
-        var _getReceiveAddress = require(96);
+        var _getReceiveAddress = require(97);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _txSet = require(90);
+        var _txSet = require(91);
         var _txSet2 = _interopRequireDefault(_txSet);
 
         function _interopRequireDefault(obj) {
@@ -11514,18 +12007,18 @@
         });
 
     }, {
-        "194": 194,
-        "90": 90,
-        "96": 96,
+        "210": 210,
+        "91": 91,
+        "97": 97,
         "undefined": undefined
     }],
-    105: [function(require, module, exports) {
+    111: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
@@ -11569,10 +12062,10 @@
         });
 
     }, {
-        "194": 194,
+        "210": 210,
         "undefined": undefined
     }],
-    106: [function(require, module, exports) {
+    112: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -11580,13 +12073,13 @@
         var _reselect = require('reselect');
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _coinTotalAmounts = require(107);
+        var _coinTotalAmounts = require(113);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _feeEstimator = require(269);
+        var _feeEstimator = require(287);
         var _feeEstimator2 = _interopRequireDefault(_feeEstimator);
-        var _utxoCollection = require(93);
+        var _utxoCollection = require(94);
         var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
 
         function _interopRequireDefault(obj) {
@@ -11633,18 +12126,18 @@
         });
 
     }, {
-        "107": 107,
-        "194": 194,
-        "269": 269,
-        "93": 93,
+        "113": 113,
+        "210": 210,
+        "287": 287,
+        "94": 94,
         "undefined": undefined
     }],
-    107: [function(require, module, exports) {
+    113: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _cryptoTotal = require(104);
+        var _cryptoTotal = require(110);
         var _cryptoTotal2 = _interopRequireDefault(_cryptoTotal);
 
         function _interopRequireDefault(obj) {
@@ -11655,17 +12148,17 @@
         exports.default = _cryptoTotal2.default;
 
     }, {
-        "104": 104
+        "110": 110
     }],
-    108: [function(require, module, exports) {
+    114: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _configKeys = require(217);
+        var _keys = require(233);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -11674,26 +12167,26 @@
         }
         exports.default = (0, _reselect.createSelector)(state => state.config, config => {
             return Object.values(_assets2.default).reduce((obj, asset) => {
-                const disabled = config.get(`${_configKeys.assets}.${asset.name}.disabled`);
+                const disabled = config.get(`${_keys.assets}.${asset.name}.disabled`);
                 if (disabled !== undefined) obj[asset.name] = !!disabled;
                 return obj;
             }, {});
         });
 
     }, {
-        "194": 194,
-        "217": 217,
+        "210": 210,
+        "233": 233,
         "undefined": undefined
     }],
-    109: [function(require, module, exports) {
+    115: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _currencyFiat = require(219);
+        var _currencyFiat = require(235);
         var _currencyFiat2 = _interopRequireDefault(_currencyFiat);
         var _reselect = require('reselect');
-        var _configKeys = require(217);
+        var _keys = require(233);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -11701,26 +12194,26 @@
             };
         }
         exports.default = (0, _reselect.createSelector)(state => state.config, config => {
-            const fiat = config.get(_configKeys.fiatUnit);
+            const fiat = config.get(_keys.fiatUnit);
             return Object.values(_currencyFiat2.default).find(currency => fiat in currency) || _currencyFiat2.default.USD;
         });
 
     }, {
-        "217": 217,
-        "219": 219,
+        "233": 233,
+        "235": 235,
         "undefined": undefined
     }],
-    110: [function(require, module, exports) {
+    116: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _configKeys = require(217);
+        var _keys = require(233);
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _configDefault = require(215);
-        var _configDefault2 = _interopRequireDefault(_configDefault);
+        var _default = require(231);
+        var _default2 = _interopRequireDefault(_default);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -11742,57 +12235,70 @@
                 return newObj;
             }
         }
-        const MARKET_PRICES_DEFAULT = lodash.get(_configDefault2.default, _configKeys.marketPrices);
+        const MARKET_PRICES_DEFAULT = lodash.get(_default2.default, _keys.marketPrices);
         exports.default = (0, _reselect.createSelector)(state => state.config, config => {
-            const marketPrices = config.get(_configKeys.marketPrices);
+            const marketPrices = config.get(_keys.marketPrices);
             if (!Array.isArray(marketPrices)) return [...MARKET_PRICES_DEFAULT];
             if (marketPrices.length === MARKET_PRICES_DEFAULT.length) return marketPrices;
             else return [...MARKET_PRICES_DEFAULT];
         });
 
     }, {
-        "215": 215,
-        "217": 217,
+        "231": 231,
+        "233": 233,
         "undefined": undefined
     }],
-    111: [function(require, module, exports) {
+    117: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.txReceivedEnabled = undefined;
         var _reselect = require('reselect');
-        var _configKeys = require(217);
-        const txReceivedEnabled = exports.txReceivedEnabled = (0, _reselect.createSelector)(state => state.config, config => config.get(_configKeys.notificationsTxReceivedEnabled));
+        var _keys = require(233);
+        const txReceivedEnabled = exports.txReceivedEnabled = (0, _reselect.createSelector)(state => state.config, config => config.get(_keys.notificationsTxReceivedEnabled));
 
     }, {
-        "217": 217,
+        "233": 233,
         "undefined": undefined
     }],
-    112: [function(require, module, exports) {
+    118: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _configKeys = require(217);
-        exports.default = (0, _reselect.createSelector)(state => state.config, config => config.get(_configKeys.themeName));
+        var _keys = require(233);
+        exports.default = (0, _reselect.createSelector)(state => state.config, config => config.get(_keys.portfolioSortOrder));
 
     }, {
-        "217": 217,
+        "233": 233,
         "undefined": undefined
     }],
-    113: [function(require, module, exports) {
+    119: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        var _reselect = require('reselect');
+        var _keys = require(233);
+        exports.default = (0, _reselect.createSelector)(state => state.config, config => config.get(_keys.themeName));
+
+    }, {
+        "233": 233,
+        "undefined": undefined
+    }],
+    120: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.threshold = undefined;
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _coinTotalAmounts = require(107);
+        var _coinTotalAmounts = require(113);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
-        var _hasTokens = require(131);
+        var _hasTokens = require(141);
         var _hasTokens2 = _interopRequireDefault(_hasTokens);
         var _reselect = require('reselect');
 
@@ -11809,12 +12315,34 @@
         });
 
     }, {
-        "107": 107,
-        "131": 131,
-        "194": 194,
+        "113": 113,
+        "141": 141,
+        "210": 210,
         "undefined": undefined
     }],
-    114: [function(require, module, exports) {
+    121: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        var _reselect = require('reselect');
+        var _assets = require(210);
+        var _assets2 = _interopRequireDefault(_assets);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        exports.default = (0, _reselect.createSelector)(state => state.exchange.assetsOnline, assetsOnline => {
+            return Object.values(_assets2.default).filter(asset => assetsOnline[asset.displayUnit] || ['bitcoin', 'ethereum'].includes(asset.name)).map(asset => asset.name);
+        });
+
+    }, {
+        "210": 210,
+        "undefined": undefined
+    }],
+    122: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -11822,15 +12350,15 @@
         var _reselect = require('reselect');
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _marketInfoKeys = require(118);
+        var _marketInfoKeys = require(127);
         var _marketInfoKeys2 = _interopRequireDefault(_marketInfoKeys);
-        var _minimums = require(121);
+        var _minimums = require(130);
         var _minimums2 = _interopRequireDefault(_minimums);
-        var _maximums = require(120);
+        var _maximums = require(129);
         var _maximums2 = _interopRequireDefault(_maximums);
-        var _available = require(100);
+        var _available = require(104);
         var _available2 = _interopRequireDefault(_available);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -11865,22 +12393,22 @@
         });
 
     }, {
-        "100": 100,
-        "118": 118,
-        "120": 120,
-        "121": 121,
-        "194": 194,
+        "104": 104,
+        "127": 127,
+        "129": 129,
+        "130": 130,
+        "210": 210,
         "undefined": undefined
     }],
-    115: [function(require, module, exports) {
+    123: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _getRate = require(116);
+        var _getRate = require(124);
         var _getRate2 = _interopRequireDefault(_getRate);
 
         function _interopRequireDefault(obj) {
@@ -11897,11 +12425,11 @@
         });
 
     }, {
-        "116": 116,
-        "194": 194,
+        "124": 124,
+        "210": 210,
         "undefined": undefined
     }],
-    116: [function(require, module, exports) {
+    124: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -11909,13 +12437,13 @@
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
         var _reselect = require('reselect');
-        var _marketInfoConversions = require(117);
+        var _marketInfoConversions = require(126);
         var _marketInfoConversions2 = _interopRequireDefault(_marketInfoConversions);
-        var _minimums = require(121);
+        var _minimums = require(130);
         var _minimums2 = _interopRequireDefault(_minimums);
-        var _maximums = require(120);
+        var _maximums = require(129);
         var _maximums2 = _interopRequireDefault(_maximums);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -11953,23 +12481,43 @@
         });
 
     }, {
-        "117": 117,
-        "120": 120,
-        "121": 121,
-        "194": 194,
+        "126": 126,
+        "129": 129,
+        "130": 130,
+        "210": 210,
         "undefined": undefined
     }],
-    117: [function(require, module, exports) {
+    125: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _marketInfoNumbers = require(119);
+        exports.default = (0, _reselect.createSelector)(state => state.exchange.assetsOnline, assetsOnline => {
+            return asset => {
+                let details;
+                if (assetsOnline[asset.displayUnit]) details = assetsOnline[asset.displayUnit].details;
+                switch (details) {
+                    case 'jurisdiction':
+                        return 'Unavailable in your jurisdiction';
+                }
+            };
+        });
+
+    }, {
+        "undefined": undefined
+    }],
+    126: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        var _reselect = require('reselect');
+        var _marketInfoNumbers = require(128);
         var _marketInfoNumbers2 = _interopRequireDefault(_marketInfoNumbers);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _aureus = require(203);
+        var _aureus = require(220);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -12006,12 +12554,12 @@
         });
 
     }, {
-        "119": 119,
-        "194": 194,
-        "203": 203,
+        "128": 128,
+        "210": 210,
+        "220": 220,
         "undefined": undefined
     }],
-    118: [function(require, module, exports) {
+    127: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -12051,15 +12599,15 @@
         "27": 27,
         "undefined": undefined
     }],
-    119: [function(require, module, exports) {
+    128: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _marketInfoKeys = require(118);
+        var _marketInfoKeys = require(127);
         var _marketInfoKeys2 = _interopRequireDefault(_marketInfoKeys);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -12100,20 +12648,20 @@
         }
 
     }, {
-        "118": 118,
-        "194": 194,
+        "127": 127,
+        "210": 210,
         "undefined": undefined
     }],
-    120: [function(require, module, exports) {
+    129: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _marketInfoNumbers = require(119);
+        var _marketInfoNumbers = require(128);
         var _marketInfoNumbers2 = _interopRequireDefault(_marketInfoNumbers);
-        var _assets = require(194);
-        var _assets2 = _interopRequireDefault(_assets);
+        var _exchangeable = require(107);
+        var _exchangeable2 = _interopRequireDefault(_exchangeable);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -12121,10 +12669,10 @@
             };
         }
         const DECREASE = 0.95;
-        exports.default = (0, _reselect.createSelector)(_marketInfoNumbers2.default, marketInfo => {
+        exports.default = (0, _reselect.createSelector)(_marketInfoNumbers2.default, _exchangeable2.default, (marketInfo, assets) => {
             let maximums = {};
-            Object.keys(_assets2.default).forEach(fromCoin => {
-                Object.keys(_assets2.default).forEach(toCoin => {
+            Object.keys(assets).forEach(fromCoin => {
+                Object.keys(assets).forEach(toCoin => {
                     if (!maximums[fromCoin]) maximums[fromCoin] = {};
                     let ssMax;
                     try {
@@ -12136,7 +12684,7 @@
                     } catch (e) {
                         ssMax = 0;
                     }
-                    const value = _assets2.default[fromCoin].currency.defaultUnit(ssMax).toBase().floor().toDefault().toFixed(8, 'floor');
+                    const value = assets[fromCoin].currency.defaultUnit(ssMax).toBase().floor().toDefault().toFixed(8, 'floor');
                     maximums[fromCoin][toCoin] = value;
                 });
             });
@@ -12144,11 +12692,11 @@
         });
 
     }, {
-        "119": 119,
-        "194": 194,
+        "107": 107,
+        "128": 128,
         "undefined": undefined
     }],
-    121: [function(require, module, exports) {
+    130: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -12158,15 +12706,15 @@
         var _lodash = require('lodash');
         var _lodash2 = _interopRequireDefault(_lodash);
         var _reselect = require('reselect');
-        var _marketInfoNumbers = require(119);
+        var _marketInfoNumbers = require(128);
         var _marketInfoNumbers2 = _interopRequireDefault(_marketInfoNumbers);
-        var _conversionsUsd = require(123);
+        var _conversionsUsd = require(132);
         var _conversionsUsd2 = _interopRequireDefault(_conversionsUsd);
-        var _assets = require(194);
-        var _assets2 = _interopRequireDefault(_assets);
-        var _currencyFiat = require(219);
+        var _exchangeable = require(107);
+        var _exchangeable2 = _interopRequireDefault(_exchangeable);
+        var _currencyFiat = require(235);
         var _currencyFiat2 = _interopRequireDefault(_currencyFiat);
-        var _appConfig = require(84);
+        var _appConfig = require(85);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -12177,11 +12725,11 @@
         const TESTING_EVERCOIN = _appConfig.ENV_DEV || _appConfig.ENV_BUILD_EDEN;
         const ASSET_MIN_BTC = exports.ASSET_MIN_BTC = TESTING_EVERCOIN ? 69.5 : 39.5;
         const ASSET_MIN_NOT_BTC = exports.ASSET_MIN_NOT_BTC = TESTING_EVERCOIN ? 52.5 : 18;
-        exports.default = (0, _reselect.createSelector)(_marketInfoNumbers2.default, state => state.remoteConfig, _conversionsUsd2.default, (marketInfo, remoteConfig, fiatConversionsUSD) => {
-            const minimums = _lodash2.default.mapValues(_assets2.default, () => ({}));
-            Object.keys(_assets2.default).forEach(fromCoin => {
+        exports.default = (0, _reselect.createSelector)(_marketInfoNumbers2.default, state => state.remoteConfig, _conversionsUsd2.default, _exchangeable2.default, (marketInfo, remoteConfig, fiatConversionsUSD, assets) => {
+            const minimums = _lodash2.default.mapValues(assets, () => ({}));
+            Object.keys(assets).forEach(fromCoin => {
                 const configMin = parseFloat(_lodash2.default.get(remoteConfig, `assets.${fromCoin}.min`, 0));
-                Object.keys(_assets2.default).forEach(toCoin => {
+                Object.keys(assets).forEach(toCoin => {
                     let ssMin = 0;
                     try {
                         ssMin = marketInfo[fromCoin][toCoin].minimum.toNumber() * INCREASE;
@@ -12191,7 +12739,7 @@
                     const minExchangeAmount = _currencyFiat2.default.USD.defaultUnit(minExchangeAmountRaw2.toFixed(2));
                     const marketMin = fiatConversionsUSD[fromCoin](minExchangeAmount).toNumber();
                     const min = Math.max(configMin, marketMin, ssMin);
-                    const value = _assets2.default[fromCoin].currency.defaultUnit(min).toBase().ceil().toDefault().toFixed(8, 'ceil');
+                    const value = assets[fromCoin].currency.defaultUnit(min).toBase().ceil().toDefault().toFixed(8, 'ceil');
                     minimums[fromCoin][toCoin] = value;
                 });
             });
@@ -12208,14 +12756,14 @@
         }
 
     }, {
-        "119": 119,
-        "123": 123,
-        "194": 194,
-        "219": 219,
-        "84": 84,
+        "107": 107,
+        "128": 128,
+        "132": 132,
+        "235": 235,
+        "85": 85,
         "undefined": undefined
     }],
-    122: [function(require, module, exports) {
+    131: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -12224,6 +12772,7 @@
         exports.default = (0, _reselect.createSelector)(state => state.exchange.status, status => {
             switch (status) {
                 case 'waiting':
+                case 'cancelling':
                     return 1;
                 case 'received':
                 case 'no_deposits':
@@ -12240,7 +12789,7 @@
     }, {
         "undefined": undefined
     }],
-    123: [function(require, module, exports) {
+    132: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -12248,11 +12797,11 @@
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
         var _reselect = require('reselect');
-        var _currencyFiat = require(219);
+        var _currencyFiat = require(235);
         var _currencyFiat2 = _interopRequireDefault(_currencyFiat);
-        var _prices = require(135);
+        var _prices = require(145);
         var _prices2 = _interopRequireDefault(_prices);
-        var _conversions = require(124);
+        var _conversions = require(133);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -12277,12 +12826,12 @@
         exports.default = (0, _reselect.createSelector)(_prices2.default, lodash.partial(_conversions.createConversions, _currencyFiat2.default.USD));
 
     }, {
-        "124": 124,
-        "135": 135,
-        "219": 219,
+        "133": 133,
+        "145": 145,
+        "235": 235,
         "undefined": undefined
     }],
-    124: [function(require, module, exports) {
+    133: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -12291,13 +12840,13 @@
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
         var _reselect = require('reselect');
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _prices = require(135);
+        var _prices = require(145);
         var _prices2 = _interopRequireDefault(_prices);
-        var _fiat = require(109);
+        var _fiat = require(115);
         var _fiat2 = _interopRequireDefault(_fiat);
-        var _aureus = require(203);
+        var _aureus = require(220);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -12336,21 +12885,21 @@
         }
 
     }, {
-        "109": 109,
-        "135": 135,
-        "194": 194,
-        "203": 203,
+        "115": 115,
+        "145": 145,
+        "210": 210,
+        "220": 220,
         "undefined": undefined
     }],
-    125: [function(require, module, exports) {
+    134: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _currencyFiat = require(219);
+        var _currencyFiat = require(235);
         var _currencyFiat2 = _interopRequireDefault(_currencyFiat);
-        var _conversionsUsd = require(123);
+        var _conversionsUsd = require(132);
         var _conversionsUsd2 = _interopRequireDefault(_conversionsUsd);
 
         function _interopRequireDefault(obj) {
@@ -12369,19 +12918,19 @@
         });
 
     }, {
-        "123": 123,
-        "219": 219,
+        "132": 132,
+        "235": 235,
         "undefined": undefined
     }],
-    126: [function(require, module, exports) {
+    135: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _fiat = require(109);
+        var _fiat = require(115);
         var _fiat2 = _interopRequireDefault(_fiat);
-        var _conversions = require(124);
+        var _conversions = require(133);
         var _conversions2 = _interopRequireDefault(_conversions);
 
         function _interopRequireDefault(obj) {
@@ -12399,11 +12948,11 @@
         });
 
     }, {
-        "109": 109,
-        "124": 124,
+        "115": 115,
+        "133": 133,
         "undefined": undefined
     }],
-    127: [function(require, module, exports) {
+    136: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -12411,13 +12960,13 @@
         var _fp = require('lodash/fp');
         var _ = _interopRequireWildcard(_fp);
         var _reselect = require('reselect');
-        var _available = require(100);
+        var _available = require(104);
         var _available2 = _interopRequireDefault(_available);
-        var _coinTotalAmounts = require(107);
+        var _coinTotalAmounts = require(113);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
-        var _total = require(128);
+        var _total = require(137);
         var _total2 = _interopRequireDefault(_total);
-        var _getValue = require(126);
+        var _getValue = require(135);
         var _getValue2 = _interopRequireDefault(_getValue);
 
         function _interopRequireDefault(obj) {
@@ -12451,17 +13000,22 @@
             const sortfn = assetName => [1 - percentageBase[assetName] % 1, assetName];
             const assetNames = _.pipe(_.keys, _.sortBy(sortfn))(availableAssets).slice(0, diff);
             for (const assetName of assetNames) percentage[assetName] += 1;
+            Object.keys(availableAssets).forEach(assetName => {
+                if (percentage[assetName] === 0 && coinTotalAmounts[assetName].toNumber()) {
+                    percentage[assetName] = '< 1';
+                }
+            });
             return percentage;
         });
 
     }, {
-        "100": 100,
-        "107": 107,
-        "126": 126,
-        "128": 128,
+        "104": 104,
+        "113": 113,
+        "135": 135,
+        "137": 137,
         "undefined": undefined
     }],
-    128: [function(require, module, exports) {
+    137: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -12469,13 +13023,13 @@
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
         var _reselect = require('reselect');
-        var _available = require(100);
+        var _available = require(104);
         var _available2 = _interopRequireDefault(_available);
-        var _coinTotalAmounts = require(107);
+        var _coinTotalAmounts = require(113);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
-        var _fiat = require(109);
+        var _fiat = require(115);
         var _fiat2 = _interopRequireDefault(_fiat);
-        var _getValue = require(126);
+        var _getValue = require(135);
         var _getValue2 = _interopRequireDefault(_getValue);
 
         function _interopRequireDefault(obj) {
@@ -12506,23 +13060,23 @@
         });
 
     }, {
-        "100": 100,
-        "107": 107,
-        "109": 109,
-        "126": 126,
+        "104": 104,
+        "113": 113,
+        "115": 115,
+        "135": 135,
         "undefined": undefined
     }],
-    129: [function(require, module, exports) {
+    138: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _feeEstimator = require(269);
+        var _feeEstimator = require(287);
         var _feeEstimator2 = _interopRequireDefault(_feeEstimator);
-        var _utxoCollection = require(93);
+        var _utxoCollection = require(94);
         var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
 
         function _interopRequireDefault(obj) {
@@ -12534,7 +13088,8 @@
             return function(assetname) {
                 let {
                     amount,
-                    gasLimit
+                    gasLimit,
+                    gasPrice
                 } = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
                 const asset = _assets2.default[assetname];
                 if ((asset.hasUTXO || asset.isOmniProperty) && asset.feePerKB) {
@@ -12557,25 +13112,25 @@
                 if (['ethereum', 'ethereumclassic'].includes(asset.name) || asset.isEthereumToken) {
                     if (!gasLimit) return asset.fee;
                     const baseAsset = asset.name === 'ethereumclassic' ? _assets2.default.ethereumclassic : _assets2.default.ethereum;
-                    return baseAsset.getFee(gasLimit);
+                    return baseAsset.getFee(gasLimit, gasPrice);
                 }
                 return asset.fee;
             };
         });
 
     }, {
-        "194": 194,
-        "269": 269,
-        "93": 93,
+        "210": 210,
+        "287": 287,
+        "94": 94,
         "undefined": undefined
     }],
-    130: [function(require, module, exports) {
+    139: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _coinTotalAmounts = require(107);
+        var _coinTotalAmounts = require(113);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
 
         function _interopRequireDefault(obj) {
@@ -12586,17 +13141,46 @@
         exports.default = (0, _reselect.createSelector)(_coinTotalAmounts2.default, coinTotals => Object.values(coinTotals).some(total => !total.isZero()));
 
     }, {
-        "107": 107,
+        "113": 113,
         "undefined": undefined
     }],
-    131: [function(require, module, exports) {
+    140: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _assets = require(194);
+        var _reselect = require('reselect');
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _coinTotalAmounts = require(107);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        const assetNames = Object.keys(_assets2.default);
+        exports.default = (0, _reselect.createSelector)(state => state.txLog, txLog => {
+            return assetNames.some(assetName => {
+                const assetTxLog = txLog[assetName];
+                if (assetTxLog) {
+                    return assetTxLog.size > 0;
+                }
+                return false;
+            });
+        });
+
+    }, {
+        "210": 210,
+        "undefined": undefined
+    }],
+    141: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        var _assets = require(210);
+        var _assets2 = _interopRequireDefault(_assets);
+        var _coinTotalAmounts = require(113);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
         var _reselect = require('reselect');
 
@@ -12611,21 +13195,21 @@
         });
 
     }, {
-        "107": 107,
-        "194": 194,
+        "113": 113,
+        "210": 210,
         "undefined": undefined
     }],
-    132: [function(require, module, exports) {
+    142: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _fiat = require(109);
+        var _fiat = require(115);
         var _fiat2 = _interopRequireDefault(_fiat);
         var _reselect = require('reselect');
-        var _cryptocompareUtil = require(218);
+        var _cryptocompareUtil = require(234);
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
 
@@ -12664,12 +13248,12 @@
         });
 
     }, {
-        "109": 109,
-        "194": 194,
-        "218": 218,
+        "115": 115,
+        "210": 210,
+        "234": 234,
         "undefined": undefined
     }],
-    133: [function(require, module, exports) {
+    143: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -12677,9 +13261,9 @@
         var _reselect = require('reselect');
         var _lodash = require('lodash');
         var _lodash2 = _interopRequireDefault(_lodash);
-        var _prices = require(135);
+        var _prices = require(145);
         var _prices2 = _interopRequireDefault(_prices);
-        var _fiat = require(109);
+        var _fiat = require(115);
         var _fiat2 = _interopRequireDefault(_fiat);
 
         function _interopRequireDefault(obj) {
@@ -12695,36 +13279,46 @@
         });
 
     }, {
-        "109": 109,
-        "135": 135,
+        "115": 115,
+        "145": 145,
         "undefined": undefined
     }],
-    134: [function(require, module, exports) {
+    144: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _prices = require(135);
+        var _lodash = require('lodash');
+        var _lodash2 = _interopRequireDefault(_lodash);
+        var _prices = require(145);
         var _prices2 = _interopRequireDefault(_prices);
-        var _available = require(100);
+        var _available = require(104);
         var _available2 = _interopRequireDefault(_available);
+        var _fiat = require(115);
+        var _fiat2 = _interopRequireDefault(_fiat);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
                 default: obj
             };
         }
-        exports.default = (0, _reselect.createSelector)(_available2.default, _prices2.default, (assetsAvailable, marketPrices) => {
-            return Object.keys(assetsAvailable).every(asset => marketPrices[asset] !== undefined);
+        exports.default = (0, _reselect.createSelector)(_available2.default, _prices2.default, _fiat2.default, (assetsAvailable, marketPrices, configFiat) => {
+            const {
+                unitName
+            } = configFiat.defaultUnit;
+            return Object.keys(assetsAvailable).every(assetName => {
+                return typeof _lodash2.default.get(marketPrices, [assetName, unitName]) === 'number';
+            });
         });
 
     }, {
-        "100": 100,
-        "135": 135,
+        "104": 104,
+        "115": 115,
+        "145": 145,
         "undefined": undefined
     }],
-    135: [function(require, module, exports) {
+    145: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -12732,9 +13326,9 @@
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
         var _reselect = require('reselect');
-        var _marketPrices = require(110);
+        var _marketPrices = require(116);
         var _marketPrices2 = _interopRequireDefault(_marketPrices);
-        var _fiat = require(109);
+        var _fiat = require(115);
         var _fiat2 = _interopRequireDefault(_fiat);
 
         function _interopRequireDefault(obj) {
@@ -12765,28 +13359,29 @@
         });
 
     }, {
-        "109": 109,
-        "110": 110,
+        "115": 115,
+        "116": 116,
         "undefined": undefined
     }],
-    136: [function(require, module, exports) {
+    146: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _insightApiClient = require(279);
+        var _insightApiClient = require(299);
         var _insightApiClient2 = _interopRequireDefault(_insightApiClient);
-        var _etherscan = require(234);
+        var _blockchainInfo = require(228);
+        var _etherscan = require(250);
         var etherscan = _interopRequireWildcard(_etherscan);
-        var _etcchain = require(232);
+        var _etcchain = require(248);
         var etcchain = _interopRequireWildcard(_etcchain);
-        var _exodusEthereumServer = require(242);
-        var _exodusFactomServer = require(244);
+        var _exodusEthereumServer = require(258);
+        var _exodusFactomServer = require(260);
         var _exodusFactomServer2 = _interopRequireDefault(_exodusFactomServer);
-        var _rippleApi = require(305);
+        var _rippleApi = require(325);
         var rippleAPI = _interopRequireWildcard(_rippleApi);
 
         function _interopRequireWildcard(obj) {
@@ -12826,6 +13421,17 @@
                         };
                     case 'ripple':
                         return rippleAPI.sendTx;
+                    case 'bitcoin':
+                        return tx => {
+                            const insightAPI = new _insightApiClient2.default(insightServers[asset.name].api);
+                            return insightAPI.broadcastTx(tx).catch(insightErr => {
+                                return (0, _blockchainInfo.pushTx)(tx).catch(blockchainErr => {
+                                    console.error('blockchain.info error:');
+                                    console.error(blockchainErr);
+                                    throw insightErr;
+                                });
+                            });
+                        };
                     default:
                         const server = insightServers[asset.name].api;
                         const insightAPI = new _insightApiClient2.default(server);
@@ -12835,16 +13441,17 @@
         });
 
     }, {
-        "194": 194,
-        "232": 232,
-        "234": 234,
-        "242": 242,
-        "244": 244,
-        "279": 279,
-        "305": 305,
+        "210": 210,
+        "228": 228,
+        "248": 248,
+        "250": 250,
+        "258": 258,
+        "260": 260,
+        "299": 299,
+        "325": 325,
         "undefined": undefined
     }],
-    137: [function(require, module, exports) {
+    147: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -12854,13 +13461,13 @@
         var _assert2 = _interopRequireDefault(_assert);
         var _fp = require('lodash/fp');
         var _ = _interopRequireWildcard(_fp);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _insightApiClient = require(279);
+        var _insightApiClient = require(299);
         var _insightApiClient2 = _interopRequireDefault(_insightApiClient);
-        var _utxoCollection = require(93);
+        var _utxoCollection = require(94);
         var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
-        var _addressSet = require(85);
+        var _addressSet = require(86);
         var _addressSet2 = _interopRequireDefault(_addressSet);
 
         function _interopRequireWildcard(obj) {
@@ -12935,19 +13542,19 @@
         });
 
     }, {
-        "194": 194,
-        "279": 279,
-        "85": 85,
-        "93": 93,
+        "210": 210,
+        "299": 299,
+        "86": 86,
+        "94": 94,
         "undefined": undefined
     }],
-    138: [function(require, module, exports) {
+    148: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -12964,16 +13571,16 @@
         });
 
     }, {
-        "194": 194,
+        "210": 210,
         "undefined": undefined
     }],
-    139: [function(require, module, exports) {
+    149: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _orderSet = require(88);
+        var _orderSet = require(89);
         var _orderSet2 = _interopRequireDefault(_orderSet);
 
         function _interopRequireDefault(obj) {
@@ -12986,18 +13593,43 @@
         });
 
     }, {
-        "88": 88,
+        "89": 89,
         "undefined": undefined
     }],
-    140: [function(require, module, exports) {
+    150: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _orderSet = require(88);
+        var _orderSet = require(89);
         var _orderSet2 = _interopRequireDefault(_orderSet);
-        var _all = require(139);
+        var _all = require(149);
+        var _all2 = _interopRequireDefault(_all);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        exports.default = (0, _reselect.createSelector)(_all2.default, orders => {
+            return _orderSet2.default.fromArray(Array.from(orders).filter(order => order.svc === 'ch'));
+        });
+
+    }, {
+        "149": 149,
+        "89": 89,
+        "undefined": undefined
+    }],
+    151: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        var _reselect = require('reselect');
+        var _orderSet = require(89);
+        var _orderSet2 = _interopRequireDefault(_orderSet);
+        var _all = require(149);
         var _all2 = _interopRequireDefault(_all);
 
         function _interopRequireDefault(obj) {
@@ -13010,17 +13642,17 @@
         });
 
     }, {
-        "139": 139,
-        "88": 88,
+        "149": 149,
+        "89": 89,
         "undefined": undefined
     }],
-    141: [function(require, module, exports) {
+    152: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _orderSet = require(88);
+        var _orderSet = require(89);
         var _orderSet2 = _interopRequireDefault(_orderSet);
 
         function _interopRequireDefault(obj) {
@@ -13034,22 +13666,22 @@
         });
 
     }, {
-        "88": 88,
+        "89": 89,
         "undefined": undefined
     }],
-    142: [function(require, module, exports) {
+    153: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _marketInfoConversions = require(117);
+        var _marketInfoConversions = require(126);
         var _marketInfoConversions2 = _interopRequireDefault(_marketInfoConversions);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
         var _lodash = require('lodash');
         var _lodash2 = _interopRequireDefault(_lodash);
-        var _all = require(139);
+        var _all = require(149);
         var _all2 = _interopRequireDefault(_all);
 
         function _interopRequireDefault(obj) {
@@ -13098,20 +13730,20 @@
         });
 
     }, {
-        "117": 117,
-        "139": 139,
-        "194": 194,
+        "126": 126,
+        "149": 149,
+        "210": 210,
         "undefined": undefined
     }],
-    143: [function(require, module, exports) {
+    154: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _orderSet = require(88);
+        var _orderSet = require(89);
         var _orderSet2 = _interopRequireDefault(_orderSet);
-        var _all = require(139);
+        var _all = require(149);
         var _all2 = _interopRequireDefault(_all);
 
         function _interopRequireDefault(obj) {
@@ -13124,21 +13756,21 @@
         });
 
     }, {
-        "139": 139,
-        "88": 88,
+        "149": 149,
+        "89": 89,
         "undefined": undefined
     }],
-    144: [function(require, module, exports) {
+    155: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _getFee = require(129);
+        var _getFee = require(138);
         var _getFee2 = _interopRequireDefault(_getFee);
-        var _coinTotalAmounts = require(107);
+        var _coinTotalAmounts = require(113);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -13172,20 +13804,20 @@
         });
 
     }, {
-        "107": 107,
-        "129": 129,
-        "194": 194,
+        "113": 113,
+        "138": 138,
+        "210": 210,
         "undefined": undefined
     }],
-    145: [function(require, module, exports) {
+    156: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
         exports.default = (0, _reselect.createSelector)(state => state.status, status => {
-            if (status.code143 == null) return 'normal';
-            switch (status.code143) {
+            if (status.code151 == null) return 'normal';
+            switch (status.code151) {
                 case 0:
                     return 'normal';
                 case 1:
@@ -13202,7 +13834,7 @@
     }, {
         "undefined": undefined
     }],
-    146: [function(require, module, exports) {
+    157: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -13223,15 +13855,15 @@
     }, {
         "undefined": undefined
     }],
-    147: [function(require, module, exports) {
+    158: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _withTokens = require(331);
+        var _withTokens = require(353);
         var _withTokens2 = _interopRequireDefault(_withTokens);
-        var _paired = require(146);
+        var _paired = require(157);
         var _paired2 = _interopRequireDefault(_paired);
         var _lodash = require('lodash');
         var _lodash2 = _interopRequireDefault(_lodash);
@@ -13251,19 +13883,19 @@
         });
 
     }, {
-        "146": 146,
-        "331": 331,
+        "157": 157,
+        "353": 353,
         "undefined": undefined
     }],
-    148: [function(require, module, exports) {
+    159: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _reselect = require('reselect');
-        var _getFee = require(129);
+        var _getFee = require(138);
         var _getFee2 = _interopRequireDefault(_getFee);
-        var _getValue = require(126);
+        var _getValue = require(135);
         var _getValue2 = _interopRequireDefault(_getValue);
 
         function _interopRequireDefault(obj) {
@@ -13285,17 +13917,17 @@
         });
 
     }, {
-        "126": 126,
-        "129": 129,
+        "135": 135,
+        "138": 138,
         "undefined": undefined
     }],
-    149: [function(require, module, exports) {
+    160: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _redux = require('redux');
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -13426,10 +14058,10 @@
         });
 
     }, {
-        "194": 194,
+        "210": 210,
         "undefined": undefined
     }],
-    150: [function(require, module, exports) {
+    161: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -13502,7 +14134,7 @@
         }
 
     }, {}],
-    151: [function(require, module, exports) {
+    162: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -13534,14 +14166,14 @@
         }
 
     }, {}],
-    152: [function(require, module, exports) {
+    163: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.initialState = undefined;
         exports.default = assetRefreshReducer;
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -13577,7 +14209,6 @@
                 case 'RESCAN_BLOCKCHAIN_FAIL':
                     return Object.assign({}, state, {
                         error: payload,
-                        [state.isScanning]: false,
                         [payload.asset]: false
                     });
                 case 'RESCAN_BLOCKCHAIN_FAIL_ACK':
@@ -13603,9 +14234,9 @@
         }
 
     }, {
-        "194": 194
+        "210": 210
     }],
-    153: [function(require, module, exports) {
+    164: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -13632,20 +14263,11 @@
                         error: payload
                     };
                 case 'BACKUP_CREATE_ACCOUNT_SUCCESS':
-                    const {
-                        auth,
-                        status
-                    } = payload;
                     return {
                         progress: false,
                         success: true,
-                        auth,
-                        status
+                        status: payload
                     };
-                case 'BACKUP_LOAD_AUTH_SUCCESS':
-                    return Object.assign({}, state, {
-                        auth: payload
-                    });
                 case 'BACKUP_LOAD_STATUS_SUCCESS':
                     return Object.assign({}, state, {
                         status: payload
@@ -13663,14 +14285,14 @@
         }
 
     }, {}],
-    154: [function(require, module, exports) {
+    165: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.initialState = undefined;
         exports.default = configReducer;
-        var _configFile = require(216);
+        var _configFile = require(232);
         var _configFile2 = _interopRequireDefault(_configFile);
 
         function _interopRequireDefault(obj) {
@@ -13699,9 +14321,9 @@
         }
 
     }, {
-        "216": 216
+        "232": 232
     }],
-    155: [function(require, module, exports) {
+    166: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -13733,7 +14355,35 @@
         }
 
     }, {}],
-    156: [function(require, module, exports) {
+    167: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.default = eosReducer;
+        const initialState = exports.initialState = {
+            registeredAddress: ''
+        };
+
+        function eosReducer() {
+            let state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+            let _ref = arguments[1];
+            let {
+                type,
+                payload
+            } = _ref;
+            switch (type) {
+                case 'EOS_CHECK_REGISTERED_ADDRESS_SUCCESS':
+                    return {
+                        registeredAddress: payload
+                    };
+                default:
+                    return state;
+            }
+        }
+
+    }, {}],
+    168: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -13823,10 +14473,10 @@
                 case 'EXCHANGE_CANCEL':
                     return Object.assign({}, state, {
                         error: null,
-                        status: 'none',
+                        status: 'cancelling',
                         shift: {},
-                        current: null,
-                        isExchanging: false,
+                        current: payload,
+                        isExchanging: true,
                         canCancel: false,
                         canceled: true
                     });
@@ -13867,56 +14517,58 @@
         }
 
     }, {}],
-    157: [function(require, module, exports) {
+    169: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _redux = require('redux');
-        var _reducer = require(150);
+        var _reducer = require(161);
         var _reducer2 = _interopRequireDefault(_reducer);
-        var _reducer3 = require(149);
+        var _reducer3 = require(160);
         var _reducer4 = _interopRequireDefault(_reducer3);
-        var _reducer5 = require(151);
+        var _reducer5 = require(162);
         var _reducer6 = _interopRequireDefault(_reducer5);
-        var _reducer7 = require(152);
+        var _reducer7 = require(163);
         var _reducer8 = _interopRequireDefault(_reducer7);
-        var _reducer9 = require(153);
+        var _reducer9 = require(164);
         var _reducer10 = _interopRequireDefault(_reducer9);
-        var _reducer11 = require(154);
+        var _reducer11 = require(165);
         var _reducer12 = _interopRequireDefault(_reducer11);
-        var _reducer13 = require(155);
+        var _reducer13 = require(166);
         var _reducer14 = _interopRequireDefault(_reducer13);
-        var _reducer15 = require(156);
+        var _reducer15 = require(167);
         var _reducer16 = _interopRequireDefault(_reducer15);
-        var _reducer17 = require(158);
+        var _reducer17 = require(168);
         var _reducer18 = _interopRequireDefault(_reducer17);
-        var _reducer19 = require(159);
+        var _reducer19 = require(170);
         var _reducer20 = _interopRequireDefault(_reducer19);
-        var _reducer21 = require(160);
+        var _reducer21 = require(171);
         var _reducer22 = _interopRequireDefault(_reducer21);
-        var _reducer23 = require(162);
+        var _reducer23 = require(172);
         var _reducer24 = _interopRequireDefault(_reducer23);
-        var _reducer25 = require(161);
+        var _reducer25 = require(174);
         var _reducer26 = _interopRequireDefault(_reducer25);
-        var _reducer27 = require(163);
+        var _reducer27 = require(173);
         var _reducer28 = _interopRequireDefault(_reducer27);
-        var _reducer29 = require(164);
+        var _reducer29 = require(175);
         var _reducer30 = _interopRequireDefault(_reducer29);
-        var _reducer31 = require(165);
+        var _reducer31 = require(176);
         var _reducer32 = _interopRequireDefault(_reducer31);
-        var _reducer33 = require(166);
+        var _reducer33 = require(177);
         var _reducer34 = _interopRequireDefault(_reducer33);
-        var _reducer35 = require(167);
+        var _reducer35 = require(178);
         var _reducer36 = _interopRequireDefault(_reducer35);
-        var _reducer37 = require(170);
+        var _reducer37 = require(179);
         var _reducer38 = _interopRequireDefault(_reducer37);
-        var _reducer39 = require(171);
+        var _reducer39 = require(182);
         var _reducer40 = _interopRequireDefault(_reducer39);
-        var _reducer41 = require(172);
+        var _reducer41 = require(183);
         var _reducer42 = _interopRequireDefault(_reducer41);
-        var _reducer43 = require(173);
+        var _reducer43 = require(184);
         var _reducer44 = _interopRequireDefault(_reducer43);
+        var _reducer45 = require(185);
+        var _reducer46 = _interopRequireDefault(_reducer45);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -13931,34 +14583,25 @@
             backup: _reducer10.default,
             config: _reducer12.default,
             dialog: _reducer14.default,
-            exchange: _reducer16.default,
-            insightServers: _reducer18.default,
-            localStorage: _reducer20.default,
-            log: _reducer22.default,
-            market: _reducer24.default,
-            marketHistory: _reducer26.default,
-            moneroSimplewallet: _reducer28.default,
-            networks: _reducer30.default,
-            orders: _reducer32.default,
-            remoteConfig: _reducer34.default,
-            status: _reducer36.default,
-            twoOfTwo: _reducer38.default,
-            txLog: _reducer40.default,
-            txSend: _reducer42.default,
-            utxos: _reducer44.default
+            eos: _reducer16.default,
+            exchange: _reducer18.default,
+            insightServers: _reducer20.default,
+            localStorage: _reducer22.default,
+            log: _reducer24.default,
+            market: _reducer26.default,
+            marketHistory: _reducer28.default,
+            moneroSimplewallet: _reducer30.default,
+            networks: _reducer32.default,
+            orders: _reducer34.default,
+            remoteConfig: _reducer36.default,
+            status: _reducer38.default,
+            twoOfTwo: _reducer40.default,
+            txLog: _reducer42.default,
+            txSend: _reducer44.default,
+            utxos: _reducer46.default
         });
 
     }, {
-        "149": 149,
-        "150": 150,
-        "151": 151,
-        "152": 152,
-        "153": 153,
-        "154": 154,
-        "155": 155,
-        "156": 156,
-        "158": 158,
-        "159": 159,
         "160": 160,
         "161": 161,
         "162": 162,
@@ -13967,13 +14610,24 @@
         "165": 165,
         "166": 166,
         "167": 167,
+        "168": 168,
         "170": 170,
         "171": 171,
         "172": 172,
         "173": 173,
+        "174": 174,
+        "175": 175,
+        "176": 176,
+        "177": 177,
+        "178": 178,
+        "179": 179,
+        "182": 182,
+        "183": 183,
+        "184": 184,
+        "185": 185,
         "undefined": undefined
     }],
-    158: [function(require, module, exports) {
+    170: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -14026,7 +14680,7 @@
         "55": 55,
         "undefined": undefined
     }],
-    159: [function(require, module, exports) {
+    171: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -14053,7 +14707,7 @@
         }
 
     }, {}],
-    160: [function(require, module, exports) {
+    172: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -14078,7 +14732,7 @@
         }
 
     }, {}],
-    161: [function(require, module, exports) {
+    173: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -14123,7 +14777,7 @@
         }
 
     }, {}],
-    162: [function(require, module, exports) {
+    174: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -14173,7 +14827,7 @@
     }, {
         "undefined": undefined
     }],
-    163: [function(require, module, exports) {
+    175: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -14210,14 +14864,14 @@
         };
 
     }, {}],
-    164: [function(require, module, exports) {
+    176: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _redux = require('redux');
         var _lodash = require('lodash');
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -14266,19 +14920,19 @@
         exports.default = (0, _redux.combineReducers)(networks);
 
     }, {
-        "194": 194,
+        "210": 210,
         "undefined": undefined
     }],
-    165: [function(require, module, exports) {
+    177: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.initialState = undefined;
         exports.default = orderReducer;
-        var _orderSet = require(88);
+        var _orderSet = require(89);
         var _orderSet2 = _interopRequireDefault(_orderSet);
-        var _order = require(89);
+        var _order = require(90);
         var _order2 = _interopRequireDefault(_order);
 
         function _interopRequireDefault(obj) {
@@ -14336,10 +14990,10 @@
         }
 
     }, {
-        "88": 88,
-        "89": 89
+        "89": 89,
+        "90": 90
     }],
-    166: [function(require, module, exports) {
+    178: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -14368,7 +15022,7 @@
         }
 
     }, {}],
-    167: [function(require, module, exports) {
+    179: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -14399,13 +15053,13 @@
         }
 
     }, {}],
-    168: [function(require, module, exports) {
+    180: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.default = connectionReducer;
-        var _twoOfTwo = require(334);
+        var _twoOfTwo = require(356);
         const initialState = {
             status: 'disconnected',
             presence: false
@@ -14448,9 +15102,9 @@
         }
 
     }, {
-        "334": 334
+        "356": 356
     }],
-    169: [function(require, module, exports) {
+    181: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -14511,15 +15165,15 @@
         }
 
     }, {}],
-    170: [function(require, module, exports) {
+    182: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _redux = require('redux');
-        var _reducer = require(168);
+        var _reducer = require(180);
         var _reducer2 = _interopRequireDefault(_reducer);
-        var _reducer3 = require(169);
+        var _reducer3 = require(181);
         var _reducer4 = _interopRequireDefault(_reducer3);
 
         function _interopRequireDefault(obj) {
@@ -14533,22 +15187,22 @@
         });
 
     }, {
-        "168": 168,
-        "169": 169,
+        "180": 180,
+        "181": 181,
         "undefined": undefined
     }],
-    171: [function(require, module, exports) {
+    183: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.initialState = undefined;
         exports.default = txLogReducer;
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _txSet = require(90);
+        var _txSet = require(91);
         var _txSet2 = _interopRequireDefault(_txSet);
-        var _tx = require(92);
+        var _tx = require(93);
         var _tx2 = _interopRequireDefault(_tx);
 
         function _interopRequireDefault(obj) {
@@ -14652,11 +15306,11 @@
         }
 
     }, {
-        "194": 194,
-        "90": 90,
-        "92": 92
+        "210": 210,
+        "91": 91,
+        "93": 93
     }],
-    172: [function(require, module, exports) {
+    184: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -14709,7 +15363,7 @@
         }
 
     }, {}],
-    173: [function(require, module, exports) {
+    185: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -14783,7 +15437,7 @@
         }
 
     }, {}],
-    174: [function(require, module, exports) {
+    186: [function(require, module, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -14800,12 +15454,12 @@
         exports.default = walletInstance;
 
     }, {}],
-    175: [function(require, module, exports) {
+    187: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _keys = require(420);
+        var _keys = require(445);
         Object.keys(_keys).forEach(function(key) {
             if (key === "default" || key === "__esModule") return;
             Object.defineProperty(exports, key, {
@@ -14817,15 +15471,15 @@
         });
 
     }, {
-        "420": 420
+        "445": 445
     }],
-    176: [function(require, module, exports) {
+    188: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.WALLET_DIR = exports.walletDirFromExodusDir = undefined;
-        var _paths = require(421);
+        var _paths = require(446);
         var _paths2 = _interopRequireDefault(_paths);
 
         function _interopRequireDefault(obj) {
@@ -14838,19 +15492,19 @@
         const WALLET_DIR = exports.WALLET_DIR = _paths.WALLET_DIR;
 
     }, {
-        "421": 421
+        "446": 446
     }],
-    177: [function(require, module, exports) {
+    189: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.default = createWalletHelper;
-        var _orderSet = require(88);
+        var _orderSet = require(89);
         var _orderSet2 = _interopRequireDefault(_orderSet);
-        var _txSet = require(90);
+        var _txSet = require(91);
         var _txSet2 = _interopRequireDefault(_txSet);
-        var _keys = require(175);
+        var _keys = require(187);
         var keys = _interopRequireWildcard(_keys);
 
         function _interopRequireWildcard(obj) {
@@ -14923,56 +15577,158 @@
         }
 
     }, {
-        "175": 175,
-        "88": 88,
-        "90": 90
+        "187": 187,
+        "89": 89,
+        "91": 91
     }],
-    178: [function(require, module, exports) {
+    190: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.create = create;
-        var _client = require(228);
+        var _client = require(244);
 
         function create() {
             const wallet = {
                 createTx: (0, _client.createClientMethod)('wallet', 'createTx'),
                 fetchKeyData: (0, _client.createClientMethod)('wallet', 'fetchKeyData'),
-                getHDKey: (0, _client.createClientMethod)('wallet', 'getHDKey'),
+                getFactomPublicKey: (0, _client.createClientMethod)('wallet', 'getFactomPublicKey'),
+                getMoneroHDKey: (0, _client.createClientMethod)('wallet', 'getMoneroHDKey'),
+                getPrivateKeys: (0, _client.createClientMethod)('wallet', 'getPrivateKeys'),
                 getXPub: (0, _client.createClientMethod)('wallet', 'getXPub'),
                 getEID: (0, _client.createClientMethod)('wallet', 'getEID'),
                 getMnemonic: (0, _client.createClientMethod)('wallet', 'getMnemonic'),
-                updateKeyData: (0, _client.createClientMethod)('wallet', 'updateKeyData')
+                updateKeyData: (0, _client.createClientMethod)('wallet', 'updateKeyData'),
+                deleteKeyData: (0, _client.createClientMethod)('wallet', 'deleteKeyData')
             };
             console.dir(wallet);
             return wallet;
         }
 
     }, {
-        "228": 228
+        "244": 244
     }],
-    179: [function(require, module, exports) {
+    191: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.feeEvents = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
-        exports.setFeePerKB = setFeePerKB;
-        var _coininfo = require('coininfo');
-        var _coininfo2 = _interopRequireDefault(_coininfo);
+        exports.connectBaseAssetFuncs = connectBaseAssetFuncs;
+        var _bip = require('bip38');
+        var _bip2 = _interopRequireDefault(_bip);
         var _bs58check = require('bs58check');
         var _bs58check2 = _interopRequireDefault(_bs58check);
-        var _wif = require('wif');
-        var _wif2 = _interopRequireDefault(_wif);
         var _crypto = require('crypto');
         var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(223);
-        var _aureus = require(203);
-        var _bip44Constants = require(212);
+        var _secp256k = require('secp256k1');
+        var _secp256k2 = _interopRequireDefault(_secp256k);
+        var _wif = require('wif');
+        var _wif2 = _interopRequireDefault(_wif);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        const connectFunc = (asset, targetName, name, func) => {
+            if (!asset[targetName]) {
+                asset[targetName] = {};
+            }
+            const target = asset[targetName];
+            if (target[name] === null) return;
+            if (!target[name]) {
+                target[name] = func;
+            }
+        };
+
+        function connectBaseAssetFuncs(asset) {
+            connectFunc(asset, 'address', 'isP2PKH', string => {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && payload[0] === asset.address.versions.p2pkh;
+            });
+            connectFunc(asset, 'address', 'isP2SH', string => {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && payload[0] === asset.address.versions.p2sh;
+            });
+            connectFunc(asset, 'address', 'validate', string => {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && [asset.address.versions.p2pkh, asset.address.versions.p2sh].includes(payload[0]);
+            });
+            connectFunc(asset, 'address', 'displayAddress', string => {
+                return string;
+            });
+            connectFunc(asset, 'keys', 'encodePrivate', function(privateKey) {
+                let compressed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+                return _wif2.default.encode(asset.coinInfo.versions.private, privateKey, compressed);
+            });
+            connectFunc(asset, 'keys', 'encodePublic', publicKey => {
+                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
+                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
+                const payload = Buffer.concat([Buffer.from([asset.address.versions.p2pkh]), pubKeyHash]);
+                return _bs58check2.default.encode(payload);
+            });
+            connectFunc(asset, 'keys', 'encodePublicFromWIF', function(privateKeyWIF) {
+                let password = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+                let privateKey, compressed;
+                if (asset.name === 'bitcoin' && password) {
+                    try {
+                        ({
+                            privateKey,
+                            compressed
+                        } = _bip2.default.decrypt(privateKeyWIF, password));
+                    } catch (e) {
+                        console.error(e);
+                        throw new Error('An error has occurred; are you sure you entered the right password?');
+                    }
+                } else {
+                    const {
+                        versions
+                    } = asset.coinInfo;
+                    ({
+                        privateKey,
+                        compressed
+                    } = _wif2.default.decode(privateKeyWIF, versions.private));
+                }
+                const publicKey = _secp256k2.default.publicKeyCreate(privateKey, compressed);
+                return asset.keys.encodePublic(publicKey);
+            });
+        }
+
+    }, {
+        "undefined": undefined
+    }],
+    192: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.twoOfTwo = exports.blockExplorer = exports.bip44 = exports.address = exports.coinInfo = exports.feePerKB = exports.feeEvents = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        exports.setFeePerKB = setFeePerKB;
+        var _bitcoin = require(196);
+        var _currencyUnits = require(239);
+        var _aureus = require(220);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
         var _events = require('events');
-        var _twoOfTwoMultisig = require(329);
+        var _twoOfTwoMultisig = require(351);
+        var _bchaddrjs = require('bchaddrjs');
+        var bchaddr = _interopRequireWildcard(_bchaddrjs);
+
+        function _interopRequireWildcard(obj) {
+            if (obj && obj.__esModule) {
+                return obj;
+            } else {
+                var newObj = {};
+                if (obj != null) {
+                    for (var key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+                    }
+                }
+                newObj.default = obj;
+                return newObj;
+            }
+        }
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -14993,8 +15749,7 @@
             BCH: 8
         }, 'BCH');
         const displayUnit = exports.displayUnit = 'BCH';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'bch';
-        const units = exports.units = ['BCH'];
+        const units = exports.units = [displayUnit];
         const feeEvents = exports.feeEvents = new _events.EventEmitter();
 
         function setFeePerKB(newFeerPerKB) {
@@ -15003,70 +15758,76 @@
         }
         let feePerKB = exports.feePerKB = undefined;
         setFeePerKB(5000);
+        const coinInfo = exports.coinInfo = _bitcoin.coinInfo;
         const address = exports.address = {
             versions: {
-                p2pkh: (0, _coininfo2.default)('bitcoin').versions.public,
-                p2sh: (0, _coininfo2.default)('bitcoin').versions.scripthash
+                p2pkh: coinInfo.versions.public,
+                p2sh: coinInfo.versions.scripthash
             },
-            isP2PKH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
+            isP2PKH(addr) {
+                return bchaddr.isP2PKHAddress(addr);
             },
-            isP2SH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
+            isP2SH(addr) {
+                return bchaddr.isP2SHAddress(addr);
             },
-            validate(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+            isLegacyAddress(addr) {
+                return bchaddr.isLegacyAddress(addr);
+            },
+            isBitpayAddress(addr) {
+                return bchaddr.isBitpayAddress(addr);
+            },
+            isCashAddress(addr) {
+                return bchaddr.isCashAddress(addr);
+            },
+            toCashAddress(addr) {
+                return bchaddr.toCashAddress(addr).split(':')[1];
+            },
+            toLegacyAddress(addr) {
+                return bchaddr.toLegacyAddress(addr);
+            },
+            toBitpayAddress(addr) {
+                return bchaddr.toBitpayAddress(addr);
+            },
+            validate(addr) {
+                try {
+                    return (address.isP2PKH(addr) || address.isP2SH(addr)) && (address.isLegacyAddress(addr) || address.isBitpayAddress(addr) || address.isCashAddress(addr));
+                } catch (err) {
+                    return false;
+                }
+            },
+            displayAddress(addr) {
+                return address.toCashAddress(addr);
             }
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default['bitcoin-cash'];
-        const keys = exports.keys = {
-            encodePrivate(privateKey) {
-                const versions = (0, _coininfo2.default)('bitcoin').versions;
-                return _wif2.default.encode(versions.private, privateKey, true);
-            },
-            encodePublic(publicKey) {
-                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
-                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
-                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
-                return _bs58check2.default.encode(payload);
-            }
-        };
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
         const blockExplorer = exports.blockExplorer = {
-            addressUrl: address => `https://blockdozer.com/insight/address/${address}`,
-            txUrl: txId => `https://blockdozer.com/insight/tx/${txId}`
+            addressUrl: addr => {
+                return `https://blockdozer.com/address/${addr}`;
+            },
+            txUrl: txId => `https://blockdozer.com/tx/${txId}`
         };
         const twoOfTwo = exports.twoOfTwo = (0, _twoOfTwoMultisig.alice)({
-            network: (0, _coininfo2.default)('bitcoin')
+            network: coinInfo
         });
 
     }, {
-        "203": 203,
-        "212": 212,
-        "223": 223,
-        "329": 329,
+        "196": 196,
+        "220": 220,
+        "239": 239,
+        "351": 351,
         "undefined": undefined
     }],
-    180: [function(require, module, exports) {
+    193: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.feeEvents = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        exports.blockExplorer = exports.bip44 = exports.address = exports.coinInfo = exports.feePerKB = exports.feeEvents = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         exports.setFeePerKB = setFeePerKB;
-        var _coininfo = require('coininfo');
-        var _coininfo2 = _interopRequireDefault(_coininfo);
-        var _bs58check = require('bs58check');
-        var _bs58check2 = _interopRequireDefault(_bs58check);
-        var _wif = require('wif');
-        var _wif2 = _interopRequireDefault(_wif);
-        var _crypto = require('crypto');
-        var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(223);
-        var _aureus = require(203);
-        var _bip44Constants = require(212);
+        var _bcash = require(192);
+        var _currencyUnits = require(239);
+        var _aureus = require(220);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
         var _events = require('events');
 
@@ -15089,7 +15850,7 @@
             BCH: 8
         }, 'BCH');
         const displayUnit = exports.displayUnit = 'BCH';
-        const units = exports.units = ['BCH'];
+        const units = exports.units = [displayUnit];
         const feeEvents = exports.feeEvents = new _events.EventEmitter();
 
         function setFeePerKB(newFeerPerKB) {
@@ -15098,67 +15859,38 @@
         }
         let feePerKB = exports.feePerKB = undefined;
         setFeePerKB(5000);
+        const coinInfo = exports.coinInfo = _bcash.coinInfo;
         const address = exports.address = {
             versions: {
-                p2pkh: (0, _coininfo2.default)('bitcoin').versions.public,
-                p2sh: (0, _coininfo2.default)('bitcoin').versions.scripthash
-            },
-            isP2PKH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
-            },
-            isP2SH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
-            },
-            validate(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+                p2pkh: coinInfo.versions.public,
+                p2sh: coinInfo.versions.scripthash
             }
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default['bitcoin'];
-        const keys = exports.keys = {
-            encodePrivate(privateKey) {
-                const versions = (0, _coininfo2.default)('bitcoin').versions;
-                return _wif2.default.encode(versions.private, privateKey, true);
-            },
-            encodePublic(publicKey) {
-                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
-                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
-                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
-                return _bs58check2.default.encode(payload);
-            }
-        };
+        const bip44 = exports.bip44 = _bip44Constants2.default['BTC'];
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => `https://blockdozer.com/insight/address/${address}`,
             txUrl: txId => `https://blockdozer.com/insight/tx/${txId}`
         };
 
     }, {
-        "203": 203,
-        "212": 212,
-        "223": 223,
+        "192": 192,
+        "220": 220,
+        "239": 239,
         "undefined": undefined
     }],
-    181: [function(require, module, exports) {
+    194: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        exports.twoOfTwo = exports.blockExplorer = exports.bip44 = exports.address = exports.coinInfo = exports.feePerKB = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         var _coininfo = require('coininfo');
         var _coininfo2 = _interopRequireDefault(_coininfo);
-        var _bs58check = require('bs58check');
-        var _bs58check2 = _interopRequireDefault(_bs58check);
-        var _wif = require('wif');
-        var _wif2 = _interopRequireDefault(_wif);
-        var _crypto = require('crypto');
-        var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(223);
-        var _aureus = require(203);
-        var _bip44Constants = require(212);
+        var _currencyUnits = require(239);
+        var _aureus = require(220);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
-        var _twoOfTwoMultisig = require(329);
+        var _twoOfTwoMultisig = require(351);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -15179,74 +15911,42 @@
             BTG: 8
         }, 'BTG');
         const displayUnit = exports.displayUnit = 'BTG';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'btg';
-        const units = exports.units = ['BTG'];
-        const feePerKB = exports.feePerKB = currency.satoshis(1000);
+        const units = exports.units = [displayUnit];
+        const feePerKB = exports.feePerKB = currency.satoshis(10000);
+        const coinInfo = exports.coinInfo = (0, _coininfo2.default)(properName);
         const address = exports.address = {
             versions: {
-                p2pkh: (0, _coininfo2.default)(properName).versions.public,
-                p2sh: (0, _coininfo2.default)(properName).versions.scripthash
-            },
-            isP2PKH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
-            },
-            isP2SH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
-            },
-            validate(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+                p2pkh: coinInfo.versions.public,
+                p2sh: coinInfo.versions.scripthash
             }
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default[name];
-        const keys = exports.keys = {
-            encodePrivate(privateKey) {
-                const versions = (0, _coininfo2.default)(properName).versions;
-                return _wif2.default.encode(versions.private, privateKey, true);
-            },
-            encodePublic(publicKey) {
-                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
-                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
-                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
-                return _bs58check2.default.encode(payload);
-            }
-        };
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => `https://explorer.bitcoingold.org/insight/address/${address}`,
             txUrl: txId => `https://explorer.bitcoingold.org/insight/tx/${txId}`
         };
         const twoOfTwo = exports.twoOfTwo = (0, _twoOfTwoMultisig.alice)({
-            network: (0, _coininfo2.default)(properName)
+            network: coinInfo
         });
 
     }, {
-        "203": 203,
-        "212": 212,
-        "223": 223,
-        "329": 329,
+        "220": 220,
+        "239": 239,
+        "351": 351,
         "undefined": undefined
     }],
-    182: [function(require, module, exports) {
+    195: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
-        var _coininfo = require('coininfo');
-        var _coininfo2 = _interopRequireDefault(_coininfo);
-        var _bs58check = require('bs58check');
-        var _bs58check2 = _interopRequireDefault(_bs58check);
-        var _wif = require('wif');
-        var _wif2 = _interopRequireDefault(_wif);
-        var _crypto = require('crypto');
-        var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(223);
-        var _aureus = require(203);
-        var _bip44Constants = require(212);
+        exports.twoOfTwo = exports.blockExplorer = exports.bip44 = exports.address = exports.coinInfo = exports.feePerKB = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        var _bgold = require(194);
+        var _currencyUnits = require(239);
+        var _aureus = require(220);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
-        var _twoOfTwoMultisig = require(329);
+        var _twoOfTwoMultisig = require(351);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -15267,75 +15967,48 @@
             BTG: 8
         }, 'BTG');
         const displayUnit = exports.displayUnit = 'BTG';
-        const units = exports.units = ['BTG'];
+        const units = exports.units = [displayUnit];
         const feePerKB = exports.feePerKB = currency.satoshis(1000);
+        const coinInfo = exports.coinInfo = _bgold.coinInfo;
         const address = exports.address = {
             versions: {
-                p2pkh: (0, _coininfo2.default)('Bitcoin Gold').versions.public,
-                p2sh: (0, _coininfo2.default)('Bitcoin Gold').versions.scripthash
-            },
-            isP2PKH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
-            },
-            isP2SH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
-            },
-            validate(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+                p2pkh: coinInfo.versions.public,
+                p2sh: coinInfo.versions.scripthash
             }
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default['bitcoin'];
-        const keys = exports.keys = {
-            encodePrivate(privateKey) {
-                const versions = (0, _coininfo2.default)('bitcoin').versions;
-                return _wif2.default.encode(versions.private, privateKey, true);
-            },
-            encodePublic(publicKey) {
-                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
-                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
-                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
-                return _bs58check2.default.encode(payload);
-            }
-        };
+        const bip44 = exports.bip44 = _bip44Constants2.default['BTC'];
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => `https://explorer.bitcoingold.org/insight/address/${address}`,
             txUrl: txId => `https://explorer.bitcoingold.org/insight/tx/${txId}`
         };
         const twoOfTwo = exports.twoOfTwo = (0, _twoOfTwoMultisig.alice)({
-            network: (0, _coininfo2.default)(properName)
+            network: coinInfo
         });
 
     }, {
-        "203": 203,
-        "212": 212,
-        "223": 223,
-        "329": 329,
+        "194": 194,
+        "220": 220,
+        "239": 239,
+        "351": 351,
         "undefined": undefined
     }],
-    183: [function(require, module, exports) {
+    196: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.feeEvents = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        exports.twoOfTwo = exports.blockExplorer = exports.bip44 = exports.address = exports.coinInfo = exports.feePerKB = exports.feeEvents = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         exports.setFeePerKB = setFeePerKB;
         var _coininfo = require('coininfo');
         var _coininfo2 = _interopRequireDefault(_coininfo);
-        var _bs58check = require('bs58check');
-        var _bs58check2 = _interopRequireDefault(_bs58check);
-        var _wif = require('wif');
-        var _wif2 = _interopRequireDefault(_wif);
-        var _crypto = require('crypto');
-        var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(223);
-        var _aureus = require(203);
-        var _bip44Constants = require(212);
+        var _bech = require('bech32');
+        var _bech2 = _interopRequireDefault(_bech);
+        var _currencyUnits = require(239);
+        var _aureus = require(220);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
         var _events = require('events');
-        var _twoOfTwoMultisig = require(329);
+        var _twoOfTwoMultisig = require(351);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -15357,8 +16030,7 @@
             BTC: 8
         }, 'BTC');
         const displayUnit = exports.displayUnit = 'BTC';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'btc';
-        const units = exports.units = ['BTC'];
+        const units = exports.units = [displayUnit];
         const feeEvents = exports.feeEvents = new _events.EventEmitter();
 
         function setFeePerKB(newFeerPerKB) {
@@ -15368,65 +16040,66 @@
         }
         let feePerKB = exports.feePerKB = undefined;
         setFeePerKB(380000);
+        const coinInfo = exports.coinInfo = (0, _coininfo2.default)(name);
         const address = exports.address = {
             versions: {
-                p2pkh: (0, _coininfo2.default)(name).versions.public,
-                p2sh: (0, _coininfo2.default)(name).versions.scripthash
+                p2pkh: coinInfo.versions.public,
+                p2sh: coinInfo.versions.scripthash
             },
-            isP2PKH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
+            isP2WPKH(addr) {
+                try {
+                    const decoded = _bech2.default.decode(addr);
+                    if (decoded.prefix !== 'bc') return false;
+                    if (decoded.words[0] !== 0) return false;
+                    if (_bech2.default.fromWords(decoded.words.slice(1)).length !== 20) return false;
+                    return true;
+                } catch (e) {
+                    return false;
+                }
             },
-            isP2SH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
+            isP2WSH(addr) {
+                try {
+                    const decoded = _bech2.default.decode(addr);
+                    if (decoded.prefix !== 'bc') return false;
+                    if (decoded.words[0] !== 0) return false;
+                    if (_bech2.default.fromWords(decoded.words.slice(1)).length !== 32) return false;
+                    return true;
+                } catch (e) {
+                    return false;
+                }
             },
-            validate(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+            validate(addr) {
+                return ['isP2PKH', 'isP2SH', 'isP2WPKH', 'isP2WSH'].some(method => this[method](addr));
             }
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default[name];
-        const keys = exports.keys = {
-            encodePrivate(privateKey) {
-                const versions = (0, _coininfo2.default)(name).versions;
-                return _wif2.default.encode(versions.private, privateKey, true);
-            },
-            encodePublic(publicKey) {
-                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
-                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
-                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
-                return _bs58check2.default.encode(payload);
-            }
-        };
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => `https://live.blockcypher.com/btc/address/${address}/`,
             txUrl: txId => `https://live.blockcypher.com/btc/tx/${txId}/`
         };
         const twoOfTwo = exports.twoOfTwo = (0, _twoOfTwoMultisig.alice)({
-            network: (0, _coininfo2.default)(name)
+            network: coinInfo
         });
 
     }, {
-        "203": 203,
-        "212": 212,
-        "223": 223,
-        "329": 329,
+        "220": 220,
+        "239": 239,
+        "351": 351,
         "undefined": undefined
     }],
-    184: [function(require, module, exports) {
+    197: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = undefined;
+        exports.blockExplorer = exports.bip44 = exports.feePerKB = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = undefined;
         exports._createSimpleSend = _createSimpleSend;
         var _bitcoreLib = require('bitcore-lib');
         var bitcore = _interopRequireWildcard(_bitcoreLib);
         var _ethereumjsUtil = require('ethereumjs-util');
         var _ethereumjsUtil2 = _interopRequireDefault(_ethereumjsUtil);
-        var _util = require(224);
-        var _ = require(183);
+        var _util = require(240);
+        var _ = require(196);
         var bitcoin = _interopRequireWildcard(_);
 
         function _interopRequireDefault(obj) {
@@ -15461,14 +16134,7 @@
         let feePerKB = exports.feePerKB = undefined;
         bitcoin.feeEvents.on('new', updateFee);
         updateFee();
-        const address = exports.address = {
-            validate: bitcoin.address.validate
-        };
         const bip44 = exports.bip44 = bitcoin.bip44;
-        const keys = exports.keys = {
-            encodePrivate: bitcoin.keys.encodePrivate,
-            encodePublic: bitcoin.keys.encodePublic
-        };
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => `https://omniexplorer.info/lookupadd.aspx?address=${address}`,
             txUrl: txId => `https://omniexplorer.info/lookuptx.aspx?txid=${txId}`
@@ -15495,29 +16161,22 @@
         }
 
     }, {
-        "183": 183,
-        "224": 224,
+        "196": 196,
+        "240": 240,
         "undefined": undefined
     }],
-    185: [function(require, module, exports) {
+    198: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        exports.blockExplorer = exports.bip44 = exports.address = exports.coinInfo = exports.feePerKB = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         var _coininfo = require('coininfo');
         var _coininfo2 = _interopRequireDefault(_coininfo);
-        var _bs58check = require('bs58check');
-        var _bs58check2 = _interopRequireDefault(_bs58check);
-        var _wif = require('wif');
-        var _wif2 = _interopRequireDefault(_wif);
-        var _aureus = require(203);
-        var _crypto = require('crypto');
-        var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(223);
-        var _bip44Constants = require(212);
+        var _aureus = require(220);
+        var _currencyUnits = require(239);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
-        var _twoOfTwoMultisig = require(329);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -15538,73 +16197,46 @@
             DASH: 8
         }, 'DASH');
         const displayUnit = exports.displayUnit = 'DASH';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'dash';
-        const units = exports.units = ['DASH'];
-        const feePerKB = exports.feePerKB = currency.duffs(1000);
+        const units = exports.units = [displayUnit];
+        const feePerKB = exports.feePerKB = currency.duffs(10000);
+        const coinInfo = exports.coinInfo = (0, _coininfo2.default)(name);
         const address = exports.address = {
             versions: {
-                p2pkh: (0, _coininfo2.default)(name).versions.public,
-                p2sh: (0, _coininfo2.default)(name).versions.scripthash
-            },
-            isP2PKH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
-            },
-            isP2SH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
-            },
-            validate(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+                p2pkh: coinInfo.versions.public,
+                p2sh: coinInfo.versions.scripthash
             }
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default[name];
-        const keys = exports.keys = {
-            encodePrivate(privateKey) {
-                const versions = (0, _coininfo2.default)(name).versions;
-                return _wif2.default.encode(versions.private, privateKey, true);
-            },
-            encodePublic(publicKey) {
-                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
-                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
-                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
-                return _bs58check2.default.encode(payload);
-            }
-        };
+        const bip44 = exports.bip44 = _bip44Constants2.default['DSH'];
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => `https://insight.dashevo.org/insight/address/${address}`,
             txUrl: txId => `https://insight.dashevo.org/insight/tx/${txId}`
         };
-        const twoOfTwo = exports.twoOfTwo = (0, _twoOfTwoMultisig.alice)({
-            network: (0, _coininfo2.default)(name)
-        });
 
     }, {
-        "203": 203,
-        "212": 212,
-        "223": 223,
-        "329": 329,
+        "220": 220,
+        "239": 239,
         "undefined": undefined
     }],
-    186: [function(require, module, exports) {
+    199: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.coinInfo = exports.feePerKB = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         var _coininfo = require('coininfo');
         var _coininfo2 = _interopRequireDefault(_coininfo);
-        var _aureus = require(203);
+        var _aureus = require(220);
         var _crypto = require('crypto');
         var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(223);
+        var _currencyUnits = require(239);
         var _blakeHash = require('blake-hash');
         var _blakeHash2 = _interopRequireDefault(_blakeHash);
-        var _bs58checkBlake = require(214);
+        var _bs58checkBlake = require(229);
         var _bs58checkBlake2 = _interopRequireDefault(_bs58checkBlake);
-        var _bip44Constants = require(212);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
+        var _dcrcoreLib = require('dcrcore-lib');
+        var _dcrcoreLib2 = _interopRequireDefault(_dcrcoreLib);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -15625,13 +16257,13 @@
             DCR: 8
         }, 'DCR');
         const displayUnit = exports.displayUnit = 'DCR';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'dcr';
-        const units = exports.units = ['DCR'];
+        const units = exports.units = [displayUnit];
         const feePerKB = exports.feePerKB = currency.DCR(0.001);
+        const coinInfo = exports.coinInfo = (0, _coininfo2.default)(name);
         const address = exports.address = {
             versions: {
-                p2pkh: (0, _coininfo2.default)(name).versions.public,
-                p2sh: (0, _coininfo2.default)(name).versions.scripthash
+                p2pkh: coinInfo.versions.public,
+                p2sh: coinInfo.versions.scripthash
             },
             isP2PKH(string) {
                 const payload = _bs58checkBlake2.default.decodeUnsafe(string);
@@ -15646,17 +16278,20 @@
                 return payload && payload.length === 22 && [address.versions.p2pkh, address.versions.p2sh].includes(payload.readUInt16BE(0));
             }
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default[name];
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
         const keys = exports.keys = {
+            encodePublicFromWIF(privateKeyWIF) {
+                return _dcrcoreLib2.default.PrivateKey(privateKeyWIF).toAddress().toString();
+            },
             encodePrivate(privateKey) {
                 const version = Buffer.alloc(2);
-                version.writeUInt16BE((0, _coininfo2.default)(name).versions.private);
+                version.writeUInt16BE(coinInfo.versions.private);
                 const buffer = Buffer.concat([version, Buffer.from([0x00]), privateKey, Buffer.from([0x01])]);
                 return _bs58checkBlake2.default.encode(buffer);
             },
             encodePublic(publicKey) {
                 const payload = Buffer.alloc(2 + 20);
-                payload.writeUInt16BE((0, _coininfo2.default)(name).versions.public);
+                payload.writeUInt16BE(coinInfo.versions.public);
                 const hash32 = (0, _blakeHash2.default)('blake256').update(publicKey).digest();
                 const hash20 = _crypto2.default.createHash('ripemd160').update(hash32).digest();
                 hash20.copy(payload, 2);
@@ -15669,32 +16304,24 @@
         };
 
     }, {
-        "203": 203,
-        "212": 212,
-        "214": 214,
-        "223": 223,
+        "220": 220,
+        "229": 229,
+        "239": 239,
         "undefined": undefined
     }],
-    187: [function(require, module, exports) {
+    200: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
-        var _appConfig = require(84);
+        exports.twoOfTwo = exports.blockExplorer = exports.bip44 = exports.address = exports.coinInfo = exports.feePerKB = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         var _coininfo = require('coininfo');
         var _coininfo2 = _interopRequireDefault(_coininfo);
-        var _bs58check = require('bs58check');
-        var _bs58check2 = _interopRequireDefault(_bs58check);
-        var _wif = require('wif');
-        var _wif2 = _interopRequireDefault(_wif);
-        var _aureus = require(203);
-        var _crypto = require('crypto');
-        var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(223);
-        var _bip44Constants = require(212);
+        var _aureus = require(220);
+        var _currencyUnits = require(239);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
-        var _twoOfTwoMultisig = require(329);
+        var _twoOfTwoMultisig = require(351);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -15703,7 +16330,7 @@
         }
         const name = exports.name = 'digibyte';
         const properName = exports.properName = 'DigiByte';
-        const available = exports.available = _appConfig.ENV_DEV || _appConfig.ENV_BUILD_EDEN;
+        const available = exports.available = true;
         const defaultEnabled = exports.defaultEnabled = false;
         const hasMultipleAddresses = exports.hasMultipleAddresses = true;
         const hasUTXO = exports.hasUTXO = true;
@@ -15715,77 +16342,342 @@
             DGB: 8
         }, 'DGB');
         const displayUnit = exports.displayUnit = 'DGB';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'dgb';
-        const units = exports.units = ['DGB'];
+        const units = exports.units = [displayUnit];
         const feePerKB = exports.feePerKB = currency.satoshis(225000);
+        const coinInfo = exports.coinInfo = (0, _coininfo2.default)(name);
         const address = exports.address = {
             versions: {
-                p2pkh: (0, _coininfo2.default)(name).versions.public,
-                p2sh: (0, _coininfo2.default)(name).versions.scripthash
-            },
-            isP2PKH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
-            },
-            isP2SH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
-            },
-            validate(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+                p2pkh: coinInfo.versions.public,
+                p2sh: coinInfo.versions.scripthash
             }
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default[name];
-        const keys = exports.keys = {
-            encodePrivate(privateKey) {
-                const versions = (0, _coininfo2.default)(name).versions;
-                return _wif2.default.encode(versions.private, privateKey, true);
-            },
-            encodePublic(publicKey) {
-                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
-                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
-                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
-                return _bs58check2.default.encode(payload);
-            }
-        };
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => `https://digiexplorer.info/address/${address}`,
             txUrl: txId => `https://digiexplorer.info/tx/${txId}`
         };
         const twoOfTwo = exports.twoOfTwo = (0, _twoOfTwoMultisig.alice)({
-            network: (0, _coininfo2.default)(name)
+            network: coinInfo
         });
 
     }, {
-        "203": 203,
-        "212": 212,
-        "223": 223,
-        "329": 329,
-        "84": 84,
+        "220": 220,
+        "239": 239,
+        "351": 351,
         "undefined": undefined
     }],
-    188: [function(require, module, exports) {
+    201: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.gasPriceEvents = exports.fee = exports.gasPrice = exports.gasContract = exports.gasTx = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        exports.getRegisteredAddress = exports.eosCrowdSale = undefined;
+        let getRegisteredAddress = exports.getRegisteredAddress = (() => {
+            var _ref = _asyncToGenerator(function*(fromEthAddress) {
+                const functionSig = utils.getFunctionSignature('keys(address)');
+                const payload = utils.formatInputInt(fromEthAddress);
+                const data = {
+                    from: fromEthAddress,
+                    to: eosCrowdSale,
+                    data: `0x${functionSig}${payload}`
+                };
+                const rawResult = yield(0, _exodusEthereumServer.withFallback)(_exodusEthereumServer.eth.ethCall, etherscan.ethCall)(data);
+                const start = utils.getOutputLength(rawResult.slice(2));
+                return utils.formatOutputString(rawResult.slice(2 + start));
+            });
+            return function getRegisteredAddress(_x) {
+                return _ref.apply(this, arguments);
+            };
+        })();
+        exports.getRegistrationPayload = getRegistrationPayload;
+        var _etherscan = require(250);
+        var etherscan = _interopRequireWildcard(_etherscan);
+        var _exodusEthereumServer = require(258);
+        var _utils = require(202);
+        var utils = _interopRequireWildcard(_utils);
+
+        function _interopRequireWildcard(obj) {
+            if (obj && obj.__esModule) {
+                return obj;
+            } else {
+                var newObj = {};
+                if (obj != null) {
+                    for (var key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+                    }
+                }
+                newObj.default = obj;
+                return newObj;
+            }
+        }
+
+        function _asyncToGenerator(fn) {
+            return function() {
+                var gen = fn.apply(this, arguments);
+                return new Promise(function(resolve, reject) {
+                    function step(key, arg) {
+                        try {
+                            var info = gen[key](arg);
+                            var value = info.value;
+                        } catch (error) {
+                            reject(error);
+                            return;
+                        }
+                        if (info.done) {
+                            resolve(value);
+                        } else {
+                            return Promise.resolve(value).then(function(value) {
+                                step("next", value);
+                            }, function(err) {
+                                step("throw", err);
+                            });
+                        }
+                    }
+                    return step("next");
+                });
+            };
+        }
+        const eosCrowdSale = exports.eosCrowdSale = '0xd0a6E6C54DbC68Db5db3A091B171A77407Ff7ccf';
+
+        function getRegistrationPayload(fromEthAddress, eosAddress) {
+            const functionSig = utils.getFunctionSignature('register(string)');
+            const addressPayload = utils.formatInputString(eosAddress);
+            const firstParamPayload = utils.formatInputInt('20');
+            return `0x${functionSig}${firstParamPayload}${addressPayload}`;
+        }
+
+    }, {
+        "202": 202,
+        "250": 250,
+        "258": 258
+    }],
+    202: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.isBigNumber = isBigNumber;
+        exports.isString = isString;
+        exports.fromUtf8 = fromUtf8;
+        exports.toUtf8 = toUtf8;
+        exports.formatInputInt = formatInputInt;
+        exports.formatInputString = formatInputString;
+        exports.getOutputLength = getOutputLength;
+        exports.formatOutputString = formatOutputString;
+        exports.getFunctionSignature = getFunctionSignature;
+        var _bignumber = require('bignumber.js');
+        var _bignumber2 = _interopRequireDefault(_bignumber);
+        var _bn = require('bn.js');
+        var _bn2 = _interopRequireDefault(_bn);
+        var _ethereumjsUtil = require('ethereumjs-util');
+        var _lodash = require('lodash');
+        var lodash = _interopRequireWildcard(_lodash);
+
+        function _interopRequireWildcard(obj) {
+            if (obj && obj.__esModule) {
+                return obj;
+            } else {
+                var newObj = {};
+                if (obj != null) {
+                    for (var key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+                    }
+                }
+                newObj.default = obj;
+                return newObj;
+            }
+        }
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+
+        function isBigNumber(object) {
+            return object instanceof _bignumber2.default || object && object.constructor && object.constructor.name === 'BigNumber';
+        }
+
+        function isString(object) {
+            return typeof object === 'string' || object && object.constructor && object.constructor.name === 'String';
+        }
+
+        function fromUtf8(value) {
+            return '0x' + Buffer.from(value, 'utf8').toString('hex');
+        }
+
+        function toUtf8(hex) {
+            if (hex.startsWith('0x')) {
+                hex = hex.substr(2);
+            }
+            return Buffer.from(hex, 'hex').toString('utf8');
+        }
+
+        function formatInputInt(value) {
+            const bigNumber = new _bn2.default(value, 16);
+            return lodash.padStart(bigNumber.toTwos(256).toString(16), 64, 0);
+        }
+
+        function formatInputString(value) {
+            const result = fromUtf8(value).substr(2);
+            const length = result.length / 2;
+            const l = Math.floor((result.length + 63) / 64);
+            const newResult = lodash.padEnd(result, l * 64, 0);
+            return formatInputInt(length.toString(16)) + newResult;
+        }
+
+        function getOutputLength(param) {
+            return new _bignumber2.default(param.slice(0, 64), 16).toNumber() * 2;
+        }
+
+        function formatOutputString(param) {
+            const length = new _bignumber2.default(param.slice(0, 64), 16).toNumber() * 2;
+            return toUtf8(param.substr(64, length));
+        }
+
+        function getFunctionSignature(name) {
+            return (0, _ethereumjsUtil.sha3)(name).toString('hex').slice(0, 8);
+        }
+
+    }, {
+        "undefined": undefined
+    }],
+    203: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.keys = exports.address = exports.eosRegistration = exports.version = exports.addressPrefix = exports.bip44 = exports.feePerKB = exports.units = exports.displayUnit = exports.currency = exports.available = exports.properName = exports.name = undefined;
+        var _aureus = require(220);
+        var _bip44Constants = require('bip44-constants');
+        var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
+        var _bs = require('bs58');
+        var _bs2 = _interopRequireDefault(_bs);
+        var _bigi = require('bigi');
+        var _bigi2 = _interopRequireDefault(_bigi);
+        var _bs58check = require('bs58check');
+        var _bs58check2 = _interopRequireDefault(_bs58check);
+        var _createHash = require('create-hash');
+        var _createHash2 = _interopRequireDefault(_createHash);
+        var _currencyUnits = require(239);
+        var _ecurve = require('ecurve');
+        var _ecurve2 = _interopRequireDefault(_ecurve);
+        var _registration2 = require(201);
+        var _registration = _interopRequireWildcard(_registration2);
+
+        function _interopRequireWildcard(obj) {
+            if (obj && obj.__esModule) {
+                return obj;
+            } else {
+                var newObj = {};
+                if (obj != null) {
+                    for (var key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+                    }
+                }
+                newObj.default = obj;
+                return newObj;
+            }
+        }
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        var secp256k1G = _ecurve2.default.getCurveByName('secp256k1').G;
+        const name = exports.name = 'eosio';
+        const properName = exports.properName = 'EOS';
+        const available = exports.available = false;
+        const currency = exports.currency = _aureus.UnitType.create(name, _currencyUnits.cryptoCurrency, {
+            larimer: 0,
+            EOS: 8
+        }, 'EOS');
+        const displayUnit = exports.displayUnit = 'EOS';
+        const units = exports.units = [displayUnit];
+        const feePerKB = exports.feePerKB = currency.larimer(1000);
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
+        const addressPrefix = exports.addressPrefix = displayUnit;
+        const version = exports.version = 0x80;
+        const eosRegistration = exports.eosRegistration = _registration.eosCrowdSale;
+        const hash = {
+            ripemd160(data) {
+                return (0, _createHash2.default)('rmd160').update(data).digest();
+            },
+            sha256(data, encoding) {
+                return (0, _createHash2.default)('sha256').update(data).digest(encoding);
+            }
+        };
+
+        function decodeString(input) {
+            return _bs58check2.default.decode(input).slice(1, 33);
+        }
+
+        function encodeBuffer(privateKey) {
+            const result = Buffer.alloc(33);
+            result.writeUInt8(version, 0);
+            privateKey.copy(result, 1);
+            return _bs58check2.default.encode(result);
+        }
+        const address = exports.address = {
+            validate(addressString) {
+                if (addressString.slice(0, 3) !== addressPrefix) {
+                    return false;
+                }
+                const payload = _bs2.default.decodeUnsafe(addressString.slice(3));
+                return payload && payload.length === 37;
+            },
+            isP2PKH: null,
+            isP2SH: null
+        };
+        const keys = exports.keys = {
+            decodePrivateFromWIF(privateKeyWIF) {
+                return decodeString(privateKeyWIF);
+            },
+            encodePublicFromWIF(privateKeyWIF) {
+                const privateKey = keys.decodePrivateFromWIF(privateKeyWIF);
+                const publicKey = secp256k1G.multiply(_bigi2.default.fromBuffer(privateKey)).getEncoded(true);
+                return keys.encodePublic(publicKey);
+            },
+            encodePrivate(privateKey) {
+                return encodeBuffer(privateKey);
+            },
+            encodePublic(publicKey) {
+                const pubChecksum = hash.ripemd160(publicKey);
+                const address = Buffer.concat([publicKey, pubChecksum.slice(0, 4)]);
+                const encodedKey = _bs2.default.encode(address);
+                return addressPrefix + encodedKey;
+            }
+        };
+        exports.registration = _registration;
+
+    }, {
+        "201": 201,
+        "220": 220,
+        "239": 239,
+        "undefined": undefined
+    }],
+    204: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.gasPriceEvents = exports.fee = exports.gasPrice = exports.gasContract = exports.gasTx = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         exports.getFee = getFee;
         exports.setGasPrice = setGasPrice;
-        var _currencyUnits = require(223);
-        var _aureus = require(203);
-        var _etherscan = require(234);
+        var _currencyUnits = require(239);
+        var _aureus = require(220);
+        var _etherscan = require(250);
         var etherscan = _interopRequireWildcard(_etherscan);
-        var _exodusEthereumServer = require(242);
-        var _bip44Constants = require(212);
+        var _exodusEthereumServer = require(258);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
         var _ethereumjsUtil = require('ethereumjs-util');
         var _ethereumjsUtil2 = _interopRequireDefault(_ethereumjsUtil);
         var _events = require('events');
-        var _memoizeLruCache = require(287);
+        var _memoizeLruCache = require(307);
         var _memoizeLruCache2 = _interopRequireDefault(_memoizeLruCache);
-        var _twoOfTwoEcdsaThreshold = require(325);
+        var _twoOfTwoEcdsaThreshold = require(347);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -15847,21 +16739,20 @@
             wei: 0,
             Kwei: 3,
             Mwei: 6,
-            shannon: 9,
+            Gwei: 9,
             szabo: 12,
             finney: 15,
             ETH: 18
         }, 'ETH');
         const displayUnit = exports.displayUnit = 'ETH';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'eth';
-        const units = exports.units = ['ETH'];
+        const units = exports.units = [displayUnit];
         const gasTx = exports.gasTx = 21e3;
         const gasContract = exports.gasContract = 1e6;
         let gasPrice = exports.gasPrice = undefined;
         let fee = exports.fee = undefined;
 
-        function getFee(gasLimit) {
-            return currency.wei(gasPrice.toNumber() * gasLimit);
+        function getFee(gasLimit, customGasPrice) {
+            return currency.wei((customGasPrice || gasPrice).toBase().toNumber() * gasLimit);
         }
         const gasPriceEvents = exports.gasPriceEvents = new _events.EventEmitter();
         gasPriceEvents.setMaxListeners(0);
@@ -15891,9 +16782,11 @@
                 };
             })(), key => key, {
                 max: 100
-            })
+            }),
+            isP2PKH: null,
+            isP2SH: null
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default[name];
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
         const keys = exports.keys = {
             encodePrivate(privKey) {
                 return '0x' + privKey.toString('hex');
@@ -15901,7 +16794,8 @@
             encodePublic(compressedPubKey) {
                 const hash160bits = _ethereumjsUtil2.default.publicToAddress(compressedPubKey, true);
                 return _ethereumjsUtil2.default.toChecksumAddress(hash160bits.toString('hex'));
-            }
+            },
+            encodePublicFromWIF: null
         };
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => `https://etherscan.io/address/${address}`,
@@ -15912,22 +16806,90 @@
         });
 
     }, {
-        "203": 203,
-        "212": 212,
-        "223": 223,
-        "234": 234,
-        "242": 242,
-        "287": 287,
-        "325": 325,
+        "220": 220,
+        "239": 239,
+        "250": 250,
+        "258": 258,
+        "307": 307,
+        "347": 347,
         "undefined": undefined
     }],
-    189: [function(require, module, exports) {
+    205: [function(require, module, exports) {
         module.exports = [{
+                "name": "adtoken",
+                "properName": "AdToken",
+                "decimals": 9,
+                "displayUnit": "ADT",
+                "blockExplorer": "0xD0D6D6C5Fe4a677D343cC433536BB717bAe167dD",
+                "addresses": {
+                    "current": "0xD0D6D6C5Fe4a677D343cC433536BB717bAe167dD"
+                }
+            },
+            {
+                "name": "aeron",
+                "properName": "Aeron",
+                "decimals": 8,
+                "displayUnit": "ARN",
+                "blockExplorer": "0xBA5F11b16B155792Cf3B2E6880E8706859A8AEB6",
+                "addresses": {
+                    "current": "0xBA5F11b16B155792Cf3B2E6880E8706859A8AEB6"
+                }
+            },
+            {
+                "name": "aeternity",
+                "properName": "Aeternity",
+                "decimals": 18,
+                "displayUnit": "AE",
+                "blockExplorer": "0x5ca9a71b1d01849c0a95490cc00559717fcf0d1d",
+                "addresses": {
+                    "current": "0x5CA9a71B1d01849C0a95490Cc00559717fCF0D1d"
+                }
+            },
+            {
+                "name": "aion",
+                "properName": "Aion",
+                "decimals": 8,
+                "displayUnit": "AION",
+                "blockExplorer": "0x4CEdA7906a5Ed2179785Cd3A40A69ee8bc99C466",
+                "addresses": {
+                    "current": "0x4CEdA7906a5Ed2179785Cd3A40A69ee8bc99C466"
+                }
+            },
+            {
+                "name": "airswap",
+                "properName": "AirSwap",
+                "decimals": 4,
+                "displayUnit": "AST",
+                "blockExplorer": "AirSwap",
+                "addresses": {
+                    "current": "0x27054b13b1B798B345b591a4d22e6562d47eA75a"
+                }
+            },
+            {
+                "name": "amber",
+                "properName": "Amber",
+                "decimals": 18,
+                "displayUnit": "AMB",
+                "blockExplorer": "0x4DC3643DbC642b72C158E7F3d2ff232df61cb6CE",
+                "addresses": {
+                    "current": "0x4DC3643DbC642b72C158E7F3d2ff232df61cb6CE"
+                }
+            },
+            {
+                "name": "appcoins",
+                "properName": "AppCoins",
+                "decimals": 18,
+                "displayUnit": "APPC",
+                "blockExplorer": "0x1a7a8BD9106F2B8D977E08582DC7d24c723ab0DB",
+                "addresses": {
+                    "current": "0x1a7a8BD9106F2B8D977E08582DC7d24c723ab0DB"
+                }
+            },
+            {
                 "name": "aragon",
                 "properName": "Aragon",
                 "decimals": 18,
                 "displayUnit": "ANT",
-                "shapeShiftUnit": "ant",
                 "blockExplorer": "Aragon",
                 "addresses": {
                     "current": "0x960b236A07cf122663c4303350609A66A7B288C0"
@@ -15938,7 +16900,6 @@
                 "properName": "Augur",
                 "decimals": 18,
                 "displayUnit": "REP",
-                "shapeShiftUnit": "rep",
                 "blockExplorer": "REP",
                 "addresses": {
                     "current": "0xE94327D07Fc17907b4DB788E5aDf2ed424adDff6",
@@ -15952,7 +16913,6 @@
                 "properName": "Bancor",
                 "decimals": 18,
                 "displayUnit": "BNT",
-                "shapeShiftUnit": "bnt",
                 "blockExplorer": "Bancor",
                 "addresses": {
                     "current": "0x1F573D6Fb3F13d689FF844B4cE37794d79a7FF1C"
@@ -15963,10 +16923,49 @@
                 "properName": "BAT",
                 "decimals": 18,
                 "displayUnit": "BAT",
-                "shapeShiftUnit": "bat",
                 "blockExplorer": "BAT",
                 "addresses": {
                     "current": "0x0D8775F648430679A709E98d2b0Cb6250d2887EF"
+                }
+            },
+            {
+                "name": "binance",
+                "properName": "Binance",
+                "decimals": 18,
+                "displayUnit": "BNB",
+                "blockExplorer": "BNB",
+                "addresses": {
+                    "current": "0xB8c77482e45F1F44dE1745F52C74426C631bDD52"
+                }
+            },
+            {
+                "name": "bread",
+                "properName": "Bread",
+                "decimals": 18,
+                "displayUnit": "BRD",
+                "blockExplorer": "0x558EC3152e2eb2174905cd19AeA4e34A23DE9aD6",
+                "addresses": {
+                    "current": "0x558EC3152e2eb2174905cd19AeA4e34A23DE9aD6"
+                }
+            },
+            {
+                "name": "chainlink",
+                "properName": "ChainLink",
+                "decimals": 18,
+                "displayUnit": "LINK",
+                "blockExplorer": "0x514910771af9ca656af840dff83e8264ecf986ca",
+                "addresses": {
+                    "current": "0x514910771AF9Ca656af840dff83E8264EcF986CA"
+                }
+            },
+            {
+                "name": "cindicator",
+                "properName": "Cindicator",
+                "decimals": 18,
+                "displayUnit": "CND",
+                "blockExplorer": "0xd4c435F5B09F855C3317c8524Cb1F586E42795fa",
+                "addresses": {
+                    "current": "0xd4c435F5B09F855C3317c8524Cb1F586E42795fa"
                 }
             },
             {
@@ -15974,10 +16973,49 @@
                 "properName": "Civic",
                 "decimals": 8,
                 "displayUnit": "CVC",
-                "shapeShiftUnit": "cvc",
                 "blockExplorer": "Civic",
                 "addresses": {
                     "current": "0x41e5560054824eA6B0732E656E3Ad64E20e94E45"
+                }
+            },
+            {
+                "name": "dai",
+                "properName": "Dai",
+                "decimals": 18,
+                "displayUnit": "DAI",
+                "blockExplorer": "0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359",
+                "addresses": {
+                    "current": "0x89d24A6b4CcB1B6fAA2625fE562bDD9a23260359"
+                }
+            },
+            {
+                "name": "decentraland",
+                "properName": "Decentraland",
+                "decimals": 18,
+                "displayUnit": "MANA",
+                "blockExplorer": "0x0F5D2fB29fb7d3CFeE444a200298f468908cC942",
+                "addresses": {
+                    "current": "0x0F5D2fB29fb7d3CFeE444a200298f468908cC942"
+                }
+            },
+            {
+                "name": "dent",
+                "properName": "Dent",
+                "decimals": 8,
+                "displayUnit": "DENT",
+                "blockExplorer": "0x3597bfd533a99c9aa083587b074434e61eb0a258",
+                "addresses": {
+                    "current": "0x3597bfD533a99c9aa083587B074434E61Eb0A258"
+                }
+            },
+            {
+                "name": "dentacoin",
+                "properName": "Dentacoin",
+                "decimals": 0,
+                "displayUnit": "DCN",
+                "blockExplorer": "0x08d32b0da63e2C3bcF8019c9c5d849d7a9d791e6",
+                "addresses": {
+                    "current": "0x08d32b0da63e2C3bcF8019c9c5d849d7a9d791e6"
                 }
             },
             {
@@ -15985,7 +17023,6 @@
                 "properName": "DigixDAO",
                 "decimals": 9,
                 "displayUnit": "DGD",
-                "shapeShiftUnit": "dgd",
                 "blockExplorer": "DGD",
                 "addresses": {
                     "current": "0xE0B7927c4aF23765Cb51314A0E0521A9645F0E2A"
@@ -15996,10 +17033,19 @@
                 "properName": "District0x",
                 "decimals": 18,
                 "displayUnit": "DNT",
-                "shapeShiftUnit": "dnt",
                 "blockExplorer": "district0x",
                 "addresses": {
                     "current": "0x0AbdAce70D3790235af448C88547603b945604ea"
+                }
+            },
+            {
+                "name": "dragon",
+                "properName": "Dragon",
+                "decimals": 18,
+                "displayUnit": "DRGN",
+                "blockExplorer": "0x419c4db4b9e25d6db2ad9691ccb832c8d9fda05e",
+                "addresses": {
+                    "current": "0x419c4dB4B9e25d6Db2AD9691ccb832C8D9fDA05E"
                 }
             },
             {
@@ -16007,7 +17053,6 @@
                 "properName": "Edgeless",
                 "decimals": 0,
                 "displayUnit": "EDG",
-                "shapeShiftUnit": "edg",
                 "blockExplorer": "Edgeless",
                 "addresses": {
                     "current": "0x08711D3B02C8758F2FB3ab4e80228418a7F8e39c"
@@ -16018,10 +17063,19 @@
                 "properName": "EOS",
                 "decimals": 18,
                 "displayUnit": "EOS",
-                "shapeShiftUnit": "eos",
                 "blockExplorer": "EOS",
                 "addresses": {
                     "current": "0x86Fa049857E0209aa7D9e616F7eb3b3B78ECfdb0"
+                }
+            },
+            {
+                "name": "ethos",
+                "properName": "Ethos",
+                "decimals": 8,
+                "displayUnit": "ETHOS",
+                "blockExplorer": "Ethos",
+                "addresses": {
+                    "current": "0x5Af2Be193a6ABCa9c8817001F45744777Db30756"
                 }
             },
             {
@@ -16029,7 +17083,6 @@
                 "properName": "FirstBlood",
                 "decimals": 18,
                 "displayUnit": "1ST",
-                "shapeShiftUnit": "1st",
                 "blockExplorer": "FirstBlood",
                 "addresses": {
                     "current": "0xAf30D2a7E90d7DC361c8C4585e9BB7D2F6f15bc7"
@@ -16040,10 +17093,19 @@
                 "properName": "FunFair",
                 "decimals": 8,
                 "displayUnit": "FUN",
-                "shapeShiftUnit": "fun",
                 "blockExplorer": "FunFair",
                 "addresses": {
                     "current": "0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b"
+                }
+            },
+            {
+                "name": "genesisvision",
+                "properName": "GenesisVision",
+                "decimals": 18,
+                "displayUnit": "GVT",
+                "blockExplorer": "genesis-vision",
+                "addresses": {
+                    "current": "0x103c3A209da59d3E7C4A89307e66521e081CFDF0"
                 }
             },
             {
@@ -16051,7 +17113,6 @@
                 "properName": "Gnosis",
                 "decimals": 18,
                 "displayUnit": "GNO",
-                "shapeShiftUnit": "gno",
                 "blockExplorer": "Gnosis",
                 "addresses": {
                     "current": "0x6810e776880C02933D47DB1b9fc05908e5386b96"
@@ -16062,10 +17123,29 @@
                 "properName": "Golem",
                 "decimals": 18,
                 "displayUnit": "GNT",
-                "shapeShiftUnit": "gnt",
                 "blockExplorer": "Golem",
                 "addresses": {
                     "current": "0xa74476443119A942dE498590Fe1f2454d7D4aC0d"
+                }
+            },
+            {
+                "name": "icon",
+                "properName": "ICON",
+                "decimals": 18,
+                "displayUnit": "ICX",
+                "blockExplorer": "0xb5a5f22694352c15b00323844ad545abb2b11028",
+                "addresses": {
+                    "current": "0xb5A5F22694352C15B00323844aD545ABb2B11028"
+                }
+            },
+            {
+                "name": "iconomi",
+                "properName": "Iconomi",
+                "decimals": 18,
+                "displayUnit": "ICN",
+                "blockExplorer": "ICONOMI",
+                "addresses": {
+                    "current": "0x888666CA69E0f178DED6D75b5726Cee99A87D698"
                 }
             },
             {
@@ -16073,10 +17153,69 @@
                 "properName": "iExec RLC",
                 "decimals": 9,
                 "displayUnit": "RLC",
-                "shapeShiftUnit": "rlc",
-                "blockExplorer": "iExec RLC",
+                "blockExplorer": "RLC",
                 "addresses": {
                     "current": "0x607F4C5BB672230e8672085532f7e901544a7375"
+                }
+            },
+            {
+                "name": "kin",
+                "properName": "Kin",
+                "decimals": 18,
+                "displayUnit": "KIN",
+                "blockExplorer": "0x818fc6c2ec5986bc6e2cbf00939d90556ab12ce5",
+                "addresses": {
+                    "current": "0x818Fc6C2Ec5986bc6E2CBf00939d90556aB12ce5"
+                }
+            },
+            {
+                "name": "kucoin",
+                "properName": "KuCoin",
+                "decimals": 6,
+                "displayUnit": "KCS",
+                "blockExplorer": "0x039b5649a59967e3e936d7471f9c3700100ee1ab",
+                "addresses": {
+                    "current": "0x039B5649A59967e3e936D7471f9c3700100Ee1ab"
+                }
+            },
+            {
+                "name": "kyber",
+                "properName": "Kyber",
+                "decimals": 18,
+                "displayUnit": "KNC",
+                "blockExplorer": "KyberNetwork",
+                "addresses": {
+                    "current": "0xdd974D5C2e2928deA5F71b9825b8b646686BD200"
+                }
+            },
+            {
+                "name": "loopring",
+                "properName": "Loopring",
+                "decimals": 18,
+                "displayUnit": "LRC",
+                "blockExplorer": "0xEF68e7C694F40c8202821eDF525dE3782458639f",
+                "addresses": {
+                    "current": "0xEF68e7C694F40c8202821eDF525dE3782458639f"
+                }
+            },
+            {
+                "name": "lunyr",
+                "properName": "Lunyr",
+                "decimals": 18,
+                "displayUnit": "LUN",
+                "blockExplorer": "0xfa05A73FfE78ef8f1a739473e462c54bae6567D9",
+                "addresses": {
+                    "current": "0xfa05A73FfE78ef8f1a739473e462c54bae6567D9"
+                }
+            },
+            {
+                "name": "maker",
+                "properName": "Maker",
+                "decimals": 18,
+                "displayUnit": "MKR",
+                "blockExplorer": "Maker",
+                "addresses": {
+                    "current": "0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2"
                 }
             },
             {
@@ -16084,10 +17223,19 @@
                 "properName": "Matchpool",
                 "decimals": 3,
                 "displayUnit": "GUP",
-                "shapeShiftUnit": "gup",
-                "blockExplorer": "Matchpool",
+                "blockExplorer": "Guppy",
                 "addresses": {
                     "current": "0xf7B098298f7C69Fc14610bf71d5e02c60792894C"
+                }
+            },
+            {
+                "name": "medishares",
+                "properName": "MediShares",
+                "decimals": 18,
+                "displayUnit": "MDS",
+                "blockExplorer": "0x66186008C1050627F979d464eABb258860563dbE",
+                "addresses": {
+                    "current": "0x66186008C1050627F979d464eABb258860563dbE"
                 }
             },
             {
@@ -16095,8 +17243,7 @@
                 "properName": "Melonport",
                 "decimals": 18,
                 "displayUnit": "MLN",
-                "shapeShiftUnit": "mln",
-                "blockExplorer": "Melonport",
+                "blockExplorer": "Melon",
                 "addresses": {
                     "current": "0xBEB9eF514a379B997e0798FDcC901Ee474B6D9A1"
                 }
@@ -16106,10 +17253,19 @@
                 "properName": "Metal",
                 "decimals": 8,
                 "displayUnit": "MTL",
-                "shapeShiftUnit": "mtl",
                 "blockExplorer": "Metal",
                 "addresses": {
                     "current": "0xF433089366899D83a9f26A773D59ec7eCF30355e"
+                }
+            },
+            {
+                "name": "monaco",
+                "properName": "Monaco",
+                "decimals": 8,
+                "displayUnit": "MCO",
+                "blockExplorer": "Monaco",
+                "addresses": {
+                    "current": "0xB63B606Ac810a52cCa15e44bB630fd42D8d1d83d"
                 }
             },
             {
@@ -16117,7 +17273,6 @@
                 "properName": "Numeraire",
                 "decimals": 18,
                 "displayUnit": "NMR",
-                "shapeShiftUnit": "nmr",
                 "blockExplorer": "Numeraire",
                 "addresses": {
                     "current": "0x1776e1F26f98b1A5dF9cD347953a26dd3Cb46671"
@@ -16128,10 +17283,69 @@
                 "properName": "OmiseGo",
                 "decimals": 18,
                 "displayUnit": "OMG",
-                "shapeShiftUnit": "omg",
                 "blockExplorer": "OmiseGo",
                 "addresses": {
                     "current": "0xd26114cd6EE289AccF82350c8d8487fedB8A0C07"
+                }
+            },
+            {
+                "name": "pillar",
+                "properName": "Pillar",
+                "decimals": 18,
+                "displayUnit": "PLR",
+                "blockExplorer": "0xe3818504c1B32bF1557b16C238B2E01Fd3149C17",
+                "addresses": {
+                    "current": "0xe3818504c1B32bF1557b16C238B2E01Fd3149C17"
+                }
+            },
+            {
+                "name": "poet",
+                "properName": "Po.et",
+                "decimals": 8,
+                "displayUnit": "POE",
+                "blockExplorer": "0x0e0989b1f9b8a38983c2ba8053269ca62ec9b195",
+                "addresses": {
+                    "current": "0x0e0989b1f9B8A38983c2BA8053269Ca62Ec9B195"
+                }
+            },
+            {
+                "name": "polymath",
+                "properName": "Polymath",
+                "decimals": 18,
+                "displayUnit": "POLY",
+                "blockExplorer": "0x9992ec3cf6a55b00978cddf2b27bc6882d88d1ec",
+                "addresses": {
+                    "current": "0x9992eC3cF6A55b00978cdDF2b27BC6882d88D1eC"
+                }
+            },
+            {
+                "name": "populous",
+                "properName": "Populous",
+                "decimals": 8,
+                "displayUnit": "PPT",
+                "blockExplorer": "Populous",
+                "addresses": {
+                    "current": "0xd4fa1460F537bb9085d22C7bcCB5DD450Ef28e3a"
+                }
+            },
+            {
+                "name": "powerledger",
+                "properName": "Power Ledger",
+                "decimals": 6,
+                "displayUnit": "POWR",
+                "blockExplorer": "0x595832f8fc6bf59c85c527fec3740a1b7a361269",
+                "addresses": {
+                    "current": "0x595832F8FC6BF59c85C527fEC3740A1b7a361269"
+                }
+            },
+            {
+                "name": "qash",
+                "properName": "Qash",
+                "decimals": 6,
+                "displayUnit": "QASH",
+                "blockExplorer": "Qash",
+                "addresses": {
+                    "current": "0x618E75Ac90b12c6049Ba3b27f5d5F8651b0037F6"
                 }
             },
             {
@@ -16139,10 +17353,79 @@
                 "properName": "QTUM",
                 "decimals": 18,
                 "displayUnit": "QTUM",
-                "shapeShiftUnit": "",
                 "blockExplorer": "Qtum",
                 "addresses": {
                     "current": "0x9a642d6b3368ddc662CA244bAdf32cDA716005BC"
+                }
+            },
+            {
+                "name": "quantstamp",
+                "properName": "Quantstamp",
+                "decimals": 18,
+                "displayUnit": "QSP",
+                "blockExplorer": "0x99ea4dB9EE77ACD40B119BD1dC4E33e1C070b80d",
+                "addresses": {
+                    "current": "0x99ea4dB9EE77ACD40B119BD1dC4E33e1C070b80d"
+                }
+            },
+            {
+                "name": "raiden",
+                "properName": "Raiden",
+                "decimals": 18,
+                "displayUnit": "RDN",
+                "blockExplorer": "0x255Aa6DF07540Cb5d3d297f0D0D4D84cb52bc8e6",
+                "addresses": {
+                    "current": "0x255Aa6DF07540Cb5d3d297f0D0D4D84cb52bc8e6"
+                }
+            },
+            {
+                "name": "rchain",
+                "properName": "RChain",
+                "decimals": 8,
+                "displayUnit": "RHOC",
+                "blockExplorer": "0x168296bb09e24a88805cb9c33356536b980d3fc5",
+                "addresses": {
+                    "current": "0x168296bb09e24A88805CB9c33356536B980D3fC5"
+                }
+            },
+            {
+                "name": "request",
+                "properName": "Request",
+                "decimals": 18,
+                "displayUnit": "REQ",
+                "blockExplorer": "0x8f8221afbb33998d8584a2b05749ba73c37a938a",
+                "addresses": {
+                    "current": "0x8f8221aFbB33998d8584A2B05749bA73c37a938a"
+                }
+            },
+            {
+                "name": "revain",
+                "properName": "Revain",
+                "decimals": 0,
+                "displayUnit": "R",
+                "blockExplorer": "0x48f775efbe4f5ece6e0df2f7b5932df56823b990",
+                "addresses": {
+                    "current": "0x48f775EFBE4F5EcE6e0DF2f7b5932dF56823B990"
+                }
+            },
+            {
+                "name": "ripio",
+                "properName": "Ripio",
+                "decimals": 18,
+                "displayUnit": "RCN",
+                "blockExplorer": "RipioCreditNetwork",
+                "addresses": {
+                    "current": "0xF970b8E36e23F7fC3FD752EeA86f8Be8D83375A6"
+                }
+            },
+            {
+                "name": "rivetz",
+                "properName": "Rivetz",
+                "decimals": 18,
+                "displayUnit": "RVT",
+                "blockExplorer": "0x3d1BA9be9f66B8ee101911bC36D3fB562eaC2244",
+                "addresses": {
+                    "current": "0x3d1BA9be9f66B8ee101911bC36D3fB562eaC2244"
                 }
             },
             {
@@ -16150,10 +17433,19 @@
                 "properName": "SALT",
                 "decimals": 8,
                 "displayUnit": "SALT",
-                "shapeShiftUnit": "salt",
                 "blockExplorer": "0x4156D3342D5c385a87D264F90653733592000581",
                 "addresses": {
                     "current": "0x4156D3342D5c385a87D264F90653733592000581"
+                }
+            },
+            {
+                "name": "santiment",
+                "properName": "Santiment",
+                "decimals": 18,
+                "displayUnit": "SAN",
+                "blockExplorer": "SAN",
+                "addresses": {
+                    "current": "0x7C5A0CE9267ED19B22F8cae653F198e3E8daf098"
                 }
             },
             {
@@ -16161,7 +17453,7 @@
                 "properName": "SingularDTV",
                 "decimals": 0,
                 "displayUnit": "SNGLS",
-                "shapeShiftUnit": "sngls",
+                "blockExplorer": "SNGLS",
                 "addresses": {
                     "current": "0xaeC2E87E0A235266D9C5ADc9DEb4b2E29b54D009"
                 }
@@ -16171,7 +17463,6 @@
                 "properName": "Status",
                 "decimals": 18,
                 "displayUnit": "SNT",
-                "shapeShiftUnit": "snt",
                 "blockExplorer": "StatusNetwork",
                 "addresses": {
                     "current": "0x744d70FDBE2Ba4CF95131626614a1763DF805B9E"
@@ -16182,10 +17473,119 @@
                 "properName": "Storj",
                 "decimals": 8,
                 "displayUnit": "STORJ",
-                "shapeShiftUnit": "storj",
                 "blockExplorer": "Storj",
                 "addresses": {
                     "current": "0xB64ef51C888972c908CFacf59B47C1AfBC0Ab8aC"
+                }
+            },
+            {
+                "name": "storm",
+                "properName": "Storm",
+                "decimals": 18,
+                "displayUnit": "STORM",
+                "blockExplorer": "0xD0a4b8946Cb52f0661273bfbC6fD0E0C75Fc6433",
+                "addresses": {
+                    "current": "0xD0a4b8946Cb52f0661273bfbC6fD0E0C75Fc6433"
+                }
+            },
+            {
+                "name": "substratum",
+                "properName": "Substratum",
+                "decimals": 2,
+                "displayUnit": "SUB",
+                "blockExplorer": "0x12480E24eb5bec1a9D4369CaB6a80caD3c0A377A",
+                "addresses": {
+                    "current": "0x12480E24eb5bec1a9D4369CaB6a80caD3c0A377A"
+                }
+            },
+            {
+                "name": "taas",
+                "properName": "TAAS",
+                "decimals": 6,
+                "displayUnit": "TAAS",
+                "blockExplorer": "0xE7775A6e9Bcf904eb39DA2b68c5efb4F9360e08C",
+                "addresses": {
+                    "current": "0xE7775A6e9Bcf904eb39DA2b68c5efb4F9360e08C"
+                }
+            },
+            {
+                "name": "tenx",
+                "properName": "TenX",
+                "decimals": 18,
+                "displayUnit": "PAY",
+                "blockExplorer": "TenXPay",
+                "addresses": {
+                    "current": "0xB97048628DB6B661D4C2aA833e95Dbe1A905B280"
+                }
+            },
+            {
+                "name": "timenewbank",
+                "properName": "Time Bank",
+                "decimals": 18,
+                "displayUnit": "TNB",
+                "blockExplorer": "0xf7920b0768ecb20a123fac32311d07d193381d6f",
+                "addresses": {
+                    "current": "0xF7920B0768Ecb20A123fAc32311d07D193381d6f"
+                }
+            },
+            {
+                "name": "tron",
+                "properName": "Tron",
+                "decimals": 6,
+                "displayUnit": "TRX",
+                "blockExplorer": "Tronix",
+                "addresses": {
+                    "current": "0xf230b790E05390FC8295F4d3F60332c93BEd42e2"
+                }
+            },
+            {
+                "name": "vechain",
+                "properName": "VeChain",
+                "decimals": 18,
+                "displayUnit": "VEN",
+                "blockExplorer": "0xd850942ef8811f2a866692a623011bde52a462c1",
+                "addresses": {
+                    "current": "0xD850942eF8811f2A866692A623011bDE52a462C1"
+                }
+            },
+            {
+                "name": "veritaseum",
+                "properName": "Veritaseum",
+                "decimals": 18,
+                "displayUnit": "VERI",
+                "blockExplorer": "0x8f3470A7388c05eE4e7AF3d01D8C722b0FF52374",
+                "addresses": {
+                    "current": "0x8f3470A7388c05eE4e7AF3d01D8C722b0FF52374"
+                }
+            },
+            {
+                "name": "viberate",
+                "properName": "Viberate",
+                "decimals": 18,
+                "displayUnit": "VIB",
+                "blockExplorer": "0x2C974B2d0BA1716E644c1FC59982a89DDD2fF724",
+                "addresses": {
+                    "current": "0x2C974B2d0BA1716E644c1FC59982a89DDD2fF724"
+                }
+            },
+            {
+                "name": "walton",
+                "properName": "Walton",
+                "decimals": 18,
+                "displayUnit": "WTC",
+                "blockExplorer": "0xb7cb1c96db6b22b0d3d9536e0108d062bd488f74",
+                "addresses": {
+                    "current": "0xb7cB1C96dB6B22b0D3d9536E0108d062BD488F74"
+                }
+            },
+            {
+                "name": "wax",
+                "properName": "Wax",
+                "decimals": 8,
+                "displayUnit": "WAX",
+                "blockExplorer": "0x39Bb259F66E1C59d5ABEF88375979b4D20D98022",
+                "addresses": {
+                    "current": "0x39Bb259F66E1C59d5ABEF88375979b4D20D98022"
                 }
             },
             {
@@ -16193,8 +17593,7 @@
                 "properName": "WeTrust",
                 "decimals": 6,
                 "displayUnit": "TRST",
-                "shapeShiftUnit": "trst",
-                "blockExplorer": "WeTrust",
+                "blockExplorer": "Trustcoin",
                 "addresses": {
                     "current": "0xCb94be6f13A1182E4A4B6140cb7bf2025d28e41B"
                 }
@@ -16204,7 +17603,6 @@
                 "properName": "Wings",
                 "decimals": 18,
                 "displayUnit": "WINGS",
-                "shapeShiftUnit": "wings",
                 "blockExplorer": "WINGS",
                 "addresses": {
                     "current": "0x667088b212ce3d06a1b553a7221E1fD19000d9aF"
@@ -16215,7 +17613,6 @@
                 "properName": "0x",
                 "decimals": 18,
                 "displayUnit": "ZRX",
-                "shapeShiftUnit": "zrx",
                 "blockExplorer": "ZRX",
                 "addresses": {
                     "current": "0xE41d2489571d322189246DaFA5ebDe1F4699F498"
@@ -16224,20 +17621,19 @@
         ]
 
     }, {}],
-    190: [function(require, module, exports) {
+    206: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _appConfig = require(84);
-        var _aureus = require(203);
-        var _currencyUnits = require(223);
-        var _util = require(224);
+        var _aureus = require(220);
+        var _currencyUnits = require(239);
+        var _util = require(240);
         var _ethereumjsUtil = require('ethereumjs-util');
         var _ethereumjsUtil2 = _interopRequireDefault(_ethereumjsUtil);
-        var _ = require(188);
+        var _ = require(204);
         var ethereum = _interopRequireWildcard(_);
-        var _tokens = require(189);
+        var _tokens = require(205);
         var _tokens2 = _interopRequireDefault(_tokens);
 
         function _interopRequireWildcard(obj) {
@@ -16260,8 +17656,7 @@
                 default: obj
             };
         }
-        const listExodus = ['aragon', 'augur', 'bancor', 'bat', 'civic', 'district0x', 'edgeless', 'eos', 'firstblood', 'funfair', 'gnosis', 'golem', 'iexec', 'matchpool', 'numeraire', 'omisego', 'qtum', 'salt', 'status', 'wetrust', 'wings', 'zerox'];
-        const listDefaultEnabled = ['augur', 'bancor', 'bat', 'civic', 'edgeless', 'eos', 'funfair', 'gnosis', 'golem', 'iexec', 'matchpool', 'omisego', 'salt', 'status', 'zerox'];
+        const listDefaultEnabled = ['augur', 'bancor', 'bat', 'civic', 'edgeless', 'eos', 'gnosis', 'golem', 'iexec', 'matchpool', 'omisego', 'salt', 'status', 'zerox'];
         const gasTx = 120e3;
         const tokenTemplate = {
             hasMultipleAddresses: false,
@@ -16272,12 +17667,15 @@
             gasTx,
             fee: ethereum.getFee(gasTx),
             address: {
-                validate: ethereum.address.validate
+                validate: ethereum.address.validate,
+                isP2PKH() {},
+                isP2SH() {}
             },
             bip44: ethereum.bip44,
             keys: {
                 encodePrivate: ethereum.keys.encodePrivate,
-                encodePublic: ethereum.keys.encodePublic
+                encodePublic: ethereum.keys.encodePublic,
+                encodePublicFromWIF() {}
             }
         };
 
@@ -16315,11 +17713,10 @@
             const token = Object.assign({}, tokenTemplate, {
                 name: fixture.name,
                 properName: fixture.properName,
-                available: ethereum.available && (_appConfig.ENV_DEV || _appConfig.ENV_BUILD_EDEN || _appConfig.ENV_BUILD_EXODUS && listExodus.includes(fixture.name)),
+                available: true,
                 defaultEnabled: listDefaultEnabled.includes(fixture.name),
                 currency,
                 displayUnit: fixture.displayUnit,
-                shapeShiftUnit: fixture.shapeShiftUnit,
                 units: [fixture.displayUnit],
                 blockExplorer: {
                     addressUrl: address => `https://etherscan.io/token/${fixture.blockExplorer}?a=${address}`,
@@ -16334,35 +17731,34 @@
         });
 
     }, {
-        "188": 188,
-        "189": 189,
-        "203": 203,
-        "223": 223,
-        "224": 224,
-        "84": 84,
+        "204": 204,
+        "205": 205,
+        "220": 220,
+        "239": 239,
+        "240": 240,
         "undefined": undefined
     }],
-    191: [function(require, module, exports) {
+    207: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.gasPriceEvents = exports.fee = exports.gasPrice = exports.gasContract = exports.gasTx = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.gasPriceEvents = exports.fee = exports.gasPrice = exports.gasContract = exports.gasTx = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         exports.getFee = getFee;
         exports.setGasPrice = setGasPrice;
-        var _currencyUnits = require(223);
-        var _aureus = require(203);
-        var _etcchain = require(232);
+        var _currencyUnits = require(239);
+        var _aureus = require(220);
+        var _etcchain = require(248);
         var etcchain = _interopRequireWildcard(_etcchain);
-        var _exodusEthereumServer = require(242);
-        var _bip44Constants = require(212);
+        var _exodusEthereumServer = require(258);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
         var _events = require('events');
-        var _ethereum = require(188);
+        var _ethereum = require(204);
         var ethereum = _interopRequireWildcard(_ethereum);
-        var _memoizeLruCache = require(287);
+        var _memoizeLruCache = require(307);
         var _memoizeLruCache2 = _interopRequireDefault(_memoizeLruCache);
-        var _twoOfTwoEcdsaThreshold = require(325);
+        var _twoOfTwoEcdsaThreshold = require(347);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -16424,21 +17820,20 @@
             wei: 0,
             Kwei: 3,
             Mwei: 6,
-            shannon: 9,
+            Gwei: 9,
             szabo: 12,
             finney: 15,
             ETC: 18
         }, 'ETC');
         const displayUnit = exports.displayUnit = 'ETC';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'etc';
-        const units = exports.units = ['ETC'];
+        const units = exports.units = [displayUnit];
         const gasTx = exports.gasTx = 21e3;
         const gasContract = exports.gasContract = 1e6;
         let gasPrice = exports.gasPrice = undefined;
         let fee = exports.fee = undefined;
 
-        function getFee(gasLimit) {
-            return currency.wei(gasPrice.toNumber() * gasLimit);
+        function getFee(gasLimit, customGasPrice) {
+            return currency.wei((customGasPrice || gasPrice).toBase().toNumber() * gasLimit);
         }
         const gasPriceEvents = exports.gasPriceEvents = new _events.EventEmitter();
 
@@ -16462,12 +17857,15 @@
                 };
             })(), key => key, {
                 max: 100
-            })
+            }),
+            isP2PKH: null,
+            isP2SH: null
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default[name];
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
         const keys = exports.keys = {
             encodePrivate: ethereum.keys.encodePrivate,
-            encodePublic: ethereum.keys.encodePublic
+            encodePublic: ethereum.keys.encodePublic,
+            encodePublicFromWIF: null
         };
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => `https://gastracker.io/addr/${address}`,
@@ -16478,27 +17876,26 @@
         });
 
     }, {
-        "188": 188,
-        "203": 203,
-        "212": 212,
-        "223": 223,
-        "232": 232,
-        "242": 242,
-        "287": 287,
-        "325": 325,
+        "204": 204,
+        "220": 220,
+        "239": 239,
+        "248": 248,
+        "258": 258,
+        "307": 307,
+        "347": 347,
         "undefined": undefined
     }],
-    192: [function(require, module, exports) {
+    208: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.fee = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.fee = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         exports.setNewECRate = setNewECRate;
-        var _appConfig = require(84);
-        var _aureus = require(203);
-        var _currencyUnits = require(223);
-        var _bip44Constants = require(212);
+        var _appConfig = require(85);
+        var _aureus = require(220);
+        var _currencyUnits = require(239);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
         var _factomjsLib = require('factomjs-lib');
         var _factomjsLib2 = _interopRequireDefault(_factomjsLib);
@@ -16522,8 +17919,7 @@
             FCT: 8
         }, 'FCT');
         const displayUnit = exports.displayUnit = 'FCT';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'fct';
-        const units = exports.units = ['FCT'];
+        const units = exports.units = [displayUnit];
 
         function setNewECRate(newECRate) {
             exports.fee = fee = currency.factoshis(newECRate * 12);
@@ -16531,19 +17927,22 @@
         let fee = exports.fee = undefined;
         setNewECRate(1e4);
         const address = exports.address = {
-            validate: _factomjsLib2.default.address.fct.isValidHumanReadable
+            validate: _factomjsLib2.default.address.fct.isValidHumanReadable,
+            isP2PKH: null,
+            isP2SH: null
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default['factom-factoids'];
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
         const keys = exports.keys = {
             encodePrivate(privateKey) {
                 return _factomjsLib2.default.privateKey.fct.toHumanReadable(privateKey);
             },
             encodePublic(publicKey, privateKey) {
-                publicKey = _factomjsLib2.default.crypto.publicKeyCreate(privateKey);
+                if (privateKey) publicKey = _factomjsLib2.default.crypto.publicKeyCreate(privateKey);
                 const rcd1 = _factomjsLib2.default.rcd.createRCD1(publicKey);
                 const rcdHash = _factomjsLib2.default.rcd.getHash(rcd1);
                 return _factomjsLib2.default.address.fct.toHumanReadable(rcdHash);
-            }
+            },
+            encodePublicFromWIF: null
         };
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => `https://explorer.factom.org/address/${address}`,
@@ -16551,13 +17950,12 @@
         };
 
     }, {
-        "203": 203,
-        "212": 212,
-        "223": 223,
-        "84": 84,
+        "220": 220,
+        "239": 239,
+        "85": 85,
         "undefined": undefined
     }],
-    193: [function(require, module, exports) {
+    209: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -16573,48 +17971,53 @@
         const cache = {};
 
     }, {}],
-    194: [function(require, module, exports) {
+    210: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _bcash = require(179);
+        var _bcash = require(192);
         var bcash = _interopRequireWildcard(_bcash);
-        var _bcashclaim = require(180);
+        var _bcashclaim = require(193);
         var bcashclaim = _interopRequireWildcard(_bcashclaim);
-        var _bgold = require(181);
+        var _bgold = require(194);
         var bgold = _interopRequireWildcard(_bgold);
-        var _bgoldclaim = require(182);
+        var _bgoldclaim = require(195);
         var bgoldclaim = _interopRequireWildcard(_bgoldclaim);
-        var _bitcoin = require(183);
+        var _bitcoin = require(196);
         var bitcoin = _interopRequireWildcard(_bitcoin);
-        var _dash = require(185);
+        var _dash = require(198);
         var dash = _interopRequireWildcard(_dash);
-        var _decred = require(186);
+        var _decred = require(199);
         var decred = _interopRequireWildcard(_decred);
-        var _digibyte = require(187);
+        var _digibyte = require(200);
         var digibyte = _interopRequireWildcard(_digibyte);
-        var _ethereum = require(188);
+        var _eosio = require(203);
+        var eosio = _interopRequireWildcard(_eosio);
+        var _ethereum = require(204);
         var ethereum = _interopRequireWildcard(_ethereum);
-        var _ethereumclassic = require(191);
+        var _ethereumclassic = require(207);
         var ethereumclassic = _interopRequireWildcard(_ethereumclassic);
-        var _factom = require(192);
+        var _factom = require(208);
         var factom = _interopRequireWildcard(_factom);
-        var _litecoin = require(195);
+        var _litecoin = require(211);
         var litecoin = _interopRequireWildcard(_litecoin);
-        var _monero = require(196);
+        var _qtumignition = require(213);
+        var qtumignition = _interopRequireWildcard(_qtumignition);
+        var _monero = require(212);
         var monero = _interopRequireWildcard(_monero);
-        var _ripple = require(197);
+        var _ripple = require(214);
         var ripple = _interopRequireWildcard(_ripple);
-        var _vertcoin = require(199);
+        var _vertcoin = require(216);
         var vertcoin = _interopRequireWildcard(_vertcoin);
-        var _zcash = require(200);
+        var _zcash = require(217);
         var zcash = _interopRequireWildcard(_zcash);
-        var _tokens = require(190);
+        var _baseasset = require(191);
+        var _tokens = require(206);
         var _tokens2 = _interopRequireDefault(_tokens);
-        var _tether = require(198);
+        var _tether = require(215);
         var tether = _interopRequireWildcard(_tether);
 
         function _interopRequireDefault(obj) {
@@ -16637,9 +18040,15 @@
                 return newObj;
             }
         }
-        const assets = [bcash, bcashclaim, bgold, bgoldclaim, bitcoin, dash, decred, digibyte, ethereum, ethereumclassic, factom, litecoin, monero, ripple, vertcoin, zcash];
+        const assets = [bcash, bcashclaim, bgold, bgoldclaim, bitcoin, dash, decred, digibyte, eosio, ethereum, ethereumclassic, factom, litecoin, qtumignition, monero, ripple, vertcoin, zcash];
         assets.push(..._tokens2.default);
         assets.push(tether);
+        for (let prop in assets) {
+            let asset = assets[prop];
+            if (asset) {
+                (0, _baseasset.connectBaseAssetFuncs)(asset);
+            }
+        }
         exports.default = lodash.sortBy(assets, [asset => asset.properName.toLowerCase()]).reduce((obj, asset) => {
             return Object.assign(obj, {
                 [asset.name]: asset
@@ -16647,45 +18056,42 @@
         }, {});
 
     }, {
-        "179": 179,
-        "180": 180,
-        "181": 181,
-        "182": 182,
-        "183": 183,
-        "185": 185,
-        "186": 186,
-        "187": 187,
-        "188": 188,
-        "190": 190,
         "191": 191,
         "192": 192,
+        "193": 193,
+        "194": 194,
         "195": 195,
         "196": 196,
-        "197": 197,
         "198": 198,
         "199": 199,
         "200": 200,
+        "203": 203,
+        "204": 204,
+        "206": 206,
+        "207": 207,
+        "208": 208,
+        "211": 211,
+        "212": 212,
+        "213": 213,
+        "214": 214,
+        "215": 215,
+        "216": 216,
+        "217": 217,
         "undefined": undefined
     }],
-    195: [function(require, module, exports) {
+    211: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        exports.twoOfTwo = exports.blockExplorer = exports.bip44 = exports.address = exports.coinInfo = exports.feePerKB = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         var _coininfo = require('coininfo');
         var _coininfo2 = _interopRequireDefault(_coininfo);
-        var _bs58check = require('bs58check');
-        var _bs58check2 = _interopRequireDefault(_bs58check);
-        var _wif = require('wif');
-        var _wif2 = _interopRequireDefault(_wif);
-        var _crypto = require('crypto');
-        var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(223);
-        var _aureus = require(203);
-        var _bip44Constants = require(212);
+        var _currencyUnits = require(239);
+        var _aureus = require(220);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
-        var _twoOfTwoMultisig = require(329);
+        var _twoOfTwoMultisig = require(351);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -16706,67 +18112,42 @@
             LTC: 8
         }, 'LTC');
         const displayUnit = exports.displayUnit = 'LTC';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'ltc';
-        const units = exports.units = ['LTC'];
-        const feePerKB = exports.feePerKB = currency.latoshis(950000);
+        const units = exports.units = [displayUnit];
+        const feePerKB = exports.feePerKB = currency.latoshis(300000);
+        const coinInfo = exports.coinInfo = (0, _coininfo2.default)(name);
         const address = exports.address = {
             versions: {
-                p2pkh: (0, _coininfo2.default)(name).versions.public,
-                p2sh: (0, _coininfo2.default)(name).versions.scripthash
-            },
-            isP2PKH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
-            },
-            isP2SH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
-            },
-            validate(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+                p2pkh: coinInfo.versions.public,
+                p2sh: coinInfo.versions.scripthash
             }
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default[name];
-        const keys = exports.keys = {
-            encodePrivate(privateKey) {
-                const versions = (0, _coininfo2.default)(name).versions;
-                return _wif2.default.encode(versions.private, privateKey, true);
-            },
-            encodePublic(publicKey) {
-                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
-                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
-                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
-                return _bs58check2.default.encode(payload);
-            }
-        };
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => `https://live.blockcypher.com/ltc/address/${address}/`,
             txUrl: txId => `https://live.blockcypher.com/ltc/tx/${txId}/`
         };
         const twoOfTwo = exports.twoOfTwo = (0, _twoOfTwoMultisig.alice)({
-            network: (0, _coininfo2.default)(name)
+            network: coinInfo
         });
 
     }, {
-        "203": 203,
-        "212": 212,
-        "223": 223,
-        "329": 329,
+        "220": 220,
+        "239": 239,
+        "351": 351,
         "undefined": undefined
     }],
-    196: [function(require, module, exports) {
+    212: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.fee = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
-        var _appConfig = require(84);
-        var _aureus = require(203);
-        var _currencyUnits = require(223);
-        var _bip44Constants = require(212);
+        exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.fee = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        var _appConfig = require(85);
+        var _aureus = require(220);
+        var _currencyUnits = require(239);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
-        var _monerojsUtil = require(295);
+        var _monerojsUtil = require(315);
         var moneroUtil = _interopRequireWildcard(_monerojsUtil);
 
         function _interopRequireWildcard(obj) {
@@ -16803,27 +18184,29 @@
             XMR: 12
         }, 'XMR');
         const displayUnit = exports.displayUnit = 'XMR';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'xmr';
-        const units = exports.units = ['XMR'];
+        const units = exports.units = [displayUnit];
         const fee = exports.fee = currency.XMR('0.026');
         const address = exports.address = {
+            isP2PKH: null,
+            isP2SH: null,
             validate(address) {
                 return moneroUtil.address.isValid(address);
             }
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default[name];
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
         const keys = exports.keys = {
             encodePrivate(privateKey) {
                 return Buffer.from(privateKey).reverse().toString('hex');
             },
             encodePublic(publicKey, privateKey) {
-                let spendPrivateKey = moneroUtil.crypto.reduceECKey(Buffer.from(privateKey));
-                let spendPublicKey = moneroUtil.crypto.createECPublicKey(spendPrivateKey);
-                let viewPrivateKey = moneroUtil.crypto.createECPrivateKey(spendPrivateKey);
-                let viewPublicKey = moneroUtil.crypto.createECPublicKey(viewPrivateKey);
-                let addr = moneroUtil.address.create(spendPublicKey, viewPublicKey);
+                const spendPrivateKey = moneroUtil.crypto.reduceECKey(Buffer.from(privateKey));
+                const spendPublicKey = moneroUtil.crypto.createECPublicKey(spendPrivateKey);
+                const viewPrivateKey = moneroUtil.crypto.createECPrivateKey(spendPrivateKey);
+                const viewPublicKey = moneroUtil.crypto.createECPublicKey(viewPrivateKey);
+                const addr = moneroUtil.address.create(spendPublicKey, viewPublicKey);
                 return addr;
-            }
+            },
+            encodePublicFromWIF: null
         };
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => '',
@@ -16831,27 +18214,117 @@
         };
 
     }, {
-        "203": 203,
-        "212": 212,
-        "223": 223,
-        "295": 295,
-        "84": 84
+        "220": 220,
+        "239": 239,
+        "315": 315,
+        "85": 85,
+        "undefined": undefined
     }],
-    197: [function(require, module, exports) {
+    213: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.accountReserve = exports.fee = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.coinInfo = exports.feePerKB = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        var _appConfig = require(85);
+        var _coininfo = require('coininfo');
+        var _coininfo2 = _interopRequireDefault(_coininfo);
+        var _bs58check = require('bs58check');
+        var _bs58check2 = _interopRequireDefault(_bs58check);
+        var _wif = require('wif');
+        var _wif2 = _interopRequireDefault(_wif);
+        var _crypto = require('crypto');
+        var _crypto2 = _interopRequireDefault(_crypto);
+        var _currencyUnits = require(239);
+        var _aureus = require(220);
+        var _bip44Constants = require('bip44-constants');
+        var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
+        var _twoOfTwoMultisig = require(351);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        const name = exports.name = 'qtumignition';
+        const properName = exports.properName = 'Qtum Ignition';
+        const coininfoName = 'qtum';
+        const available = exports.available = _appConfig.ENV_DEV;
+        const defaultEnabled = exports.defaultEnabled = false;
+        const hasMultipleAddresses = exports.hasMultipleAddresses = true;
+        const hasUTXO = exports.hasUTXO = true;
+        const isAccountBased = exports.isAccountBased = false;
+        const isEthereumToken = exports.isEthereumToken = false;
+        const isOmniProperty = exports.isOmniProperty = false;
+        const currency = exports.currency = _aureus.UnitType.create(name, _currencyUnits.cryptoCurrency, {
+            satoshis: 0,
+            QTUM: 8
+        }, 'QTUM');
+        const displayUnit = exports.displayUnit = 'QTUM';
+        const units = exports.units = [displayUnit];
+        const feePerKB = exports.feePerKB = currency.satoshis(600000);
+        const coinInfo = exports.coinInfo = (0, _coininfo2.default)(coininfoName);
+        const address = exports.address = {
+            versions: {
+                p2pkh: coinInfo.versions.public,
+                p2sh: coinInfo.versions.scripthash
+            },
+            isP2PKH(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
+            },
+            isP2SH(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
+            },
+            validate(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+            }
+        };
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
+        const keys = exports.keys = {
+            encodePrivate(privateKey) {
+                const versions = coinInfo.versions;
+                return _wif2.default.encode(versions.private, privateKey, true);
+            },
+            encodePublic(publicKey) {
+                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
+                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
+                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
+                return _bs58check2.default.encode(payload);
+            }
+        };
+        const blockExplorer = exports.blockExplorer = {
+            addressUrl: address => `https://explorer.qtum.org/address/${address}`,
+            txUrl: txId => `https://explorer.qtum.org/tx/${txId}`
+        };
+        const twoOfTwo = exports.twoOfTwo = (0, _twoOfTwoMultisig.alice)({
+            network: coinInfo
+        });
+
+    }, {
+        "220": 220,
+        "239": 239,
+        "351": 351,
+        "85": 85,
+        "undefined": undefined
+    }],
+    214: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.accountReserve = exports.fee = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         exports.setFee = setFee;
-        var _appConfig = require(84);
+        var _appConfig = require(85);
         var _rippleAddressCodec = require('ripple-address-codec');
         var _rippleAddressCodec2 = _interopRequireDefault(_rippleAddressCodec);
-        var _currencyUnits = require(223);
-        var _aureus = require(203);
-        var _bip44Constants = require(212);
+        var _currencyUnits = require(239);
+        var _aureus = require(220);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
-        var _address = require(306);
+        var _address = require(326);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -16872,8 +18345,7 @@
             XRP: 6
         }, 'XRP');
         const displayUnit = exports.displayUnit = 'XRP';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'xrp';
-        const units = exports.units = ['XRP'];
+        const units = exports.units = [displayUnit];
 
         function setFee(value) {
             if (fee && fee.toNumber() === value) return;
@@ -16884,14 +18356,17 @@
         setFee(10);
         const accountReserve = exports.accountReserve = currency.XRP(20);
         const address = exports.address = {
-            validate: _rippleAddressCodec2.default.isValidAccountID
+            validate: _rippleAddressCodec2.default.isValidAccountID,
+            isP2PKH: null,
+            isP2SH: null
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default[name];
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
         const keys = exports.keys = {
             encodePrivate(privateKey) {
                 return '00' + privateKey.toString('hex').toUpperCase();
             },
-            encodePublic: _address.derive
+            encodePublic: _address.derive,
+            encodePublicFromWIF: null
         };
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => `https://bithomp.com/explorer/${address}`,
@@ -16899,20 +18374,19 @@
         };
 
     }, {
-        "203": 203,
-        "212": 212,
-        "223": 223,
-        "306": 306,
-        "84": 84,
+        "220": 220,
+        "239": 239,
+        "326": 326,
+        "85": 85,
         "undefined": undefined
     }],
-    198: [function(require, module, exports) {
+    215: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.simpleSend = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.defaultEnabled = exports.available = exports.omniPropertyId = exports.properName = exports.name = undefined;
-        var _omni = require(184);
+        exports.simpleSend = exports.units = exports.displayUnit = exports.currency = exports.defaultEnabled = exports.available = exports.omniPropertyId = exports.properName = exports.name = undefined;
+        var _omni = require(197);
         Object.keys(_omni).forEach(function(key) {
             if (key === "default" || key === "__esModule") return;
             Object.defineProperty(exports, key, {
@@ -16922,8 +18396,8 @@
                 }
             });
         });
-        var _aureus = require(203);
-        var _currencyUnits = require(223);
+        var _aureus = require(220);
+        var _currencyUnits = require(239);
         const name = exports.name = 'tether';
         const properName = exports.properName = 'Tether';
         const omniPropertyId = exports.omniPropertyId = 31;
@@ -16934,35 +18408,27 @@
             USDT: 8
         }, 'USDT');
         const displayUnit = exports.displayUnit = 'USDT';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'usdt';
-        const units = exports.units = ['USDT'];
+        const units = exports.units = [displayUnit];
         const simpleSend = exports.simpleSend = (0, _omni._createSimpleSend)(omniPropertyId, currency);
 
     }, {
-        "184": 184,
-        "203": 203,
-        "223": 223
+        "197": 197,
+        "220": 220,
+        "239": 239
     }],
-    199: [function(require, module, exports) {
+    216: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
-        var _appConfig = require(84);
+        exports.twoOfTwo = exports.blockExplorer = exports.bip44 = exports.address = exports.coinInfo = exports.feePerKB = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         var _coininfo = require('coininfo');
         var _coininfo2 = _interopRequireDefault(_coininfo);
-        var _bs58check = require('bs58check');
-        var _bs58check2 = _interopRequireDefault(_bs58check);
-        var _wif = require('wif');
-        var _wif2 = _interopRequireDefault(_wif);
-        var _crypto = require('crypto');
-        var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(223);
-        var _aureus = require(203);
-        var _bip44Constants = require(212);
+        var _currencyUnits = require(239);
+        var _aureus = require(220);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
-        var _twoOfTwoMultisig = require(329);
+        var _twoOfTwoMultisig = require(351);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -16971,7 +18437,7 @@
         }
         const name = exports.name = 'vertcoin';
         const properName = exports.properName = 'Vertcoin';
-        const available = exports.available = _appConfig.ENV_DEV || _appConfig.ENV_BUILD_EDEN;
+        const available = exports.available = true;
         const defaultEnabled = exports.defaultEnabled = false;
         const hasMultipleAddresses = exports.hasMultipleAddresses = true;
         const hasUTXO = exports.hasUTXO = true;
@@ -16983,74 +18449,45 @@
             VTC: 8
         }, 'VTC');
         const displayUnit = exports.displayUnit = 'VTC';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'vtc';
-        const units = exports.units = ['VTC'];
+        const units = exports.units = [displayUnit];
         const feePerKB = exports.feePerKB = currency.satoshis(155000);
+        const coinInfo = exports.coinInfo = (0, _coininfo2.default)(name);
         const address = exports.address = {
             versions: {
-                p2pkh: (0, _coininfo2.default)(name).versions.public,
-                p2sh: (0, _coininfo2.default)(name).versions.scripthash
-            },
-            isP2PKH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
-            },
-            isP2SH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
-            },
-            validate(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+                p2pkh: coinInfo.versions.public,
+                p2sh: coinInfo.versions.scripthash
             }
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default[name];
-        const keys = exports.keys = {
-            encodePrivate(privateKey) {
-                const versions = (0, _coininfo2.default)(name).versions;
-                return _wif2.default.encode(versions.private, privateKey, true);
-            },
-            encodePublic(publicKey) {
-                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
-                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
-                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
-                return _bs58check2.default.encode(payload);
-            }
-        };
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => `https://insight.vertcoin.org/address/${address}`,
             txUrl: txId => `https://insight.vertcoin.org/tx/${txId}`
         };
         const twoOfTwo = exports.twoOfTwo = (0, _twoOfTwoMultisig.alice)({
-            network: (0, _coininfo2.default)(name)
+            network: coinInfo
         });
 
     }, {
-        "203": 203,
-        "212": 212,
-        "223": 223,
-        "329": 329,
-        "84": 84,
+        "220": 220,
+        "239": 239,
+        "351": 351,
         "undefined": undefined
     }],
-    200: [function(require, module, exports) {
+    217: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.coinInfo = exports.feePerKB = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         var _coininfo = require('coininfo');
         var _coininfo2 = _interopRequireDefault(_coininfo);
         var _bs58check = require('bs58check');
         var _bs58check2 = _interopRequireDefault(_bs58check);
-        var _wif = require('wif');
-        var _wif2 = _interopRequireDefault(_wif);
         var _crypto = require('crypto');
         var _crypto2 = _interopRequireDefault(_crypto);
-        var _appConfig = require(84);
-        var _currencyUnits = require(223);
-        var _aureus = require(203);
-        var _bip44Constants = require(212);
+        var _currencyUnits = require(239);
+        var _aureus = require(220);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
 
         function _interopRequireDefault(obj) {
@@ -17060,8 +18497,8 @@
         }
         const name = exports.name = 'zcash';
         const properName = exports.properName = 'Zcash';
-        const available = exports.available = _appConfig.ENV_DEV || _appConfig.ENV_BUILD_EDEN;
-        const defaultEnabled = exports.defaultEnabled = true;
+        const available = exports.available = true;
+        const defaultEnabled = exports.defaultEnabled = false;
         const hasMultipleAddresses = exports.hasMultipleAddresses = false;
         const hasUTXO = exports.hasUTXO = true;
         const isAccountBased = exports.isAccountBased = false;
@@ -17072,13 +18509,13 @@
             ZEC: 8
         }, 'ZEC');
         const displayUnit = exports.displayUnit = 'ZEC';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'zec';
-        const units = exports.units = ['ZEC'];
+        const units = exports.units = [displayUnit];
         const feePerKB = exports.feePerKB = currency.ZEC('0.0001');
+        const coinInfo = exports.coinInfo = (0, _coininfo2.default)(name);
         const address = exports.address = {
             versions: {
-                p2pkh: (0, _coininfo2.default)(name).versions.public,
-                p2sh: (0, _coininfo2.default)(name).versions.scripthash
+                p2pkh: coinInfo.versions.public,
+                p2sh: coinInfo.versions.scripthash
             },
             isP2PKH(string) {
                 const payload = _bs58check2.default.decodeUnsafe(string);
@@ -17093,12 +18530,8 @@
                 return payload && payload.length === 22 && [address.versions.p2pkh, address.versions.p2sh].includes(payload.readUInt16BE(0));
             }
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default[name];
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
         const keys = exports.keys = {
-            encodePrivate(privateKey) {
-                const versions = (0, _coininfo2.default)(name).versions;
-                return _wif2.default.encode(versions.private, privateKey, true);
-            },
             encodePublic(publicKey) {
                 const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
                 const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
@@ -17109,18 +18542,16 @@
             }
         };
         const blockExplorer = exports.blockExplorer = {
-            addressUrl: address => `https://zchain.online/address/${address}/`,
-            txUrl: txId => `https://zchain.online/tx/${txId}/`
+            addressUrl: address => `https://explorer.zcha.in/accounts/${address}/`,
+            txUrl: txId => `https://explorer.zcha.in/transactions/${txId}/`
         };
 
     }, {
-        "203": 203,
-        "212": 212,
-        "223": 223,
-        "84": 84,
+        "220": 220,
+        "239": 239,
         "undefined": undefined
     }],
-    201: [function(require, module, exports) {
+    218: [function(require, module, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -17133,14 +18564,14 @@
         }
 
     }, {}],
-    202: [function(require, module, exports) {
+    219: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.default = conversion;
         var _assert = require('assert');
-        var _isNumberUnit = require(204);
+        var _isNumberUnit = require(221);
         var _isNumberUnit2 = _interopRequireDefault(_isNumberUnit);
 
         function _interopRequireDefault(obj) {
@@ -17171,22 +18602,22 @@
         }
 
     }, {
-        "204": 204,
+        "221": 221,
         "undefined": undefined
     }],
-    203: [function(require, module, exports) {
+    220: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.UnitType = exports.conversion = exports.isNumberUnit = undefined;
-        var _numberUnit = require(205);
+        var _numberUnit = require(222);
         var _numberUnit2 = _interopRequireDefault(_numberUnit);
-        var _isNumberUnit2 = require(204);
+        var _isNumberUnit2 = require(221);
         var _isNumberUnit3 = _interopRequireDefault(_isNumberUnit2);
-        var _conversion2 = require(202);
+        var _conversion2 = require(219);
         var _conversion3 = _interopRequireDefault(_conversion2);
-        var _unitType = require(206);
+        var _unitType = require(223);
         var _unitType2 = _interopRequireDefault(_unitType);
 
         function _interopRequireDefault(obj) {
@@ -17200,12 +18631,12 @@
         const UnitType = exports.UnitType = _unitType2.default;
 
     }, {
-        "202": 202,
-        "204": 204,
-        "205": 205,
-        "206": 206
+        "219": 219,
+        "221": 221,
+        "222": 222,
+        "223": 223
     }],
-    204: [function(require, module, exports) {
+    221: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -17218,7 +18649,7 @@
         }
 
     }, {}],
-    205: [function(require, module, exports) {
+    222: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -17228,7 +18659,7 @@
         var _assert = require('assert');
         var _bignumber = require('bignumber.js');
         var _bignumber2 = _interopRequireDefault(_bignumber);
-        var _isNumberUnit2 = require(204);
+        var _isNumberUnit2 = require(221);
         var _isNumberUnit3 = _interopRequireDefault(_isNumberUnit2);
 
         function _interopRequireDefault(obj) {
@@ -17419,10 +18850,10 @@
         exports.default = NumberUnit;
 
     }, {
-        "204": 204,
+        "221": 221,
         "undefined": undefined
     }],
-    206: [function(require, module, exports) {
+    223: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -17430,7 +18861,7 @@
         exports.default = undefined;
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _unit = require(207);
+        var _unit = require(224);
         var Unit = _interopRequireWildcard(_unit);
 
         function _interopRequireWildcard(obj) {
@@ -17501,18 +18932,18 @@
         exports.default = UnitType;
 
     }, {
-        "207": 207,
+        "224": 224,
         "undefined": undefined
     }],
-    207: [function(require, module, exports) {
+    224: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.create = create;
-        var _numberUnit = require(205);
+        var _numberUnit = require(222);
         var _numberUnit2 = _interopRequireDefault(_numberUnit);
-        var _isNumberUnit = require(204);
+        var _isNumberUnit = require(221);
         var _isNumberUnit2 = _interopRequireDefault(_isNumberUnit);
 
         function _interopRequireDefault(obj) {
@@ -17552,10 +18983,10 @@
         }
 
     }, {
-        "204": 204,
-        "205": 205
+        "221": 221,
+        "222": 222
     }],
-    208: [function(require, module, exports) {
+    225: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -17609,59 +19040,7 @@
     }, {
         "undefined": undefined
     }],
-    209: [function(require, module, exports) {
-        'use strict';
-        Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        var _assert = require('assert');
-        var _assert2 = _interopRequireDefault(_assert);
-        var _lodash = require('lodash');
-        var _window = require(351);
-        var _window2 = _interopRequireDefault(_window);
-
-        function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : {
-                default: obj
-            };
-        }
-        const KEY = 'exodus:auth';
-        exports.default = {
-            setCurrent(auth) {
-                (0, _assert2.default)(allBuffers(auth), 'auth must contain only buffers');
-                _window2.default.localStorage.setItem(KEY, serialize(auth));
-            },
-            set current(auth) {
-                (0, _assert2.default)(allBuffers(auth), 'auth must contain only buffers');
-                _window2.default.localStorage.setItem(KEY, serialize(auth));
-            },
-            get current() {
-                let item = _window2.default.localStorage.getItem(KEY);
-                if (item == null) return null;
-                return deserialize(item);
-            },
-            clear() {
-                _window2.default.localStorage.removeItem(KEY);
-            }
-        };
-
-        function allBuffers(auth) {
-            return Object.keys(auth).every(key => Buffer.isBuffer(auth[key]));
-        }
-
-        function serialize(auth) {
-            return JSON.stringify((0, _lodash.mapValues)(auth, val => val.toString('base64')));
-        }
-
-        function deserialize(auth) {
-            return (0, _lodash.mapValues)(JSON.parse(auth), val => Buffer.from(val, 'base64'));
-        }
-
-    }, {
-        "351": 351,
-        "undefined": undefined
-    }],
-    210: [function(require, module, exports) {
+    226: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -17701,7 +19080,7 @@
     }, {
         "undefined": undefined
     }],
-    211: [function(require, module, exports) {
+    227: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -17712,7 +19091,7 @@
         var _assert2 = _interopRequireDefault(_assert);
         var _hdkey = require('hdkey');
         var _hdkey2 = _interopRequireDefault(_hdkey);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -17840,74 +19219,74 @@
         exports.default = BIP32;
 
     }, {
-        "194": 194,
+        "210": 210,
         "undefined": undefined
     }],
-    212: [function(require, module, exports) {
+    228: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _bip44Constants = require('bip44-constants');
-        var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
-        var _fp = require('lodash/fp');
-
-        function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : {
-                default: obj
+        let fetchTx = exports.fetchTx = (() => {
+            var _ref = _asyncToGenerator(function*(txId) {
+                const url = BASE_URL + `/rawtx/${txId}`;
+                const response = yield fetch(url);
+                const txText = yield response.text();
+                if (txText.trim() === 'Transaction not found') throw new Error(`TX_NOT_FOUND: ${txId} not found on ${BASE_URL}.`);
+                return JSON.parse(txText);
+            });
+            return function fetchTx(_x) {
+                return _ref.apply(this, arguments);
             };
-        }
-        const transformFn = (0, _fp.flow)((0, _fp.mapKeys)(_fp.kebabCase), (0, _fp.mapValues)(parseInt));
-        let _constants = transformFn(_bip44Constants2.default);
-        _constants.ethereum = _constants.ether;
-        _constants.ethereumclassic = _constants['ether-classic'];
-        _constants.bgold = _constants['bitcoin-gold'];
-        _constants.digibyte = _constants['digi-byte'];
-        exports.default = _constants;
-
-    }, {
-        "undefined": undefined
-    }],
-    213: [function(require, module, exports) {
-        'use strict';
-        Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        exports.default = function(address) {
-            try {
-                const buffer = _bs58check2.default.decode(address);
-                switch (buffer[0]) {
-                    case BITPAY_P2PKH:
-                        buffer[0] = NORMAL_P2PKH;
-                        break;
-                    case BITPAY_P2SH:
-                        buffer[0] = NORMAL_P2SH;
-                        break;
+        })();
+        let pushTx = exports.pushTx = (() => {
+            var _ref2 = _asyncToGenerator(function*(tx) {
+                const formData = new FormData();
+                formData.set('tx', tx);
+                const response = yield fetch(BASE_URL + '/pushtx', {
+                    method: 'POST',
+                    body: formData
+                });
+                if (!response.ok) {
+                    const text = yield response.text();
+                    throw new Error(text);
                 }
-                return _bs58check2.default.encode(buffer);
-            } catch (e) {
-                return address;
-            }
-        };
-        var _coininfo = require('coininfo');
-        var _coininfo2 = _interopRequireDefault(_coininfo);
-        var _bs58check = require('bs58check');
-        var _bs58check2 = _interopRequireDefault(_bs58check);
+            });
+            return function pushTx(_x2) {
+                return _ref2.apply(this, arguments);
+            };
+        })();
 
-        function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : {
-                default: obj
+        function _asyncToGenerator(fn) {
+            return function() {
+                var gen = fn.apply(this, arguments);
+                return new Promise(function(resolve, reject) {
+                    function step(key, arg) {
+                        try {
+                            var info = gen[key](arg);
+                            var value = info.value;
+                        } catch (error) {
+                            reject(error);
+                            return;
+                        }
+                        if (info.done) {
+                            resolve(value);
+                        } else {
+                            return Promise.resolve(value).then(function(value) {
+                                step("next", value);
+                            }, function(err) {
+                                step("throw", err);
+                            });
+                        }
+                    }
+                    return step("next");
+                });
             };
         }
-        const NORMAL_P2PKH = (0, _coininfo2.default)('bitcoin').versions.public;
-        const NORMAL_P2SH = (0, _coininfo2.default)('bitcoin').versions.scripthash;
-        const BITPAY_P2PKH = 28;
-        const BITPAY_P2SH = 40;
+        const BASE_URL = 'https://blockchain.info';
 
-    }, {
-        "undefined": undefined
-    }],
-    214: [function(require, module, exports) {
+    }, {}],
+    229: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -17932,91 +19311,33 @@
     }, {
         "undefined": undefined
     }],
-    215: [function(require, module, exports) {
+    230: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _crypto = require('crypto');
-        var _lodash = require('lodash');
-        var _appConfig = require(84);
-        var _configKeys = require(217);
-        var configKeys = _interopRequireWildcard(_configKeys);
-
-        function _interopRequireWildcard(obj) {
-            if (obj && obj.__esModule) {
-                return obj;
-            } else {
-                var newObj = {};
-                if (obj != null) {
-                    for (var key in obj) {
-                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
-                    }
-                }
-                newObj.default = obj;
-                return newObj;
-            }
-        }
-        let defaultConfig = {};
-        (0, _lodash.set)(defaultConfig, configKeys.fiatUnit, 'USD');
-        (0, _lodash.set)(defaultConfig, configKeys.themeName, 'origin');
-        (0, _lodash.set)(defaultConfig, configKeys.p2pEthereumNodeKey, (0, _crypto.randomBytes)(32).toString('hex'));
-        (0, _lodash.set)(defaultConfig, configKeys.marketPrices, ['cryptocompare', 'coinmarketcap']);
-        (0, _lodash.set)(defaultConfig, configKeys.notificationsTxReceivedEnabled, _appConfig.ENV_DEV || _appConfig.ENV_BUILD_EDEN);
-        exports.default = defaultConfig;
-
-    }, {
-        "217": 217,
-        "84": 84,
-        "undefined": undefined
-    }],
-    216: [function(require, module, exports) {
-        'use strict';
-        Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        exports.writeConfig = exports.readConfig = exports.default = exports.getConfigFile = exports.FILE = undefined;
-        let readConfig = exports.readConfig = (() => {
-            var _ref = _asyncToGenerator(function*() {
-                const cfgFile = getConfigFile();
-                try {
-                    const cfgData = yield _fsExtra2.default.readJson(cfgFile);
-                    const c = new Config();
-                    c._data = cfgData;
-                    return c;
-                } catch (err) {
-                    console.error(err);
-                    return Config.createDefault();
-                }
-            });
-            return function readConfig() {
-                return _ref.apply(this, arguments);
-            };
-        })();
-        let writeConfig = exports.writeConfig = (() => {
-            var _ref2 = _asyncToGenerator(function*(config) {
-                (0, _assert2.default)(config._data, 'Config object only.');
-                const cfgFile = getConfigFile();
-                yield _fsExtra2.default.writeJson(cfgFile, config._data, {
-                    spaces: 2
+        exports.fetch = undefined;
+        let fetch = exports.fetch = (() => {
+            var _ref2 = _asyncToGenerator(function*(_ref) {
+                let {
+                    message,
+                    signature
+                } = _ref;
+                const headers = Object.assign({}, HEADERS, {
+                    sign: signature
                 });
+                const response = yield(0, _fetchival2.default)(SERVER, {
+                    headers
+                }).post(message);
+                if (!response.result) throw new Error(JSON.stringify(response));
+                return response.result;
             });
-            return function writeConfig(_x2) {
+            return function fetch(_x) {
                 return _ref2.apply(this, arguments);
             };
         })();
-        exports.readConfigSync = readConfigSync;
-        var _assert = require('assert');
-        var _assert2 = _interopRequireDefault(_assert);
-        var _lodash = require('lodash');
-        var _env = require(230);
-        var _appConfig = require(84);
-        var _path = require('path');
-        var _path2 = _interopRequireDefault(_path);
-        var _fsExtra = require('fs-extra');
-        var _fsExtra2 = _interopRequireDefault(_fsExtra);
-        var _configDefault = require(215);
-        var _configDefault2 = _interopRequireDefault(_configDefault);
+        var _fetchival = require('fetchival');
+        var _fetchival2 = _interopRequireDefault(_fetchival);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -18050,6 +19371,153 @@
                 });
             };
         }
+        const SERVER = 'https://api.changelly.com';
+        const KEY = 'c542e745fe514ed581238e9bea45b74a';
+        const HEADERS = {
+            'api-key': KEY
+        };
+
+    }, {
+        "undefined": undefined
+    }],
+    231: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        var _crypto = require('crypto');
+        var _lodash = require('lodash');
+        var _appConfig = require(85);
+        var _keys = require(233);
+        var configKeys = _interopRequireWildcard(_keys);
+
+        function _interopRequireWildcard(obj) {
+            if (obj && obj.__esModule) {
+                return obj;
+            } else {
+                var newObj = {};
+                if (obj != null) {
+                    for (var key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+                    }
+                }
+                newObj.default = obj;
+                return newObj;
+            }
+        }
+        let defaultConfig = {};
+        (0, _lodash.set)(defaultConfig, configKeys.fiatUnit, 'USD');
+        (0, _lodash.set)(defaultConfig, configKeys.themeName, 'origin');
+        (0, _lodash.set)(defaultConfig, configKeys.p2pEthereumNodeKey, (0, _crypto.randomBytes)(32).toString('hex'));
+        (0, _lodash.set)(defaultConfig, configKeys.marketPrices, ['cryptocompare', 'coinmarketcap']);
+        (0, _lodash.set)(defaultConfig, configKeys.notificationsTxReceivedEnabled, _appConfig.ENV_DEV || _appConfig.ENV_BUILD_EDEN);
+        (0, _lodash.set)(defaultConfig, configKeys.portfolioSortOrder, 'balance');
+        exports.default = defaultConfig;
+
+    }, {
+        "233": 233,
+        "85": 85,
+        "undefined": undefined
+    }],
+    232: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.writeConfig = exports.readConfig = exports.default = exports.getConfigFile = exports.FILE = exports.keys = undefined;
+        let readConfig = exports.readConfig = (() => {
+            var _ref = _asyncToGenerator(function*() {
+                const cfgFile = getConfigFile();
+                try {
+                    const cfgData = yield _fsExtra2.default.readJson(cfgFile);
+                    const c = new Config();
+                    c._data = cfgData;
+                    return c;
+                } catch (err) {
+                    if (err.code === 'ENOENT') console.warn(`${FILE} does not exist, using default config`);
+                    else console.error(err);
+                    return Config.createDefault();
+                }
+            });
+            return function readConfig() {
+                return _ref.apply(this, arguments);
+            };
+        })();
+        let writeConfig = exports.writeConfig = (() => {
+            var _ref2 = _asyncToGenerator(function*(config) {
+                (0, _assert2.default)(config._data, 'Config object only.');
+                const cfgFile = getConfigFile();
+                yield _fsExtra2.default.writeJson(cfgFile, config._data, {
+                    spaces: 2
+                });
+            });
+            return function writeConfig(_x2) {
+                return _ref2.apply(this, arguments);
+            };
+        })();
+        exports.readConfigSync = readConfigSync;
+        var _assert = require('assert');
+        var _assert2 = _interopRequireDefault(_assert);
+        var _lodash = require('lodash');
+        var _env = require(246);
+        var _appConfig = require(85);
+        var _path = require('path');
+        var _path2 = _interopRequireDefault(_path);
+        var _fsExtra = require('fs-extra');
+        var _fsExtra2 = _interopRequireDefault(_fsExtra);
+        var _default = require(231);
+        var _default2 = _interopRequireDefault(_default);
+        var _keys2 = require(233);
+        var _keys = _interopRequireWildcard(_keys2);
+
+        function _interopRequireWildcard(obj) {
+            if (obj && obj.__esModule) {
+                return obj;
+            } else {
+                var newObj = {};
+                if (obj != null) {
+                    for (var key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+                    }
+                }
+                newObj.default = obj;
+                return newObj;
+            }
+        }
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+
+        function _asyncToGenerator(fn) {
+            return function() {
+                var gen = fn.apply(this, arguments);
+                return new Promise(function(resolve, reject) {
+                    function step(key, arg) {
+                        try {
+                            var info = gen[key](arg);
+                            var value = info.value;
+                        } catch (error) {
+                            reject(error);
+                            return;
+                        }
+                        if (info.done) {
+                            resolve(value);
+                        } else {
+                            return Promise.resolve(value).then(function(value) {
+                                step("next", value);
+                            }, function(err) {
+                                step("throw", err);
+                            });
+                        }
+                    }
+                    return step("next");
+                });
+            };
+        }
+        const keys = exports.keys = _keys;
         const FILE = exports.FILE = 'exodus.conf.json';
         const getConfigFile = exports.getConfigFile = () => _path2.default.join((0, _env.dataDir)(), FILE);
         let Config = class Config {
@@ -18067,11 +19535,11 @@
                 };
             }
             static createDefault() {
-                return new Config(_configDefault2.default);
+                return new Config(_default2.default);
             }
             get(fieldPath) {
                 let value = (0, _lodash.get)(this._data.data, fieldPath);
-                if (value === undefined) value = (0, _lodash.get)(_configDefault2.default, fieldPath);
+                if (value === undefined) value = (0, _lodash.get)(_default2.default, fieldPath);
                 return value;
             }
             set(fieldPath, value) {
@@ -18103,12 +19571,13 @@
         }
 
     }, {
-        "215": 215,
-        "230": 230,
-        "84": 84,
+        "231": 231,
+        "233": 233,
+        "246": 246,
+        "85": 85,
         "undefined": undefined
     }],
-    217: [function(require, module, exports) {
+    233: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -18119,16 +19588,17 @@
         const p2pEthereumNodeKey = exports.p2pEthereumNodeKey = 'p2p.ethereum.nodekey';
         const marketPrices = exports.marketPrices = 'market.prices';
         const notificationsTxReceivedEnabled = exports.notificationsTxReceivedEnabled = 'notifications.tx.received.enabled';
+        const portfolioSortOrder = exports.portfolioSortOrder = 'portfolio.sortOrder';
 
     }, {}],
-    218: [function(require, module, exports) {
+    234: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.getPrice = getPrice;
         exports.getPriceFromOHLC = getPriceFromOHLC;
-        var _dateUtil = require(225);
+        var _dateUtil = require(241);
 
         function getPrice(prices, time) {
             const priceData = prices.get((0, _dateUtil.startOfDay)(time).valueOf());
@@ -18149,18 +19619,18 @@
         }
 
     }, {
-        "225": 225
+        "241": 241
     }],
-    219: [function(require, module, exports) {
+    235: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _aureus = require(203);
-        var _currencyUnits = require(223);
-        var _units = require(221);
+        var _aureus = require(220);
+        var _currencyUnits = require(239);
+        var _units = require(237);
         var _units2 = _interopRequireDefault(_units);
 
         function _interopRequireDefault(obj) {
@@ -18191,12 +19661,12 @@
         });
 
     }, {
-        "203": 203,
-        "221": 221,
-        "223": 223,
+        "220": 220,
+        "237": 237,
+        "239": 239,
         "undefined": undefined
     }],
-    220: [function(require, module, exports) {
+    236: [function(require, module, exports) {
         module.exports = {
             "AUD": {
                 "label": "AUD - Australian dollar",
@@ -18329,14 +19799,14 @@
         }
 
     }, {}],
-    221: [function(require, module, exports) {
+    237: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _units = require(220);
+        var _units = require(236);
         var _units2 = _interopRequireDefault(_units);
 
         function _interopRequireDefault(obj) {
@@ -18368,10 +19838,10 @@
         });
 
     }, {
-        "220": 220,
+        "236": 236,
         "undefined": undefined
     }],
-    222: [function(require, module, exports) {
+    238: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -18382,12 +19852,12 @@
         var _assert2 = _interopRequireDefault(_assert);
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _aureus = require(203);
+        var _aureus = require(220);
         var _formatCurrency = require('format-currency');
         var _formatCurrency2 = _interopRequireDefault(_formatCurrency);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _units = require(221);
+        var _units = require(237);
         var _units2 = _interopRequireDefault(_units);
 
         function _interopRequireWildcard(obj) {
@@ -18495,26 +19965,26 @@
         }
 
     }, {
-        "194": 194,
-        "203": 203,
-        "221": 221,
+        "210": 210,
+        "220": 220,
+        "237": 237,
         "undefined": undefined
     }],
-    223: [function(require, module, exports) {
+    239: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.fiatCurrency = exports.cryptoCurrency = exports.currency = undefined;
-        var _aureus = require(203);
+        var _aureus = require(220);
         const currency = exports.currency = _aureus.UnitType.create('currency');
         const cryptoCurrency = exports.cryptoCurrency = _aureus.UnitType.create('crypto-currency', currency);
         const fiatCurrency = exports.fiatCurrency = _aureus.UnitType.create('fiat', currency);
 
     }, {
-        "203": 203
+        "220": 220
     }],
-    224: [function(require, module, exports) {
+    240: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -18533,7 +20003,7 @@
     }, {
         "undefined": undefined
     }],
-    225: [function(require, module, exports) {
+    241: [function(require, module, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -18590,7 +20060,7 @@
         }
 
     }, {}],
-    226: [function(require, module, exports) {
+    242: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -18615,7 +20085,7 @@
     }, {
         "undefined": undefined
     }],
-    227: [function(require, module, exports) {
+    243: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -18641,7 +20111,6 @@
             const removeListener = description => {
                 delete QUIT_LISTENERS[description];
                 if (Object.keys(QUIT_LISTENERS).length === 0) {
-                    _electron.BrowserWindow.getAllWindows().forEach(bw => bw.destroy());
                     setImmediate(_electron.app.exit.bind(_electron.app));
                 }
             };
@@ -18751,7 +20220,7 @@
     }, {
         "undefined": undefined
     }],
-    228: [function(require, module, exports) {
+    244: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -18760,8 +20229,8 @@
         exports.createClientMethod = createClientMethod;
         var _electronIpcBroadcast = require('electron-ipc-broadcast');
         var _electronIpcBroadcast2 = _interopRequireDefault(_electronIpcBroadcast);
-        var _errorToObject = require(231);
-        var _shared = require(229);
+        var _errorToObject = require(247);
+        var _shared = require(245);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -18813,11 +20282,11 @@
         }
 
     }, {
-        "229": 229,
-        "231": 231,
+        "245": 245,
+        "247": 247,
         "undefined": undefined
     }],
-    229: [function(require, module, exports) {
+    245: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -18825,7 +20294,7 @@
         const CHANNEL_PREFIX = exports.CHANNEL_PREFIX = 'electron-rpc-broadcast';
 
     }, {}],
-    230: [function(require, module, exports) {
+    246: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -18842,7 +20311,7 @@
         var _ospath2 = _interopRequireDefault(_ospath);
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
-        var _paths = require(176);
+        var _paths = require(188);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -18895,10 +20364,10 @@
         }
 
     }, {
-        "176": 176,
+        "188": 188,
         "undefined": undefined
     }],
-    231: [function(require, module, exports) {
+    247: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -18952,7 +20421,7 @@
     }, {
         "undefined": undefined
     }],
-    232: [function(require, module, exports) {
+    248: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -19071,7 +20540,7 @@
         var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _memoizeLruCache = require(287);
+        var _memoizeLruCache = require(307);
         var _memoizeLruCache2 = _interopRequireDefault(_memoizeLruCache);
 
         function _interopRequireDefault(obj) {
@@ -19120,10 +20589,10 @@
         });
 
     }, {
-        "287": 287,
+        "307": 307,
         "undefined": undefined
     }],
-    233: [function(require, module, exports) {
+    249: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -19192,7 +20661,7 @@
         })();
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _request2 = require(237);
+        var _request2 = require(253);
         var _request3 = _interopRequireDefault(_request2);
 
         function _interopRequireDefault(obj) {
@@ -19241,21 +20710,21 @@
         })();
 
     }, {
-        "237": 237,
+        "253": 253,
         "undefined": undefined
     }],
-    234: [function(require, module, exports) {
+    250: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.ws = exports.getLogs = exports.gasPrice = exports.getCode = exports.estimateGas = exports.getTransactionCount = exports.sendRawTransaction = exports.tokenBalance = exports.fetchTxlistinternal = exports.fetchTxlist = exports.fetchBalance = undefined;
+        exports.ethCall = exports.ws = exports.getLogs = exports.gasPrice = exports.getCode = exports.estimateGas = exports.getTransactionCount = exports.sendRawTransaction = exports.tokenBalance = exports.fetchTxlistinternal = exports.fetchTxlist = exports.fetchBalance = undefined;
         exports.filterTxsSent = filterTxsSent;
         exports.filterTxsReceived = filterTxsReceived;
-        var _account = require(233);
-        var _proxy = require(236);
-        var _logs = require(235);
-        var _ws2 = require(238);
+        var _account = require(249);
+        var _proxy = require(252);
+        var _logs = require(251);
+        var _ws2 = require(254);
         var _ws3 = _interopRequireDefault(_ws2);
 
         function _interopRequireDefault(obj) {
@@ -19274,6 +20743,7 @@
         const gasPrice = exports.gasPrice = _proxy.gasPrice;
         const getLogs = exports.getLogs = _logs.getLogs;
         const ws = exports.ws = _ws3.default;
+        const ethCall = exports.ethCall = _proxy.ethCall;
 
         function filterTxsSent(addr, etherscanTxs) {
             return etherscanTxs.filter(tx => tx.from.toLowerCase() === addr.toLowerCase());
@@ -19284,12 +20754,12 @@
         }
 
     }, {
-        "233": 233,
-        "235": 235,
-        "236": 236,
-        "238": 238
+        "249": 249,
+        "251": 251,
+        "252": 252,
+        "254": 254
     }],
-    235: [function(require, module, exports) {
+    251: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -19312,7 +20782,7 @@
         })();
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _request2 = require(237);
+        var _request2 = require(253);
         var _request3 = _interopRequireDefault(_request2);
 
         function _interopRequireDefault(obj) {
@@ -19361,15 +20831,15 @@
         })();
 
     }, {
-        "237": 237,
+        "253": 253,
         "undefined": undefined
     }],
-    236: [function(require, module, exports) {
+    252: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.gasPrice = exports.getCode = exports.estimateGas = exports.getTransactionCount = exports.sendRawTransaction = undefined;
+        exports.ethCall = exports.gasPrice = exports.getCode = exports.estimateGas = exports.getTransactionCount = exports.sendRawTransaction = undefined;
         let sendRawTransaction = exports.sendRawTransaction = (() => {
             var _ref2 = _asyncToGenerator(function*(data) {
                 const txhash = yield _request('eth_sendRawTransaction', {
@@ -19425,7 +20895,15 @@
                 return _ref6.apply(this, arguments);
             };
         })();
-        var _request2 = require(237);
+        let ethCall = exports.ethCall = (() => {
+            var _ref7 = _asyncToGenerator(function*(data) {
+                return _request('eth_call', data);
+            });
+            return function ethCall(_x5) {
+                return _ref7.apply(this, arguments);
+            };
+        })();
+        var _request2 = require(253);
         var _request3 = _interopRequireDefault(_request2);
 
         function _interopRequireDefault(obj) {
@@ -19474,9 +20952,9 @@
         })();
 
     }, {
-        "237": 237
+        "253": 253
     }],
-    237: [function(require, module, exports) {
+    253: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -19489,7 +20967,7 @@
         var _fetchival2 = _interopRequireDefault(_fetchival);
         var _nodeFetch = require('node-fetch');
         var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
-        var _appConfig = require(84);
+        var _appConfig = require(85);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -19552,10 +21030,10 @@
         });
 
     }, {
-        "84": 84,
+        "85": 85,
         "undefined": undefined
     }],
-    238: [function(require, module, exports) {
+    254: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -19663,7 +21141,7 @@
     }, {
         "undefined": undefined
     }],
-    239: [function(require, module, exports) {
+    255: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -19762,7 +21240,7 @@
         var _urlJoin2 = _interopRequireDefault(_urlJoin);
         var _fetchival = require('fetchival');
         var _fetchival2 = _interopRequireDefault(_fetchival);
-        var _pairs = require(299);
+        var _pairs = require(319);
         var _pairs2 = _interopRequireDefault(_pairs);
 
         function _interopRequireDefault(obj) {
@@ -19806,10 +21284,10 @@
         };
 
     }, {
-        "299": 299,
+        "319": 319,
         "undefined": undefined
     }],
-    240: [function(require, module, exports) {
+    256: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -19848,12 +21326,13 @@
                 return _ref3.apply(this, arguments);
             };
         })();
+        exports.isFloatingRateExchange = isFloatingRateExchange;
         exports.openOrderId = openOrderId;
         exports.openShapeShiftOrderId = openShapeShiftOrderId;
         exports.openEvercoinOrderId = openEvercoinOrderId;
         var _urlJoin = require('url-join');
         var _urlJoin2 = _interopRequireDefault(_urlJoin);
-        var _appConfig = require(84);
+        var _appConfig = require(85);
         var _fetchival = require('fetchival');
         var _fetchival2 = _interopRequireDefault(_fetchival);
 
@@ -19890,6 +21369,10 @@
             };
         }
 
+        function isFloatingRateExchange(svc) {
+            return ['ch'].includes(svc);
+        }
+
         function openOrderId() {
             let {
                 svc,
@@ -19916,10 +21399,10 @@
         }
 
     }, {
-        "84": 84,
+        "85": 85,
         "undefined": undefined
     }],
-    241: [function(require, module, exports) {
+    257: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -19942,7 +21425,7 @@
         exports.logRescan = logRescan;
         var _urlJoin = require('url-join');
         var _urlJoin2 = _interopRequireDefault(_urlJoin);
-        var _appConfig = require(84);
+        var _appConfig = require(85);
         var _fetchival = require('fetchival');
         var _fetchival2 = _interopRequireDefault(_fetchival);
 
@@ -19987,10 +21470,10 @@
         }
 
     }, {
-        "84": 84,
+        "85": 85,
         "undefined": undefined
     }],
-    242: [function(require, module, exports) {
+    258: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -20007,7 +21490,7 @@
         var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _ws = require(243);
+        var _ws = require(259);
         var _ws2 = _interopRequireDefault(_ws);
 
         function _interopRequireDefault(obj) {
@@ -20150,6 +21633,17 @@
                             tag
                         }));
                     })();
+                },
+                ethCall(data) {
+                    var _arguments4 = arguments;
+                    return _asyncToGenerator(function*() {
+                        let tag = _arguments4.length > 1 && _arguments4[1] !== undefined ? _arguments4[1] : 'latest';
+                        return request('proxy', Object.assign({
+                            method: 'eth_call'
+                        }, data, {
+                            tag
+                        }));
+                    })();
                 }
             };
         }
@@ -20175,10 +21669,10 @@
         }
 
     }, {
-        "243": 243,
+        "259": 259,
         "undefined": undefined
     }],
-    243: [function(require, module, exports) {
+    259: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -20287,7 +21781,7 @@
     }, {
         "undefined": undefined
     }],
-    244: [function(require, module, exports) {
+    260: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -20300,7 +21794,7 @@
         var _fetchival2 = _interopRequireDefault(_fetchival);
         var _nodeFetch = require('node-fetch');
         var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
-        var _ws = require(245);
+        var _ws = require(261);
         var _ws2 = _interopRequireDefault(_ws);
 
         function _interopRequireDefault(obj) {
@@ -20400,10 +21894,10 @@
         exports.default = create('https://factom.exodus.io/v3/');
 
     }, {
-        "245": 245,
+        "261": 261,
         "undefined": undefined
     }],
-    245: [function(require, module, exports) {
+    261: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -20501,7 +21995,7 @@
     }, {
         "undefined": undefined
     }],
-    246: [function(require, module, exports) {
+    262: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -20614,7 +22108,7 @@
                         if (shouldContinue) return window.requestIdleCallback(function() {
                             return resolve(true);
                         });
-                        _electron.shell.openExternal('http://support.exodus.io/knowledge_base/topics/how-do-i-claim-bitcoin-cash');
+                        _electron.shell.openExternal('https://support.exodus.io/knowledge_base/topics/how-do-i-claim-bitcoin-cash');
                         resolve(false);
                     });
                 });
@@ -20674,11 +22168,11 @@
                 return _ref7.apply(this, arguments);
             };
         })();
-        var _swal2 = require(321);
+        var _swal2 = require(343);
         var _swal3 = _interopRequireDefault(_swal2);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _flux = require(271);
+        var _flux = require(289);
         var flux = _interopRequireWildcard(_flux);
         var _delay = require('delay');
         var _delay2 = _interopRequireDefault(_delay);
@@ -20689,15 +22183,15 @@
         var _sweetalert2 = _interopRequireDefault(_sweetalert);
         var _reduxWatch = require('redux-watch');
         var _reduxWatch2 = _interopRequireDefault(_reduxWatch);
-        var _utxoCollection = require(93);
+        var _utxoCollection = require(94);
         var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
-        var _feeEstimator = require(269);
+        var _feeEstimator = require(287);
         var _feeEstimator2 = _interopRequireDefault(_feeEstimator);
-        var _getRecvExchAddresses = require(98);
+        var _getRecvExchAddresses = require(99);
         var _getRecvExchAddresses2 = _interopRequireDefault(_getRecvExchAddresses);
-        var _getReceiveAddress = require(96);
+        var _getReceiveAddress = require(97);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _blockExplorer = require(105);
+        var _blockExplorer = require(111);
         var _blockExplorer2 = _interopRequireDefault(_blockExplorer);
 
         function _interopRequireWildcard(obj) {
@@ -20795,23 +22289,23 @@
         })();
 
     }, {
-        "105": 105,
-        "194": 194,
-        "269": 269,
-        "271": 271,
-        "321": 321,
-        "93": 93,
-        "96": 96,
-        "98": 98,
+        "111": 111,
+        "210": 210,
+        "287": 287,
+        "289": 289,
+        "343": 343,
+        "94": 94,
+        "97": 97,
+        "99": 99,
         "undefined": undefined
     }],
-    247: [function(require, module, exports) {
+    263: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports._sendBcash = undefined;
-        let _sendBcash = exports._sendBcash = (() => {
+        exports._sendBgold = undefined;
+        let _sendBgold = exports._sendBgold = (() => {
             var _ref2 = _asyncToGenerator(function*(address, utxos) {
                 return new Promise(function(resolve) {
                     utxos = utxos || _utxoCollection2.default.createEmpty({
@@ -20877,7 +22371,7 @@
                     });
                 });
             });
-            return function _sendBcash(_x, _x2) {
+            return function _sendBgold(_x, _x2) {
                 return _ref2.apply(this, arguments);
             };
         })();
@@ -20918,7 +22412,7 @@
                         if (shouldContinue) return window.requestIdleCallback(function() {
                             return resolve(true);
                         });
-                        _electron.shell.openExternal('http://support.exodus.io/article/214-how-do-i-claim-bitcoin-gold');
+                        _electron.shell.openExternal('https://support.exodus.io/article/214-how-do-i-claim-bitcoin-gold');
                         resolve(false);
                     });
                 });
@@ -20978,11 +22472,11 @@
                 return _ref7.apply(this, arguments);
             };
         })();
-        var _swal2 = require(321);
+        var _swal2 = require(343);
         var _swal3 = _interopRequireDefault(_swal2);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _flux = require(271);
+        var _flux = require(289);
         var flux = _interopRequireWildcard(_flux);
         var _delay = require('delay');
         var _delay2 = _interopRequireDefault(_delay);
@@ -20993,13 +22487,11 @@
         var _sweetalert2 = _interopRequireDefault(_sweetalert);
         var _reduxWatch = require('redux-watch');
         var _reduxWatch2 = _interopRequireDefault(_reduxWatch);
-        var _utxoCollection = require(93);
+        var _utxoCollection = require(94);
         var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
-        var _feeEstimator = require(269);
+        var _feeEstimator = require(287);
         var _feeEstimator2 = _interopRequireDefault(_feeEstimator);
-        var _getRecvExchAddresses = require(98);
-        var _getRecvExchAddresses2 = _interopRequireDefault(_getRecvExchAddresses);
-        var _getReceiveAddress = require(96);
+        var _getReceiveAddress = require(97);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
 
         function _interopRequireWildcard(obj) {
@@ -21057,8 +22549,6 @@
                 yield(0, _delay2.default)(250);
                 const address = yield getAddress();
                 if (!_assets2.default.bgoldclaim.address.validate(address)) return flux.actions.dialog.error(`${address} is an invalid Bitcoin Gold address.`);
-                const myAddrs = (0, _getRecvExchAddresses2.default)(flux.store.getState())('bitcoin');
-                if (myAddrs.has(address)) return flux.actions.dialog.error(`Can't send to yourself.`);
                 console.log('GOT BGOLD ADDRESS:');
                 console.log(address);
                 yield(0, _delay2.default)(150);
@@ -21074,7 +22564,7 @@
                         confirmButtonText: 'OK'
                     }, function() {});
                 } else {
-                    const txId = yield _sendBcash(address, utxos);
+                    const txId = yield _sendBgold(address, utxos);
                     if (!txId) return;
                     yield(0, _delay2.default)(200);
                     _swal3.default.success({
@@ -21097,16 +22587,183 @@
         })();
 
     }, {
-        "194": 194,
-        "269": 269,
-        "271": 271,
-        "321": 321,
-        "93": 93,
-        "96": 96,
-        "98": 98,
+        "210": 210,
+        "287": 287,
+        "289": 289,
+        "343": 343,
+        "94": 94,
+        "97": 97,
         "undefined": undefined
     }],
-    248: [function(require, module, exports) {
+    264: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.default = checkEosRegistration;
+        var _getReceiveAddress = require(97);
+        var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
+        var _cryptoTotal = require(110);
+        var _cryptoTotal2 = _interopRequireDefault(_cryptoTotal);
+        var _assets = require(210);
+        var _assets2 = _interopRequireDefault(_assets);
+        var _flux = require(289);
+        var _reduxWatch = require('redux-watch');
+        var _reduxWatch2 = _interopRequireDefault(_reduxWatch);
+        var _swal = require(343);
+        var _swal2 = _interopRequireDefault(_swal);
+        var _swalAsync = require(342);
+        var swalAsync = _interopRequireWildcard(_swalAsync);
+
+        function _interopRequireWildcard(obj) {
+            if (obj && obj.__esModule) {
+                return obj;
+            } else {
+                var newObj = {};
+                if (obj != null) {
+                    for (var key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+                    }
+                }
+                newObj.default = obj;
+                return newObj;
+            }
+        }
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+
+        function _asyncToGenerator(fn) {
+            return function() {
+                var gen = fn.apply(this, arguments);
+                return new Promise(function(resolve, reject) {
+                    function step(key, arg) {
+                        try {
+                            var info = gen[key](arg);
+                            var value = info.value;
+                        } catch (error) {
+                            reject(error);
+                            return;
+                        }
+                        if (info.done) {
+                            resolve(value);
+                        } else {
+                            return Promise.resolve(value).then(function(value) {
+                                step("next", value);
+                            }, function(err) {
+                                step("throw", err);
+                            });
+                        }
+                    }
+                    return step("next");
+                });
+            };
+        }
+
+        function checkEosRegistration() {
+            let doRegistration = (() => {
+                var _ref = _asyncToGenerator(function*() {
+                    const gasLimit = 90000;
+                    const gasCost = _assets2.default.ethereum.getFee(gasLimit).to('ETH');
+                    const proceed = yield swalAsync.confirm({
+                        title: 'EOS Registration',
+                        text: `You are about to register your EOS address. Exodus will send ${gasCost.toString()} to complete the registration. Do you want to continue?`,
+                        confirmButtonText: 'Register Now!',
+                        closeOnConfirm: false,
+                        showLoaderOnConfirm: true
+                    });
+                    if (!proceed) return;
+                    const registeredAddress = yield _assets2.default.eosio.registration.getRegisteredAddress(ethAddress);
+                    if (registeredAddress === eosAddress) {
+                        console.log(`eosAddress '${eosAddress}' is registered to ETH address '${ethAddress}'!`);
+                        return swalAsync.success({
+                            title: 'Previously Registered',
+                            text: 'Your EOS address was previously registered.'
+                        });
+                    }
+                    console.warn('EOS Registration Started');
+                    const txId = yield registerEos(ethAddress, eosAddress);
+                    _flux.actions.localStorage.setItem('eosregistered', 'true');
+                    _flux.actions.txSend.ackSend();
+                    yield swalAsync.success({
+                        title: 'Success!',
+                        text: `<p style="font-size: 11px;">Your EOS address has been successfully registered! TX ID: ${txId}</p>`,
+                        html: true,
+                        confirmButtonText: 'View TX'
+                    });
+                    _flux.actions.blockExplorer.openTransaction('ethereum', txId);
+                    console.warn('EOS Registration Finished');
+                });
+                return function doRegistration() {
+                    return _ref.apply(this, arguments);
+                };
+            })();
+            const state = _flux.store.getState();
+            const addresses = (0, _getReceiveAddress2.default)(state);
+            const ethAddress = String(addresses('ethereum'));
+            const eosAddress = String(addresses('eosio'));
+            const {
+                ethereum: ethBalance
+            } = (0, _cryptoTotal2.default)(state);
+            if (ethBalance.isZero()) {
+                return _swal2.default.error({
+                    title: 'No Ethereum!',
+                    text: 'Your Ethereum balance is zero! Deposit a small amount of Ethereum to begin your EOS address registration.'
+                });
+            }
+            doRegistration().then(() => {}).catch(err => _swal2.default.error({
+                text: err.message
+            }));
+        }
+
+        function registerEos(fromEthAddress, toEosAddress) {
+            return new Promise((resolve, reject) => {
+                const payload = _assets2.default.eosio.registration.getRegistrationPayload(fromEthAddress, toEosAddress);
+                const w = (0, _reduxWatch2.default)(_flux.store.getState, 'txSend');
+                const stopWatching = _flux.store.subscribe(w((() => {
+                    var _ref3 = _asyncToGenerator(function*(_ref2) {
+                        let {
+                            isSending,
+                            error,
+                            txId
+                        } = _ref2;
+                        if (error) {
+                            stopWatching();
+                            return reject(error);
+                        }
+                        if (isSending === true) return;
+                        stopWatching();
+                        resolve(txId);
+                    });
+                    return function(_x) {
+                        return _ref3.apply(this, arguments);
+                    };
+                })()));
+                const sendOpts = {
+                    coin: _assets2.default.ethereum,
+                    receiver: {
+                        address: _assets2.default.eosio.eosRegistration,
+                        amount: _assets2.default.ethereum.currency.ZERO
+                    },
+                    txInput: payload
+                };
+                _flux.actions.txSend.send(sendOpts);
+            });
+        }
+
+    }, {
+        "110": 110,
+        "210": 210,
+        "289": 289,
+        "342": 342,
+        "343": 343,
+        "97": 97,
+        "undefined": undefined
+    }],
+    265: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -21124,9 +22781,9 @@
             };
         })();
         exports.xpub = xpub;
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _get = require(256);
+        var _get = require(273);
         var get = _interopRequireWildcard(_get);
 
         function _interopRequireWildcard(obj) {
@@ -21182,10 +22839,10 @@
         }
 
     }, {
-        "194": 194,
-        "256": 256
+        "210": 210,
+        "273": 273
     }],
-    249: [function(require, module, exports) {
+    266: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -21196,16 +22853,16 @@
         exports.setRippleAddress = setRippleAddress;
         exports.setHDKeyFromXPub = setHDKeyFromXPub;
         exports.eraseState = eraseState;
-        var _address = require(86);
+        var _address = require(87);
         var _address2 = _interopRequireDefault(_address);
-        var _flux = require(271);
+        var _flux = require(289);
         var flux = _interopRequireWildcard(_flux);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _util = require(278);
-        var _utxoCollection = require(93);
+        var _util = require(296);
+        var _utxoCollection = require(94);
         var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
-        var _utxos = require(83);
+        var _utxos = require(84);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -21272,14 +22929,14 @@
         }
 
     }, {
-        "194": 194,
-        "271": 271,
-        "278": 278,
-        "83": 83,
-        "86": 86,
-        "93": 93
+        "210": 210,
+        "289": 289,
+        "296": 296,
+        "84": 84,
+        "87": 87,
+        "94": 94
     }],
-    250: [function(require, module, exports) {
+    267: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -21288,26 +22945,32 @@
         let exportAddresses = exports.exportAddresses = (() => {
             var _ref = _asyncToGenerator(function*(asset) {
                 let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-                const addresses = yield get.addresses(asset, options);
-                const filePrefix = `${asset}-addresses-${options.includePrivKeys?'WARNING-HAS-PRIVATE-KEYS-':''}`;
-                const exportFile = _path2.default.join((0, _env.exportsDir)(), filePrefix + (0, _moment2.default)().format('YYYY-MM-DD_HH-mm-ss') + '.csv');
-                let addrCSV = 'ADDRESS,PATH,BALANCE' + (options.includePrivKeys ? ',PRIVKEY' : '') + '\n';
-                addrCSV += addresses.map(function(addrObj) {
-                    return `${addrObj.address},${addrObj.path},${addrObj.balance}` + (options.includePrivKeys ? `,${addrObj.privKey}` : '');
-                }).join('\n');
-                yield _fsExtra2.default.outputFile(exportFile, addrCSV);
-                _swal2.default.success({
-                    text: `Successfully exported ${asset} to ${exportFile}.`
-                });
-                console.table(addresses);
-                return addresses;
+                try {
+                    options.useDisplayAddress = true;
+                    const addresses = yield get.addresses(asset, options);
+                    const filePrefix = `${asset}-addresses-${options.includePrivKeys?'WARNING-HAS-PRIVATE-KEYS-':''}`;
+                    const exportFile = _path2.default.join((0, _env.exportsDir)(), filePrefix + (0, _moment2.default)().format('YYYY-MM-DD_HH-mm-ss') + '.csv');
+                    let addrCSV = 'ADDRESS,PATH,BALANCE' + (options.includePrivKeys ? ',PRIVKEY' : '') + '\n';
+                    addrCSV += addresses.map(function(addrObj) {
+                        return `${addrObj.address},${addrObj.path},${addrObj.balance}` + (options.includePrivKeys ? `,${addrObj.privKey}` : '');
+                    }).join('\n');
+                    yield _fsExtra2.default.outputFile(exportFile, addrCSV);
+                    _swal2.default.success({
+                        text: `Successfully exported ${asset} to ${exportFile}.`
+                    });
+                    console.table(addresses);
+                    return addresses;
+                } catch (error) {
+                    console.error(error);
+                    throw error;
+                }
             });
             return function exportAddresses(_x2) {
                 return _ref.apply(this, arguments);
             };
         })();
         exports.exportPrivateKeysDialog = exportPrivateKeysDialog;
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
         var _fsExtra = require('fs-extra');
         var _fsExtra2 = _interopRequireDefault(_fsExtra);
@@ -21315,10 +22978,10 @@
         var _moment2 = _interopRequireDefault(_moment);
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
-        var _env = require(230);
-        var _swal = require(321);
+        var _env = require(246);
+        var _swal = require(343);
         var _swal2 = _interopRequireDefault(_swal);
-        var _get = require(256);
+        var _get = require(273);
         var get = _interopRequireWildcard(_get);
 
         function _interopRequireWildcard(obj) {
@@ -21387,139 +23050,157 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "194": 194,
-        "230": 230,
-        "256": 256,
-        "321": 321,
+        "210": 210,
+        "246": 246,
+        "273": 273,
+        "343": 343,
         "undefined": undefined
     }],
-    251: [function(require, module, exports) {
+    268: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.dumpDiagnostics = exports.wallet = exports.data = undefined;
-        let data = exports.data = (() => {
-            var _ref = _asyncToGenerator(function*() {
-                const src = (0, _env.dataDir)();
-                const dest = _path2.default.join((0, _env.exportsDir)(), 'exodus-PRIVATE-data-' + (0, _moment2.default)().format('YYYY-MM-DD_HH-mm-ss') + '.zip');
-                yield(0, _aw2.default)(_fsExtra2.default.ensureDir)(_path2.default.dirname(dest));
-                _crossZip2.default.zip(src, dest, function(err) {
-                    if (err) {
-                        if (process.platform === 'win32') {
-                            _swal2.default.error({
-                                text: `Failure zipping: ${src} to ${dest}. <br/><br/><a href="https://www.microsoft.com/en-us/download/details.aspx?id=34595">Please install Powershell v3 and restart your computer.</a><br/><br/><strong>Error:</strong> ${err.message}`,
-                                html: true
-                            });
-                        } else {
-                            _swal2.default.error({
-                                text: `Failure zipping: ${src} to ${dest}. <br/></br><strong>Error:</strong> ${err.message}`,
-                                html: true
-                            });
-                        }
-                    } else {
-                        _swal2.default.success({
-                            text: `Successfully zipped: ${src} to ${dest}.`
-                        });
-                    }
-                });
+        exports.dumpDiagnostics = exports.wallet = exports.data = exports.formatVersion = undefined;
+        let createZipFile = (() => {
+            var _ref = _asyncToGenerator(function*(src, dest, destDirName) {
+                try {
+                    const zipper = new _zipUp2.default(dest, {
+                        level: 1
+                    });
+                    yield zipper.addDir(src, destDirName);
+                    yield zipper.finalize();
+                    _swal2.default.success({
+                        text: `Successfully created ${dest}.`
+                    });
+                } catch (err) {
+                    _swal2.default.error({
+                        text: `Failed to create ${dest}. <br/></br><strong>Error:</strong> ${err.message}`,
+                        html: true
+                    });
+                }
             });
-            return function data() {
+            return function createZipFile(_x, _x2, _x3) {
                 return _ref.apply(this, arguments);
             };
         })();
-        let wallet = exports.wallet = (() => {
+        let data = exports.data = (() => {
             var _ref2 = _asyncToGenerator(function*() {
-                const src = _path2.default.join((0, _env.dataDir)(), 'exodus.wallet');
-                const dest = _path2.default.join((0, _env.exportsDir)(), 'exodus.wallet-PRIVATE-data-' + (0, _moment2.default)().format('YYYY-MM-DD_HH-mm-ss') + '.zip');
-                yield(0, _aw2.default)(_fsExtra2.default.ensureDir)(_path2.default.dirname(dest));
-                _crossZip2.default.zip(src, dest, function(err) {
-                    if (err) {
-                        if (process.platform === 'win32') {
-                            _swal2.default.error({
-                                text: `Failure zipping: ${src} to ${dest}. <br/><br/><a href="https://www.microsoft.com/en-us/download/details.aspx?id=34595">Please install Powershell v3 and restart your computer.</a><br/><br/><strong>Error:</strong> ${err.message}`,
-                                html: true
-                            });
-                        } else {
-                            _swal2.default.error({
-                                text: `Failure zipping: ${src} to ${dest}. <br/></br><strong>Error:</strong> ${err.message}`,
-                                html: true
-                            });
-                        }
-                    } else {
-                        _swal2.default.success({
-                            text: `Successfully zipped: ${src} to ${dest}.`
-                        });
-                    }
-                });
+                const theDate = (0, _moment2.default)().format('YYYY-MM-DD_HH-mm-ss');
+                const src = (0, _env.dataDir)();
+                const dest = _path2.default.join((0, _env.exportsDir)(), `${LOWER_APP_NAME}-PRIVATE-data-` + theDate + '.zip');
+                yield _fsExtra2.default.ensureDir(_path2.default.dirname(dest));
+                yield createZipFile(src, dest, `${LOWER_APP_NAME}-${theDate}`);
             });
-            return function wallet() {
+            return function data() {
                 return _ref2.apply(this, arguments);
             };
         })();
-        let dumpDiagnostics = exports.dumpDiagnostics = (() => {
+        let wallet = exports.wallet = (() => {
             var _ref3 = _asyncToGenerator(function*() {
-                const formatVersion = 'v1';
-                const timePath = (0, _moment2.default)().format('YYYY-MM-DD_HH-mm-ss');
-                const srcDir = _path2.default.join(_os2.default.tmpdir(), 'exodus', `exodus-report-${timePath}`);
-                const srcOutDir = _path2.default.join(srcDir, formatVersion);
-                const dest = _path2.default.join((0, _env.exportsDir)(), `exodus-report-SAFE-${timePath}.zip`);
-                const state = _flux.store.getState();
-                const assetPadding = createPadLookup(Object.keys(_assets2.default));
-                const xpubs = [];
-                Object.values(_assets2.default).forEach(function(asset) {
-                    if (asset.isEthereumToken || asset.isOmniProperty || !asset.available) return;
-                    xpubs.push(`${assetPadding[asset.name]}: ${get.xpub(asset.name)}`);
-                });
-                yield _fsExtra2.default.outputFile(_path2.default.join(srcOutDir, './xpubs.txt'), xpubs.join('\n\n'));
-                yield Promise.all(Object.values(_assets2.default).map(function(asset) {
-                    if (!asset.available) return;
-                    const txs = state.txLog[asset.name];
-                    if (txs.size === 0) return;
-                    return _fsExtra2.default.outputJson(_path2.default.join(srcOutDir, 'txs', `${asset.name}.json`), txs, {
-                        spaces: 2
-                    });
-                }));
-                yield Promise.all(Object.values(_assets2.default).map(function(asset) {
-                    if (!asset.available) return;
-                    const utxos = state.utxos[asset.name];
-                    if (utxos.size === 0) return;
-                    return _fsExtra2.default.outputJson(_path2.default.join(srcOutDir, 'utxos', `${asset.name}.json`), utxos, {
-                        spaces: 2
-                    });
-                }));
-                yield _fsExtra2.default.outputJson(_path2.default.join(srcOutDir, `orders.json`), state.orders.data, {
-                    spaces: 2
-                });
-                yield _fsExtra2.default.outputJson(_path2.default.join(srcOutDir, `exodus.conf.json`), state.config, {
-                    spaces: 2
-                });
+                const theDate = (0, _moment2.default)().format('YYYY-MM-DD_HH-mm-ss');
+                const dest = _path2.default.join((0, _env.exportsDir)(), `${LOWER_APP_NAME}.wallet-PRIVATE-data-${theDate}.zip`);
                 yield _fsExtra2.default.ensureDir(_path2.default.dirname(dest));
-                _crossZip2.default.zip(srcDir, dest, function(err) {
-                    _fsExtra2.default.remove(srcDir);
-                    if (err) {
-                        if (process.platform === 'win32') {
-                            _swal2.default.error({
-                                text: `Failure zipping: ${srcDir} to ${dest}. <br/><br/><a href="https://www.microsoft.com/en-us/download/details.aspx?id=34595">Please install Powershell v3 and restart your computer.</a><br/><br/><strong>Error:</strong> ${err.message}`,
-                                html: true
-                            });
-                        } else {
-                            _swal2.default.error({
-                                text: `Failure zipping: ${srcDir} to ${dest}. <br/></br><strong>Error:</strong> ${err.message}`,
-                                html: true
-                            });
-                        }
-                    } else {
-                        _swal2.default.success({
-                            text: `Successfully exported report data to ${dest}.`
-                        });
+                const src = (0, _env.dataDir)();
+                const targetDir = `${LOWER_APP_NAME}.wallet-${theDate}`;
+                const walletDir = _path2.default.join(src, 'exodus.wallet');
+                const backupsDir = _path2.default.join(src, 'backups', 'wallet');
+                try {
+                    const zipper = new _zipUp2.default(dest, {
+                        level: 1
+                    });
+                    yield zipper.addDir(walletDir, _path2.default.join(targetDir, 'exodus.wallet'));
+                    if (_fsExtra2.default.pathExistsSync(backupsDir)) {
+                        yield zipper.addDir(backupsDir, _path2.default.join(targetDir, 'wallet.backups'));
                     }
-                });
+                    yield zipper.finalize();
+                    _swal2.default.success({
+                        text: `Successfully created ${dest}.`
+                    });
+                } catch (err) {
+                    _swal2.default.error({
+                        text: `Failed to create ${dest}! <br/></br><strong>Error:</strong> ${err.message}`,
+                        html: true
+                    });
+                }
             });
-            return function dumpDiagnostics() {
+            return function wallet() {
                 return _ref3.apply(this, arguments);
             };
         })();
+        let dumpDiagnostics = exports.dumpDiagnostics = (() => {
+            var _ref4 = _asyncToGenerator(function*() {
+                try {
+                    const theDate = (0, _moment2.default)().format('YYYY-MM-DD_HH-mm-ss');
+                    const outName = `${LOWER_APP_NAME}-report-SAFE-${theDate}`;
+                    const srcDir = _path2.default.join(_os2.default.tmpdir(), LOWER_APP_NAME, outName);
+                    const srcOutDir = _path2.default.join(srcDir, formatVersion);
+                    const dest = _path2.default.join((0, _env.exportsDir)(), `${outName}.zip`);
+                    const state = _flux.store.getState();
+                    const assetPadding = createPadLookup(Object.keys(_assets2.default));
+                    const xpubs = [];
+                    Object.values(_assets2.default).forEach(function(asset) {
+                        if (asset.isEthereumToken || asset.isOmniProperty || !asset.available && asset.name !== 'eosio' || asset.name === 'factom') return;
+                        xpubs.push(`${assetPadding[asset.name]}: ${get.xpub(asset.name)}`);
+                    });
+                    yield _fsExtra2.default.outputFile(_path2.default.join(srcOutDir, './xpubs.txt'), xpubs.join('\n\n'));
+                    yield Promise.all(Object.values(_assets2.default).map(function(asset) {
+                        if (!asset.available && asset.name !== 'eosio') return;
+                        let txs = state.txLog[asset.name];
+                        if (txs.size === 0) return;
+                        if (asset.name === 'bcash') {
+                            const txsJson = txs.toJSON();
+                            for (const tx of txsJson) {
+                                if (tx.addresses) {
+                                    tx.addresses = tx.addresses.map(function(addr) {
+                                        return _address2.default.create(asset.address.toCashAddress(addr.address), addr.meta);
+                                    });
+                                }
+                            }
+                            txs = txsJson;
+                        }
+                        return _fsExtra2.default.outputJson(_path2.default.join(srcOutDir, 'txs', `${asset.name}.json`), txs, {
+                            spaces: 2
+                        });
+                    }));
+                    yield Promise.all(Object.values(_assets2.default).map(function(asset) {
+                        if (!asset.available && asset.name !== 'eosio') return;
+                        let utxos = state.utxos[asset.name];
+                        if (utxos.size === 0) return;
+                        if (asset.name === 'bcash') {
+                            let newObj = {};
+                            Object.entries(utxos.toJSON()).forEach(function(_ref5) {
+                                let [key, value] = _ref5;
+                                const cashAddr = asset.address.toCashAddress(key);
+                                value.address = cashAddr;
+                                newObj[cashAddr] = value;
+                            });
+                            utxos = newObj;
+                        }
+                        return _fsExtra2.default.outputJson(_path2.default.join(srcOutDir, 'utxos', `${asset.name}.json`), utxos, {
+                            spaces: 2
+                        });
+                    }));
+                    yield _fsExtra2.default.outputJson(_path2.default.join(srcOutDir, `orders.json`), state.orders.data, {
+                        spaces: 2
+                    });
+                    yield _fsExtra2.default.outputJson(_path2.default.join(srcOutDir, `exodus.conf.json`), state.config, {
+                        spaces: 2
+                    });
+                    yield _fsExtra2.default.ensureDir(_path2.default.dirname(dest));
+                    yield createZipFile(srcDir, dest, `${outName}`);
+                    _fsExtra2.default.removeSync(srcDir);
+                } catch (error) {
+                    console.error(error);
+                }
+            });
+            return function dumpDiagnostics() {
+                return _ref4.apply(this, arguments);
+            };
+        })();
+        var _appConfig = require(85);
+        var _address = require(87);
+        var _address2 = _interopRequireDefault(_address);
         var _fsExtra = require('fs-extra');
         var _fsExtra2 = _interopRequireDefault(_fsExtra);
         var _os = require('os');
@@ -21528,17 +23209,15 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _moment2 = _interopRequireDefault(_moment);
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
-        var _env = require(230);
-        var _crossZip = require('cross-zip');
-        var _crossZip2 = _interopRequireDefault(_crossZip);
-        var _swal = require(321);
-        var _swal2 = _interopRequireDefault(_swal);
-        var _aw = require('aw');
-        var _aw2 = _interopRequireDefault(_aw);
-        var _assets = require(194);
+        var _env = require(246);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _flux = require(271);
-        var _get = require(256);
+        var _flux = require(289);
+        var _swal = require(343);
+        var _swal2 = _interopRequireDefault(_swal);
+        var _zipUp = require('zip-up');
+        var _zipUp2 = _interopRequireDefault(_zipUp);
+        var _get = require(273);
         var get = _interopRequireWildcard(_get);
 
         function _interopRequireWildcard(obj) {
@@ -21588,6 +23267,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 });
             };
         }
+        const formatVersion = exports.formatVersion = 'v1';
+        const LOWER_APP_NAME = _appConfig.EXODUS_DISPLAY_NAME.toLowerCase();
 
         function createPadLookup(arr) {
             const maxLen = arr.reduce((len, item) => {
@@ -21602,25 +23283,27 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "194": 194,
-        "230": 230,
-        "256": 256,
-        "271": 271,
-        "321": 321,
+        "210": 210,
+        "246": 246,
+        "273": 273,
+        "289": 289,
+        "343": 343,
+        "85": 85,
+        "87": 87,
         "undefined": undefined
     }],
-    252: [function(require, module, exports) {
+    269: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.xpub = exports.transactions = exports.dir = exports.privateKeysDialog = exports.addresses = undefined;
-        var _addresses = require(250);
-        var _dir2 = require(251);
+        var _addresses = require(267);
+        var _dir2 = require(268);
         var _dir = _interopRequireWildcard(_dir2);
-        var _transactions2 = require(253);
+        var _transactions2 = require(270);
         var _transactions3 = _interopRequireDefault(_transactions2);
-        var _xpub2 = require(254);
+        var _xpub2 = require(271);
         var _xpub3 = _interopRequireDefault(_xpub2);
 
         function _interopRequireDefault(obj) {
@@ -21650,17 +23333,17 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         const xpub = exports.xpub = _xpub3.default;
 
     }, {
-        "250": 250,
-        "251": 251,
-        "253": 253,
-        "254": 254
+        "267": 267,
+        "268": 268,
+        "270": 270,
+        "271": 271
     }],
-    253: [function(require, module, exports) {
+    270: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _swal = require(321);
+        var _swal = require(343);
         var _swal2 = _interopRequireDefault(_swal);
         var _fsExtra = require('fs-extra');
         var _fsExtra2 = _interopRequireDefault(_fsExtra);
@@ -21668,8 +23351,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _moment2 = _interopRequireDefault(_moment);
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
-        var _env = require(230);
-        var _get = require(256);
+        var _env = require(246);
+        var _get = require(273);
         var get = _interopRequireWildcard(_get);
 
         function _interopRequireWildcard(obj) {
@@ -21721,9 +23404,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
         exports.default = (() => {
             var _ref = _asyncToGenerator(function*(asset) {
-                let opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-                const txs = yield get.transactions(asset, opts);
-                const txFields = opts.fiat ? ['txId', 'txUrl', 'date', 'coinAmount', 'fee', 'balance', 'balanceFiat', 'pricePer1Btc', 'exchange', 'memo'] : ['txId', 'txUrl', 'date', 'coinAmount', 'fee', 'balance', 'exchange', 'memo'];
+                const txs = yield get.transactions(asset);
+                const txFields = ['txId', 'txUrl', 'date', 'coinAmount', 'fee', 'balance', 'exchange', 'memo'];
                 let txsCSV = txFields.map(function(field) {
                     return field.toUpperCase();
                 }).join(',') + '\n';
@@ -21746,18 +23428,18 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     }
                 });
             });
-            return function(_x2) {
+            return function(_x) {
                 return _ref.apply(this, arguments);
             };
         })();
 
     }, {
-        "230": 230,
-        "256": 256,
-        "321": 321,
+        "246": 246,
+        "273": 273,
+        "343": 343,
         "undefined": undefined
     }],
-    254: [function(require, module, exports) {
+    271: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -21766,10 +23448,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _fsExtra2 = _interopRequireDefault(_fsExtra);
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
-        var _env = require(230);
-        var _swal = require(321);
+        var _env = require(246);
+        var _swal = require(343);
         var _swal2 = _interopRequireDefault(_swal);
-        var _get = require(256);
+        var _get = require(273);
         var get = _interopRequireWildcard(_get);
 
         function _interopRequireWildcard(obj) {
@@ -21833,30 +23515,29 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         })();
 
     }, {
-        "230": 230,
-        "256": 256,
-        "321": 321,
+        "246": 246,
+        "273": 273,
+        "343": 343,
         "undefined": undefined
     }],
-    255: [function(require, module, exports) {
+    272: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.getPrivateKeys = exports.getAddresses = undefined;
         let getAddresses = exports.getAddresses = (() => {
-            var _ref = _asyncToGenerator(function*(asset, options) {
-                if (asset === 'bitcoin') return bitcoin(options);
-                const fn = _assets2.default[asset].isAccountBased ? accountBase : bitcoinLike;
-                return fn(asset, options);
+            var _ref = _asyncToGenerator(function*(assetName, options) {
+                const fn = _assets2.default[assetName].isAccountBased ? accountBase : bitcoinLike;
+                return fn(assetName, options);
             });
             return function getAddresses(_x, _x2) {
                 return _ref.apply(this, arguments);
             };
         })();
         let getPrivateKeys = exports.getPrivateKeys = (() => {
-            var _ref2 = _asyncToGenerator(function*(asset) {
-                return getAddresses(asset, {
+            var _ref2 = _asyncToGenerator(function*(assetName) {
+                return getAddresses(assetName, {
                     includePrivKeys: true
                 });
             });
@@ -21865,33 +23546,27 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             };
         })();
         let accountBase = (() => {
-            var _ref3 = _asyncToGenerator(function*(asset) {
+            var _ref3 = _asyncToGenerator(function*(assetName) {
                 let {
-                    includePrivKeys = false
+                    includePrivKeys = false, useDisplayAddress = false
                 } = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
                 const state = flux.store.getState();
                 const mpath = 'm/0/0';
-                let key;
-                if (includePrivKeys) {
-                    const jsonHDKey = yield _instanceShim2.default.current.getHDKey(asset);
-                    key = _bip2.default.fromJSON(jsonHDKey).derive(mpath, 'tag', {
-                        spendable: true
-                    });
-                } else {
-                    key = state.accounts[asset].hdkey.derive(mpath, 'tag', {
-                        spendable: true
-                    });
-                }
+                let key = state.accounts[assetName].hdkey.derive(mpath, 'tag', {
+                    spendable: true
+                });
+                const addrStr = useDisplayAddress ? _assets2.default[assetName].address.displayAddress(key.publicEncoded) : key.publicEncoded;
                 const addrObj = {
-                    address: key.publicEncoded,
+                    address: addrStr,
                     path: mpath,
-                    balance: (0, _coinTotalAmounts2.default)(state)[asset].toDefault().toString({
+                    balance: (0, _coinTotalAmounts2.default)(state)[assetName].toDefault().toString({
                         unit: false
                     })
                 };
                 if (includePrivKeys) {
-                    addrObj.privKey = key.privateEncoded;
-                    if (addrObj.privKey.startsWith('0x')) addrObj.privKey = addrObj.privKey.slice(2);
+                    let [privKey] = yield _instanceShim2.default.current.getPrivateKeys(assetName, 0, [mpath]);
+                    if (privKey.startsWith('0x')) privKey = privKey.slice(2);
+                    addrObj.privKey = privKey;
                 }
                 return [addrObj];
             });
@@ -21900,67 +23575,18 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             };
         })();
         let bitcoinLike = (() => {
-            var _ref4 = _asyncToGenerator(function*(asset) {
+            var _ref4 = _asyncToGenerator(function*(assetName) {
                 let {
-                    includePrivKeys = false, gapLimit = 20
+                    includePrivKeys = false, useDisplayAddress = false
                 } = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-                const account = flux.store.getState().accounts[asset];
-                const utxos = flux.store.getState().utxos[asset];
-                const addrUtxos = utxos.addresses.map(function(addr) {
-                    return addr.address;
-                });
-                console.dir(addrUtxos);
-                const {
-                    chain
-                } = account;
-                let hdkey = account.hdkey;
-                if (includePrivKeys) {
-                    const jsonHDKey = yield _instanceShim2.default.current.getHDKey(asset);
-                    hdkey = _bip2.default.fromJSON(jsonHDKey);
-                }
-                let addresses = [];
-                for (let chainIndex = 0; chainIndex < chain.length; ++chainIndex) {
-                    for (let addrIndex = 0; addrIndex <= chain[chainIndex] + gapLimit; ++addrIndex) {
-                        let mpath = `m/${chainIndex}/${addrIndex}`;
-                        let key = hdkey.derive(mpath, 'tag', {
-                            spendable: true
-                        });
-                        let addrStr = key.publicEncoded;
-                        let addrObj = {
-                            address: addrStr,
-                            balance: addrUtxos.includes(addrStr) ? utxos.getAddressUtxos(addrStr).value.toDefault().toString({
-                                unit: false
-                            }) : '0',
-                            path: mpath
-                        };
-                        if (includePrivKeys) addrObj.privKey = key.privateEncoded;
-                        addresses.push(addrObj);
-                    }
-                }
-                return addresses;
-            });
-            return function bitcoinLike(_x7) {
-                return _ref4.apply(this, arguments);
-            };
-        })();
-        let bitcoin = (() => {
-            var _ref5 = _asyncToGenerator(function*() {
-                let {
-                    includePrivKeys = false
-                } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-                const asset = 'bitcoin';
-                const utxos = flux.store.getState().utxos[asset];
-                const txLog = flux.store.getState().txLog[asset];
-                let hdkey = flux.store.getState().accounts[asset].hdkey;
-                if (includePrivKeys) {
-                    const jsonHDKey = yield _instanceShim2.default.current.getHDKey(asset);
-                    hdkey = _bip2.default.fromJSON(jsonHDKey);
-                }
+                const utxos = flux.store.getState().utxos[assetName];
+                const txLog = flux.store.getState().txLog[assetName];
+                let hdkey = flux.store.getState().accounts[assetName].hdkey;
                 let addrs = utxos.addresses;
                 addrs = Array.isArray(addrs) ? _addressSet2.default.fromArray(addrs) : addrs;
                 addrs = addrs.add((0, _util.addressFromChainParams)(hdkey, 0, 0));
                 addrs = addrs.union(txLog.addresses);
-                const chain = flux.store.getState().accounts[asset].chain;
+                const chain = flux.store.getState().accounts[assetName].chain;
                 for (let addrIndex = 0; addrIndex < chain[1]; ++addrIndex) {
                     addrs = addrs.add((0, _util.addressFromChainParams)(hdkey, 1, addrIndex));
                 }
@@ -21970,8 +23596,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     let key = hdkey.derive(addr.meta.path, 'tag', {
                         spendable: true
                     });
-                    let addrStr = key.publicEncoded;
-                    _assert2.default.strictEqual(addrStr, String(addr), 'Addresses dont match.');
+                    _assert2.default.strictEqual(key.publicEncoded, String(addr), 'Addresses don\'t match.');
+                    const addrStr = useDisplayAddress ? _assets2.default[assetName].address.displayAddress(key.publicEncoded) : key.publicEncoded;
                     let addrObj = {
                         address: addrStr,
                         balance: utxos.hasAddressUtxos(addrStr) ? utxos.getAddressUtxos(addrStr).value.toDefault().toString({
@@ -21979,30 +23605,38 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                         }) : '0',
                         path: addr.meta.path
                     };
-                    if (includePrivKeys) addrObj.privKey = key.privateEncoded;
                     addresses.push(addrObj);
+                }
+                if (includePrivKeys) {
+                    const paths = addresses.map(function(addrObj) {
+                        return addrObj.path;
+                    });
+                    const privKeys = yield _instanceShim2.default.current.getPrivateKeys(assetName, 0, paths);
+                    addresses = addresses.map(function(addrObj, i) {
+                        return Object.assign({}, addrObj, {
+                            privKey: privKeys[i]
+                        });
+                    });
                 }
                 return addresses;
             });
-            return function bitcoin() {
-                return _ref5.apply(this, arguments);
+            return function bitcoinLike(_x7) {
+                return _ref4.apply(this, arguments);
             };
         })();
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _flux = require(271);
+        var _flux = require(289);
         var flux = _interopRequireWildcard(_flux);
-        var _addressSet = require(85);
+        var _addressSet = require(86);
         var _addressSet2 = _interopRequireDefault(_addressSet);
-        var _util = require(11);
-        var _assets = require(194);
+        var _util = require(9);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _coinTotalAmounts = require(107);
+        var _coinTotalAmounts = require(113);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
-        var _instanceShim = require(174);
+        var _instanceShim = require(186);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _bip = require(211);
-        var _bip2 = _interopRequireDefault(_bip);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -22053,56 +23687,34 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "107": 107,
-        "11": 11,
-        "174": 174,
-        "194": 194,
-        "211": 211,
-        "271": 271,
-        "85": 85,
+        "113": 113,
+        "186": 186,
+        "210": 210,
+        "289": 289,
+        "86": 86,
+        "9": 9,
         "undefined": undefined
     }],
-    256: [function(require, module, exports) {
+    273: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.transactions = exports.priceAtTime = exports.privateKeys = exports.addresses = undefined;
-        let priceAtTime = exports.priceAtTime = (() => {
-            var _ref = _asyncToGenerator(function*(time) {
-                sdb = sdb || _simdb2.default;
-                time = (0, _start_of_hour2.default)(time);
-                const iso = time.toISOString();
-                const price = yield sdb.get(iso);
-                if (price) {
-                    console.log('HIT');
-                    return price;
-                } else {
-                    console.log('MISS');
-                    const priceData = yield(0, _cryptocompare.priceHistorical)('BTC', ['USD'], time);
-                    yield(0, _delay2.default)(1000);
-                    yield sdb.set(iso, priceData.BTC.USD);
-                    return priceData.BTC.USD;
-                }
-            });
-            return function priceAtTime(_x) {
-                return _ref.apply(this, arguments);
-            };
-        })();
+        exports.transactions = exports.privateKeys = exports.addresses = undefined;
         let transactions = exports.transactions = (() => {
-            var _ref2 = _asyncToGenerator(function*(coinName) {
-                let opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+            var _ref = _asyncToGenerator(function*(coinName) {
                 let txs = Array.from(flux.store.getState().txLog[coinName] || []);
                 txs.sort(function(a, b) {
                     return a.date - b.date;
                 });
                 let balance = _assets2.default[coinName].currency.ZERO;
                 txs = txs.map(function(tx, i, txs) {
-                    if (tx.coinAmount.isNegative && tx.feeAmount && tx.feeAmount.unitName === balance.unitName) {
+                    const isNegative = coinName === 'ethereum' ? tx.coinAmount.isNegative || tx.coinAmount.isZero : tx.coinAmount.isNegative;
+                    if (isNegative && tx.feeAmount && tx.feeAmount.unitName === balance.unitName) {
                         balance = balance.subtract(tx.feeAmount);
                     }
                     balance = balance.add(tx.coinAmount);
-                    const fee = tx.coinAmount.isNegative ? tx.feeAmount ? tx.feeAmount.negate().toString() : '' : '';
+                    const fee = isNegative ? tx.feeAmount ? tx.feeAmount.negate().toString() : '' : '';
                     return Object.assign({
                         memo: '',
                         balance: balance.toString(),
@@ -22112,21 +23724,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                         txUrl: _assets2.default[coinName].blockExplorer.txUrl(tx.txId)
                     });
                 });
-                if (opts.fiat) {
-                    for (const tx of txs) {
-                        const price = yield priceAtTime(tx.date);
-                        const balance = (parseFloat(tx.balance) * price).toFixed(2);
-                        tx.balanceFiat = '$' + balance;
-                        tx.pricePer1Btc = '$' + price.toFixed(2);
-                    }
-                }
                 return txs;
             });
-            return function transactions(_x3) {
-                return _ref2.apply(this, arguments);
+            return function transactions(_x) {
+                return _ref.apply(this, arguments);
             };
         })();
-        var _addresses = require(255);
+        var _addresses = require(272);
         Object.defineProperty(exports, 'addresses', {
             enumerable: true,
             get: function() {
@@ -22140,16 +23744,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             }
         });
         exports.xpub = xpub;
-        var _flux = require(271);
+        var _flux = require(289);
         var flux = _interopRequireWildcard(_flux);
-        var _cryptocompare = require('cryptocompare');
-        var _start_of_hour = require('date-fns/start_of_hour');
-        var _start_of_hour2 = _interopRequireDefault(_start_of_hour);
-        var _simdb = require('simdb');
-        var _simdb2 = _interopRequireDefault(_simdb);
-        var _delay = require('delay');
-        var _delay2 = _interopRequireDefault(_delay);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -22203,32 +23800,26 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         function xpub(asset) {
             return flux.store.getState().accounts[asset].hdkey.xPub;
         }
-        let sdb = null;
 
     }, {
-        "194": 194,
-        "255": 255,
-        "271": 271,
-        "undefined": undefined
+        "210": 210,
+        "272": 272,
+        "289": 289
     }],
-    257: [function(require, module, exports) {
+    274: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.privateKey = undefined;
         let privateKey = exports.privateKey = (() => {
-            var _ref = _asyncToGenerator(function*(asset, privateKeyWIF) {
+            var _ref2 = _asyncToGenerator(function*(asset, privateKeyWIF, _ref) {
+                let {
+                    password
+                } = _ref;
                 const state = _flux.store.getState();
                 if (asset !== 'bcash') throw new Error(`Invalid asset: expected bcash, received: ${asset}`);
-                const {
-                    versions
-                } = (0, _coininfo2.default)('bitcoin');
-                const {
-                    privateKey
-                } = _wif2.default.decode(privateKeyWIF, versions.private);
-                const publicKey = _secp256k2.default.publicKeyCreate(privateKey, true);
-                const address = _assets2.default.bcash.keys.encodePublic(publicKey);
+                const address = _assets2.default.bcash.keys.encodePublicFromWIF(privateKeyWIF, password);
                 if ((0, _getRecvExchAddresses2.default)(state)(asset).has(address)) {
                     return {
                         status: 'own-key'
@@ -22268,29 +23859,23 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     rawtx: rawTx
                 };
             });
-            return function privateKey(_x, _x2) {
-                return _ref.apply(this, arguments);
+            return function privateKey(_x, _x2, _x3) {
+                return _ref2.apply(this, arguments);
             };
         })();
-        var _flux = require(271);
-        var _assets = require(194);
+        var _flux = require(289);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _address = require(86);
+        var _address = require(87);
         var _address2 = _interopRequireDefault(_address);
-        var _bitcoinLike = require(75);
-        var _coininfo = require('coininfo');
-        var _coininfo2 = _interopRequireDefault(_coininfo);
-        var _wif = require('wif');
-        var _wif2 = _interopRequireDefault(_wif);
-        var _secp256k = require('secp256k1');
-        var _secp256k2 = _interopRequireDefault(_secp256k);
-        var _getReceiveAddress = require(96);
+        var _bitcoinLike = require(76);
+        var _getReceiveAddress = require(97);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _getRecvExchAddresses = require(98);
+        var _getRecvExchAddresses = require(99);
         var _getRecvExchAddresses2 = _interopRequireDefault(_getRecvExchAddresses);
-        var _utxoFetcher = require(137);
+        var _utxoFetcher = require(147);
         var _utxoFetcher2 = _interopRequireDefault(_utxoFetcher);
-        var _feeEstimator = require(269);
+        var _feeEstimator = require(287);
         var _feeEstimator2 = _interopRequireDefault(_feeEstimator);
 
         function _interopRequireDefault(obj) {
@@ -22327,35 +23912,36 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "137": 137,
-        "194": 194,
-        "269": 269,
-        "271": 271,
-        "75": 75,
-        "86": 86,
-        "96": 96,
-        "98": 98,
-        "undefined": undefined
+        "147": 147,
+        "210": 210,
+        "287": 287,
+        "289": 289,
+        "76": 76,
+        "87": 87,
+        "97": 97,
+        "99": 99
     }],
-    258: [function(require, module, exports) {
+    275: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.privateKey = undefined;
         let privateKey = exports.privateKey = (() => {
-            var _ref = _asyncToGenerator(function*(assetName, privateKeyWIF) {
+            var _ref2 = _asyncToGenerator(function*(assetName, privateKeyWIF, _ref) {
+                let {
+                    password
+                } = _ref;
                 const state = _flux.store.getState();
                 const asset = _assets2.default[assetName];
-                const {
-                    versions
-                } = (0, _coininfo2.default)(assetName);
-                const {
-                    privateKey,
-                    compressed
-                } = _wif2.default.decode(privateKeyWIF, versions.private);
-                const publicKey = _secp256k2.default.publicKeyCreate(privateKey, compressed);
-                const address = asset.keys.encodePublic(publicKey);
+                if (assetName === 'digibyte') {
+                    const obj = _wif2.default.decode(privateKeyWIF);
+                    if (obj.version === 0x9E) {
+                        obj.version = 0x80;
+                        privateKeyWIF = _wif2.default.encode(obj);
+                    }
+                }
+                const address = asset.keys.encodePublicFromWIF(privateKeyWIF, password);
                 if ((0, _getRecvExchAddresses2.default)(state)(asset.name).has(address)) {
                     return {
                         status: 'own-key'
@@ -22396,30 +23982,26 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     rawtx: rawTx
                 };
             });
-            return function privateKey(_x, _x2) {
-                return _ref.apply(this, arguments);
+            return function privateKey(_x, _x2, _x3) {
+                return _ref2.apply(this, arguments);
             };
         })();
-        var _flux = require(271);
-        var _assets = require(194);
+        var _flux = require(289);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _address = require(86);
+        var _address = require(87);
         var _address2 = _interopRequireDefault(_address);
-        var _bitcoinLike = require(75);
-        var _coininfo = require('coininfo');
-        var _coininfo2 = _interopRequireDefault(_coininfo);
+        var _bitcoinLike = require(76);
+        var _getReceiveAddress = require(97);
+        var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
+        var _getRecvExchAddresses = require(99);
+        var _getRecvExchAddresses2 = _interopRequireDefault(_getRecvExchAddresses);
+        var _utxoFetcher = require(147);
+        var _utxoFetcher2 = _interopRequireDefault(_utxoFetcher);
+        var _feeEstimator = require(287);
+        var _feeEstimator2 = _interopRequireDefault(_feeEstimator);
         var _wif = require('wif');
         var _wif2 = _interopRequireDefault(_wif);
-        var _secp256k = require('secp256k1');
-        var _secp256k2 = _interopRequireDefault(_secp256k);
-        var _getReceiveAddress = require(96);
-        var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _getRecvExchAddresses = require(98);
-        var _getRecvExchAddresses2 = _interopRequireDefault(_getRecvExchAddresses);
-        var _utxoFetcher = require(137);
-        var _utxoFetcher2 = _interopRequireDefault(_utxoFetcher);
-        var _feeEstimator = require(269);
-        var _feeEstimator2 = _interopRequireDefault(_feeEstimator);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -22455,17 +24037,17 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "137": 137,
-        "194": 194,
-        "269": 269,
-        "271": 271,
-        "75": 75,
-        "86": 86,
-        "96": 96,
-        "98": 98,
+        "147": 147,
+        "210": 210,
+        "287": 287,
+        "289": 289,
+        "76": 76,
+        "87": 87,
+        "97": 97,
+        "99": 99,
         "undefined": undefined
     }],
-    259: [function(require, module, exports) {
+    276: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -22475,7 +24057,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             var _ref = _asyncToGenerator(function*(asset, privateKeyWIF) {
                 if (asset !== 'decred') throw new Error(`Invalid asset: expected decred, received: ${asset}`);
                 const state = _flux.store.getState();
-                const address = _dcrcoreLib2.default.PrivateKey(privateKeyWIF).toAddress().toString();
+                const address = _assets2.default.decred.keys.encodePublicFromWIF(privateKeyWIF);
                 if ((0, _getRecvExchAddresses2.default)(state)(asset).has(address)) {
                     return {
                         status: 'own-key'
@@ -22519,21 +24101,19 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 return _ref.apply(this, arguments);
             };
         })();
-        var _dcrcoreLib = require('dcrcore-lib');
-        var _dcrcoreLib2 = _interopRequireDefault(_dcrcoreLib);
-        var _flux = require(271);
-        var _assets = require(194);
+        var _flux = require(289);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _address = require(86);
+        var _address = require(87);
         var _address2 = _interopRequireDefault(_address);
-        var _bitcoinLike = require(75);
-        var _getReceiveAddress = require(96);
+        var _bitcoinLike = require(76);
+        var _getReceiveAddress = require(97);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _getRecvExchAddresses = require(98);
+        var _getRecvExchAddresses = require(99);
         var _getRecvExchAddresses2 = _interopRequireDefault(_getRecvExchAddresses);
-        var _utxoFetcher = require(137);
+        var _utxoFetcher = require(147);
         var _utxoFetcher2 = _interopRequireDefault(_utxoFetcher);
-        var _feeEstimator = require(269);
+        var _feeEstimator = require(287);
         var _feeEstimator2 = _interopRequireDefault(_feeEstimator);
 
         function _interopRequireDefault(obj) {
@@ -22570,17 +24150,16 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "137": 137,
-        "194": 194,
-        "269": 269,
-        "271": 271,
-        "75": 75,
-        "86": 86,
-        "96": 96,
-        "98": 98,
-        "undefined": undefined
+        "147": 147,
+        "210": 210,
+        "287": 287,
+        "289": 289,
+        "76": 76,
+        "87": 87,
+        "97": 97,
+        "99": 99
     }],
-    260: [function(require, module, exports) {
+    277: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -22642,17 +24221,17 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         })();
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _flux = require(271);
-        var _etcchain = require(232);
+        var _flux = require(289);
+        var _etcchain = require(248);
         var etcchain = _interopRequireWildcard(_etcchain);
-        var _etherscan = require(234);
+        var _etherscan = require(250);
         var etherscan = _interopRequireWildcard(_etherscan);
-        var _exodusEthereumServer = require(242);
-        var _assets = require(194);
+        var _exodusEthereumServer = require(258);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _getReceiveAddress = require(96);
+        var _getReceiveAddress = require(97);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _ethereum = require(76);
+        var _ethereum = require(77);
         var _ethereumjsUtil = require('ethereumjs-util');
         var _ethereumjsUtil2 = _interopRequireDefault(_ethereumjsUtil);
 
@@ -22732,16 +24311,16 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         })(), etherscan.tokenBalance);
 
     }, {
-        "194": 194,
-        "232": 232,
-        "234": 234,
-        "242": 242,
-        "271": 271,
-        "76": 76,
-        "96": 96,
+        "210": 210,
+        "248": 248,
+        "250": 250,
+        "258": 258,
+        "289": 289,
+        "77": 77,
+        "97": 97,
         "undefined": undefined
     }],
-    261: [function(require, module, exports) {
+    278: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -22774,11 +24353,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 const rcd1 = _factomjsLib2.default.rcd.createRCD1(publicKey);
                 const rcdHash = _factomjsLib2.default.rcd.getHash(rcd1);
                 const address = _factomjsLib2.default.address.fct.toHumanReadable(rcdHash);
-                if ((0, _getRecvExchAddresses2.default)(_flux.store.getState())(asset).has(address)) {
-                    return {
-                        status: 'own-key'
-                    };
-                }
+                const walletAddress = (0, _getReceiveAddress2.default)(_flux.store.getState())('factom').toString();
+                if (address === walletAddress) return {
+                    status: 'own-key'
+                };
                 const balances = yield _exodusFactomServer2.default.getBalance(address);
                 const rawBalance = balances.confirmed + balances.unconfirmed;
                 const balance = _assets2.default.factom.currency.factoshis(rawBalance);
@@ -22791,7 +24369,6 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     status: 'negative',
                     address
                 };
-                const walletAddress = (0, _getReceiveAddress2.default)(_flux.store.getState())('factom').toString();
                 const tx = _factomjsLib2.default.transaction.create();
                 _factomjsLib2.default.transaction.addInput(tx, publicKey, rawBalance);
                 _factomjsLib2.default.transaction.addOutput(tx, walletAddress, amount.toNumber());
@@ -22806,20 +24383,18 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 return _ref.apply(this, arguments);
             };
         })();
-        var _flux = require(271);
-        var _assets = require(194);
+        var _flux = require(289);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _getReceiveAddress = require(96);
+        var _getReceiveAddress = require(97);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _getRecvExchAddresses = require(98);
-        var _getRecvExchAddresses2 = _interopRequireDefault(_getRecvExchAddresses);
         var _factomjsLib = require('factomjs-lib');
         var _factomjsLib2 = _interopRequireDefault(_factomjsLib);
         var _bip = require('bip39');
         var _bip2 = _interopRequireDefault(_bip);
         var _hdkey = require('hdkey');
         var _hdkey2 = _interopRequireDefault(_hdkey);
-        var _exodusFactomServer = require(244);
+        var _exodusFactomServer = require(260);
         var _exodusFactomServer2 = _interopRequireDefault(_exodusFactomServer);
 
         function _interopRequireDefault(obj) {
@@ -22856,19 +24431,18 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "194": 194,
-        "244": 244,
-        "271": 271,
-        "96": 96,
-        "98": 98,
+        "210": 210,
+        "260": 260,
+        "289": 289,
+        "97": 97,
         "undefined": undefined
     }],
-    262: [function(require, module, exports) {
+    279: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.privateKeyWithDialog = exports.privateKey = undefined;
+        exports.privateKeyWithDialog = exports.privateKey = exports.xpubs = undefined;
         let privateKey = exports.privateKey = (() => {
             var _ref = _asyncToGenerator(function*(asset, key) {
                 let options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
@@ -22908,6 +24482,26 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     }, resolve);
                 });
                 if (!privateKey) return;
+                if (options.bip38 && privateKey[0] === '6' && ['bitcoin', 'bcash'].includes(asset)) {
+                    yield(0, _delay2.default)(1000);
+                    const password = yield new Promise(function(resolve) {
+                        (0, _swal2.default)({
+                            title: 'Password?',
+                            text: `This private key is encrypted; please enter the password to decrypt it:`,
+                            animation: false,
+                            showCancelButton: true,
+                            confirmButtonText: 'Continue',
+                            type: 'input'
+                        }, resolve);
+                    });
+                    if (!password) {
+                        yield(0, _delay2.default)(1000);
+                        return _swal2.default.error({
+                            title: 'No password entered, aborting'
+                        });
+                    }
+                    options.password = password;
+                }
                 let ret;
                 try {
                     ret = yield createTx(asset, privateKey, options);
@@ -22932,7 +24526,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 }
                 const confirmed = yield new Promise(function(resolve) {
                     let text = `Are you sure you want to move ${ret.amount.toDefault().toString()} from ${ret.address} to this wallet?`;
-                    if (ret.fee) text += ` ${ret.fee.toDefault().toString()} will be used for fees.`;
+                    if (ret.fee) {
+                        const feePerKB = _assets2.default[asset].feePerKB.toDefault().toNumber();
+                        const size = (ret.fee.toDefault().toNumber() / feePerKB).toFixed(3) + ' KB';
+                        text += ` ${ret.fee.toDefault().toString()} will be used for fees (${size}).`;
+                    }
                     _swal2.default.confirm({
                         text,
                         title: 'Move Funds?',
@@ -22960,11 +24558,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     });
                     ret = ret2;
                 }
-                yield sendTx(asset, ret);
-                yield(0, _delay2.default)(1000);
-                _swal2.default.success({
-                    text: `${ret.amount.toDefault().toString()} were sent to this wallet.`
-                });
+                const success = yield sendTx(asset, ret);
+                if (success) {
+                    yield(0, _delay2.default)(1000);
+                    _swal2.default.success({
+                        text: `${ret.amount.toDefault().toString()} were sent to this wallet.`
+                    });
+                }
             });
             return function privateKeyWithDialog(_x5) {
                 return _ref2.apply(this, arguments);
@@ -22977,11 +24577,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 let baseName = asset;
                 if (_assets2.default[asset].isEthereumToken) baseName = 'ethereum';
                 switch (baseName) {
+                    case 'bgold':
                     case 'bitcoin':
                     case 'dash':
                     case 'digibyte':
                     case 'litecoin':
                     case 'tether':
+                    case 'qtumignition':
                     case 'vertcoin':
                     case 'zcash':
                         importPrivateKey = _bitcoinLike.privateKey;
@@ -23020,39 +24622,43 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     yield broadcastTx(data.rawtx.toString('hex'));
                 } catch (err) {
                     console.log(err.stack || err);
-                    return _swal2.default.error({
+                    _swal2.default.error({
                         text: 'Broadcast transaction error. If this persists, please contact support@exodus.io.'
                     });
+                    return false;
                 }
                 _flux.store.dispatch((0, _util.FSA)('TX_SEND_SUCCESS'));
                 _flux.actions.txSend.ackSend();
+                return true;
             });
             return function sendTx(_x9, _x10) {
                 return _ref4.apply(this, arguments);
             };
         })();
-        var _flux = require(271);
-        var _assets = require(194);
+        var _flux = require(289);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _swal = require(321);
+        var _swal = require(343);
         var _swal2 = _interopRequireDefault(_swal);
         var _delay = require('delay');
         var _delay2 = _interopRequireDefault(_delay);
-        var _util = require(278);
-        var _broadcastTx = require(136);
+        var _util = require(296);
+        var _broadcastTx = require(146);
         var _broadcastTx2 = _interopRequireDefault(_broadcastTx);
-        var _bitcoinLike2 = require(258);
+        var _bitcoinLike2 = require(275);
         var _bitcoinLike = _interopRequireWildcard(_bitcoinLike2);
-        var _decred2 = require(259);
+        var _decred2 = require(276);
         var _decred = _interopRequireWildcard(_decred2);
-        var _bcash2 = require(257);
+        var _bcash2 = require(274);
         var _bcash = _interopRequireWildcard(_bcash2);
-        var _ethereum2 = require(260);
+        var _ethereum2 = require(277);
         var _ethereum = _interopRequireWildcard(_ethereum2);
-        var _factom2 = require(261);
+        var _factom2 = require(278);
         var _factom = _interopRequireWildcard(_factom2);
-        var _ripple2 = require(263);
+        var _ripple2 = require(280);
         var _ripple = _interopRequireWildcard(_ripple2);
+        var _xpubs2 = require(281);
+        var _xpubs = _interopRequireWildcard(_xpubs2);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -23101,22 +24707,24 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 });
             };
         }
+        const xpubs = exports.xpubs = _xpubs;
 
     }, {
-        "136": 136,
-        "194": 194,
-        "257": 257,
-        "258": 258,
-        "259": 259,
-        "260": 260,
-        "261": 261,
-        "263": 263,
-        "271": 271,
+        "146": 146,
+        "210": 210,
+        "274": 274,
+        "275": 275,
+        "276": 276,
+        "277": 277,
         "278": 278,
-        "321": 321,
+        "280": 280,
+        "281": 281,
+        "289": 289,
+        "296": 296,
+        "343": 343,
         "undefined": undefined
     }],
-    263: [function(require, module, exports) {
+    280: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -23146,16 +24754,26 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     status: 'negative',
                     address
                 };
-                const tx = yield(0, _ripple.createTx)({
+                const ledgerCurrentIndex = yield(0, _rippleApi.getLedgerCurrentIndex)();
+                const {
+                    rawTx
+                } = yield _instanceShim2.default.current.createTx('ripple', {
                     to: (0, _getReceiveAddress2.default)(_flux.store.getState())('ripple').toString(),
-                    amount,
+                    amount: amount.toBase().toString({
+                        unit: false
+                    }),
+                    fee: _assets2.default.ripple.fee.toBase().toString({
+                        unit: false
+                    }),
                     sequence: info.sequence,
+                    ledgerCurrentIndex,
+                    publicKey,
                     privateKey
                 });
                 return {
                     address,
                     amount,
-                    rawtx: Buffer.from(tx.hex, 'hex')
+                    rawtx: rawTx
                 };
             });
             return function privateKey(_x2, _x3) {
@@ -23164,15 +24782,16 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         })();
         var _secp256k = require('secp256k1');
         var secp256k1 = _interopRequireWildcard(_secp256k);
-        var _flux = require(271);
-        var _assets = require(194);
+        var _flux = require(289);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _getReceiveAddress = require(96);
+        var _getReceiveAddress = require(97);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _rippleApi = require(305);
-        var _keypairs = require(308);
+        var _rippleApi = require(325);
+        var _keypairs = require(328);
         var keypairs = _interopRequireWildcard(_keypairs);
-        var _ripple = require(81);
+        var _instanceShim = require(186);
+        var _instanceShim2 = _interopRequireDefault(_instanceShim);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -23223,36 +24842,248 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "194": 194,
-        "271": 271,
-        "305": 305,
-        "308": 308,
-        "81": 81,
-        "96": 96,
+        "186": 186,
+        "210": 210,
+        "289": 289,
+        "325": 325,
+        "328": 328,
+        "97": 97,
         "undefined": undefined
     }],
-    264: [function(require, module, exports) {
+    281: [function(require, module, exports) {
         'use strict';
-        var _console2 = require(248);
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.safeReportXPubs = undefined;
+        let safeReportXPubs = exports.safeReportXPubs = (() => {
+            var _ref4 = _asyncToGenerator(function*() {
+                const {
+                    dialog,
+                    BrowserWindow
+                } = require('electron').remote;
+                _swal2.default.confirm({
+                    title: 'Import Safe Report Data',
+                    text: 'Warning! You are about to import a Safe Report into Exodus. Do not do this in a wallet with real funds, as this will overwrite with a read-only version from the Safe Report!<br/><br/>Are you sure you want to do this?',
+                    html: true
+                }, function() {
+                    dialog.showOpenDialog(BrowserWindow.getFocusedWindow(), {
+                        title: 'Open Safe Report Zipfile or xpubs.txt',
+                        defaultPath: lastPath,
+                        properties: ['openFile'],
+                        filters: [{
+                            name: 'Zip Files',
+                            extensions: ['zip']
+                        }, {
+                            name: 'Text Files',
+                            extensions: ['txt']
+                        }]
+                    }, loadXpubs);
+                });
+            });
+            return function safeReportXPubs() {
+                return _ref4.apply(this, arguments);
+            };
+        })();
+        var _fsExtra = require('fs-extra');
+        var _fsExtra2 = _interopRequireDefault(_fsExtra);
+        var _readline = require('readline');
+        var _readline2 = _interopRequireDefault(_readline);
+        var _nodeStreamZip = require('node-stream-zip');
+        var _nodeStreamZip2 = _interopRequireDefault(_nodeStreamZip);
+        var _swal = require(343);
+        var _swal2 = _interopRequireDefault(_swal);
+        var _flux = require(289);
+        var flux = _interopRequireWildcard(_flux);
+        var _reduxWatch = require('redux-watch');
+        var _reduxWatch2 = _interopRequireDefault(_reduxWatch);
+        var _delay = require('delay');
+        var _delay2 = _interopRequireDefault(_delay);
+        var _ms = require('ms');
+        var _ms2 = _interopRequireDefault(_ms);
+        var _getReceiveAddress = require(97);
+        var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
+        var _debug = require(266);
+
+        function _interopRequireWildcard(obj) {
+            if (obj && obj.__esModule) {
+                return obj;
+            } else {
+                var newObj = {};
+                if (obj != null) {
+                    for (var key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+                    }
+                }
+                newObj.default = obj;
+                return newObj;
+            }
+        }
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+
+        function _asyncToGenerator(fn) {
+            return function() {
+                var gen = fn.apply(this, arguments);
+                return new Promise(function(resolve, reject) {
+                    function step(key, arg) {
+                        try {
+                            var info = gen[key](arg);
+                            var value = info.value;
+                        } catch (error) {
+                            reject(error);
+                            return;
+                        }
+                        if (info.done) {
+                            resolve(value);
+                        } else {
+                            return Promise.resolve(value).then(function(value) {
+                                step("next", value);
+                            }, function(err) {
+                                step("throw", err);
+                            });
+                        }
+                    }
+                    return step("next");
+                });
+            };
+        }
+        let lastPath = process.env.ENV_HOME;
+        const importXPubFile = xpubStream => {
+            const lineReader = _readline2.default.createInterface({
+                input: xpubStream
+            });
+            lineReader.on('line', line => {
+                if (line.trim().length > 0) {
+                    const fields = line.trim().split(':');
+                    const name = fields[0].trim();
+                    const xpub = fields[1].trim();
+                    flux.actions.accounts.setHDKeyFromXPub(name, xpub);
+                }
+            });
+            lineReader.on('close', () => {
+                _swal2.default.success({
+                    text: 'Successfully imported Safe Report data!<br/><br/>Click the "OK" button below to refresh all assets in the wallet and bring them in sync with the Safe Report.',
+                    html: true,
+                    showCancelButton: false,
+                    closeOnConfirm: false,
+                    showLoaderOnConfirm: true
+                }, _asyncToGenerator(function*() {
+                    flux.actions.assetsRefresh.refreshAll();
+                    const w = (0, _reduxWatch2.default)(flux.store.getState, 'assetsRefresh');
+                    const stopWatching = flux.store.subscribe(w((() => {
+                        var _ref3 = _asyncToGenerator(function*(_ref2) {
+                            let {
+                                isScanningAll,
+                                error
+                            } = _ref2;
+                            if (error) {
+                                stopWatching();
+                                yield(0, _delay2.default)((0, _ms2.default)('1s'));
+                                _swal2.default.error({
+                                    text: error.message
+                                });
+                                return;
+                            }
+                            if (isScanningAll === true) return;
+                            stopWatching();
+                            yield(0, _delay2.default)((0, _ms2.default)('1s'));
+                            const ethAddress = (0, _getReceiveAddress2.default)(flux.store.getState())('ethereum').toString();
+                            (0, _debug.setEthAddress)(ethAddress);
+                            _swal2.default.success({
+                                title: 'All Done!',
+                                text: 'The assets have been synced to the Safe Report. You are now in "read-only" mode: no assests can be sent, received or exchanged.'
+                            });
+                        });
+                        return function(_x) {
+                            return _ref3.apply(this, arguments);
+                        };
+                    })()));
+                }));
+            });
+        };
+        const loadXpubs = filePaths => {
+            lastPath = filePaths[0];
+            const ext = lastPath.split('.').pop();
+            if (ext === 'zip') {
+                const unzipper = new _nodeStreamZip2.default({
+                    file: lastPath,
+                    storeEntries: true,
+                    skipEntryNameValidation: true
+                });
+                unzipper.on('error', err => {
+                    console.error(err);
+                    _swal2.default.error({
+                        text: err.message
+                    });
+                });
+                unzipper.on('ready', () => {
+                    let xpubsFile = null;
+                    for (const entry of Object.values(unzipper.entries())) {
+                        if (entry.name.endsWith('xpubs.txt')) {
+                            xpubsFile = entry.name;
+                            break;
+                        }
+                    }
+                    if (!xpubsFile) {
+                        _swal2.default.error({
+                            text: 'No xpubs.txt file found in zip archive!'
+                        });
+                        return;
+                    }
+                    unzipper.stream(xpubsFile, (err, stm) => {
+                        if (err) {
+                            console.error(err);
+                            _swal2.default.error({
+                                text: err.message
+                            });
+                            return;
+                        }
+                        importXPubFile(stm);
+                        stm.on('end', () => unzipper.close());
+                    });
+                });
+            } else {
+                const xpubStream = _fsExtra2.default.createReadStream(lastPath);
+                importXPubFile(xpubStream);
+            }
+        };
+
+    }, {
+        "266": 266,
+        "289": 289,
+        "343": 343,
+        "97": 97,
+        "undefined": undefined
+    }],
+    282: [function(require, module, exports) {
+        'use strict';
+        var _console2 = require(265);
         var _console = _interopRequireWildcard(_console2);
-        var _debug2 = require(249);
+        var _debug2 = require(266);
         var _debug = _interopRequireWildcard(_debug2);
-        var _export2 = require(252);
+        var _export2 = require(269);
         var _export = _interopRequireWildcard(_export2);
-        var _get2 = require(256);
+        var _get2 = require(273);
         var _get = _interopRequireWildcard(_get2);
-        var _import2 = require(262);
+        var _import2 = require(279);
         var _import = _interopRequireWildcard(_import2);
-        var _p2p2 = require(265);
+        var _p2p2 = require(283);
         var _p2p = _interopRequireWildcard(_p2p2);
-        var _restore2 = require(266);
+        var _restore2 = require(284);
         var _restore = _interopRequireWildcard(_restore2);
-        var _sweep2 = require(267);
+        var _sweep2 = require(285);
         var _sweep3 = _interopRequireDefault(_sweep2);
-        var _bcashClaim2 = require(246);
+        var _bcashClaim2 = require(262);
         var _bcashClaim3 = _interopRequireDefault(_bcashClaim2);
-        var _bgoldClaim2 = require(247);
+        var _bgoldClaim2 = require(263);
         var _bgoldClaim3 = _interopRequireDefault(_bgoldClaim2);
+        var _eosRegistration2 = require(264);
+        var _eosRegistration3 = _interopRequireDefault(_eosRegistration2);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -23284,26 +25115,28 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.sweep = _sweep3.default;
         exports.bcashClaim = _bcashClaim3.default;
         exports.bgoldClaim = _bgoldClaim3.default;
+        exports.eosRegistration = _eosRegistration3.default;
 
     }, {
-        "246": 246,
-        "247": 247,
-        "248": 248,
-        "249": 249,
-        "252": 252,
-        "256": 256,
         "262": 262,
+        "263": 263,
+        "264": 264,
         "265": 265,
         "266": 266,
-        "267": 267
+        "269": 269,
+        "273": 273,
+        "279": 279,
+        "283": 283,
+        "284": 284,
+        "285": 285
     }],
-    265: [function(require, module, exports) {
+    283: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.setMaxNodes = setMaxNodes;
-        var _flux = require(271);
+        var _flux = require(289);
         var flux = _interopRequireWildcard(_flux);
 
         function _interopRequireWildcard(obj) {
@@ -23326,9 +25159,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "271": 271
+        "289": 289
     }],
-    266: [function(require, module, exports) {
+    284: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -23336,10 +25169,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.fromRecoveryLink = fromRecoveryLink;
         exports.fromRecoveryPhrase = fromRecoveryPhrase;
         var _electron = require('electron');
-        var _electronDialog = require(226);
+        var _bs58check = require('bs58check');
+        var _bs58check2 = _interopRequireDefault(_bs58check);
+        var _electronDialog = require(242);
         var _electronDialog2 = _interopRequireDefault(_electronDialog);
-        var _electronExit = require(227);
-        var _swal = require(321);
+        var _electronExit = require(243);
+        var _swal = require(343);
         var _swal2 = _interopRequireDefault(_swal);
 
         function _interopRequireDefault(obj) {
@@ -23357,7 +25192,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 closeOnConfirm: true
             }, link => {
                 link = link.trim();
-                if (!link.includes('#')) {
+                const hex = link.includes('#') ? link.split('#')[1] : link;
+                try {
+                    _bs58check2.default.decode(hex);
+                } catch (e) {
+                    console.error(e);
                     return _electronDialog2.default.showErrorBox('Invalid Link', 'Invalid recovery link.');
                 }
                 _electronDialog2.default.showMessageBox({
@@ -23367,7 +25206,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     buttons: ['OK']
                 });
                 window.requestIdleCallback(() => {
-                    const newLink = `exodus://recover/${link.split('#')[1]}`;
+                    const newLink = `exodus://recover/${hex}`;
                     _electron.remote.app.relaunch({
                         args: _electron.remote.process.argv.slice(1).concat(newLink)
                     });
@@ -23389,12 +25228,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "226": 226,
-        "227": 227,
-        "321": 321,
+        "242": 242,
+        "243": 243,
+        "343": 343,
         "undefined": undefined
     }],
-    267: [function(require, module, exports) {
+    285: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -23415,14 +25254,14 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 return _ref2.apply(this, arguments);
             };
         })();
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _swal = require(321);
+        var _swal = require(343);
         var _swal2 = _interopRequireDefault(_swal);
-        var _aureus = require(203);
+        var _aureus = require(220);
         var _aureus2 = _interopRequireDefault(_aureus);
-        var _import = require(262);
-        var _get = require(256);
+        var _import = require(279);
+        var _get = require(273);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -23488,13 +25327,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         })();
 
     }, {
-        "194": 194,
-        "203": 203,
-        "256": 256,
-        "262": 262,
-        "321": 321
+        "210": 210,
+        "220": 220,
+        "273": 273,
+        "279": 279,
+        "343": 343
     }],
-    268: [function(require, module, exports) {
+    286: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -23503,19 +25342,19 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.pubKeyHashFromScript = pubKeyHashFromScript;
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _addressSet = require(85);
+        var _addressSet = require(86);
         var _addressSet2 = _interopRequireDefault(_addressSet);
         var _bitcoreLib = require('bitcore-lib');
         var _bitcoreLib2 = _interopRequireDefault(_bitcoreLib);
         var _dcrcoreLib = require('dcrcore-lib');
         var _dcrcoreLib2 = _interopRequireDefault(_dcrcoreLib);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _utxoCollection = require(93);
+        var _utxoCollection = require(94);
         var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
         var _bs58check = require('bs58check');
         var _bs58check2 = _interopRequireDefault(_bs58check);
-        var _bs58checkBlake = require(214);
+        var _bs58checkBlake = require(229);
         var _bs58checkBlake2 = _interopRequireDefault(_bs58checkBlake);
 
         function _interopRequireDefault(obj) {
@@ -23574,13 +25413,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "194": 194,
-        "214": 214,
-        "85": 85,
-        "93": 93,
+        "210": 210,
+        "229": 229,
+        "86": 86,
+        "94": 94,
         "undefined": undefined
     }],
-    269: [function(require, module, exports) {
+    287: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -23591,11 +25430,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _assert2 = _interopRequireDefault(_assert);
         var _varuintBitcoin = require('varuint-bitcoin');
         var varuint = _interopRequireWildcard(_varuintBitcoin);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _aureus = require(203);
+        var _aureus = require(220);
         var _aureus2 = _interopRequireDefault(_aureus);
-        var _utxoCollection = require(93);
+        var _utxoCollection = require(94);
         var _utxoCollection2 = _interopRequireDefault(_utxoCollection);
 
         function _interopRequireWildcard(obj) {
@@ -23654,34 +25493,38 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             }, 0) + varuint.encodingLength(outputs.length) + outputs.reduce((t, output) => {
                 if (output === null) output = 'P2PKH';
                 if (!['P2PKH', 'P2SH'].includes(output)) {
-                    const isBitcoinBaseAsset = asset.isOmniProperty || ['bcash', 'bcashclaim'].includes(asset.name);
+                    const isBitcoinBaseAsset = asset.isOmniProperty;
                     const baseAsset = isBitcoinBaseAsset ? _assets2.default.bitcoin : asset;
                     if (baseAsset.address.isP2PKH(output)) output = 'P2PKH';
                     else if (baseAsset.address.isP2SH(output)) output = 'P2SH';
-                }(0, _assert2.default)(['P2PKH', 'P2SH'].includes(output), 'Only P2PKH and P2SH outputs supported right now');
+                    else if (baseAsset.address.isP2WPKH && baseAsset.address.isP2WPKH(output)) output = 'P2WPKH';
+                    else if (baseAsset.address.isP2WSH && baseAsset.address.isP2WSH(output)) output = 'P2WSH';
+                }(0, _assert2.default)(['P2PKH', 'P2SH', 'P2WPKH', 'P2WSH'].includes(output), 'Only P2PKH, P2SH, P2WPKH, & P2WSH outputs supported right now');
                 const scriptPubKeyLength = {
                     P2PKH: 25,
-                    P2SH: 23
+                    P2SH: 23,
+                    P2WPKH: 21,
+                    P2WSH: 33
                 }[output];
                 return t + 8 + varuint.encodingLength(scriptPubKeyLength) + scriptPubKeyLength;
             }, 0);
         }
 
     }, {
-        "194": 194,
-        "203": 203,
-        "93": 93,
+        "210": 210,
+        "220": 220,
+        "94": 94,
         "undefined": undefined
     }],
-    270: [function(require, module, exports) {
+    288: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.default = soundfxStoreEnhancer;
-        var _static = require(320);
-        var _audio = require(201);
-        var _soundfx = require(318);
+        var _static = require(341);
+        var _audio = require(218);
+        var _soundfx = require(339);
         var _reduxWatch = require('redux-watch');
         var _reduxWatch2 = _interopRequireDefault(_reduxWatch);
 
@@ -23715,19 +25558,19 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "201": 201,
-        "318": 318,
-        "320": 320,
+        "218": 218,
+        "339": 339,
+        "341": 341,
         "undefined": undefined
     }],
-    271: [function(require, module, exports) {
+    289: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.actions = exports.store = undefined;
         var _appActions = require(29);
-        var _store2 = require(277);
+        var _store2 = require(295);
         var _store3 = _interopRequireDefault(_store2);
 
         function _interopRequireDefault(obj) {
@@ -23739,10 +25582,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         const actions = exports.actions = (0, _appActions.bindAllActionCreators)(store);
 
     }, {
-        "277": 277,
-        "29": 29
+        "29": 29,
+        "295": 295
     }],
-    272: [function(require, module, exports) {
+    290: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -23803,7 +25646,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {}],
-    273: [function(require, module, exports) {
+    291: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -23842,12 +25685,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {}],
-    274: [function(require, module, exports) {
+    292: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _logger = require(283);
+        var _logger = require(303);
         var _logger2 = _interopRequireDefault(_logger);
 
         function _interopRequireDefault(obj) {
@@ -23866,19 +25709,19 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {
-        "283": 283
+        "303": 303
     }],
-    275: [function(require, module, exports) {
+    293: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _notifications = require(297);
+        var _notifications = require(317);
         var _notifications2 = _interopRequireDefault(_notifications);
-        var _currencyFormatters = require(222);
-        var _notifications3 = require(111);
+        var _currencyFormatters = require(238);
+        var _notifications3 = require(117);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -23909,57 +25752,42 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             const amount = txs.reduce((total, tx) => total.add(tx.coinAmount), asset.currency.ZERO);
             return (0, _currencyFormatters.formatStr)(amount);
         }
-
-        function getIcon(_ref2) {
-            let {
-                asset
-            } = _ref2;
-            return `./img/logo-${asset.name}@2x.png`;
-        }
         const notifications = {
-            TX_RECEIVE(_ref3) {
+            TX_RECEIVE(_ref2) {
                 let {
                     asset,
                     txs
-                } = _ref3;
-                const icon = getIcon({
-                    asset
-                });
+                } = _ref2;
                 const confirmed = txs.filter(tx => tx.confirmations && tx.confirmations > 0);
                 if (confirmed.length > 0) {
                     (0, _notifications2.default)({
                         title: confirmed.length > 1 ? `${confirmed.length} transactions received` : 'Transaction received',
-                        body: `${getTotalAmount({asset,txs:confirmed})} was received and confirmed`,
-                        icon
+                        body: `${getTotalAmount({asset,txs:confirmed})} was received and confirmed`
                     });
                 }
                 const unconfirmed = lodash.difference(txs, confirmed);
                 if (unconfirmed.length > 0) {
                     (0, _notifications2.default)({
                         title: unconfirmed.length > 1 ? `${unconfirmed.length} transactions received` : 'Transaction received',
-                        body: `${getTotalAmount({asset,txs:unconfirmed})} was received`,
-                        icon
+                        body: `${getTotalAmount({asset,txs:unconfirmed})} was received`
                     });
                 }
             },
-            TX_RECEIVE_CONFIRMED(_ref4) {
+            TX_RECEIVE_CONFIRMED(_ref3) {
                 let {
                     asset,
                     txs
-                } = _ref4;
+                } = _ref3;
                 (0, _notifications2.default)({
                     title: txs.length > 1 ? `${txs.length} transactions confirmed` : `Transaction confirmed`,
-                    body: `${getTotalAmount({asset,txs})} was confirmed`,
-                    icon: getIcon({
-                        asset
-                    })
+                    body: `${getTotalAmount({asset,txs})} was confirmed`
                 });
             }
         };
-        exports.default = (_ref5) => {
+        exports.default = (_ref4) => {
             let {
                 getState
-            } = _ref5;
+            } = _ref4;
             return next => action => {
                 const notification = notifications[action.type];
                 const isValidEvent = action.payload && action.payload.asset && action.payload.txs;
@@ -23970,19 +25798,19 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {
-        "111": 111,
-        "222": 222,
-        "297": 297,
+        "117": 117,
+        "238": 238,
+        "317": 317,
         "undefined": undefined
     }],
-    276: [function(require, module, exports) {
+    294: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _static = require(320);
-        var _audio = require(201);
-        var _soundfx = require(318);
+        var _static = require(341);
+        var _audio = require(218);
+        var _soundfx = require(339);
         exports.default = (_ref) => {
             let {
                 dispatch,
@@ -23999,29 +25827,29 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {
-        "201": 201,
-        "318": 318,
-        "320": 320
+        "218": 218,
+        "339": 339,
+        "341": 341
     }],
-    277: [function(require, module, exports) {
+    295: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.initialState = undefined;
         var _redux = require('redux');
-        var _appState = require(157);
+        var _appState = require(169);
         var _appState2 = _interopRequireDefault(_appState);
-        var _asyncGenerator = require(273);
+        var _asyncGenerator = require(291);
         var _asyncGenerator2 = _interopRequireDefault(_asyncGenerator);
-        var _actionHooks = require(272);
-        var _logger = require(274);
+        var _actionHooks = require(290);
+        var _logger = require(292);
         var _logger2 = _interopRequireDefault(_logger);
-        var _notifications = require(275);
+        var _notifications = require(293);
         var _notifications2 = _interopRequireDefault(_notifications);
-        var _soundfx = require(276);
+        var _soundfx = require(294);
         var _soundfx2 = _interopRequireDefault(_soundfx);
-        var _soundfx3 = require(270);
+        var _soundfx3 = require(288);
         var _soundfx4 = _interopRequireDefault(_soundfx3);
         var _reduxThunk = require('redux-thunk');
         var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
@@ -24037,17 +25865,17 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = (0, _redux.createStore)(_appState2.default, initialState, (0, _redux.compose)((0, _redux.applyMiddleware)(_asyncGenerator2.default, _reduxThunk2.default, _logger2.default, _notifications2.default, _soundfx2.default, (0, _actionHooks.createActionHookMiddleware)(_hooks2.default)), (0, _soundfx4.default)()));
 
     }, {
-        "157": 157,
-        "270": 270,
-        "272": 272,
-        "273": 273,
-        "274": 274,
-        "275": 275,
-        "276": 276,
+        "169": 169,
         "28": 28,
+        "288": 288,
+        "290": 290,
+        "291": 291,
+        "292": 292,
+        "293": 293,
+        "294": 294,
         "undefined": undefined
     }],
-    278: [function(require, module, exports) {
+    296: [function(require, module, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -24085,7 +25913,127 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {}],
-    279: [function(require, module, exports) {
+    297: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.default = function(assetName) {
+            return _logos2.default[assetName];
+        };
+        var _logos = require(298);
+        var _logos2 = _interopRequireDefault(_logos);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+
+    }, {
+        "298": 298
+    }],
+    298: [function(require, module, exports) {
+        module.exports = {
+            "zerox": "img/logo-zerox@2x.png",
+            "adtoken": "svg/logos/adtoken.svg",
+            "aeron": "svg/logos/aeron.svg",
+            "aeternity": "svg/logos/aeternity.svg",
+            "aion": "svg/logos/aion.svg",
+            "airswap": "svg/logos/airswap.svg",
+            "amber": "svg/logos/amber.svg",
+            "appcoins": "svg/logos/appcoins.svg",
+            "aragon": "img/logo-aragon@2x.png",
+            "augur": "img/logo-augur@2x.png",
+            "bancor": "svg/logos/bancor.svg",
+            "bat": "img/logo-bat@2x.png",
+            "binance": "svg/logos/binance.svg",
+            "bitcoin": "svg/logos/bitcoin.svg",
+            "bcash": "img/logo-bcash@2x.png",
+            "bgold": "svg/logos/bgold.svg",
+            "bread": "svg/logos/bread.svg",
+            "chainlink": "svg/logos/chainlink.svg",
+            "cindicator": "svg/logos/cindicator.svg",
+            "civic": "img/logo-civic@2x.png",
+            "dai": "svg/logos/dai.svg",
+            "dash": "svg/logos/dash.svg",
+            "decentraland": "svg/logos/decentraland.svg",
+            "decred": "svg/logos/decred.svg",
+            "dent": "svg/logos/dent.svg",
+            "dentacoin": "svg/logos/dentacoin.svg",
+            "digibyte": "svg/logos/digibyte.svg",
+            "digix": "img/logo-digix@2x.png",
+            "district0x": "svg/logos/district0x.svg",
+            "dragon": "svg/logos/dragon.svg",
+            "edgeless": "img/logo-edgeless@2x.png",
+            "eos": "img/logo-eos@2x.png",
+            "ethereumclassic": "svg/logos/ethereumclassic.svg",
+            "ethereum": "img/logo-ethereum@2x.png",
+            "ethos": "svg/logos/ethos.svg",
+            "factom": "svg/logos/factom.svg",
+            "firstblood": "img/logo-firstblood@2x.png",
+            "funfair": "svg/logos/funfair.svg",
+            "genesisvision": "svg/logos/genesisvision.svg",
+            "gnosis": "img/logo-gnosis@2x.png",
+            "golem": "img/logo-golem@2x.png",
+            "icon": "svg/logos/icon.svg",
+            "iconomi": "svg/logos/iconomi.svg",
+            "iexec": "img/logo-iexec@2x.png",
+            "kin": "svg/logos/kin.svg",
+            "kucoin": "svg/logos/kucoin.svg",
+            "kyber": "svg/logos/kyber.svg",
+            "litecoin": "svg/logos/litecoin.svg",
+            "loopring": "svg/logos/loopring.svg",
+            "lunyr": "svg/logos/lunyr.svg",
+            "maker": "svg/logos/maker.svg",
+            "matchpool": "img/logo-matchpool@2x.png",
+            "medishares": "svg/logos/medishares.svg",
+            "melonport": "img/logo-melonport@2x.png",
+            "metal": "img/logo-metal@2x.png",
+            "monaco": "svg/logos/monaco.svg",
+            "monero": "img/logo-monero@2x.png",
+            "numeraire": "img/logo-numeraire@2x.png",
+            "omisego": "img/logo-omisego@2x.png",
+            "pillar": "svg/logos/pillar.svg",
+            "poet": "svg/logos/poet.svg",
+            "polymath": "svg/logos/polymath.svg",
+            "populous": "svg/logos/populous.svg",
+            "powerledger": "svg/logos/powerledger.svg",
+            "qash": "svg/logos/qash.svg",
+            "qtum": "img/logo-qtum@2x.png",
+            "qtumignition": "img/logo-qtumignition@2x.png",
+            "quantstamp": "svg/logos/quantstamp.svg",
+            "raiden": "svg/logos/raiden.svg",
+            "rchain": "svg/logos/rchain.svg",
+            "request": "svg/logos/request.svg",
+            "revain": "svg/logos/revain.svg",
+            "ripio": "svg/logos/ripio.svg",
+            "ripple": "img/logo-ripple@2x.png",
+            "rivetz": "svg/logos/rivetz.svg",
+            "salt": "img/logo-salt@2x.png",
+            "santiment": "svg/logos/santiment.svg",
+            "singulardtv": "img/logo-singulardtv@2x.png",
+            "status": "img/logo-status@2x.png",
+            "storj": "svg/logos/storj.svg",
+            "storm": "svg/logos/storm.svg",
+            "substratum": "svg/logos/substratum.svg",
+            "taas": "svg/logos/taas.svg",
+            "tenx": "svg/logos/tenx.svg",
+            "tether": "img/logo-tether@2x.png",
+            "timenewbank": "svg/logos/timenewbank.svg",
+            "tron": "svg/logos/tron.svg",
+            "vechain": "svg/logos/vechain.svg",
+            "veritaseum": "svg/logos/veritaseum.svg",
+            "vertcoin": "img/logo-vertcoin@2x.png",
+            "viberate": "svg/logos/viberate.svg",
+            "walton": "svg/logos/walton.svg",
+            "wax": "svg/logos/wax.svg",
+            "wetrust": "img/logo-wetrust@2x.png",
+            "wings": "img/logo-wings@2x.png",
+            "zcash": "img/logo-zcash@2x.png"
+        }
+    }, {}],
+    299: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -24334,7 +26282,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    280: [function(require, module, exports) {
+    300: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -24355,6 +26303,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 this.url = url;
             }
             connect(options) {
+                options = Object.assign({
+                    transports: ['websocket']
+                }, options);
                 const socket = this.socket = (0, _socket2.default)(this.url, options);
                 socket.on('connect', () => {
                     socket.emit('subscribe', 'inv');
@@ -24374,7 +26325,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    281: [function(require, module, exports) {
+    301: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -24403,7 +26354,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    282: [function(require, module, exports) {
+    302: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -24434,7 +26385,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         runIsOnlineCheck();
 
     }, {}],
-    283: [function(require, module, exports) {
+    303: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -24443,16 +26394,16 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.createBaseLogger = createBaseLogger;
         var _cfs = require('cfs');
         var _cfs2 = _interopRequireDefault(_cfs);
-        var _env = require(230);
+        var _env = require(246);
         var _fastJsonParse = require('fast-json-parse');
         var _fastJsonParse2 = _interopRequireDefault(_fastJsonParse);
         var _isElectronRenderer = require('is-electron-renderer');
         var _isElectronRenderer2 = _interopRequireDefault(_isElectronRenderer);
-        var _isDebug = require(281);
+        var _isDebug = require(301);
         var _isDebug2 = _interopRequireDefault(_isDebug);
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
-        var _appConfig = require(84);
+        var _appConfig = require(85);
         var _pino = require('pino');
         var _pino2 = _interopRequireDefault(_pino);
         var _stackUtils = require('stack-utils');
@@ -24623,20 +26574,20 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "230": 230,
-        "281": 281,
-        "84": 84,
+        "246": 246,
+        "301": 301,
+        "85": 85,
         "undefined": undefined
     }],
-    284: [function(require, module, exports) {
+    304: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.MARKET_PROVIDERS = undefined;
-        var _coinmarketcap = require(285);
+        var _coinmarketcap = require(305);
         var _coinmarketcap2 = _interopRequireDefault(_coinmarketcap);
-        var _cryptocompare = require(286);
+        var _cryptocompare = require(306);
         var _cryptocompare2 = _interopRequireDefault(_cryptocompare);
 
         function _interopRequireDefault(obj) {
@@ -24685,10 +26636,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         })();
 
     }, {
-        "285": 285,
-        "286": 286
+        "305": 305,
+        "306": 306
     }],
-    285: [function(require, module, exports) {
+    305: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -24697,7 +26648,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var lodash = _interopRequireWildcard(_lodash);
         var _coinmarketcap = require('coinmarketcap');
         var coinmarketcap = _interopRequireWildcard(_coinmarketcap);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -24767,6 +26718,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 }, {});
                 prices.bcash = prices.bcashclaim = prices.bcash || prices.bcashclaim;
                 prices.bgold = prices.bgoldclaim = prices.bgold || prices.bgoldclaim;
+                prices.qtum = prices.qtumignition;
                 return prices;
             });
             return function(_x) {
@@ -24775,18 +26727,34 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         })();
 
     }, {
-        "194": 194,
+        "210": 210,
         "undefined": undefined
     }],
-    286: [function(require, module, exports) {
+    306: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
+        let fetchPrices = (() => {
+            var _ref2 = _asyncToGenerator(function*(fsyms, tsyms) {
+                const chunkLength = Math.floor(fsyms.length / 2);
+                const chunks = [fsyms.slice(0, chunkLength), fsyms.slice(chunkLength)];
+                return Promise.all(chunks.map(function(chunk) {
+                    return (0, _cryptocompare.priceMulti)(chunk, tsyms);
+                })).then(function(arr) {
+                    return arr.reduce(function(a, b) {
+                        return Object.assign({}, a, b);
+                    });
+                });
+            });
+            return function fetchPrices(_x2, _x3) {
+                return _ref2.apply(this, arguments);
+            };
+        })();
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
         var _cryptocompare = require('cryptocompare');
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -24837,10 +26805,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             };
         }
         const assetBySYM = lodash.keyBy(_assets2.default, 'displayUnit');
+        assetBySYM['RDN*'] = assetBySYM.RDN;
+        delete assetBySYM.RDN;
         const FSYMS = Object.keys(assetBySYM);
         exports.default = (() => {
             var _ref = _asyncToGenerator(function*(fiat) {
-                const data = yield(0, _cryptocompare.priceMulti)(FSYMS, ['USD', fiat]);
+                const data = yield fetchPrices(FSYMS, ['USD', fiat]);
                 const prices = Object.keys(data).reduce(function(obj, key) {
                     return Object.assign(obj, {
                         [assetBySYM[key].name]: {
@@ -24851,6 +26821,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 }, {});
                 prices.bcash = prices.bcashclaim;
                 prices.bgold = prices.bgoldclaim = prices.bgold || prices.bgoldclaim;
+                prices.qtum = prices.qtumignition;
                 return prices;
             });
             return function(_x) {
@@ -24859,10 +26830,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         })();
 
     }, {
-        "194": 194,
+        "210": 210,
         "undefined": undefined
     }],
-    287: [function(require, module, exports) {
+    307: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -24889,19 +26860,19 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    288: [function(require, module, exports) {
+    308: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _location = require(289);
+        var _location = require(309);
         Object.defineProperty(exports, 'getWalletPath', {
             enumerable: true,
             get: function() {
                 return _location.getWalletPath;
             }
         });
-        var _wallet = require(291);
+        var _wallet = require(311);
         Object.defineProperty(exports, 'ensureWallet', {
             enumerable: true,
             get: function() {
@@ -24920,7 +26891,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 return _wallet.startRPC;
             }
         });
-        var _rpc = require(290);
+        var _rpc = require(310);
         Object.defineProperty(exports, 'walletRPC', {
             enumerable: true,
             get: function() {
@@ -24929,11 +26900,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         });
 
     }, {
-        "289": 289,
-        "290": 290,
-        "291": 291
+        "309": 309,
+        "310": 310,
+        "311": 311
     }],
-    289: [function(require, module, exports) {
+    309: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -24983,7 +26954,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _fs2 = _interopRequireDefault(_fs);
         var _fsExtra = require('fs-extra');
         var _fsExtra2 = _interopRequireDefault(_fsExtra);
-        var _env = require(230);
+        var _env = require(246);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -25038,10 +27009,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "230": 230,
+        "246": 246,
         "undefined": undefined
     }],
-    290: [function(require, module, exports) {
+    310: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25100,7 +27071,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    291: [function(require, module, exports) {
+    311: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25191,10 +27162,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _events = require('events');
         var _suppose = require('suppose');
         var _suppose2 = _interopRequireDefault(_suppose);
-        var _monerojsUtil = require(295);
+        var _monerojsUtil = require(315);
         var moneroUtil = _interopRequireWildcard(_monerojsUtil);
-        var _location = require(289);
-        var _rpc = require(290);
+        var _location = require(309);
+        var _rpc = require(310);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -25350,12 +27321,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "289": 289,
-        "290": 290,
-        "295": 295,
+        "309": 309,
+        "310": 310,
+        "315": 315,
         "undefined": undefined
     }],
-    292: [function(require, module, exports) {
+    312: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25364,9 +27335,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.isValid = isValid;
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _bs = require(293);
+        var _bs = require(313);
         var bs58 = _interopRequireWildcard(_bs);
-        var _crypto = require(294);
+        var _crypto = require(314);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -25410,11 +27381,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "293": 293,
-        "294": 294,
+        "313": 313,
+        "314": 314,
         "undefined": undefined
     }],
-    293: [function(require, module, exports) {
+    313: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25455,7 +27426,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    294: [function(require, module, exports) {
+    314: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25528,17 +27499,17 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    295: [function(require, module, exports) {
+    315: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.crypto = exports.bs58 = exports.address = undefined;
-        var _address = require(292);
+        var _address = require(312);
         var address = _interopRequireWildcard(_address);
-        var _bs = require(293);
+        var _bs = require(313);
         var bs58 = _interopRequireWildcard(_bs);
-        var _crypto = require(294);
+        var _crypto = require(314);
         var crypto = _interopRequireWildcard(_crypto);
 
         function _interopRequireWildcard(obj) {
@@ -25560,11 +27531,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.crypto = crypto;
 
     }, {
-        "292": 292,
-        "293": 293,
-        "294": 294
+        "312": 312,
+        "313": 313,
+        "314": 314
     }],
-    296: [function(require, module, exports) {
+    316: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25577,7 +27548,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {}],
-    297: [function(require, module, exports) {
+    317: [function(require, module, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25595,7 +27566,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {}],
-    298: [function(require, module, exports) {
+    318: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25712,7 +27683,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    299: [function(require, module, exports) {
+    319: [function(require, module, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25730,7 +27701,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {}],
-    300: [function(require, module, exports) {
+    320: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25902,7 +27873,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    301: [function(require, module, exports) {
+    321: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25941,22 +27912,22 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    302: [function(require, module, exports) {
+    322: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.isNumberUnitOrUndefined = exports.isNumberUnit = undefined;
-        var _aureus = require(203);
+        var _aureus = require(220);
         const isNumberUnit = exports.isNumberUnit = (props, propName) => (0, _aureus.isNumberUnit)(props[propName]) ? null : new Error(`${propName} must be a NumberUnit.`);
         const isNumberUnitOrUndefined = exports.isNumberUnitOrUndefined = (props, propName) => {
             return (0, _aureus.isNumberUnit)(props[propName]) ? null : typeof props[propName] === 'undefined' ? null : new Error(`${propName} must be a NumberUnit or undefined.`);
         };
 
     }, {
-        "203": 203
+        "220": 220
     }],
-    303: [function(require, module, exports) {
+    323: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -25964,7 +27935,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = createAction;
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _util = require(278);
+        var _util = require(296);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -26040,10 +28011,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "278": 278,
+        "296": 296,
         "undefined": undefined
     }],
-    304: [function(require, module, exports) {
+    324: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26078,7 +28049,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {}],
-    305: [function(require, module, exports) {
+    325: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26200,8 +28171,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _makeConcurrent2 = _interopRequireDefault(_makeConcurrent);
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _tx = require(309);
-        var _assets = require(194);
+        var _tx = require(329);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
         var _fetchival = require('fetchival');
         var _fetchival2 = _interopRequireDefault(_fetchival);
@@ -26270,11 +28241,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         });
 
     }, {
-        "194": 194,
-        "309": 309,
+        "210": 210,
+        "329": 329,
         "undefined": undefined
     }],
-    306: [function(require, module, exports) {
+    326: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26282,7 +28253,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.derive = derive;
         var _rippleAddressCodec = require('ripple-address-codec');
         var _rippleAddressCodec2 = _interopRequireDefault(_rippleAddressCodec);
-        var _crypto = require(307);
+        var _crypto = require(327);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -26295,10 +28266,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "307": 307,
+        "327": 327,
         "undefined": undefined
     }],
-    307: [function(require, module, exports) {
+    327: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26333,7 +28304,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    308: [function(require, module, exports) {
+    328: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26346,7 +28317,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _elliptic2 = _interopRequireDefault(_elliptic);
         var _bn = require('bn.js');
         var _bn2 = _interopRequireDefault(_bn);
-        var _crypto = require(307);
+        var _crypto = require(327);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -26412,10 +28383,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "307": 307,
+        "327": 327,
         "undefined": undefined
     }],
-    309: [function(require, module, exports) {
+    329: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26426,7 +28397,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _bn2 = _interopRequireDefault(_bn);
         var _rippleAddressCodec = require('ripple-address-codec');
         var _rippleAddressCodec2 = _interopRequireDefault(_rippleAddressCodec);
-        var _crypto = require(307);
+        var _crypto = require(327);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -26489,10 +28460,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "307": 307,
+        "327": 327,
         "undefined": undefined
     }],
-    310: [function(require, module, exports) {
+    330: [function(require, module, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26504,7 +28475,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {}],
-    311: [function(require, module, exports) {
+    331: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26513,19 +28484,21 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         const name = exports.name = 'assets';
 
     }, {}],
-    312: [function(require, module, exports) {
+    332: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _appConfig = require(84);
-        var _assets = require(311);
+        var _appConfig = require(85);
+        var _assets = require(331);
         var assets = _interopRequireWildcard(_assets);
-        var _localization = require(313);
+        var _localization = require(333);
         var localization = _interopRequireWildcard(_localization);
-        var _skins = require(315);
+        var _portfolio = require(334);
+        var portfolio = _interopRequireWildcard(_portfolio);
+        var _skins = require(336);
         var skins = _interopRequireWildcard(_skins);
-        var _security = require(314);
+        var _security = require(335);
         var security = _interopRequireWildcard(_security);
 
         function _interopRequireWildcard(obj) {
@@ -26545,19 +28518,21 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         const settings = {
             assets,
             localization,
+            portfolio,
             skins
         };
         if (_appConfig.ENV_DEV) settings.security = security;
         exports.default = settings;
 
     }, {
-        "311": 311,
-        "313": 313,
-        "314": 314,
-        "315": 315,
-        "84": 84
+        "331": 331,
+        "333": 333,
+        "334": 334,
+        "335": 335,
+        "336": 336,
+        "85": 85
     }],
-    313: [function(require, module, exports) {
+    333: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26566,7 +28541,16 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         const name = exports.name = 'localization';
 
     }, {}],
-    314: [function(require, module, exports) {
+    334: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        const properName = exports.properName = 'Portfolio';
+        const name = exports.name = 'portfolio';
+
+    }, {}],
+    335: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26575,7 +28559,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         const name = exports.name = 'security';
 
     }, {}],
-    315: [function(require, module, exports) {
+    336: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26584,7 +28568,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         const name = exports.name = 'skins';
 
     }, {}],
-    316: [function(require, module, exports) {
+    337: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26621,14 +28605,14 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    317: [function(require, module, exports) {
+    338: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _shapeshift2 = require('shapeshift.io');
         var _shapeshift3 = _interopRequireDefault(_shapeshift2);
-        var _http = require(316);
+        var _http = require(337);
         var _http2 = _interopRequireDefault(_http);
 
         function _interopRequireDefault(obj) {
@@ -26648,16 +28632,16 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = shapeshift;
 
     }, {
-        "316": 316,
+        "337": 337,
         "undefined": undefined
     }],
-    318: [function(require, module, exports) {
+    339: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.stateTransitions = exports.actions = undefined;
-        var _steps = require(122);
+        var _steps = require(131);
         var _steps2 = _interopRequireDefault(_steps);
 
         function _interopRequireDefault(obj) {
@@ -26674,9 +28658,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         ];
 
     }, {
-        "122": 122
+        "131": 131
     }],
-    319: [function(require, module, exports) {
+    340: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26689,7 +28673,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {}],
-    320: [function(require, module, exports) {
+    341: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26698,7 +28682,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.getAudioPaths = getAudioPaths;
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
-        var _audio = require(319);
+        var _audio = require(340);
         var _audio2 = _interopRequireDefault(_audio);
 
         function _interopRequireDefault(obj) {
@@ -26727,10 +28711,50 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "319": 319,
+        "340": 340,
         "undefined": undefined
     }],
-    321: [function(require, module, exports) {
+    342: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.warn = exports.success = exports.error = exports.prompt = exports.confirm = undefined;
+        var _swal = require(343);
+        var _swal2 = _interopRequireDefault(_swal);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        const confirm = exports.confirm = createSwalMethodAsync('_confirm');
+        const prompt = exports.prompt = createSwalMethodAsync('prompt');
+        const error = exports.error = createSwalMethodAsync('error');
+        const success = exports.success = createSwalMethodAsync('success');
+        const warn = exports.warn = createSwalMethodAsync('warn');
+
+        function createSwalMethodAsync(name) {
+            return options => {
+                return new Promise((resolve, reject) => {
+                    window.requestIdleCallback(() => {
+                        _swal2.default[name](options, function() {
+                            for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                                args[_key] = arguments[_key];
+                            }
+                            window.requestIdleCallback(() => {
+                                resolve(...args);
+                            });
+                        });
+                    });
+                });
+            };
+        }
+
+    }, {
+        "343": 343
+    }],
+    343: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26759,6 +28783,17 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 customClass: 'sweet-alert-exodus',
                 animation: false
             }, args), function() {
+                return callback.apply(this, arguments);
+            });
+        };
+        swal._confirm = function confirm(args, callback) {
+            (0, _sweetalert2.default)(Object.assign({
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#7ED321',
+                customClass: 'sweet-alert-exodus',
+                animation: false
+            }, args), function(val) {
                 return callback.apply(this, arguments);
             });
         };
@@ -26813,7 +28848,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    322: [function(require, module, exports) {
+    344: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26828,9 +28863,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 publicKeys: (0, _publicKeys2.default)(publicKeyEncode)
             };
         };
-        var _pairingData = require(323);
+        var _pairingData = require(345);
         var pairingData = _interopRequireWildcard(_pairingData);
-        var _publicKeys = require(324);
+        var _publicKeys = require(346);
         var _publicKeys2 = _interopRequireDefault(_publicKeys);
 
         function _interopRequireDefault(obj) {
@@ -26855,10 +28890,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "323": 323,
-        "324": 324
+        "345": 345,
+        "346": 346
     }],
-    323: [function(require, module, exports) {
+    345: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26919,7 +28954,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    324: [function(require, module, exports) {
+    346: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26958,12 +28993,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    325: [function(require, module, exports) {
+    347: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _alice = require(322);
+        var _alice = require(344);
         Object.defineProperty(exports, 'alice', {
             enumerable: true,
             get: function() {
@@ -26978,9 +29013,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "322": 322
+        "344": 344
     }],
-    326: [function(require, module, exports) {
+    348: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -26996,9 +29031,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 publicKeys: (0, _publicKeys2.default)(network)
             };
         };
-        var _pairingData = require(327);
+        var _pairingData = require(349);
         var pairingData = _interopRequireWildcard(_pairingData);
-        var _publicKeys = require(328);
+        var _publicKeys = require(350);
         var _publicKeys2 = _interopRequireDefault(_publicKeys);
 
         function _interopRequireDefault(obj) {
@@ -27023,10 +29058,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "327": 327,
-        "328": 328
+        "349": 349,
+        "350": 350
     }],
-    327: [function(require, module, exports) {
+    349: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -27090,7 +29125,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    328: [function(require, module, exports) {
+    350: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -27128,13 +29163,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    329: [function(require, module, exports) {
-        arguments[4][325][0].apply(exports, arguments)
+    351: [function(require, module, exports) {
+        arguments[4][347][0].apply(exports, arguments)
     }, {
-        "325": 325,
-        "326": 326
+        "347": 347,
+        "348": 348
     }],
-    330: [function(require, module, exports) {
+    352: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -27142,7 +29177,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.isECDSAThreshold = isECDSAThreshold;
         var _lodash = require('lodash');
         var _lodash2 = _interopRequireDefault(_lodash);
-        var _withTokens = require(331);
+        var _withTokens = require(353);
         var _withTokens2 = _interopRequireDefault(_withTokens);
 
         function _interopRequireDefault(obj) {
@@ -27156,15 +29191,15 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "331": 331,
+        "353": 353,
         "undefined": undefined
     }],
-    331: [function(require, module, exports) {
+    353: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -27186,14 +29221,14 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = filtered;
 
     }, {
-        "194": 194
+        "210": 210
     }],
-    332: [function(require, module, exports) {
+    354: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _withTokens = require(331);
+        var _withTokens = require(353);
         var _withTokens2 = _interopRequireDefault(_withTokens);
 
         function _interopRequireDefault(obj) {
@@ -27210,9 +29245,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = filtered;
 
     }, {
-        "331": 331
+        "353": 353
     }],
-    333: [function(require, module, exports) {
+    355: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -27235,7 +29270,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _delay2 = _interopRequireDefault(_delay);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _twoOfTwo = require(71);
+        var _twoOfTwo = require(72);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -27287,20 +29322,20 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "71": 71,
+        "72": 72,
         "undefined": undefined
     }],
-    334: [function(require, module, exports) {
+    356: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.QR = exports.pairingData = exports.connection = undefined;
-        var _connection = require(333);
+        var _connection = require(355);
         var connection = _interopRequireWildcard(_connection);
-        var _pairingData = require(335);
+        var _pairingData = require(357);
         var pairingData = _interopRequireWildcard(_pairingData);
-        var _qr = require(337);
+        var _qr = require(359);
         var QR = _interopRequireWildcard(_qr);
 
         function _interopRequireWildcard(obj) {
@@ -27322,11 +29357,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.QR = QR;
 
     }, {
-        "333": 333,
-        "335": 335,
-        "337": 337
+        "355": 355,
+        "357": 357,
+        "359": 359
     }],
-    335: [function(require, module, exports) {
+    357: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -27391,14 +29426,14 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             };
         })();
         exports.validate = validate;
-        var _withoutTokens = require(332);
+        var _withoutTokens = require(354);
         var _withoutTokens2 = _interopRequireDefault(_withoutTokens);
-        var _typeCheckers = require(330);
+        var _typeCheckers = require(352);
         var _hdkey = require('hdkey');
         var _hdkey2 = _interopRequireDefault(_hdkey);
-        var _instanceShim = require(174);
+        var _instanceShim = require(186);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _keys = require(175);
+        var _keys = require(187);
         var walletKeys = _interopRequireWildcard(_keys);
 
         function _interopRequireWildcard(obj) {
@@ -27463,13 +29498,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "174": 174,
-        "175": 175,
-        "330": 330,
-        "332": 332,
+        "186": 186,
+        "187": 187,
+        "352": 352,
+        "354": 354,
         "undefined": undefined
     }],
-    336: [function(require, module, exports) {
+    358: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -27498,7 +29533,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    337: [function(require, module, exports) {
+    359: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -27507,8 +29542,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.parse = parse;
         var _crypto = require('crypto');
         var _crypto2 = _interopRequireDefault(_crypto);
-        var _connection = require(333);
-        var _checksum = require(336);
+        var _connection = require(355);
+        var _checksum = require(358);
         var checksum = _interopRequireWildcard(_checksum);
 
         function _interopRequireWildcard(obj) {
@@ -27564,11 +29599,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "333": 333,
-        "336": 336,
+        "355": 355,
+        "358": 358,
         "undefined": undefined
     }],
-    338: [function(require, module, exports) {
+    360: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -27583,9 +29618,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _propTypes2 = _interopRequireDefault(_propTypes);
         var _reactSelect = require('react-select');
         var _reactSelect2 = _interopRequireDefault(_reactSelect);
-        var _value = require(340);
+        var _value = require(362);
         var _value2 = _interopRequireDefault(_value);
-        var _option = require(339);
+        var _option = require(361);
         var _option2 = _interopRequireDefault(_option);
 
         function _interopRequireDefault(obj) {
@@ -27662,11 +29697,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         const optionFromName = (name, options) => options.find(option => option.name === name);
 
     }, {
-        "339": 339,
-        "340": 340,
+        "361": 361,
+        "362": 362,
         "undefined": undefined
     }],
-    339: [function(require, module, exports) {
+    361: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -27708,7 +29743,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 const {
                     name,
                     properName,
-                    content
+                    content,
+                    disabledDetails
                 } = this.props.option;
                 const {
                     isDisabled
@@ -27728,7 +29764,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     className: 'exchange-dropdown-title'
                 }, properName), _react2.default.createElement('div', {
                     className: 'exchange-dropdown-description'
-                }, isDisabled ? '(temporarily unavailable)' : _react2.default.createElement('span', null, content))));
+                }, isDisabled ? disabledDetails || 'Temporarily unavailable' : _react2.default.createElement('span', null, content))));
             }
         }, _class.propTypes = {
             option: _propTypes2.default.object,
@@ -27744,7 +29780,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    340: [function(require, module, exports) {
+    362: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -27767,6 +29803,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     name,
                     properName,
                     disabled: isDisabled,
+                    disabledDetails,
                     content
                 } = this.props.value;
                 return _react2.default.createElement('div', {
@@ -27779,7 +29816,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     className: 'exchange-dropdown-title'
                 }, properName), _react2.default.createElement('div', {
                     className: 'exchange-dropdown-description'
-                }, isDisabled ? '(temporarily unavailable)' : _react2.default.createElement('span', null, content))), _react2.default.createElement('div', {
+                }, isDisabled ? disabledDetails || 'Temporarily unavailable' : _react2.default.createElement('span', null, content))), _react2.default.createElement('div', {
                     className: 'exchange-dropdown-arrow'
                 }, _react2.default.createElement('svg', {
                     className: `exodus-color-fill-svg-${name}`,
@@ -27800,7 +29837,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    341: [function(require, module, exports) {
+    363: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -27870,7 +29907,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    342: [function(require, module, exports) {
+    364: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -27885,6 +29922,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _propTypes2 = _interopRequireDefault(_propTypes);
         var _reactDom = require('react-dom');
         var _reactDom2 = _interopRequireDefault(_reactDom);
+        var _currencyFormatters = require(238);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -27908,18 +29946,38 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
         let PortfolioChart = (_temp = _class = class PortfolioChart extends _react2.default.Component {
             componentDidMount() {
+                const {
+                    total
+                } = this.props;
                 let thisEl = _reactDom2.default.findDOMNode(this);
                 let width = thisEl.offsetWidth;
                 let height = thisEl.offsetHeight;
                 let radius = Math.min(width, height) / 2;
+                const fiatStr = total => {
+                    const obj = (0, _currencyFormatters.formatObj)(total);
+                    return `${obj.symbol}${obj.whole}${obj.decimalSep}${obj.fraction}`;
+                };
                 let pie = d3.pie().value(d => d.fiat).sort(null);
                 let arc = d3.arc().innerRadius(radius - 60).outerRadius(radius);
                 let arc2 = d3.arc().innerRadius(radius - 60).outerRadius(radius - 45);
+                let arcOver = d3.arc().innerRadius(radius - 70).outerRadius(radius - 45);
                 let svg = d3.select('.portfolio-pie-chart').attr('viewBox', '0 0 ' + width + ' ' + height).append('g').attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
-                const g = svg.selectAll('g').data(pie(this.props.data)).enter().append('g');
+                const g = svg.selectAll('g').data(pie(this.props.data)).enter().append('g').style('cursor', 'pointer').on('click', d => {
+                    global.handleClickPortfolioAsset(d.data.asset.name);
+                }).on('mouseenter', function(d, props) {
+                    svg.selectAll('text').remove();
+                    d3.select(this).select('path.inner').transition().duration(250).attr('d', arcOver);
+                    svg.append('text').attr('x', width / radius).attr('y', height / radius).attr('text-anchor', 'middle').attr('fill', 'white').style('font-size', '2.25em').text(fiatStr(d.data.fiat));
+                    svg.append('text').attr('x', width / radius).attr('y', height / radius).attr('dy', '1.25em').attr('text-anchor', 'middle').attr('fill', 'white').style('opacity', '0.4').style('font-size', '1.3em').text(d.data.asset.properName);
+                }).on('mouseleave', function(d) {
+                    svg.selectAll('text').remove();
+                    d3.select(this).select('path.inner').transition().duration(250).attr('d', arc2);
+                    svg.append('text').attr('x', width / radius).attr('y', height / radius).attr('text-anchor', 'middle').attr('fill', 'white').style('font-size', '2.25em').text(total);
+                    svg.append('text').attr('x', width / radius).attr('y', height / radius).attr('dy', '1.25em').attr('text-anchor', 'middle').attr('fill', 'white').style('opacity', '0.4').style('font-size', '1.3em').text('Total Value');
+                });
                 g.append('path').attr('d', arc).attr('class', 'outter').attr('fill', d => d3.rgb(d.data.color));
                 g.append('path').attr('d', arc2).attr('class', 'inner').attr('fill', d => d3.rgb(d.data.color).darker(0.5));
-                svg.append('text').attr('x', width / radius).attr('y', height / radius).attr('text-anchor', 'middle').attr('fill', 'white').style('font-size', '2.5em').text(this.props.total);
+                svg.append('text').attr('x', width / radius).attr('y', height / radius).attr('text-anchor', 'middle').attr('fill', 'white').style('font-size', '2.25em').text(this.props.total);
                 svg.append('text').attr('x', width / radius).attr('y', height / radius).attr('dy', '1.25em').attr('text-anchor', 'middle').attr('fill', 'white').style('opacity', '0.4').style('font-size', '1.3em').text('Total Value');
             }
             componentDidUpdate() {
@@ -27945,9 +30003,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = PortfolioChart;
 
     }, {
+        "238": 238,
         "undefined": undefined
     }],
-    343: [function(require, module, exports) {
+    365: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -27999,7 +30058,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    344: [function(require, module, exports) {
+    366: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -28263,7 +30322,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    345: [function(require, module, exports) {
+    367: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -28276,10 +30335,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _reactUtils = require(302);
-        var _units = require(221);
+        var _reactUtils = require(322);
+        var _units = require(237);
         var _units2 = _interopRequireDefault(_units);
-        var _currencyFormatters = require(222);
+        var _currencyFormatters = require(238);
         var _countup = require('countup.js');
         var _countup2 = _interopRequireDefault(_countup);
 
@@ -28358,12 +30417,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = CounterCurrencyText;
 
     }, {
-        "221": 221,
-        "222": 222,
-        "302": 302,
+        "237": 237,
+        "238": 238,
+        "322": 322,
         "undefined": undefined
     }],
-    346: [function(require, module, exports) {
+    368: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -28445,7 +30504,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     }, this.props.className),
                     onChange: this.handleChange,
                     value: this.state.value,
-                    ref: 'input'
+                    ref: 'input',
+                    disabled: this.props.disabled
                 });
             }
         }, _class.propTypes = {
@@ -28455,7 +30515,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             value: _propTypes2.default.string,
             id: _propTypes2.default.string,
             placeholder: _propTypes2.default.string,
-            tabIndex: _propTypes2.default.string
+            tabIndex: _propTypes2.default.string,
+            disabled: _propTypes2.default.bool
         }, _temp);
         exports.default = CurrencyInput;
 
@@ -28480,7 +30541,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    347: [function(require, module, exports) {
+    369: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -28541,61 +30602,61 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    348: [function(require, module, exports) {
+    370: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _accountSelect = require(338);
+        var _accountSelect = require(360);
         Object.defineProperty(exports, 'AccountSelect', {
             enumerable: true,
             get: function() {
                 return _interopRequireDefault(_accountSelect).default;
             }
         });
-        var _addressInput = require(341);
+        var _addressInput = require(363);
         Object.defineProperty(exports, 'AddressInput', {
             enumerable: true,
             get: function() {
                 return _interopRequireDefault(_addressInput).default;
             }
         });
-        var _currencyInput = require(346);
+        var _currencyInput = require(368);
         Object.defineProperty(exports, 'CurrencyInput', {
             enumerable: true,
             get: function() {
                 return _interopRequireDefault(_currencyInput).default;
             }
         });
-        var _dateTime = require(347);
+        var _dateTime = require(369);
         Object.defineProperty(exports, 'DateTime', {
             enumerable: true,
             get: function() {
                 return _interopRequireDefault(_dateTime).default;
             }
         });
-        var _nuCurrencyText = require(349);
+        var _nuCurrencyText = require(371);
         Object.defineProperty(exports, 'NUCurrencyText', {
             enumerable: true,
             get: function() {
                 return _interopRequireDefault(_nuCurrencyText).default;
             }
         });
-        var _percentageText = require(350);
+        var _percentageText = require(372);
         Object.defineProperty(exports, 'PercentageText', {
             enumerable: true,
             get: function() {
                 return _interopRequireDefault(_percentageText).default;
             }
         });
-        var _counterCurrencyText = require(345);
+        var _counterCurrencyText = require(367);
         Object.defineProperty(exports, 'CounterCurrencyText', {
             enumerable: true,
             get: function() {
                 return _interopRequireDefault(_counterCurrencyText).default;
             }
         });
-        var _collectionView = require(344);
+        var _collectionView = require(366);
         Object.defineProperty(exports, 'CollectionView', {
             enumerable: true,
             get: function() {
@@ -28610,16 +30671,16 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "338": 338,
-        "341": 341,
-        "344": 344,
-        "345": 345,
-        "346": 346,
-        "347": 347,
-        "349": 349,
-        "350": 350
+        "360": 360,
+        "363": 363,
+        "366": 366,
+        "367": 367,
+        "368": 368,
+        "369": 369,
+        "371": 371,
+        "372": 372
     }],
-    349: [function(require, module, exports) {
+    371: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -28642,10 +30703,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _reactUtils = require(302);
-        var _units = require(221);
+        var _reactUtils = require(322);
+        var _units = require(237);
         var _units2 = _interopRequireDefault(_units);
-        var _currencyFormatters = require(222);
+        var _currencyFormatters = require(238);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -28694,6 +30755,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 code: unit,
                 prefix: prefixStr
             } = (0, _currencyFormatters.formatObj)(amount, formatOpts);
+            if (typeof prefix === 'string') {
+                prefixStr = prefix;
+            }
             let decimalPart = '';
             if (fraction) decimalPart = decimalSep + fraction;
             return _react2.default.createElement('span', _extends({}, props, {
@@ -28719,12 +30783,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {
-        "221": 221,
-        "222": 222,
-        "302": 302,
+        "237": 237,
+        "238": 238,
+        "322": 322,
         "undefined": undefined
     }],
-    350: [function(require, module, exports) {
+    372: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -28791,26 +30855,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    351: [function(require, module, exports) {
-        'use strict';
-        Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        var _chalk = require('chalk');
-        var _chalk2 = _interopRequireDefault(_chalk);
-
-        function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : {
-                default: obj
-            };
-        }
-        if (process.type !== 'renderer') console.warn(_chalk2.default.bgBlack.yellow('Not in renderer as expected.'));
-        exports.default = window;
-
-    }, {
-        "undefined": undefined
-    }],
-    352: [function(require, module, exports) {
+    373: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -28825,13 +30870,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {}],
-    353: [function(require, module, exports) {
+    374: [function(require, module, exports) {
         'use strict';
         hookNodePath();
-        require(5);
+        require(4);
         require('core-js/fn/symbol');
         require('babel' + '-register')({
-            resolveModuleSource: require(354).resolve,
+            resolveModuleSource: require(375).resolve,
             only: ['./config.js', 'src/app/', 'scripts/', 'tasks/'],
             extensions: ['.js'],
             sourceMaps: 'both'
@@ -28868,11 +30913,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
 
     }, {
         "1": 1,
-        "354": 354,
-        "5": 5,
+        "375": 375,
+        "4": 4,
         "undefined": undefined
     }],
-    354: [function(require, module, exports) {
+    375: [function(require, module, exports) {
         'use strict';
         var babelResolve = require('babel-resolve');
         var resolver = babelResolve.create('#', './src/app/_local_modules');
@@ -28881,13 +30926,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    355: [function(require, module, exports) {
+    376: [function(require, module, exports) {
         'use strict';
         if ("production" === 'production') {
-            require(5);
+            require(4);
             require('core-js/fn/symbol');
         } else if ("production" === 'development') {
-            require(353);
+            require(374);
         } else {
             const {
                 app,
@@ -28898,31 +30943,31 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "353": 353,
-        "5": 5,
+        "374": 374,
+        "4": 4,
         "undefined": undefined
     }],
-    356: [function(require, module, exports) {
+    377: [function(require, module, exports) {
         'use strict';
         console.time('renderer-main-window');
         const start = new Date();
-        require(355);
+        require(376);
         const {
             remote
         } = require('electron');
-        require(203).strict = true;
-        require(377).renderApp();
+        require(220).strict = true;
+        require(398).renderApp();
         document.addEventListener('DOMContentLoaded', () => {
             console.log('EXOWIN-DCL: ' + (new Date() - start));
             window.requestAnimationFrame(bootstrap);
         });
 
         function bootstrap() {
-            require(358).bootstrapWallet().then(() => {
+            require(379).bootstrapWallet().then(() => {
                 require('electron').webFrame.setZoomLevelLimits(1, 1);
-                require(378);
+                require(399);
             }).catch(err => {
-                const swal = require(321).default;
+                const swal = require(343).default;
                 console.error(err);
                 setTimeout(() => {
                     if (err && err.message && err.message.includes('authenticate data')) {
@@ -28946,25 +30991,25 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "203": 203,
-        "321": 321,
-        "355": 355,
-        "358": 358,
-        "377": 377,
-        "378": 378,
+        "220": 220,
+        "343": 343,
+        "376": 376,
+        "379": 379,
+        "398": 398,
+        "399": 399,
         "undefined": undefined
     }],
-    357: [function(require, module, exports) {
+    378: [function(require, module, exports) {
         'use strict';
         var _babel = require(2);
         var _babel2 = _interopRequireDefault(_babel);
-        var _flux = require(271);
+        var _flux = require(289);
         var flux = _interopRequireWildcard(_flux);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _swal = require(321);
+        var _swal = require(343);
         var _swal2 = _interopRequireDefault(_swal);
-        var _exodus = require(264);
+        var _exodus = require(282);
         var _exodus2 = _interopRequireDefault(_exodus);
 
         function _interopRequireWildcard(obj) {
@@ -28998,30 +31043,28 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {
-        "194": 194,
         "2": 2,
-        "264": 264,
-        "271": 271,
-        "321": 321
+        "210": 210,
+        "282": 282,
+        "289": 289,
+        "343": 343
     }],
-    358: [function(require, module, exports) {
+    379: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.bootstrapWallet = undefined;
-        var _instanceShim = require(174);
+        var _instanceShim = require(186);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _walletShim = require(178);
-        var _logger = require(283);
+        var _walletShim = require(190);
+        var _logger = require(303);
         var _logger2 = _interopRequireDefault(_logger);
         var _electron = require('electron');
-        var _backupAuth = require(209);
-        var _backupAuth2 = _interopRequireDefault(_backupAuth);
-        var _client = require(228);
-        var _swal = require(321);
+        var _client = require(244);
+        var _swal = require(343);
         var _swal2 = _interopRequireDefault(_swal);
-        var _flux = require(271);
+        var _flux = require(289);
         var _reduxWatch = require('redux-watch');
         var _reduxWatch2 = _interopRequireDefault(_reduxWatch);
         var _minimist = require('minimist');
@@ -29030,6 +31073,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _ms2 = _interopRequireDefault(_ms);
         var _delay = require('delay');
         var _delay2 = _interopRequireDefault(_delay);
+        var _appConfig = require(85);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -29077,22 +31121,14 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             var _ref = _asyncToGenerator(function*() {
                 let walletHasLoaded = (() => {
                     var _ref2 = _asyncToGenerator(function*() {
-                        const auth = _backupAuth2.default.current;
-                        if (auth) {
-                            const backupAuthRemote = (0, _client.createClient)('backup-auth');
-                            backupAuthRemote.setCurrent(auth).then(function() {}).catch(function(err) {
-                                console.error('AUTH MIGRATION ERROR');
-                                console.error(err);
-                            });
-                        }
                         console.log('wallet loaded and set');
-                        yield require(359).run();
-                        _electron.ipcRenderer.on('wallet:refreshAll', function() {
-                            return refreshAll();
-                        });
-                        const cliArgs = (0, _minimist2.default)(_electron.remote.process.argv);
-                        if (cliArgs['restore-mnemonic']) {
-                            refreshAll(true);
+                        yield require(380).run();
+                        const action = yield walletController.getAction();
+                        switch (action) {
+                            case 'restored':
+                                return restoredFromPhrase();
+                            case 'refreshAll':
+                                return refreshAll();
                         }
                     });
                     return function walletHasLoaded() {
@@ -29120,10 +31156,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             return bootstrapWallet;
         })();
 
-        function refreshAll(isRestore) {
+        function refreshAll() {
+            const cliArgs = (0, _minimist2.default)(_electron.remote.process.argv);
             _swal2.default.warn({
-                title: isRestore ? 'Your Recovery Worked!' : 'Wallet file corruption detected!',
-                text: 'Exodus is now restoring your assets - this takes about 10 minutes. Please do not quit while the restore is in progress.',
+                title: cliArgs['restore-mnemonic'] ? 'Your Recovery Worked!' : 'Wallet file corruption detected!',
+                text: `${_appConfig.EXODUS_DISPLAY_NAME} is now restoring your assets - this takes about 10 minutes. Please do not quit while the restore is in progress.`,
                 showCancelButton: false,
                 closeOnConfirm: false,
                 showLoaderOnConfirm: true
@@ -29159,18 +31196,30 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             }));
         }
 
+        function restoredFromPhrase() {
+            _swal2.default.success({
+                title: 'Restore Complete',
+                text: `Your ${_appConfig.EXODUS_DISPLAY_NAME} wallet is restored. To protect your wallet, click Backup to set a new password.`,
+                showCancelButton: true,
+                cancelButtonText: 'Learn More'
+            }, function(isConfirm) {
+                if (isConfirm) return;
+                _electron.shell.openExternal('https://support.exodus.io/article/693-why-does-my-wallet-have-no-password-after-restoring');
+            });
+        }
+
     }, {
-        "174": 174,
-        "178": 178,
-        "209": 209,
-        "228": 228,
-        "271": 271,
-        "283": 283,
-        "321": 321,
-        "359": 359,
+        "186": 186,
+        "190": 190,
+        "244": 244,
+        "289": 289,
+        "303": 303,
+        "343": 343,
+        "380": 380,
+        "85": 85,
         "undefined": undefined
     }],
-    359: [function(require, module, exports) {
+    380: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -29184,7 +31233,6 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 console.log('(RENDERER) starting...');
                 logger.info('starting...');
                 yield _flux.actions.localStorage.load();
-                _flux.actions.backup.loadAuth();
                 _flux.actions.backup.loadStatus();
                 _flux.actions.monitors.status.start();
                 _flux.actions.monitors.remoteConfig.start();
@@ -29195,7 +31243,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 _flux.actions.monitors.marketws.start();
                 _flux.actions.marketHistory.loadAll();
                 for (const asset of Object.values(_assets2.default)) {
-                    if (!_flux.actions.monitors.fee[asset.name]) continue;
+                    if (!asset.available || !_flux.actions.monitors.fee[asset.name]) continue;
                     const timeout = lodash.random((0, _ms2.default)('3s'), (0, _ms2.default)('5s'));
                     window.requestIdleCallback(function() {
                         return _flux.actions.monitors.fee[asset.name].start();
@@ -29209,52 +31257,41 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     return _flux.actions.exchange.checkAssetsOnline();
                 }, 60 * 1000);
                 _flux.actions.exchange.startMonitorMarket();
-                const stopWatching = _flux.store.subscribe((0, _reduxWatch2.default)(_flux.store.getState, 'accounts')(function(accounts) {
-                    if (accounts.isActive || accounts.error) return;
-                    stopWatching();
-                    setImmediate(function() {
-                        Object.values(_assets2.default).forEach(function(coin, i) {
-                            if (coin.name === 'monero') return;
-                            window.requestIdleCallback(function() {
-                                return _flux.actions.txLog.load(coin);
-                            }, {
-                                timeout: 250 * (i + 1)
-                            });
-                        });
-                    });
-                    setTimeout(function() {
-                        _flux.actions.utxos.updateAllFromBlockchain();
-                    }, 10000);
-                    setTimeout(function() {
-                        _flux.actions.orders.load();
-                        window.requestIdleCallback(function() {
-                            _flux.actions.monitors.orders.shapeshift.start();
-                            _flux.actions.monitors.orders.evercoin.start();
-                        }, {
-                            timeout: (0, _ms2.default)('5s')
-                        });
-                    }, 10000);
-                    if (_assets2.default.monero.available) _flux.actions.moneroMM.login();
-                    setImmediate(function() {
-                        Object.values(_assets2.default).forEach(function(coin, i) {
-                            if (!coin.available) return;
-                            if (_flux.actions.networks.coins[coin.name]) window.requestIdleCallback(_flux.actions.networks.coins[coin.name].connect, {
-                                timeout: 250 * (i + 1)
-                            });
-                            if (_flux.actions.monitors.coins[coin.name]) window.requestIdleCallback(_flux.actions.monitors.coins[coin.name].start, {
-                                timeout: 450 * (i + 1)
-                            });
-                        });
-                    });
-                }));
-                _flux.actions.accounts.load();
-                _flux.actions.utxos.load();
-                _flux.actions.twoOfTwo.pair.load();
                 for (const coin of Object.values(_assets2.default)) {
                     if (coin.available && _flux.actions.accountStates[coin.name]) _flux.actions.accountStates[coin.name].load();
                 }
+                const txLogLoaded = Promise.all(Object.values(_assets2.default).map(function(asset, i) {
+                    if (asset.name === 'monero') return;
+                    return requestIdleCallback({
+                        timeout: 250 * (i + 1)
+                    }).then(_flux.actions.txLog.load(asset));
+                }));
+                yield Promise.all([txLogLoaded, _flux.actions.utxos.load(), _flux.actions.accounts.load()]);
+                if (_assets2.default.monero.available) _flux.actions.moneroMM.login();
+                _flux.actions.twoOfTwo.pair.load();
+                if (!(0, _addressRegistered2.default)(_flux.store.getState())) _flux.actions.eos.checkRegisteredAddress();
+                setImmediate(function() {
+                    Object.values(_assets2.default).forEach(function(coin, i) {
+                        if (!coin.available) return;
+                        if (_flux.actions.networks.coins[coin.name]) window.requestIdleCallback(_flux.actions.networks.coins[coin.name].connect, {
+                            timeout: 250 * (i + 1)
+                        });
+                        if (_flux.actions.monitors.coins[coin.name]) window.requestIdleCallback(_flux.actions.monitors.coins[coin.name].start, {
+                            timeout: 450 * (i + 1)
+                        });
+                    });
+                    _flux.actions.orders.load();
+                    window.requestIdleCallback(function() {
+                        _flux.actions.monitors.orders.shapeshift.start();
+                        _flux.actions.monitors.orders.evercoin.start();
+                        _flux.actions.monitors.orders.changelly.start();
+                    }, {
+                        timeout: (0, _ms2.default)('5s')
+                    });
+                    _flux.actions.utxos.updateAllFromBlockchain();
+                });
                 window.requestIdleCallback(function() {
-                    require(357);
+                    require(378);
                 }, {
                     timeout: 25000
                 });
@@ -29264,10 +31301,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 return _ref.apply(this, arguments);
             };
         })();
-        var _flux = require(271);
+        var _flux = require(289);
         var _electronIpcBroadcast = require('electron-ipc-broadcast');
         var _electronIpcBroadcast2 = _interopRequireDefault(_electronIpcBroadcast);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
         var _reduxWatch = require('redux-watch');
         var _reduxWatch2 = _interopRequireDefault(_reduxWatch);
@@ -29275,8 +31312,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _ms2 = _interopRequireDefault(_ms);
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _logger = require(283);
+        var _logger = require(303);
         var _logger2 = _interopRequireDefault(_logger);
+        var _addressRegistered = require(106);
+        var _addressRegistered2 = _interopRequireDefault(_addressRegistered);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -29326,15 +31365,17 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             };
         }
         const logger = (0, _logger2.default)('startup:run');
+        const requestIdleCallback = opts => new Promise(resolve => window.requestIdleCallback(resolve, opts));
 
     }, {
-        "194": 194,
-        "271": 271,
-        "283": 283,
-        "357": 357,
+        "106": 106,
+        "210": 210,
+        "289": 289,
+        "303": 303,
+        "378": 378,
         "undefined": undefined
     }],
-    360: [function(require, module, exports) {
+    381: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -29342,8 +31383,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _reactRedux = require('react-redux');
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
-        var _flux = require(271);
-        var _exodusWindow = require(374);
+        var _flux = require(289);
+        var _exodusWindow = require(395);
         var _exodusWindow2 = _interopRequireDefault(_exodusWindow);
 
         function _interopRequireDefault(obj) {
@@ -29361,11 +31402,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = App;
 
     }, {
-        "271": 271,
-        "374": 374,
+        "289": 289,
+        "395": 395,
         "undefined": undefined
     }],
-    361: [function(require, module, exports) {
+    382: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -29380,24 +31421,40 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _classnames = require('classnames');
         var _classnames2 = _interopRequireDefault(_classnames);
         var _lodash = require('lodash');
-        var _hasFunds = require(130);
-        var _hasFunds2 = _interopRequireDefault(_hasFunds);
-        var _loaded = require(102);
+        var _hasHistory = require(140);
+        var _hasHistory2 = _interopRequireDefault(_hasHistory);
+        var _loaded = require(108);
         var _loaded2 = _interopRequireDefault(_loaded);
-        var _instanceShim = require(174);
+        var _instanceShim = require(186);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
-        var _mnemonic = require(362);
+        var _keys = require(187);
+        var walletKeys = _interopRequireWildcard(_keys);
+        var _mnemonic = require(383);
         var _mnemonic2 = _interopRequireDefault(_mnemonic);
-        var _flux = require(271);
-        var _ui = require(348);
-        var _swal = require(321);
+        var _flux = require(289);
+        var _ui = require(370);
+        var _swal = require(343);
         var _swal2 = _interopRequireDefault(_swal);
         var _delay = require('delay');
         var _delay2 = _interopRequireDefault(_delay);
         var _moment = require('moment');
         var _moment2 = _interopRequireDefault(_moment);
-        var _electronExit = require(227);
-        var _client = require(228);
+        var _electronExit = require(243);
+
+        function _interopRequireWildcard(obj) {
+            if (obj && obj.__esModule) {
+                return obj;
+            } else {
+                var newObj = {};
+                if (obj != null) {
+                    for (var key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+                    }
+                }
+                newObj.default = obj;
+                return newObj;
+            }
+        }
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -29443,7 +31500,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
         let BackupnewView = (_dec = (0, _reactRedux.connect)(state => ({
             backup: state.backup,
-            hasFunds: (0, _hasFunds2.default)(state),
+            hasHistory: (0, _hasHistory2.default)(state),
             assetsLoaded: (0, _loaded2.default)(state)
         })), _dec(_class = (_temp = _class2 = class BackupnewView extends _react2.default.Component {
             constructor(props) {
@@ -29456,7 +31513,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     currentStep: 1,
                     email: '',
                     emailSuggestion: '',
-                    passphrasesMatch: false
+                    passphrasesMatch: false,
+                    forceHasBackup: false
                 };
                 this._handleEmailChange = (0, _lodash.debounce)(this._handleEmailChange, 100);
                 this.handlePassphrase1Change = this.handlePassphrase1Change.bind(this);
@@ -29535,29 +31593,30 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 window.print();
             }
             handleClickResetEmail() {
-                const text = 'For your security, when Exodus restarts, type your current password.<br/><br/>You will then be taken through the backup process to setup a new email and password.<br/><br/>Restarting Exodus may take a few moments.';
-                (0, _swal2.default)({
-                    title: 'Exodus Will Restart',
-                    text,
-                    html: true,
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#DD6B55',
-                    confirmButtonText: 'Yes, Restart',
-                    cancelButtonText: 'Cancel',
-                    closeOnConfirm: false,
-                    closeOnCancel: true,
-                    showLoaderOnConfirm: true
-                }, didConfirmYes => {
-                    if (!didConfirmYes) return;
-                    window.localStorage.removeItem('exodus:auth');
-                    const backupAuthRemote = (0, _client.createClient)('backup-auth');
-                    backupAuthRemote.clear();
-                    setTimeout(() => {
-                        require('electron').remote.app.relaunch();
-                        (0, _electronExit.quit)();
-                    }, 3500);
-                });
+                return _asyncToGenerator(function*() {
+                    const text = 'For your security, when Exodus restarts, type your current password.<br/><br/>You will then be taken through the backup process to setup a new email and password.<br/><br/>Restarting Exodus may take a few moments.';
+                    const confirmed = yield new Promise(function(resolve) {
+                        (0, _swal2.default)({
+                            title: 'Exodus Will Restart',
+                            text,
+                            html: true,
+                            type: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#DD6B55',
+                            confirmButtonText: 'Yes, Restart',
+                            cancelButtonText: 'Cancel',
+                            closeOnConfirm: false,
+                            closeOnCancel: true,
+                            showLoaderOnConfirm: true
+                        }, function(confirm) {
+                            resolve(confirm);
+                        });
+                    });
+                    if (!confirmed) return;
+                    yield _instanceShim2.default.current.deleteKeyData(walletKeys.backup());
+                    require('electron').remote.app.relaunch();
+                    (0, _electronExit.quit)();
+                })();
             }
             handleClickShowMnemonicPhrase() {
                 return _asyncToGenerator(function*() {
@@ -29579,14 +31638,22 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     yield(0, _delay2.default)(1000);
                     const ReactDOMServer = require('react-dom/server');
                     const mnemonic = yield _instanceShim2.default.current.getMnemonic();
-                    let html = ReactDOMServer.renderToStaticMarkup(_react2.default.createElement(_mnemonic2.default, {
-                        mnemonic: mnemonic
-                    }));
-                    (0, _swal2.default)({
-                        title: 'Your 12-Word Phrase',
-                        text: html,
-                        html: true
-                    });
+                    try {
+                        const html = ReactDOMServer.renderToStaticMarkup(_react2.default.createElement(_mnemonic2.default, {
+                            mnemonic: mnemonic
+                        }));
+                        (0, _swal2.default)({
+                            title: 'Your 12-Word Phrase',
+                            text: html,
+                            html: true
+                        });
+                    } catch (error) {
+                        console.error(error);
+                        _swal2.default.error({
+                            title: 'Error!',
+                            text: error.message
+                        });
+                    }
                 })();
             }
             render() {
@@ -29597,20 +31664,22 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     currentStep,
                     email,
                     emailSuggestion,
-                    passphrasesMatch
+                    passphrasesMatch,
+                    forceHasBackup
                 } = this.state;
                 let {
                     backup,
-                    hasFunds,
+                    hasHistory,
                     assetsLoaded
                 } = this.props;
                 if (backup.error) {
                     window.alert('Error:\n' + backup.error.message);
                 }
+                const backedUp = forceHasBackup || backup.status;
                 const shouldShowLoading = Object.values(assetsLoaded).every(i => !i);
-                const shouldShowWelcome = !hasFunds && !backup.auth;
-                const shouldShowSetup = hasFunds && !backup.auth;
-                const shouldShowStatus = backup.auth;
+                const shouldShowWelcome = !hasHistory && !backedUp;
+                const shouldShowSetup = hasHistory && !backedUp;
+                const shouldShowStatus = backedUp;
                 if (shouldShowLoading) {
                     return _react2.default.createElement('div', {
                         id: 'exodus-content-backup-new'
@@ -29914,7 +31983,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             }
         }, _class2.propTypes = {
             backup: _propTypes2.default.object.isRequired,
-            hasFunds: _propTypes2.default.bool.isRequired
+            hasHistory: _propTypes2.default.bool.isRequired
         }, _temp)) || _class);
         exports.default = BackupnewView;
         const TipBottom = (_ref3) => {
@@ -29945,18 +32014,18 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         });
 
     }, {
-        "102": 102,
-        "130": 130,
-        "174": 174,
-        "227": 227,
-        "228": 228,
-        "271": 271,
-        "321": 321,
-        "348": 348,
-        "362": 362,
+        "108": 108,
+        "140": 140,
+        "186": 186,
+        "187": 187,
+        "243": 243,
+        "289": 289,
+        "343": 343,
+        "370": 370,
+        "383": 383,
         "undefined": undefined
     }],
-    362: [function(require, module, exports) {
+    383: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -29964,7 +32033,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = undefined;
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
-        var _instanceShim = require(174);
+        var _instanceShim = require(186);
         var _instanceShim2 = _interopRequireDefault(_instanceShim);
 
         function _interopRequireDefault(obj) {
@@ -30033,19 +32102,19 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = Mnemonic;
 
     }, {
-        "174": 174,
+        "186": 186,
         "undefined": undefined
     }],
-    363: [function(require, module, exports) {
+    384: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
-        var _ui = require(348);
+        var _ui = require(370);
         var _reactRedux = require('react-redux');
-        var _getValue = require(126);
+        var _getValue = require(135);
         var _getValue2 = _interopRequireDefault(_getValue);
 
         function _interopRequireDefault(obj) {
@@ -30063,7 +32132,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 toCoin,
                 fromAmountEx,
                 toAmountEx,
-                getFiatVal
+                getFiatVal,
+                isFloatingRate
             } = _ref;
             return _react2.default.createElement('div', {
                 id: 'exchange-confirmation-banner-container'
@@ -30105,7 +32175,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             }, _react2.default.createElement('div', {
                 id: 'exchange-receive-confirm-title',
                 className: 'exchange-confirm-title'
-            }, 'You will receive'), _react2.default.createElement('div', {
+            }, 'You will receive', isFloatingRate ? ' about' : ''), _react2.default.createElement('div', {
                 id: 'exchange-receive-confirm-amount',
                 className: 'exodus-animate-all exchange-confirm-amount exodus-color-' + toCoin
             }, _react2.default.createElement(_ui.NUCurrencyText, {
@@ -30122,31 +32192,31 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "126": 126,
-        "348": 348,
+        "135": 135,
+        "370": 370,
         "undefined": undefined
     }],
-    364: [function(require, module, exports) {
+    385: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.default = undefined;
         var _dec, _class, _class2, _temp;
-        var _ui = require(348);
+        var _ui = require(370);
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _reactUtils = require(302);
-        var _conversions = require(124);
+        var _reactUtils = require(322);
+        var _conversions = require(133);
         var _conversions2 = _interopRequireDefault(_conversions);
-        var _fiat = require(109);
+        var _fiat = require(115);
         var _fiat2 = _interopRequireDefault(_fiat);
-        var _getValue = require(126);
+        var _getValue = require(135);
         var _getValue2 = _interopRequireDefault(_getValue);
         var _reactRedux = require('react-redux');
-        var _currencyFormatters = require(222);
+        var _currencyFormatters = require(238);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -30325,7 +32395,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     focus: this.props.focus,
                     onBlur: this.handleBlurCrypto,
                     onChange: this.handleChangeCrypto,
-                    onFocus: this.handleFocusCrypto
+                    onFocus: this.handleFocusCrypto,
+                    disabled: this.props.disabled
                 }), _react2.default.createElement('div', {
                     className: 'exchange-amount-units'
                 }, coin.displayUnit)), _react2.default.createElement('div', {
@@ -30337,7 +32408,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     value: amountFiat.rawAmount,
                     onBlur: this.handleBlurFiat,
                     onChange: this.handleChangeFiat,
-                    onFocus: this.handleFocusFiat
+                    onFocus: this.handleFocusFiat,
+                    disabled: this.props.disabled
                 }), _react2.default.createElement('div', {
                     className: 'exchange-amount-units'
                 }, fiatCurrency.defaultUnit.unitName)));
@@ -30350,7 +32422,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             focus: _propTypes2.default.bool,
             onChange: _propTypes2.default.func,
             onFocus: _propTypes2.default.func,
-            value: _reactUtils.isNumberUnitOrUndefined
+            value: _reactUtils.isNumberUnitOrUndefined,
+            disabled: _propTypes2.default.bool
         }, _class2.defaultProps = {
             onChange: () => {}
         }, _temp)) || _class);
@@ -30363,15 +32436,15 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "109": 109,
-        "124": 124,
-        "126": 126,
-        "222": 222,
-        "302": 302,
-        "348": 348,
+        "115": 115,
+        "133": 133,
+        "135": 135,
+        "238": 238,
+        "322": 322,
+        "370": 370,
         "undefined": undefined
     }],
-    365: [function(require, module, exports) {
+    386: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -30385,16 +32458,16 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _classnames = require('classnames');
         var _classnames2 = _interopRequireDefault(_classnames);
         var _reactRedux = require('react-redux');
-        var _minimums = require(121);
+        var _minimums = require(130);
         var _minimums2 = _interopRequireDefault(_minimums);
-        var _maximums = require(120);
+        var _maximums = require(129);
         var _maximums2 = _interopRequireDefault(_maximums);
-        var _coinAvailableAmounts = require(106);
+        var _coinAvailableAmounts = require(112);
         var _coinAvailableAmounts2 = _interopRequireDefault(_coinAvailableAmounts);
-        var _reactUtils = require(302);
-        var _assets = require(194);
+        var _reactUtils = require(322);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _currencyFormatters = require(222);
+        var _currencyFormatters = require(238);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -30489,15 +32562,15 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = ErrorMessage;
 
     }, {
-        "106": 106,
-        "120": 120,
-        "121": 121,
-        "194": 194,
-        "222": 222,
-        "302": 302,
+        "112": 112,
+        "129": 129,
+        "130": 130,
+        "210": 210,
+        "238": 238,
+        "322": 322,
         "undefined": undefined
     }],
-    366: [function(require, module, exports) {
+    387: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -30536,7 +32609,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    367: [function(require, module, exports) {
+    388: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -30560,24 +32633,24 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _propTypes2 = _interopRequireDefault(_propTypes);
         var _reactRedux = require('react-redux');
         var _electron = require('electron');
-        var _orderTxs = require(142);
+        var _orderTxs = require(153);
         var _orderTxs2 = _interopRequireDefault(_orderTxs);
-        var _haveLoaded = require(141);
+        var _haveLoaded = require(152);
         var _haveLoaded2 = _interopRequireDefault(_haveLoaded);
-        var _blockExplorer = require(105);
+        var _blockExplorer = require(111);
         var _blockExplorer2 = _interopRequireDefault(_blockExplorer);
         var _moment = require('moment');
         var _moment2 = _interopRequireDefault(_moment);
-        var _nuCurrencyText = require(349);
+        var _nuCurrencyText = require(371);
         var _nuCurrencyText2 = _interopRequireDefault(_nuCurrencyText);
         var _classnames = require('classnames');
         var _classnames2 = _interopRequireDefault(_classnames);
-        var _appConfig = require(84);
+        var _appConfig = require(85);
         var _os = require('os');
         var _os2 = _interopRequireDefault(_os);
         var _bytes = require('bytes');
         var _bytes2 = _interopRequireDefault(_bytes);
-        var _exchange = require(240);
+        var _exchange = require(256);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -30706,7 +32779,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 className: 'exch-icon sent exodus-icon logo-' + order.toAsset
             }), _react2.default.createElement(_nuCurrencyText2.default, {
                 className: 'exch-amount to',
-                amount: toAmount
+                amount: toAmount,
+                prefix: order.floatingRate ? '~' : undefined
             })) : _react2.default.createElement('div', {
                 className: 'exch-item exch-item--asset to-asset'
             }), _react2.default.createElement('div', {
@@ -30819,15 +32893,15 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }, _temp2);
 
     }, {
-        "105": 105,
-        "141": 141,
-        "142": 142,
-        "240": 240,
-        "349": 349,
-        "84": 84,
+        "111": 111,
+        "152": 152,
+        "153": 153,
+        "256": 256,
+        "371": 371,
+        "85": 85,
         "undefined": undefined
     }],
-    368: [function(require, module, exports) {
+    389: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -30842,48 +32916,53 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _electron = require('electron');
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _flux = require(271);
-        var _coinAvailableAmounts = require(106);
+        var _flux = require(289);
+        var _coinAvailableAmounts = require(112);
         var _coinAvailableAmounts2 = _interopRequireDefault(_coinAvailableAmounts);
-        var _coinTotalAmounts = require(107);
+        var _coinTotalAmounts = require(113);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
-        var _getPairOnline = require(114);
+        var _getPairOnline = require(122);
         var _getPairOnline2 = _interopRequireDefault(_getPairOnline);
-        var _marketInfoConversions = require(117);
+        var _marketInfoConversions = require(126);
         var _marketInfoConversions2 = _interopRequireDefault(_marketInfoConversions);
-        var _ethereumTokensEnoughFuel = require(113);
+        var _ethereumTokensEnoughFuel = require(120);
         var _ethereumTokensEnoughFuel2 = _interopRequireDefault(_ethereumTokensEnoughFuel);
-        var _getValue = require(126);
+        var _getValue = require(135);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _available = require(100);
+        var _available = require(104);
         var _available2 = _interopRequireDefault(_available);
-        var _btcDisabled = require(101);
+        var _assetsSupported = require(121);
+        var _assetsSupported2 = _interopRequireDefault(_assetsSupported);
+        var _btcDisabled = require(105);
         var _btcDisabled2 = _interopRequireDefault(_btcDisabled);
-        var _getRateString = require(115);
+        var _getRateString = require(123);
         var _getRateString2 = _interopRequireDefault(_getRateString);
-        var _ui = require(348);
-        var _currencyInputSwap = require(364);
+        var _getUnavailableDetails = require(125);
+        var _getUnavailableDetails2 = _interopRequireDefault(_getUnavailableDetails);
+        var _ui = require(370);
+        var _currencyInputSwap = require(385);
         var _currencyInputSwap2 = _interopRequireDefault(_currencyInputSwap);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _selectOptionsReact = require(371);
+        var _selectOptionsReact = require(392);
         var _selectOptionsReact2 = _interopRequireDefault(_selectOptionsReact);
-        var _status = require(372);
+        var _status = require(393);
         var _status2 = _interopRequireDefault(_status);
-        var _errorMessage = require(365);
+        var _errorMessage = require(386);
         var _errorMessage2 = _interopRequireDefault(_errorMessage);
-        var _confirmationDetails = require(363);
+        var _confirmationDetails = require(384);
         var _confirmationDetails2 = _interopRequireDefault(_confirmationDetails);
-        var _swapArrow = require(373);
+        var _swapArrow = require(394);
         var _swapArrow2 = _interopRequireDefault(_swapArrow);
-        var _exchangeButton = require(366);
+        var _exchangeButton = require(387);
         var _exchangeButton2 = _interopRequireDefault(_exchangeButton);
-        var _rateDetails = require(370);
+        var _rateDetails = require(391);
         var _rateDetails2 = _interopRequireDefault(_rateDetails);
-        var _popoverButtons = require(369);
+        var _popoverButtons = require(390);
         var _popoverButtons2 = _interopRequireDefault(_popoverButtons);
-        var _exchangeHistory = require(367);
+        var _exchangeHistory = require(388);
         var _exchangeHistory2 = _interopRequireDefault(_exchangeHistory);
+        var _exchange = require(256);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -30907,6 +32986,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
         let ExchangeView = (_dec = (0, _reactRedux.connect)(state => ({
             availableAssets: (0, _available2.default)(state),
+            supportedAssets: (0, _assetsSupported2.default)(state),
             btcDisabled: (0, _btcDisabled2.default)(state),
             ethereumTokensEnoughFuel: (0, _ethereumTokensEnoughFuel2.default)(state),
             exchange: state.exchange,
@@ -30915,7 +32995,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             coinTotalAmounts: (0, _coinTotalAmounts2.default)(state),
             getFiatValue: (0, _getValue2.default)(state),
             getPairOnline: (0, _getPairOnline2.default)(state),
-            getRateString: (0, _getRateString2.default)(state)
+            getRateString: (0, _getRateString2.default)(state),
+            getUnavailableDetails: (0, _getUnavailableDetails2.default)(state),
+            exchangeStatus: state.status.exchange
         })), _dec(_class = (_temp = _class2 = class ExchangeView extends _react2.default.Component {
             constructor(props) {
                 super(props);
@@ -31182,8 +33264,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             handleClickSwap() {
                 let toCoin = this.props.exchange.lastPair.fromCoin;
                 let fromCoin = this.props.exchange.lastPair.toCoin;
-                let fromAmount = _assets2.default[toCoin].currency.ZERO.to(_assets2.default[toCoin].displayUnit);
-                let toAmount = _assets2.default[fromCoin].currency.ZERO.to(_assets2.default[fromCoin].displayUnit);
+                let fromAmount = _assets2.default[fromCoin].currency.ZERO.to(_assets2.default[fromCoin].displayUnit);
+                let toAmount = _assets2.default[toCoin].currency.ZERO.to(_assets2.default[toCoin].displayUnit);
                 _flux.actions.exchange.setLastPair({
                     fromCoin,
                     toCoin
@@ -31222,14 +33304,19 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     toAmountEx,
                     lastActive
                 } = this.state;
+                const svc = this.getAssetSvc(fromCoin) || this.getAssetSvc(toCoin);
                 _flux.actions.exchange.exchange({
                     fromAmount: fromAmountEx,
                     toAmount: toAmountEx,
                     fromCoin,
                     toCoin,
                     lastActive,
-                    activePopover
+                    activePopover,
+                    svc
                 });
+            }
+            getAssetSvc(coinName) {
+                return lodash.get(this.props, ['exchange', 'assetsOnline', _assets2.default[coinName].displayUnit, 'svc']);
             }
             render() {
                 const {
@@ -31249,7 +33336,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     availableAssets,
                     exchange,
                     getPairOnline,
-                    ethereumTokensEnoughFuel
+                    ethereumTokensEnoughFuel,
+                    exchangeStatus
                 } = this.props;
                 if (Object.keys(availableAssets).length < 2) {
                     return _react2.default.createElement('div', null, 'Activate at least 2 assets for access to Exchange.');
@@ -31272,6 +33360,19 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                         }
                     }, 'https://shapeshift.io'), '\xA0for more details\u2026');
                 }
+                if (!showError && exchangeStatus) {
+                    showError = true;
+                    errorPaneMessage = exchangeStatus.title || 'Exchange down for maintenance';
+                    errorPaneMessageCallToAction = _react2.default.createElement('p', null, exchangeStatus.subtitle, _react2.default.createElement('br', null), exchangeStatus.url && _react2.default.createElement('a', {
+                        style: {
+                            textDecoration: 'underline',
+                            cursor: 'pointer'
+                        },
+                        onClick: () => {
+                            _electron.shell.openExternal(exchangeStatus.url);
+                        }
+                    }, 'Click Here for more details\u2026'));
+                }
                 if (!showError) {
                     if (!Array.isArray(exchange.marketInfo)) {
                         showError = true;
@@ -31280,6 +33381,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     }
                 }
                 const showERC20Error = _assets2.default[fromCoin].isEthereumToken && !ethereumTokensEnoughFuel;
+                const isFloatingRate = (0, _exchange.isFloatingRateExchange)(this.getAssetSvc(fromCoin)) || (0, _exchange.isFloatingRateExchange)(this.getAssetSvc(toCoin));
                 return _react2.default.createElement('div', {
                     id: 'exodus-content-exchange'
                 }, _react2.default.createElement('div', {
@@ -31289,7 +33391,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     id: 'loader-container'
                 }, _react2.default.createElement('div', {
                     id: 'exchange-loader'
-                })), _react2.default.createElement('h1', null, errorPaneMessage), _react2.default.createElement('p', null, errorPaneMessageCallToAction)), exchange.status === 'none' ? null : _react2.default.createElement(_status2.default, {
+                })), _react2.default.createElement('h1', null, errorPaneMessage), _react2.default.createElement('p', null, errorPaneMessageCallToAction)), exchange.status === 'none' || exchange.status === 'cancelling' ? null : _react2.default.createElement(_status2.default, {
                     exchange: exchange,
                     onClickFinishAck: this.handleClickFinishAck
                 }), _react2.default.createElement('div', {
@@ -31335,7 +33437,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     coin: _assets2.default[toCoin],
                     onChange: this.handleChangeToAmount,
                     onFocus: this.handleFocusTo,
-                    value: this.state.toAmount
+                    value: this.state.toAmount,
+                    disabled: isFloatingRate
                 }))), _react2.default.createElement('div', {
                     id: 'error-message-fixed-block',
                     className: 'exchange-center-line'
@@ -31350,7 +33453,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     fromCoin: fromCoin,
                     toCoin: toCoin,
                     fromAmountEx: fromAmountEx,
-                    toAmountEx: toAmountEx
+                    toAmountEx: toAmountEx,
+                    isFloatingRate: isFloatingRate
                 }), _react2.default.createElement('div', {
                     id: 'exchange-center-line-under-confirmation',
                     className: 'exchange-center-line'
@@ -31362,7 +33466,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     fromCoin: fromCoin,
                     toCoin: toCoin,
                     onClick: this.handleClickExchange,
-                    exchangeDisabled: eDisabled
+                    exchangeDisabled: exchange.status === 'cancelling' ? true : eDisabled
                 })), _react2.default.createElement('div', {
                     id: 'exchange-center-line-under-button',
                     className: 'exchange-center-line'
@@ -31400,37 +33504,40 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             }, 'A small amount of Ethereum is required to start this exchange. Deposit Ethereum into your wallet then try again.'), _react2.default.createElement('div', {
                 className: 'button',
                 onClick: () => {
-                    _electron.shell.openExternal('http://support.exodus.io/knowledge_base/topics/how-do-i-send-or-exchange-an-ethereum-powered-asset');
+                    _electron.shell.openExternal('https://support.exodus.io/knowledge_base/topics/how-do-i-send-or-exchange-an-ethereum-powered-asset');
                 }
             }, 'How do I fix this?'));
         };
 
     }, {
-        "100": 100,
-        "101": 101,
-        "106": 106,
-        "107": 107,
+        "104": 104,
+        "105": 105,
+        "112": 112,
         "113": 113,
-        "114": 114,
-        "115": 115,
-        "117": 117,
+        "120": 120,
+        "121": 121,
+        "122": 122,
+        "123": 123,
+        "125": 125,
         "126": 126,
-        "194": 194,
-        "271": 271,
-        "348": 348,
-        "363": 363,
-        "364": 364,
-        "365": 365,
-        "366": 366,
-        "367": 367,
-        "369": 369,
+        "135": 135,
+        "210": 210,
+        "256": 256,
+        "289": 289,
         "370": 370,
-        "371": 371,
-        "372": 372,
-        "373": 373,
+        "384": 384,
+        "385": 385,
+        "386": 386,
+        "387": 387,
+        "388": 388,
+        "390": 390,
+        "391": 391,
+        "392": 392,
+        "393": 393,
+        "394": 394,
         "undefined": undefined
     }],
-    369: [function(require, module, exports) {
+    390: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -31441,16 +33548,16 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
         var _reactRedux = require('react-redux');
         var _classnames = require('classnames');
         var _classnames2 = _interopRequireDefault(_classnames);
-        var _coinAvailableAmounts = require(106);
+        var _coinAvailableAmounts = require(112);
         var _coinAvailableAmounts2 = _interopRequireDefault(_coinAvailableAmounts);
-        var _minimums = require(121);
+        var _minimums = require(130);
         var _minimums2 = _interopRequireDefault(_minimums);
-        var _maximums = require(120);
+        var _maximums = require(129);
         var _maximums2 = _interopRequireDefault(_maximums);
 
         function _interopRequireDefault(obj) {
@@ -31590,13 +33697,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "106": 106,
-        "120": 120,
-        "121": 121,
-        "194": 194,
+        "112": 112,
+        "129": 129,
+        "130": 130,
+        "210": 210,
         "undefined": undefined
     }],
-    370: [function(require, module, exports) {
+    391: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -31607,9 +33714,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _getRateString = require(115);
+        var _getRateString = require(123);
         var _getRateString2 = _interopRequireDefault(_getRateString);
-        var _reactUtils = require(302);
+        var _reactUtils = require(322);
         var _reactRedux = require('react-redux');
 
         function _interopRequireDefault(obj) {
@@ -31662,11 +33769,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = RateDetails;
 
     }, {
-        "115": 115,
-        "302": 302,
+        "123": 123,
+        "322": 322,
         "undefined": undefined
     }],
-    371: [function(require, module, exports) {
+    392: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -31674,7 +33781,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = computeSelectOptions;
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
-        var _ui = require(348);
+        var _ui = require(370);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -31695,7 +33802,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 if (fromCoin === toCoin)[fromCoin, toCoin] = side === 'left' ? [fromCoin, props.exchange.lastPair.fromCoin] : [props.exchange.lastPair.toCoin, toCoin];
                 return !props.getPairOnline(fromCoin, toCoin);
             }
-            return Object.values(props.availableAssets).map(asset => {
+            return Object.values(props.availableAssets).filter(asset => props.supportedAssets.includes(asset.name)).map(asset => {
                 const amount = coinAmounts[asset.name].to(asset.displayUnit);
                 const fiatAmount = props.getFiatValue(amount);
                 let content;
@@ -31720,6 +33827,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     name: asset.name,
                     properName: asset.properName,
                     disabled: isDisabledCheck(asset.name),
+                    disabledDetails: props.getUnavailableDetails(asset),
                     amount,
                     fiatAmount,
                     content
@@ -31728,30 +33836,30 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "348": 348,
+        "370": 370,
         "undefined": undefined
     }],
-    372: [function(require, module, exports) {
+    393: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _nuCurrencyText = require(349);
+        var _nuCurrencyText = require(371);
         var _nuCurrencyText2 = _interopRequireDefault(_nuCurrencyText);
         var _electron = require('electron');
         var _reactRedux = require('react-redux');
-        var _steps = require(122);
+        var _steps = require(131);
         var _steps2 = _interopRequireDefault(_steps);
-        var _all = require(139);
+        var _all = require(149);
         var _all2 = _interopRequireDefault(_all);
-        var _blockExplorer = require(105);
+        var _blockExplorer = require(111);
         var _blockExplorer2 = _interopRequireDefault(_blockExplorer);
-        var _exchange = require(240);
-        var _flux = require(271);
+        var _exchange = require(256);
+        var _flux = require(289);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -31816,6 +33924,16 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 const o = allOrders.get(orderId);
                 if (o.status === 'complete-verified') window.requestIdleCallback(handleClickFinishAck);
             }
+            let depositDisplayAddress = null;
+            let toDisplayAddress = null;
+            if (current) {
+                if (current.depositAddress) {
+                    depositDisplayAddress = fromAsset.address.displayAddress(current.depositAddress);
+                }
+                if (current.toAddress) {
+                    toDisplayAddress = toAsset.address.displayAddress(current.toAddress);
+                }
+            }
             return _react2.default.createElement('div', {
                 id: 'exchange-in-progress-overlay'
             }, _react2.default.createElement('div', {
@@ -31870,13 +33988,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 className: 'exchange-amount exodus-color-' + fromCoin
             }, fromAmount ? _react2.default.createElement(_nuCurrencyText2.default, {
                 amount: fromAmount || fromAsset.currency.ZERO
-            }) : fromAsset.properName), current && current.depositAddress ? _react2.default.createElement('div', {
+            }) : fromAsset.properName), depositDisplayAddress ? _react2.default.createElement('div', {
                 id: 'exchange-deposit-address',
                 className: 'exchange-address',
                 onClick: () => {
-                    _electron.shell.openExternal(blockExplorer(fromAsset).addressUrl(current.depositAddress));
+                    _electron.shell.openExternal(blockExplorer(fromAsset).addressUrl(depositDisplayAddress));
                 }
-            }, current.depositAddress) : null), _react2.default.createElement('div', {
+            }, depositDisplayAddress) : null), _react2.default.createElement('div', {
                 id: 'coin-logo-left',
                 className: 'exodus-icon size64 icon-' + fromCoin
             })), _react2.default.createElement('div', {
@@ -31889,17 +34007,17 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 className: 'exchange-coin-info'
             }, _react2.default.createElement('div', {
                 className: 'title'
-            }, 'Receiving'), _react2.default.createElement('div', {
+            }, 'Receiving', (0, _exchange.isFloatingRateExchange)(current.svc) ? ' about' : ''), _react2.default.createElement('div', {
                 className: 'exchange-amount exodus-color-' + toCoin
             }, toAmount ? _react2.default.createElement(_nuCurrencyText2.default, {
                 amount: toAmount || toAsset.currency.ZERO
-            }) : toAsset.properName), current && current.toAddress ? _react2.default.createElement('div', {
+            }) : toAsset.properName), toDisplayAddress ? _react2.default.createElement('div', {
                 id: 'exchange-receive-address',
                 className: 'exchange-address',
                 onClick: () => {
-                    _electron.shell.openExternal(blockExplorer(toAsset).addressUrl(current.toAddress));
+                    _electron.shell.openExternal(blockExplorer(toAsset).addressUrl(toDisplayAddress));
                 }
-            }, current.toAddress) : null), _react2.default.createElement('div', {
+            }, toDisplayAddress) : null), _react2.default.createElement('div', {
                 id: 'coin-logo-right',
                 className: 'exodus-icon size64 icon-' + toCoin
             }))), _react2.default.createElement(ActionButtons, {
@@ -31922,14 +34040,15 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 handleClickFinishAck,
                 handleClickWatchProgress
             } = _ref2;
+            const showWatchProgress = current.svc !== 'ch';
             if (status === 'complete') {
                 return _react2.default.createElement('div', {
                     className: 'button-row'
-                }, _react2.default.createElement('div', {
+                }, showWatchProgress ? _react2.default.createElement('div', {
                     id: 'exodus-button-exchange-report',
                     className: 'exodus-button-wide exodus-button-litecoin primary-button exodus-animate-all',
                     onClick: handleClickWatchProgress
-                }, 'Watch Progress'), _react2.default.createElement('div', {
+                }, 'Watch Progress') : null, _react2.default.createElement('div', {
                     id: 'exodus-button-exchange-tryagain',
                     className: 'exodus-button-wide exodus-button-litecoin secondary-button exodus-animate-all',
                     onClick: handleClickFinishAck
@@ -31945,7 +34064,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             } else {
                 return _react2.default.createElement('div', {
                     className: 'button-row'
-                }, current && current.depositAddress ? _react2.default.createElement('div', {
+                }, current && current.depositAddress && showWatchProgress ? _react2.default.createElement('div', {
                     id: 'exodus-button-exchange-report',
                     className: 'exodus-button-wide exodus-button-litecoin primary-button exodus-animate-all',
                     onClick: handleClickWatchProgress
@@ -31962,7 +34081,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 return _react2.default.createElement('span', null, errorMsg, ' To fix this, rescan ', fromAsset, ' then try again.\xA0', _react2.default.createElement('span', {
                     className: 'span-underline',
                     onClick: () => {
-                        _electron.shell.openExternal('http://support.exodus.io/knowledge_base/topics/how-do-i-fix-an-exchange-error');
+                        _electron.shell.openExternal('https://support.exodus.io/knowledge_base/topics/how-do-i-fix-an-exchange-error');
                     }
                 }, 'View step-by-step instructions.'));
             }
@@ -31976,6 +34095,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             switch (status) {
                 case 'waiting':
                     return 'Sending ' + asset + ' to Exchange…';
+                case 'cancelling':
+                    return 'Cancelling ' + asset + ' exchange…';
                 case 'no_deposits':
                     return 'Exchanging with ShapeShift…';
                 case 'received':
@@ -31991,23 +34112,23 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {
-        "105": 105,
-        "122": 122,
-        "139": 139,
-        "194": 194,
-        "240": 240,
-        "271": 271,
-        "349": 349,
+        "111": 111,
+        "131": 131,
+        "149": 149,
+        "210": 210,
+        "256": 256,
+        "289": 289,
+        "371": 371,
         "undefined": undefined
     }],
-    373: [function(require, module, exports) {
+    394: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
-        var _getAssetColor = require(193);
+        var _getAssetColor = require(209);
         var _getAssetColor2 = _interopRequireDefault(_getAssetColor);
 
         function _interopRequireDefault(obj) {
@@ -32054,10 +34175,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {
-        "193": 193,
+        "209": 209,
         "undefined": undefined
     }],
-    374: [function(require, module, exports) {
+    395: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -32068,34 +34189,34 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _index = require(379);
+        var _index = require(400);
         var _index2 = _interopRequireDefault(_index);
-        var _theme = require(112);
+        var _theme = require(119);
         var _theme2 = _interopRequireDefault(_theme);
-        var _p2pOffline = require(138);
+        var _p2pOffline = require(148);
         var _p2pOffline2 = _interopRequireDefault(_p2pOffline);
-        var _btcMiningPayouts = require(148);
+        var _btcMiningPayouts = require(159);
         var _btcMiningPayouts2 = _interopRequireDefault(_btcMiningPayouts);
-        var _pricesLoaded = require(134);
+        var _pricesLoaded = require(144);
         var _pricesLoaded2 = _interopRequireDefault(_pricesLoaded);
         var _reactRedux = require('react-redux');
         var _classnames = require('classnames');
         var _classnames2 = _interopRequireDefault(_classnames);
-        var _isOnline = require(282);
+        var _isOnline = require(302);
         var isOnline = _interopRequireWildcard(_isOnline);
-        var _appConfig = require(84);
+        var _appConfig = require(85);
         var _electron = require('electron');
         var _reactElectronWebView = require('react-electron-web-view');
         var _reactElectronWebView2 = _interopRequireDefault(_reactElectronWebView);
-        var _exodusWindow_nav = require(375);
-        var _assets = require(194);
+        var _exodusWindow_nav = require(396);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _flux = require(271);
+        var _flux = require(289);
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
-        var _swal = require(321);
+        var _swal = require(343);
         var _swal2 = _interopRequireDefault(_swal);
-        var _currencyFormatters = require(222);
+        var _currencyFormatters = require(238);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -32128,7 +34249,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             theme: (0, _theme2.default)(state),
             p2pOffline: (0, _p2pOffline2.default)(state),
             hasBtcMiningPayouts: (0, _btcMiningPayouts2.default)(state),
-            marketPricesLoaded: (0, _pricesLoaded2.default)(state)
+            marketPricesLoaded: (0, _pricesLoaded2.default)(state),
+            refreshError: state.assetsRefresh.error
         })), _dec(_class = (_temp = _class2 = class ExodusWindow extends _react2.default.Component {
             constructor() {
                 super();
@@ -32153,6 +34275,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 this.webviewIPCMessageHandler = webviewIPCMessageHandler.bind(this);
                 this.hasWarned = false;
                 global.handleClickWalletAddAssets = this.handleClickWalletAddAssets.bind(this);
+                global.handleClickPortfolioAsset = this.handleClickPortfolioAsset.bind(this);
             }
             componentDidMount() {}
             componentWillReceiveProps(newProps) {
@@ -32168,6 +34291,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 }
             }
             componentDidUpdate(prevProps, prevState) {
+                if (this.props.refreshError) {
+                    _flux.actions.dialog.error(this.props.refreshError.message, {
+                        title: 'Rescan Error'
+                    });
+                    _flux.actions.assetsRefresh.refreshAckError();
+                }
                 if (this.state.webview && !prevState.webview) {
                     const webView = document.querySelector('webview');
                     webView.addEventListener('ipc-message', this.webviewIPCMessageHandler);
@@ -32192,6 +34321,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 _flux.actions.localStorage.setItem('settings:active-view', 'assets');
                 this.handleClickNavigationChange('Settings');
             }
+            handleClickPortfolioAsset(coin) {
+                _flux.actions.localStorage.setItem('wallet:active-coin', coin);
+                this.handleClickNavigationChange('Wallet');
+            }
             warnMiningPayouts(fee) {
                 const KEY = 'miningPayouts:bitcoin';
                 let count = Number.parseInt(_flux.store.getState().localStorage[KEY], 10);
@@ -32213,7 +34346,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                         closeOnCancel: true
                     }, function(isConfirm) {
                         if (isConfirm) return;
-                        _electron.shell.openExternal('http://support.exodus.io/knowledge_base/topics/i-get-btc-mining-payouts-why-are-the-fees-so-high');
+                        _electron.shell.openExternal('https://support.exodus.io/knowledge_base/topics/i-get-btc-mining-payouts-why-are-the-fees-so-high');
                     });
                 }, 3000);
             }
@@ -32233,6 +34366,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 if (p2pOffline.length > 1) {
                     p2pOfflineText = `${p2pOffline.slice(0,-1).join(', ')} and ${p2pOffline.slice(-1)[0]}`;
                 }
+                const upgradeShow = upgradeTime && !(process.platform === 'darwin' && _appConfig.ENV_BUILD_EDEN);
                 const activeNav = this.navMap.has(this.props.active) ? this.props.active : 'Portfolio';
                 return _react2.default.createElement('div', {
                     id: 'exodus',
@@ -32258,12 +34392,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                         'active': p2pOfflineShow
                     })
                 }, 'Cannot connect to ', p2pOfflineText, ' P2P network. Trying again\u2026', _react2.default.createElement('span', {
-                    onClick: () => _electron.shell.openExternal('http://support.exodus.io/knowledge_base/topics/why-do-i-see-an-error-message-can-not-connect-to-p2p-network')
+                    onClick: () => _electron.shell.openExternal('https://support.exodus.io/knowledge_base/topics/why-do-i-see-an-error-message-can-not-connect-to-p2p-network')
                 }, 'How do I fix this?')), _react2.default.createElement('div', {
                     id: 'notification-banner-upgrade',
                     className: (0, _classnames2.default)('notification-banner status bottom', {
-                        'hidden': !upgradeTime,
-                        'active': upgradeTime
+                        'hidden': !upgradeShow,
+                        'active': upgradeShow
                     })
                 }, 'A new version of ', _appConfig.EXODUS_DISPLAY_NAME, ' is available\u2026', _react2.default.createElement('span', {
                     className: 'banner-button',
@@ -32344,40 +34478,43 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "112": 112,
-        "134": 134,
-        "138": 138,
+        "119": 119,
+        "144": 144,
         "148": 148,
-        "194": 194,
-        "222": 222,
-        "271": 271,
-        "282": 282,
-        "321": 321,
-        "375": 375,
-        "379": 379,
-        "84": 84,
+        "159": 159,
+        "210": 210,
+        "238": 238,
+        "289": 289,
+        "302": 302,
+        "343": 343,
+        "396": 396,
+        "400": 400,
+        "85": 85,
         "undefined": undefined
     }],
-    375: [function(require, module, exports) {
+    396: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.nav = undefined;
         exports.getNav = getNav;
-        var _flux = require(271);
-        var _index = require(361);
+        var _flux = require(289);
+        var _appConfig = require(85);
+        var _index = require(382);
         var _index2 = _interopRequireDefault(_index);
-        var _index3 = require(368);
+        var _index3 = require(389);
         var _index4 = _interopRequireDefault(_index3);
-        var _index5 = require(376);
+        var _index5 = require(406);
         var _index6 = _interopRequireDefault(_index5);
-        var _index7 = require(381);
+        var _index7 = require(397);
         var _index8 = _interopRequireDefault(_index7);
-        var _index9 = require(389);
+        var _index9 = require(403);
         var _index10 = _interopRequireDefault(_index9);
-        var _index11 = require(384);
+        var _index11 = require(415);
         var _index12 = _interopRequireDefault(_index11);
+        var _index13 = require(409);
+        var _index14 = _interopRequireDefault(_index13);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -32386,10 +34523,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
         const nav = exports.nav = [{
             text: 'Portfolio',
-            view: _index8.default
+            view: _index10.default
         }, {
             text: 'Wallet',
-            view: _index10.default
+            view: _index12.default
         }, {
             text: 'Exchange',
             view: _index4.default
@@ -32400,11 +34537,17 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             text: '-'
         }, {
             text: 'Settings',
-            view: _index12.default
+            view: _index14.default
         }, {
             text: 'Help',
-            view: _index6.default
+            view: _index8.default
         }];
+        if (_appConfig.ENV_DEV) {
+            nav.splice(2, 0, {
+                text: 'Sandbox',
+                view: _index6.default
+            });
+        }
 
         function getNav() {
             const apps = Object.values(global.getApps());
@@ -32443,15 +34586,17 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "271": 271,
-        "361": 361,
-        "368": 368,
-        "376": 376,
-        "381": 381,
-        "384": 384,
-        "389": 389
+        "289": 289,
+        "382": 382,
+        "389": 389,
+        "397": 397,
+        "403": 403,
+        "406": 406,
+        "409": 409,
+        "415": 415,
+        "85": 85
     }],
-    376: [function(require, module, exports) {
+    397: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -32464,7 +34609,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
         var _electron = require('electron');
-        var _appConfig = require(84);
+        var _appConfig = require(85);
+        var _electronIpcBroadcast = require('electron-ipc-broadcast');
+        var _electronIpcBroadcast2 = _interopRequireDefault(_electronIpcBroadcast);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -32473,13 +34620,15 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
         let ReleaseNotes = (_dec = (0, _reactRedux.connect)((state, props) => ({
             bcashClaimed: state.localStorage['bcashclaimed'],
-            bgoldClaimed: state.localStorage['bgoldclaimed']
+            bgoldClaimed: state.localStorage['bgoldclaimed'],
+            eosRegistered: state.localStorage['eosregistered']
         })), _dec(_class = (_temp = _class2 = class ReleaseNotes extends _react2.default.Component {
             render() {
                 const {
                     version,
                     bcashClaimed,
-                    bgoldClaimed
+                    bgoldClaimed,
+                    eosRegistered
                 } = this.props;
                 return _react2.default.createElement('div', {
                     id: 'exodus-content-help'
@@ -32535,7 +34684,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     className: 'button-row'
                 }, _react2.default.createElement('a', {
                     onClick: () => {
-                        _electron.shell.openExternal('http://support.exodus.io');
+                        _electron.shell.openExternal('https://support.exodus.io');
                     }
                 }, _react2.default.createElement('div', {
                     id: 'exodus-button-help-slack',
@@ -32606,7 +34755,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     onClick: () => {
                         _electron.shell.openExternal('https://www.coinbase.com/global/');
                     }
-                }, 'www.coinbase.com/global/'), '.'))), _react2.default.createElement('div', {
+                }, 'www.coinbase.com/global/'), '.'), _react2.default.createElement('p', null, _react2.default.createElement('span', {
+                    className: 'link',
+                    onClick: () => {
+                        _electron.shell.openExternal('https://support.exodus.io/article/37-how-do-i-get-started-with-exodus');
+                    }
+                }, 'Read more in our knowledge base...')))), _react2.default.createElement('div', {
                     className: 'accordion-group'
                 }, _react2.default.createElement('label', {
                     htmlFor: 'question3',
@@ -32637,7 +34791,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     className: 'disclosure'
                 }), _react2.default.createElement('div', {
                     className: 'content'
-                }, _react2.default.createElement('p', null, 'Exodus stores blockchain assets on your computer for full privacy. This means you, and only you, have access to your blockchain assets without having to trust a company or third-party.'), _react2.default.createElement('p', null, 'Once you complete the backup process Exodus encrypts your blockchain assets with a password. You must remember this password since it can not be recovered if forgotten. This is designed to protect you in case of your computer being hacked, lost or damaged. This password is the key to your blockchain asset wealth; you must not share it with others and treat it with the utmost care.'))), _react2.default.createElement('div', {
+                }, _react2.default.createElement('p', null, 'Exodus stores blockchain assets on your computer for full privacy. This means you, and only you, have access to your blockchain assets without having to trust a company or third-party.'), _react2.default.createElement('p', null, 'Once you complete the backup process Exodus encrypts your blockchain assets with a password. You must remember this password since it can not be recovered if forgotten. This is designed to protect you in case of your computer being hacked, lost or damaged. This password is the key to your blockchain asset wealth; you must not share it with others and treat it with the utmost care.'), _react2.default.createElement('p', null, _react2.default.createElement('span', {
+                    className: 'link',
+                    onClick: () => {
+                        _electron.shell.openExternal('https://vimeo.com/176811304');
+                    }
+                }, 'Learn how to backup your wallet...')))), _react2.default.createElement('div', {
                     className: 'accordion-group'
                 }, _react2.default.createElement('label', {
                     htmlFor: 'question5',
@@ -32663,7 +34822,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     className: 'disclosure'
                 }), _react2.default.createElement('div', {
                     className: 'content'
-                }, _react2.default.createElement('p', null, 'To send blockchain assets with Exodus click Wallet on the left sidebar. Then choose the blockchain asset you would like to send. These instructions work for any blockchain asset. In this example we will send Ethereum. Click Ethereum then click the send button.'), _react2.default.createElement('p', null, 'Just like traditional bank transfers Exodus needs the address you want to send to. This address is similar to a bank account number. You can request an address from the person you want to send Ethereum to. You can also have an Ethereum wallet on a mobile device and send Ethereum to yourself on another device.'), _react2.default.createElement('p', null, 'Blockchain addresses are a long string of characters. Because it is easy to mistype a character the best practice is to copy the Ethereum address to your clipboard and paste it into the to field. Alternatively, if you have a QR code you can click the QR code button, located on the left side of the to field, to scan the QR code. Exodus will then import the blockchain address from the QR code and type it for you.'), _react2.default.createElement('p', null, 'Next type the amount you want to send. Exodus lets you send in the blockchain unit, in this example we could send 0.5 Ethereum or \xBD of an Ethereum. Because the rate of Ethereum fluxuates, if you prefer to work in your native currency, simply type your currency amount under the blockchain asset and Exodus will do the conversion to Ethereum for you.'), _react2.default.createElement('p', null, 'Once you review the confirmation, telling you how much you are sending, click the Send button. Exodus will then confirm again you want to send the amount. This is a good place to pause for a moment and double check your amount and address. If all looks good, click send.'), _react2.default.createElement('p', null, 'Exodus takes a few moments to prepare the transaction then send it. Depending on the receiving wallet the transaction should show up within a minute or two.'))), _react2.default.createElement('div', {
+                }, _react2.default.createElement('p', null, 'To send blockchain assets with Exodus click Wallet on the left sidebar. Then choose the blockchain asset you would like to send. These instructions work for any blockchain asset. In this example we will send Ethereum. Click Ethereum then click the send button.'), _react2.default.createElement('p', null, 'Just like traditional bank transfers Exodus needs the address you want to send to. This address is similar to a bank account number. You can request an address from the person you want to send Ethereum to. You can also have an Ethereum wallet on a mobile device and send Ethereum to yourself on another device.'), _react2.default.createElement('p', null, 'Blockchain addresses are a long string of characters. Because it is easy to mistype a character the best practice is to copy the Ethereum address to your clipboard and paste it into the to field. Alternatively, if you have a QR code you can click the QR code button, located on the left side of the to field, to scan the QR code. Exodus will then import the blockchain address from the QR code and type it for you.'), _react2.default.createElement('p', null, 'Next type the amount you want to send. Exodus lets you send in the blockchain unit, in this example we could send 0.5 Ethereum or \xBD of an Ethereum. Because the rate of Ethereum fluxuates, if you prefer to work in your native currency, simply type your currency amount under the blockchain asset and Exodus will do the conversion to Ethereum for you.'), _react2.default.createElement('p', null, 'Once you review the confirmation, telling you how much you are sending, click the Send button. Exodus will then confirm again you want to send the amount. This is a good place to pause for a moment and double check your amount and address. If all looks good, click send.'), _react2.default.createElement('p', null, 'Exodus takes a few moments to prepare the transaction then send it. Depending on the receiving wallet the transaction should show up within a minute or two.'), _react2.default.createElement('p', null, _react2.default.createElement('span', {
+                    className: 'link',
+                    onClick: () => {
+                        _electron.shell.openExternal('https://support.exodus.io/article/34-how-do-i-send-a-blockchain-asset-bitcoin-ethereum-etc');
+                    }
+                }, 'Read More...')))), _react2.default.createElement('div', {
                     className: 'accordion-group'
                 }, _react2.default.createElement('label', {
                     htmlFor: 'question7',
@@ -32676,7 +34840,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     className: 'disclosure'
                 }), _react2.default.createElement('div', {
                     className: 'content'
-                }, _react2.default.createElement('p', null, 'To receive blockchain assets with Exodus click Wallet on the left sidebar. Then choose the blockchain asset you would like to receive. These instructions work for any blockchain asset. In this example we will receive Bitcoin. Click Bitcoin then click the receive button.'), _react2.default.createElement('p', null, 'Just like traditional bank transfers receiving blockchain assets works though account numbers. Once you click the receive button Exodus shows your Bitcoin address. Similar to a bank account number, you give this bitcoin address to another person you want to receive a bitcoin payment from.'), _react2.default.createElement('p', null, 'There are four action buttons in this window to copy, print or email your bitcoin address. You can also click the link icon to view your address on the blockchain. Finally, there is a QR code in this window that contains your bitcoin address. Scan this QR code from a mobile device to send bitcoin between devices without typing long addresses or emailing blockchain addresses to yourself.'))), _react2.default.createElement('div', {
+                }, _react2.default.createElement('p', null, 'To receive blockchain assets with Exodus click Wallet on the left sidebar. Then choose the blockchain asset you would like to receive. These instructions work for any blockchain asset. In this example we will receive Bitcoin. Click Bitcoin then click the receive button.'), _react2.default.createElement('p', null, 'Just like traditional bank transfers receiving blockchain assets works though account numbers. Once you click the receive button Exodus shows your Bitcoin address. Similar to a bank account number, you give this bitcoin address to another person you want to receive a bitcoin payment from.'), _react2.default.createElement('p', null, 'There are four action buttons in this window to copy, print or email your bitcoin address. You can also click the link icon to view your address on the blockchain. Finally, there is a QR code in this window that contains your bitcoin address. Scan this QR code from a mobile device to send bitcoin between devices without typing long addresses or emailing blockchain addresses to yourself.'), _react2.default.createElement('p', null, _react2.default.createElement('span', {
+                    className: 'link',
+                    onClick: () => {
+                        _electron.shell.openExternal('https://support.exodus.io/article/33-how-do-i-receive-a-blockchain-asset-bitcoin-ethereum-etc');
+                    }
+                }, 'Read More...')))), _react2.default.createElement('div', {
                     className: 'accordion-group'
                 }, _react2.default.createElement('label', {
                     htmlFor: 'question9',
@@ -32702,7 +34871,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     className: 'disclosure'
                 }), _react2.default.createElement('div', {
                     className: 'content'
-                }, _react2.default.createElement('p', null, 'Clicking on a transaction in the wallet view expands the transaction to show additional details. Each type of transaction; sent, received and exchanges have corresponding details associated with the transaction. For example, exchanges show total amounts exchanged while receive transactions show amount and time received.'), _react2.default.createElement('p', null, 'On any transaction you can click on the transaction id to open the corresponding blockchain explorer to view the transaction directly on the blockchain network.'))), _react2.default.createElement('div', {
+                }, _react2.default.createElement('p', null, 'Clicking on a transaction in the wallet view expands the transaction to show additional details. Each type of transaction, ', _react2.default.createElement('i', null, 'Send, Receive and Exchange'), ', has corresponding details associated with it within your wallet. For example, exchanges show total amounts exchanged while receive transactions show amount and time received.'), _react2.default.createElement('p', null, 'On any transaction you can click on the transaction id to open the corresponding blockchain explorer to view the transaction directly on the blockchain network.'))), _react2.default.createElement('div', {
                     className: 'accordion-group'
                 }, _react2.default.createElement('label', {
                     htmlFor: 'question11',
@@ -32751,7 +34920,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 }, _react2.default.createElement('label', {
                     htmlFor: 'question14',
                     className: 'title'
-                }, 'What are the operating system requirements for Exodus?'), _react2.default.createElement('input', {
+                }, 'What safety measures should I take to secure my assets stored in Exodus?'), _react2.default.createElement('input', {
                     type: 'checkbox',
                     id: 'question14',
                     className: 'control-checkbox'
@@ -32759,7 +34928,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     className: 'disclosure'
                 }), _react2.default.createElement('div', {
                     className: 'content'
-                }, _react2.default.createElement('p', null, 'Exodus is supported on macOS (10.13 or higher), Windows 64 bit (10 or higher), and Linux ( Ubuntu 16.04 or higher). Exodus may run on other environments and versions, however they are not officially supported.'))), _react2.default.createElement('div', {
+                }, _react2.default.createElement('p', null, 'Exodus gives you complete control of the wallet; having full control of the wallet also means that you are responsible for the safety of your funds. Exodus is only as safe as the computer on which it is installed.'), _react2.default.createElement('p', null, 'Downloading questionable or cracked applications, storing 12-word seed, password or private keys in plain text, using the same password for multiple logins etc., are a clear invitation to hackers who are always on the prowl for security loopholes like these.'), _react2.default.createElement('p', null, _react2.default.createElement('span', {
+                    className: 'link',
+                    onClick: () => {
+                        _electron.shell.openExternal('https://support.exodus.io/article/145-safety-and-security-tips');
+                    }
+                }, 'Read More...')))), _react2.default.createElement('div', {
                     className: 'accordion-group'
                 }, _react2.default.createElement('label', {
                     htmlFor: 'question15',
@@ -32828,7 +35002,65 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 }, _react2.default.createElement('div', {
                     id: 'exodus-button-help-slack',
                     className: 'exodus-button exodus-button-extra-wide exodus-button-civic primary-button exodus-animate-all'
-                }, 'Claim My Bitcoin Gold Now!'))))));
+                }, 'Claim My Bitcoin Gold Now!'))))), _react2.default.createElement('div', {
+                    id: 'register-eos',
+                    className: 'accordion-group'
+                }, _react2.default.createElement('label', {
+                    htmlFor: 'question18',
+                    className: 'title'
+                }, 'How do I register my EOS tokens?'), _react2.default.createElement('input', {
+                    type: 'checkbox',
+                    id: 'question18',
+                    className: 'control-checkbox'
+                }), _react2.default.createElement('div', {
+                    className: 'disclosure'
+                }), eosRegistered === 'true' ? _react2.default.createElement('div', {
+                    className: 'content'
+                }, _react2.default.createElement('p', null, 'You have already registered your EOS address. All EOS tokens stored in this address are correctly registered. ', _react2.default.createElement('a', {
+                    onClick: () => {
+                        _electron.shell.openExternal('https://support.exodus.io/article/690-how-do-i-register-my-eos-address-inside-exodus');
+                    }
+                }, 'Learn More\u2026'))) : _react2.default.createElement('div', {
+                    className: 'content'
+                }, _react2.default.createElement('p', null, 'All EOS addresses need to be registered by June 1, 2018 to remain active. This is a one-time process - after registration all EOS tokens stored inside Exodus, now and in the future, will automatically be registered. ', _react2.default.createElement('a', {
+                    onClick: () => {
+                        _electron.shell.openExternal('https://support.exodus.io/article/690-how-do-i-register-my-eos-address-inside-exodus');
+                    }
+                }, 'Learn More\u2026')), _react2.default.createElement('p', null, 'Exodus created an easy way to register your EOS address by clicking the button below.'), _react2.default.createElement('div', {
+                    className: 'button-row'
+                }, _react2.default.createElement('a', {
+                    onClick: () => {
+                        global.Exodus.eosRegistration();
+                    }
+                }, _react2.default.createElement('div', {
+                    id: 'exodus-button-help-slack',
+                    className: 'exodus-button exodus-button-extra-wide exodus-button-civic primary-button exodus-animate-all'
+                }, 'Register my EOS Address Now!'))))), _react2.default.createElement('div', {
+                    id: 'open-dev-menu',
+                    className: 'accordion-group'
+                }, _react2.default.createElement('label', {
+                    htmlFor: 'question19',
+                    className: 'title'
+                }, 'How do I open the Developer Menu?'), _react2.default.createElement('input', {
+                    type: 'checkbox',
+                    id: 'question19',
+                    className: 'control-checkbox'
+                }), _react2.default.createElement('div', {
+                    className: 'disclosure'
+                }), process.platform === 'darwin' ? _react2.default.createElement('div', {
+                    className: 'content'
+                }, _react2.default.createElement('p', null, 'Under Mac OS/X, the Developer Menu is always available under the "Exodus" menu.')) : _react2.default.createElement('div', {
+                    className: 'content'
+                }, _react2.default.createElement('p', null, 'You may open the Developer Menu in two ways:', _react2.default.createElement('br', null), ' ', _react2.default.createElement('ol', null, _react2.default.createElement('li', null, 'Hit CTRL+SHIFT+D'), _react2.default.createElement('li', null, 'Click the button below:'))), _react2.default.createElement('div', {
+                    className: 'button-row'
+                }, _react2.default.createElement('a', {
+                    onClick: () => {
+                        (0, _electronIpcBroadcast2.default)('app:showDevMenu');
+                    }
+                }, _react2.default.createElement('div', {
+                    id: 'exodus-button-help-slack',
+                    className: 'exodus-button exodus-button-wide exodus-button-litecoin primary-button exodus-animate-all'
+                }, 'Show Developer Menu'))))));
             }
         }, _class2.propTypes = {
             version: _propTypes2.default.string.isRequired,
@@ -32844,10 +35076,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = HelpView;
 
     }, {
-        "84": 84,
+        "85": 85,
         "undefined": undefined
     }],
-    377: [function(require, module, exports) {
+    398: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -32857,7 +35089,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _reactDom = require('react-dom');
         var _reactDom2 = _interopRequireDefault(_reactDom);
-        var _app = require(360);
+        var _app = require(381);
         var _app2 = _interopRequireDefault(_app);
 
         function _interopRequireDefault(obj) {
@@ -32871,10 +35103,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "360": 360,
+        "381": 381,
         "undefined": undefined
     }],
-    378: [function(require, module, exports) {
+    399: [function(require, module, exports) {
         'use strict';
         const electron = require('electron');
         const remote = electron.remote;
@@ -32918,7 +35150,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    379: [function(require, module, exports) {
+    400: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -32930,22 +35162,24 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
         var _reactRedux = require('react-redux');
-        var _conversions = require(124);
+        var _conversions = require(133);
         var _conversions2 = _interopRequireDefault(_conversions);
-        var _indicator = require(145);
+        var _indicator = require(156);
         var _indicator2 = _interopRequireDefault(_indicator);
-        var _total = require(128);
+        var _total = require(137);
         var _total2 = _interopRequireDefault(_total);
-        var _hasFunds = require(130);
+        var _hasFunds = require(139);
         var _hasFunds2 = _interopRequireDefault(_hasFunds);
-        var _pricesLoaded = require(134);
+        var _pricesLoaded = require(144);
         var _pricesLoaded2 = _interopRequireDefault(_pricesLoaded);
-        var _navigationButton = require(380);
+        var _allLoaded = require(101);
+        var _allLoaded2 = _interopRequireDefault(_allLoaded);
+        var _navigationButton = require(401);
         var _navigationButton2 = _interopRequireDefault(_navigationButton);
         var _electron = require('electron');
         var _classnames = require('classnames');
         var _classnames2 = _interopRequireDefault(_classnames);
-        var _ui = require(348);
+        var _ui = require(370);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -32957,6 +35191,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             fiatTotal: (0, _total2.default)(state),
             hasFunds: (0, _hasFunds2.default)(state),
             marketPricesLoaded: (0, _pricesLoaded2.default)(state),
+            allAssetsLoaded: (0, _allLoaded2.default)(state),
             backup: state.backup,
             status: state.status,
             statusIndictor: (0, _indicator2.default)(state)
@@ -32980,7 +35215,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                             hasFunds,
                             backup
                         } = this.props;
-                        return hasFunds && !backup.auth ? '!' : undefined;
+                        return hasFunds && !backup.status ? '!' : undefined;
                 }
             }
             render() {
@@ -32991,7 +35226,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     fiatTotal,
                     items,
                     marketPricesLoaded,
-                    status,
+                    allAssetsLoaded,
                     statusIndictor
                 } = this.props;
                 const {
@@ -33006,7 +35241,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 }), _react2.default.createElement('div', {
                     id: 'current-balance',
                     onClick: this.handleClickChangeUnit
-                }, marketPricesLoaded ? displayFiat ? _react2.default.createElement(_ui.CounterCurrencyText, {
+                }, marketPricesLoaded && allAssetsLoaded ? displayFiat ? _react2.default.createElement(_ui.CounterCurrencyText, {
                     amount: fiatTotal,
                     symbol: true,
                     code: true
@@ -33026,7 +35261,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 })), _react2.default.createElement('div', {
                     id: 'nav-status',
                     className: (0, _classnames2.default)('nav-button', {
-                        'show': status.code143 > 0
+                        'show': statusIndictor !== 'normal'
                     }),
                     onClick: () => _electron.shell.openExternal('https://www.exodus.io/status')
                 }, _react2.default.createElement('div', {
@@ -33051,16 +35286,17 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = NavigationView;
 
     }, {
-        "124": 124,
-        "128": 128,
-        "130": 130,
-        "134": 134,
-        "145": 145,
-        "348": 348,
-        "380": 380,
+        "101": 101,
+        "133": 133,
+        "137": 137,
+        "139": 139,
+        "144": 144,
+        "156": 156,
+        "370": 370,
+        "401": 401,
         "undefined": undefined
     }],
-    380: [function(require, module, exports) {
+    401: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -33103,7 +35339,36 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    381: [function(require, module, exports) {
+    402: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        var _react = require('react');
+        var _react2 = _interopRequireDefault(_react);
+        var _welcomeMessage = require(405);
+        var _welcomeMessage2 = _interopRequireDefault(_welcomeMessage);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        exports.default = () => _react2.default.createElement('div', {
+            id: 'welcome-to-exodus'
+        }, _react2.default.createElement('div', {
+            id: 'welcome-to-exodus-chart'
+        }), _react2.default.createElement('div', {
+            id: 'welcome-to-exodus-logomark'
+        }), _react2.default.createElement('div', {
+            id: 'welcome-title'
+        }, 'Welcome To Exodus'), _react2.default.createElement(_welcomeMessage2.default, null));
+
+    }, {
+        "405": 405,
+        "undefined": undefined
+    }],
+    403: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -33115,34 +35380,41 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _ui = require(348);
-        var _portfolio = require(342);
+        var _appConfig = require(85);
+        var _ui = require(370);
+        var _portfolio = require(364);
         var _portfolio2 = _interopRequireDefault(_portfolio);
-        var _currencyFormatters = require(222);
-        var _coinTotalAmounts = require(107);
+        var _currencyFormatters = require(238);
+        var _coinTotalAmounts = require(113);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
-        var _available = require(100);
-        var _available2 = _interopRequireDefault(_available);
-        var _addButton = require(99);
+        var _alphabeticalOrBalance = require(102);
+        var _alphabeticalOrBalance2 = _interopRequireDefault(_alphabeticalOrBalance);
+        var _addButton = require(100);
         var _addButton2 = _interopRequireDefault(_addButton);
-        var _total = require(128);
+        var _total = require(137);
         var _total2 = _interopRequireDefault(_total);
-        var _getValue = require(126);
+        var _getValue = require(135);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _percentage = require(127);
+        var _percentage = require(136);
         var _percentage2 = _interopRequireDefault(_percentage);
-        var _loaded = require(102);
-        var _loaded2 = _interopRequireDefault(_loaded);
-        var _pricesLoaded = require(134);
+        var _allLoaded = require(101);
+        var _allLoaded2 = _interopRequireDefault(_allLoaded);
+        var _pricesLoaded = require(144);
         var _pricesLoaded2 = _interopRequireDefault(_pricesLoaded);
-        var _pricesAvailable = require(133);
+        var _pricesAvailable = require(143);
         var _pricesAvailable2 = _interopRequireDefault(_pricesAvailable);
-        var _hasFunds = require(130);
+        var _hasFunds = require(139);
         var _hasFunds2 = _interopRequireDefault(_hasFunds);
-        var _electronDialog = require(226);
-        var _electronDialog2 = _interopRequireDefault(_electronDialog);
-        var _getAssetColor = require(193);
+        var _hasHistory = require(140);
+        var _hasHistory2 = _interopRequireDefault(_hasHistory);
+        var _getAssetColor = require(209);
         var _getAssetColor2 = _interopRequireDefault(_getAssetColor);
+        var _exodusIntro = require(402);
+        var _exodusIntro2 = _interopRequireDefault(_exodusIntro);
+        var _overTime = require(404);
+        var _overTime2 = _interopRequireDefault(_overTime);
+        var _assets = require(210);
+        var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -33154,13 +35426,15 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 coin,
                 percentage,
                 value,
+                toggleNameClick,
                 toggleCoinClick,
                 showFiat
             } = _ref;
             return _react2.default.createElement('div', {
                 className: 'key-item'
             }, _react2.default.createElement('div', {
-                className: 'key-name'
+                className: 'key-name',
+                onClick: toggleNameClick
             }, coin.properName), _react2.default.createElement('span', {
                 className: 'key-percentage percentage-text'
             }, percentage, '%'), _react2.default.createElement('div', {
@@ -33181,43 +35455,34 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             })));
         };
         let Portfolio = (_dec = (0, _reactRedux.connect)(state => ({
-            availableAssets: (0, _available2.default)(state),
+            availableAssets: (0, _alphabeticalOrBalance2.default)(state),
             accountBalances: (0, _coinTotalAmounts2.default)(state),
             fiatTotal: (0, _total2.default)(state),
             fiatPercentage: (0, _percentage2.default)(state),
             getFiatValue: (0, _getValue2.default)(state),
-            assetsLoaded: (0, _loaded2.default)(state),
+            allAssetsLoaded: (0, _allLoaded2.default)(state),
             assetsAddButton: (0, _addButton2.default)(state),
             marketPricesLoaded: (0, _pricesLoaded2.default)(state),
             marketPricesAvailable: (0, _pricesAvailable2.default)(state),
-            hasFunds: (0, _hasFunds2.default)(state)
+            hasFunds: (0, _hasFunds2.default)(state),
+            hasHistory: (0, _hasHistory2.default)(state)
         })), _dec(_class = (_temp = _class2 = class Portfolio extends _react2.default.Component {
             constructor() {
                 super();
                 this.state = {
-                    showFiat: true
+                    showFiat: true,
+                    showDonut: true
                 };
-                this.handleClickRestore = this.handleClickRestore.bind(this);
+                this.handleClickChangeChart = this.handleClickChangeChart.bind(this);
             }
             handleClickCoin(asset) {
                 this.setState({
                     showFiat: !this.state.showFiat
                 });
             }
-            handleClickRestore() {
-                const opts = {
-                    type: 'question',
-                    title: 'Restore',
-                    message: 'Please select the appropriate restore method.',
-                    buttons: ['Backup Link (from email)', '12 Word Recovery Phrase']
-                };
-                _electronDialog2.default.showMessageBox(null, opts, buttonIndex => {
-                    switch (buttonIndex) {
-                        case 0:
-                            return global.Exodus.restore.fromRecoveryLink();
-                        case 1:
-                            return global.Exodus.restore.fromRecoveryPhrase();
-                    }
+            handleClickChangeChart() {
+                this.setState({
+                    showDonut: !this.state.showDonut
                 });
             }
             render() {
@@ -33228,84 +35493,55 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     fiatPercentage,
                     getFiatValue,
                     accountBalances,
-                    assetsLoaded,
+                    allAssetsLoaded,
                     marketPricesLoaded,
                     marketPricesAvailable,
-                    hasFunds
+                    hasFunds,
+                    hasHistory
                 } = this.props;
-                const allAssetsLoaded = Object.values(assetsLoaded).every(i => i);
-                const showFiat = allAssetsLoaded && (marketPricesLoaded || !hasFunds) ? this.state.showFiat : false;
+                const {
+                    showDonut
+                } = this.state;
+                const showFiat = allAssetsLoaded && (marketPricesLoaded || !hasHistory) ? this.state.showFiat : false;
                 const coinData = Object.keys(availableAssets).map(assetName => {
                     return {
-                        fiat: getFiatValue(accountBalances[assetName]).toNumber(),
+                        fiat: getFiatValue(accountBalances[assetName]),
                         coinTotal: accountBalances[assetName].toNumber(),
                         color: (0, _getAssetColor2.default)(assetName),
-                        coin: assetName
+                        asset: _assets2.default[assetName]
                     };
                 });
                 const fiatStr = total => {
                     const obj = (0, _currencyFormatters.formatObj)(total);
                     return `${obj.symbol}${obj.whole}${obj.decimalSep}${obj.fraction}`;
                 };
-                const WelcomeMessage = (_ref2) => {
-                    let {
-                        allAssetsLoaded,
-                        marketPricesLoaded,
-                        hasFunds
-                    } = _ref2;
-                    if (!allAssetsLoaded) {
-                        return _react2.default.createElement('div', {
-                            id: 'welcome-message'
-                        }, 'Loading...');
-                    }
-                    if (!marketPricesLoaded && hasFunds) {
-                        return _react2.default.createElement('div', {
-                            id: 'welcome-message'
-                        }, 'Please check your internet connection');
-                    }
-                    if (!hasFunds) {
-                        return _react2.default.createElement('div', {
-                            id: 'welcome-message'
-                        }, 'Get started by sending assets to your wallet or\xA0', _react2.default.createElement('span', {
-                            className: 'restore-link',
-                            onClick: this.handleClickRestore
-                        }, 'restore from backup'), '.');
-                    }
-                };
-                const ExodusIntro = props => _react2.default.createElement('div', {
-                    id: 'welcome-to-exodus'
-                }, _react2.default.createElement('div', {
-                    id: 'welcome-to-exodus-chart'
-                }), _react2.default.createElement('div', {
-                    id: 'welcome-to-exodus-logomark'
-                }), _react2.default.createElement('div', {
-                    id: 'welcome-title'
-                }, 'Welcome To Exodus'), _react2.default.createElement(WelcomeMessage, props));
                 return _react2.default.createElement('div', {
                     id: 'exodus-content-portfolio'
                 }, _react2.default.createElement('div', {
                     id: 'add-asset',
                     className: assetsAddButton ? 'add' : 'subtract',
                     onClick: global.handleClickWalletAddAssets
-                }, _react2.default.createElement('span', null, assetsAddButton ? '+' : '-')), _react2.default.createElement('div', {
+                }, _react2.default.createElement('span', null, assetsAddButton ? '+' : '-')), _appConfig.ENV_DEV ? _react2.default.createElement('div', {
+                    id: 'chart-view',
+                    onClick: this.handleClickChangeChart
+                }, showDonut ? 'View Over Time' : 'View Current') : null, showDonut ? _react2.default.createElement('div', {
+                    id: 'donut-chart'
+                }, _react2.default.createElement('div', {
                     id: 'portfolio-chart'
-                }, allAssetsLoaded && hasFunds && marketPricesLoaded ? _react2.default.createElement(_portfolio2.default, {
+                }, allAssetsLoaded && hasFunds && hasHistory && marketPricesLoaded ? _react2.default.createElement(_portfolio2.default, {
                     data: coinData,
                     total: fiatStr(fiatTotal)
-                }) : _react2.default.createElement(ExodusIntro, {
-                    allAssetsLoaded: allAssetsLoaded,
-                    marketPricesLoaded: marketPricesLoaded,
-                    hasFunds: hasFunds
-                })), _react2.default.createElement('div', {
+                }) : _react2.default.createElement(_exodusIntro2.default, null)), _react2.default.createElement('div', {
                     id: 'portfolio-key'
                 }, Object.keys(availableAssets).map(assetName => _react2.default.createElement(CoinPortfolio, {
                     key: assetName,
                     coin: availableAssets[assetName],
                     percentage: fiatPercentage[assetName] || 0,
                     value: showFiat && marketPricesAvailable(assetName) ? getFiatValue(accountBalances[assetName]) : accountBalances[assetName].toDefault(),
+                    toggleNameClick: () => global.handleClickPortfolioAsset(assetName),
                     toggleCoinClick: () => this.handleClickCoin(assetName),
                     showFiat: showFiat
-                }))));
+                })))) : _react2.default.createElement(_overTime2.default, null));
             }
         }, _class2.propTypes = {
             availableAssets: _propTypes2.default.object,
@@ -33317,23 +35553,161 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
 
     }, {
         "100": 100,
+        "101": 101,
         "102": 102,
-        "107": 107,
-        "126": 126,
-        "127": 127,
-        "128": 128,
-        "130": 130,
-        "133": 133,
-        "134": 134,
-        "193": 193,
-        "222": 222,
-        "226": 226,
-        "342": 342,
-        "348": 348,
-        "99": 99,
+        "113": 113,
+        "135": 135,
+        "136": 136,
+        "137": 137,
+        "139": 139,
+        "140": 140,
+        "143": 143,
+        "144": 144,
+        "209": 209,
+        "210": 210,
+        "238": 238,
+        "364": 364,
+        "370": 370,
+        "402": 402,
+        "404": 404,
+        "85": 85,
         "undefined": undefined
     }],
-    382: [function(require, module, exports) {
+    404: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.default = undefined;
+        var _dec, _class, _class2, _temp;
+        var _reactRedux = require('react-redux');
+        var _react = require('react');
+        var _react2 = _interopRequireDefault(_react);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        let PortfolioOverTime = (_dec = (0, _reactRedux.connect)(state => ({})), _dec(_class = (_temp = _class2 = class PortfolioOverTime extends _react2.default.Component {
+            render() {
+                return _react2.default.createElement('div', {
+                    id: 'time-chart'
+                }, _react2.default.createElement('h1', null, '\u23F0\u231A\uFE0F\u23F2\u23F3\uD83D\uDD70'), _react2.default.createElement('p', null, 'Future Over Time Chart Placeholder'));
+            }
+        }, _class2.propTypes = {}, _temp)) || _class);
+        exports.default = PortfolioOverTime;
+
+    }, {
+        "undefined": undefined
+    }],
+    405: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        var _react = require('react');
+        var _react2 = _interopRequireDefault(_react);
+        var _reactRedux = require('react-redux');
+        var _allLoaded = require(101);
+        var _allLoaded2 = _interopRequireDefault(_allLoaded);
+        var _pricesLoaded = require(144);
+        var _pricesLoaded2 = _interopRequireDefault(_pricesLoaded);
+        var _hasHistory = require(140);
+        var _hasHistory2 = _interopRequireDefault(_hasHistory);
+        var _electronDialog = require(242);
+        var _electronDialog2 = _interopRequireDefault(_electronDialog);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        exports.default = (0, _reactRedux.connect)(state => ({
+            allAssetsLoaded: (0, _allLoaded2.default)(state),
+            marketPricesLoaded: (0, _pricesLoaded2.default)(state),
+            hasHistory: (0, _hasHistory2.default)(state)
+        }))((_ref) => {
+            let {
+                allAssetsLoaded,
+                marketPricesLoaded,
+                hasHistory
+            } = _ref;
+            if (!allAssetsLoaded) {
+                return _react2.default.createElement('div', {
+                    id: 'welcome-message'
+                }, 'Loading...');
+            }
+            if (!marketPricesLoaded && hasHistory) {
+                return _react2.default.createElement('div', {
+                    id: 'welcome-message'
+                }, 'Please check your internet connection');
+            }
+            if (hasHistory) {
+                return _react2.default.createElement('div', {
+                    id: 'welcome-message'
+                }, 'Get started by sending assets to your wallet.');
+            } else {
+                return _react2.default.createElement('div', {
+                    id: 'welcome-message'
+                }, 'Get started by sending assets to your wallet or\xA0', _react2.default.createElement('span', {
+                    className: 'restore-link',
+                    onClick: handleClickRestore
+                }, 'restore from backup'), '.');
+            }
+        });
+
+        function handleClickRestore() {
+            const opts = {
+                type: 'question',
+                title: 'Restore',
+                message: 'Please select the appropriate restore method.',
+                buttons: ['Backup Link (from email)', '12 Word Recovery Phrase']
+            };
+            _electronDialog2.default.showMessageBox(null, opts, buttonIndex => {
+                switch (buttonIndex) {
+                    case 0:
+                        return global.Exodus.restore.fromRecoveryLink();
+                    case 1:
+                        return global.Exodus.restore.fromRecoveryPhrase();
+                }
+            });
+        }
+
+    }, {
+        "101": 101,
+        "140": 140,
+        "144": 144,
+        "242": 242,
+        "undefined": undefined
+    }],
+    406: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.default = undefined;
+        var _react = require('react');
+        var _react2 = _interopRequireDefault(_react);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        let ComponentNew = class ComponentNew extends _react2.default.Component {
+            render() {
+                return _react2.default.createElement('div', {
+                    id: 'exodus-content-sandbox'
+                }, 'Sandbox');
+            }
+        };
+        exports.default = ComponentNew;
+
+    }, {
+        "undefined": undefined
+    }],
+    407: [function(require, module, exports) {
         module.exports = {
             "aragon": {
                 "description": "Allows users to manage organizations and companies on the Ethereum blockchain.",
@@ -33365,7 +35739,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 "website": "https://www.bitcoincash.org/"
             },
             "bgold": {
-                "description": "Bitcoin Gold is a fork of the Bitcoin blockchain that occurred at block # 491407 on October 24, 2017. It uses the Equihash PoW mining algorithm (first used by Zcash) to make mining of Bitcoin Gold resistant to costly and powerful ASIC hardware – one can only mine Bitcoin Gold from GPU mining rigs.",
+                "description": "Bitcoin Gold is a fork of the Bitcoin blockchain that occurred at block # 491407 on October 24, 2017. It uses the Equihash PoW mining algorithm to make mining of Bitcoin Gold resistant to ASIC hardware.",
                 "reddit": "https://www.reddit.com/r/BitcoinGoldHQ/",
                 "twitter": "https://twitter.com/bitcoingold",
                 "website": "https://bitcoingold.org/"
@@ -33519,7 +35893,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 "website": "https://nem.io/"
             },
             "numeraire": {
-                "description": "Numeraire is the first Ethereum based hedge fund that gives its data away for free with structure-preserving encryption and allows open participation by data scientists around the world. Users contribute prediction sets for financial markets to improve the machine learning abilities of this platform.",
+                "description": "Numeraire gives its data away for free with structure-preserving encryption and allows open participation by data scientists around the world. Users contribute financial market prediction sets to improve the platform.",
                 "reddit": "https://www.reddit.com/r/numerai",
                 "twitter": "https://twitter.com/Numerai",
                 "website": "https://numer.ai"
@@ -33536,8 +35910,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 "twitter": "https://twitter.com/potcoin",
                 "website": "http://www.potcoin.com/"
             },
-            "qtum": {
-                "description": "Qtum is a smart contract platform similar to Ethereum while still mantaining an Unspent Transaction Output (UTXO) transaction model similar to Bitcoin. Qtum employs a Proof of Stake consensus mechanism.",
+            "qtumignition": {
+                "description": "Qtum aims to serve the enterprise blockchain market by providing various tools to simplify and automate business processes. Qtum utilizes popular technologies available in the blockchain space today; smart contracts like Ethereum, the UTXO transaction model of Bitcoin and a Proof-of-Stake consensus mechanism.",
                 "reddit": "https://www.reddit.com/r/Qtum/",
                 "twitter": "https://twitter.com/QtumOfficial",
                 "website": "https://www.qtum.org/"
@@ -33547,6 +35921,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 "reddit": "https://www.reddit.com/r/reddCoin/",
                 "twitter": "https://twitter.com/reddcoin",
                 "website": "https://www.reddcoin.com/"
+            },
+            "ripio": {
+                "description": "Ripio is an Ethereum smart contracts based credit network that aims to bring together lenders, borrowers, re-insurers, credit exchanges, credit ratings agencies etc. to make credit access easy for the unbanked. RCN tokens are required to access the Ripio network and facilitate transactions among all the parties involved.",
+                "reddit": "https://www.reddit.com/r/rcn_token/",
+                "twitter": "https://twitter.com/RCN_token",
+                "website": "https://ripiocredit.network/"
             },
             "ripple": {
                 "description": "Real-time peer-to-peer settlement network. Ripples (XRP) aren't mined and each transaction destroys a small amount of XRP - the net effect is a deflationary asset.",
@@ -33567,7 +35947,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 "website": "https://sia.tech/"
             },
             "singulardtv": {
-                "description": "SingularDTV is an Ethereum based token laying the foundation for a decentralized entertainment industry. It aims to build the future of rights management, project funding, and peer-to-peer distribution by empowering artists and creators with powerful tools to manage projects from development to distribution.",
+                "description": "SingularDTV aims to build the future of rights management, project funding, and peer-to-peer distribution by empowering artists and creators with powerful tools to manage projects from development to distribution.",
                 "reddit": "https://www.reddit.com/r/SingularDTV",
                 "twitter": "https://twitter.com/SingularDTV",
                 "website": "https://singulardtv.com"
@@ -33579,7 +35959,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 "website": "https://status.im/"
             },
             "storj": {
-                "description": "Storj is a decentralized cloud storage platform that allows anyone to rent their idle hard drive space and to earn a revenue by doing so. Payments within the Storj network and conducted with the STORJ token, an ERC20 Ethereum-based token.",
+                "description": "Storj is a decentralized cloud storage platform that allows anyone to rent their idle hard drive space and to earn a revenue by doing so.",
                 "reddit": "https://www.reddit.com/r/storj/",
                 "twitter": "https://twitter.com/storjproject",
                 "website": "https://storj.io/"
@@ -33591,7 +35971,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 "website": "https://tether.to/"
             },
             "vertcoin": {
-                "description": "Vertcoin was forked from Litecoin to create a level playing field for mining; the aim is to make mining as affordable as possible through ASIC-resistance. The Vertcoin team is actively working on implementing Stealth Addresses, Lightning Network and Atomic Swaps on its blockchain.",
+                "description": "Vertcoin has adapted code similar to the Bitcoin blockchain with additional features like ASIC-resistance for affordable and decentralized mining.",
                 "reddit": "https://www.reddit.com/r/vertcoin/",
                 "twitter": "https://twitter.com/Vertcoin",
                 "website": "https://vertcoin.org/"
@@ -33603,7 +35983,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 "website": "https://wavesplatform.com/"
             },
             "wetrust": {
-                "description": "WeTrust is an Ethereum based platform providing decentralized financial services which create a more inclusive financial system. This means anyone can have access to fair and equitable financial services without an expensive trusted third party. WeTrust platform SDK will allow developers to build new financial DApps with access to public user data and tools library.",
+                "description": "WeTrust provides decentralized financial services to create a more inclusive financial system. With WeTrust anyone can have access to fair and equitable financial services without an expensive trusted third party.",
                 "reddit": "https://www.reddit.com/r/WeTrustPlatform",
                 "twitter": "https://twitter.com/wetrustplatform",
                 "website": "https://www.wetrust.io"
@@ -33615,7 +35995,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 "website": "https://www.wings.ai/#!/home/discover"
             },
             "zcash": {
-                "description": "Zcash is an open-source, permission-less cryptocurrency that can fully protect the privacy of transactions using zero-knowledge cryptography (zk-SNARKS). This zero-knowledge cryptographic technology brings fungibility to all coins in distribution; every coin is guaranteed to be equally usable.",
+                "description": "Zcash is an open-source, permission-less cryptocurrency that can fully protect the privacy of transactions using zero-knowledge cryptography (zk-SNARKS).",
                 "reddit": "https://www.reddit.com/r/zec/",
                 "twitter": "https://twitter.com/zcashco",
                 "website": "https://z.cash/"
@@ -33629,7 +36009,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {}],
-    383: [function(require, module, exports) {
+    408: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -33638,16 +36018,20 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _dec, _class;
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _flux = require(271);
+        var _flux = require(289);
         var _reactRedux = require('react-redux');
-        var _appConfig = require(84);
-        var _available = require(100);
+        var _appConfig = require(85);
+        var _available = require(104);
         var _available2 = _interopRequireDefault(_available);
-        var _coinTotalAmounts = require(107);
+        var _assetsSupported = require(121);
+        var _assetsSupported2 = _interopRequireDefault(_assetsSupported);
+        var _coinTotalAmounts = require(113);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
-        var _assetData = require(382);
+        var _getLogo = require(297);
+        var _getLogo2 = _interopRequireDefault(_getLogo);
+        var _assetData = require(407);
         var _assetData2 = _interopRequireDefault(_assetData);
         var _electron = require('electron');
 
@@ -33664,11 +36048,17 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         })();
         let Assets = (_dec = (0, _reactRedux.connect)(state => ({
             assetsTotalAmounts: (0, _coinTotalAmounts2.default)(state),
-            availableAssets: (0, _available2.default)(state)
+            availableAssets: (0, _available2.default)(state),
+            exchangeAssetsSupported: (0, _assetsSupported2.default)(state)
         })), _dec(_class = class Assets extends _react2.default.Component {
             constructor() {
                 super();
+                this.state = {
+                    search: ''
+                };
                 this.handleChange = this.handleChange.bind(this);
+                this.handleChangeSearch = this.handleChangeSearch.bind(this);
+                this.searchFilter = this.searchFilter.bind(this);
             }
             handleChange(_ref) {
                 let {
@@ -33680,6 +36070,22 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 } else {
                     _flux.actions.config.disableAsset(target.name);
                 }
+            }
+            handleChangeSearch(_ref2) {
+                let {
+                    target
+                } = _ref2;
+                this.setState({
+                    search: target.value
+                });
+            }
+            searchFilter(asset) {
+                let {
+                    search
+                } = this.state;
+                search = search.trim().toLowerCase();
+                if (!search) return true;
+                return `${asset.properName} ${asset.displayUnit}`.toLowerCase().includes(search);
             }
             render() {
                 const isEnabled = asset => !!this.props.availableAssets[asset.name];
@@ -33694,7 +36100,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     if (hasBalance(asset)) return 'Has Balance';
                     return '';
                 };
-                const assetComponents = Object.values(_assets2.default).filter(asset => asset.available && (asset.name !== 'qtum' || isEnabled(asset))).map(asset => {
+                const assetComponents = Object.values(_assets2.default).filter(asset => {
+                    const isAssetAvailable = asset.available;
+                    const isAssetSupported = !asset.isEthereumToken || this.props.exchangeAssetsSupported.includes(asset.name);
+                    const isAssetEnabled = asset.name !== 'vertcoin' || isEnabled(asset);
+                    return isAssetAvailable && isAssetSupported && isAssetEnabled;
+                }).filter(this.searchFilter).map(asset => {
                     const data = _assetData2.default[asset.name] || {};
                     return _react2.default.createElement('div', {
                         className: 'asset-row',
@@ -33714,7 +36125,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                         className: 'asset-name'
                     }, _react2.default.createElement('img', {
                         className: 'asset-name--logo',
-                        src: `img/logo-${asset.name}@2x.png`
+                        src: (0, _getLogo2.default)(asset.name)
                     }), _react2.default.createElement('div', {
                         className: 'asset-name--name'
                     }, _react2.default.createElement('span', {
@@ -33725,7 +36136,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                         className: 'asset-name--status'
                     }, statusText(asset))))), _react2.default.createElement('div', {
                         className: 'asset-description'
-                    }, data.description), _react2.default.createElement('div', {
+                    }, data.description || 'No description available at this time.'), _react2.default.createElement('div', {
                         className: 'asset-links'
                     }, data.website && _react2.default.createElement('span', {
                         className: 'asset-links--icon website',
@@ -33738,16 +36149,78 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                         onClick: openURL(data.twitter)
                     })));
                 });
+                const tokenComponents = Object.values(_assets2.default).filter(asset => asset.available && asset.isEthereumToken && !this.props.exchangeAssetsSupported.includes(asset.name)).filter(this.searchFilter).map(asset => {
+                    return _react2.default.createElement('div', {
+                        className: 'token',
+                        key: asset.name
+                    }, _react2.default.createElement('label', {
+                        htmlFor: `settings-assets--${asset.name}`
+                    }, _react2.default.createElement('input', {
+                        name: asset.name,
+                        type: 'checkbox',
+                        id: `settings-assets--${asset.name}`,
+                        disabled: disabled(asset),
+                        checked: isEnabled(asset),
+                        onChange: this.handleChange
+                    }), _react2.default.createElement('img', {
+                        className: 'token-icon',
+                        src: (0, _getLogo2.default)(asset.name)
+                    }), _react2.default.createElement('div', {
+                        className: 'token-title'
+                    }, asset.properName), _react2.default.createElement('div', {
+                        className: 'token-ticker'
+                    }, asset.displayUnit), _react2.default.createElement('div', {
+                        className: 'token-status'
+                    }, statusText(asset)), _react2.default.createElement('div', {
+                        className: 'token-checkbox'
+                    })));
+                });
                 return _react2.default.createElement('div', {
                     id: 'settings-assets',
                     className: 'settings-global'
                 }, _react2.default.createElement('h1', null, 'Show / Hide'), _react2.default.createElement('p', {
                     className: 'description'
-                }, 'Assets that are disabled are hidden in ', appName, '. In order to hide an asset, it must have a 0 balance. Since the exchange section requires a minimum of two assets, Bitcoin and Ethereum must remain active.'), _react2.default.createElement('form', {
+                }, 'Disabled assets are hidden in ', appName, '. To hide an asset it must have a 0 balance. Because the exchange requires a minimum of two assets, Bitcoin and Ethereum must remain on.'), _react2.default.createElement('form', {
                     action: '#'
-                }, _react2.default.createElement('div', {
+                }, _react2.default.createElement('input', {
+                    id: 'asset-search',
+                    name: 'searchbar',
+                    placeholder: 'Search for assets\u2026',
+                    autoFocus: true,
+                    tabIndex: '1',
+                    type: 'text',
+                    value: this.state.search,
+                    onChange: this.handleChangeSearch
+                }), _react2.default.createElement('div', {
                     id: 'asset-collection-table'
-                }, assetComponents)));
+                }, assetComponents.length ? assetComponents : _react2.default.createElement('span', {
+                    className: 'no-matches'
+                }, 'No assets match your search: "', _react2.default.createElement('strong', null, this.state.search), '"')), _react2.default.createElement('div', {
+                    id: 'token-collection-table'
+                }, _react2.default.createElement('div', {
+                    className: 'accordion-group'
+                }, _react2.default.createElement('label', {
+                    htmlFor: 'addMoreTokens',
+                    className: 'title'
+                }, 'Ethereum Assets'), _react2.default.createElement('input', {
+                    type: 'checkbox',
+                    id: 'addMoreTokens',
+                    className: 'control-checkbox',
+                    defaultChecked: true
+                }), _react2.default.createElement('div', {
+                    className: 'disclosure'
+                }), _react2.default.createElement('div', {
+                    className: 'content'
+                }, _react2.default.createElement('p', null, 'The Ethereum assets below can also be added to your ', appName, ' wallet. You can send and receive assets, however, they are not supported in the exchange. ', _react2.default.createElement('span', {
+                    className: 'link',
+                    onClick: () => {
+                        _electron.shell.openExternal('https://support.exodus.io/article/642-send-and-receive-ethereum-assets');
+                    }
+                }, 'Learn more\u2026')), _react2.default.createElement('div', {
+                    className: 'token-group'
+                }, tokenComponents.length ? tokenComponents : _react2.default.createElement('span', {
+                    className: 'no-matches'
+                }, 'No Ethereum assets match your search: "', _react2.default.createElement('strong', null, this.state.search), '"')))))));
             }
         }) || _class);
         exports.default = Assets;
@@ -33757,15 +36230,17 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "100": 100,
-        "107": 107,
-        "194": 194,
-        "271": 271,
-        "382": 382,
-        "84": 84,
+        "104": 104,
+        "113": 113,
+        "121": 121,
+        "210": 210,
+        "289": 289,
+        "297": 297,
+        "407": 407,
+        "85": 85,
         "undefined": undefined
     }],
-    384: [function(require, module, exports) {
+    409: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -33775,18 +36250,20 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
         var _reactRedux = require('react-redux');
-        var _flux = require(271);
-        var _settingsNav = require(387);
+        var _flux = require(289);
+        var _settingsNav = require(413);
         var _settingsNav2 = _interopRequireDefault(_settingsNav);
-        var _settings = require(312);
+        var _settings = require(332);
         var _settings2 = _interopRequireDefault(_settings);
-        var _assets = require(383);
+        var _assets = require(408);
         var _assets2 = _interopRequireDefault(_assets);
-        var _localization = require(385);
+        var _localization = require(410);
         var _localization2 = _interopRequireDefault(_localization);
-        var _skins = require(388);
+        var _portfolio = require(411);
+        var _portfolio2 = _interopRequireDefault(_portfolio);
+        var _skins = require(414);
         var _skins2 = _interopRequireDefault(_skins);
-        var _security = require(386);
+        var _security = require(412);
         var _security2 = _interopRequireDefault(_security);
 
         function _interopRequireDefault(obj) {
@@ -33814,6 +36291,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     case 'localization':
                         content = _react2.default.createElement(_localization2.default, null);
                         break;
+                    case 'portfolio':
+                        content = _react2.default.createElement(_portfolio2.default, null);
+                        break;
                     case 'skins':
                         content = _react2.default.createElement(_skins2.default, null);
                         break;
@@ -33834,16 +36314,17 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = SettingsView;
 
     }, {
-        "271": 271,
-        "312": 312,
-        "383": 383,
-        "385": 385,
-        "386": 386,
-        "387": 387,
-        "388": 388,
+        "289": 289,
+        "332": 332,
+        "408": 408,
+        "410": 410,
+        "411": 411,
+        "412": 412,
+        "413": 413,
+        "414": 414,
         "undefined": undefined
     }],
-    385: [function(require, module, exports) {
+    410: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -33857,10 +36338,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _reactRedux = require('react-redux');
         var _reactSelect = require('react-select');
         var _reactSelect2 = _interopRequireDefault(_reactSelect);
-        var _flux = require(271);
-        var _fiat = require(109);
+        var _flux = require(289);
+        var _fiat = require(115);
         var _fiat2 = _interopRequireDefault(_fiat);
-        var _units = require(221);
+        var _units = require(237);
         var _units2 = _interopRequireDefault(_units);
 
         function _interopRequireDefault(obj) {
@@ -33923,12 +36404,76 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = Localization;
 
     }, {
-        "109": 109,
-        "221": 221,
-        "271": 271,
+        "115": 115,
+        "237": 237,
+        "289": 289,
         "undefined": undefined
     }],
-    386: [function(require, module, exports) {
+    411: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.default = undefined;
+        var _dec, _class;
+        var _react = require('react');
+        var _react2 = _interopRequireDefault(_react);
+        var _reactRedux = require('react-redux');
+        var _reactSelect = require('react-select');
+        var _reactSelect2 = _interopRequireDefault(_reactSelect);
+        var _flux = require(289);
+        var _portfolioSortOrder = require(118);
+        var _portfolioSortOrder2 = _interopRequireDefault(_portfolioSortOrder);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        const OPTIONS = [{
+            value: 'alphabetical',
+            label: 'Alphabetical'
+        }, {
+            value: 'balance',
+            label: 'Balance (High to Low)'
+        }];
+        let Portfolio = (_dec = (0, _reactRedux.connect)(state => ({
+            configSortOrder: (0, _portfolioSortOrder2.default)(state)
+        })), _dec(_class = class Portfolio extends _react2.default.Component {
+            constructor(props) {
+                super(props);
+                this.handleSortOrderChange = this.handleSortOrderChange.bind(this);
+            }
+            handleSortOrderChange(_ref) {
+                let {
+                    value
+                } = _ref;
+                _flux.actions.config.setPortfolioSortOrder(value);
+            }
+            render() {
+                return _react2.default.createElement('div', {
+                    id: 'settings-portfolio',
+                    className: 'settings-global'
+                }, _react2.default.createElement('h1', null, 'Sorting'), _react2.default.createElement('p', {
+                    className: 'description'
+                }, 'Set your preferred Portfolio sorting order. This impacts the display order of both the portfolio pie chart and key.'), _react2.default.createElement(_reactSelect2.default, {
+                    className: 'ex-select',
+                    value: this.props.configSortOrder,
+                    clearable: false,
+                    options: OPTIONS,
+                    onChange: this.handleSortOrderChange,
+                    searchable: false
+                }));
+            }
+        }) || _class);
+        exports.default = Portfolio;
+
+    }, {
+        "118": 118,
+        "289": 289,
+        "undefined": undefined
+    }],
+    412: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -33940,13 +36485,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _reactRedux = require('react-redux');
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _hasFunds = require(130);
+        var _hasFunds = require(139);
         var _hasFunds2 = _interopRequireDefault(_hasFunds);
-        var _twoOfTwo = require(334);
-        var _reactQr = require(301);
+        var _twoOfTwo = require(356);
+        var _reactQr = require(321);
         var _reactQr2 = _interopRequireDefault(_reactQr);
-        var _flux = require(271);
-        var _paired = require(146);
+        var _flux = require(289);
+        var _paired = require(157);
         var _paired2 = _interopRequireDefault(_paired);
 
         function _interopRequireDefault(obj) {
@@ -34068,7 +36613,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     hasFunds
                 } = this.props;
                 const isActivated = this.props.paired;
-                const isAllowed = !hasFunds && !backup.auth;
+                const isAllowed = !hasFunds && !backup.status;
                 let content;
                 if (isActivated) {
                     content = this.displayActivated();
@@ -34091,21 +36636,21 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = Security;
 
     }, {
-        "130": 130,
-        "146": 146,
-        "271": 271,
-        "301": 301,
-        "334": 334,
+        "139": 139,
+        "157": 157,
+        "289": 289,
+        "321": 321,
+        "356": 356,
         "undefined": undefined
     }],
-    387: [function(require, module, exports) {
+    413: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
-        var _settings = require(312);
+        var _settings = require(332);
         var _settings2 = _interopRequireDefault(_settings);
 
         function _interopRequireDefault(obj) {
@@ -34133,10 +36678,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {
-        "312": 312,
+        "332": 332,
         "undefined": undefined
     }],
-    388: [function(require, module, exports) {
+    414: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -34144,8 +36689,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = undefined;
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
-        var _flux = require(271);
-        var _configKeys = require(217);
+        var _flux = require(289);
+        var _keys = require(233);
         var _electron = require('electron');
 
         function _interopRequireDefault(obj) {
@@ -34153,7 +36698,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 default: obj
             };
         }
-        const themeUpdate = themeName => () => _flux.actions.config.update(_configKeys.themeName, themeName);
+        const themeUpdate = themeName => () => _flux.actions.config.update(_keys.themeName, themeName);
         let Skins = class Skins extends _react2.default.Component {
             render() {
                 return _react2.default.createElement('div', {
@@ -34411,11 +36956,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = Skins;
 
     }, {
-        "217": 217,
-        "271": 271,
+        "233": 233,
+        "289": 289,
         "undefined": undefined
     }],
-    389: [function(require, module, exports) {
+    415: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -34427,30 +36972,27 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
         var _reactRedux = require('react-redux');
-        var _flux = require(271);
-        var _walletDetail = require(418);
+        var _flux = require(289);
+        var _walletDetail = require(443);
         var _walletDetail2 = _interopRequireDefault(_walletDetail);
-        var _walletNavigation = require(419);
+        var _walletNavigation = require(444);
         var _walletNavigation2 = _interopRequireDefault(_walletNavigation);
-        var _swal = require(321);
+        var _infoButton = require(416);
+        var _infoButton2 = _interopRequireDefault(_infoButton);
+        var _swal = require(343);
         var _swal2 = _interopRequireDefault(_swal);
-        var _available = require(100);
+        var _available = require(104);
         var _available2 = _interopRequireDefault(_available);
-        var _lowBalance = require(103);
-        var _lowBalance2 = _interopRequireDefault(_lowBalance);
-        var _electron = require('electron');
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
                 default: obj
             };
         }
-        const handlerRippleLowBalance = () => _electron.shell.openExternal('http://support.exodus.io/article/110-why-does-ripple-have-a-minimum-balance');
         let WalletView = (_dec = (0, _reactRedux.connect)(state => ({
             accounts: state.accounts,
             assets: (0, _available2.default)(state),
-            activeCoinName: state.localStorage['wallet:active-coin'],
-            rippleLowBalance: (0, _lowBalance2.default)(state)
+            activeCoinName: state.localStorage['wallet:active-coin']
         })), _dec(_class = (_temp = _class2 = class WalletView extends _react2.default.PureComponent {
             constructor(props) {
                 super(props);
@@ -34482,19 +37024,14 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 const {
                     activeCoin
                 } = this.state;
-                const {
-                    rippleLowBalance
-                } = this.props;
                 if (this.props.accounts.error) _swal2.default.error({
                     text: this.props.accounts.error.message
                 });
                 return _react2.default.createElement('div', {
                     id: 'exodus-content-wallet'
-                }, rippleLowBalance && activeCoin.name === 'ripple' ? _react2.default.createElement('div', {
-                    id: 'info-button',
-                    className: 'info',
-                    onClick: handlerRippleLowBalance
-                }, _react2.default.createElement('span', null, 'Low Balance')) : null, _react2.default.createElement(_walletNavigation2.default, {
+                }, _react2.default.createElement(_infoButton2.default, {
+                    asset: activeCoin.name
+                }), _react2.default.createElement(_walletNavigation2.default, {
                     activeCoin: activeCoin,
                     onClick: this.handleCoinClick
                 }), activeCoin ? _react2.default.createElement(_walletDetail2.default, {
@@ -34509,15 +37046,67 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = WalletView;
 
     }, {
-        "100": 100,
-        "103": 103,
-        "271": 271,
-        "321": 321,
-        "418": 418,
-        "419": 419,
+        "104": 104,
+        "289": 289,
+        "343": 343,
+        "416": 416,
+        "443": 443,
+        "444": 444,
         "undefined": undefined
     }],
-    390: [function(require, module, exports) {
+    416: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        var _react = require('react');
+        var _react2 = _interopRequireDefault(_react);
+        var _reactRedux = require('react-redux');
+        var _lowBalance = require(109);
+        var _lowBalance2 = _interopRequireDefault(_lowBalance);
+        var _addressRegistered = require(106);
+        var _addressRegistered2 = _interopRequireDefault(_addressRegistered);
+        var _electron = require('electron');
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        const handlerRippleLowBalance = () => _electron.shell.openExternal('https://support.exodus.io/article/110-why-does-ripple-have-a-minimum-balance');
+        const handlerEOSAddress = () => _electron.shell.openExternal('https://support.exodus.io/article/690-how-do-i-register-my-eos-address-inside-exodus');
+        exports.default = (0, _reactRedux.connect)(state => ({
+            rippleLowBalance: (0, _lowBalance2.default)(state),
+            eosAddressRegistered: (0, _addressRegistered2.default)(state)
+        }))(function InfoButton(_ref) {
+            let {
+                asset,
+                rippleLowBalance,
+                eosAddressRegistered
+            } = _ref;
+            if (rippleLowBalance && asset === 'ripple') {
+                return _react2.default.createElement('div', {
+                    id: 'info-button',
+                    className: 'info',
+                    onClick: handlerRippleLowBalance
+                }, _react2.default.createElement('span', null, 'Low Balance'));
+            }
+            if (!eosAddressRegistered && asset === 'eos') {
+                return _react2.default.createElement('div', {
+                    id: 'info-button',
+                    className: 'info',
+                    onClick: handlerEOSAddress
+                }, _react2.default.createElement('span', null, 'Address Not Registered'));
+            }
+            return null;
+        });
+
+    }, {
+        "106": 106,
+        "109": 109,
+        "undefined": undefined
+    }],
+    417: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -34528,32 +37117,39 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _reactQr = require(301);
+        var _reactQr = require(321);
         var _reactQr2 = _interopRequireDefault(_reactQr);
         var _reactRedux = require('react-redux');
-        var _coinLogo = require(343);
+        var _coinLogo = require(365);
         var _coinLogo2 = _interopRequireDefault(_coinLogo);
-        var _getReceiveAddresses = require(97);
+        var _getReceiveAddresses = require(98);
         var _getReceiveAddresses2 = _interopRequireDefault(_getReceiveAddresses);
         var _classnames = require('classnames');
         var _classnames2 = _interopRequireDefault(_classnames);
         var _electron = require('electron');
-        var _lowBalance = require(103);
+        var _lowBalance = require(109);
         var _lowBalance2 = _interopRequireDefault(_lowBalance);
-        var _blockExplorer = require(105);
+        var _addressRegistered = require(106);
+        var _addressRegistered2 = _interopRequireDefault(_addressRegistered);
+        var _blockExplorer = require(111);
         var _blockExplorer2 = _interopRequireDefault(_blockExplorer);
+        var _address = require(87);
+        var _address2 = _interopRequireDefault(_address);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
                 default: obj
             };
         }
-        const handlerRippleLowBalance = () => _electron.shell.openExternal('http://support.exodus.io/article/110-why-does-ripple-have-a-minimum-balance');
+        const handlerRippleLowBalance = () => _electron.shell.openExternal('https://support.exodus.io/article/110-why-does-ripple-have-a-minimum-balance');
+        const handlerBcashAddressDesc = () => _electron.shell.openExternal('https://support.exodus.io/article/664-bitcoin-cash-address-format');
+        const handlerEosAddressRegistered = () => _electron.shell.openExternal('https://support.exodus.io/article/690-how-do-i-register-my-eos-address-inside-exodus');
         let ReceiveModal = (_dec = (0, _reactRedux.connect)((state, props) => ({
             account: state.accounts[props.coin.name],
             getReceiveAddresses: (0, _getReceiveAddresses2.default)(state),
             txLog: state.txLog[props.coin.name],
             rippleLowBalance: (0, _lowBalance2.default)(state),
+            eosAddressRegistered: (0, _addressRegistered2.default)(state),
             blockExplorer: (0, _blockExplorer2.default)(state)
         })), _dec(_class = (_temp = _class2 = class ReceiveModal extends _react2.default.PureComponent {
             constructor(props) {
@@ -34565,10 +37161,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 const addresses = Array.from(getReceiveAddresses(coin.name));
                 console.log(addresses);
                 this.state = {
-                    status: `Your ${coin.properName} Address`,
+                    status: this.assetStatus(addresses[0]),
                     addresses: addresses,
                     showPrev: false,
-                    showNext: coin.name === 'bitcoin' && addresses.length > 1,
+                    showNext: this.assetSupportsArrows() && addresses.length > 1,
                     index: 0
                 };
                 this.handleMouseEnter = this.handleMouseEnter.bind(this);
@@ -34579,6 +37175,29 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 this.handleClickNextAddress = this.handleClickNextAddress.bind(this);
                 this.handleClickPrevAddress = this.handleClickPrevAddress.bind(this);
                 this.handleClickBlockExplorer = this.handleClickBlockExplorer.bind(this);
+            }
+            assetStatus(address) {
+                const {
+                    coin
+                } = this.props;
+                const addr = address.toString();
+                let text = `Your ${coin.properName} Address`;
+                if (coin.name === 'bcash') {
+                    if (coin.address.isLegacyAddress(addr)) {
+                        text += ' (Old Format)';
+                    }
+                }
+                return text;
+            }
+            assetSupportsArrows() {
+                switch (this.props.coin.name) {
+                    case 'bcash':
+                        return true;
+                    case 'bitcoin':
+                        return true;
+                    default:
+                        return false;
+                }
             }
             componentWillReceiveProps(nextProps) {
                 if (nextProps.getRecvExchAddresses === this.props.getReceiveAddresses) return;
@@ -34596,10 +37215,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             }
             handleMouseLeave() {
                 const {
-                    coin
-                } = this.props;
+                    addresses,
+                    index
+                } = this.state;
                 this.setState({
-                    status: `Your ${coin.properName} Address`
+                    status: this.assetStatus(addresses[index])
                 });
             }
             handleClickBlockExplorer() {
@@ -34628,31 +37248,27 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             }
             handleClickRefresh() {}
             handleClickPrevAddress() {
-                const {
-                    coin
-                } = this.props;
                 const newIndex = this.state.index - 1;
                 const {
                     addresses
                 } = this.state;
                 this.setState({
-                    showPrev: coin.name === 'bitcoin' && newIndex > 0,
-                    showNext: coin.name === 'bitcoin' && newIndex < addresses.length - 1,
+                    status: this.assetStatus(addresses[newIndex]),
+                    showPrev: this.assetSupportsArrows() && newIndex > 0,
+                    showNext: this.assetSupportsArrows() && newIndex < addresses.length - 1,
                     index: newIndex,
                     address: this.state.addresses[newIndex]
                 });
             }
             handleClickNextAddress() {
-                const {
-                    coin
-                } = this.props;
                 const newIndex = this.state.index + 1;
                 const {
                     addresses
                 } = this.state;
                 this.setState({
-                    showPrev: coin.name === 'bitcoin' && newIndex > 0,
-                    showNext: coin.name === 'bitcoin' && newIndex < addresses.length - 1,
+                    status: this.assetStatus(addresses[newIndex]),
+                    showPrev: this.assetSupportsArrows() && newIndex > 0,
+                    showNext: this.assetSupportsArrows() && newIndex < addresses.length - 1,
                     index: newIndex,
                     address: this.state.addresses[newIndex]
                 });
@@ -34661,7 +37277,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 const {
                     coin,
                     onRequestClose,
-                    rippleLowBalance
+                    rippleLowBalance,
+                    eosAddressRegistered
                 } = this.props;
                 let {
                     status,
@@ -34672,6 +37289,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 } = this.state;
                 const address = String(addresses[index]);
                 const showBalanceWarning = ['ripple'].includes(coin.name) && rippleLowBalance;
+                const showBcashAddressDesc = ['bcash'].includes(coin.name);
+                const showEOSAddressInfo = ['eos'].includes(coin.name);
                 return _react2.default.createElement('div', {
                     className: 'modal'
                 }, _react2.default.createElement('div', {
@@ -34767,6 +37386,29 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     className: `exodus-color-${coin.name}`,
                     onClick: handlerRippleLowBalance
                 }, 'Learn more\u2026'))), _react2.default.createElement('div', {
+                    className: (0, _classnames2.default)('balance-warning', {
+                        'hidden': !showBcashAddressDesc
+                    })
+                }, _react2.default.createElement('div', {
+                    className: 'message'
+                }, 'Bitcoin Cash has two address formats. Exodus supports both. ', _react2.default.createElement('span', {
+                    className: `exodus-color-${coin.name}`,
+                    onClick: handlerBcashAddressDesc
+                }, 'Learn more\u2026'))), _react2.default.createElement('div', {
+                    className: (0, _classnames2.default)('balance-warning', {
+                        'hidden': !showEOSAddressInfo
+                    })
+                }, eosAddressRegistered ? _react2.default.createElement('div', {
+                    className: 'message'
+                }, 'Your EOS address is registered correctly. ', _react2.default.createElement('span', {
+                    className: `exodus-color-${coin.name}`,
+                    onClick: handlerEosAddressRegistered
+                }, 'Learn more\u2026')) : _react2.default.createElement('div', {
+                    className: 'message'
+                }, 'Your EOS address is not registered. ', _react2.default.createElement('span', {
+                    className: `exodus-color-${coin.name}`,
+                    onClick: handlerEosAddressRegistered
+                }, 'Learn more\u2026'))), _react2.default.createElement('div', {
                     className: 'accent bottom'
                 })))), _react2.default.createElement('div', {
                     className: 'EXCOMP--fade-to-dark'
@@ -34778,7 +37420,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             coin: _propTypes2.default.object.isRequired,
             onRequestClose: _propTypes2.default.func.isRequired,
             txLog: _propTypes2.default.object.isRequired,
-            rippleLowBalance: _propTypes2.default.bool
+            rippleLowBalance: _propTypes2.default.bool,
+            eosAddressRegistered: _propTypes2.default.bool
         }, _temp)) || _class);
         exports.default = ReceiveModal;
         const CircleButton = (_ref) => {
@@ -34803,14 +37446,16 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {
-        "103": 103,
-        "105": 105,
-        "301": 301,
-        "343": 343,
-        "97": 97,
+        "106": 106,
+        "109": 109,
+        "111": 111,
+        "321": 321,
+        "365": 365,
+        "87": 87,
+        "98": 98,
         "undefined": undefined
     }],
-    391: [function(require, module, exports) {
+    418: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -34821,13 +37466,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _reactQrReader = require(300);
+        var _reactQrReader = require(320);
         var _reactQrReader2 = _interopRequireDefault(_reactQrReader);
         var _classnames = require('classnames');
         var _classnames2 = _interopRequireDefault(_classnames);
-        var _ui = require(348);
-        var _bip = require(210);
-        var _swal = require(321);
+        var _ui = require(370);
+        var _bip = require(226);
+        var _swal = require(343);
         var _swal2 = _interopRequireDefault(_swal);
         var _electron = require('electron');
 
@@ -34932,7 +37577,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                         closeOnCancel: true
                     }, function(isConfirm) {
                         if (isConfirm) return;
-                        _electron.shell.openExternal('http://support.exodus.io/article/182-address-not-formatted-properly');
+                        _electron.shell.openExternal('https://support.exodus.io/article/182-address-not-formatted-properly');
                     });
                 }
                 this.props.onChange && this.props.onChange({
@@ -34978,37 +37623,37 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = AddressInputGroup;
 
     }, {
-        "210": 210,
-        "300": 300,
-        "321": 321,
-        "348": 348,
+        "226": 226,
+        "320": 320,
+        "343": 343,
+        "370": 370,
         "undefined": undefined
     }],
-    392: [function(require, module, exports) {
+    419: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.default = undefined;
         var _dec, _class, _class2, _temp;
-        var _ui = require(348);
+        var _ui = require(370);
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _reactUtils = require(302);
-        var _conversions = require(124);
+        var _reactUtils = require(322);
+        var _conversions = require(133);
         var _conversions2 = _interopRequireDefault(_conversions);
-        var _fiat = require(109);
+        var _fiat = require(115);
         var _fiat2 = _interopRequireDefault(_fiat);
-        var _getValue = require(126);
+        var _getValue = require(135);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _coinTotalAmounts = require(107);
+        var _coinTotalAmounts = require(113);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
-        var _coinAvailableAmounts = require(106);
+        var _coinAvailableAmounts = require(112);
         var _coinAvailableAmounts2 = _interopRequireDefault(_coinAvailableAmounts);
         var _reactRedux = require('react-redux');
-        var _currencyFormatters = require(222);
+        var _currencyFormatters = require(238);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -35293,47 +37938,40 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "106": 106,
-        "107": 107,
-        "109": 109,
-        "124": 124,
-        "126": 126,
-        "222": 222,
-        "302": 302,
-        "348": 348,
+        "112": 112,
+        "113": 113,
+        "115": 115,
+        "133": 133,
+        "135": 135,
+        "238": 238,
+        "322": 322,
+        "370": 370,
         "undefined": undefined
     }],
-    393: [function(require, module, exports) {
+    420: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.default = undefined;
-        var _class, _temp;
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
-        var _propTypes = require('prop-types');
-        var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _fieldDesc = require(397);
-        var _fieldDesc2 = _interopRequireDefault(_fieldDesc);
-        var _fieldData = require(396);
+        var _fieldData = require(423);
         var _fieldData2 = _interopRequireDefault(_fieldData);
-        var _fieldGasPrice = require(399);
+        var _fieldGasPrice = require(424);
         var _fieldGasPrice2 = _interopRequireDefault(_fieldGasPrice);
-        var _fieldGasLimit = require(398);
-        var _fieldGasLimit2 = _interopRequireDefault(_fieldGasLimit);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
                 default: obj
             };
         }
-        let DrawerEthLike = (_temp = _class = class DrawerEthLike extends _react2.default.Component {
+        let DrawerEthLike = class DrawerEthLike extends _react2.default.Component {
             constructor() {
                 super();
                 this.state = {
                     gasLimit: '',
-                    gasPrice: '',
+                    gasPrice: null,
                     data: '',
                     desc: ''
                 };
@@ -35352,19 +37990,19 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             }
             handleChangeGasPrice(_ref2) {
                 let {
-                    value
+                    gasPrice
                 } = _ref2;
                 this.setState({
-                    gasPrice: value
-                });
+                    gasPrice
+                }, () => this.props.onChange && this.props.onChange(this.state));
             }
             handleChangeData(_ref3) {
                 let {
                     value
                 } = _ref3;
                 this.setState({
-                    data: value
-                });
+                    txInput: value
+                }, () => this.props.onChange && this.props.onChange(this.state));
             }
             handleChangeDesc(_ref4) {
                 let {
@@ -35379,30 +38017,30 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     className: 'advanced-drawer'
                 }, _react2.default.createElement('div', {
                     className: 'advanced-controls'
-                }, _react2.default.createElement(_fieldGasLimit2.default, null), _react2.default.createElement(_fieldGasPrice2.default, null), _react2.default.createElement(_fieldData2.default, null), _react2.default.createElement(_fieldDesc2.default, null)));
+                }, _react2.default.createElement(_fieldGasPrice2.default, {
+                    onChange: this.handleChangeGasPrice
+                }), _react2.default.createElement(_fieldData2.default, {
+                    onChange: this.handleChangeData
+                })));
             }
-        }, _class.propTypes = {
-            handleChange: _propTypes2.default.bool
-        }, _temp);
+        };
         exports.default = DrawerEthLike;
 
     }, {
-        "396": 396,
-        "397": 397,
-        "398": 398,
-        "399": 399,
+        "423": 423,
+        "424": 424,
         "undefined": undefined
     }],
-    394: [function(require, module, exports) {
+    421: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
-        var _ethLike = require(393);
+        var _ethLike = require(420);
         var _ethLike2 = _interopRequireDefault(_ethLike);
-        var _ripple = require(395);
+        var _ripple = require(422);
         var _ripple2 = _interopRequireDefault(_ripple);
 
         function _interopRequireDefault(obj) {
@@ -35432,11 +38070,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {
-        "393": 393,
-        "395": 395,
+        "420": 420,
+        "422": 422,
         "undefined": undefined
     }],
-    395: [function(require, module, exports) {
+    422: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -35447,7 +38085,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _field = require(400);
+        var _field = require(425);
         var _field2 = _interopRequireDefault(_field);
 
         function _interopRequireDefault(obj) {
@@ -35495,10 +38133,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = DrawerRipple;
 
     }, {
-        "400": 400,
+        "425": 425,
         "undefined": undefined
     }],
-    396: [function(require, module, exports) {
+    423: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -35509,8 +38147,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _field = require(400);
+        var _field = require(425);
         var _field2 = _interopRequireDefault(_field);
+        var _ethereumjsUtil = require('ethereumjs-util');
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -35521,27 +38160,33 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             constructor(props) {
                 super(props);
                 this.state = {
-                    value: ''
+                    value: '',
+                    valid: true
                 };
                 this.handleChange = this.handleChange.bind(this);
             }
             handleChange(event) {
+                const value = event.target.value;
+                const valid = !value || (0, _ethereumjsUtil.isHexString)(value);
                 this.setState({
-                    value: event.target.value
+                    value,
+                    valid
                 });
-                this.props.handleChange && this.props.handleChange({
-                    value: event.target.value
+                this.props.onChange && this.props.onChange({
+                    value: valid ? value : ''
                 });
             }
             render() {
                 const {
-                    value
+                    value,
+                    valid
                 } = this.state;
                 return _react2.default.createElement(_field2.default, {
                     label: 'Data',
-                    description: 'Custom data can be used when you send transactions to contracts.'
+                    description: 'Custom data can be used when you send transactions to contracts.',
+                    error: !valid
                 }, _react2.default.createElement('textarea', {
-                    placeholder: 'Paste your custom data here for your transaction\u2026',
+                    placeholder: 'Paste your custom data here in hex format\u2026',
                     className: 'form-control',
                     rows: '4',
                     value: value,
@@ -35554,195 +38199,83 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = DrawerFieldData;
 
     }, {
-        "400": 400,
+        "425": 425,
         "undefined": undefined
     }],
-    397: [function(require, module, exports) {
+    424: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.default = undefined;
-        var _class, _temp;
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
-        var _propTypes = require('prop-types');
-        var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _field = require(400);
+        var _assets = require(210);
+        var _assets2 = _interopRequireDefault(_assets);
+        var _field = require(425);
         var _field2 = _interopRequireDefault(_field);
+        var _currencyInput = require(368);
+        var _currencyInput2 = _interopRequireDefault(_currencyInput);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
                 default: obj
             };
         }
-        let DrawerFieldDesc = (_temp = _class = class DrawerFieldDesc extends _react2.default.Component {
+        let DrawerFieldDesc = class DrawerFieldDesc extends _react2.default.Component {
             constructor(props) {
                 super(props);
                 this.state = {
-                    value: ''
+                    error: ''
                 };
                 this.handleChange = this.handleChange.bind(this);
             }
             handleChange(event) {
+                let gasPrice = null;
+                let error = '';
+                if (!event.valid) error = 'Invalid gas price entered';
+                else if (event.parsedAmount) gasPrice = _assets2.default.ethereum.currency.Gwei(event.parsedAmount);
+                if (gasPrice && gasPrice.lt(_assets2.default.ethereum.gasPrice)) {
+                    gasPrice = null;
+                    error = `Gas price must not be less than ${_assets2.default.ethereum.gasPrice.to('Gwei')}`;
+                }
                 this.setState({
-                    value: event.target.value
+                    error
                 });
-                this.props.handleChange && this.props.handleChange({
-                    value: event.target.value
+                this.props.onChange({
+                    gasPrice
                 });
             }
             render() {
-                const {
-                    value
-                } = this.state;
-                return _react2.default.createElement(_field2.default, {
-                    label: 'Description',
-                    description: 'A memo area to input a descripton of your transaction so you can remember it later.'
-                }, _react2.default.createElement('textarea', {
-                    placeholder: 'This description will be attached to your transaction\u2026',
-                    className: 'form-control',
-                    rows: '2',
-                    value: value,
-                    onChange: this.handleChange
-                }));
-            }
-        }, _class.propTypes = {
-            onChange: _propTypes2.default.func
-        }, _temp);
-        exports.default = DrawerFieldDesc;
-
-    }, {
-        "400": 400,
-        "undefined": undefined
-    }],
-    398: [function(require, module, exports) {
-        'use strict';
-        Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        exports.default = undefined;
-        var _class, _temp;
-        var _react = require('react');
-        var _react2 = _interopRequireDefault(_react);
-        var _propTypes = require('prop-types');
-        var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _field = require(400);
-        var _field2 = _interopRequireDefault(_field);
-
-        function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : {
-                default: obj
-            };
-        }
-        let DrawerFieldDesc = (_temp = _class = class DrawerFieldDesc extends _react2.default.Component {
-            constructor(props) {
-                super(props);
-                this.state = {
-                    value: ''
-                };
-                this.handleChange = this.handleChange.bind(this);
-            }
-            handleChange(event) {
-                this.setState({
-                    value: event.target.value
-                });
-                this.props.handleChange && this.props.handleChange({
-                    value: event.target.value
-                });
-            }
-            render() {
-                const {
-                    value
-                } = this.state;
-                return _react2.default.createElement(_field2.default, {
-                    label: 'Gas Limit',
-                    description: 'Default gas limit is 21,000.'
-                }, _react2.default.createElement('input', {
-                    type: 'text',
-                    className: 'form-control',
-                    id: 'tx-gas-limit',
-                    'aria-describedby': 'tx-gas-limit',
-                    placeholder: 'Set custom gas limit for this transaction\u2026',
-                    value: value,
-                    onChange: this.handleChange
-                }));
-            }
-        }, _class.propTypes = {
-            onChange: _propTypes2.default.func
-        }, _temp);
-        exports.default = DrawerFieldDesc;
-
-    }, {
-        "400": 400,
-        "undefined": undefined
-    }],
-    399: [function(require, module, exports) {
-        'use strict';
-        Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        exports.default = undefined;
-        var _class, _temp;
-        var _react = require('react');
-        var _react2 = _interopRequireDefault(_react);
-        var _propTypes = require('prop-types');
-        var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _field = require(400);
-        var _field2 = _interopRequireDefault(_field);
-
-        function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : {
-                default: obj
-            };
-        }
-        let DrawerFieldDesc = (_temp = _class = class DrawerFieldDesc extends _react2.default.Component {
-            constructor(props) {
-                super(props);
-                this.state = {
-                    value: ''
-                };
-                this.handleChange = this.handleChange.bind(this);
-            }
-            handleChange(event) {
-                this.setState({
-                    value: event.target.value
-                });
-                this.props.handleChange && this.props.handleChange({
-                    value: event.target.value
-                });
-            }
-            render() {
-                const {
-                    value
-                } = this.state;
+                const defaultText = `Default gas price is ${_assets2.default.ethereum.gasPrice.to('Gwei')}`;
                 return _react2.default.createElement(_field2.default, {
                     label: 'Gas Price',
-                    description: 'Default gas price is 50 Gwei.'
-                }, _react2.default.createElement('input', {
-                    type: 'text',
+                    description: this.state.error || defaultText,
+                    error: !!this.state.error
+                }, _react2.default.createElement(_currencyInput2.default, {
                     className: 'form-control',
-                    placeholder: 'Set custom amount per unit of gas\u2026',
-                    value: value,
+                    placeholder: 'Set custom amount in Gwei per unit of gas\u2026',
                     onChange: this.handleChange
                 }));
             }
-        }, _class.propTypes = {
-            onChange: _propTypes2.default.func
-        }, _temp);
+        };
         exports.default = DrawerFieldDesc;
 
     }, {
-        "400": 400,
+        "210": 210,
+        "368": 368,
+        "425": 425,
         "undefined": undefined
     }],
-    400: [function(require, module, exports) {
+    425: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
+        var _classnames = require('classnames');
+        var _classnames2 = _interopRequireDefault(_classnames);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -35762,10 +38295,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = (_ref) => {
             let {
                 label,
-                description
-            } = _ref, props = _objectWithoutProperties(_ref, ['label', 'description']);
+                description,
+                error
+            } = _ref, props = _objectWithoutProperties(_ref, ['label', 'description', 'error']);
             return _react2.default.createElement('div', {
-                className: 'form-group'
+                className: (0, _classnames2.default)('form-group', {
+                    error
+                })
             }, _react2.default.createElement('label', null, label), props.children, _react2.default.createElement('small', {
                 id: 'tx-description'
             }, _react2.default.createElement('span', null, description)));
@@ -35774,7 +38310,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    401: [function(require, module, exports) {
+    426: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -35782,12 +38318,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
         var _reactRedux = require('react-redux');
-        var _getFee = require(129);
+        var _getFee = require(138);
         var _getFee2 = _interopRequireDefault(_getFee);
-        var _getValue = require(126);
+        var _getValue = require(135);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _ui = require(348);
-        var _assets = require(194);
+        var _ui = require(370);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
         var _electron = require('electron');
 
@@ -35842,7 +38378,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 amount: feeCrypto,
                 code: true,
                 onClick: () => {
-                    _electron.shell.openExternal('http://support.exodus.io/knowledge_base/topics/does-exodus-have-fees-to-send-or-receive');
+                    _electron.shell.openExternal('https://support.exodus.io/knowledge_base/topics/does-exodus-have-fees-to-send-or-receive');
                 }
             })), _react2.default.createElement('td', null, _react2.default.createElement(_ui.NUCurrencyText, {
                 className: 'fiat exodus-color-flagmoney',
@@ -35853,13 +38389,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         });
 
     }, {
-        "126": 126,
-        "129": 129,
-        "194": 194,
-        "348": 348,
+        "135": 135,
+        "138": 138,
+        "210": 210,
+        "370": 370,
         "undefined": undefined
     }],
-    402: [function(require, module, exports) {
+    427: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -35887,7 +38423,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    403: [function(require, module, exports) {
+    428: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -35895,12 +38431,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
         var _reactRedux = require('react-redux');
-        var _ui = require(348);
-        var _remaining = require(144);
+        var _ui = require(370);
+        var _remaining = require(155);
         var _remaining2 = _interopRequireDefault(_remaining);
-        var _getValue = require(126);
+        var _getValue = require(135);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _fee = require(401);
+        var _fee = require(426);
         var _fee2 = _interopRequireDefault(_fee);
         var _electron = require('electron');
 
@@ -35941,7 +38477,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 amount: crypto,
                 code: coin.displayUnit,
                 onClick: () => {
-                    _electron.shell.openExternal('http://support.exodus.io/knowledge_base/topics/why-is-my-available-balance-less-than-my-wallet-balance');
+                    _electron.shell.openExternal('https://support.exodus.io/knowledge_base/topics/why-is-my-available-balance-less-than-my-wallet-balance');
                 }
             })), _react2.default.createElement('td', null, priceAvailable ? _react2.default.createElement(_ui.NUCurrencyText, {
                 className: 'fiat exodus-color-flagmoney',
@@ -35952,13 +38488,13 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         });
 
     }, {
-        "126": 126,
-        "144": 144,
-        "348": 348,
-        "401": 401,
+        "135": 135,
+        "155": 155,
+        "370": 370,
+        "426": 426,
         "undefined": undefined
     }],
-    404: [function(require, module, exports) {
+    429: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -35974,54 +38510,46 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _reactRedux = require('react-redux');
         var _lodash = require('lodash');
         var lodash = _interopRequireWildcard(_lodash);
-        var _flux = require(271);
-        var _coinLogo = require(343);
+        var _flux = require(289);
+        var _coinLogo = require(365);
         var _coinLogo2 = _interopRequireDefault(_coinLogo);
-        var _swal = require(321);
+        var _swal = require(343);
         var _swal2 = _interopRequireDefault(_swal);
-        var _util = require(224);
-        var _bn = require('bn.js');
-        var _bn2 = _interopRequireDefault(_bn);
         var _ethereumjsUtil = require('ethereumjs-util');
         var ethUtil = _interopRequireWildcard(_ethereumjsUtil);
-        var _etcchain = require(232);
-        var etcchain = _interopRequireWildcard(_etcchain);
-        var _etherscan = require(234);
-        var etherscan = _interopRequireWildcard(_etherscan);
-        var _exodusEthereumServer = require(242);
-        var _bitpay2bcash = require(213);
-        var _bitpay2bcash2 = _interopRequireDefault(_bitpay2bcash);
-        var _sending = require(406);
+        var _sending = require(431);
         var _sending2 = _interopRequireDefault(_sending);
-        var _remainingBalance = require(403);
+        var _remainingBalance = require(428);
         var _remainingBalance2 = _interopRequireDefault(_remainingBalance);
-        var _addressInputGroup = require(391);
+        var _addressInputGroup = require(418);
         var _addressInputGroup2 = _interopRequireDefault(_addressInputGroup);
-        var _status = require(407);
+        var _status = require(432);
         var _status2 = _interopRequireDefault(_status);
-        var _currencyInputSwap = require(392);
+        var _currencyInputSwap = require(419);
         var _currencyInputSwap2 = _interopRequireDefault(_currencyInputSwap);
-        var _fiat = require(109);
+        var _fiat = require(115);
         var _fiat2 = _interopRequireDefault(_fiat);
-        var _remaining = require(144);
+        var _remaining = require(155);
         var _remaining2 = _interopRequireDefault(_remaining);
-        var _getReceiveAddress = require(96);
+        var _getReceiveAddress = require(97);
         var _getReceiveAddress2 = _interopRequireDefault(_getReceiveAddress);
-        var _getRecvExchAddresses = require(98);
+        var _getRecvExchAddresses = require(99);
         var _getRecvExchAddresses2 = _interopRequireDefault(_getRecvExchAddresses);
-        var _pricesAvailable = require(133);
+        var _pricesAvailable = require(143);
         var _pricesAvailable2 = _interopRequireDefault(_pricesAvailable);
-        var _ethereumTokensEnoughFuel = require(113);
-        var _hasTokens = require(131);
+        var _ethereumTokensEnoughFuel = require(120);
+        var _hasTokens = require(141);
         var _hasTokens2 = _interopRequireDefault(_hasTokens);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _index = require(394);
+        var _index = require(421);
         var _index2 = _interopRequireDefault(_index);
-        var _sendingConfirm = require(405);
+        var _sendingConfirm = require(430);
         var _sendingConfirm2 = _interopRequireDefault(_sendingConfirm);
         var _electron = require('electron');
-        var _appConfig = require(84);
+        var _ethereum = require(77);
+        var ethTxSend = _interopRequireWildcard(_ethereum);
+        var _appConfig = require(85);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -36099,10 +38627,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     checkingGasLimit: false,
                     ethereumContract: false,
                     feeExtraOpts: {
-                        gasLimit: null
+                        gasLimit: null,
+                        gasPrice: null
                     },
                     confirmSending: false,
-                    advanced: {}
+                    advanced: {},
+                    drawerOpen: false
                 };
                 this.handleChangeAmount = lodash.debounce(this.handleChangeAmount.bind(this), 250, {
                     trailing: true
@@ -36110,6 +38640,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 this.handleClickSendConfirmCancel = this.handleClickSendConfirmCancel.bind(this);
                 this.handleClickSendConfirmSend = this.handleClickSendConfirmSend.bind(this);
                 this.handleChangeAdvanced = this.handleChangeAdvanced.bind(this);
+                this.handleToggleDrawer = this.handleToggleDrawer.bind(this);
             }
             canSend() {
                 const {
@@ -36174,14 +38705,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                             if (coin.isEthereumToken) {
                                 data = ethUtil.bufferToHex(coin.contract.transfer.build(address, amount));
                             }
-                            const _estimateGas = coin.name === 'ethereum' || coin.isEthereumToken ? (0, _exodusEthereumServer.withFallback)(_exodusEthereumServer.eth.estimateGas, etherscan.estimateGas) : (0, _exodusEthereumServer.withFallback)(_exodusEthereumServer.etc.estimateGas, etcchain.estimateGas);
-                            const estimatedGas = yield _estimateGas({
-                                from: _this.props.getReceiveAddresses(coin.name).toString().toLowerCase(),
-                                to: coin.isEthereumToken ? coin.contract.addresses.current : address,
-                                value: ethUtil.bufferToHex((0, _util.currency2buffer)(coin.isEthereumToken ? _assets2.default.ethereum.currency.ZERO : amount)),
-                                data
-                            });
-                            gasLimit = new _bn2.default(estimatedGas.slice(2), 16).imuln(6).idivn(5).toNumber();
+                            gasLimit = yield ethTxSend.estimateGas(coin, _this.props.getReceiveAddresses(coin.name).toString().toLowerCase(), coin.isEthereumToken ? coin.contract.addresses.current : address, coin.isEthereumToken ? _assets2.default.ethereum.currency.ZERO : amount, data);
                         }
                     } catch (err) {
                         console.log('estimateGas at send-modal error');
@@ -36207,7 +38731,14 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     recvExchAddrs
                 } = this.props;
                 const validateAndUpdate = address => {
-                    const valid = address ? coin.address.validate(address) && !recvExchAddrs.has(address) : true;
+                    let valid = address && coin.address.validate(address);
+                    if (valid) {
+                        let toAddress = address;
+                        if (coin.name === 'bcash') {
+                            toAddress = coin.address.toLegacyAddress(address);
+                        }
+                        valid = !recvExchAddrs.has(toAddress);
+                    }
                     this.setState({
                         address,
                         addressValid: valid
@@ -36219,14 +38750,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                         valid: valid && this.state.amountValid
                     });
                 };
-                const correctAddress = coin.name === 'bcash' ? (0, _bitpay2bcash2.default)(address) : address;
-                if (correctAddress !== address) {
-                    _swal2.default.warn({
-                        text: `${address} is in Copay address format. Address will be converted to standard format: ${correctAddress}`
-                    }, () => validateAndUpdate(correctAddress));
-                } else {
-                    validateAndUpdate(address);
-                }
+                validateAndUpdate(address);
             }
             handleChangeAmount(_ref3) {
                 let {
@@ -36286,7 +38810,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                         if (isConfirm) return that.setState({
                             confirmSending: true
                         });
-                        _electron.shell.openExternal('http://support.exodus.io/article/67-how-do-i-send-or-exchange-an-ethereum-powered-asset');
+                        _electron.shell.openExternal('https://support.exodus.io/article/67-how-do-i-send-or-exchange-an-ethereum-powered-asset');
                     });
                 } else {
                     this.setState({
@@ -36313,12 +38837,14 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 this.setState({
                     confirmSending: false
                 });
+                const toAddress = coin.name === 'bcash' ? coin.address.toLegacyAddress(address) : address;
                 const receiver = {
-                    address,
+                    address: toAddress,
                     amount: amountCrypto
                 };
                 const {
-                    gasLimit
+                    gasLimit,
+                    gasPrice
                 } = feeExtraOpts;
                 if (coin.name === 'ripple') {
                     if (advanced.destTag) receiver.destTag = advanced.destTag;
@@ -36327,17 +38853,38 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     coin,
                     receiver,
                     memo,
-                    gasLimit
+                    gasLimit,
+                    gasPrice,
+                    txInput: advanced.txInput
                 });
+            }
+            shouldShowAdvanced() {
+                switch (this.props.coin.name) {
+                    case 'ethereum':
+                        return (_appConfig.ENV_DEV || _appConfig.ENV_BUILD_EDEN) && this.state.ethereumContract;
+                    case 'ethereumclassic':
+                        return _appConfig.ENV_DEV;
+                    case 'ripple':
+                        return _appConfig.ENV_DEV || _appConfig.ENV_BUILD_EDEN;
+                    default:
+                        return false;
+                }
             }
             handleToggleDrawer() {
-                var element = document.getElementById('ex-window--send');
-                element.classList.toggle('open');
+                this.setState(state => ({
+                    showDrawer: !state.showDrawer
+                }));
             }
             handleChangeAdvanced(fields) {
-                this.setState({
+                const newState = {
                     advanced: fields
-                });
+                };
+                if (this.props.coin.name === 'ethereum') {
+                    newState.feeExtraOpts = Object.assign({}, this.state.feeExtraOpts, {
+                        gasPrice: fields.gasPrice
+                    });
+                }
+                this.setState(newState);
             }
             render() {
                 const {
@@ -36353,7 +38900,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     confirmSending,
                     isDust,
                     address,
-                    addressValid
+                    addressValid,
+                    showDrawer
                 } = this.state;
                 const priceAvailable = marketPricesAvailable(coin.name);
                 const ownAddress = recvExchAddrs.has(address);
@@ -36379,21 +38927,22 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                                 closeOnConfirm: true,
                                 closeOnCancel: true
                             }, function(isConfirm) {
-                                if (!isConfirm) _electron.shell.openExternal('http://support.exodus.io/article/75-how-do-i-refresh-my-wallet');
+                                if (!isConfirm) _electron.shell.openExternal('https://support.exodus.io/article/75-how-do-i-refresh-my-wallet');
                                 _flux.actions.txSend.ackSend();
                             });
                         }
                     }
                 }
                 const sendEnabled = this.canSend() && !exchange.isExchanging;
-                const showAdvanced = _appConfig.ENV_DEV && ['ethereum', 'ethereumclassic'].includes(coin.name) || (_appConfig.ENV_DEV || _appConfig.ENV_BUILD_EDEN) && ['ripple'].includes(coin.name);
+                const shouldShowAdvanced = this.shouldShowAdvanced();
                 const SendModalContent = _react2.default.createElement('div', {
                     className: 'modal'
                 }, _react2.default.createElement('div', {
                     id: 'ex-window--send',
                     className: (0, _classnames2.default)('ex-window', {
                         'confirm': confirmSending,
-                        'sending': txSend.hasInit && !exchange.isExchanging
+                        'sending': txSend.hasInit && !exchange.isExchanging,
+                        'open': shouldShowAdvanced && showDrawer
                     })
                 }, _react2.default.createElement('div', {
                     className: 'main'
@@ -36405,7 +38954,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     onClick: this.props.onRequestClose
                 }), _react2.default.createElement('div', {
                     className: (0, _classnames2.default)('modal-button bottom-right advanced', {
-                        'hidden': !showAdvanced
+                        'hidden': !shouldShowAdvanced
                     }),
                     onClick: this.handleToggleDrawer
                 }, _react2.default.createElement('div', {
@@ -36491,33 +39040,29 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = SendModal;
 
     }, {
-        "109": 109,
-        "113": 113,
-        "131": 131,
-        "133": 133,
-        "144": 144,
-        "194": 194,
-        "213": 213,
-        "224": 224,
-        "232": 232,
-        "234": 234,
-        "242": 242,
-        "271": 271,
-        "321": 321,
+        "115": 115,
+        "120": 120,
+        "141": 141,
+        "143": 143,
+        "155": 155,
+        "210": 210,
+        "289": 289,
         "343": 343,
-        "391": 391,
-        "392": 392,
-        "394": 394,
-        "403": 403,
-        "405": 405,
-        "406": 406,
-        "407": 407,
-        "84": 84,
-        "96": 96,
-        "98": 98,
+        "365": 365,
+        "418": 418,
+        "419": 419,
+        "421": 421,
+        "428": 428,
+        "430": 430,
+        "431": 431,
+        "432": 432,
+        "77": 77,
+        "85": 85,
+        "97": 97,
+        "99": 99,
         "undefined": undefined
     }],
-    405: [function(require, module, exports) {
+    430: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -36528,11 +39073,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _ui = require(348);
+        var _ui = require(370);
         var _reactRedux = require('react-redux');
-        var _fiat = require(109);
+        var _fiat = require(115);
         var _fiat2 = _interopRequireDefault(_fiat);
-        var _blockExplorer = require(105);
+        var _blockExplorer = require(111);
         var _blockExplorer2 = _interopRequireDefault(_blockExplorer);
         var _electron = require('electron');
 
@@ -36612,21 +39157,21 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = SendingConfirm;
 
     }, {
-        "105": 105,
-        "109": 109,
-        "348": 348,
+        "111": 111,
+        "115": 115,
+        "370": 370,
         "undefined": undefined
     }],
-    406: [function(require, module, exports) {
+    431: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
-        var _progressLoader = require(402);
+        var _progressLoader = require(427);
         var _progressLoader2 = _interopRequireDefault(_progressLoader);
-        var _ui = require(348);
+        var _ui = require(370);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -36656,26 +39201,26 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         };
 
     }, {
-        "348": 348,
-        "402": 402,
+        "370": 370,
+        "427": 427,
         "undefined": undefined
     }],
-    407: [function(require, module, exports) {
+    432: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
-        var _ui = require(348);
+        var _ui = require(370);
         var _reactRedux = require('react-redux');
-        var _pricesAvailable = require(133);
+        var _pricesAvailable = require(143);
         var _pricesAvailable2 = _interopRequireDefault(_pricesAvailable);
-        var _remaining = require(144);
+        var _remaining = require(155);
         var _remaining2 = _interopRequireDefault(_remaining);
-        var _getFee = require(129);
+        var _getFee = require(138);
         var _getFee2 = _interopRequireDefault(_getFee);
-        var _coinTotalAmounts = require(107);
+        var _coinTotalAmounts = require(113);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
 
         function _interopRequireDefault(obj) {
@@ -36750,14 +39295,14 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         });
 
     }, {
-        "107": 107,
-        "129": 129,
-        "133": 133,
-        "144": 144,
-        "348": 348,
+        "113": 113,
+        "138": 138,
+        "143": 143,
+        "155": 155,
+        "370": 370,
         "undefined": undefined
     }],
-    408: [function(require, module, exports) {
+    433: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -36800,7 +39345,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    409: [function(require, module, exports) {
+    434: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -36808,10 +39353,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
         var _reactRedux = require('react-redux');
-        var _all = require(139);
+        var _all = require(149);
         var _all2 = _interopRequireDefault(_all);
-        var _exchange = require(240);
-        var _detailsItem = require(408);
+        var _exchange = require(256);
+        var _detailsItem = require(433);
         var _detailsItem2 = _interopRequireDefault(_detailsItem);
 
         function _interopRequireDefault(obj) {
@@ -36853,6 +39398,16 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                     onClick: onClick
                 }, order.orderId));
             }
+            if (order && order.svc === 'ch') {
+                return _react2.default.createElement(_detailsItem2.default, {
+                    title: 'Changelly Order',
+                    layout: 'col-4',
+                    name: 'tx-details__duration'
+                }, _react2.default.createElement('div', {
+                    className: 'content link',
+                    onClick: onClick
+                }, order.orderId));
+            }
             return _react2.default.createElement(_detailsItem2.default, {
                 title: 'Order ID',
                 layout: 'col-4',
@@ -36866,12 +39421,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "139": 139,
-        "240": 240,
-        "408": 408,
+        "149": 149,
+        "256": 256,
+        "433": 433,
         "undefined": undefined
     }],
-    410: [function(require, module, exports) {
+    435: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -36880,9 +39435,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _reactRedux = require('react-redux');
         var _electron = require('electron');
-        var _blockExplorer = require(105);
+        var _blockExplorer = require(111);
         var _blockExplorer2 = _interopRequireDefault(_blockExplorer);
-        var _detailsItem = require(408);
+        var _detailsItem = require(433);
         var _detailsItem2 = _interopRequireDefault(_detailsItem);
 
         function _interopRequireDefault(obj) {
@@ -36911,11 +39466,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "105": 105,
-        "408": 408,
+        "111": 111,
+        "433": 433,
         "undefined": undefined
     }],
-    411: [function(require, module, exports) {
+    436: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -36924,24 +39479,24 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
         var _reactRedux = require('react-redux');
-        var _getValue = require(126);
+        var _getValue = require(135);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _pricesAvailable = require(133);
+        var _pricesAvailable = require(143);
         var _pricesAvailable2 = _interopRequireDefault(_pricesAvailable);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
         var _moment = require('moment');
         var _moment2 = _interopRequireDefault(_moment);
-        var _ui = require(348);
-        var _detailsItem = require(408);
+        var _ui = require(370);
+        var _detailsItem = require(433);
         var _detailsItem2 = _interopRequireDefault(_detailsItem);
-        var _detailsTxid = require(410);
+        var _detailsTxid = require(435);
         var _detailsTxid2 = _interopRequireDefault(_detailsTxid);
-        var _detailsOrderid = require(409);
+        var _detailsOrderid = require(434);
         var _detailsOrderid2 = _interopRequireDefault(_detailsOrderid);
-        var _historicalPrice = require(413);
+        var _historicalPrice = require(438);
         var _historicalPrice2 = _interopRequireDefault(_historicalPrice);
-        var _ymd = require(352);
+        var _ymd = require(373);
         var _ymd2 = _interopRequireDefault(_ymd);
 
         function _interopRequireDefault(obj) {
@@ -37051,18 +39606,18 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         });
 
     }, {
-        "126": 126,
-        "133": 133,
-        "194": 194,
-        "348": 348,
-        "352": 352,
-        "408": 408,
-        "409": 409,
-        "410": 410,
-        "413": 413,
+        "135": 135,
+        "143": 143,
+        "210": 210,
+        "370": 370,
+        "373": 373,
+        "433": 433,
+        "434": 434,
+        "435": 435,
+        "438": 438,
         "undefined": undefined
     }],
-    412: [function(require, module, exports) {
+    437: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -37071,24 +39626,24 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
         var _reactRedux = require('react-redux');
-        var _getValue = require(126);
+        var _getValue = require(135);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _pricesAvailable = require(133);
+        var _pricesAvailable = require(143);
         var _pricesAvailable2 = _interopRequireDefault(_pricesAvailable);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
         var _moment = require('moment');
         var _moment2 = _interopRequireDefault(_moment);
-        var _ui = require(348);
-        var _detailsItem = require(408);
+        var _ui = require(370);
+        var _detailsItem = require(433);
         var _detailsItem2 = _interopRequireDefault(_detailsItem);
-        var _detailsTxid = require(410);
+        var _detailsTxid = require(435);
         var _detailsTxid2 = _interopRequireDefault(_detailsTxid);
-        var _detailsOrderid = require(409);
+        var _detailsOrderid = require(434);
         var _detailsOrderid2 = _interopRequireDefault(_detailsOrderid);
-        var _historicalPrice = require(413);
+        var _historicalPrice = require(438);
         var _historicalPrice2 = _interopRequireDefault(_historicalPrice);
-        var _ymd = require(352);
+        var _ymd = require(373);
         var _ymd2 = _interopRequireDefault(_ymd);
 
         function _interopRequireDefault(obj) {
@@ -37171,7 +39726,8 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             }), '\xA0for\xA0', _react2.default.createElement(_ui.NUCurrencyText, {
                 className: 'exodus-color-' + tx.toCoin.coin,
                 amount: tx.toCoin.coinAmount,
-                code: true
+                code: true,
+                prefix: tx.toCoin.floatingRate ? '~' : undefined
             }))), _react2.default.createElement(_detailsTxid2.default, {
                 asset: tx.coinName,
                 txId: tx.txId
@@ -37196,18 +39752,18 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         });
 
     }, {
-        "126": 126,
-        "133": 133,
-        "194": 194,
-        "348": 348,
-        "352": 352,
-        "408": 408,
-        "409": 409,
-        "410": 410,
-        "413": 413,
+        "135": 135,
+        "143": 143,
+        "210": 210,
+        "370": 370,
+        "373": 373,
+        "433": 433,
+        "434": 434,
+        "435": 435,
+        "438": 438,
         "undefined": undefined
     }],
-    413: [function(require, module, exports) {
+    438: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -37219,9 +39775,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _reactRedux = require('react-redux');
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _getHistoricalFiatValue = require(132);
+        var _getHistoricalFiatValue = require(142);
         var _getHistoricalFiatValue2 = _interopRequireDefault(_getHistoricalFiatValue);
-        var _ui = require(348);
+        var _ui = require(370);
         var _moment = require('moment');
         var _moment2 = _interopRequireDefault(_moment);
 
@@ -37260,11 +39816,11 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = HistoricalPrice;
 
     }, {
-        "132": 132,
-        "348": 348,
+        "142": 142,
+        "370": 370,
         "undefined": undefined
     }],
-    414: [function(require, module, exports) {
+    439: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -37277,10 +39833,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _propTypes2 = _interopRequireDefault(_propTypes);
         var _classnames = require('classnames');
         var _classnames2 = _interopRequireDefault(_classnames);
-        var _exchRecv = require(411);
-        var _exchSent = require(412);
-        var _recv = require(415);
-        var _sent = require(416);
+        var _exchRecv = require(436);
+        var _exchSent = require(437);
+        var _recv = require(440);
+        var _sent = require(441);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -37415,38 +39971,40 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         }
 
     }, {
-        "411": 411,
-        "412": 412,
-        "415": 415,
-        "416": 416,
+        "436": 436,
+        "437": 437,
+        "440": 440,
+        "441": 441,
         "undefined": undefined
     }],
-    415: [function(require, module, exports) {
+    440: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.Details = exports.Header = undefined;
+        var _assets = require(210);
+        var _assets2 = _interopRequireDefault(_assets);
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
         var _reactRedux = require('react-redux');
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
-        var _getValue = require(126);
+        var _getValue = require(135);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _pricesAvailable = require(133);
+        var _pricesAvailable = require(143);
         var _pricesAvailable2 = _interopRequireDefault(_pricesAvailable);
-        var _ui = require(348);
+        var _ui = require(370);
         var _moment = require('moment');
         var _moment2 = _interopRequireDefault(_moment);
-        var _detailsItem = require(408);
+        var _detailsItem = require(433);
         var _detailsItem2 = _interopRequireDefault(_detailsItem);
-        var _historicalPrice = require(413);
+        var _historicalPrice = require(438);
         var _historicalPrice2 = _interopRequireDefault(_historicalPrice);
-        var _detailsTxid = require(410);
+        var _detailsTxid = require(435);
         var _detailsTxid2 = _interopRequireDefault(_detailsTxid);
         var _electron = require('electron');
-        var _ymd = require(352);
+        var _ymd = require(373);
         var _ymd2 = _interopRequireDefault(_ymd);
 
         function _interopRequireDefault(obj) {
@@ -37522,7 +40080,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 layout: 'col-4',
                 name: 'tx-details__to',
                 selectable: 'yes',
-                content: String(Array.from(tx.addresses)[0])
+                content: _assets2.default[tx.coinName].address.displayAddress(String(Array.from(tx.addresses)[0]))
             }) : null, _react2.default.createElement(_detailsItem2.default, {
                 title: 'Now',
                 layout: 'col-4',
@@ -37540,22 +40098,23 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             }, 'Confirmations'), _react2.default.createElement('div', {
                 className: 'content link',
                 onClick: () => {
-                    _electron.shell.openExternal('http://support.exodus.io/knowledge_base/topics/why-is-my-transaction-pending-1');
+                    _electron.shell.openExternal('https://support.exodus.io/knowledge_base/topics/why-is-my-transaction-pending-1');
                 }
             }, 'Funds unavailable until confirmed')));
         });
 
     }, {
-        "126": 126,
-        "133": 133,
-        "348": 348,
-        "352": 352,
-        "408": 408,
-        "410": 410,
-        "413": 413,
+        "135": 135,
+        "143": 143,
+        "210": 210,
+        "370": 370,
+        "373": 373,
+        "433": 433,
+        "435": 435,
+        "438": 438,
         "undefined": undefined
     }],
-    416: [function(require, module, exports) {
+    441: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -37564,22 +40123,22 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
         var _reactRedux = require('react-redux');
-        var _getValue = require(126);
+        var _getValue = require(135);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _pricesAvailable = require(133);
+        var _pricesAvailable = require(143);
         var _pricesAvailable2 = _interopRequireDefault(_pricesAvailable);
-        var _ui = require(348);
+        var _ui = require(370);
         var _moment = require('moment');
         var _moment2 = _interopRequireDefault(_moment);
-        var _assets = require(194);
+        var _assets = require(210);
         var _assets2 = _interopRequireDefault(_assets);
-        var _detailsItem = require(408);
+        var _detailsItem = require(433);
         var _detailsItem2 = _interopRequireDefault(_detailsItem);
-        var _detailsTxid = require(410);
+        var _detailsTxid = require(435);
         var _detailsTxid2 = _interopRequireDefault(_detailsTxid);
-        var _historicalPrice = require(413);
+        var _historicalPrice = require(438);
         var _historicalPrice2 = _interopRequireDefault(_historicalPrice);
-        var _ymd = require(352);
+        var _ymd = require(373);
         var _ymd2 = _interopRequireDefault(_ymd);
 
         function _interopRequireDefault(obj) {
@@ -37654,7 +40213,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                 layout: 'col-4',
                 name: 'tx-details__to',
                 selectable: 'yes',
-                content: tx.to
+                content: _assets2.default[tx.coinName].address.displayAddress(tx.to)
             }) : null, _react2.default.createElement(_detailsTxid2.default, {
                 asset: tx.coinName,
                 txId: tx.txId
@@ -37683,17 +40242,17 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         });
 
     }, {
-        "126": 126,
-        "133": 133,
-        "194": 194,
-        "348": 348,
-        "352": 352,
-        "408": 408,
-        "410": 410,
-        "413": 413,
+        "135": 135,
+        "143": 143,
+        "210": 210,
+        "370": 370,
+        "373": 373,
+        "433": 433,
+        "435": 435,
+        "438": 438,
         "undefined": undefined
     }],
-    417: [function(require, module, exports) {
+    442: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -37703,7 +40262,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react2 = _interopRequireDefault(_react);
         var _classnames = require('classnames');
         var _classnames2 = _interopRequireDefault(_classnames);
-        var _ui = require(348);
+        var _ui = require(370);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -37787,10 +40346,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = WalletDetailHeader;
 
     }, {
-        "348": 348,
+        "370": 370,
         "undefined": undefined
     }],
-    418: [function(require, module, exports) {
+    443: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -37813,32 +40372,32 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _propTypes = require('prop-types');
         var _propTypes2 = _interopRequireDefault(_propTypes);
         var _reactRedux = require('react-redux');
-        var _coinTotalAmounts = require(107);
+        var _coinTotalAmounts = require(113);
         var _coinTotalAmounts2 = _interopRequireDefault(_coinTotalAmounts);
-        var _ethereumTokensEnoughFuel = require(113);
+        var _ethereumTokensEnoughFuel = require(120);
         var _ethereumTokensEnoughFuel2 = _interopRequireDefault(_ethereumTokensEnoughFuel);
-        var _getValue = require(126);
+        var _getValue = require(135);
         var _getValue2 = _interopRequireDefault(_getValue);
-        var _pricesLoaded = require(134);
+        var _pricesLoaded = require(144);
         var _pricesLoaded2 = _interopRequireDefault(_pricesLoaded);
-        var _pricesAvailable = require(133);
+        var _pricesAvailable = require(143);
         var _pricesAvailable2 = _interopRequireDefault(_pricesAvailable);
-        var _loaded = require(102);
+        var _loaded = require(108);
         var _loaded2 = _interopRequireDefault(_loaded);
-        var _btcDisabled = require(101);
+        var _btcDisabled = require(105);
         var _btcDisabled2 = _interopRequireDefault(_btcDisabled);
-        var _flux = require(271);
-        var _receiveModal = require(390);
+        var _flux = require(289);
+        var _receiveModal = require(417);
         var _receiveModal2 = _interopRequireDefault(_receiveModal);
-        var _sendModal = require(404);
+        var _sendModal = require(429);
         var _sendModal2 = _interopRequireDefault(_sendModal);
-        var _ui = require(348);
+        var _ui = require(370);
         var _electron = require('electron');
-        var _swal = require(321);
+        var _swal = require(343);
         var _swal2 = _interopRequireDefault(_swal);
-        var _index = require(414);
+        var _index = require(439);
         var _index2 = _interopRequireDefault(_index);
-        var _walletDetailHeader = require(417);
+        var _walletDetailHeader = require(442);
         var _walletDetailHeader2 = _interopRequireDefault(_walletDetailHeader);
 
         function _interopRequireDefault(obj) {
@@ -37857,8 +40416,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
             btcDisabled: (0, _btcDisabled2.default)(state),
             txLog: state.txLog[props.coin.name],
             actions: _flux.actions,
-            isRefreshing: state.assetsRefresh[props.coin.name],
-            refreshError: state.assetsRefresh.error
+            isRefreshing: state.assetsRefresh[props.coin.name]
         })), _dec(_class = (_temp = _class2 = class WalletDetail extends _react2.default.PureComponent {
             constructor(props) {
                 super(props);
@@ -37892,7 +40450,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                             closeOnCancel: true
                         }, function(isConfirm) {
                             if (isConfirm) return;
-                            _electron.shell.openExternal('http://support.exodus.io/knowledge_base/topics/how-do-i-send-or-exchange-an-ethereum-powered-asset');
+                            _electron.shell.openExternal('https://support.exodus.io/knowledge_base/topics/how-do-i-send-or-exchange-an-ethereum-powered-asset');
                         });
                     }
                     this.setState({
@@ -37920,14 +40478,6 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
                         this.handleSendClose();
                     }
                 });
-            }
-            componentDidUpdate() {
-                if (this.props.refreshError) {
-                    _flux.actions.dialog.error(this.props.refreshError.message, {
-                        title: 'Rescan Error'
-                    });
-                    _flux.actions.assetsRefresh.refreshAckError();
-                }
             }
             componentDidMount() {
                 document.getElementById('wallet-asset-header-logomark').addEventListener('mouseenter', this.mouseEnterListener);
@@ -38024,23 +40574,23 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         exports.default = WalletDetail;
 
     }, {
-        "101": 101,
-        "102": 102,
-        "107": 107,
+        "105": 105,
+        "108": 108,
         "113": 113,
-        "126": 126,
-        "133": 133,
-        "134": 134,
-        "271": 271,
-        "321": 321,
-        "348": 348,
-        "390": 390,
-        "404": 404,
-        "414": 414,
+        "120": 120,
+        "135": 135,
+        "143": 143,
+        "144": 144,
+        "289": 289,
+        "343": 343,
+        "370": 370,
         "417": 417,
+        "429": 429,
+        "439": 439,
+        "442": 442,
         "undefined": undefined
     }],
-    419: [function(require, module, exports) {
+    444: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -38048,9 +40598,9 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         var _react = require('react');
         var _react2 = _interopRequireDefault(_react);
         var _reactRedux = require('react-redux');
-        var _available = require(100);
+        var _available = require(104);
         var _available2 = _interopRequireDefault(_available);
-        var _addButton = require(99);
+        var _addButton = require(100);
         var _addButton2 = _interopRequireDefault(_addButton);
 
         function _interopRequireDefault(obj) {
@@ -38091,10 +40641,10 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
 
     }, {
         "100": 100,
-        "99": 99,
+        "104": 104,
         "undefined": undefined
     }],
-    420: [function(require, module, exports) {
+    445: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -38116,7 +40666,7 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
         const twoOfTwo = exports.twoOfTwo = label => `twoOfTwo.${label}`;
 
     }, {}],
-    421: [function(require, module, exports) {
+    446: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -38210,12 +40760,12 @@ Remember to keep your private keys safe, anyone who has your private keys can ge
     }, {
         "undefined": undefined
     }],
-    422: [function(require, module, exports) {
+    447: [function(require, module, exports) {
         module.exports = {
             "name": "exodus",
             "productName": "Exodus",
-            "version": "1.43.4",
+            "version": "1.51.2",
             "description": "Secure, manage, and trade blockchain assets."
         }
     }, {}]
-}, {}, [356]);
+}, {}, [377]);

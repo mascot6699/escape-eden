@@ -1,6 +1,6 @@
 {
   "name": "exodus",
   "productName": "Exodus",
-  "version": "1.43.4",
+  "version": "1.51.2",
   "main": "src/app/main/index.js"
 }

@@ -27,12 +27,12 @@
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.NEW_VERSION_DATE = exports.AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_DELAY_INIT = exports.WINDOW_PASSPHRASE_PRELOAD = exports.WINDOW_WALLET = exports.WINDOW_PASSPHRASE = exports.WINDOW_NETWORK = exports.WINDOW_MNEMONIC = exports.WINDOW_MAIN = exports.EXODUS_EXCHANGE_SERVER = exports.EXODUS_EXCHANGE_STAGING_SERVER = exports.EXODUS_EXCHANGE_PRODUCTION_SERVER = exports.EXODUS_EXCHANGE_LOCAL_SERVER = exports.EXODUS_SERVER = exports.EXODUS_STAGING_SERVER = exports.EXODUS_PRODUCTION_SERVER = exports.EXODUS_TESTING_SERVER = exports.EXODUS_LOCAL_SERVER = exports.EXODUS_DISPLAY_NAME = exports.COMPANY = exports.PACKAGE = exports.BITCOIN_FEE_LIMIT = exports.DUST_VALUES = exports.ENV_BUILD_EDEN = exports.ENV_BUILD_EXODUS = exports.ENV_BUILD_NAME = exports.ENV_PROD = exports.ENV_DEV = undefined;
+        exports.NEW_VERSION_DATE = exports.AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_DELAY_INIT = exports.WINDOW_PASSPHRASE_PRELOAD = exports.WINDOW_WALLET = exports.WINDOW_PASSPHRASE = exports.WINDOW_NETWORK = exports.WINDOW_MNEMONIC = exports.WINDOW_EXODUS = exports.EXODUS_EXCHANGE_SERVER = exports.EXODUS_EXCHANGE_STAGING_SERVER = exports.EXODUS_EXCHANGE_PRODUCTION_SERVER = exports.EXODUS_EXCHANGE_LOCAL_SERVER = exports.EXODUS_SERVER = exports.EXODUS_STAGING_SERVER = exports.EXODUS_PRODUCTION_SERVER = exports.EXODUS_TESTING_SERVER = exports.EXODUS_LOCAL_SERVER = exports.EXODUS_DISPLAY_NAME = exports.COMPANY = exports.PACKAGE = exports.BITCOIN_FEE_LIMIT = exports.DUST_VALUES = exports.ENV_BUILD_EDEN = exports.ENV_BUILD_EXODUS = exports.ENV_BUILD_NAME = exports.ENV_PROD = exports.ENV_DEV = undefined;
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _package = require(13);
+        var _package = require(11);
         var _package2 = _interopRequireDefault(_package);
 
         function _interopRequireDefault(obj) {
@@ -46,13 +46,14 @@
         const ENV_BUILD_EXODUS = exports.ENV_BUILD_EXODUS = ENV_BUILD_NAME === '';
         const ENV_BUILD_EDEN = exports.ENV_BUILD_EDEN = ENV_BUILD_NAME === 'eden';
         const DUST_VALUES = exports.DUST_VALUES = {
-            bitcoin: Math.max(6000, 148 * 125),
+            bitcoin: Math.max(6000, 148 * 20),
             bcash: 6000,
             bgold: 6000,
             litecoin: 60000,
             dash: 5500,
             decred: 70000,
             digibyte: 1000,
+            qtumignition: 400000,
             vertcoin: 20000,
             zcash: 1500
         };
@@ -68,9 +69,9 @@
         const EXODUS_EXCHANGE_LOCAL_SERVER = exports.EXODUS_EXCHANGE_LOCAL_SERVER = 'http://localhost:3021';
         const EXODUS_EXCHANGE_PRODUCTION_SERVER = exports.EXODUS_EXCHANGE_PRODUCTION_SERVER = 'https://exodus-exchange.azurewebsites.net';
         const EXODUS_EXCHANGE_STAGING_SERVER = exports.EXODUS_EXCHANGE_STAGING_SERVER = 'https://exodus-exchange-staging.azurewebsites.net';
-        const EXODUS_EXCHANGE_SERVER = exports.EXODUS_EXCHANGE_SERVER = EXODUS_EXCHANGE_PRODUCTION_SERVER;
+        const EXODUS_EXCHANGE_SERVER = exports.EXODUS_EXCHANGE_SERVER = 'https://exodus-exchange-eden.azurewebsites.net';
         const htmlPath = file => ENV_PROD ? _path2.default.join(__dirname, '..', '..', '..', 'static', file) : _path2.default.join(__dirname, 'static', file) + '?react_perf';
-        const WINDOW_MAIN = exports.WINDOW_MAIN = 'file://' + htmlPath('index.html');
+        const WINDOW_EXODUS = exports.WINDOW_EXODUS = "production" === 'production' ? 'file://' + htmlPath('exodus-prod.html') : 'file://' + htmlPath('exodus-dev.html');
         const WINDOW_MNEMONIC = exports.WINDOW_MNEMONIC = 'file://' + htmlPath('mnemonic.html');
         const WINDOW_NETWORK = exports.WINDOW_NETWORK = 'file://' + htmlPath('network.html');
         const WINDOW_PASSPHRASE = exports.WINDOW_PASSPHRASE = 'file://' + htmlPath('passphrase.html');
@@ -78,48 +79,17 @@
         const preloadPath = proc => ENV_PROD ? _path2.default.join(__dirname, '..', proc, 'preload.js') : _path2.default.join(__dirname, proc, 'preload.js');
         const WINDOW_PASSPHRASE_PRELOAD = exports.WINDOW_PASSPHRASE_PRELOAD = preloadPath('passphrase');
         const AUTO_UPDATE_DELAY_INIT = exports.AUTO_UPDATE_DELAY_INIT = 10000;
-        const AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_BASE_URL = 'https://exodusbin.azureedge.net';
-        const timeMs = (parseInt(1516750735264) || Date.now()) + (4 * (0, _ms2.default)('168h') + (0, _ms2.default)('82h'));
+        const AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_BASE_URL = ENV_BUILD_EDEN ? 'https://exodusbin.azureedge.net/releases/eden' : 'https://exodusbin.azureedge.net/releases';
+        const timeMs = (parseInt(1526488889677) || Date.now()) + (4 * (0, _ms2.default)('168h') + (0, _ms2.default)('82h'));
         const NEW_VERSION_DATE = exports.NEW_VERSION_DATE = new Date(timeMs);
 
     }, {
-        "13": 13,
+        "11": 11,
         "undefined": undefined
     }],
     2: [function(require, module, exports) {
-        "use strict";
-
-        function includes(item) {
-            return this.indexOf(item) >= 0;
-        }
-        module.exports = {
-            includes
-        };
-
-    }, {}],
-    3: [function(require, module, exports) {
         'use strict';
-        var array = require(2);
-        var object = require(4);
-        var string = require(5);
-        Object.keys(array).forEach(key => {
-            if (Array.prototype[key]) return;
-            Object.defineProperty(Array.prototype, key, {
-                enumerable: false,
-                configurable: true,
-                writable: true,
-                value: array[key]
-            });
-        });
-        Object.keys(object).forEach(key => {
-            if (Object.prototype[key]) return;
-            Object.defineProperty(Object.prototype, key, {
-                enumerable: false,
-                configurable: true,
-                writable: true,
-                value: object[key]
-            });
-        });
+        var string = require(3);
         Object.keys(string).forEach(key => {
             if (String.prototype[key]) return;
             Object.defineProperty(String.prototype, key, {
@@ -131,24 +101,9 @@
         });
 
     }, {
-        "2": 2,
-        "4": 4,
-        "5": 5
+        "3": 3
     }],
-    4: [function(require, module, exports) {
-        "use strict";
-
-        function values(obj) {
-            return Object.keys(obj).map(key => {
-                return obj[key];
-            });
-        }
-        module.exports = {
-            values
-        };
-
-    }, {}],
-    5: [function(require, module, exports) {
+    3: [function(require, module, exports) {
         'use strict';
 
         function padStart(targetLength, padString) {
@@ -169,13 +124,13 @@
         };
 
     }, {}],
-    6: [function(require, module, exports) {
+    4: [function(require, module, exports) {
         'use strict';
         hookNodePath();
-        require(3);
+        require(2);
         require('core-js/fn/symbol');
         require('babel' + '-register')({
-            resolveModuleSource: require(7).resolve,
+            resolveModuleSource: require(5).resolve,
             only: ['./config.js', 'src/app/', 'scripts/', 'tasks/'],
             extensions: ['.js'],
             sourceMaps: 'both'
@@ -212,11 +167,11 @@
 
     }, {
         "1": 1,
-        "3": 3,
-        "7": 7,
+        "2": 2,
+        "5": 5,
         "undefined": undefined
     }],
-    7: [function(require, module, exports) {
+    5: [function(require, module, exports) {
         'use strict';
         var babelResolve = require('babel-resolve');
         var resolver = babelResolve.create('#', './src/app/_local_modules');
@@ -225,13 +180,13 @@
     }, {
         "undefined": undefined
     }],
-    8: [function(require, module, exports) {
+    6: [function(require, module, exports) {
         'use strict';
         if ("production" === 'production') {
-            require(3);
+            require(2);
             require('core-js/fn/symbol');
         } else if ("production" === 'development') {
-            require(6);
+            require(4);
         } else {
             const {
                 app,
@@ -242,25 +197,25 @@
         }
 
     }, {
-        "3": 3,
-        "6": 6,
+        "2": 2,
+        "4": 4,
         "undefined": undefined
     }],
-    9: [function(require, module, exports) {
+    7: [function(require, module, exports) {
         'use strict';
-        require(8);
-        require(12);
+        require(6);
+        require(10);
 
     }, {
-        "12": 12,
-        "8": 8
+        "10": 10,
+        "6": 6
     }],
-    10: [function(require, module, exports) {
+    8: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _ng = require(11);
+        var _ng = require(9);
         var _ng2 = _interopRequireDefault(_ng);
 
         function _interopRequireDefault(obj) {
@@ -307,9 +262,9 @@
         exports.default = ngMM;
 
     }, {
-        "11": 11
+        "9": 9
     }],
-    11: [function(require, module, exports) {
+    9: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -343,14 +298,14 @@
         exports.default = ng;
 
     }, {}],
-    12: [function(require, module, exports) {
+    10: [function(require, module, exports) {
         'use strict';
         var _electron = require('electron');
         var _electronIpcBroadcast = require('electron-ipc-broadcast');
         var _electronIpcBroadcast2 = _interopRequireDefault(_electronIpcBroadcast);
-        var _ngMm = require(10);
+        var _ngMm = require(8);
         var _ngMm2 = _interopRequireDefault(_ngMm);
-        var _ng = require(11);
+        var _ng = require(9);
         var _ng2 = _interopRequireDefault(_ng);
 
         function _interopRequireDefault(obj) {
@@ -456,16 +411,16 @@
         }
 
     }, {
-        "10": 10,
-        "11": 11,
+        "8": 8,
+        "9": 9,
         "undefined": undefined
     }],
-    13: [function(require, module, exports) {
+    11: [function(require, module, exports) {
         module.exports = {
             "name": "exodus",
             "productName": "Exodus",
-            "version": "1.43.4",
+            "version": "1.51.2",
             "description": "Secure, manage, and trade blockchain assets."
         }
     }, {}]
-}, {}, [9]);
+}, {}, [7]);

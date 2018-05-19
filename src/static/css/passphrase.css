@@ -338,7 +338,8 @@ body {
     position: absolute;
     top: 64px;
     width: 128px;
-    opacity: .75;
+    opacity: .85;
+    z-index: 100;
     -webkit-app-region: no-drag; }
     .pass-container .pass-logo.bounce {
       animation: bounce 1s infinite; }
@@ -417,6 +418,31 @@ body {
         -webkit-font-smoothing: antialiased; }
       .pass-container .input-container textarea:focus {
         outline: none; }
+  .pass-container .btn-visible-toggle {
+    position: absolute;
+    top: 285px;
+    left: 90px;
+    opacity: .25;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+    -webkit-user-select: none;
+    width: 32px;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    -webkit-app-region: no-drag;
+    background-image: url(../svg/icon-eye-closed.svg); }
+    .pass-container .btn-visible-toggle:hover {
+      opacity: 1;
+      transform: scale(1.05, 1.05); }
+    .pass-container .btn-visible-toggle.toggled {
+      background-image: url(../svg/icon-eye-open.svg); }
+    .pass-container .btn-visible-toggle:active {
+      transform: scale(1, 1); }
   .pass-container .line {
     position: relative;
     height: 2px;

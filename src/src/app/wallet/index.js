@@ -27,12 +27,12 @@
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.NEW_VERSION_DATE = exports.AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_DELAY_INIT = exports.WINDOW_PASSPHRASE_PRELOAD = exports.WINDOW_WALLET = exports.WINDOW_PASSPHRASE = exports.WINDOW_NETWORK = exports.WINDOW_MNEMONIC = exports.WINDOW_MAIN = exports.EXODUS_EXCHANGE_SERVER = exports.EXODUS_EXCHANGE_STAGING_SERVER = exports.EXODUS_EXCHANGE_PRODUCTION_SERVER = exports.EXODUS_EXCHANGE_LOCAL_SERVER = exports.EXODUS_SERVER = exports.EXODUS_STAGING_SERVER = exports.EXODUS_PRODUCTION_SERVER = exports.EXODUS_TESTING_SERVER = exports.EXODUS_LOCAL_SERVER = exports.EXODUS_DISPLAY_NAME = exports.COMPANY = exports.PACKAGE = exports.BITCOIN_FEE_LIMIT = exports.DUST_VALUES = exports.ENV_BUILD_EDEN = exports.ENV_BUILD_EXODUS = exports.ENV_BUILD_NAME = exports.ENV_PROD = exports.ENV_DEV = undefined;
+        exports.NEW_VERSION_DATE = exports.AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_DELAY_INIT = exports.WINDOW_PASSPHRASE_PRELOAD = exports.WINDOW_WALLET = exports.WINDOW_PASSPHRASE = exports.WINDOW_NETWORK = exports.WINDOW_MNEMONIC = exports.WINDOW_EXODUS = exports.EXODUS_EXCHANGE_SERVER = exports.EXODUS_EXCHANGE_STAGING_SERVER = exports.EXODUS_EXCHANGE_PRODUCTION_SERVER = exports.EXODUS_EXCHANGE_LOCAL_SERVER = exports.EXODUS_SERVER = exports.EXODUS_STAGING_SERVER = exports.EXODUS_PRODUCTION_SERVER = exports.EXODUS_TESTING_SERVER = exports.EXODUS_LOCAL_SERVER = exports.EXODUS_DISPLAY_NAME = exports.COMPANY = exports.PACKAGE = exports.BITCOIN_FEE_LIMIT = exports.DUST_VALUES = exports.ENV_BUILD_EDEN = exports.ENV_BUILD_EXODUS = exports.ENV_BUILD_NAME = exports.ENV_PROD = exports.ENV_DEV = undefined;
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _package = require(104);
+        var _package = require(108);
         var _package2 = _interopRequireDefault(_package);
 
         function _interopRequireDefault(obj) {
@@ -46,13 +46,14 @@
         const ENV_BUILD_EXODUS = exports.ENV_BUILD_EXODUS = ENV_BUILD_NAME === '';
         const ENV_BUILD_EDEN = exports.ENV_BUILD_EDEN = ENV_BUILD_NAME === 'eden';
         const DUST_VALUES = exports.DUST_VALUES = {
-            bitcoin: Math.max(6000, 148 * 125),
+            bitcoin: Math.max(6000, 148 * 20),
             bcash: 6000,
             bgold: 6000,
             litecoin: 60000,
             dash: 5500,
             decred: 70000,
             digibyte: 1000,
+            qtumignition: 400000,
             vertcoin: 20000,
             zcash: 1500
         };
@@ -68,9 +69,9 @@
         const EXODUS_EXCHANGE_LOCAL_SERVER = exports.EXODUS_EXCHANGE_LOCAL_SERVER = 'http://localhost:3021';
         const EXODUS_EXCHANGE_PRODUCTION_SERVER = exports.EXODUS_EXCHANGE_PRODUCTION_SERVER = 'https://exodus-exchange.azurewebsites.net';
         const EXODUS_EXCHANGE_STAGING_SERVER = exports.EXODUS_EXCHANGE_STAGING_SERVER = 'https://exodus-exchange-staging.azurewebsites.net';
-        const EXODUS_EXCHANGE_SERVER = exports.EXODUS_EXCHANGE_SERVER = EXODUS_EXCHANGE_PRODUCTION_SERVER;
+        const EXODUS_EXCHANGE_SERVER = exports.EXODUS_EXCHANGE_SERVER = 'https://exodus-exchange-eden.azurewebsites.net';
         const htmlPath = file => ENV_PROD ? _path2.default.join(__dirname, '..', '..', '..', 'static', file) : _path2.default.join(__dirname, 'static', file) + '?react_perf';
-        const WINDOW_MAIN = exports.WINDOW_MAIN = 'file://' + htmlPath('index.html');
+        const WINDOW_EXODUS = exports.WINDOW_EXODUS = "production" === 'production' ? 'file://' + htmlPath('exodus-prod.html') : 'file://' + htmlPath('exodus-dev.html');
         const WINDOW_MNEMONIC = exports.WINDOW_MNEMONIC = 'file://' + htmlPath('mnemonic.html');
         const WINDOW_NETWORK = exports.WINDOW_NETWORK = 'file://' + htmlPath('network.html');
         const WINDOW_PASSPHRASE = exports.WINDOW_PASSPHRASE = 'file://' + htmlPath('passphrase.html');
@@ -78,48 +79,17 @@
         const preloadPath = proc => ENV_PROD ? _path2.default.join(__dirname, '..', proc, 'preload.js') : _path2.default.join(__dirname, proc, 'preload.js');
         const WINDOW_PASSPHRASE_PRELOAD = exports.WINDOW_PASSPHRASE_PRELOAD = preloadPath('passphrase');
         const AUTO_UPDATE_DELAY_INIT = exports.AUTO_UPDATE_DELAY_INIT = 10000;
-        const AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_BASE_URL = 'https://exodusbin.azureedge.net';
-        const timeMs = (parseInt(1516750731461) || Date.now()) + (4 * (0, _ms2.default)('168h') + (0, _ms2.default)('82h'));
+        const AUTO_UPDATE_BASE_URL = exports.AUTO_UPDATE_BASE_URL = ENV_BUILD_EDEN ? 'https://exodusbin.azureedge.net/releases/eden' : 'https://exodusbin.azureedge.net/releases';
+        const timeMs = (parseInt(1526488886275) || Date.now()) + (4 * (0, _ms2.default)('168h') + (0, _ms2.default)('82h'));
         const NEW_VERSION_DATE = exports.NEW_VERSION_DATE = new Date(timeMs);
 
     }, {
-        "104": 104,
+        "108": 108,
         "undefined": undefined
     }],
     2: [function(require, module, exports) {
-        "use strict";
-
-        function includes(item) {
-            return this.indexOf(item) >= 0;
-        }
-        module.exports = {
-            includes
-        };
-
-    }, {}],
-    3: [function(require, module, exports) {
         'use strict';
-        var array = require(2);
-        var object = require(4);
-        var string = require(5);
-        Object.keys(array).forEach(key => {
-            if (Array.prototype[key]) return;
-            Object.defineProperty(Array.prototype, key, {
-                enumerable: false,
-                configurable: true,
-                writable: true,
-                value: array[key]
-            });
-        });
-        Object.keys(object).forEach(key => {
-            if (Object.prototype[key]) return;
-            Object.defineProperty(Object.prototype, key, {
-                enumerable: false,
-                configurable: true,
-                writable: true,
-                value: object[key]
-            });
-        });
+        var string = require(3);
         Object.keys(string).forEach(key => {
             if (String.prototype[key]) return;
             Object.defineProperty(String.prototype, key, {
@@ -131,24 +101,9 @@
         });
 
     }, {
-        "2": 2,
-        "4": 4,
-        "5": 5
+        "3": 3
     }],
-    4: [function(require, module, exports) {
-        "use strict";
-
-        function values(obj) {
-            return Object.keys(obj).map(key => {
-                return obj[key];
-            });
-        }
-        module.exports = {
-            values
-        };
-
-    }, {}],
-    5: [function(require, module, exports) {
+    3: [function(require, module, exports) {
         'use strict';
 
         function padStart(targetLength, padString) {
@@ -169,7 +124,7 @@
         };
 
     }, {}],
-    6: [function(require, module, exports) {
+    4: [function(require, module, exports) {
         'use strict';
         var _config = require(1);
         var config = _interopRequireWildcard(_config);
@@ -193,13 +148,32 @@
     }, {
         "1": 1
     }],
-    7: [function(require, module, exports) {
+    5: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        var _keys = require(105);
+        Object.keys(_keys).forEach(function(key) {
+            if (key === "default" || key === "__esModule") return;
+            Object.defineProperty(exports, key, {
+                enumerable: true,
+                get: function() {
+                    return _keys[key];
+                }
+            });
+        });
+
+    }, {
+        "105": 105
+    }],
+    6: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.WALLET_DIR = exports.walletDirFromExodusDir = undefined;
-        var _paths = require(103);
+        var _paths = require(107);
         var _paths2 = _interopRequireDefault(_paths);
 
         function _interopRequireDefault(obj) {
@@ -212,29 +186,128 @@
         const WALLET_DIR = exports.WALLET_DIR = _paths.WALLET_DIR;
 
     }, {
-        "103": 103
+        "107": 107
+    }],
+    7: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.connectBaseAssetFuncs = connectBaseAssetFuncs;
+        var _bip = require('bip38');
+        var _bip2 = _interopRequireDefault(_bip);
+        var _bs58check = require('bs58check');
+        var _bs58check2 = _interopRequireDefault(_bs58check);
+        var _crypto = require('crypto');
+        var _crypto2 = _interopRequireDefault(_crypto);
+        var _secp256k = require('secp256k1');
+        var _secp256k2 = _interopRequireDefault(_secp256k);
+        var _wif = require('wif');
+        var _wif2 = _interopRequireDefault(_wif);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        const connectFunc = (asset, targetName, name, func) => {
+            if (!asset[targetName]) {
+                asset[targetName] = {};
+            }
+            const target = asset[targetName];
+            if (target[name] === null) return;
+            if (!target[name]) {
+                target[name] = func;
+            }
+        };
+
+        function connectBaseAssetFuncs(asset) {
+            connectFunc(asset, 'address', 'isP2PKH', string => {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && payload[0] === asset.address.versions.p2pkh;
+            });
+            connectFunc(asset, 'address', 'isP2SH', string => {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && payload[0] === asset.address.versions.p2sh;
+            });
+            connectFunc(asset, 'address', 'validate', string => {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && [asset.address.versions.p2pkh, asset.address.versions.p2sh].includes(payload[0]);
+            });
+            connectFunc(asset, 'address', 'displayAddress', string => {
+                return string;
+            });
+            connectFunc(asset, 'keys', 'encodePrivate', function(privateKey) {
+                let compressed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+                return _wif2.default.encode(asset.coinInfo.versions.private, privateKey, compressed);
+            });
+            connectFunc(asset, 'keys', 'encodePublic', publicKey => {
+                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
+                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
+                const payload = Buffer.concat([Buffer.from([asset.address.versions.p2pkh]), pubKeyHash]);
+                return _bs58check2.default.encode(payload);
+            });
+            connectFunc(asset, 'keys', 'encodePublicFromWIF', function(privateKeyWIF) {
+                let password = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+                let privateKey, compressed;
+                if (asset.name === 'bitcoin' && password) {
+                    try {
+                        ({
+                            privateKey,
+                            compressed
+                        } = _bip2.default.decrypt(privateKeyWIF, password));
+                    } catch (e) {
+                        console.error(e);
+                        throw new Error('An error has occurred; are you sure you entered the right password?');
+                    }
+                } else {
+                    const {
+                        versions
+                    } = asset.coinInfo;
+                    ({
+                        privateKey,
+                        compressed
+                    } = _wif2.default.decode(privateKeyWIF, versions.private));
+                }
+                const publicKey = _secp256k2.default.publicKeyCreate(privateKey, compressed);
+                return asset.keys.encodePublic(publicKey);
+            });
+        }
+
+    }, {
+        "undefined": undefined
     }],
     8: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.feeEvents = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        exports.twoOfTwo = exports.blockExplorer = exports.bip44 = exports.address = exports.coinInfo = exports.feePerKB = exports.feeEvents = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         exports.setFeePerKB = setFeePerKB;
-        var _coininfo = require('coininfo');
-        var _coininfo2 = _interopRequireDefault(_coininfo);
-        var _bs58check = require('bs58check');
-        var _bs58check2 = _interopRequireDefault(_bs58check);
-        var _wif = require('wif');
-        var _wif2 = _interopRequireDefault(_wif);
-        var _crypto = require('crypto');
-        var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(50);
-        var _aureus = require(30);
-        var _bip44Constants = require(39);
+        var _bitcoin = require(12);
+        var _currencyUnits = require(51);
+        var _aureus = require(34);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
         var _events = require('events');
-        var _twoOfTwoMultisig = require(89);
+        var _twoOfTwoMultisig = require(94);
+        var _bchaddrjs = require('bchaddrjs');
+        var bchaddr = _interopRequireWildcard(_bchaddrjs);
+
+        function _interopRequireWildcard(obj) {
+            if (obj && obj.__esModule) {
+                return obj;
+            } else {
+                var newObj = {};
+                if (obj != null) {
+                    for (var key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+                    }
+                }
+                newObj.default = obj;
+                return newObj;
+            }
+        }
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -255,8 +328,7 @@
             BCH: 8
         }, 'BCH');
         const displayUnit = exports.displayUnit = 'BCH';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'bch';
-        const units = exports.units = ['BCH'];
+        const units = exports.units = [displayUnit];
         const feeEvents = exports.feeEvents = new _events.EventEmitter();
 
         function setFeePerKB(newFeerPerKB) {
@@ -265,50 +337,63 @@
         }
         let feePerKB = exports.feePerKB = undefined;
         setFeePerKB(5000);
+        const coinInfo = exports.coinInfo = _bitcoin.coinInfo;
         const address = exports.address = {
             versions: {
-                p2pkh: (0, _coininfo2.default)('bitcoin').versions.public,
-                p2sh: (0, _coininfo2.default)('bitcoin').versions.scripthash
+                p2pkh: coinInfo.versions.public,
+                p2sh: coinInfo.versions.scripthash
             },
-            isP2PKH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
+            isP2PKH(addr) {
+                return bchaddr.isP2PKHAddress(addr);
             },
-            isP2SH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
+            isP2SH(addr) {
+                return bchaddr.isP2SHAddress(addr);
             },
-            validate(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+            isLegacyAddress(addr) {
+                return bchaddr.isLegacyAddress(addr);
+            },
+            isBitpayAddress(addr) {
+                return bchaddr.isBitpayAddress(addr);
+            },
+            isCashAddress(addr) {
+                return bchaddr.isCashAddress(addr);
+            },
+            toCashAddress(addr) {
+                return bchaddr.toCashAddress(addr).split(':')[1];
+            },
+            toLegacyAddress(addr) {
+                return bchaddr.toLegacyAddress(addr);
+            },
+            toBitpayAddress(addr) {
+                return bchaddr.toBitpayAddress(addr);
+            },
+            validate(addr) {
+                try {
+                    return (address.isP2PKH(addr) || address.isP2SH(addr)) && (address.isLegacyAddress(addr) || address.isBitpayAddress(addr) || address.isCashAddress(addr));
+                } catch (err) {
+                    return false;
+                }
+            },
+            displayAddress(addr) {
+                return address.toCashAddress(addr);
             }
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default['bitcoin-cash'];
-        const keys = exports.keys = {
-            encodePrivate(privateKey) {
-                const versions = (0, _coininfo2.default)('bitcoin').versions;
-                return _wif2.default.encode(versions.private, privateKey, true);
-            },
-            encodePublic(publicKey) {
-                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
-                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
-                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
-                return _bs58check2.default.encode(payload);
-            }
-        };
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
         const blockExplorer = exports.blockExplorer = {
-            addressUrl: address => `https://blockdozer.com/insight/address/${address}`,
-            txUrl: txId => `https://blockdozer.com/insight/tx/${txId}`
+            addressUrl: addr => {
+                return `https://blockdozer.com/address/${addr}`;
+            },
+            txUrl: txId => `https://blockdozer.com/tx/${txId}`
         };
         const twoOfTwo = exports.twoOfTwo = (0, _twoOfTwoMultisig.alice)({
-            network: (0, _coininfo2.default)('bitcoin')
+            network: coinInfo
         });
 
     }, {
-        "30": 30,
-        "39": 39,
-        "50": 50,
-        "89": 89,
+        "12": 12,
+        "34": 34,
+        "51": 51,
+        "94": 94,
         "undefined": undefined
     }],
     9: [function(require, module, exports) {
@@ -316,19 +401,12 @@
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.feeEvents = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        exports.blockExplorer = exports.bip44 = exports.address = exports.coinInfo = exports.feePerKB = exports.feeEvents = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         exports.setFeePerKB = setFeePerKB;
-        var _coininfo = require('coininfo');
-        var _coininfo2 = _interopRequireDefault(_coininfo);
-        var _bs58check = require('bs58check');
-        var _bs58check2 = _interopRequireDefault(_bs58check);
-        var _wif = require('wif');
-        var _wif2 = _interopRequireDefault(_wif);
-        var _crypto = require('crypto');
-        var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(50);
-        var _aureus = require(30);
-        var _bip44Constants = require(39);
+        var _bcash = require(8);
+        var _currencyUnits = require(51);
+        var _aureus = require(34);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
         var _events = require('events');
 
@@ -351,7 +429,7 @@
             BCH: 8
         }, 'BCH');
         const displayUnit = exports.displayUnit = 'BCH';
-        const units = exports.units = ['BCH'];
+        const units = exports.units = [displayUnit];
         const feeEvents = exports.feeEvents = new _events.EventEmitter();
 
         function setFeePerKB(newFeerPerKB) {
@@ -360,46 +438,23 @@
         }
         let feePerKB = exports.feePerKB = undefined;
         setFeePerKB(5000);
+        const coinInfo = exports.coinInfo = _bcash.coinInfo;
         const address = exports.address = {
             versions: {
-                p2pkh: (0, _coininfo2.default)('bitcoin').versions.public,
-                p2sh: (0, _coininfo2.default)('bitcoin').versions.scripthash
-            },
-            isP2PKH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
-            },
-            isP2SH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
-            },
-            validate(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+                p2pkh: coinInfo.versions.public,
+                p2sh: coinInfo.versions.scripthash
             }
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default['bitcoin'];
-        const keys = exports.keys = {
-            encodePrivate(privateKey) {
-                const versions = (0, _coininfo2.default)('bitcoin').versions;
-                return _wif2.default.encode(versions.private, privateKey, true);
-            },
-            encodePublic(publicKey) {
-                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
-                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
-                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
-                return _bs58check2.default.encode(payload);
-            }
-        };
+        const bip44 = exports.bip44 = _bip44Constants2.default['BTC'];
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => `https://blockdozer.com/insight/address/${address}`,
             txUrl: txId => `https://blockdozer.com/insight/tx/${txId}`
         };
 
     }, {
-        "30": 30,
-        "39": 39,
-        "50": 50,
+        "34": 34,
+        "51": 51,
+        "8": 8,
         "undefined": undefined
     }],
     10: [function(require, module, exports) {
@@ -407,20 +462,14 @@
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        exports.twoOfTwo = exports.blockExplorer = exports.bip44 = exports.address = exports.coinInfo = exports.feePerKB = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         var _coininfo = require('coininfo');
         var _coininfo2 = _interopRequireDefault(_coininfo);
-        var _bs58check = require('bs58check');
-        var _bs58check2 = _interopRequireDefault(_bs58check);
-        var _wif = require('wif');
-        var _wif2 = _interopRequireDefault(_wif);
-        var _crypto = require('crypto');
-        var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(50);
-        var _aureus = require(30);
-        var _bip44Constants = require(39);
+        var _currencyUnits = require(51);
+        var _aureus = require(34);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
-        var _twoOfTwoMultisig = require(89);
+        var _twoOfTwoMultisig = require(94);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -441,53 +490,28 @@
             BTG: 8
         }, 'BTG');
         const displayUnit = exports.displayUnit = 'BTG';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'btg';
-        const units = exports.units = ['BTG'];
-        const feePerKB = exports.feePerKB = currency.satoshis(1000);
+        const units = exports.units = [displayUnit];
+        const feePerKB = exports.feePerKB = currency.satoshis(10000);
+        const coinInfo = exports.coinInfo = (0, _coininfo2.default)(properName);
         const address = exports.address = {
             versions: {
-                p2pkh: (0, _coininfo2.default)(properName).versions.public,
-                p2sh: (0, _coininfo2.default)(properName).versions.scripthash
-            },
-            isP2PKH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
-            },
-            isP2SH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
-            },
-            validate(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+                p2pkh: coinInfo.versions.public,
+                p2sh: coinInfo.versions.scripthash
             }
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default[name];
-        const keys = exports.keys = {
-            encodePrivate(privateKey) {
-                const versions = (0, _coininfo2.default)(properName).versions;
-                return _wif2.default.encode(versions.private, privateKey, true);
-            },
-            encodePublic(publicKey) {
-                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
-                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
-                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
-                return _bs58check2.default.encode(payload);
-            }
-        };
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => `https://explorer.bitcoingold.org/insight/address/${address}`,
             txUrl: txId => `https://explorer.bitcoingold.org/insight/tx/${txId}`
         };
         const twoOfTwo = exports.twoOfTwo = (0, _twoOfTwoMultisig.alice)({
-            network: (0, _coininfo2.default)(properName)
+            network: coinInfo
         });
 
     }, {
-        "30": 30,
-        "39": 39,
-        "50": 50,
-        "89": 89,
+        "34": 34,
+        "51": 51,
+        "94": 94,
         "undefined": undefined
     }],
     11: [function(require, module, exports) {
@@ -495,20 +519,13 @@
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
-        var _coininfo = require('coininfo');
-        var _coininfo2 = _interopRequireDefault(_coininfo);
-        var _bs58check = require('bs58check');
-        var _bs58check2 = _interopRequireDefault(_bs58check);
-        var _wif = require('wif');
-        var _wif2 = _interopRequireDefault(_wif);
-        var _crypto = require('crypto');
-        var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(50);
-        var _aureus = require(30);
-        var _bip44Constants = require(39);
+        exports.twoOfTwo = exports.blockExplorer = exports.bip44 = exports.address = exports.coinInfo = exports.feePerKB = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        var _bgold = require(10);
+        var _currencyUnits = require(51);
+        var _aureus = require(34);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
-        var _twoOfTwoMultisig = require(89);
+        var _twoOfTwoMultisig = require(94);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -529,52 +546,29 @@
             BTG: 8
         }, 'BTG');
         const displayUnit = exports.displayUnit = 'BTG';
-        const units = exports.units = ['BTG'];
+        const units = exports.units = [displayUnit];
         const feePerKB = exports.feePerKB = currency.satoshis(1000);
+        const coinInfo = exports.coinInfo = _bgold.coinInfo;
         const address = exports.address = {
             versions: {
-                p2pkh: (0, _coininfo2.default)('Bitcoin Gold').versions.public,
-                p2sh: (0, _coininfo2.default)('Bitcoin Gold').versions.scripthash
-            },
-            isP2PKH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
-            },
-            isP2SH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
-            },
-            validate(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+                p2pkh: coinInfo.versions.public,
+                p2sh: coinInfo.versions.scripthash
             }
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default['bitcoin'];
-        const keys = exports.keys = {
-            encodePrivate(privateKey) {
-                const versions = (0, _coininfo2.default)('bitcoin').versions;
-                return _wif2.default.encode(versions.private, privateKey, true);
-            },
-            encodePublic(publicKey) {
-                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
-                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
-                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
-                return _bs58check2.default.encode(payload);
-            }
-        };
+        const bip44 = exports.bip44 = _bip44Constants2.default['BTC'];
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => `https://explorer.bitcoingold.org/insight/address/${address}`,
             txUrl: txId => `https://explorer.bitcoingold.org/insight/tx/${txId}`
         };
         const twoOfTwo = exports.twoOfTwo = (0, _twoOfTwoMultisig.alice)({
-            network: (0, _coininfo2.default)(properName)
+            network: coinInfo
         });
 
     }, {
-        "30": 30,
-        "39": 39,
-        "50": 50,
-        "89": 89,
+        "10": 10,
+        "34": 34,
+        "51": 51,
+        "94": 94,
         "undefined": undefined
     }],
     12: [function(require, module, exports) {
@@ -582,22 +576,18 @@
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.feeEvents = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        exports.twoOfTwo = exports.blockExplorer = exports.bip44 = exports.address = exports.coinInfo = exports.feePerKB = exports.feeEvents = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         exports.setFeePerKB = setFeePerKB;
         var _coininfo = require('coininfo');
         var _coininfo2 = _interopRequireDefault(_coininfo);
-        var _bs58check = require('bs58check');
-        var _bs58check2 = _interopRequireDefault(_bs58check);
-        var _wif = require('wif');
-        var _wif2 = _interopRequireDefault(_wif);
-        var _crypto = require('crypto');
-        var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(50);
-        var _aureus = require(30);
-        var _bip44Constants = require(39);
+        var _bech = require('bech32');
+        var _bech2 = _interopRequireDefault(_bech);
+        var _currencyUnits = require(51);
+        var _aureus = require(34);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
         var _events = require('events');
-        var _twoOfTwoMultisig = require(89);
+        var _twoOfTwoMultisig = require(94);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -619,8 +609,7 @@
             BTC: 8
         }, 'BTC');
         const displayUnit = exports.displayUnit = 'BTC';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'btc';
-        const units = exports.units = ['BTC'];
+        const units = exports.units = [displayUnit];
         const feeEvents = exports.feeEvents = new _events.EventEmitter();
 
         function setFeePerKB(newFeerPerKB) {
@@ -630,50 +619,51 @@
         }
         let feePerKB = exports.feePerKB = undefined;
         setFeePerKB(380000);
+        const coinInfo = exports.coinInfo = (0, _coininfo2.default)(name);
         const address = exports.address = {
             versions: {
-                p2pkh: (0, _coininfo2.default)(name).versions.public,
-                p2sh: (0, _coininfo2.default)(name).versions.scripthash
+                p2pkh: coinInfo.versions.public,
+                p2sh: coinInfo.versions.scripthash
             },
-            isP2PKH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
+            isP2WPKH(addr) {
+                try {
+                    const decoded = _bech2.default.decode(addr);
+                    if (decoded.prefix !== 'bc') return false;
+                    if (decoded.words[0] !== 0) return false;
+                    if (_bech2.default.fromWords(decoded.words.slice(1)).length !== 20) return false;
+                    return true;
+                } catch (e) {
+                    return false;
+                }
             },
-            isP2SH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
+            isP2WSH(addr) {
+                try {
+                    const decoded = _bech2.default.decode(addr);
+                    if (decoded.prefix !== 'bc') return false;
+                    if (decoded.words[0] !== 0) return false;
+                    if (_bech2.default.fromWords(decoded.words.slice(1)).length !== 32) return false;
+                    return true;
+                } catch (e) {
+                    return false;
+                }
             },
-            validate(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+            validate(addr) {
+                return ['isP2PKH', 'isP2SH', 'isP2WPKH', 'isP2WSH'].some(method => this[method](addr));
             }
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default[name];
-        const keys = exports.keys = {
-            encodePrivate(privateKey) {
-                const versions = (0, _coininfo2.default)(name).versions;
-                return _wif2.default.encode(versions.private, privateKey, true);
-            },
-            encodePublic(publicKey) {
-                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
-                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
-                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
-                return _bs58check2.default.encode(payload);
-            }
-        };
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => `https://live.blockcypher.com/btc/address/${address}/`,
             txUrl: txId => `https://live.blockcypher.com/btc/tx/${txId}/`
         };
         const twoOfTwo = exports.twoOfTwo = (0, _twoOfTwoMultisig.alice)({
-            network: (0, _coininfo2.default)(name)
+            network: coinInfo
         });
 
     }, {
-        "30": 30,
-        "39": 39,
-        "50": 50,
-        "89": 89,
+        "34": 34,
+        "51": 51,
+        "94": 94,
         "undefined": undefined
     }],
     13: [function(require, module, exports) {
@@ -681,13 +671,13 @@
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = undefined;
+        exports.blockExplorer = exports.bip44 = exports.feePerKB = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = undefined;
         exports._createSimpleSend = _createSimpleSend;
         var _bitcoreLib = require('bitcore-lib');
         var bitcore = _interopRequireWildcard(_bitcoreLib);
         var _ethereumjsUtil = require('ethereumjs-util');
         var _ethereumjsUtil2 = _interopRequireDefault(_ethereumjsUtil);
-        var _util = require(51);
+        var _util = require(52);
         var _ = require(12);
         var bitcoin = _interopRequireWildcard(_);
 
@@ -723,14 +713,7 @@
         let feePerKB = exports.feePerKB = undefined;
         bitcoin.feeEvents.on('new', updateFee);
         updateFee();
-        const address = exports.address = {
-            validate: bitcoin.address.validate
-        };
         const bip44 = exports.bip44 = bitcoin.bip44;
-        const keys = exports.keys = {
-            encodePrivate: bitcoin.keys.encodePrivate,
-            encodePublic: bitcoin.keys.encodePublic
-        };
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => `https://omniexplorer.info/lookupadd.aspx?address=${address}`,
             txUrl: txId => `https://omniexplorer.info/lookuptx.aspx?txid=${txId}`
@@ -758,7 +741,7 @@
 
     }, {
         "12": 12,
-        "51": 51,
+        "52": 52,
         "undefined": undefined
     }],
     14: [function(require, module, exports) {
@@ -766,20 +749,13 @@
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        exports.blockExplorer = exports.bip44 = exports.address = exports.coinInfo = exports.feePerKB = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         var _coininfo = require('coininfo');
         var _coininfo2 = _interopRequireDefault(_coininfo);
-        var _bs58check = require('bs58check');
-        var _bs58check2 = _interopRequireDefault(_bs58check);
-        var _wif = require('wif');
-        var _wif2 = _interopRequireDefault(_wif);
-        var _aureus = require(30);
-        var _crypto = require('crypto');
-        var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(50);
-        var _bip44Constants = require(39);
+        var _aureus = require(34);
+        var _currencyUnits = require(51);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
-        var _twoOfTwoMultisig = require(89);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -800,53 +776,24 @@
             DASH: 8
         }, 'DASH');
         const displayUnit = exports.displayUnit = 'DASH';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'dash';
-        const units = exports.units = ['DASH'];
-        const feePerKB = exports.feePerKB = currency.duffs(1000);
+        const units = exports.units = [displayUnit];
+        const feePerKB = exports.feePerKB = currency.duffs(10000);
+        const coinInfo = exports.coinInfo = (0, _coininfo2.default)(name);
         const address = exports.address = {
             versions: {
-                p2pkh: (0, _coininfo2.default)(name).versions.public,
-                p2sh: (0, _coininfo2.default)(name).versions.scripthash
-            },
-            isP2PKH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
-            },
-            isP2SH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
-            },
-            validate(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+                p2pkh: coinInfo.versions.public,
+                p2sh: coinInfo.versions.scripthash
             }
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default[name];
-        const keys = exports.keys = {
-            encodePrivate(privateKey) {
-                const versions = (0, _coininfo2.default)(name).versions;
-                return _wif2.default.encode(versions.private, privateKey, true);
-            },
-            encodePublic(publicKey) {
-                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
-                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
-                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
-                return _bs58check2.default.encode(payload);
-            }
-        };
+        const bip44 = exports.bip44 = _bip44Constants2.default['DSH'];
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => `https://insight.dashevo.org/insight/address/${address}`,
             txUrl: txId => `https://insight.dashevo.org/insight/tx/${txId}`
         };
-        const twoOfTwo = exports.twoOfTwo = (0, _twoOfTwoMultisig.alice)({
-            network: (0, _coininfo2.default)(name)
-        });
 
     }, {
-        "30": 30,
-        "39": 39,
-        "50": 50,
-        "89": 89,
+        "34": 34,
+        "51": 51,
         "undefined": undefined
     }],
     15: [function(require, module, exports) {
@@ -854,19 +801,21 @@
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.coinInfo = exports.feePerKB = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         var _coininfo = require('coininfo');
         var _coininfo2 = _interopRequireDefault(_coininfo);
-        var _aureus = require(30);
+        var _aureus = require(34);
         var _crypto = require('crypto');
         var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(50);
+        var _currencyUnits = require(51);
         var _blakeHash = require('blake-hash');
         var _blakeHash2 = _interopRequireDefault(_blakeHash);
-        var _bs58checkBlake = require(42);
+        var _bs58checkBlake = require(43);
         var _bs58checkBlake2 = _interopRequireDefault(_bs58checkBlake);
-        var _bip44Constants = require(39);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
+        var _dcrcoreLib = require('dcrcore-lib');
+        var _dcrcoreLib2 = _interopRequireDefault(_dcrcoreLib);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -887,13 +836,13 @@
             DCR: 8
         }, 'DCR');
         const displayUnit = exports.displayUnit = 'DCR';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'dcr';
-        const units = exports.units = ['DCR'];
+        const units = exports.units = [displayUnit];
         const feePerKB = exports.feePerKB = currency.DCR(0.001);
+        const coinInfo = exports.coinInfo = (0, _coininfo2.default)(name);
         const address = exports.address = {
             versions: {
-                p2pkh: (0, _coininfo2.default)(name).versions.public,
-                p2sh: (0, _coininfo2.default)(name).versions.scripthash
+                p2pkh: coinInfo.versions.public,
+                p2sh: coinInfo.versions.scripthash
             },
             isP2PKH(string) {
                 const payload = _bs58checkBlake2.default.decodeUnsafe(string);
@@ -908,17 +857,20 @@
                 return payload && payload.length === 22 && [address.versions.p2pkh, address.versions.p2sh].includes(payload.readUInt16BE(0));
             }
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default[name];
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
         const keys = exports.keys = {
+            encodePublicFromWIF(privateKeyWIF) {
+                return _dcrcoreLib2.default.PrivateKey(privateKeyWIF).toAddress().toString();
+            },
             encodePrivate(privateKey) {
                 const version = Buffer.alloc(2);
-                version.writeUInt16BE((0, _coininfo2.default)(name).versions.private);
+                version.writeUInt16BE(coinInfo.versions.private);
                 const buffer = Buffer.concat([version, Buffer.from([0x00]), privateKey, Buffer.from([0x01])]);
                 return _bs58checkBlake2.default.encode(buffer);
             },
             encodePublic(publicKey) {
                 const payload = Buffer.alloc(2 + 20);
-                payload.writeUInt16BE((0, _coininfo2.default)(name).versions.public);
+                payload.writeUInt16BE(coinInfo.versions.public);
                 const hash32 = (0, _blakeHash2.default)('blake256').update(publicKey).digest();
                 const hash20 = _crypto2.default.createHash('ripemd160').update(hash32).digest();
                 hash20.copy(payload, 2);
@@ -931,10 +883,9 @@
         };
 
     }, {
-        "30": 30,
-        "39": 39,
-        "42": 42,
-        "50": 50,
+        "34": 34,
+        "43": 43,
+        "51": 51,
         "undefined": undefined
     }],
     16: [function(require, module, exports) {
@@ -942,21 +893,14 @@
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
-        var _appConfig = require(6);
+        exports.twoOfTwo = exports.blockExplorer = exports.bip44 = exports.address = exports.coinInfo = exports.feePerKB = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         var _coininfo = require('coininfo');
         var _coininfo2 = _interopRequireDefault(_coininfo);
-        var _bs58check = require('bs58check');
-        var _bs58check2 = _interopRequireDefault(_bs58check);
-        var _wif = require('wif');
-        var _wif2 = _interopRequireDefault(_wif);
-        var _aureus = require(30);
-        var _crypto = require('crypto');
-        var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(50);
-        var _bip44Constants = require(39);
+        var _aureus = require(34);
+        var _currencyUnits = require(51);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
-        var _twoOfTwoMultisig = require(89);
+        var _twoOfTwoMultisig = require(94);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -965,7 +909,7 @@
         }
         const name = exports.name = 'digibyte';
         const properName = exports.properName = 'DigiByte';
-        const available = exports.available = _appConfig.ENV_DEV || _appConfig.ENV_BUILD_EDEN;
+        const available = exports.available = true;
         const defaultEnabled = exports.defaultEnabled = false;
         const hasMultipleAddresses = exports.hasMultipleAddresses = true;
         const hasUTXO = exports.hasUTXO = true;
@@ -977,54 +921,28 @@
             DGB: 8
         }, 'DGB');
         const displayUnit = exports.displayUnit = 'DGB';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'dgb';
-        const units = exports.units = ['DGB'];
+        const units = exports.units = [displayUnit];
         const feePerKB = exports.feePerKB = currency.satoshis(225000);
+        const coinInfo = exports.coinInfo = (0, _coininfo2.default)(name);
         const address = exports.address = {
             versions: {
-                p2pkh: (0, _coininfo2.default)(name).versions.public,
-                p2sh: (0, _coininfo2.default)(name).versions.scripthash
-            },
-            isP2PKH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
-            },
-            isP2SH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
-            },
-            validate(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+                p2pkh: coinInfo.versions.public,
+                p2sh: coinInfo.versions.scripthash
             }
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default[name];
-        const keys = exports.keys = {
-            encodePrivate(privateKey) {
-                const versions = (0, _coininfo2.default)(name).versions;
-                return _wif2.default.encode(versions.private, privateKey, true);
-            },
-            encodePublic(publicKey) {
-                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
-                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
-                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
-                return _bs58check2.default.encode(payload);
-            }
-        };
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => `https://digiexplorer.info/address/${address}`,
             txUrl: txId => `https://digiexplorer.info/tx/${txId}`
         };
         const twoOfTwo = exports.twoOfTwo = (0, _twoOfTwoMultisig.alice)({
-            network: (0, _coininfo2.default)(name)
+            network: coinInfo
         });
 
     }, {
-        "30": 30,
-        "39": 39,
-        "50": 50,
-        "6": 6,
-        "89": 89,
+        "34": 34,
+        "51": 51,
+        "94": 94,
         "undefined": undefined
     }],
     17: [function(require, module, exports) {
@@ -1032,22 +950,313 @@
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.gasPriceEvents = exports.fee = exports.gasPrice = exports.gasContract = exports.gasTx = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        exports.getRegisteredAddress = exports.eosCrowdSale = undefined;
+        let getRegisteredAddress = exports.getRegisteredAddress = (() => {
+            var _ref = _asyncToGenerator(function*(fromEthAddress) {
+                const functionSig = utils.getFunctionSignature('keys(address)');
+                const payload = utils.formatInputInt(fromEthAddress);
+                const data = {
+                    from: fromEthAddress,
+                    to: eosCrowdSale,
+                    data: `0x${functionSig}${payload}`
+                };
+                const rawResult = yield(0, _exodusEthereumServer.withFallback)(_exodusEthereumServer.eth.ethCall, etherscan.ethCall)(data);
+                const start = utils.getOutputLength(rawResult.slice(2));
+                return utils.formatOutputString(rawResult.slice(2 + start));
+            });
+            return function getRegisteredAddress(_x) {
+                return _ref.apply(this, arguments);
+            };
+        })();
+        exports.getRegistrationPayload = getRegistrationPayload;
+        var _etherscan = require(61);
+        var etherscan = _interopRequireWildcard(_etherscan);
+        var _exodusEthereumServer = require(66);
+        var _utils = require(18);
+        var utils = _interopRequireWildcard(_utils);
+
+        function _interopRequireWildcard(obj) {
+            if (obj && obj.__esModule) {
+                return obj;
+            } else {
+                var newObj = {};
+                if (obj != null) {
+                    for (var key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+                    }
+                }
+                newObj.default = obj;
+                return newObj;
+            }
+        }
+
+        function _asyncToGenerator(fn) {
+            return function() {
+                var gen = fn.apply(this, arguments);
+                return new Promise(function(resolve, reject) {
+                    function step(key, arg) {
+                        try {
+                            var info = gen[key](arg);
+                            var value = info.value;
+                        } catch (error) {
+                            reject(error);
+                            return;
+                        }
+                        if (info.done) {
+                            resolve(value);
+                        } else {
+                            return Promise.resolve(value).then(function(value) {
+                                step("next", value);
+                            }, function(err) {
+                                step("throw", err);
+                            });
+                        }
+                    }
+                    return step("next");
+                });
+            };
+        }
+        const eosCrowdSale = exports.eosCrowdSale = '0xd0a6E6C54DbC68Db5db3A091B171A77407Ff7ccf';
+
+        function getRegistrationPayload(fromEthAddress, eosAddress) {
+            const functionSig = utils.getFunctionSignature('register(string)');
+            const addressPayload = utils.formatInputString(eosAddress);
+            const firstParamPayload = utils.formatInputInt('20');
+            return `0x${functionSig}${firstParamPayload}${addressPayload}`;
+        }
+
+    }, {
+        "18": 18,
+        "61": 61,
+        "66": 66
+    }],
+    18: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.isBigNumber = isBigNumber;
+        exports.isString = isString;
+        exports.fromUtf8 = fromUtf8;
+        exports.toUtf8 = toUtf8;
+        exports.formatInputInt = formatInputInt;
+        exports.formatInputString = formatInputString;
+        exports.getOutputLength = getOutputLength;
+        exports.formatOutputString = formatOutputString;
+        exports.getFunctionSignature = getFunctionSignature;
+        var _bignumber = require('bignumber.js');
+        var _bignumber2 = _interopRequireDefault(_bignumber);
+        var _bn = require('bn.js');
+        var _bn2 = _interopRequireDefault(_bn);
+        var _ethereumjsUtil = require('ethereumjs-util');
+        var _lodash = require('lodash');
+        var lodash = _interopRequireWildcard(_lodash);
+
+        function _interopRequireWildcard(obj) {
+            if (obj && obj.__esModule) {
+                return obj;
+            } else {
+                var newObj = {};
+                if (obj != null) {
+                    for (var key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+                    }
+                }
+                newObj.default = obj;
+                return newObj;
+            }
+        }
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+
+        function isBigNumber(object) {
+            return object instanceof _bignumber2.default || object && object.constructor && object.constructor.name === 'BigNumber';
+        }
+
+        function isString(object) {
+            return typeof object === 'string' || object && object.constructor && object.constructor.name === 'String';
+        }
+
+        function fromUtf8(value) {
+            return '0x' + Buffer.from(value, 'utf8').toString('hex');
+        }
+
+        function toUtf8(hex) {
+            if (hex.startsWith('0x')) {
+                hex = hex.substr(2);
+            }
+            return Buffer.from(hex, 'hex').toString('utf8');
+        }
+
+        function formatInputInt(value) {
+            const bigNumber = new _bn2.default(value, 16);
+            return lodash.padStart(bigNumber.toTwos(256).toString(16), 64, 0);
+        }
+
+        function formatInputString(value) {
+            const result = fromUtf8(value).substr(2);
+            const length = result.length / 2;
+            const l = Math.floor((result.length + 63) / 64);
+            const newResult = lodash.padEnd(result, l * 64, 0);
+            return formatInputInt(length.toString(16)) + newResult;
+        }
+
+        function getOutputLength(param) {
+            return new _bignumber2.default(param.slice(0, 64), 16).toNumber() * 2;
+        }
+
+        function formatOutputString(param) {
+            const length = new _bignumber2.default(param.slice(0, 64), 16).toNumber() * 2;
+            return toUtf8(param.substr(64, length));
+        }
+
+        function getFunctionSignature(name) {
+            return (0, _ethereumjsUtil.sha3)(name).toString('hex').slice(0, 8);
+        }
+
+    }, {
+        "undefined": undefined
+    }],
+    19: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.keys = exports.address = exports.eosRegistration = exports.version = exports.addressPrefix = exports.bip44 = exports.feePerKB = exports.units = exports.displayUnit = exports.currency = exports.available = exports.properName = exports.name = undefined;
+        var _aureus = require(34);
+        var _bip44Constants = require('bip44-constants');
+        var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
+        var _bs = require('bs58');
+        var _bs2 = _interopRequireDefault(_bs);
+        var _bigi = require('bigi');
+        var _bigi2 = _interopRequireDefault(_bigi);
+        var _bs58check = require('bs58check');
+        var _bs58check2 = _interopRequireDefault(_bs58check);
+        var _createHash = require('create-hash');
+        var _createHash2 = _interopRequireDefault(_createHash);
+        var _currencyUnits = require(51);
+        var _ecurve = require('ecurve');
+        var _ecurve2 = _interopRequireDefault(_ecurve);
+        var _registration2 = require(17);
+        var _registration = _interopRequireWildcard(_registration2);
+
+        function _interopRequireWildcard(obj) {
+            if (obj && obj.__esModule) {
+                return obj;
+            } else {
+                var newObj = {};
+                if (obj != null) {
+                    for (var key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+                    }
+                }
+                newObj.default = obj;
+                return newObj;
+            }
+        }
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        var secp256k1G = _ecurve2.default.getCurveByName('secp256k1').G;
+        const name = exports.name = 'eosio';
+        const properName = exports.properName = 'EOS';
+        const available = exports.available = false;
+        const currency = exports.currency = _aureus.UnitType.create(name, _currencyUnits.cryptoCurrency, {
+            larimer: 0,
+            EOS: 8
+        }, 'EOS');
+        const displayUnit = exports.displayUnit = 'EOS';
+        const units = exports.units = [displayUnit];
+        const feePerKB = exports.feePerKB = currency.larimer(1000);
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
+        const addressPrefix = exports.addressPrefix = displayUnit;
+        const version = exports.version = 0x80;
+        const eosRegistration = exports.eosRegistration = _registration.eosCrowdSale;
+        const hash = {
+            ripemd160(data) {
+                return (0, _createHash2.default)('rmd160').update(data).digest();
+            },
+            sha256(data, encoding) {
+                return (0, _createHash2.default)('sha256').update(data).digest(encoding);
+            }
+        };
+
+        function decodeString(input) {
+            return _bs58check2.default.decode(input).slice(1, 33);
+        }
+
+        function encodeBuffer(privateKey) {
+            const result = Buffer.alloc(33);
+            result.writeUInt8(version, 0);
+            privateKey.copy(result, 1);
+            return _bs58check2.default.encode(result);
+        }
+        const address = exports.address = {
+            validate(addressString) {
+                if (addressString.slice(0, 3) !== addressPrefix) {
+                    return false;
+                }
+                const payload = _bs2.default.decodeUnsafe(addressString.slice(3));
+                return payload && payload.length === 37;
+            },
+            isP2PKH: null,
+            isP2SH: null
+        };
+        const keys = exports.keys = {
+            decodePrivateFromWIF(privateKeyWIF) {
+                return decodeString(privateKeyWIF);
+            },
+            encodePublicFromWIF(privateKeyWIF) {
+                const privateKey = keys.decodePrivateFromWIF(privateKeyWIF);
+                const publicKey = secp256k1G.multiply(_bigi2.default.fromBuffer(privateKey)).getEncoded(true);
+                return keys.encodePublic(publicKey);
+            },
+            encodePrivate(privateKey) {
+                return encodeBuffer(privateKey);
+            },
+            encodePublic(publicKey) {
+                const pubChecksum = hash.ripemd160(publicKey);
+                const address = Buffer.concat([publicKey, pubChecksum.slice(0, 4)]);
+                const encodedKey = _bs2.default.encode(address);
+                return addressPrefix + encodedKey;
+            }
+        };
+        exports.registration = _registration;
+
+    }, {
+        "17": 17,
+        "34": 34,
+        "51": 51,
+        "undefined": undefined
+    }],
+    20: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.gasPriceEvents = exports.fee = exports.gasPrice = exports.gasContract = exports.gasTx = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         exports.getFee = getFee;
         exports.setGasPrice = setGasPrice;
-        var _currencyUnits = require(50);
-        var _aureus = require(30);
-        var _etherscan = require(60);
+        var _currencyUnits = require(51);
+        var _aureus = require(34);
+        var _etherscan = require(61);
         var etherscan = _interopRequireWildcard(_etherscan);
-        var _exodusEthereumServer = require(65);
-        var _bip44Constants = require(39);
+        var _exodusEthereumServer = require(66);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
         var _ethereumjsUtil = require('ethereumjs-util');
         var _ethereumjsUtil2 = _interopRequireDefault(_ethereumjsUtil);
         var _events = require('events');
-        var _memoizeLruCache = require(69);
+        var _memoizeLruCache = require(70);
         var _memoizeLruCache2 = _interopRequireDefault(_memoizeLruCache);
-        var _twoOfTwoEcdsaThreshold = require(85);
+        var _twoOfTwoEcdsaThreshold = require(90);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -1109,21 +1318,20 @@
             wei: 0,
             Kwei: 3,
             Mwei: 6,
-            shannon: 9,
+            Gwei: 9,
             szabo: 12,
             finney: 15,
             ETH: 18
         }, 'ETH');
         const displayUnit = exports.displayUnit = 'ETH';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'eth';
-        const units = exports.units = ['ETH'];
+        const units = exports.units = [displayUnit];
         const gasTx = exports.gasTx = 21e3;
         const gasContract = exports.gasContract = 1e6;
         let gasPrice = exports.gasPrice = undefined;
         let fee = exports.fee = undefined;
 
-        function getFee(gasLimit) {
-            return currency.wei(gasPrice.toNumber() * gasLimit);
+        function getFee(gasLimit, customGasPrice) {
+            return currency.wei((customGasPrice || gasPrice).toBase().toNumber() * gasLimit);
         }
         const gasPriceEvents = exports.gasPriceEvents = new _events.EventEmitter();
         gasPriceEvents.setMaxListeners(0);
@@ -1153,9 +1361,11 @@
                 };
             })(), key => key, {
                 max: 100
-            })
+            }),
+            isP2PKH: null,
+            isP2SH: null
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default[name];
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
         const keys = exports.keys = {
             encodePrivate(privKey) {
                 return '0x' + privKey.toString('hex');
@@ -1163,7 +1373,8 @@
             encodePublic(compressedPubKey) {
                 const hash160bits = _ethereumjsUtil2.default.publicToAddress(compressedPubKey, true);
                 return _ethereumjsUtil2.default.toChecksumAddress(hash160bits.toString('hex'));
-            }
+            },
+            encodePublicFromWIF: null
         };
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => `https://etherscan.io/address/${address}`,
@@ -1174,22 +1385,90 @@
         });
 
     }, {
-        "30": 30,
-        "39": 39,
-        "50": 50,
-        "60": 60,
-        "65": 65,
-        "69": 69,
-        "85": 85,
+        "34": 34,
+        "51": 51,
+        "61": 61,
+        "66": 66,
+        "70": 70,
+        "90": 90,
         "undefined": undefined
     }],
-    18: [function(require, module, exports) {
+    21: [function(require, module, exports) {
         module.exports = [{
+                "name": "adtoken",
+                "properName": "AdToken",
+                "decimals": 9,
+                "displayUnit": "ADT",
+                "blockExplorer": "0xD0D6D6C5Fe4a677D343cC433536BB717bAe167dD",
+                "addresses": {
+                    "current": "0xD0D6D6C5Fe4a677D343cC433536BB717bAe167dD"
+                }
+            },
+            {
+                "name": "aeron",
+                "properName": "Aeron",
+                "decimals": 8,
+                "displayUnit": "ARN",
+                "blockExplorer": "0xBA5F11b16B155792Cf3B2E6880E8706859A8AEB6",
+                "addresses": {
+                    "current": "0xBA5F11b16B155792Cf3B2E6880E8706859A8AEB6"
+                }
+            },
+            {
+                "name": "aeternity",
+                "properName": "Aeternity",
+                "decimals": 18,
+                "displayUnit": "AE",
+                "blockExplorer": "0x5ca9a71b1d01849c0a95490cc00559717fcf0d1d",
+                "addresses": {
+                    "current": "0x5CA9a71B1d01849C0a95490Cc00559717fCF0D1d"
+                }
+            },
+            {
+                "name": "aion",
+                "properName": "Aion",
+                "decimals": 8,
+                "displayUnit": "AION",
+                "blockExplorer": "0x4CEdA7906a5Ed2179785Cd3A40A69ee8bc99C466",
+                "addresses": {
+                    "current": "0x4CEdA7906a5Ed2179785Cd3A40A69ee8bc99C466"
+                }
+            },
+            {
+                "name": "airswap",
+                "properName": "AirSwap",
+                "decimals": 4,
+                "displayUnit": "AST",
+                "blockExplorer": "AirSwap",
+                "addresses": {
+                    "current": "0x27054b13b1B798B345b591a4d22e6562d47eA75a"
+                }
+            },
+            {
+                "name": "amber",
+                "properName": "Amber",
+                "decimals": 18,
+                "displayUnit": "AMB",
+                "blockExplorer": "0x4DC3643DbC642b72C158E7F3d2ff232df61cb6CE",
+                "addresses": {
+                    "current": "0x4DC3643DbC642b72C158E7F3d2ff232df61cb6CE"
+                }
+            },
+            {
+                "name": "appcoins",
+                "properName": "AppCoins",
+                "decimals": 18,
+                "displayUnit": "APPC",
+                "blockExplorer": "0x1a7a8BD9106F2B8D977E08582DC7d24c723ab0DB",
+                "addresses": {
+                    "current": "0x1a7a8BD9106F2B8D977E08582DC7d24c723ab0DB"
+                }
+            },
+            {
                 "name": "aragon",
                 "properName": "Aragon",
                 "decimals": 18,
                 "displayUnit": "ANT",
-                "shapeShiftUnit": "ant",
                 "blockExplorer": "Aragon",
                 "addresses": {
                     "current": "0x960b236A07cf122663c4303350609A66A7B288C0"
@@ -1200,7 +1479,6 @@
                 "properName": "Augur",
                 "decimals": 18,
                 "displayUnit": "REP",
-                "shapeShiftUnit": "rep",
                 "blockExplorer": "REP",
                 "addresses": {
                     "current": "0xE94327D07Fc17907b4DB788E5aDf2ed424adDff6",
@@ -1214,7 +1492,6 @@
                 "properName": "Bancor",
                 "decimals": 18,
                 "displayUnit": "BNT",
-                "shapeShiftUnit": "bnt",
                 "blockExplorer": "Bancor",
                 "addresses": {
                     "current": "0x1F573D6Fb3F13d689FF844B4cE37794d79a7FF1C"
@@ -1225,10 +1502,49 @@
                 "properName": "BAT",
                 "decimals": 18,
                 "displayUnit": "BAT",
-                "shapeShiftUnit": "bat",
                 "blockExplorer": "BAT",
                 "addresses": {
                     "current": "0x0D8775F648430679A709E98d2b0Cb6250d2887EF"
+                }
+            },
+            {
+                "name": "binance",
+                "properName": "Binance",
+                "decimals": 18,
+                "displayUnit": "BNB",
+                "blockExplorer": "BNB",
+                "addresses": {
+                    "current": "0xB8c77482e45F1F44dE1745F52C74426C631bDD52"
+                }
+            },
+            {
+                "name": "bread",
+                "properName": "Bread",
+                "decimals": 18,
+                "displayUnit": "BRD",
+                "blockExplorer": "0x558EC3152e2eb2174905cd19AeA4e34A23DE9aD6",
+                "addresses": {
+                    "current": "0x558EC3152e2eb2174905cd19AeA4e34A23DE9aD6"
+                }
+            },
+            {
+                "name": "chainlink",
+                "properName": "ChainLink",
+                "decimals": 18,
+                "displayUnit": "LINK",
+                "blockExplorer": "0x514910771af9ca656af840dff83e8264ecf986ca",
+                "addresses": {
+                    "current": "0x514910771AF9Ca656af840dff83E8264EcF986CA"
+                }
+            },
+            {
+                "name": "cindicator",
+                "properName": "Cindicator",
+                "decimals": 18,
+                "displayUnit": "CND",
+                "blockExplorer": "0xd4c435F5B09F855C3317c8524Cb1F586E42795fa",
+                "addresses": {
+                    "current": "0xd4c435F5B09F855C3317c8524Cb1F586E42795fa"
                 }
             },
             {
@@ -1236,10 +1552,49 @@
                 "properName": "Civic",
                 "decimals": 8,
                 "displayUnit": "CVC",
-                "shapeShiftUnit": "cvc",
                 "blockExplorer": "Civic",
                 "addresses": {
                     "current": "0x41e5560054824eA6B0732E656E3Ad64E20e94E45"
+                }
+            },
+            {
+                "name": "dai",
+                "properName": "Dai",
+                "decimals": 18,
+                "displayUnit": "DAI",
+                "blockExplorer": "0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359",
+                "addresses": {
+                    "current": "0x89d24A6b4CcB1B6fAA2625fE562bDD9a23260359"
+                }
+            },
+            {
+                "name": "decentraland",
+                "properName": "Decentraland",
+                "decimals": 18,
+                "displayUnit": "MANA",
+                "blockExplorer": "0x0F5D2fB29fb7d3CFeE444a200298f468908cC942",
+                "addresses": {
+                    "current": "0x0F5D2fB29fb7d3CFeE444a200298f468908cC942"
+                }
+            },
+            {
+                "name": "dent",
+                "properName": "Dent",
+                "decimals": 8,
+                "displayUnit": "DENT",
+                "blockExplorer": "0x3597bfd533a99c9aa083587b074434e61eb0a258",
+                "addresses": {
+                    "current": "0x3597bfD533a99c9aa083587B074434E61Eb0A258"
+                }
+            },
+            {
+                "name": "dentacoin",
+                "properName": "Dentacoin",
+                "decimals": 0,
+                "displayUnit": "DCN",
+                "blockExplorer": "0x08d32b0da63e2C3bcF8019c9c5d849d7a9d791e6",
+                "addresses": {
+                    "current": "0x08d32b0da63e2C3bcF8019c9c5d849d7a9d791e6"
                 }
             },
             {
@@ -1247,7 +1602,6 @@
                 "properName": "DigixDAO",
                 "decimals": 9,
                 "displayUnit": "DGD",
-                "shapeShiftUnit": "dgd",
                 "blockExplorer": "DGD",
                 "addresses": {
                     "current": "0xE0B7927c4aF23765Cb51314A0E0521A9645F0E2A"
@@ -1258,10 +1612,19 @@
                 "properName": "District0x",
                 "decimals": 18,
                 "displayUnit": "DNT",
-                "shapeShiftUnit": "dnt",
                 "blockExplorer": "district0x",
                 "addresses": {
                     "current": "0x0AbdAce70D3790235af448C88547603b945604ea"
+                }
+            },
+            {
+                "name": "dragon",
+                "properName": "Dragon",
+                "decimals": 18,
+                "displayUnit": "DRGN",
+                "blockExplorer": "0x419c4db4b9e25d6db2ad9691ccb832c8d9fda05e",
+                "addresses": {
+                    "current": "0x419c4dB4B9e25d6Db2AD9691ccb832C8D9fDA05E"
                 }
             },
             {
@@ -1269,7 +1632,6 @@
                 "properName": "Edgeless",
                 "decimals": 0,
                 "displayUnit": "EDG",
-                "shapeShiftUnit": "edg",
                 "blockExplorer": "Edgeless",
                 "addresses": {
                     "current": "0x08711D3B02C8758F2FB3ab4e80228418a7F8e39c"
@@ -1280,10 +1642,19 @@
                 "properName": "EOS",
                 "decimals": 18,
                 "displayUnit": "EOS",
-                "shapeShiftUnit": "eos",
                 "blockExplorer": "EOS",
                 "addresses": {
                     "current": "0x86Fa049857E0209aa7D9e616F7eb3b3B78ECfdb0"
+                }
+            },
+            {
+                "name": "ethos",
+                "properName": "Ethos",
+                "decimals": 8,
+                "displayUnit": "ETHOS",
+                "blockExplorer": "Ethos",
+                "addresses": {
+                    "current": "0x5Af2Be193a6ABCa9c8817001F45744777Db30756"
                 }
             },
             {
@@ -1291,7 +1662,6 @@
                 "properName": "FirstBlood",
                 "decimals": 18,
                 "displayUnit": "1ST",
-                "shapeShiftUnit": "1st",
                 "blockExplorer": "FirstBlood",
                 "addresses": {
                     "current": "0xAf30D2a7E90d7DC361c8C4585e9BB7D2F6f15bc7"
@@ -1302,10 +1672,19 @@
                 "properName": "FunFair",
                 "decimals": 8,
                 "displayUnit": "FUN",
-                "shapeShiftUnit": "fun",
                 "blockExplorer": "FunFair",
                 "addresses": {
                     "current": "0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b"
+                }
+            },
+            {
+                "name": "genesisvision",
+                "properName": "GenesisVision",
+                "decimals": 18,
+                "displayUnit": "GVT",
+                "blockExplorer": "genesis-vision",
+                "addresses": {
+                    "current": "0x103c3A209da59d3E7C4A89307e66521e081CFDF0"
                 }
             },
             {
@@ -1313,7 +1692,6 @@
                 "properName": "Gnosis",
                 "decimals": 18,
                 "displayUnit": "GNO",
-                "shapeShiftUnit": "gno",
                 "blockExplorer": "Gnosis",
                 "addresses": {
                     "current": "0x6810e776880C02933D47DB1b9fc05908e5386b96"
@@ -1324,10 +1702,29 @@
                 "properName": "Golem",
                 "decimals": 18,
                 "displayUnit": "GNT",
-                "shapeShiftUnit": "gnt",
                 "blockExplorer": "Golem",
                 "addresses": {
                     "current": "0xa74476443119A942dE498590Fe1f2454d7D4aC0d"
+                }
+            },
+            {
+                "name": "icon",
+                "properName": "ICON",
+                "decimals": 18,
+                "displayUnit": "ICX",
+                "blockExplorer": "0xb5a5f22694352c15b00323844ad545abb2b11028",
+                "addresses": {
+                    "current": "0xb5A5F22694352C15B00323844aD545ABb2B11028"
+                }
+            },
+            {
+                "name": "iconomi",
+                "properName": "Iconomi",
+                "decimals": 18,
+                "displayUnit": "ICN",
+                "blockExplorer": "ICONOMI",
+                "addresses": {
+                    "current": "0x888666CA69E0f178DED6D75b5726Cee99A87D698"
                 }
             },
             {
@@ -1335,10 +1732,69 @@
                 "properName": "iExec RLC",
                 "decimals": 9,
                 "displayUnit": "RLC",
-                "shapeShiftUnit": "rlc",
-                "blockExplorer": "iExec RLC",
+                "blockExplorer": "RLC",
                 "addresses": {
                     "current": "0x607F4C5BB672230e8672085532f7e901544a7375"
+                }
+            },
+            {
+                "name": "kin",
+                "properName": "Kin",
+                "decimals": 18,
+                "displayUnit": "KIN",
+                "blockExplorer": "0x818fc6c2ec5986bc6e2cbf00939d90556ab12ce5",
+                "addresses": {
+                    "current": "0x818Fc6C2Ec5986bc6E2CBf00939d90556aB12ce5"
+                }
+            },
+            {
+                "name": "kucoin",
+                "properName": "KuCoin",
+                "decimals": 6,
+                "displayUnit": "KCS",
+                "blockExplorer": "0x039b5649a59967e3e936d7471f9c3700100ee1ab",
+                "addresses": {
+                    "current": "0x039B5649A59967e3e936D7471f9c3700100Ee1ab"
+                }
+            },
+            {
+                "name": "kyber",
+                "properName": "Kyber",
+                "decimals": 18,
+                "displayUnit": "KNC",
+                "blockExplorer": "KyberNetwork",
+                "addresses": {
+                    "current": "0xdd974D5C2e2928deA5F71b9825b8b646686BD200"
+                }
+            },
+            {
+                "name": "loopring",
+                "properName": "Loopring",
+                "decimals": 18,
+                "displayUnit": "LRC",
+                "blockExplorer": "0xEF68e7C694F40c8202821eDF525dE3782458639f",
+                "addresses": {
+                    "current": "0xEF68e7C694F40c8202821eDF525dE3782458639f"
+                }
+            },
+            {
+                "name": "lunyr",
+                "properName": "Lunyr",
+                "decimals": 18,
+                "displayUnit": "LUN",
+                "blockExplorer": "0xfa05A73FfE78ef8f1a739473e462c54bae6567D9",
+                "addresses": {
+                    "current": "0xfa05A73FfE78ef8f1a739473e462c54bae6567D9"
+                }
+            },
+            {
+                "name": "maker",
+                "properName": "Maker",
+                "decimals": 18,
+                "displayUnit": "MKR",
+                "blockExplorer": "Maker",
+                "addresses": {
+                    "current": "0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2"
                 }
             },
             {
@@ -1346,10 +1802,19 @@
                 "properName": "Matchpool",
                 "decimals": 3,
                 "displayUnit": "GUP",
-                "shapeShiftUnit": "gup",
-                "blockExplorer": "Matchpool",
+                "blockExplorer": "Guppy",
                 "addresses": {
                     "current": "0xf7B098298f7C69Fc14610bf71d5e02c60792894C"
+                }
+            },
+            {
+                "name": "medishares",
+                "properName": "MediShares",
+                "decimals": 18,
+                "displayUnit": "MDS",
+                "blockExplorer": "0x66186008C1050627F979d464eABb258860563dbE",
+                "addresses": {
+                    "current": "0x66186008C1050627F979d464eABb258860563dbE"
                 }
             },
             {
@@ -1357,8 +1822,7 @@
                 "properName": "Melonport",
                 "decimals": 18,
                 "displayUnit": "MLN",
-                "shapeShiftUnit": "mln",
-                "blockExplorer": "Melonport",
+                "blockExplorer": "Melon",
                 "addresses": {
                     "current": "0xBEB9eF514a379B997e0798FDcC901Ee474B6D9A1"
                 }
@@ -1368,10 +1832,19 @@
                 "properName": "Metal",
                 "decimals": 8,
                 "displayUnit": "MTL",
-                "shapeShiftUnit": "mtl",
                 "blockExplorer": "Metal",
                 "addresses": {
                     "current": "0xF433089366899D83a9f26A773D59ec7eCF30355e"
+                }
+            },
+            {
+                "name": "monaco",
+                "properName": "Monaco",
+                "decimals": 8,
+                "displayUnit": "MCO",
+                "blockExplorer": "Monaco",
+                "addresses": {
+                    "current": "0xB63B606Ac810a52cCa15e44bB630fd42D8d1d83d"
                 }
             },
             {
@@ -1379,7 +1852,6 @@
                 "properName": "Numeraire",
                 "decimals": 18,
                 "displayUnit": "NMR",
-                "shapeShiftUnit": "nmr",
                 "blockExplorer": "Numeraire",
                 "addresses": {
                     "current": "0x1776e1F26f98b1A5dF9cD347953a26dd3Cb46671"
@@ -1390,10 +1862,69 @@
                 "properName": "OmiseGo",
                 "decimals": 18,
                 "displayUnit": "OMG",
-                "shapeShiftUnit": "omg",
                 "blockExplorer": "OmiseGo",
                 "addresses": {
                     "current": "0xd26114cd6EE289AccF82350c8d8487fedB8A0C07"
+                }
+            },
+            {
+                "name": "pillar",
+                "properName": "Pillar",
+                "decimals": 18,
+                "displayUnit": "PLR",
+                "blockExplorer": "0xe3818504c1B32bF1557b16C238B2E01Fd3149C17",
+                "addresses": {
+                    "current": "0xe3818504c1B32bF1557b16C238B2E01Fd3149C17"
+                }
+            },
+            {
+                "name": "poet",
+                "properName": "Po.et",
+                "decimals": 8,
+                "displayUnit": "POE",
+                "blockExplorer": "0x0e0989b1f9b8a38983c2ba8053269ca62ec9b195",
+                "addresses": {
+                    "current": "0x0e0989b1f9B8A38983c2BA8053269Ca62Ec9B195"
+                }
+            },
+            {
+                "name": "polymath",
+                "properName": "Polymath",
+                "decimals": 18,
+                "displayUnit": "POLY",
+                "blockExplorer": "0x9992ec3cf6a55b00978cddf2b27bc6882d88d1ec",
+                "addresses": {
+                    "current": "0x9992eC3cF6A55b00978cdDF2b27BC6882d88D1eC"
+                }
+            },
+            {
+                "name": "populous",
+                "properName": "Populous",
+                "decimals": 8,
+                "displayUnit": "PPT",
+                "blockExplorer": "Populous",
+                "addresses": {
+                    "current": "0xd4fa1460F537bb9085d22C7bcCB5DD450Ef28e3a"
+                }
+            },
+            {
+                "name": "powerledger",
+                "properName": "Power Ledger",
+                "decimals": 6,
+                "displayUnit": "POWR",
+                "blockExplorer": "0x595832f8fc6bf59c85c527fec3740a1b7a361269",
+                "addresses": {
+                    "current": "0x595832F8FC6BF59c85C527fEC3740A1b7a361269"
+                }
+            },
+            {
+                "name": "qash",
+                "properName": "Qash",
+                "decimals": 6,
+                "displayUnit": "QASH",
+                "blockExplorer": "Qash",
+                "addresses": {
+                    "current": "0x618E75Ac90b12c6049Ba3b27f5d5F8651b0037F6"
                 }
             },
             {
@@ -1401,10 +1932,79 @@
                 "properName": "QTUM",
                 "decimals": 18,
                 "displayUnit": "QTUM",
-                "shapeShiftUnit": "",
                 "blockExplorer": "Qtum",
                 "addresses": {
                     "current": "0x9a642d6b3368ddc662CA244bAdf32cDA716005BC"
+                }
+            },
+            {
+                "name": "quantstamp",
+                "properName": "Quantstamp",
+                "decimals": 18,
+                "displayUnit": "QSP",
+                "blockExplorer": "0x99ea4dB9EE77ACD40B119BD1dC4E33e1C070b80d",
+                "addresses": {
+                    "current": "0x99ea4dB9EE77ACD40B119BD1dC4E33e1C070b80d"
+                }
+            },
+            {
+                "name": "raiden",
+                "properName": "Raiden",
+                "decimals": 18,
+                "displayUnit": "RDN",
+                "blockExplorer": "0x255Aa6DF07540Cb5d3d297f0D0D4D84cb52bc8e6",
+                "addresses": {
+                    "current": "0x255Aa6DF07540Cb5d3d297f0D0D4D84cb52bc8e6"
+                }
+            },
+            {
+                "name": "rchain",
+                "properName": "RChain",
+                "decimals": 8,
+                "displayUnit": "RHOC",
+                "blockExplorer": "0x168296bb09e24a88805cb9c33356536b980d3fc5",
+                "addresses": {
+                    "current": "0x168296bb09e24A88805CB9c33356536B980D3fC5"
+                }
+            },
+            {
+                "name": "request",
+                "properName": "Request",
+                "decimals": 18,
+                "displayUnit": "REQ",
+                "blockExplorer": "0x8f8221afbb33998d8584a2b05749ba73c37a938a",
+                "addresses": {
+                    "current": "0x8f8221aFbB33998d8584A2B05749bA73c37a938a"
+                }
+            },
+            {
+                "name": "revain",
+                "properName": "Revain",
+                "decimals": 0,
+                "displayUnit": "R",
+                "blockExplorer": "0x48f775efbe4f5ece6e0df2f7b5932df56823b990",
+                "addresses": {
+                    "current": "0x48f775EFBE4F5EcE6e0DF2f7b5932dF56823B990"
+                }
+            },
+            {
+                "name": "ripio",
+                "properName": "Ripio",
+                "decimals": 18,
+                "displayUnit": "RCN",
+                "blockExplorer": "RipioCreditNetwork",
+                "addresses": {
+                    "current": "0xF970b8E36e23F7fC3FD752EeA86f8Be8D83375A6"
+                }
+            },
+            {
+                "name": "rivetz",
+                "properName": "Rivetz",
+                "decimals": 18,
+                "displayUnit": "RVT",
+                "blockExplorer": "0x3d1BA9be9f66B8ee101911bC36D3fB562eaC2244",
+                "addresses": {
+                    "current": "0x3d1BA9be9f66B8ee101911bC36D3fB562eaC2244"
                 }
             },
             {
@@ -1412,10 +2012,19 @@
                 "properName": "SALT",
                 "decimals": 8,
                 "displayUnit": "SALT",
-                "shapeShiftUnit": "salt",
                 "blockExplorer": "0x4156D3342D5c385a87D264F90653733592000581",
                 "addresses": {
                     "current": "0x4156D3342D5c385a87D264F90653733592000581"
+                }
+            },
+            {
+                "name": "santiment",
+                "properName": "Santiment",
+                "decimals": 18,
+                "displayUnit": "SAN",
+                "blockExplorer": "SAN",
+                "addresses": {
+                    "current": "0x7C5A0CE9267ED19B22F8cae653F198e3E8daf098"
                 }
             },
             {
@@ -1423,7 +2032,7 @@
                 "properName": "SingularDTV",
                 "decimals": 0,
                 "displayUnit": "SNGLS",
-                "shapeShiftUnit": "sngls",
+                "blockExplorer": "SNGLS",
                 "addresses": {
                     "current": "0xaeC2E87E0A235266D9C5ADc9DEb4b2E29b54D009"
                 }
@@ -1433,7 +2042,6 @@
                 "properName": "Status",
                 "decimals": 18,
                 "displayUnit": "SNT",
-                "shapeShiftUnit": "snt",
                 "blockExplorer": "StatusNetwork",
                 "addresses": {
                     "current": "0x744d70FDBE2Ba4CF95131626614a1763DF805B9E"
@@ -1444,10 +2052,119 @@
                 "properName": "Storj",
                 "decimals": 8,
                 "displayUnit": "STORJ",
-                "shapeShiftUnit": "storj",
                 "blockExplorer": "Storj",
                 "addresses": {
                     "current": "0xB64ef51C888972c908CFacf59B47C1AfBC0Ab8aC"
+                }
+            },
+            {
+                "name": "storm",
+                "properName": "Storm",
+                "decimals": 18,
+                "displayUnit": "STORM",
+                "blockExplorer": "0xD0a4b8946Cb52f0661273bfbC6fD0E0C75Fc6433",
+                "addresses": {
+                    "current": "0xD0a4b8946Cb52f0661273bfbC6fD0E0C75Fc6433"
+                }
+            },
+            {
+                "name": "substratum",
+                "properName": "Substratum",
+                "decimals": 2,
+                "displayUnit": "SUB",
+                "blockExplorer": "0x12480E24eb5bec1a9D4369CaB6a80caD3c0A377A",
+                "addresses": {
+                    "current": "0x12480E24eb5bec1a9D4369CaB6a80caD3c0A377A"
+                }
+            },
+            {
+                "name": "taas",
+                "properName": "TAAS",
+                "decimals": 6,
+                "displayUnit": "TAAS",
+                "blockExplorer": "0xE7775A6e9Bcf904eb39DA2b68c5efb4F9360e08C",
+                "addresses": {
+                    "current": "0xE7775A6e9Bcf904eb39DA2b68c5efb4F9360e08C"
+                }
+            },
+            {
+                "name": "tenx",
+                "properName": "TenX",
+                "decimals": 18,
+                "displayUnit": "PAY",
+                "blockExplorer": "TenXPay",
+                "addresses": {
+                    "current": "0xB97048628DB6B661D4C2aA833e95Dbe1A905B280"
+                }
+            },
+            {
+                "name": "timenewbank",
+                "properName": "Time Bank",
+                "decimals": 18,
+                "displayUnit": "TNB",
+                "blockExplorer": "0xf7920b0768ecb20a123fac32311d07d193381d6f",
+                "addresses": {
+                    "current": "0xF7920B0768Ecb20A123fAc32311d07D193381d6f"
+                }
+            },
+            {
+                "name": "tron",
+                "properName": "Tron",
+                "decimals": 6,
+                "displayUnit": "TRX",
+                "blockExplorer": "Tronix",
+                "addresses": {
+                    "current": "0xf230b790E05390FC8295F4d3F60332c93BEd42e2"
+                }
+            },
+            {
+                "name": "vechain",
+                "properName": "VeChain",
+                "decimals": 18,
+                "displayUnit": "VEN",
+                "blockExplorer": "0xd850942ef8811f2a866692a623011bde52a462c1",
+                "addresses": {
+                    "current": "0xD850942eF8811f2A866692A623011bDE52a462C1"
+                }
+            },
+            {
+                "name": "veritaseum",
+                "properName": "Veritaseum",
+                "decimals": 18,
+                "displayUnit": "VERI",
+                "blockExplorer": "0x8f3470A7388c05eE4e7AF3d01D8C722b0FF52374",
+                "addresses": {
+                    "current": "0x8f3470A7388c05eE4e7AF3d01D8C722b0FF52374"
+                }
+            },
+            {
+                "name": "viberate",
+                "properName": "Viberate",
+                "decimals": 18,
+                "displayUnit": "VIB",
+                "blockExplorer": "0x2C974B2d0BA1716E644c1FC59982a89DDD2fF724",
+                "addresses": {
+                    "current": "0x2C974B2d0BA1716E644c1FC59982a89DDD2fF724"
+                }
+            },
+            {
+                "name": "walton",
+                "properName": "Walton",
+                "decimals": 18,
+                "displayUnit": "WTC",
+                "blockExplorer": "0xb7cb1c96db6b22b0d3d9536e0108d062bd488f74",
+                "addresses": {
+                    "current": "0xb7cB1C96dB6B22b0D3d9536E0108d062BD488F74"
+                }
+            },
+            {
+                "name": "wax",
+                "properName": "Wax",
+                "decimals": 8,
+                "displayUnit": "WAX",
+                "blockExplorer": "0x39Bb259F66E1C59d5ABEF88375979b4D20D98022",
+                "addresses": {
+                    "current": "0x39Bb259F66E1C59d5ABEF88375979b4D20D98022"
                 }
             },
             {
@@ -1455,8 +2172,7 @@
                 "properName": "WeTrust",
                 "decimals": 6,
                 "displayUnit": "TRST",
-                "shapeShiftUnit": "trst",
-                "blockExplorer": "WeTrust",
+                "blockExplorer": "Trustcoin",
                 "addresses": {
                     "current": "0xCb94be6f13A1182E4A4B6140cb7bf2025d28e41B"
                 }
@@ -1466,7 +2182,6 @@
                 "properName": "Wings",
                 "decimals": 18,
                 "displayUnit": "WINGS",
-                "shapeShiftUnit": "wings",
                 "blockExplorer": "WINGS",
                 "addresses": {
                     "current": "0x667088b212ce3d06a1b553a7221E1fD19000d9aF"
@@ -1477,7 +2192,6 @@
                 "properName": "0x",
                 "decimals": 18,
                 "displayUnit": "ZRX",
-                "shapeShiftUnit": "zrx",
                 "blockExplorer": "ZRX",
                 "addresses": {
                     "current": "0xE41d2489571d322189246DaFA5ebDe1F4699F498"
@@ -1486,20 +2200,19 @@
         ]
 
     }, {}],
-    19: [function(require, module, exports) {
+    22: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _appConfig = require(6);
-        var _aureus = require(30);
-        var _currencyUnits = require(50);
-        var _util = require(51);
+        var _aureus = require(34);
+        var _currencyUnits = require(51);
+        var _util = require(52);
         var _ethereumjsUtil = require('ethereumjs-util');
         var _ethereumjsUtil2 = _interopRequireDefault(_ethereumjsUtil);
-        var _ = require(17);
+        var _ = require(20);
         var ethereum = _interopRequireWildcard(_);
-        var _tokens = require(18);
+        var _tokens = require(21);
         var _tokens2 = _interopRequireDefault(_tokens);
 
         function _interopRequireWildcard(obj) {
@@ -1522,8 +2235,7 @@
                 default: obj
             };
         }
-        const listExodus = ['aragon', 'augur', 'bancor', 'bat', 'civic', 'district0x', 'edgeless', 'eos', 'firstblood', 'funfair', 'gnosis', 'golem', 'iexec', 'matchpool', 'numeraire', 'omisego', 'qtum', 'salt', 'status', 'wetrust', 'wings', 'zerox'];
-        const listDefaultEnabled = ['augur', 'bancor', 'bat', 'civic', 'edgeless', 'eos', 'funfair', 'gnosis', 'golem', 'iexec', 'matchpool', 'omisego', 'salt', 'status', 'zerox'];
+        const listDefaultEnabled = ['augur', 'bancor', 'bat', 'civic', 'edgeless', 'eos', 'gnosis', 'golem', 'iexec', 'matchpool', 'omisego', 'salt', 'status', 'zerox'];
         const gasTx = 120e3;
         const tokenTemplate = {
             hasMultipleAddresses: false,
@@ -1534,12 +2246,15 @@
             gasTx,
             fee: ethereum.getFee(gasTx),
             address: {
-                validate: ethereum.address.validate
+                validate: ethereum.address.validate,
+                isP2PKH() {},
+                isP2SH() {}
             },
             bip44: ethereum.bip44,
             keys: {
                 encodePrivate: ethereum.keys.encodePrivate,
-                encodePublic: ethereum.keys.encodePublic
+                encodePublic: ethereum.keys.encodePublic,
+                encodePublicFromWIF() {}
             }
         };
 
@@ -1577,11 +2292,10 @@
             const token = Object.assign({}, tokenTemplate, {
                 name: fixture.name,
                 properName: fixture.properName,
-                available: ethereum.available && (_appConfig.ENV_DEV || _appConfig.ENV_BUILD_EDEN || _appConfig.ENV_BUILD_EXODUS && listExodus.includes(fixture.name)),
+                available: true,
                 defaultEnabled: listDefaultEnabled.includes(fixture.name),
                 currency,
                 displayUnit: fixture.displayUnit,
-                shapeShiftUnit: fixture.shapeShiftUnit,
                 units: [fixture.displayUnit],
                 blockExplorer: {
                     addressUrl: address => `https://etherscan.io/token/${fixture.blockExplorer}?a=${address}`,
@@ -1596,35 +2310,34 @@
         });
 
     }, {
-        "17": 17,
-        "18": 18,
-        "30": 30,
-        "50": 50,
+        "20": 20,
+        "21": 21,
+        "34": 34,
         "51": 51,
-        "6": 6,
+        "52": 52,
         "undefined": undefined
     }],
-    20: [function(require, module, exports) {
+    23: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.gasPriceEvents = exports.fee = exports.gasPrice = exports.gasContract = exports.gasTx = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.gasPriceEvents = exports.fee = exports.gasPrice = exports.gasContract = exports.gasTx = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         exports.getFee = getFee;
         exports.setGasPrice = setGasPrice;
-        var _currencyUnits = require(50);
-        var _aureus = require(30);
-        var _etcchain = require(58);
+        var _currencyUnits = require(51);
+        var _aureus = require(34);
+        var _etcchain = require(59);
         var etcchain = _interopRequireWildcard(_etcchain);
-        var _exodusEthereumServer = require(65);
-        var _bip44Constants = require(39);
+        var _exodusEthereumServer = require(66);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
         var _events = require('events');
-        var _ethereum = require(17);
+        var _ethereum = require(20);
         var ethereum = _interopRequireWildcard(_ethereum);
-        var _memoizeLruCache = require(69);
+        var _memoizeLruCache = require(70);
         var _memoizeLruCache2 = _interopRequireDefault(_memoizeLruCache);
-        var _twoOfTwoEcdsaThreshold = require(85);
+        var _twoOfTwoEcdsaThreshold = require(90);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -1686,21 +2399,20 @@
             wei: 0,
             Kwei: 3,
             Mwei: 6,
-            shannon: 9,
+            Gwei: 9,
             szabo: 12,
             finney: 15,
             ETC: 18
         }, 'ETC');
         const displayUnit = exports.displayUnit = 'ETC';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'etc';
-        const units = exports.units = ['ETC'];
+        const units = exports.units = [displayUnit];
         const gasTx = exports.gasTx = 21e3;
         const gasContract = exports.gasContract = 1e6;
         let gasPrice = exports.gasPrice = undefined;
         let fee = exports.fee = undefined;
 
-        function getFee(gasLimit) {
-            return currency.wei(gasPrice.toNumber() * gasLimit);
+        function getFee(gasLimit, customGasPrice) {
+            return currency.wei((customGasPrice || gasPrice).toBase().toNumber() * gasLimit);
         }
         const gasPriceEvents = exports.gasPriceEvents = new _events.EventEmitter();
 
@@ -1724,12 +2436,15 @@
                 };
             })(), key => key, {
                 max: 100
-            })
+            }),
+            isP2PKH: null,
+            isP2SH: null
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default[name];
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
         const keys = exports.keys = {
             encodePrivate: ethereum.keys.encodePrivate,
-            encodePublic: ethereum.keys.encodePublic
+            encodePublic: ethereum.keys.encodePublic,
+            encodePublicFromWIF: null
         };
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => `https://gastracker.io/addr/${address}`,
@@ -1740,27 +2455,26 @@
         });
 
     }, {
-        "17": 17,
-        "30": 30,
-        "39": 39,
-        "50": 50,
-        "58": 58,
-        "65": 65,
-        "69": 69,
-        "85": 85,
+        "20": 20,
+        "34": 34,
+        "51": 51,
+        "59": 59,
+        "66": 66,
+        "70": 70,
+        "90": 90,
         "undefined": undefined
     }],
-    21: [function(require, module, exports) {
+    24: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.fee = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.fee = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         exports.setNewECRate = setNewECRate;
-        var _appConfig = require(6);
-        var _aureus = require(30);
-        var _currencyUnits = require(50);
-        var _bip44Constants = require(39);
+        var _appConfig = require(4);
+        var _aureus = require(34);
+        var _currencyUnits = require(51);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
         var _factomjsLib = require('factomjs-lib');
         var _factomjsLib2 = _interopRequireDefault(_factomjsLib);
@@ -1784,8 +2498,7 @@
             FCT: 8
         }, 'FCT');
         const displayUnit = exports.displayUnit = 'FCT';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'fct';
-        const units = exports.units = ['FCT'];
+        const units = exports.units = [displayUnit];
 
         function setNewECRate(newECRate) {
             exports.fee = fee = currency.factoshis(newECRate * 12);
@@ -1793,19 +2506,22 @@
         let fee = exports.fee = undefined;
         setNewECRate(1e4);
         const address = exports.address = {
-            validate: _factomjsLib2.default.address.fct.isValidHumanReadable
+            validate: _factomjsLib2.default.address.fct.isValidHumanReadable,
+            isP2PKH: null,
+            isP2SH: null
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default['factom-factoids'];
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
         const keys = exports.keys = {
             encodePrivate(privateKey) {
                 return _factomjsLib2.default.privateKey.fct.toHumanReadable(privateKey);
             },
             encodePublic(publicKey, privateKey) {
-                publicKey = _factomjsLib2.default.crypto.publicKeyCreate(privateKey);
+                if (privateKey) publicKey = _factomjsLib2.default.crypto.publicKeyCreate(privateKey);
                 const rcd1 = _factomjsLib2.default.rcd.createRCD1(publicKey);
                 const rcdHash = _factomjsLib2.default.rcd.getHash(rcd1);
                 return _factomjsLib2.default.address.fct.toHumanReadable(rcdHash);
-            }
+            },
+            encodePublicFromWIF: null
         };
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => `https://explorer.factom.org/address/${address}`,
@@ -1813,13 +2529,12 @@
         };
 
     }, {
-        "30": 30,
-        "39": 39,
-        "50": 50,
-        "6": 6,
+        "34": 34,
+        "4": 4,
+        "51": 51,
         "undefined": undefined
     }],
-    22: [function(require, module, exports) {
+    25: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -1842,25 +2557,30 @@
         var decred = _interopRequireWildcard(_decred);
         var _digibyte = require(16);
         var digibyte = _interopRequireWildcard(_digibyte);
-        var _ethereum = require(17);
+        var _eosio = require(19);
+        var eosio = _interopRequireWildcard(_eosio);
+        var _ethereum = require(20);
         var ethereum = _interopRequireWildcard(_ethereum);
-        var _ethereumclassic = require(20);
+        var _ethereumclassic = require(23);
         var ethereumclassic = _interopRequireWildcard(_ethereumclassic);
-        var _factom = require(21);
+        var _factom = require(24);
         var factom = _interopRequireWildcard(_factom);
-        var _litecoin = require(23);
+        var _litecoin = require(26);
         var litecoin = _interopRequireWildcard(_litecoin);
-        var _monero = require(24);
+        var _qtumignition = require(28);
+        var qtumignition = _interopRequireWildcard(_qtumignition);
+        var _monero = require(27);
         var monero = _interopRequireWildcard(_monero);
-        var _ripple = require(25);
+        var _ripple = require(29);
         var ripple = _interopRequireWildcard(_ripple);
-        var _vertcoin = require(27);
+        var _vertcoin = require(31);
         var vertcoin = _interopRequireWildcard(_vertcoin);
-        var _zcash = require(28);
+        var _zcash = require(32);
         var zcash = _interopRequireWildcard(_zcash);
-        var _tokens = require(19);
+        var _baseasset = require(7);
+        var _tokens = require(22);
         var _tokens2 = _interopRequireDefault(_tokens);
-        var _tether = require(26);
+        var _tether = require(30);
         var tether = _interopRequireWildcard(_tether);
 
         function _interopRequireDefault(obj) {
@@ -1883,9 +2603,15 @@
                 return newObj;
             }
         }
-        const assets = [bcash, bcashclaim, bgold, bgoldclaim, bitcoin, dash, decred, digibyte, ethereum, ethereumclassic, factom, litecoin, monero, ripple, vertcoin, zcash];
+        const assets = [bcash, bcashclaim, bgold, bgoldclaim, bitcoin, dash, decred, digibyte, eosio, ethereum, ethereumclassic, factom, litecoin, qtumignition, monero, ripple, vertcoin, zcash];
         assets.push(..._tokens2.default);
         assets.push(tether);
+        for (let prop in assets) {
+            let asset = assets[prop];
+            if (asset) {
+                (0, _baseasset.connectBaseAssetFuncs)(asset);
+            }
+        }
         exports.default = lodash.sortBy(assets, [asset => asset.properName.toLowerCase()]).reduce((obj, asset) => {
             return Object.assign(obj, {
                 [asset.name]: asset
@@ -1899,39 +2625,36 @@
         "14": 14,
         "15": 15,
         "16": 16,
-        "17": 17,
         "19": 19,
         "20": 20,
-        "21": 21,
+        "22": 22,
         "23": 23,
         "24": 24,
-        "25": 25,
         "26": 26,
         "27": 27,
         "28": 28,
+        "29": 29,
+        "30": 30,
+        "31": 31,
+        "32": 32,
+        "7": 7,
         "8": 8,
         "9": 9,
         "undefined": undefined
     }],
-    23: [function(require, module, exports) {
+    26: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        exports.twoOfTwo = exports.blockExplorer = exports.bip44 = exports.address = exports.coinInfo = exports.feePerKB = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         var _coininfo = require('coininfo');
         var _coininfo2 = _interopRequireDefault(_coininfo);
-        var _bs58check = require('bs58check');
-        var _bs58check2 = _interopRequireDefault(_bs58check);
-        var _wif = require('wif');
-        var _wif2 = _interopRequireDefault(_wif);
-        var _crypto = require('crypto');
-        var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(50);
-        var _aureus = require(30);
-        var _bip44Constants = require(39);
+        var _currencyUnits = require(51);
+        var _aureus = require(34);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
-        var _twoOfTwoMultisig = require(89);
+        var _twoOfTwoMultisig = require(94);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -1952,67 +2675,42 @@
             LTC: 8
         }, 'LTC');
         const displayUnit = exports.displayUnit = 'LTC';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'ltc';
-        const units = exports.units = ['LTC'];
-        const feePerKB = exports.feePerKB = currency.latoshis(950000);
+        const units = exports.units = [displayUnit];
+        const feePerKB = exports.feePerKB = currency.latoshis(300000);
+        const coinInfo = exports.coinInfo = (0, _coininfo2.default)(name);
         const address = exports.address = {
             versions: {
-                p2pkh: (0, _coininfo2.default)(name).versions.public,
-                p2sh: (0, _coininfo2.default)(name).versions.scripthash
-            },
-            isP2PKH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
-            },
-            isP2SH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
-            },
-            validate(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+                p2pkh: coinInfo.versions.public,
+                p2sh: coinInfo.versions.scripthash
             }
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default[name];
-        const keys = exports.keys = {
-            encodePrivate(privateKey) {
-                const versions = (0, _coininfo2.default)(name).versions;
-                return _wif2.default.encode(versions.private, privateKey, true);
-            },
-            encodePublic(publicKey) {
-                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
-                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
-                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
-                return _bs58check2.default.encode(payload);
-            }
-        };
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => `https://live.blockcypher.com/ltc/address/${address}/`,
             txUrl: txId => `https://live.blockcypher.com/ltc/tx/${txId}/`
         };
         const twoOfTwo = exports.twoOfTwo = (0, _twoOfTwoMultisig.alice)({
-            network: (0, _coininfo2.default)(name)
+            network: coinInfo
         });
 
     }, {
-        "30": 30,
-        "39": 39,
-        "50": 50,
-        "89": 89,
+        "34": 34,
+        "51": 51,
+        "94": 94,
         "undefined": undefined
     }],
-    24: [function(require, module, exports) {
+    27: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.fee = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
-        var _appConfig = require(6);
-        var _aureus = require(30);
-        var _currencyUnits = require(50);
-        var _bip44Constants = require(39);
+        exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.fee = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        var _appConfig = require(4);
+        var _aureus = require(34);
+        var _currencyUnits = require(51);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
-        var _monerojsUtil = require(73);
+        var _monerojsUtil = require(74);
         var moneroUtil = _interopRequireWildcard(_monerojsUtil);
 
         function _interopRequireWildcard(obj) {
@@ -2049,27 +2747,29 @@
             XMR: 12
         }, 'XMR');
         const displayUnit = exports.displayUnit = 'XMR';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'xmr';
-        const units = exports.units = ['XMR'];
+        const units = exports.units = [displayUnit];
         const fee = exports.fee = currency.XMR('0.026');
         const address = exports.address = {
+            isP2PKH: null,
+            isP2SH: null,
             validate(address) {
                 return moneroUtil.address.isValid(address);
             }
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default[name];
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
         const keys = exports.keys = {
             encodePrivate(privateKey) {
                 return Buffer.from(privateKey).reverse().toString('hex');
             },
             encodePublic(publicKey, privateKey) {
-                let spendPrivateKey = moneroUtil.crypto.reduceECKey(Buffer.from(privateKey));
-                let spendPublicKey = moneroUtil.crypto.createECPublicKey(spendPrivateKey);
-                let viewPrivateKey = moneroUtil.crypto.createECPrivateKey(spendPrivateKey);
-                let viewPublicKey = moneroUtil.crypto.createECPublicKey(viewPrivateKey);
-                let addr = moneroUtil.address.create(spendPublicKey, viewPublicKey);
+                const spendPrivateKey = moneroUtil.crypto.reduceECKey(Buffer.from(privateKey));
+                const spendPublicKey = moneroUtil.crypto.createECPublicKey(spendPrivateKey);
+                const viewPrivateKey = moneroUtil.crypto.createECPrivateKey(spendPrivateKey);
+                const viewPublicKey = moneroUtil.crypto.createECPublicKey(viewPrivateKey);
+                const addr = moneroUtil.address.create(spendPublicKey, viewPublicKey);
                 return addr;
-            }
+            },
+            encodePublicFromWIF: null
         };
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => '',
@@ -2077,27 +2777,117 @@
         };
 
     }, {
-        "30": 30,
-        "39": 39,
-        "50": 50,
-        "6": 6,
-        "73": 73
+        "34": 34,
+        "4": 4,
+        "51": 51,
+        "74": 74,
+        "undefined": undefined
     }],
-    25: [function(require, module, exports) {
+    28: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.accountReserve = exports.fee = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.coinInfo = exports.feePerKB = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        var _appConfig = require(4);
+        var _coininfo = require('coininfo');
+        var _coininfo2 = _interopRequireDefault(_coininfo);
+        var _bs58check = require('bs58check');
+        var _bs58check2 = _interopRequireDefault(_bs58check);
+        var _wif = require('wif');
+        var _wif2 = _interopRequireDefault(_wif);
+        var _crypto = require('crypto');
+        var _crypto2 = _interopRequireDefault(_crypto);
+        var _currencyUnits = require(51);
+        var _aureus = require(34);
+        var _bip44Constants = require('bip44-constants');
+        var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
+        var _twoOfTwoMultisig = require(94);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        const name = exports.name = 'qtumignition';
+        const properName = exports.properName = 'Qtum Ignition';
+        const coininfoName = 'qtum';
+        const available = exports.available = _appConfig.ENV_DEV;
+        const defaultEnabled = exports.defaultEnabled = false;
+        const hasMultipleAddresses = exports.hasMultipleAddresses = true;
+        const hasUTXO = exports.hasUTXO = true;
+        const isAccountBased = exports.isAccountBased = false;
+        const isEthereumToken = exports.isEthereumToken = false;
+        const isOmniProperty = exports.isOmniProperty = false;
+        const currency = exports.currency = _aureus.UnitType.create(name, _currencyUnits.cryptoCurrency, {
+            satoshis: 0,
+            QTUM: 8
+        }, 'QTUM');
+        const displayUnit = exports.displayUnit = 'QTUM';
+        const units = exports.units = [displayUnit];
+        const feePerKB = exports.feePerKB = currency.satoshis(600000);
+        const coinInfo = exports.coinInfo = (0, _coininfo2.default)(coininfoName);
+        const address = exports.address = {
+            versions: {
+                p2pkh: coinInfo.versions.public,
+                p2sh: coinInfo.versions.scripthash
+            },
+            isP2PKH(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
+            },
+            isP2SH(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
+            },
+            validate(string) {
+                const payload = _bs58check2.default.decodeUnsafe(string);
+                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+            }
+        };
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
+        const keys = exports.keys = {
+            encodePrivate(privateKey) {
+                const versions = coinInfo.versions;
+                return _wif2.default.encode(versions.private, privateKey, true);
+            },
+            encodePublic(publicKey) {
+                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
+                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
+                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
+                return _bs58check2.default.encode(payload);
+            }
+        };
+        const blockExplorer = exports.blockExplorer = {
+            addressUrl: address => `https://explorer.qtum.org/address/${address}`,
+            txUrl: txId => `https://explorer.qtum.org/tx/${txId}`
+        };
+        const twoOfTwo = exports.twoOfTwo = (0, _twoOfTwoMultisig.alice)({
+            network: coinInfo
+        });
+
+    }, {
+        "34": 34,
+        "4": 4,
+        "51": 51,
+        "94": 94,
+        "undefined": undefined
+    }],
+    29: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.accountReserve = exports.fee = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         exports.setFee = setFee;
-        var _appConfig = require(6);
+        var _appConfig = require(4);
         var _rippleAddressCodec = require('ripple-address-codec');
         var _rippleAddressCodec2 = _interopRequireDefault(_rippleAddressCodec);
-        var _currencyUnits = require(50);
-        var _aureus = require(30);
-        var _bip44Constants = require(39);
+        var _currencyUnits = require(51);
+        var _aureus = require(34);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
-        var _address = require(74);
+        var _address = require(75);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -2118,8 +2908,7 @@
             XRP: 6
         }, 'XRP');
         const displayUnit = exports.displayUnit = 'XRP';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'xrp';
-        const units = exports.units = ['XRP'];
+        const units = exports.units = [displayUnit];
 
         function setFee(value) {
             if (fee && fee.toNumber() === value) return;
@@ -2130,14 +2919,17 @@
         setFee(10);
         const accountReserve = exports.accountReserve = currency.XRP(20);
         const address = exports.address = {
-            validate: _rippleAddressCodec2.default.isValidAccountID
+            validate: _rippleAddressCodec2.default.isValidAccountID,
+            isP2PKH: null,
+            isP2SH: null
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default[name];
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
         const keys = exports.keys = {
             encodePrivate(privateKey) {
                 return '00' + privateKey.toString('hex').toUpperCase();
             },
-            encodePublic: _address.derive
+            encodePublic: _address.derive,
+            encodePublicFromWIF: null
         };
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => `https://bithomp.com/explorer/${address}`,
@@ -2145,19 +2937,18 @@
         };
 
     }, {
-        "30": 30,
-        "39": 39,
-        "50": 50,
-        "6": 6,
-        "74": 74,
+        "34": 34,
+        "4": 4,
+        "51": 51,
+        "75": 75,
         "undefined": undefined
     }],
-    26: [function(require, module, exports) {
+    30: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.simpleSend = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.defaultEnabled = exports.available = exports.omniPropertyId = exports.properName = exports.name = undefined;
+        exports.simpleSend = exports.units = exports.displayUnit = exports.currency = exports.defaultEnabled = exports.available = exports.omniPropertyId = exports.properName = exports.name = undefined;
         var _omni = require(13);
         Object.keys(_omni).forEach(function(key) {
             if (key === "default" || key === "__esModule") return;
@@ -2168,8 +2959,8 @@
                 }
             });
         });
-        var _aureus = require(30);
-        var _currencyUnits = require(50);
+        var _aureus = require(34);
+        var _currencyUnits = require(51);
         const name = exports.name = 'tether';
         const properName = exports.properName = 'Tether';
         const omniPropertyId = exports.omniPropertyId = 31;
@@ -2180,35 +2971,27 @@
             USDT: 8
         }, 'USDT');
         const displayUnit = exports.displayUnit = 'USDT';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'usdt';
-        const units = exports.units = ['USDT'];
+        const units = exports.units = [displayUnit];
         const simpleSend = exports.simpleSend = (0, _omni._createSimpleSend)(omniPropertyId, currency);
 
     }, {
         "13": 13,
-        "30": 30,
-        "50": 50
+        "34": 34,
+        "51": 51
     }],
-    27: [function(require, module, exports) {
+    31: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.twoOfTwo = exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
-        var _appConfig = require(6);
+        exports.twoOfTwo = exports.blockExplorer = exports.bip44 = exports.address = exports.coinInfo = exports.feePerKB = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         var _coininfo = require('coininfo');
         var _coininfo2 = _interopRequireDefault(_coininfo);
-        var _bs58check = require('bs58check');
-        var _bs58check2 = _interopRequireDefault(_bs58check);
-        var _wif = require('wif');
-        var _wif2 = _interopRequireDefault(_wif);
-        var _crypto = require('crypto');
-        var _crypto2 = _interopRequireDefault(_crypto);
-        var _currencyUnits = require(50);
-        var _aureus = require(30);
-        var _bip44Constants = require(39);
+        var _currencyUnits = require(51);
+        var _aureus = require(34);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
-        var _twoOfTwoMultisig = require(89);
+        var _twoOfTwoMultisig = require(94);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -2217,7 +3000,7 @@
         }
         const name = exports.name = 'vertcoin';
         const properName = exports.properName = 'Vertcoin';
-        const available = exports.available = _appConfig.ENV_DEV || _appConfig.ENV_BUILD_EDEN;
+        const available = exports.available = true;
         const defaultEnabled = exports.defaultEnabled = false;
         const hasMultipleAddresses = exports.hasMultipleAddresses = true;
         const hasUTXO = exports.hasUTXO = true;
@@ -2229,74 +3012,45 @@
             VTC: 8
         }, 'VTC');
         const displayUnit = exports.displayUnit = 'VTC';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'vtc';
-        const units = exports.units = ['VTC'];
+        const units = exports.units = [displayUnit];
         const feePerKB = exports.feePerKB = currency.satoshis(155000);
+        const coinInfo = exports.coinInfo = (0, _coininfo2.default)(name);
         const address = exports.address = {
             versions: {
-                p2pkh: (0, _coininfo2.default)(name).versions.public,
-                p2sh: (0, _coininfo2.default)(name).versions.scripthash
-            },
-            isP2PKH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2pkh;
-            },
-            isP2SH(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && payload[0] === address.versions.p2sh;
-            },
-            validate(string) {
-                const payload = _bs58check2.default.decodeUnsafe(string);
-                return payload && payload.length === 21 && [address.versions.p2pkh, address.versions.p2sh].includes(payload[0]);
+                p2pkh: coinInfo.versions.public,
+                p2sh: coinInfo.versions.scripthash
             }
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default[name];
-        const keys = exports.keys = {
-            encodePrivate(privateKey) {
-                const versions = (0, _coininfo2.default)(name).versions;
-                return _wif2.default.encode(versions.private, privateKey, true);
-            },
-            encodePublic(publicKey) {
-                const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
-                const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
-                const payload = Buffer.concat([Buffer.from([address.versions.p2pkh]), pubKeyHash]);
-                return _bs58check2.default.encode(payload);
-            }
-        };
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
         const blockExplorer = exports.blockExplorer = {
             addressUrl: address => `https://insight.vertcoin.org/address/${address}`,
             txUrl: txId => `https://insight.vertcoin.org/tx/${txId}`
         };
         const twoOfTwo = exports.twoOfTwo = (0, _twoOfTwoMultisig.alice)({
-            network: (0, _coininfo2.default)(name)
+            network: coinInfo
         });
 
     }, {
-        "30": 30,
-        "39": 39,
-        "50": 50,
-        "6": 6,
-        "89": 89,
+        "34": 34,
+        "51": 51,
+        "94": 94,
         "undefined": undefined
     }],
-    28: [function(require, module, exports) {
+    32: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.feePerKB = exports.units = exports.shapeShiftUnit = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
+        exports.blockExplorer = exports.keys = exports.bip44 = exports.address = exports.coinInfo = exports.feePerKB = exports.units = exports.displayUnit = exports.currency = exports.isOmniProperty = exports.isEthereumToken = exports.isAccountBased = exports.hasUTXO = exports.hasMultipleAddresses = exports.defaultEnabled = exports.available = exports.properName = exports.name = undefined;
         var _coininfo = require('coininfo');
         var _coininfo2 = _interopRequireDefault(_coininfo);
         var _bs58check = require('bs58check');
         var _bs58check2 = _interopRequireDefault(_bs58check);
-        var _wif = require('wif');
-        var _wif2 = _interopRequireDefault(_wif);
         var _crypto = require('crypto');
         var _crypto2 = _interopRequireDefault(_crypto);
-        var _appConfig = require(6);
-        var _currencyUnits = require(50);
-        var _aureus = require(30);
-        var _bip44Constants = require(39);
+        var _currencyUnits = require(51);
+        var _aureus = require(34);
+        var _bip44Constants = require('bip44-constants');
         var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
 
         function _interopRequireDefault(obj) {
@@ -2306,8 +3060,8 @@
         }
         const name = exports.name = 'zcash';
         const properName = exports.properName = 'Zcash';
-        const available = exports.available = _appConfig.ENV_DEV || _appConfig.ENV_BUILD_EDEN;
-        const defaultEnabled = exports.defaultEnabled = true;
+        const available = exports.available = true;
+        const defaultEnabled = exports.defaultEnabled = false;
         const hasMultipleAddresses = exports.hasMultipleAddresses = false;
         const hasUTXO = exports.hasUTXO = true;
         const isAccountBased = exports.isAccountBased = false;
@@ -2318,13 +3072,13 @@
             ZEC: 8
         }, 'ZEC');
         const displayUnit = exports.displayUnit = 'ZEC';
-        const shapeShiftUnit = exports.shapeShiftUnit = 'zec';
-        const units = exports.units = ['ZEC'];
+        const units = exports.units = [displayUnit];
         const feePerKB = exports.feePerKB = currency.ZEC('0.0001');
+        const coinInfo = exports.coinInfo = (0, _coininfo2.default)(name);
         const address = exports.address = {
             versions: {
-                p2pkh: (0, _coininfo2.default)(name).versions.public,
-                p2sh: (0, _coininfo2.default)(name).versions.scripthash
+                p2pkh: coinInfo.versions.public,
+                p2sh: coinInfo.versions.scripthash
             },
             isP2PKH(string) {
                 const payload = _bs58check2.default.decodeUnsafe(string);
@@ -2339,12 +3093,8 @@
                 return payload && payload.length === 22 && [address.versions.p2pkh, address.versions.p2sh].includes(payload.readUInt16BE(0));
             }
         };
-        const bip44 = exports.bip44 = _bip44Constants2.default[name];
+        const bip44 = exports.bip44 = _bip44Constants2.default[displayUnit];
         const keys = exports.keys = {
-            encodePrivate(privateKey) {
-                const versions = (0, _coininfo2.default)(name).versions;
-                return _wif2.default.encode(versions.private, privateKey, true);
-            },
             encodePublic(publicKey) {
                 const sha = _crypto2.default.createHash('sha256').update(publicKey).digest();
                 const pubKeyHash = _crypto2.default.createHash('rmd160').update(sha).digest();
@@ -2355,25 +3105,23 @@
             }
         };
         const blockExplorer = exports.blockExplorer = {
-            addressUrl: address => `https://zchain.online/address/${address}/`,
-            txUrl: txId => `https://zchain.online/tx/${txId}/`
+            addressUrl: address => `https://explorer.zcha.in/accounts/${address}/`,
+            txUrl: txId => `https://explorer.zcha.in/transactions/${txId}/`
         };
 
     }, {
-        "30": 30,
-        "39": 39,
-        "50": 50,
-        "6": 6,
+        "34": 34,
+        "51": 51,
         "undefined": undefined
     }],
-    29: [function(require, module, exports) {
+    33: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.default = conversion;
         var _assert = require('assert');
-        var _isNumberUnit = require(31);
+        var _isNumberUnit = require(35);
         var _isNumberUnit2 = _interopRequireDefault(_isNumberUnit);
 
         function _interopRequireDefault(obj) {
@@ -2404,22 +3152,22 @@
         }
 
     }, {
-        "31": 31,
+        "35": 35,
         "undefined": undefined
     }],
-    30: [function(require, module, exports) {
+    34: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.UnitType = exports.conversion = exports.isNumberUnit = undefined;
-        var _numberUnit = require(32);
+        var _numberUnit = require(36);
         var _numberUnit2 = _interopRequireDefault(_numberUnit);
-        var _isNumberUnit2 = require(31);
+        var _isNumberUnit2 = require(35);
         var _isNumberUnit3 = _interopRequireDefault(_isNumberUnit2);
-        var _conversion2 = require(29);
+        var _conversion2 = require(33);
         var _conversion3 = _interopRequireDefault(_conversion2);
-        var _unitType = require(33);
+        var _unitType = require(37);
         var _unitType2 = _interopRequireDefault(_unitType);
 
         function _interopRequireDefault(obj) {
@@ -2433,12 +3181,12 @@
         const UnitType = exports.UnitType = _unitType2.default;
 
     }, {
-        "29": 29,
-        "31": 31,
-        "32": 32,
-        "33": 33
+        "33": 33,
+        "35": 35,
+        "36": 36,
+        "37": 37
     }],
-    31: [function(require, module, exports) {
+    35: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -2451,7 +3199,7 @@
         }
 
     }, {}],
-    32: [function(require, module, exports) {
+    36: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -2461,7 +3209,7 @@
         var _assert = require('assert');
         var _bignumber = require('bignumber.js');
         var _bignumber2 = _interopRequireDefault(_bignumber);
-        var _isNumberUnit2 = require(31);
+        var _isNumberUnit2 = require(35);
         var _isNumberUnit3 = _interopRequireDefault(_isNumberUnit2);
 
         function _interopRequireDefault(obj) {
@@ -2652,10 +3400,10 @@
         exports.default = NumberUnit;
 
     }, {
-        "31": 31,
+        "35": 35,
         "undefined": undefined
     }],
-    33: [function(require, module, exports) {
+    37: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -2663,7 +3411,7 @@
         exports.default = undefined;
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _unit = require(34);
+        var _unit = require(38);
         var Unit = _interopRequireWildcard(_unit);
 
         function _interopRequireWildcard(obj) {
@@ -2734,18 +3482,18 @@
         exports.default = UnitType;
 
     }, {
-        "34": 34,
+        "38": 38,
         "undefined": undefined
     }],
-    34: [function(require, module, exports) {
+    38: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.create = create;
-        var _numberUnit = require(32);
+        var _numberUnit = require(36);
         var _numberUnit2 = _interopRequireDefault(_numberUnit);
-        var _isNumberUnit = require(31);
+        var _isNumberUnit = require(35);
         var _isNumberUnit2 = _interopRequireDefault(_isNumberUnit);
 
         function _interopRequireDefault(obj) {
@@ -2785,74 +3533,43 @@
         }
 
     }, {
-        "31": 31,
-        "32": 32
+        "35": 35,
+        "36": 36
     }],
-    35: [function(require, module, exports) {
-        'use strict';
-        Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        var _assert = require('assert');
-        var _assert2 = _interopRequireDefault(_assert);
-        var _lodash = require('lodash');
-        var _window = require(90);
-        var _window2 = _interopRequireDefault(_window);
-
-        function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : {
-                default: obj
-            };
-        }
-        const KEY = 'exodus:auth';
-        exports.default = {
-            setCurrent(auth) {
-                (0, _assert2.default)(allBuffers(auth), 'auth must contain only buffers');
-                _window2.default.localStorage.setItem(KEY, serialize(auth));
-            },
-            set current(auth) {
-                (0, _assert2.default)(allBuffers(auth), 'auth must contain only buffers');
-                _window2.default.localStorage.setItem(KEY, serialize(auth));
-            },
-            get current() {
-                let item = _window2.default.localStorage.getItem(KEY);
-                if (item == null) return null;
-                return deserialize(item);
-            },
-            clear() {
-                _window2.default.localStorage.removeItem(KEY);
-            }
-        };
-
-        function allBuffers(auth) {
-            return Object.keys(auth).every(key => Buffer.isBuffer(auth[key]));
-        }
-
-        function serialize(auth) {
-            return JSON.stringify((0, _lodash.mapValues)(auth, val => val.toString('base64')));
-        }
-
-        function deserialize(auth) {
-            return (0, _lodash.mapValues)(JSON.parse(auth), val => Buffer.from(val, 'base64'));
-        }
-
-    }, {
-        "90": 90,
-        "undefined": undefined
-    }],
-    36: [function(require, module, exports) {
+    39: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.HMAC = HMAC;
         exports.KDF = KDF;
+        exports.getMetadataId = getMetadataId;
         exports.Encrypt = Encrypt;
         exports.Decrypt = Decrypt;
         var _crypto = require('crypto');
         var _crypto2 = _interopRequireDefault(_crypto);
         var _secretBox = require('secret-box');
         var _secretBox2 = _interopRequireDefault(_secretBox);
+        var _bitcoinSeed = require('bitcoin-seed');
+        var bitcoinSeed = _interopRequireWildcard(_bitcoinSeed);
+        var _bip = require(41);
+        var _exodusPurpose = require(68);
+        var _exodusPurpose2 = _interopRequireDefault(_exodusPurpose);
+
+        function _interopRequireWildcard(obj) {
+            if (obj && obj.__esModule) {
+                return obj;
+            } else {
+                var newObj = {};
+                if (obj != null) {
+                    for (var key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+                    }
+                }
+                newObj.default = obj;
+                return newObj;
+            }
+        }
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -2869,6 +3586,11 @@
             return _crypto2.default.pbkdf2Sync(buffer, salt, iterations, 32, 'sha1');
         }
 
+        function getMetadataId(entropy) {
+            const hdkey = (0, _bip.fromMasterSeed)(bitcoinSeed.fromEntropy(entropy).seed);
+            return hdkey.derive(`m/${_exodusPurpose2.default}'/1'/1`, 'backup-key').publicKey;
+        }
+
         function Encrypt(buffer, key) {
             return _secretBox2.default.encrypt(buffer, key, {
                 n: Math.pow(2, 16)
@@ -2880,9 +3602,11 @@
         }
 
     }, {
+        "41": 41,
+        "68": 68,
         "undefined": undefined
     }],
-    37: [function(require, module, exports) {
+    40: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -2907,7 +3631,7 @@
         var _assert2 = _interopRequireDefault(_assert);
         var _bip = require('bip39');
         var _bip2 = _interopRequireDefault(_bip);
-        var _crypto = require(36);
+        var _crypto = require(39);
         var crypto = _interopRequireWildcard(_crypto);
         var _download = require('download');
         var _download2 = _interopRequireDefault(_download);
@@ -2921,10 +3645,10 @@
         var _os2 = _interopRequireDefault(_os);
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
-        var _appConfig = require(6);
+        var _appConfig = require(4);
         var _restoreLink = require('@exodus/restore-link');
         var _restoreLink2 = _interopRequireDefault(_restoreLink);
-        var _wallet = require(100);
+        var _wallet = require(104);
         var _wallet2 = _interopRequireDefault(_wallet);
 
         function _interopRequireWildcard(obj) {
@@ -2994,7 +3718,6 @@
                     if (!Buffer.isBuffer(passphrase)) passphrase = Buffer.from(passphrase);
                     const entropy = Buffer.from(_bip2.default.mnemonicToEntropy(wallet._seed.mnemonic.toString('utf8')), 'hex');
                     const H = crypto.HMAC(entropy, concat(passphrase, 1));
-                    const K = crypto.HMAC(entropy, concat(passphrase, 2));
                     const Y = crypto.KDF(passphrase, H);
                     const saltParams = {
                         H: H.toString('base64'),
@@ -3007,9 +3730,6 @@
                     if (salt.length !== 32) throw new Error('Expected 256 bit salt, got ' + res.data);
                     const combinedKey = crypto.KDF(passphrase, salt);
                     const s = crypto.Encrypt(entropy, combinedKey);
-                    const auth = {
-                        K
-                    };
                     const params = {
                         H,
                         s,
@@ -3023,22 +3743,22 @@
                     };
                     PUT(_this.url + '/v1/email', emailParams).catch(console.error);
                     return {
-                        auth,
                         params
                     };
                 })();
             }
-            backupWallet(wallet, auth) {
+            backupWallet(wallet) {
                 var _this2 = this;
                 return _asyncToGenerator(function*() {
-                    (0, _assert2.default)(Buffer.isBuffer(auth.K), 'Expected Buffer auth.K, got ' + auth.K);
+                    const entropy = Buffer.from(_bip2.default.mnemonicToEntropy(wallet._seed.mnemonic.toString('utf8')), 'hex');
+                    const metadataId = crypto.getMetadataId(entropy);
                     const infoFile = wallet._walletPaths.infoFile;
                     const stats = yield _fsExtra2.default.lstat(infoFile);
                     const form = new _formData2.default();
                     form.append('file', _fsExtra2.default.createReadStream(infoFile), {
                         knownLength: stats.size
                     });
-                    form.append('K', auth.K.toString('base64'));
+                    form.append('K', metadataId.toString('base64'));
                     const resp = yield(0, _nodeFetch2.default)(_this2.url + '/v1/backup', {
                         method: 'PUT',
                         body: form
@@ -3047,7 +3767,7 @@
                     if (json.status !== 'success') throw json;
                 })();
             }
-            recoverAuthAndEntropy(params, passphrase) {
+            recoverEntropy(params, passphrase) {
                 var _this3 = this;
                 return _asyncToGenerator(function*() {
                     if (!Buffer.isBuffer(passphrase)) passphrase = Buffer.from(passphrase, 'utf8');
@@ -3064,26 +3784,49 @@
                     if (salt.length !== 32) throw new Error('Expected 256 bit salt, got ' + res.data);
                     const combinedKey = crypto.KDF(passphrase, salt);
                     const entropy = crypto.Decrypt(params.s, combinedKey);
-                    const K = crypto.HMAC(entropy, concat(passphrase, 2));
-                    const auth = {
-                        K
-                    };
-                    return {
-                        auth,
-                        entropy
-                    };
+                    return entropy;
                 })();
             }
-            recoverWallet(auth, passphrase, entropy, dest) {
+            recoverWallet(passphrase, entropy, dest) {
                 return _asyncToGenerator(function*() {
-                    (0, _assert2.default)(Buffer.isBuffer(auth.K), 'Expected Buffer auth.K, got ' + auth.K);
-                    const K = auth.K.toString('hex');
                     const infoFile = _path2.default.join(_os2.default.tmpdir(), 'exodus' + String(Date.now()));
-                    const url = backupBlobUrl(K);
-                    yield new Promise(function(resolve, reject) {
-                        (0, _download2.default)(url).pipe(_fsExtra2.default.createWriteStream(infoFile)).on('error', reject).on('finish', resolve);
-                    });
+                    try {
+                        const metadataId = crypto.getMetadataId(entropy).toString('hex');
+                        const url = backupBlobUrl(metadataId);
+                        yield new Promise(function(resolve, reject) {
+                            (0, _download2.default)(url).on('error', reject).pipe(_fsExtra2.default.createWriteStream(infoFile)).on('error', reject).on('finish', resolve);
+                        });
+                    } catch (e) {
+                        if (e.statusCode === 404) {
+                            const K = crypto.HMAC(entropy, concat(Buffer.from(passphrase), 2)).toString('hex');
+                            const url = backupBlobUrl(K);
+                            yield new Promise(function(resolve, reject) {
+                                (0, _download2.default)(url).on('error', reject).pipe(_fsExtra2.default.createWriteStream(infoFile)).on('error', reject).on('finish', resolve);
+                            });
+                        } else {
+                            throw e;
+                        }
+                    }
                     const wallet = yield _wallet2.default.createFromRecovery(dest, passphrase, entropy, infoFile);
+                    yield _fsExtra2.default.remove(infoFile);
+                    return wallet;
+                })();
+            }
+            recoverWalletFromMnemonic(dest, mnemonic, mnemonicPassphrase) {
+                return _asyncToGenerator(function*() {
+                    const infoFile = _path2.default.join(_os2.default.tmpdir(), 'exodus' + String(Date.now()));
+                    const entropy = Buffer.from(_bip2.default.mnemonicToEntropy(mnemonic), 'hex');
+                    try {
+                        const metadataId = crypto.getMetadataId(entropy).toString('hex');
+                        const url = backupBlobUrl(metadataId);
+                        yield new Promise(function(resolve, reject) {
+                            (0, _download2.default)(url).on('error', reject).pipe(_fsExtra2.default.createWriteStream(infoFile)).on('error', reject).on('finish', resolve);
+                        });
+                    } catch (e) {
+                        console.error('Error retriving info file (not fatal):');
+                        console.error(e);
+                    }
+                    const wallet = yield _wallet2.default.createFromMnemonicRecoveryPhrase(dest, infoFile, mnemonic, mnemonicPassphrase);
                     yield _fsExtra2.default.remove(infoFile);
                     return wallet;
                 })();
@@ -3093,12 +3836,12 @@
         exports.default = Client;
 
     }, {
-        "100": 100,
-        "36": 36,
-        "6": 6,
+        "104": 104,
+        "39": 39,
+        "4": 4,
         "undefined": undefined
     }],
-    38: [function(require, module, exports) {
+    41: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -3109,7 +3852,7 @@
         var _assert2 = _interopRequireDefault(_assert);
         var _hdkey = require('hdkey');
         var _hdkey2 = _interopRequireDefault(_hdkey);
-        var _assets = require(22);
+        var _assets = require(25);
         var _assets2 = _interopRequireDefault(_assets);
 
         function _interopRequireDefault(obj) {
@@ -3237,136 +3980,10 @@
         exports.default = BIP32;
 
     }, {
-        "22": 22,
+        "25": 25,
         "undefined": undefined
     }],
-    39: [function(require, module, exports) {
-        'use strict';
-        Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        var _bip44Constants = require('bip44-constants');
-        var _bip44Constants2 = _interopRequireDefault(_bip44Constants);
-        var _fp = require('lodash/fp');
-
-        function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : {
-                default: obj
-            };
-        }
-        const transformFn = (0, _fp.flow)((0, _fp.mapKeys)(_fp.kebabCase), (0, _fp.mapValues)(parseInt));
-        let _constants = transformFn(_bip44Constants2.default);
-        _constants.ethereum = _constants.ether;
-        _constants.ethereumclassic = _constants['ether-classic'];
-        _constants.bgold = _constants['bitcoin-gold'];
-        _constants.digibyte = _constants['digi-byte'];
-        exports.default = _constants;
-
-    }, {
-        "undefined": undefined
-    }],
-    40: [function(require, module, exports) {
-        'use strict';
-        Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        exports.derivePurpose = derivePurpose;
-        exports.deriveCoin = deriveCoin;
-        exports.deriveAccount = deriveAccount;
-        exports.deriveChain = deriveChain;
-        exports.deriveExternalChain = deriveExternalChain;
-        exports.deriveInternalChain = deriveInternalChain;
-        exports.deriveSpendable = deriveSpendable;
-        exports.deriveReceive = deriveReceive;
-        exports.deriveChange = deriveChange;
-        var _assert = require('assert');
-        var _assert2 = _interopRequireDefault(_assert);
-        var _bip = require(38);
-        var _bip2 = _interopRequireDefault(_bip);
-        var _assets = require(22);
-        var _assets2 = _interopRequireDefault(_assets);
-
-        function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : {
-                default: obj
-            };
-        }
-
-        function derivePurpose(masterHDKey) {
-            (0, _assert2.default)(masterHDKey instanceof _bip2.default, 'key must be an instance of BIP32');
-            _assert2.default.strictEqual(masterHDKey.tag, 'master', 'key must have a tag set to master');
-            return masterHDKey.derive(_bip.HARDENED_OFFSET + 44, 'purpose');
-        }
-
-        function deriveCoin(purposeHDKey, coin) {
-            let bip44 = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-            (0, _assert2.default)(purposeHDKey instanceof _bip2.default, 'key must be an instance of BIP32');
-            _assert2.default.strictEqual(purposeHDKey.tag, 'purpose', 'key must have a tag set to master');
-            (0, _assert2.default)(coin, 'must set coin');
-            if (typeof coin !== 'string') {
-                coin = coin.name;
-            }
-            let bip = bip44 || _assets2.default[coin].bip44;
-            return purposeHDKey.derive(bip, coin, {
-                coin: coin
-            });
-        }
-
-        function deriveAccount(coinHDKey, index) {
-            (0, _assert2.default)(coinHDKey instanceof _bip2.default, 'key must be an instance of BIP32');
-            (0, _assert2.default)(coinHDKey.tag in _assets2.default || coinHDKey.tag === 'exchange', 'key must be a valid coin key');
-            index = Number.parseInt(index, 10);
-            (0, _assert2.default)(!Number.isNaN(index), 'must set index as valid number');
-            return coinHDKey.derive(_bip.HARDENED_OFFSET + index, coinHDKey.tag + '-' + 'account' + index, {
-                coin: coinHDKey.coin
-            });
-        }
-
-        function deriveChain(accountHDKey, index, tag) {
-            (0, _assert2.default)(accountHDKey instanceof _bip2.default, 'key must be an instance of BIP32');
-            (0, _assert2.default)(accountHDKey.tag.includes('-account'), 'key must be a valid account key');
-            (0, _assert2.default)(tag, 'tag must be specified');
-            index = Number.parseInt(index, 10);
-            (0, _assert2.default)(!Number.isNaN(index), 'must set index as valid number');
-            return accountHDKey.derive(index, accountHDKey.tag + '-' + tag + '_chain', {
-                coin: accountHDKey.coin
-            });
-        }
-
-        function deriveExternalChain(accountHDKey) {
-            return deriveChain(accountHDKey, 0, 'external');
-        }
-
-        function deriveInternalChain(accountHDKey) {
-            return deriveChain(accountHDKey, 1, 'internal');
-        }
-
-        function deriveSpendable(chainHDKey, index) {
-            let tag = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
-            (0, _assert2.default)(chainHDKey instanceof _bip2.default, 'key must be an instance of BIP32');
-            (0, _assert2.default)(chainHDKey.tag.endsWith('_chain'), 'key must be a valid chain key');
-            index = Number.parseInt(index, 10);
-            (0, _assert2.default)(!Number.isNaN(index), 'must set index as valid number');
-            return chainHDKey.derive(index, chainHDKey.tag + '-' + tag + index, {
-                spendable: true,
-                coin: chainHDKey.coin
-            });
-        }
-
-        function deriveReceive(accountHDKey, addressIndex) {
-            return deriveSpendable(deriveExternalChain(accountHDKey), addressIndex, 'receive');
-        }
-
-        function deriveChange(accountHDKey, addressIndex) {
-            return deriveSpendable(deriveInternalChain(accountHDKey), addressIndex, 'change');
-        }
-
-    }, {
-        "22": 22,
-        "38": 38,
-        "undefined": undefined
-    }],
-    41: [function(require, module, exports) {
+    42: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -3385,7 +4002,7 @@
         }
 
     }, {}],
-    42: [function(require, module, exports) {
+    43: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -3410,10 +4027,10 @@
     }, {
         "undefined": undefined
     }],
-    43: [function(require, module, exports) {
+    44: [function(require, module, exports) {
         'use strict';
         var assert = require('assert');
-        var opcodes = require(46);
+        var opcodes = require(47);
 
         function verifuint(value, max) {
             assert(typeof value === 'number', 'cannot write a non-number as a number');
@@ -3535,10 +4152,10 @@
         };
 
     }, {
-        "46": 46,
+        "47": 47,
         "undefined": undefined
     }],
-    44: [function(require, module, exports) {
+    45: [function(require, module, exports) {
         'use strict';
         var crypto = require('crypto');
 
@@ -3567,20 +4184,20 @@
     }, {
         "undefined": undefined
     }],
-    45: [function(require, module, exports) {
+    46: [function(require, module, exports) {
         'use strict';
         module.exports = {
-            scripts: require(48),
-            Script: require(47),
-            Transaction: require(49)
+            scripts: require(49),
+            Script: require(48),
+            Transaction: require(50)
         };
 
     }, {
-        "47": 47,
         "48": 48,
-        "49": 49
+        "49": 49,
+        "50": 50
     }],
-    46: [function(require, module, exports) {
+    47: [function(require, module, exports) {
         "use strict";
         module.exports = {
             OP_FALSE: 0,
@@ -3702,12 +4319,12 @@
         };
 
     }, {}],
-    47: [function(require, module, exports) {
+    48: [function(require, module, exports) {
         'use strict';
         var assert = require('assert');
-        var bufferutils = require(43);
-        var crypto = require(44);
-        var opcodes = require(46);
+        var bufferutils = require(44);
+        var crypto = require(45);
+        var opcodes = require(47);
 
         function Script(buffer, chunks) {
             assert(Buffer.isBuffer(buffer));
@@ -3802,16 +4419,16 @@
         module.exports = Script;
 
     }, {
-        "43": 43,
         "44": 44,
-        "46": 46,
+        "45": 45,
+        "47": 47,
         "undefined": undefined
     }],
-    48: [function(require, module, exports) {
+    49: [function(require, module, exports) {
         'use strict';
         var assert = require('assert');
-        var Script = require(47);
-        var ops = require(46);
+        var Script = require(48);
+        var ops = require(47);
 
         function pubKeyHashInput(signature, pubKey) {
             assert(Buffer.isBuffer(signature));
@@ -3827,24 +4444,30 @@
             assert(Buffer.isBuffer(hash));
             return Script.fromChunks([ops.OP_HASH160, hash, ops.OP_EQUAL]);
         }
+
+        function witnessOutput(hash) {
+            assert(Buffer.isBuffer(hash));
+            return Script.fromChunks([ops.OP_0, hash]);
+        }
         module.exports = {
-            pubKeyHashInput: pubKeyHashInput,
-            pubKeyHashOutput: pubKeyHashOutput,
-            scriptHashOutput: scriptHashOutput
+            pubKeyHashInput,
+            pubKeyHashOutput,
+            scriptHashOutput,
+            witnessOutput
         };
 
     }, {
-        "46": 46,
         "47": 47,
+        "48": 48,
         "undefined": undefined
     }],
-    49: [function(require, module, exports) {
+    50: [function(require, module, exports) {
         'use strict';
         var assert = require('assert');
-        var bufferutils = require(43);
-        var crypto = require(44);
-        var opcodes = require(46);
-        var Script = require(47);
+        var bufferutils = require(44);
+        var crypto = require(45);
+        var opcodes = require(47);
+        var Script = require(48);
 
         function Transaction() {
             this.version = 1;
@@ -4044,27 +4667,27 @@
         module.exports = Transaction;
 
     }, {
-        "43": 43,
         "44": 44,
-        "46": 46,
+        "45": 45,
         "47": 47,
+        "48": 48,
         "undefined": undefined
     }],
-    50: [function(require, module, exports) {
+    51: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.fiatCurrency = exports.cryptoCurrency = exports.currency = undefined;
-        var _aureus = require(30);
+        var _aureus = require(34);
         const currency = exports.currency = _aureus.UnitType.create('currency');
         const cryptoCurrency = exports.cryptoCurrency = _aureus.UnitType.create('crypto-currency', currency);
         const fiatCurrency = exports.fiatCurrency = _aureus.UnitType.create('fiat', currency);
 
     }, {
-        "30": 30
+        "34": 34
     }],
-    51: [function(require, module, exports) {
+    52: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4083,7 +4706,7 @@
     }, {
         "undefined": undefined
     }],
-    52: [function(require, module, exports) {
+    53: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4102,7 +4725,7 @@
         }
 
     }, {}],
-    53: [function(require, module, exports) {
+    54: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4111,8 +4734,8 @@
         exports.createClientMethod = createClientMethod;
         var _electronIpcBroadcast = require('electron-ipc-broadcast');
         var _electronIpcBroadcast2 = _interopRequireDefault(_electronIpcBroadcast);
-        var _errorToObject = require(57);
-        var _shared = require(55);
+        var _errorToObject = require(58);
+        var _shared = require(56);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -4164,11 +4787,11 @@
         }
 
     }, {
-        "55": 55,
-        "57": 57,
+        "56": 56,
+        "58": 58,
         "undefined": undefined
     }],
-    54: [function(require, module, exports) {
+    55: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4178,8 +4801,8 @@
         var _aw2 = _interopRequireDefault(_aw);
         var _electronIpcBroadcast = require('electron-ipc-broadcast');
         var _electronIpcBroadcast2 = _interopRequireDefault(_electronIpcBroadcast);
-        var _errorToObject = require(57);
-        var _shared = require(55);
+        var _errorToObject = require(58);
+        var _shared = require(56);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -4259,11 +4882,11 @@
         }
 
     }, {
-        "55": 55,
-        "57": 57,
+        "56": 56,
+        "58": 58,
         "undefined": undefined
     }],
-    55: [function(require, module, exports) {
+    56: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4271,7 +4894,7 @@
         const CHANNEL_PREFIX = exports.CHANNEL_PREFIX = 'electron-rpc-broadcast';
 
     }, {}],
-    56: [function(require, module, exports) {
+    57: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4288,7 +4911,7 @@
         var _ospath2 = _interopRequireDefault(_ospath);
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
-        var _paths = require(7);
+        var _paths = require(6);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -4341,10 +4964,10 @@
         }
 
     }, {
-        "7": 7,
+        "6": 6,
         "undefined": undefined
     }],
-    57: [function(require, module, exports) {
+    58: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4398,7 +5021,7 @@
     }, {
         "undefined": undefined
     }],
-    58: [function(require, module, exports) {
+    59: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4517,7 +5140,7 @@
         var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _memoizeLruCache = require(69);
+        var _memoizeLruCache = require(70);
         var _memoizeLruCache2 = _interopRequireDefault(_memoizeLruCache);
 
         function _interopRequireDefault(obj) {
@@ -4566,10 +5189,10 @@
         });
 
     }, {
-        "69": 69,
+        "70": 70,
         "undefined": undefined
     }],
-    59: [function(require, module, exports) {
+    60: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4638,7 +5261,7 @@
         })();
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _request2 = require(63);
+        var _request2 = require(64);
         var _request3 = _interopRequireDefault(_request2);
 
         function _interopRequireDefault(obj) {
@@ -4687,21 +5310,21 @@
         })();
 
     }, {
-        "63": 63,
+        "64": 64,
         "undefined": undefined
     }],
-    60: [function(require, module, exports) {
+    61: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.ws = exports.getLogs = exports.gasPrice = exports.getCode = exports.estimateGas = exports.getTransactionCount = exports.sendRawTransaction = exports.tokenBalance = exports.fetchTxlistinternal = exports.fetchTxlist = exports.fetchBalance = undefined;
+        exports.ethCall = exports.ws = exports.getLogs = exports.gasPrice = exports.getCode = exports.estimateGas = exports.getTransactionCount = exports.sendRawTransaction = exports.tokenBalance = exports.fetchTxlistinternal = exports.fetchTxlist = exports.fetchBalance = undefined;
         exports.filterTxsSent = filterTxsSent;
         exports.filterTxsReceived = filterTxsReceived;
-        var _account = require(59);
-        var _proxy = require(62);
-        var _logs = require(61);
-        var _ws2 = require(64);
+        var _account = require(60);
+        var _proxy = require(63);
+        var _logs = require(62);
+        var _ws2 = require(65);
         var _ws3 = _interopRequireDefault(_ws2);
 
         function _interopRequireDefault(obj) {
@@ -4720,6 +5343,7 @@
         const gasPrice = exports.gasPrice = _proxy.gasPrice;
         const getLogs = exports.getLogs = _logs.getLogs;
         const ws = exports.ws = _ws3.default;
+        const ethCall = exports.ethCall = _proxy.ethCall;
 
         function filterTxsSent(addr, etherscanTxs) {
             return etherscanTxs.filter(tx => tx.from.toLowerCase() === addr.toLowerCase());
@@ -4730,12 +5354,12 @@
         }
 
     }, {
-        "59": 59,
-        "61": 61,
+        "60": 60,
         "62": 62,
-        "64": 64
+        "63": 63,
+        "65": 65
     }],
-    61: [function(require, module, exports) {
+    62: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4758,7 +5382,7 @@
         })();
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _request2 = require(63);
+        var _request2 = require(64);
         var _request3 = _interopRequireDefault(_request2);
 
         function _interopRequireDefault(obj) {
@@ -4807,15 +5431,15 @@
         })();
 
     }, {
-        "63": 63,
+        "64": 64,
         "undefined": undefined
     }],
-    62: [function(require, module, exports) {
+    63: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        exports.gasPrice = exports.getCode = exports.estimateGas = exports.getTransactionCount = exports.sendRawTransaction = undefined;
+        exports.ethCall = exports.gasPrice = exports.getCode = exports.estimateGas = exports.getTransactionCount = exports.sendRawTransaction = undefined;
         let sendRawTransaction = exports.sendRawTransaction = (() => {
             var _ref2 = _asyncToGenerator(function*(data) {
                 const txhash = yield _request('eth_sendRawTransaction', {
@@ -4871,7 +5495,15 @@
                 return _ref6.apply(this, arguments);
             };
         })();
-        var _request2 = require(63);
+        let ethCall = exports.ethCall = (() => {
+            var _ref7 = _asyncToGenerator(function*(data) {
+                return _request('eth_call', data);
+            });
+            return function ethCall(_x5) {
+                return _ref7.apply(this, arguments);
+            };
+        })();
+        var _request2 = require(64);
         var _request3 = _interopRequireDefault(_request2);
 
         function _interopRequireDefault(obj) {
@@ -4920,9 +5552,9 @@
         })();
 
     }, {
-        "63": 63
+        "64": 64
     }],
-    63: [function(require, module, exports) {
+    64: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -4935,7 +5567,7 @@
         var _fetchival2 = _interopRequireDefault(_fetchival);
         var _nodeFetch = require('node-fetch');
         var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
-        var _appConfig = require(6);
+        var _appConfig = require(4);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -4998,10 +5630,10 @@
         });
 
     }, {
-        "6": 6,
+        "4": 4,
         "undefined": undefined
     }],
-    64: [function(require, module, exports) {
+    65: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -5109,7 +5741,7 @@
     }, {
         "undefined": undefined
     }],
-    65: [function(require, module, exports) {
+    66: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -5126,7 +5758,7 @@
         var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _ws = require(66);
+        var _ws = require(67);
         var _ws2 = _interopRequireDefault(_ws);
 
         function _interopRequireDefault(obj) {
@@ -5269,6 +5901,17 @@
                             tag
                         }));
                     })();
+                },
+                ethCall(data) {
+                    var _arguments4 = arguments;
+                    return _asyncToGenerator(function*() {
+                        let tag = _arguments4.length > 1 && _arguments4[1] !== undefined ? _arguments4[1] : 'latest';
+                        return request('proxy', Object.assign({
+                            method: 'eth_call'
+                        }, data, {
+                            tag
+                        }));
+                    })();
                 }
             };
         }
@@ -5294,10 +5937,10 @@
         }
 
     }, {
-        "66": 66,
+        "67": 67,
         "undefined": undefined
     }],
-    66: [function(require, module, exports) {
+    67: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -5406,7 +6049,7 @@
     }, {
         "undefined": undefined
     }],
-    67: [function(require, module, exports) {
+    68: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -5414,7 +6057,7 @@
         exports.default = parseInt(Buffer.from('exo').toString('hex'), '16');
 
     }, {}],
-    68: [function(require, module, exports) {
+    69: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -5452,7 +6095,7 @@
         }
 
     }, {}],
-    69: [function(require, module, exports) {
+    70: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -5479,7 +6122,7 @@
     }, {
         "undefined": undefined
     }],
-    70: [function(require, module, exports) {
+    71: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -5488,9 +6131,9 @@
         exports.isValid = isValid;
         var _assert = require('assert');
         var _assert2 = _interopRequireDefault(_assert);
-        var _bs = require(71);
+        var _bs = require(72);
         var bs58 = _interopRequireWildcard(_bs);
-        var _crypto = require(72);
+        var _crypto = require(73);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -5534,11 +6177,11 @@
         }
 
     }, {
-        "71": 71,
         "72": 72,
+        "73": 73,
         "undefined": undefined
     }],
-    71: [function(require, module, exports) {
+    72: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -5579,7 +6222,7 @@
     }, {
         "undefined": undefined
     }],
-    72: [function(require, module, exports) {
+    73: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -5652,17 +6295,17 @@
     }, {
         "undefined": undefined
     }],
-    73: [function(require, module, exports) {
+    74: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         exports.crypto = exports.bs58 = exports.address = undefined;
-        var _address = require(70);
+        var _address = require(71);
         var address = _interopRequireWildcard(_address);
-        var _bs = require(71);
+        var _bs = require(72);
         var bs58 = _interopRequireWildcard(_bs);
-        var _crypto = require(72);
+        var _crypto = require(73);
         var crypto = _interopRequireWildcard(_crypto);
 
         function _interopRequireWildcard(obj) {
@@ -5684,11 +6327,11 @@
         exports.crypto = crypto;
 
     }, {
-        "70": 70,
         "71": 71,
-        "72": 72
+        "72": 72,
+        "73": 73
     }],
-    74: [function(require, module, exports) {
+    75: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -5696,7 +6339,7 @@
         exports.derive = derive;
         var _rippleAddressCodec = require('ripple-address-codec');
         var _rippleAddressCodec2 = _interopRequireDefault(_rippleAddressCodec);
-        var _crypto = require(75);
+        var _crypto = require(76);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -5709,10 +6352,10 @@
         }
 
     }, {
-        "75": 75,
+        "76": 76,
         "undefined": undefined
     }],
-    75: [function(require, module, exports) {
+    76: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -5747,7 +6390,166 @@
     }, {
         "undefined": undefined
     }],
-    76: [function(require, module, exports) {
+    77: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.deriveKeypair = deriveKeypair;
+        exports.sign = sign;
+        var _rippleAddressCodec = require('ripple-address-codec');
+        var _rippleAddressCodec2 = _interopRequireDefault(_rippleAddressCodec);
+        var _elliptic = require('elliptic');
+        var _elliptic2 = _interopRequireDefault(_elliptic);
+        var _bn = require('bn.js');
+        var _bn2 = _interopRequireDefault(_bn);
+        var _crypto = require(76);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        const Ed25519 = _elliptic2.default.eddsa('ed25519');
+        const Secp256k1 = _elliptic2.default.ec('secp256k1');
+        const secp256k1 = {
+            _deriveScalar(bytes, discrim) {
+                const order = Secp256k1.curve.n;
+                for (let i = 0; i <= 0xFFFFFFFF; ++i) {
+                    const buffers = [bytes];
+                    if (discrim !== undefined) buffers.push(new _bn2.default(discrim).toBuffer('le', 4));
+                    buffers.push(new _bn2.default(i).toBuffer('le', 4));
+                    const key = new _bn2.default((0, _crypto.sha512half)(...buffers));
+                    if (key.cmpn(0) > 0 && key.cmp(order) < 0) return key;
+                }
+                throw new Error('impossible unicorn ;)');
+            },
+            _derivePrivateKey(seed) {
+                const privateGen = secp256k1._deriveScalar(seed);
+                const publicGen = Secp256k1.g.mul(privateGen);
+                return secp256k1._deriveScalar(Buffer.from(publicGen.encodeCompressed()), 0).add(privateGen).mod(Secp256k1.curve.n);
+            },
+            deriveKeypair(entropy) {
+                const privateKey = secp256k1._derivePrivateKey(entropy).toBuffer('be', 33);
+                const publicKey = Buffer.from(Secp256k1.keyFromPrivate(privateKey.slice(1)).getPublic().encodeCompressed());
+                return {
+                    privateKey,
+                    publicKey
+                };
+            },
+            sign(message, privateKey) {
+                return Buffer.from(Secp256k1.sign((0, _crypto.sha512half)(message), privateKey, {
+                    canonical: true
+                }).toDER());
+            }
+        };
+        const ed25519 = {
+            deriveKeypair(entropy) {
+                const privateKey = Buffer.from([0xED, ...(0, _crypto.sha512half)(entropy)]);
+                const publicKey = Buffer.from([0xED, ...Ed25519.keyFromSecret(privateKey.slice(1)).pubBytes()]);
+                return {
+                    privateKey,
+                    publicKey
+                };
+            },
+            sign(message, privateKey) {
+                return Buffer.from(Ed25519.sign(message, privateKey.slice(1)).toBytes());
+            }
+        };
+
+        function deriveKeypair(seed) {
+            const decoded = _rippleAddressCodec2.default.decodeSeed(seed);
+            const fns = decoded.type === 'ed25519' ? ed25519 : secp256k1;
+            return fns.deriveKeypair(Buffer.from(decoded.bytes));
+        }
+
+        function sign(message, privateKey) {
+            const fns = privateKey.length === 33 && privateKey[0] === 0xed ? ed25519 : secp256k1;
+            return fns.sign(message, privateKey);
+        }
+
+    }, {
+        "76": 76,
+        "undefined": undefined
+    }],
+    78: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.getHash = getHash;
+        exports.toBuffer = toBuffer;
+        var _bn = require('bn.js');
+        var _bn2 = _interopRequireDefault(_bn);
+        var _rippleAddressCodec = require('ripple-address-codec');
+        var _rippleAddressCodec2 = _interopRequireDefault(_rippleAddressCodec);
+        var _crypto = require(76);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        const HASH_PREFIX = Buffer.from('54584E00', 'hex');
+
+        function getHash(buffer) {
+            return (0, _crypto.sha512half)(HASH_PREFIX, buffer).toString('hex').toUpperCase();
+        }
+
+        function toBuffer(obj) {
+            let {
+                sign = false
+            } = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+            function intFieldToBuffer(field, size) {
+                const value = typeof obj[field] === 'string' ? parseFloat(obj[field], 10) : obj[field];
+                const isValid = Number.isFinite(value) && value % 1 === 0 && value >= 0;
+                if (isValid) return new _bn2.default(value).toBuffer('be', size);
+                throw new RangeError(`Invalid field ${field}: ${value}`);
+            }
+            const buffers = [];
+            if (sign) buffers.push(Buffer.from('53545800', 'hex'));
+            if (obj.TransactionType !== 'Payment') throw new Error('Not supported');
+            buffers.push(Buffer.from('12', 'hex'));
+            buffers.push(Buffer.from('0000', 'hex'));
+            buffers.push(Buffer.from('22', 'hex'));
+            buffers.push(intFieldToBuffer('Flags', 4));
+            buffers.push(Buffer.from('24', 'hex'));
+            buffers.push(intFieldToBuffer('Sequence', 4));
+            if (obj.DestinationTag) {
+                buffers.push(Buffer.from('2e', 'hex'));
+                buffers.push(intFieldToBuffer('DestinationTag', 4));
+            }
+            buffers.push(Buffer.from('201b', 'hex'));
+            buffers.push(intFieldToBuffer('LastLedgerSequence', 4));
+            buffers.push(Buffer.from('61', 'hex'));
+            buffers.push(Buffer.from('40', 'hex'));
+            buffers.push(intFieldToBuffer('Amount', 7));
+            buffers.push(Buffer.from('68', 'hex'));
+            buffers.push(Buffer.from('40', 'hex'));
+            buffers.push(intFieldToBuffer('Fee', 7));
+            buffers.push(Buffer.from('73', 'hex'));
+            buffers.push(Buffer.from([Buffer.from(obj.SigningPubKey, 'hex').length]));
+            buffers.push(Buffer.from(obj.SigningPubKey, 'hex'));
+            if (!sign) {
+                buffers.push(Buffer.from('74', 'hex'));
+                buffers.push(Buffer.from([Buffer.from(obj.TxnSignature, 'hex').length]));
+                buffers.push(Buffer.from(obj.TxnSignature, 'hex'));
+            }
+            buffers.push(Buffer.from('81', 'hex'));
+            buffers.push(Buffer.from('14', 'hex'));
+            buffers.push(Buffer.from(_rippleAddressCodec2.default.decodeAccountID(obj.Account)));
+            buffers.push(Buffer.from('83', 'hex'));
+            buffers.push(Buffer.from('14', 'hex'));
+            buffers.push(Buffer.from(_rippleAddressCodec2.default.decodeAccountID(obj.Destination)));
+            return Buffer.concat(buffers);
+        }
+
+    }, {
+        "76": 76,
+        "undefined": undefined
+    }],
+    79: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -5809,7 +6611,7 @@
     }, {
         "undefined": undefined
     }],
-    77: [function(require, module, exports) {
+    80: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -5871,7 +6673,7 @@
     }, {
         "undefined": undefined
     }],
-    78: [function(require, module, exports) {
+    81: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -5880,7 +6682,7 @@
             const asset = _assets2.default[assetName];
             const {
                 versions
-            } = (0, _coininfo2.default)(asset.name);
+            } = asset.coinInfo;
             const tx = new _cointx.Transaction();
             for (const _ref of data.inputs) {
                 const {
@@ -5892,11 +6694,8 @@
             for (const [address, amount] of data.outputs) tx.addOutput(addressToScript(asset, address), amount);
             if (data.privateKeys) {
                 const pkMap = _lodash2.default.fromPairs(data.privateKeys.map(privateKeyWIF => {
-                    const {
-                        privateKey
-                    } = _wif2.default.decode(privateKeyWIF, versions.private);
-                    const publicKey = _secp256k2.default.publicKeyCreate(privateKey, true);
-                    return [asset.keys.encodePublic(publicKey), privateKeyWIF];
+                    const address = asset.keys.encodePublicFromWIF(privateKeyWIF);
+                    return [address, privateKeyWIF];
                 }));
                 data.inputs.forEach((_ref2, index) => {
                     let {
@@ -5929,10 +6728,10 @@
         var _bigi2 = _interopRequireDefault(_bigi);
         var _ecdsa = require('ecdsa');
         var _ecdsa2 = _interopRequireDefault(_ecdsa);
-        var _coininfo = require('coininfo');
-        var _coininfo2 = _interopRequireDefault(_coininfo);
         var _bs58check = require('bs58check');
         var _bs58check2 = _interopRequireDefault(_bs58check);
+        var _bech = require('bech32');
+        var _bech2 = _interopRequireDefault(_bech);
         var _wif = require('wif');
         var _wif2 = _interopRequireDefault(_wif);
         var _secp256k = require('secp256k1');
@@ -5941,9 +6740,9 @@
         var _crypto2 = _interopRequireDefault(_crypto);
         var _lodash = require('lodash');
         var _lodash2 = _interopRequireDefault(_lodash);
-        var _assets = require(22);
+        var _assets = require(25);
         var _assets2 = _interopRequireDefault(_assets);
-        var _cointx = require(45);
+        var _cointx = require(46);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -5952,9 +6751,20 @@
         }
 
         function addressToScript(asset, address) {
-            const payload = _bs58check2.default.decodeUnsafe(address);
-            if (asset.address.isP2PKH(address)) return _cointx.scripts.pubKeyHashOutput(payload.slice(-20));
-            if (asset.address.isP2SH(address)) return _cointx.scripts.scriptHashOutput(payload.slice(-20));
+            if (asset.address.isP2PKH(address)) {
+                const payload = _bs58check2.default.decodeUnsafe(address);
+                return _cointx.scripts.pubKeyHashOutput(payload.slice(-20));
+            }
+            if (asset.address.isP2SH(address)) {
+                const payload = _bs58check2.default.decodeUnsafe(address);
+                return _cointx.scripts.scriptHashOutput(payload.slice(-20));
+            }
+            if (asset.address.isP2WPKH && asset.address.isP2WPKH(address) || asset.address.isP2WSH && asset.address.isP2WSH(address)) {
+                const decoded = _bech2.default.decode(address);
+                if (decoded.words[0] !== 0) throw new Error('#simple-tx.addressToScript: non-zero witness versions not supported');
+                const hash = Buffer.from(_bech2.default.fromWords(decoded.words.slice(1)));
+                return _cointx.scripts.witnessOutput(hash);
+            }
             throw new Error(`#simple-tx.addressToScript: ${address} unrecognized address type.`);
         }
 
@@ -5976,11 +6786,11 @@
         }
 
     }, {
-        "22": 22,
-        "45": 45,
+        "25": 25,
+        "46": 46,
         "undefined": undefined
     }],
-    79: [function(require, module, exports) {
+    82: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -6031,7 +6841,7 @@
     }, {
         "undefined": undefined
     }],
-    80: [function(require, module, exports) {
+    83: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -6061,7 +6871,41 @@
     }, {
         "undefined": undefined
     }],
-    81: [function(require, module, exports) {
+    84: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.default = function(assetName, _ref, hdkey) {
+            let {
+                tx
+            } = _ref;
+            const {
+                privateKey
+            } = hdkey.derive('m/0/0', 'tag-does-not-matter', {
+                spendable: true
+            });
+            _factomjsLib2.default.transaction.signInput(tx, 0, privateKey);
+            const rawTx = _factomjsLib2.default.encoding.Transaction.encode(tx);
+            const txId = _factomjsLib2.default.transaction.getSigHash(tx).toString('hex');
+            return {
+                rawTx,
+                txId
+            };
+        };
+        var _factomjsLib = require('factomjs-lib');
+        var _factomjsLib2 = _interopRequireDefault(_factomjsLib);
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+
+    }, {
+        "undefined": undefined
+    }],
+    85: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -6070,16 +6914,20 @@
             const createTx = selectCreateTx(assetName);
             return createTx(assetName, data, hdkey);
         };
-        var _bcash = require(76);
+        var _bcash = require(79);
         var _bcash2 = _interopRequireDefault(_bcash);
-        var _bgold = require(77);
+        var _bgold = require(80);
         var _bgold2 = _interopRequireDefault(_bgold);
-        var _bitcoin = require(78);
+        var _bitcoin = require(81);
         var _bitcoin2 = _interopRequireDefault(_bitcoin);
-        var _decred = require(79);
+        var _decred = require(82);
         var _decred2 = _interopRequireDefault(_decred);
-        var _ethereum = require(80);
+        var _ethereum = require(83);
         var _ethereum2 = _interopRequireDefault(_ethereum);
+        var _factom = require(84);
+        var _factom2 = _interopRequireDefault(_factom);
+        var _ripple = require(86);
+        var _ripple2 = _interopRequireDefault(_ripple);
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -6099,6 +6947,7 @@
                 case 'dash':
                 case 'digibyte':
                 case 'litecoin':
+                case 'qtumignition':
                 case 'vertcoin':
                 case 'zcash':
                     return _bitcoin2.default;
@@ -6107,19 +6956,102 @@
                 case 'ethereum':
                 case 'ethereumclassic':
                     return _ethereum2.default;
+                case 'factom':
+                    return _factom2.default;
+                case 'ripple':
+                    return _ripple2.default;
                 default:
                     throw new Error(`${assetName} is unsupported for transaction signing in the wallet process`);
             }
         }
 
     }, {
-        "76": 76,
-        "77": 77,
-        "78": 78,
         "79": 79,
-        "80": 80
+        "80": 80,
+        "81": 81,
+        "82": 82,
+        "83": 83,
+        "84": 84,
+        "86": 86
     }],
-    82: [function(require, module, exports) {
+    86: [function(require, module, exports) {
+        'use strict';
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.default = function(assetName, _ref, hdkey) {
+            let {
+                to,
+                destTag,
+                amount,
+                fee,
+                sequence,
+                ledgerCurrentIndex,
+                publicKey,
+                privateKey
+            } = _ref;
+            if (!publicKey || !privateKey) {
+                ({
+                    privateKey,
+                    publicKey
+                } = hdkey.derive('m/0/0', 'tag-does-not-matter', {
+                    spendable: true
+                }));
+            }
+            const tx = {
+                Account: _assets2.default.ripple.keys.encodePublic(publicKey),
+                Amount: amount,
+                Destination: to,
+                DestinationTag: destTag,
+                Fee: fee,
+                Flags: 0x80000000,
+                LastLedgerSequence: ledgerCurrentIndex + 3,
+                Sequence: sequence,
+                TransactionType: 'Payment',
+                SigningPubKey: publicKey.toString('hex').toUpperCase()
+            };
+            tx.TxnSignature = keypairs.sign((0, _tx.toBuffer)(tx, {
+                sign: true
+            }), privateKey);
+            const rawTx = (0, _tx.toBuffer)(tx);
+            return {
+                rawTx,
+                txId: (0, _tx.getHash)(rawTx)
+            };
+        };
+        var _assets = require(25);
+        var _assets2 = _interopRequireDefault(_assets);
+        var _keypairs = require(77);
+        var keypairs = _interopRequireWildcard(_keypairs);
+        var _tx = require(78);
+
+        function _interopRequireWildcard(obj) {
+            if (obj && obj.__esModule) {
+                return obj;
+            } else {
+                var newObj = {};
+                if (obj != null) {
+                    for (var key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+                    }
+                }
+                newObj.default = obj;
+                return newObj;
+            }
+        }
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+
+    }, {
+        "25": 25,
+        "77": 77,
+        "78": 78
+    }],
+    87: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -6134,9 +7066,9 @@
                 publicKeys: (0, _publicKeys2.default)(publicKeyEncode)
             };
         };
-        var _pairingData = require(83);
+        var _pairingData = require(88);
         var pairingData = _interopRequireWildcard(_pairingData);
-        var _publicKeys = require(84);
+        var _publicKeys = require(89);
         var _publicKeys2 = _interopRequireDefault(_publicKeys);
 
         function _interopRequireDefault(obj) {
@@ -6161,10 +7093,10 @@
         }
 
     }, {
-        "83": 83,
-        "84": 84
+        "88": 88,
+        "89": 89
     }],
-    83: [function(require, module, exports) {
+    88: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -6225,7 +7157,7 @@
     }, {
         "undefined": undefined
     }],
-    84: [function(require, module, exports) {
+    89: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -6264,12 +7196,12 @@
     }, {
         "undefined": undefined
     }],
-    85: [function(require, module, exports) {
+    90: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
-        var _alice = require(82);
+        var _alice = require(87);
         Object.defineProperty(exports, 'alice', {
             enumerable: true,
             get: function() {
@@ -6284,9 +7216,9 @@
         }
 
     }, {
-        "82": 82
+        "87": 87
     }],
-    86: [function(require, module, exports) {
+    91: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -6302,9 +7234,9 @@
                 publicKeys: (0, _publicKeys2.default)(network)
             };
         };
-        var _pairingData = require(87);
+        var _pairingData = require(92);
         var pairingData = _interopRequireWildcard(_pairingData);
-        var _publicKeys = require(88);
+        var _publicKeys = require(93);
         var _publicKeys2 = _interopRequireDefault(_publicKeys);
 
         function _interopRequireDefault(obj) {
@@ -6329,10 +7261,10 @@
         }
 
     }, {
-        "87": 87,
-        "88": 88
+        "92": 92,
+        "93": 93
     }],
-    87: [function(require, module, exports) {
+    92: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -6396,7 +7328,7 @@
     }, {
         "undefined": undefined
     }],
-    88: [function(require, module, exports) {
+    93: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -6434,38 +7366,19 @@
     }, {
         "undefined": undefined
     }],
-    89: [function(require, module, exports) {
-        arguments[4][85][0].apply(exports, arguments)
+    94: [function(require, module, exports) {
+        arguments[4][90][0].apply(exports, arguments)
     }, {
-        "85": 85,
-        "86": 86
+        "90": 90,
+        "91": 91
     }],
-    90: [function(require, module, exports) {
-        'use strict';
-        Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        var _chalk = require('chalk');
-        var _chalk2 = _interopRequireDefault(_chalk);
-
-        function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : {
-                default: obj
-            };
-        }
-        if (process.type !== 'renderer') console.warn(_chalk2.default.bgBlack.yellow('Not in renderer as expected.'));
-        exports.default = window;
-
-    }, {
-        "undefined": undefined
-    }],
-    91: [function(require, module, exports) {
+    95: [function(require, module, exports) {
         'use strict';
         hookNodePath();
-        require(3);
+        require(2);
         require('core-js/fn/symbol');
         require('babel' + '-register')({
-            resolveModuleSource: require(92).resolve,
+            resolveModuleSource: require(96).resolve,
             only: ['./config.js', 'src/app/', 'scripts/', 'tasks/'],
             extensions: ['.js'],
             sourceMaps: 'both'
@@ -6502,11 +7415,11 @@
 
     }, {
         "1": 1,
-        "3": 3,
-        "92": 92,
+        "2": 2,
+        "96": 96,
         "undefined": undefined
     }],
-    92: [function(require, module, exports) {
+    96: [function(require, module, exports) {
         'use strict';
         var babelResolve = require('babel-resolve');
         var resolver = babelResolve.create('#', './src/app/_local_modules');
@@ -6515,13 +7428,13 @@
     }, {
         "undefined": undefined
     }],
-    93: [function(require, module, exports) {
+    97: [function(require, module, exports) {
         'use strict';
         if ("production" === 'production') {
-            require(3);
+            require(2);
             require('core-js/fn/symbol');
         } else if ("production" === 'development') {
-            require(91);
+            require(95);
         } else {
             const {
                 app,
@@ -6532,26 +7445,24 @@
         }
 
     }, {
-        "3": 3,
-        "91": 91,
+        "2": 2,
+        "95": 95,
         "undefined": undefined
     }],
-    94: [function(require, module, exports) {
+    98: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
         });
         var _aw = require('aw');
         var _aw2 = _interopRequireDefault(_aw);
-        var _backupClient = require(37);
+        var _backupClient = require(40);
         var _backupClient2 = _interopRequireDefault(_backupClient);
-        var _instance = require(97);
+        var _instance = require(101);
         var _instance2 = _interopRequireDefault(_instance);
-        var _keys = require(101);
+        var _keys = require(105);
         var walletKeys = _interopRequireWildcard(_keys);
-        var _appConfig = require(6);
-        var _backupAuth = require(35);
-        var _backupAuth2 = _interopRequireDefault(_backupAuth);
+        var _appConfig = require(4);
 
         function _interopRequireWildcard(obj) {
             if (obj && obj.__esModule) {
@@ -6607,17 +7518,13 @@
                     _instance2.default.backupOnChange = false;
                     if (!Buffer.isBuffer(passphrase)) passphrase = Buffer.from(passphrase, 'utf8');
                     yield _instance2.default.current.updatePassphrase(passphrase);
-                    const [err, backupData] = yield(0, _aw2.default)(api.create, {
+                    const [err] = yield(0, _aw2.default)(api.create, {
                         context: api
                     })(_instance2.default.current, passphrase, email);
                     if (err) {
                         console.error(err);
                         throw err;
                     }
-                    const {
-                        auth
-                    } = backupData;
-                    _backupAuth2.default.current = auth;
                     let now = new Date().toISOString();
                     let status = {
                         email,
@@ -6627,16 +7534,13 @@
                     yield _instance2.default.current.updateKeyData(walletKeys.backup(), status);
                     const [err2] = yield(0, _aw2.default)(api.backupWallet, {
                         context: api
-                    })(_instance2.default.current, auth);
+                    })(_instance2.default.current);
                     if (err2) {
                         console.error(err2);
                         throw err2;
                     }
                     _instance2.default.backupOnChange = true;
-                    return {
-                        auth,
-                        status
-                    };
+                    return status;
                 })();
             }
         };
@@ -6644,15 +7548,14 @@
 
     }, {
         "101": 101,
-        "35": 35,
-        "37": 37,
-        "6": 6,
-        "97": 97,
+        "105": 105,
+        "4": 4,
+        "40": 40,
         "undefined": undefined
     }],
-    95: [function(require, module, exports) {
+    99: [function(require, module, exports) {
         'use strict';
-        var _browserWindowArgs = require(41);
+        var _browserWindowArgs = require(42);
 
         function setArgs() {
             const hashStr = window.location.hash.slice(1);
@@ -6663,21 +7566,21 @@
         setArgs();
 
     }, {
-        "41": 41
+        "42": 42
     }],
-    96: [function(require, module, exports) {
+    100: [function(require, module, exports) {
         'use strict';
         console.time('wallet-load');
-        require(93);
-        require(95);
-        require(98);
+        require(97);
+        require(99);
+        require(102);
 
     }, {
-        "93": 93,
-        "95": 95,
-        "98": 98
+        "102": 102,
+        "97": 97,
+        "99": 99
     }],
-    97: [function(require, module, exports) {
+    101: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -6686,11 +7589,9 @@
         var _lodash = require('lodash');
         var _ms = require('ms');
         var _ms2 = _interopRequireDefault(_ms);
-        var _keys = require(101);
+        var _keys = require(105);
         var walletKeys = _interopRequireWildcard(_keys);
-        var _backupAuth = require(35);
-        var _backupAuth2 = _interopRequireDefault(_backupAuth);
-        var _backupClient = require(37);
+        var _backupClient = require(40);
         var _backupClient2 = _interopRequireDefault(_backupClient);
 
         function _interopRequireWildcard(obj) {
@@ -6758,14 +7659,14 @@
         exports.default = walletInstance;
         const backupWallet = (0, _lodash.debounce)(_asyncToGenerator(function*() {
             console.log('Backing up...');
-            if (!_backupAuth2.default.current) return console.warn('Skipping backup since auth is empty.');
+            let status = yield walletInstance._wallet.fetchKeyData(walletKeys.backup());
+            if (!status) return console.warn('Skipping backup since status is empty.');
             if (!walletInstance.backupOnChange) return console.warn('Skipping backup since backupOnChange is false.');
-            let [backupErr] = yield aw(backupClient.backupWallet)(walletInstance.current, _backupAuth2.default.current);
+            let [backupErr] = yield aw(backupClient.backupWallet)(walletInstance.current);
             if (backupErr) {
                 console.error(backupErr);
                 throw backupErr;
             }
-            let status = yield walletInstance._wallet.fetchKeyData(walletKeys.backup());
             status = Object.assign({}, status, {
                 last: new Date().toISOString()
             });
@@ -6796,12 +7697,11 @@
         }
 
     }, {
-        "101": 101,
-        "35": 35,
-        "37": 37,
+        "105": 105,
+        "40": 40,
         "undefined": undefined
     }],
-    98: [function(require, module, exports) {
+    102: [function(require, module, exports) {
         'use strict';
         let run = (() => {
             var _ref = _asyncToGenerator(function*(argsObj) {
@@ -6813,17 +7713,21 @@
                 if (walletExists) {
                     try {
                         if (argsObj.recoveryPhrase) wallet = yield recoverFromPhrase(argsObj);
-                        if (argsObj.recoveryLink) wallet = yield recoverFromLink(argsObj);
+                        else if (argsObj.recoveryLink) wallet = yield recoverFromLink(argsObj);
                         else wallet = yield loadExisting(argsObj);
                         console.log('wallet load success: ' + argsObj.walletDir);
                     } catch (err) {
-                        console.log('\nWALLET LOAD FAIL');
+                        console.log('**** WALLET LOAD FAIL');
                         console.error(err);
                         console.log('');
-                        if (!err.message || !err.message.match(/unable to authenticate data/)) {
+                        if (!err.message || !err.message.match(/unable to authenticate data/) && !err.message.match(/salt failed/)) {
                             walletController.setError(err.message);
                         }
-                        return walletController.setInvalidPassphrase();
+                        if (err.message && err.message.match(/salt failed/)) {
+                            return walletController.setSaltConnectionFailed();
+                        } else {
+                            return walletController.setInvalidPassphrase();
+                        }
                     }
                 } else {
                     try {
@@ -6836,12 +7740,11 @@
                 _instance2.default.current = wallet;
                 global.walletInstance = _instance2.default;
                 (0, _server.createServer)('wallet', _instance2.default.current);
-                (0, _server.createServer)('backup-auth', _backupAuth2.default);
                 (0, _server.createServer)('account', _account2.default);
-                walletController.setWalletLoaded(true);
-                if (wallet.needsRefresh) setTimeout(function() {
-                    return (0, _electronIpcBroadcast2.default)('wallet:refreshAll');
-                }, 5000);
+                let action;
+                if (wallet.needsRefresh) action = 'refreshAll';
+                else if (argsObj.recoveryPhrase) action = 'restored';
+                walletController.setWalletLoaded(true, action);
                 console.timeEnd('wallet-run');
             });
             return function run(_x) {
@@ -6857,12 +7760,19 @@
                 const walletPaths = (0, _paths2.default)(walletDir);
                 const walletExists = yield _wallet2.default.exists(walletDir);
                 if (!walletExists) throw new Error('Wallet does not exist.');
+                let wallet;
                 const passphraseFileExists = yield walletPaths.passphraseFileExists();
                 if (passphraseFileExists) {
-                    const wallet = yield _wallet2.default.loadWithPassphraseFile(walletPaths.walletDir);
-                    return wallet;
+                    wallet = yield _wallet2.default.loadWithPassphraseFile(walletPaths.walletDir);
+                } else {
+                    wallet = yield _wallet2.default.load(walletPaths.walletDir, passphrase);
                 }
-                return _wallet2.default.load(walletPaths.walletDir, passphrase);
+                const backupKey = walletKeys.backup();
+                const backup = yield wallet.fetchKeyData(backupKey);
+                if (backup && !Object.keys(backup).length) {
+                    yield wallet.deleteKeyData(backupKey);
+                }
+                return wallet;
             });
             return function loadExisting() {
                 return _ref2.apply(this, arguments);
@@ -6884,8 +7794,8 @@
                     const backupDestDir = _path2.default.join((0, _env.walletBackupDir)(), (0, _dateStr2.default)(), 'exodus.wallet');
                     yield(0, _aw2.default)(_fsExtra2.default.move)(walletDir, backupDestDir);
                 }
-                const wallet = _wallet2.default.createFromMnemonicRecoveryPhrase(walletDir, recoveryPhrase, recoveryPhrasePassphrase);
-                _backupAuth2.default.clear();
+                const wallet = yield api.recoverWalletFromMnemonic(walletDir, recoveryPhrase, recoveryPhrasePassphrase);
+                yield wallet.deleteKeyData(walletKeys.backup());
                 return wallet;
             });
             return function recoverFromPhrase(_x3) {
@@ -6900,14 +7810,10 @@
                     passphrase
                 } = _ref5;
                 const params = (0, _restoreLink.decodeLink)(recoveryLink);
-                const [err, recoverData] = yield(0, _aw2.default)({
+                const [err, entropy] = yield(0, _aw2.default)({
                     context: api
-                })(api.recoverAuthAndEntropy)(params, passphrase);
+                })(api.recoverEntropy)(params, passphrase);
                 if (err) throw err;
-                const {
-                    auth,
-                    entropy
-                } = recoverData;
                 const backupDestDir = _path2.default.join((0, _env.walletBackupDir)(), (0, _dateStr2.default)(), 'exodus.wallet');
                 const walletExists = yield _wallet2.default.exists(walletDir);
                 if (walletExists) {
@@ -6915,7 +7821,7 @@
                 }
                 const [receoverDataErr, wallet] = yield(0, _aw2.default)({
                     context: api
-                })(api.recoverWallet)(auth, passphrase, entropy, walletDir);
+                })(api.recoverWallet)(passphrase, entropy, walletDir);
                 if (receoverDataErr) {
                     if (yield _fsExtra2.default.pathExists(backupDestDir)) {
                         yield(0, _aw2.default)(_fsExtra2.default.move)(backupDestDir, walletDir, {
@@ -6924,7 +7830,6 @@
                     }
                     throw receoverDataErr;
                 }
-                _backupAuth2.default.current = auth;
                 return wallet;
             });
             return function recoverFromLink(_x4) {
@@ -6937,27 +7842,40 @@
         var _fsExtra2 = _interopRequireDefault(_fsExtra);
         var _path = require('path');
         var _path2 = _interopRequireDefault(_path);
-        var _wallet = require(100);
+        var _wallet = require(104);
         var _wallet2 = _interopRequireDefault(_wallet);
-        var _instance = require(97);
+        var _instance = require(101);
         var _instance2 = _interopRequireDefault(_instance);
-        var _paths = require(103);
+        var _paths = require(107);
         var _paths2 = _interopRequireDefault(_paths);
-        var _server = require(54);
-        var _client = require(53);
-        var _electronIpcBroadcast = require('electron-ipc-broadcast');
-        var _electronIpcBroadcast2 = _interopRequireDefault(_electronIpcBroadcast);
-        var _dateStr = require(52);
+        var _keys = require(5);
+        var walletKeys = _interopRequireWildcard(_keys);
+        var _server = require(55);
+        var _client = require(54);
+        var _dateStr = require(53);
         var _dateStr2 = _interopRequireDefault(_dateStr);
-        var _env = require(56);
-        var _backupClient = require(37);
+        var _env = require(57);
+        var _backupClient = require(40);
         var _backupClient2 = _interopRequireDefault(_backupClient);
-        var _appConfig = require(6);
-        var _backupAuth = require(35);
-        var _backupAuth2 = _interopRequireDefault(_backupAuth);
-        var _account = require(94);
+        var _appConfig = require(4);
+        var _account = require(98);
         var _account2 = _interopRequireDefault(_account);
         var _restoreLink = require('@exodus/restore-link');
+
+        function _interopRequireWildcard(obj) {
+            if (obj && obj.__esModule) {
+                return obj;
+            } else {
+                var newObj = {};
+                if (obj != null) {
+                    for (var key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+                    }
+                }
+                newObj.default = obj;
+                return newObj;
+            }
+        }
 
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -7002,20 +7920,20 @@
         run(global.__args__).then(() => {}).catch(err => console.error(err));
 
     }, {
-        "100": 100,
-        "103": 103,
-        "35": 35,
-        "37": 37,
-        "52": 52,
+        "101": 101,
+        "104": 104,
+        "107": 107,
+        "4": 4,
+        "40": 40,
+        "5": 5,
         "53": 53,
         "54": 54,
-        "56": 56,
-        "6": 6,
-        "94": 94,
-        "97": 97,
+        "55": 55,
+        "57": 57,
+        "98": 98,
         "undefined": undefined
     }],
-    99: [function(require, module, exports) {
+    103: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -7033,7 +7951,7 @@
     }, {
         "undefined": undefined
     }],
-    100: [function(require, module, exports) {
+    104: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -7049,11 +7967,11 @@
         var _fsExtra2 = _interopRequireDefault(_fsExtra);
         var _bitcoinSeed = require('bitcoin-seed');
         var bitcoinSeed = _interopRequireWildcard(_bitcoinSeed);
-        var _bip3 = require(38);
-        var _bip4 = require(40);
-        var bip44 = _interopRequireWildcard(_bip4);
-        var _exodusPurpose = require(67);
+        var _bip3 = require(41);
+        var _exodusPurpose = require(68);
         var _exodusPurpose2 = _interopRequireDefault(_exodusPurpose);
+        var _factomjsLib = require('factomjs-lib');
+        var _factomjsLib2 = _interopRequireDefault(_factomjsLib);
         var _makeConcurrent = require('make-concurrent');
         var _makeConcurrent2 = _interopRequireDefault(_makeConcurrent);
         var _secoKeyval = require('seco-keyval');
@@ -7063,15 +7981,17 @@
         var _bufferNoise = require('buffer-noise');
         var _bufferNoise2 = _interopRequireDefault(_bufferNoise);
         var _zlib = require('zlib');
-        var _appConfig = require(6);
-        var _paths = require(103);
+        var _appConfig = require(4);
+        var _paths = require(107);
         var _paths2 = _interopRequireDefault(_paths);
-        var _passphraseFile = require(102);
-        var _makeError = require(68);
+        var _passphraseFile = require(106);
+        var _makeError = require(69);
         var _makeError2 = _interopRequireDefault(_makeError);
-        var _errors = require(99);
+        var _errors = require(103);
         var _errors2 = _interopRequireDefault(_errors);
-        var _simpleTx = require(81);
+        var _assets = require(25);
+        var _assets2 = _interopRequireDefault(_assets);
+        var _simpleTx = require(85);
         var _simpleTx2 = _interopRequireDefault(_simpleTx);
 
         function _interopRequireWildcard(obj) {
@@ -7129,19 +8049,22 @@
             appName: 'Exodus',
             appVersion: _appConfig.PACKAGE.version
         };
-        const updateKeyData = (0, _makeConcurrent2.default)((() => {
-            var _ref = _asyncToGenerator(function*(key, data) {
+        const kvLockCall = (0, _makeConcurrent2.default)((() => {
+            var _ref = _asyncToGenerator(function*(method) {
                 const lockFile = `${this._walletPaths.infoFile}.lock`;
                 yield _fsExtra2.default.outputFile(lockFile, '');
                 try {
-                    yield this._kv.set(key, data);
+                    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+                        args[_key - 1] = arguments[_key];
+                    }
+                    yield this._kv[method](...args);
                 } catch (err) {
                     throw err;
                 } finally {
                     yield _fsExtra2.default.remove(lockFile);
                 }
             });
-            return function(_x, _x2) {
+            return function(_x) {
                 return _ref.apply(this, arguments);
             };
         })(), {
@@ -7153,10 +8076,7 @@
                 this._seed = null;
                 this._walletPaths = null;
                 this._HDKeys = {
-                    master: null,
-                    eid: null,
-                    infoKey: null,
-                    bip44: {}
+                    master: null
                 };
                 this.needsRefresh = false;
             }
@@ -7182,7 +8102,7 @@
                     yield seco.write(expand32k((0, _zlib.gzipSync)(seedBuffer)));
                     seco.destroy();
                     let wallet = new Wallet();
-                    wallet._seed = seed;
+                    wallet._setSeed(seed);
                     wallet._walletPaths = walletPaths;
                     yield wallet._openKV(passphrase, !infoFileExists);
                     return wallet;
@@ -7200,13 +8120,19 @@
                     });
                 })();
             }
-            static createFromMnemonicRecoveryPhrase(walletDir, mnemonic, mnemonicPassphrase) {
+            static createFromMnemonicRecoveryPhrase(walletDir, tempInfoFile, mnemonic, mnemonicPassphrase) {
                 return _asyncToGenerator(function*() {
                     const passphrase = _crypto2.default.randomBytes(32).toString('base64');
                     yield(0, _passphraseFile.writePassphraseFile)(walletDir, passphrase);
                     const seed = bitcoinSeed.fromMnemonic(mnemonic, mnemonicPassphrase);
+                    const infoFileExists = yield _fsExtra2.default.pathExists(tempInfoFile);
+                    if (infoFileExists) {
+                        const walletPaths = (0, _paths2.default)(walletDir);
+                        yield _fsExtra2.default.copy(tempInfoFile, walletPaths.infoFile);
+                    }
                     return Wallet.create(walletDir, passphrase, {
-                        seed
+                        seed,
+                        infoFileExists
                     });
                 })();
             }
@@ -7232,7 +8158,7 @@
                     const seco = (0, _secoRw2.default)(walletPaths.seedFile, passphrase);
                     let seed = yield seco.read();
                     seco.destroy();
-                    wallet._seed = bitcoinSeed.fromBuffer((0, _zlib.gunzipSync)(shrink32k(seed)));
+                    wallet._setSeed(bitcoinSeed.fromBuffer((0, _zlib.gunzipSync)(shrink32k(seed))));
                     wallet._walletPaths = walletPaths;
                     yield wallet._openKV(passphrase);
                     return wallet;
@@ -7300,71 +8226,89 @@
                     yield _fsExtra2.default.remove(_this2._walletPaths.passphraseFile);
                 })();
             }
-            updateKeyData(key, data) {
-                return updateKeyData.call(this, key, data);
-            }
             fetchKeyData(key) {
                 var _this3 = this;
                 return _asyncToGenerator(function*() {
                     return _this3._kv.get(key);
                 })();
             }
-            getHDKey(coin) {
-                let accountIndex = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-                return this._getHDKey(coin, accountIndex).toJSON();
+            updateKeyData(key, data) {
+                return kvLockCall.call(this, 'set', key, data);
             }
-            _getHDKey(coin) {
-                let accountIndex = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-                if (typeof coin !== 'string') coin = coin.name;
-                if (!this._HDKeys.master) this._HDKeys.master = (0, _bip3.fromMasterSeed)(this._seed.seed);
-                if (!this._HDKeys.bip44._root) {
-                    this._HDKeys.bip44._root = bip44.derivePurpose(this._HDKeys.master);
-                }
-                if (!this._HDKeys.bip44[coin]) this._HDKeys.bip44[coin] = {};
-                if (!this._HDKeys.bip44[coin]._root) {
-                    this._HDKeys.bip44[coin]._root = bip44.deriveCoin(this._HDKeys.bip44._root, coin);
-                }
-                if (!this._HDKeys.bip44[coin][accountIndex]) {
-                    this._HDKeys.bip44[coin][accountIndex] = bip44.deriveAccount(this._HDKeys.bip44[coin]._root, accountIndex);
-                }
-                return this._HDKeys.bip44[coin][accountIndex];
+            deleteKeyData(key) {
+                return kvLockCall.call(this, 'delete', key);
+            }
+            getMnemonic() {
+                return this._seed.mnemonicString;
+            }
+            getPrivateKeys(assetName, accountIndex, paths) {
+                const hdkey = this._getHDKey(assetName, accountIndex);
+                return paths.map(path => {
+                    return hdkey.derive(path, 'tag', {
+                        spendable: true
+                    }).privateEncoded;
+                });
+            }
+            createTx(assetName, data) {
+                return (0, _simpleTx2.default)(assetName, data, this._getHDKey(assetName));
+            }
+            getMoneroHDKey() {
+                let accountIndex = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+                return this._getHDKey('monero', accountIndex).toJSON();
             }
             getXPub(coin) {
                 let accountIndex = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
                 return this._getHDKey(coin, accountIndex).xPub;
             }
-            createTx(assetName, data) {
-                return (0, _simpleTx2.default)(assetName, data, this._getHDKey(assetName));
+            getFactomPublicKey() {
+                let accountIndex = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+                const {
+                    privateKey
+                } = this._getHDKey('factom', accountIndex).derive('m/0/0', 'tag');
+                return _factomjsLib2.default.crypto.publicKeyCreate(privateKey);
             }
             getEID() {
-                if (!this._HDKeys.master) this._HDKeys.master = (0, _bip3.fromMasterSeed)(this._seed.seed);
-                this._HDKeys.eid = this._HDKeys.master.derive(`m/${_exodusPurpose2.default}'/0'/0`, 'exchange');
-                return this._HDKeys.eid.publicKey;
+                const path = `m/${_exodusPurpose2.default}'/0'/0`;
+                if (!this._HDKeys[path]) this._HDKeys[path] = this._HDKeys.master.derive(path, 'exchange');
+                return this._HDKeys[path].publicKey;
+            }
+            _getHDKey(coin) {
+                let accountIndex = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+                if (typeof coin !== 'string') coin = coin.name;
+                const path = `m/44'/${_assets2.default[coin].bip44-_bip3.HARDENED_OFFSET}'/${accountIndex}'`;
+                if (!this._HDKeys[path]) {
+                    const tag = `${coin}-account${accountIndex}`;
+                    this._HDKeys[path] = this._HDKeys.master.derive(path, tag, {
+                        coin: coin
+                    });
+                }
+                return this._HDKeys[path];
             }
             _getDeterministicKey() {
-                if (!this._HDKeys.master) this._HDKeys.master = (0, _bip3.fromMasterSeed)(this._seed.seed);
-                this._HDKeys.deterministicKey = this._HDKeys.master.derive(`m/${_exodusPurpose2.default}'/1'/0`, 'encryption-key');
-                return this._HDKeys.deterministicKey.privateKey;
+                const path = `m/${_exodusPurpose2.default}'/1'/0`;
+                if (!this._HDKeys[path]) this._HDKeys[path] = this._HDKeys.master.derive(path, 'encryption-key');
+                return this._HDKeys[path].privateKey;
             }
-            getMnemonic() {
-                return this._seed.mnemonicString;
+            _setSeed(seed) {
+                this._seed = seed;
+                this._HDKeys.master = (0, _bip3.fromMasterSeed)(seed.seed);
             }
         };
         exports.default = Wallet;
 
     }, {
-        "102": 102,
         "103": 103,
-        "38": 38,
-        "40": 40,
-        "6": 6,
-        "67": 67,
+        "106": 106,
+        "107": 107,
+        "25": 25,
+        "4": 4,
+        "41": 41,
         "68": 68,
-        "81": 81,
-        "99": 99,
+        "69": 69,
+        "85": 85,
         "undefined": undefined
     }],
-    101: [function(require, module, exports) {
+    105: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -7386,7 +8330,7 @@
         const twoOfTwo = exports.twoOfTwo = label => `twoOfTwo.${label}`;
 
     }, {}],
-    102: [function(require, module, exports) {
+    106: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -7430,7 +8374,7 @@
         })();
         var _fsExtra = require('fs-extra');
         var _fsExtra2 = _interopRequireDefault(_fsExtra);
-        var _paths = require(103);
+        var _paths = require(107);
         var _paths2 = _interopRequireDefault(_paths);
 
         function _interopRequireDefault(obj) {
@@ -7467,10 +8411,10 @@
         }
 
     }, {
-        "103": 103,
+        "107": 107,
         "undefined": undefined
     }],
-    103: [function(require, module, exports) {
+    107: [function(require, module, exports) {
         'use strict';
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -7564,12 +8508,12 @@
     }, {
         "undefined": undefined
     }],
-    104: [function(require, module, exports) {
+    108: [function(require, module, exports) {
         module.exports = {
             "name": "exodus",
             "productName": "Exodus",
-            "version": "1.43.4",
+            "version": "1.51.2",
             "description": "Secure, manage, and trade blockchain assets."
         }
     }, {}]
-}, {}, [96]);
+}, {}, [100]);

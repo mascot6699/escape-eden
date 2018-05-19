@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no" />
+		<!-- Exodus core CSS -->
+		<link href="css/exodus.css" rel="stylesheet" media="screen">
+		<!-- Exodus print CSS -->
+		<link href="css/print.css" rel="stylesheet" media="print">
+		<script>
+			setTimeout(function () {
+				var script = document.createElement('script')
+				script.src = "http://localhost:35729/livereload.js"
+				document.getElementsByTagName('head')[0].appendChild(script)
+			}, 2000)
+		</script>
+		<script>
+			const swalCSS = '../src/node_modules/sweetalert/dist/sweetalert.css' // DEVELOPMENT
+			const link = document.createElement('link')
+			link.rel = 'stylesheet'
+			link.href = swalCSS
+			document.getElementsByTagName('head')[0].appendChild(link)
+		</script>
+	</head>
+	<body>
+		<!-- SHOULD NOT REFERENCE '#app-container' FROM CSS, ONLY FOR REACT -->
+		<div id="app-container"></div>
+		<script src="./index.js"></script>
+	</body>
+</html>
